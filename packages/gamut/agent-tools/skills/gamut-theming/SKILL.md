@@ -18,10 +18,10 @@ For authoring component styles (`css`, `variant`, `states`, system props, ColorM
 ## Install
 
 ```sh
-yarn add @codecademy/gamut-kit @emotion/react @emotion/styled
+yarn add @codecademy/gamut @emotion/react @emotion/styled
 ```
 
-`gamut-kit` bundles `gamut`, `gamut-icons`, `gamut-illustrations`, `gamut-patterns`, `gamut-styles`, `variance`, and `gamut-tests`.
+`gamut` brings in `gamut-icons`, `gamut-illustrations`, `gamut-patterns`, `gamut-styles`, and `variance` automatically as regular dependencies.
 
 Full guide: [Meta / Installation](https://gamut.codecademy.com/?path=/docs-meta-installation--page) in Storybook (CSP `nonce` on `GamutProvider`, Jest, Next/Gatsby entry points).
 

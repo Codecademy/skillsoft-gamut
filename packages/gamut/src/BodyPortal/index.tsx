@@ -1,4 +1,4 @@
-import { ColorMode, system, useCurrentMode } from '@codecademy/gamut-styles';
+import { ColorMode, system, useCurrentMode } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import * as React from 'react';

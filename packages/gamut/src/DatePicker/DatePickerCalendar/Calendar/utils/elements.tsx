@@ -1,5 +1,5 @@
-import { css, states, transitionConcat } from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
+import { css, states, transitionConcat } from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 import styled from '@emotion/styled';
 
 export const CalendarTable = styled.table(

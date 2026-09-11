@@ -1,6 +1,6 @@
-import { Box, BoxProps, ToolTip, ToolTipProps } from '@codecademy/gamut';
-import { MiniInfoOutlineIcon } from '@codecademy/gamut-icons';
-import { css } from '@codecademy/gamut-styles';
+import { Box, BoxProps, ToolTip, ToolTipProps } from '@skillsoft/gamut';
+import { MiniInfoOutlineIcon } from '@skillsoft/gamut-icons';
+import { css } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 import React from 'react';
 

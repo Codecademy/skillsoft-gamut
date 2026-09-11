@@ -9,7 +9,7 @@ import {
   TableHeader,
   Text,
   TextButton,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import {
   HouseEntranceIcon,
   MiniDeleteIcon,
@@ -17,9 +17,9 @@ import {
   StarIcon,
   StreakIcon,
   TrophyIcon,
-} from '@codecademy/gamut-icons';
-import { Keyhole } from '@codecademy/gamut-illustrations';
-import { Background } from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-icons';
+import { Keyhole } from '@skillsoft/gamut-illustrations';
+import { Background } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentType } from 'react';
 

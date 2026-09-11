@@ -12,13 +12,13 @@ import {
   PopoverContainer,
   Text,
   useLocalQuery,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import {
   MiniKebabMenuIcon,
   RocketIcon,
   SparkleOutlineIcon,
-} from '@codecademy/gamut-icons';
-import { BlueprintWhite } from '@codecademy/gamut-illustrations';
+} from '@skillsoft/gamut-icons';
+import { BlueprintWhite } from '@skillsoft/gamut-illustrations';
 import uniq from 'lodash/uniq';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 

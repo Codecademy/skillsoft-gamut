@@ -1,18 +1,18 @@
 {
-  "name": "@codecademy/gamut-patterns",
+  "name": "@skillsoft/gamut-patterns",
   "description": "Pattern library for Codecademy",
-  "version": "1.1.0",
-  "author": "Codecademy Engineering <dev@codecademy.com>",
-  "bugs": "https://github.com/Codecademy/gamut/issues",
+  "version": "0.0.1",
+  "author": "Skillsoft Engineering <dev@skillsoft.com>",
+  "bugs": "https://github.com/Codecademy/skillsoft-gamut/issues",
   "dependencies": {
-    "@codecademy/gamut-styles": "21.2.0",
-    "@codecademy/variance": "1.1.0",
+    "@skillsoft/gamut-styles": "0.0.1",
+    "@skillsoft/variance": "0.0.1",
     "classnames": "^2.2.5"
   },
   "files": [
     "dist"
   ],
-  "homepage": "https://github.com/Codecademy/gamut#readme",
+  "homepage": "https://github.com/Codecademy/skillsoft-gamut#readme",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -25,9 +25,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": "Codecademy/gamut.git",
+  "repository": "Codecademy/skillsoft-gamut.git",
   "scripts": {
-    "build": "nx build @codecademy/gamut-patterns",
+    "build": "nx build @skillsoft/gamut-patterns",
     "format": "svgo -f ./src/svg --pretty --config=.svgo.yml"
   },
   "sideEffects": false,

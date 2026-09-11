@@ -1,4 +1,4 @@
-import { FlexBox } from '@codecademy/gamut';
+import { FlexBox } from '@skillsoft/gamut';
 import { ComponentProps } from 'react';
 
 export type HeroContainerProps = ComponentProps<typeof FlexBox>;

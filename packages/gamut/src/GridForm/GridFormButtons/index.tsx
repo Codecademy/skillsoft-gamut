@@ -1,4 +1,4 @@
-import { ColorModes } from '@codecademy/gamut-styles';
+import { ColorModes } from '@skillsoft/gamut-styles';
 import { ComponentProps } from 'react';
 import * as React from 'react';
 

@@ -4,8 +4,8 @@ import {
   system,
   theme,
   variant,
-} from '@codecademy/gamut-styles';
-import { StyleProps, variance } from '@codecademy/variance';
+} from '@skillsoft/gamut-styles';
+import { StyleProps, variance } from '@skillsoft/variance';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 

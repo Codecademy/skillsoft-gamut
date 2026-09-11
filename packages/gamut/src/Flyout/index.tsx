@@ -1,5 +1,5 @@
-import { MiniDeleteIcon } from '@codecademy/gamut-icons';
-import { Background, Colors } from '@codecademy/gamut-styles';
+import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
+import { Background, Colors } from '@skillsoft/gamut-styles';
 import * as React from 'react';
 
 import { FlexBox } from '../Box';

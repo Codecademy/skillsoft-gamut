@@ -1,4 +1,4 @@
-import { StarIcon } from '@codecademy/gamut-icons';
+import { StarIcon } from '@skillsoft/gamut-icons';
 import userEvent from '@testing-library/user-event';
 import { setupRtl } from 'component-test-setup';
 

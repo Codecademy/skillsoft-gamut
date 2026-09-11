@@ -1,5 +1,5 @@
-import { Box } from '@codecademy/gamut';
-import { css } from '@codecademy/gamut-styles';
+import { Box } from '@skillsoft/gamut';
+import { css } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 
 // A plain flex/spacing wrapper -- every property here has a direct system-prop

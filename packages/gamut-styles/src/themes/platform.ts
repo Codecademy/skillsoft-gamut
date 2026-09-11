@@ -1,4 +1,4 @@
-import { createTheme } from '@codecademy/variance';
+import { createTheme } from '@skillsoft/variance';
 
 import { platformPalette } from '../variables';
 import { coreTheme } from './core';

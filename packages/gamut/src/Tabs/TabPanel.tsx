@@ -1,4 +1,4 @@
-import { system } from '@codecademy/gamut-styles';
+import { system } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 import * as React from 'react';
 import {

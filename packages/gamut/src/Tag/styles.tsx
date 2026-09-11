@@ -1,4 +1,4 @@
-import { css, states, theme, variant } from '@codecademy/gamut-styles';
+import { css, states, theme, variant } from '@skillsoft/gamut-styles';
 
 import { InteractiveSelectors, Selectors } from '../ButtonBase/ButtonBase';
 

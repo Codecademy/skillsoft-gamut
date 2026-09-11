@@ -1,4 +1,4 @@
-import { css, theme } from '@codecademy/gamut-styles';
+import { css, theme } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 import { SVGProps } from 'react';
 import * as React from 'react';

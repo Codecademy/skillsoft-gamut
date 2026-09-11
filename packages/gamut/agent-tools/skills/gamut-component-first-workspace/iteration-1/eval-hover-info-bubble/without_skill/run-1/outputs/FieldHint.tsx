@@ -1,5 +1,5 @@
-import { ButtonBaseElements, IconButton } from '@codecademy/gamut';
-import { MiniInfoOutlineIcon } from '@codecademy/gamut-icons';
+import { ButtonBaseElements, IconButton } from '@skillsoft/gamut';
+import { MiniInfoOutlineIcon } from '@skillsoft/gamut-icons';
 import { ComponentProps, forwardRef } from 'react';
 
 export type FieldHintProps = Omit<

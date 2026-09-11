@@ -1,0 +1,66 @@
+name: Publish Next
+
+# Publishes a continuous prerelease build from `main` under the stable `next`
+# npm dist-tag, mirroring how `alpha` publishes work per-PR (see
+# publish-alpha.yml) but with one moving tag instead of a unique tag per build.
+#
+# TODO(release-scaffold): this is currently dry-run only while the release
+# groups / @skillsoft scope migration is being scaffolded. Remove `--dry-run`
+# from the "Publish next packages" step below once the @skillsoft npm org/
+# token are ready and we actually want `main` to publish for real.
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  NODE_VERSION: '22.13.1'
+  NODE_OPTIONS: '--max_old_space_size=8196'
+  NX_CLOUD: false
+  IGNORE_COMMIT_MESSAGE: 'chore(release): publish'
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: publish-next
+  cancel-in-progress: false
+
+jobs:
+  publish-next:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Setup and Build
+        id: setup
+        uses: ./.github/actions/yarn
+
+      - name: Set git user
+        uses: ./.github/actions/set-git-user
+
+      - name: Set npm token
+        uses: ./.github/actions/set-npm-token
+        with:
+          token-secret: ${{ secrets.NODE_AUTH_TOKEN }}
+
+      - name: Skip build from automated commit
+        uses: ./.github/actions/skip-automated-commits
+        with:
+          ignore-commit-message: ${{ env.IGNORE_COMMIT_MESSAGE }}
+
+      - run: npx nx run-many --target=publish-build --parallel=3
+
+      - name: Publish next packages
+        id: publish-next
+        run: |
+          SHORT_SHA=${GITHUB_SHA:0:6}
+          PREID="next.${SHORT_SHA}"
+          npx nx run gamut-release:publish --preid="${PREID}" --tag=next --manifest=next-publish-manifest.json --dry-run
+        env:
+          GH_TOKEN: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

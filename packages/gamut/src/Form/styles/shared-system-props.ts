@@ -3,7 +3,7 @@ import {
   theme,
   transitionConcat,
   variant,
-} from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 
 export type conditionalStyleProps = {

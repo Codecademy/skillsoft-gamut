@@ -1,4 +1,4 @@
-import { StyleProps } from '@codecademy/variance';
+import { StyleProps } from '@skillsoft/variance';
 import styled from '@emotion/styled';
 import * as React from 'react';
 import {

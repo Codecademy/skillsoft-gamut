@@ -1,4 +1,4 @@
-import { CSSObject } from '@codecademy/variance';
+import { CSSObject } from '@skillsoft/variance';
 import {
   CacheProvider,
   EmotionCache,

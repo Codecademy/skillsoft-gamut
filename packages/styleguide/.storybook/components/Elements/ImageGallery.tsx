@@ -1,8 +1,8 @@
-import { Box, Text, Input, FlexBox, GridBox } from '@codecademy/gamut';
-import { GamutIconProps } from '@codecademy/gamut-icons';
-import { IllustrationProps } from '@codecademy/gamut-illustrations';
-import { PatternProps } from '@codecademy/gamut-patterns';
-import { css, timingValues } from '@codecademy/gamut-styles';
+import { Box, Text, Input, FlexBox, GridBox } from '@skillsoft/gamut';
+import { GamutIconProps } from '@skillsoft/gamut-icons';
+import { IllustrationProps } from '@skillsoft/gamut-illustrations';
+import { PatternProps } from '@skillsoft/gamut-patterns';
+import { css, timingValues } from '@skillsoft/gamut-styles';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as React from 'react';
 import { useState } from 'react';

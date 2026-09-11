@@ -1,7 +1,7 @@
-import { system, variant } from '@codecademy/gamut-styles/src';
+import { system, variant } from '@skillsoft/gamut-styles/src';
 import styled from '@emotion/styled';
-import { StyleProps } from '@codecademy/variance';
-import { Box } from '@codecademy/gamut';
+import { StyleProps } from '@skillsoft/variance';
+import { Box } from '@skillsoft/gamut';
 
 export const Table = styled(Box)(
   system.css({ borderRadius: 'lg', p: 8, display: 'grid', mb: 32 })

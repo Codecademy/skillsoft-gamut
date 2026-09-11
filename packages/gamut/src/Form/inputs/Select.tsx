@@ -1,9 +1,9 @@
 import {
   ArrowChevronDownIcon,
   MiniChevronDownIcon,
-} from '@codecademy/gamut-icons';
-import { variant } from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
+} from '@skillsoft/gamut-icons';
+import { variant } from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import {

@@ -2,8 +2,8 @@ import {
   styledOptions,
   system,
   transitionConcat,
-} from '@codecademy/gamut-styles';
-import { StyleProps, variance } from '@codecademy/variance';
+} from '@skillsoft/gamut-styles';
+import { StyleProps, variance } from '@skillsoft/variance';
 import styled from '@emotion/styled';
 import isObject from 'lodash/isObject';
 import { ComponentProps, forwardRef } from 'react';

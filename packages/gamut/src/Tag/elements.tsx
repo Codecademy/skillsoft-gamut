@@ -1,4 +1,4 @@
-import { MiniDeleteIcon } from '@codecademy/gamut-icons';
+import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
 import styled from '@emotion/styled';
 
 import { Anchor } from '../Anchor';

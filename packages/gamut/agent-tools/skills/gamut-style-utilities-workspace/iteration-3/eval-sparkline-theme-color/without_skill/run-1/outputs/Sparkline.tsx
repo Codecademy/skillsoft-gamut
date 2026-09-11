@@ -1,4 +1,4 @@
-import { Colors, isColorAlias, useColorModes } from '@codecademy/gamut-styles';
+import { Colors, isColorAlias, useColorModes } from '@skillsoft/gamut-styles';
 import { FC, SVGProps, useMemo } from 'react';
 
 export interface SparklineProps extends Omit<SVGProps<SVGSVGElement>, 'color'> {

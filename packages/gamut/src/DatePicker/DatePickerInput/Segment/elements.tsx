@@ -1,5 +1,5 @@
-import { css, states } from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
+import { css, states } from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 import styled from '@emotion/styled';
 
 const segmentStyles = states({

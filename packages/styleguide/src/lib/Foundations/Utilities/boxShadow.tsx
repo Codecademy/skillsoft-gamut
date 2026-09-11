@@ -1,5 +1,5 @@
-import { GridBox } from '@codecademy/gamut';
-import { boxShadow } from '@codecademy/gamut-styles';
+import { GridBox } from '@skillsoft/gamut';
+import { boxShadow } from '@skillsoft/gamut-styles';
 import { SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
 

@@ -17,7 +17,7 @@ The `eslint-plugin-gamut` package provides custom ESLint rules to enforce best p
 
 ## Available rules
 
-### `gamut/no-inline-style`
+### `@skillsoft/gamut/no-inline-style`
 
 **Level:** `error`
 
@@ -82,13 +82,13 @@ const ExpandableContainer = styled.Box(
 For third-party components or edge cases where inline styles are necessary (e.g., framer-motion animations), you can disable the rule:
 
 ```tsx
-// eslint-disable-next-line gamut/no-inline-style
+// eslint-disable-next-line @skillsoft/gamut/no-inline-style
 <motion.div style={{ transformOrigin: 'center' }} />
 ```
 
 ---
 
-### `gamut/no-css-standalone`
+### `@skillsoft/gamut/no-css-standalone`
 
 **Level:** `error`
 
@@ -134,7 +134,7 @@ const buttonStyles = variant({
 
 ---
 
-### `gamut/import-paths`
+### `@skillsoft/gamut/import-paths`
 
 **Level:** `error`
 **Fixable:** Yes (auto-fixable using `--fix`)
@@ -176,7 +176,7 @@ import { theme } from '@codecademy/gamut-styles';
 
 ---
 
-### `gamut/prefer-themed`
+### `@skillsoft/gamut/prefer-themed`
 
 **Level:** `off` (by default)
 **Fixable:** Yes (auto-fixable using `--fix`)
@@ -219,10 +219,10 @@ These rules are automatically included when you extend the recommended configura
 module.exports = {
   plugins: ['eslint-plugin-gamut'],
   rules: {
-    'gamut/no-inline-style': 'error',
-    'gamut/no-css-standalone': 'error',
-    'gamut/import-paths': 'error',
-    'gamut/prefer-themed': 'off',
+    '@skillsoft/gamut/no-inline-style': 'error',
+    '@skillsoft/gamut/no-css-standalone': 'error',
+    '@skillsoft/gamut/import-paths': 'error',
+    '@skillsoft/gamut/prefer-themed': 'off',
   },
 };
 ```
@@ -238,7 +238,7 @@ module.exports = {
     {
       files: ['packages/gamut-illustrations/**'],
       rules: {
-        'gamut/no-inline-style': 'off',
+        '@skillsoft/gamut/no-inline-style': 'off',
       },
     },
   ],

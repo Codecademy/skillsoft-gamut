@@ -1,5 +1,5 @@
-import { Box, BoxProps } from '@codecademy/gamut';
-import { css } from '@codecademy/gamut-styles';
+import { Box, BoxProps } from '@skillsoft/gamut';
+import { css } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 
 /**
@@ -20,4 +20,4 @@ export const HeroContainer = styled(Box)<BoxProps>(
   })
 );
 
-export type { BoxProps as HeroContainerProps } from '@codecademy/gamut';
+export type { BoxProps as HeroContainerProps } from '@skillsoft/gamut';

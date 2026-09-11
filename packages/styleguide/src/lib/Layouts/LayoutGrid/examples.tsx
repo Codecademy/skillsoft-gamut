@@ -1,5 +1,5 @@
-import { Column, ColumnProps } from '@codecademy/gamut';
-import { css } from '@codecademy/gamut-styles';
+import { Column, ColumnProps } from '@skillsoft/gamut';
+import { css } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 
 export const columns = [

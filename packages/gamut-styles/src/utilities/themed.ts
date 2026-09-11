@@ -1,4 +1,4 @@
-import { Path, PathValue } from '@codecademy/variance';
+import { Path, PathValue } from '@skillsoft/variance';
 import { Theme } from '@emotion/react';
 import get from 'lodash/get';
 

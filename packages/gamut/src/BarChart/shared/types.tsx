@@ -1,5 +1,5 @@
-import { GamutIconProps } from '@codecademy/gamut-icons';
-import { ColorAlias } from '@codecademy/gamut-styles';
+import { GamutIconProps } from '@skillsoft/gamut-icons';
+import { ColorAlias } from '@skillsoft/gamut-styles';
 import { ComponentProps, HTMLProps } from 'react';
 
 import { ButtonProps } from '../../Button';

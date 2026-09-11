@@ -1,4 +1,4 @@
-import { Box, FlexBox, Markdown } from '@codecademy/gamut';
+import { Box, FlexBox, Markdown } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Box> = {

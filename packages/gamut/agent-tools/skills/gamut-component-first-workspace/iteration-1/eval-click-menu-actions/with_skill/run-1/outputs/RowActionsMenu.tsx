@@ -4,14 +4,14 @@ import {
   Menu,
   MenuItem,
   PopoverContainer,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import {
   DeleteIcon,
   DuplicateIcon,
   EditIcon,
   MiniKebabMenuIcon,
-} from '@codecademy/gamut-icons';
-import { Background } from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-icons';
+import { Background } from '@skillsoft/gamut-styles';
 import * as React from 'react';
 import { useRef, useState } from 'react';
 

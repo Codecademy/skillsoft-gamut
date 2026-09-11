@@ -1,5 +1,5 @@
-import { Background } from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
+import { Background } from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 import styled from '@emotion/styled';
 import * as React from 'react';
 import {

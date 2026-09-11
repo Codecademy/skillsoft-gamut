@@ -1,5 +1,5 @@
 import React from 'react';
-import { GridForm } from '@codecademy/gamut';
+import { GridForm } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

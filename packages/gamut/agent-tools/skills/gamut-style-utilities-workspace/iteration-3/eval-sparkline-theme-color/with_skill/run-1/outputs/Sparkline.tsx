@@ -1,4 +1,4 @@
-import { Colors, useColorModes } from '@codecademy/gamut-styles';
+import { Colors, useColorModes } from '@skillsoft/gamut-styles';
 import * as React from 'react';
 
 export interface SparklineProps

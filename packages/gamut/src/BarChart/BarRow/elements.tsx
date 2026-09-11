@@ -1,4 +1,4 @@
-import { css, styledOptions } from '@codecademy/gamut-styles';
+import { css, styledOptions } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 

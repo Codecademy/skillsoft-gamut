@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '@codecademy/gamut';
+import { Card } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

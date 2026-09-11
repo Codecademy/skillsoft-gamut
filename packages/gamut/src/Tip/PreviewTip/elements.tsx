@@ -1,5 +1,5 @@
-import { CheckerDense } from '@codecademy/gamut-patterns';
-import { css, variant } from '@codecademy/gamut-styles';
+import { CheckerDense } from '@skillsoft/gamut-patterns';
+import { css, variant } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 import { useMemo } from 'react';
 

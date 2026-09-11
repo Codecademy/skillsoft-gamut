@@ -1,4 +1,4 @@
-import { MiniArrowRightIcon } from '@codecademy/gamut-icons';
+import { MiniArrowRightIcon } from '@skillsoft/gamut-icons';
 
 import { Text } from '../../Typography';
 import { iconPadding } from '../shared/styles';

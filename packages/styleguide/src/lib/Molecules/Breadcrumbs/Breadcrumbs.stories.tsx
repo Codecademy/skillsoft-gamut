@@ -1,4 +1,4 @@
-import { Breadcrumbs } from '@codecademy/gamut';
+import { Breadcrumbs } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Breadcrumbs> = {

@@ -1,5 +1,5 @@
-import { MiniArrowDownIcon } from '@codecademy/gamut-icons';
-import { themed, timing } from '@codecademy/gamut-styles';
+import { MiniArrowDownIcon } from '@skillsoft/gamut-icons';
+import { themed, timing } from '@skillsoft/gamut-styles';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import * as React from 'react';

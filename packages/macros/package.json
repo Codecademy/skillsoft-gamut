@@ -1,9 +1,9 @@
 {
-  "name": "@codecademy/macros",
+  "name": "@skillsoft/macros",
   "description": "Babel Utility Macros",
-  "version": "3.1.0",
-  "author": "codecademy",
-  "bugs": "https://github.com/Codecademy/gamut/issues",
+  "version": "0.0.1",
+  "author": "Skillsoft Engineering <dev@skillsoft.com>",
+  "bugs": "https://github.com/Codecademy/skillsoft-gamut/issues",
   "dependencies": {
     "babel-plugin-macros": "^3.0.1"
   },
@@ -14,11 +14,11 @@
   "files": [
     "lib"
   ],
-  "homepage": "https://github.com/Codecademy/gamut#readme",
+  "homepage": "https://github.com/Codecademy/skillsoft-gamut#readme",
   "license": "MIT",
   "main": "lib",
   "private": true,
-  "repository": "Codecademy/gamut.git",
+  "repository": "Codecademy/skillsoft-gamut.git",
   "scripts": {
     "test": "jest"
   }

@@ -8,31 +8,6 @@ _The component library & design system for Codecademy._ ✨
 
 This repository is a monorepo that we manage using [NX](https://nx.dev/). That means that we publish several packages to npm from the same codebase, including:
 
-## Gamut Kit
-
-We provide a single package to manage the versions of a few core dependencies: `gamut`, `gamut-icons`, `gamut-illustrations`, `gamut-patterns`, `gamut-styles`. Since these packages are highly intertwined we suggest only installing `@codecademy/gamut-kit` when your app needs all of these.
-
-[`gamut-kit`: Include in your application instead of the individual packages to simplify version management. ](/packages/gamut-kit/README.md)
-
-- [![npm version](https://badge.fury.io/js/%40codecademy%2Fgamut-kit.svg)](https://badge.fury.io/js/%40codecademy%2Fgamut-kit)
-
-1. Run `yarn add @codecademy/gamut-kit`
-2. Add each of the managed packages to your peer dependencies (this is required for enabling intellisense for these packages and does not have any effect on version resolution)
-
-```json
-{
-  "peerDependencies": {
-    "@codecademy/gamut": "*",
-    "@codecademy/gamut-icons": "*",
-    "@codecademy/gamut-patterns": "*",
-    "@codecademy/gamut-illustrations": "*",
-    "@codecademy/gamut-styles": "*",
-    "@codecademy/gamut-tests": "*",
-    "@codecademy/variance": "*"
-  }
-}
-```
-
 ## Individual Packages
 
 [`gamut`: Our React UI component library](/packages/gamut/README.md)
@@ -280,7 +255,7 @@ Changelog content is driven by the description in version plan files (in `.nx/ve
 
 ## AI Tool Plugins
 
-Gamut ships an agent-tools plugin with skills, rules, and agents for Claude Code and Cursor. The `gamut` CLI is included in `@codecademy/gamut` (and `@codecademy/gamut-kit`), so run it via `npx` from any project that has the package installed.
+Gamut ships an agent-tools plugin with skills, rules, and agents for Claude Code and Cursor. The `gamut` CLI is included in `@codecademy/gamut`, so run it via `npx` from any project that has the package installed.
 
 ### Installing
 

@@ -1,8 +1,8 @@
 /* Vidstack default theme (vendored via @import) + gamut overrides */
-/* eslint-disable gamut/no-css-standalone */
+/* eslint-disable @skillsoft/gamut/no-css-standalone */
 import './vidstack-styles.css';
 
-import { styledOptions } from '@codecademy/gamut-styles';
+import { styledOptions } from '@skillsoft/gamut-styles';
 import styled, { CSSObject } from '@emotion/styled';
 import {
   isYouTubeProvider,
@@ -77,7 +77,7 @@ export const VidstackPlayer: React.FC<VidstackPlayerProps> = ({
   return (
     <VariableProvider
       className={className}
-      // eslint-disable-next-line gamut/no-inline-style
+      // eslint-disable-next-line @skillsoft/gamut/no-inline-style
       style={{ width, height }}
       variables={vdsVariables}
     >

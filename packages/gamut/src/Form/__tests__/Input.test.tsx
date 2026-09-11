@@ -1,9 +1,9 @@
-import { StreakIcon } from '@codecademy/gamut-icons';
-import { setupRtl } from '@codecademy/gamut-tests';
+import { StreakIcon } from '@skillsoft/gamut-icons';
+import { setupRtl } from '@skillsoft/gamut-tests';
 
 import { Input } from '../inputs/Input';
 
-jest.mock('@codecademy/gamut-icons', () => ({
+jest.mock('@skillsoft/gamut-icons', () => ({
   AlertIcon: () => (
     <svg>
       <title>Alert Icon</title>

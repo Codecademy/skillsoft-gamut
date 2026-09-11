@@ -1,5 +1,5 @@
-import { ArrowChevronDownFilledIcon } from '@codecademy/gamut-icons';
-import { css, states } from '@codecademy/gamut-styles';
+import { ArrowChevronDownFilledIcon } from '@skillsoft/gamut-icons';
+import { css, states } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 import * as React from 'react';
 

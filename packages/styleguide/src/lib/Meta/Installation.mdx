@@ -15,27 +15,13 @@ export const parameters = {
 
 ## Installation and setup
 
-1. Add gamut-kit and peer dependencies dependencies
+1. Add gamut and peer dependencies
 
 ```bash
-yarn add @codecademy/gamut-kit @emotion/react @emotion/styled
+yarn add @codecademy/gamut @emotion/react @emotion/styled
 ```
 
-2. Add peer dependencies (no-op) for intellisense to package.json.
-
-```json
-{
-  "peerDependencies": {
-    "@codecademy/gamut": "*",
-    "@codecademy/gamut-icons": "*",
-    "@codecademy/gamut-illustrations": "*",
-    "@codecademy/gamut-patterns": "*",
-    "@codecademy/gamut-styles": "*",
-    "@codecademy/gamut-tests": "*",
-    "@codecademy/variance": "*"
-  }
-}
-```
+`@codecademy/gamut` brings in `gamut-styles`, `gamut-icons`, `gamut-illustrations`, `gamut-patterns`, and `variance` automatically as regular dependencies, so no separate install is needed for those.
 
 3. Wrap your application root with `GamutProvider` and give it the theme you would like to use for your app.
 

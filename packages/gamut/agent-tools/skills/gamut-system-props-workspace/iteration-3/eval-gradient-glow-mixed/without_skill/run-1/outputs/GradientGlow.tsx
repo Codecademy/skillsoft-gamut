@@ -1,4 +1,4 @@
-import { Box, BoxProps } from '@codecademy/gamut';
+import { Box, BoxProps } from '@skillsoft/gamut';
 import React, { FC } from 'react';
 
 export interface GradientGlowProps extends Omit<BoxProps, 'children'> {

@@ -3,7 +3,7 @@ import {
   StyleProps,
   ThemeProps,
   variance,
-} from '@codecademy/variance';
+} from '@skillsoft/variance';
 import { CSSObject, Theme, ThemeProvider, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import mapValues from 'lodash/mapValues';

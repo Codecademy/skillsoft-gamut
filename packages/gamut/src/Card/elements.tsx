@@ -1,4 +1,4 @@
-import { Background } from '@codecademy/gamut-styles';
+import { Background } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 

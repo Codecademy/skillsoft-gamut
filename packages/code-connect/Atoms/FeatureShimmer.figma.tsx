@@ -1,5 +1,5 @@
 import React from 'react';
-import { FeatureShimmer } from '@codecademy/gamut';
+import { FeatureShimmer } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

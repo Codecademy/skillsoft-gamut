@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataTable } from '@codecademy/gamut';
+import { DataTable } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

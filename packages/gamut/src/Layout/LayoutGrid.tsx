@@ -1,5 +1,5 @@
-import { pxRem, styledOptions, system, theme } from '@codecademy/gamut-styles';
-import { StyleProps, variance } from '@codecademy/variance';
+import { pxRem, styledOptions, system, theme } from '@skillsoft/gamut-styles';
+import { StyleProps, variance } from '@skillsoft/variance';
 import styled from '@emotion/styled';
 import pick from 'lodash/pick';
 

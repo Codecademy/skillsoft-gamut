@@ -1,4 +1,4 @@
-import { Box, FadeInSlideOut, FillButton, FlexBox } from '@codecademy/gamut';
+import { Box, FadeInSlideOut, FillButton, FlexBox } from '@skillsoft/gamut';
 import type { Meta } from '@storybook/react';
 import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';

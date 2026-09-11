@@ -1,5 +1,5 @@
-import { elementDir, system, useElementDir } from '@codecademy/gamut-styles';
-import { variance } from '@codecademy/variance';
+import { elementDir, system, useElementDir } from '@skillsoft/gamut-styles';
+import { variance } from '@skillsoft/variance';
 import styled from '@emotion/styled';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import * as React from 'react';
@@ -279,7 +279,7 @@ export const PopoverContainer: React.FC<PopoverContainerProps> = ({
         data-testid="popover-content-container"
         position="absolute"
         ref={popoverRef}
-        /* eslint-disable-next-line gamut/no-inline-style */
+        /* eslint-disable-next-line @skillsoft/gamut/no-inline-style */
         style={mergedStyle}
         tabIndex={-1}
         zIndex={inline ? 5 : 'initial'}

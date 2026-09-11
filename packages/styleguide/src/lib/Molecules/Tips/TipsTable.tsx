@@ -8,8 +8,8 @@ import {
   ListRow,
   PreviewTip,
   Text,
-} from '@codecademy/gamut';
-import { MiniStarIcon } from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut';
+import { MiniStarIcon } from '@skillsoft/gamut-icons';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 

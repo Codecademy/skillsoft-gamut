@@ -1,5 +1,5 @@
-import { theme } from '@codecademy/gamut-styles';
-import { MockGamutProvider, setupRtl } from '@codecademy/gamut-tests';
+import { theme } from '@skillsoft/gamut-styles';
+import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
 import { matchers } from '@emotion/jest';
 import { render } from '@testing-library/react';
 

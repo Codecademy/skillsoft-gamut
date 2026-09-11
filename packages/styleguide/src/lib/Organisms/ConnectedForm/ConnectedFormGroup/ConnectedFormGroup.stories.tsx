@@ -6,7 +6,7 @@ import {
   ConnectedRadioGroupInput,
   Text,
   useConnectedForm,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from 'storybook/actions';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';

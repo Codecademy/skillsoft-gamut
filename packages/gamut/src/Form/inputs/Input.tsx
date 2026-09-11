@@ -2,9 +2,9 @@ import {
   AlertIcon,
   CheckCircledIcon,
   GamutIconProps,
-} from '@codecademy/gamut-icons';
-import { css } from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
+} from '@skillsoft/gamut-icons';
+import { css } from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 import styled, { StyledComponent } from '@emotion/styled';
 import { ChangeEvent, forwardRef, InputHTMLAttributes, useState } from 'react';
 import * as React from 'react';

@@ -1,4 +1,4 @@
-import { css, useCurrentMode } from '@codecademy/gamut-styles';
+import { css, useCurrentMode } from '@skillsoft/gamut-styles';
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import * as React from 'react';

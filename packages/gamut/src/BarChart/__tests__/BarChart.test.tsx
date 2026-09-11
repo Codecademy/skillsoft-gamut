@@ -1,5 +1,5 @@
-import { TerminalIcon } from '@codecademy/gamut-icons';
-import { setupRtl } from '@codecademy/gamut-tests';
+import { TerminalIcon } from '@skillsoft/gamut-icons';
+import { setupRtl } from '@skillsoft/gamut-tests';
 import userEvent from '@testing-library/user-event';
 import { act, HTMLProps } from 'react';
 

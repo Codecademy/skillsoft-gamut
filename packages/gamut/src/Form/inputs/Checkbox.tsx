@@ -3,8 +3,8 @@ import {
   screenReaderOnly,
   styledOptions,
   timing,
-} from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
+} from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 import styled from '@emotion/styled';
 import { forwardRef, InputHTMLAttributes, useEffect, useRef } from 'react';
 

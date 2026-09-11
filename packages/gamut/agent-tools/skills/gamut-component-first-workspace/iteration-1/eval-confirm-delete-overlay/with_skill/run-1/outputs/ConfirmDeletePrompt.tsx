@@ -1,4 +1,4 @@
-import { Dialog } from '@codecademy/gamut';
+import { Dialog } from '@skillsoft/gamut';
 import * as React from 'react';
 
 export interface ConfirmDeletePromptProps {

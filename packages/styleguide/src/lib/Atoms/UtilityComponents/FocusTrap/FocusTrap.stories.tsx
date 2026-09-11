@@ -1,4 +1,4 @@
-import { Box, FillButton, FocusTrap, GridForm } from '@codecademy/gamut';
+import { Box, FillButton, FocusTrap, GridForm } from '@skillsoft/gamut';
 import type { Meta } from '@storybook/react';
 import { ComponentProps, useEffect, useState } from 'react';
 

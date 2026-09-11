@@ -1,5 +1,5 @@
-import { theme } from '@codecademy/gamut-styles';
-import { setupRtl } from '@codecademy/gamut-tests';
+import { theme } from '@skillsoft/gamut-styles';
+import { setupRtl } from '@skillsoft/gamut-tests';
 import hookform, { FormState } from 'react-hook-form';
 
 import { CTAButton } from '../../Button';

@@ -10,9 +10,9 @@ import {
   MenuItem,
   PopoverContainer,
   Text,
-} from '@codecademy/gamut';
-import { MiniKebabMenuIcon } from '@codecademy/gamut-icons';
-import { Background } from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut';
+import { MiniKebabMenuIcon } from '@skillsoft/gamut-icons';
+import { Background } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 

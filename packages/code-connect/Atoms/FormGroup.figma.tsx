@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup } from '@codecademy/gamut';
+import { FormGroup } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

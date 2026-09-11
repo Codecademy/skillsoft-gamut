@@ -1,4 +1,4 @@
-import { Anchor, Box } from '@codecademy/gamut';
+import { Anchor, Box } from '@skillsoft/gamut';
 import {
   Background,
   coreSwatches,
@@ -7,9 +7,9 @@ import {
   lxStudioColors,
   theme,
   trueColors,
-} from '@codecademy/gamut-styles';
-// eslint-disable-next-line gamut/import-paths
-import * as ALL_PROPS from '@codecademy/gamut-styles/src/variance/config';
+} from '@skillsoft/gamut-styles';
+// eslint-disable-next-line @skillsoft/gamut/import-paths
+import * as ALL_PROPS from '@skillsoft/gamut-styles/src/variance/config';
 import { Theme, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import kebabCase from 'lodash/kebabCase';
@@ -450,7 +450,7 @@ export const DarkModeTable = () => (
     <TokenTable bg={false} {...(darkMode as any)} />
   </Background>
 );
-/* eslint-disable gamut/import-paths */
+/* eslint-disable @skillsoft/gamut/import-paths */
 
 const PropertiesRenderer = ({
   property,

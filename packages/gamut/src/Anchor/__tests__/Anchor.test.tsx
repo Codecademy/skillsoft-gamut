@@ -1,5 +1,5 @@
-import { MiniWarningTriangleIcon } from '@codecademy/gamut-icons';
-import { setupRtl } from '@codecademy/gamut-tests';
+import { MiniWarningTriangleIcon } from '@skillsoft/gamut-icons';
+import { setupRtl } from '@skillsoft/gamut-tests';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 

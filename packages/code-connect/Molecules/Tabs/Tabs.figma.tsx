@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabList, Tabs } from '@codecademy/gamut';
+import { TabList, Tabs } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

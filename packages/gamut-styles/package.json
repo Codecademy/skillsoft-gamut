@@ -1,11 +1,11 @@
 {
-  "name": "@codecademy/gamut-styles",
+  "name": "@skillsoft/gamut-styles",
   "description": "Styleguide & Component library for codecademy.com",
-  "version": "21.2.0",
-  "author": "Jake Hiller <jake@codecademy.com>",
+  "version": "0.0.1",
+  "author": "Skillsoft Engineering <dev@skillsoft.com>",
   "dependencies": {
-    "@codecademy/variance": "1.1.0",
     "@emotion/is-prop-valid": "^1.1.0",
+    "@skillsoft/variance": "0.0.1",
     "framer-motion": "^12.0.0",
     "get-nonce": "^1.0.0",
     "polished": "^4.1.2"
@@ -32,8 +32,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": "git@github.com:Codecademy/gamut.git",
+  "repository": "git@github.com:Codecademy/skillsoft-gamut.git",
   "scripts": {
-    "build": "nx build @codecademy/gamut-styles"
+    "build": "nx build @skillsoft/gamut-styles"
   }
 }

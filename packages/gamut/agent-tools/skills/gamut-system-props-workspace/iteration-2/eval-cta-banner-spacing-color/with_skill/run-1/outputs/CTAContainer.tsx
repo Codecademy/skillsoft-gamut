@@ -1,5 +1,5 @@
-import type { FlexBoxProps } from '@codecademy/gamut';
-import { FlexBox } from '@codecademy/gamut';
+import type { FlexBoxProps } from '@skillsoft/gamut';
+import { FlexBox } from '@skillsoft/gamut';
 import * as React from 'react';
 
 export type CTAContainerProps = FlexBoxProps;

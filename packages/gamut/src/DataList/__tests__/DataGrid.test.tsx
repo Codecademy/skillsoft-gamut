@@ -1,4 +1,4 @@
-import { MockGamutProvider, setupRtl } from '@codecademy/gamut-tests';
+import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
 import { matchers } from '@emotion/jest';
 import {
   act,

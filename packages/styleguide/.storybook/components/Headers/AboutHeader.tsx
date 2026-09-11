@@ -1,4 +1,4 @@
-import { FlexBox, Text } from '@codecademy/gamut';
+import { FlexBox, Text } from '@skillsoft/gamut';
 import * as React from 'react';
 import { ComponentHeaderProps } from './ComponentHeader';
 import { ComponentSource } from '../Elements/ComponentSource';

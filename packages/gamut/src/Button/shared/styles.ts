@@ -4,8 +4,8 @@ import {
   styledOptions,
   system,
   transitionConcat,
-} from '@codecademy/gamut-styles';
-import { CSSObject, ThemeProps, variance } from '@codecademy/variance';
+} from '@skillsoft/gamut-styles';
+import { CSSObject, ThemeProps, variance } from '@skillsoft/variance';
 import styled from '@emotion/styled';
 
 import { ButtonBase, InteractiveSelectors } from '../../ButtonBase/ButtonBase';

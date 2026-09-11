@@ -3,13 +3,13 @@ import {
   Menu,
   MenuItem,
   PopoverContainer,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import {
   DeleteIcon,
   DuplicateIcon,
   EditIcon,
   MiniKebabMenuIcon,
-} from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut-icons';
 import { useRef, useState } from 'react';
 import * as React from 'react';
 

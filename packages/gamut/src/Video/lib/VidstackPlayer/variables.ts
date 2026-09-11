@@ -1,4 +1,4 @@
-import { theme } from '@codecademy/gamut-styles';
+import { theme } from '@skillsoft/gamut-styles';
 
 interface Variables {
   [key: string]: string;

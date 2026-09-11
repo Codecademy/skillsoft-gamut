@@ -10,13 +10,13 @@ Recommended eslint plugins for all Gamut applications. ✨
 module.exports = {
   root: true,
 
-  plugins: ['eslint-plugin-gamut'],
+  plugins: ['@skillsoft/gamut'],
 
   rules: {
-    'gamut/prefer-themed': 'error',
-    'gamut/no-css-standalone': 'error',
-    'gamut/import-paths': 'error',
-    'gamut/no-inline-style': 'error',
+    '@skillsoft/gamut/prefer-themed': 'error',
+    '@skillsoft/gamut/no-css-standalone': 'error',
+    '@skillsoft/gamut/import-paths': 'error',
+    '@skillsoft/gamut/no-inline-style': 'error',
   },
 };
 ```

@@ -1,5 +1,5 @@
-import { MiniDeleteIcon } from '@codecademy/gamut-icons';
-import { theme } from '@codecademy/gamut-styles';
+import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
+import { theme } from '@skillsoft/gamut-styles';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { KeyboardEvent, useContext } from 'react';
@@ -123,7 +123,7 @@ export const RemoveAllButton = (props: SizedIndicatorProps) => {
       tabIndex={0}
       {...restInnerProps}
       ref={removeAllButtonRef as React.Ref<HTMLDivElement>}
-      // eslint-disable-next-line gamut/no-inline-style
+      // eslint-disable-next-line @skillsoft/gamut/no-inline-style
       style={style}
       onKeyDown={onKeyPress}
     >

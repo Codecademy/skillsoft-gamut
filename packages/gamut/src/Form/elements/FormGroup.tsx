@@ -1,5 +1,5 @@
-import { variant } from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
+import { variant } from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 import styled from '@emotion/styled';
 import { ComponentProps } from 'react';
 import * as React from 'react';

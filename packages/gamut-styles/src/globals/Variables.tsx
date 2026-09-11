@@ -1,4 +1,4 @@
-import { CSSObject } from '@codecademy/variance';
+import { CSSObject } from '@skillsoft/variance';
 import { css, Global } from '@emotion/react';
 import * as React from 'react';
 

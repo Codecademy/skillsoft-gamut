@@ -1,5 +1,5 @@
-import { DiagonalADense } from '@codecademy/gamut-patterns';
-import { MockGamutProvider, setupRtl } from '@codecademy/gamut-tests';
+import { DiagonalADense } from '@skillsoft/gamut-patterns';
+import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
 import { render, screen } from '@testing-library/react';
 
 import { ProgressBar, ProgressBarProps } from '..';

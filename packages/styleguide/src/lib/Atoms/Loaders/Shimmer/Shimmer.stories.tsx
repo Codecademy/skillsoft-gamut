@@ -1,4 +1,4 @@
-import { Shimmer } from '@codecademy/gamut';
+import { Shimmer } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Shimmer> = {

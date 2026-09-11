@@ -1,11 +1,11 @@
 {
-  "name": "@codecademy/gamut-icons",
+  "name": "@skillsoft/gamut-icons",
   "description": "Icon library for codecademy.com",
-  "version": "10.2.0",
-  "author": "Codecademy <dev@codecademy.com>",
+  "version": "0.0.1",
+  "author": "Skillsoft Engineering <dev@skillsoft.com>",
   "dependencies": {
-    "@codecademy/gamut-styles": "21.2.0",
-    "@codecademy/variance": "1.1.0"
+    "@skillsoft/gamut-styles": "0.0.1",
+    "@skillsoft/variance": "0.0.1"
   },
   "files": [
     "dist"
@@ -22,9 +22,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": "git@github.com:Codecademy/gamut.git",
+  "repository": "git@github.com:Codecademy/skillsoft-gamut.git",
   "scripts": {
-    "build": "nx build @codecademy/gamut-icons",
+    "build": "nx build @skillsoft/gamut-icons",
     "format": "svgo -f ./src/svg --pretty --config=.svgo.yml"
   },
   "sideEffects": false,

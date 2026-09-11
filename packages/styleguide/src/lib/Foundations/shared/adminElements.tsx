@@ -1,4 +1,4 @@
-import { adminTheme, Background } from '@codecademy/gamut-styles';
+import { adminTheme, Background } from '@skillsoft/gamut-styles';
 
 import { Code, ColorScale, TokenTable } from '~styleguide/blocks';
 

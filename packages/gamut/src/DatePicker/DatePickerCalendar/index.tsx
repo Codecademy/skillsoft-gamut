@@ -1,4 +1,4 @@
-import { breakpoints } from '@codecademy/gamut-styles';
+import { breakpoints } from '@skillsoft/gamut-styles';
 import {
   useCallback,
   useEffect,

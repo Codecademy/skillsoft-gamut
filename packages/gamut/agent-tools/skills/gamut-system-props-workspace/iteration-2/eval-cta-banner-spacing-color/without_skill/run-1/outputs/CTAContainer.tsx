@@ -1,5 +1,5 @@
-import { FlexBox, FlexBoxProps } from '@codecademy/gamut';
-import { css } from '@codecademy/gamut-styles';
+import { FlexBox, FlexBoxProps } from '@skillsoft/gamut';
+import { css } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 
 /**

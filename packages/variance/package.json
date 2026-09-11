@@ -1,8 +1,8 @@
 {
-  "name": "@codecademy/variance",
+  "name": "@skillsoft/variance",
   "description": "Constraint based CSS in JS for building scalable design systems",
-  "version": "1.1.0",
-  "author": "codecaaron <aaron@codecademy.com>",
+  "version": "0.0.1",
+  "author": "Skillsoft Engineering <dev@skillsoft.com>",
   "dependencies": {
     "csstype": "^3.0.7",
     "lodash": "^4.17.23"
@@ -10,7 +10,7 @@
   "files": [
     "dist"
   ],
-  "homepage": "https://github.com/Codecademy/gamut/variance",
+  "homepage": "https://github.com/Codecademy/skillsoft-gamut/variance",
   "keywords": [
     "css",
     "css-in-js",
@@ -27,9 +27,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": "Codecademy/gamut.git",
+  "repository": "Codecademy/skillsoft-gamut.git",
   "scripts": {
-    "build": "nx build @codecademy/variance"
+    "build": "nx build @skillsoft/variance"
   },
   "types": "dist/index.d.ts"
 }
