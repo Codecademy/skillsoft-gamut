@@ -13,8 +13,9 @@
  * - `next`: one build per merge to `main`, published under a single stable
  *   `next` dist-tag that always points at the latest build (preid still
  *   varies per commit so every version string stays unique).
- *
- * A future `beta` flow can reuse this same script with its own preid/tag.
+ * - `beta`: one build per merge to `beta`, published under a single stable
+ *   `beta` dist-tag, same mechanics as `next` one step further down the
+ *   branch flow (main -> beta -> production).
  *
  * Usage:
  *   npx nx run gamut-release:publish --preid=alpha.abc123 [--manifest]

@@ -6,12 +6,13 @@ Mainly meant to be run in CI.
 
 ## Overview
 
-This tool automates the process of publishing prerelease versions of packages in the gamut repo:
+This tool automates the process of publishing prerelease versions of packages in the gamut repo, matching the `main -> beta -> production` branch flow:
 
 - **alpha**: published per-PR, tagged uniquely per commit (see `publish-alpha.yml`)
 - **next**: published on every merge to `main`, tagged with a single stable `next` dist-tag (see `publish-next.yml`)
+- **beta**: published on every merge to `beta`, tagged with a single stable `beta` dist-tag (see `publish-beta.yml`)
 
-Both flows share this same script and Nx target; only the `--preid` and `--tag` differ.
+All three flows share this same script and Nx target; only the `--preid` and `--tag` differ. `production` (real releases, `latest` tag) is handled separately by `nx release` directly in `publish-production.yml`, not by this tool.
 
 CI is responsible for validating the presence of a version plan before running these publishes.
 
