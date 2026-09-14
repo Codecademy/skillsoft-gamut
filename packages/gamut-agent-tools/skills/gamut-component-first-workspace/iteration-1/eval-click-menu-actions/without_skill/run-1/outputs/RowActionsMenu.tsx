@@ -1,9 +1,4 @@
-import {
-  IconButton,
-  Menu,
-  MenuItem,
-  PopoverContainer,
-} from '@skillsoft/gamut';
+import { IconButton, Menu, MenuItem, PopoverContainer } from '@skillsoft/gamut';
 import {
   DeleteIcon,
   DuplicateIcon,

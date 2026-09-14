@@ -1,9 +1,4 @@
-import {
-  css,
-  theme,
-  transitionConcat,
-  variant,
-} from '@skillsoft/gamut-styles';
+import { css, theme, transitionConcat, variant } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 
 export type conditionalStyleProps = {

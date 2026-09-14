@@ -221,9 +221,7 @@ async function releasePrerelease(): Promise<never> {
           manifestOutputPath,
           `${JSON.stringify(manifestEntries, null, 2)}\n`
         );
-        console.log(
-          `\n📄 Wrote publish manifest to: ${manifestOutputPath}`
-        );
+        console.log(`\n📄 Wrote publish manifest to: ${manifestOutputPath}`);
       } catch (error) {
         console.error('\n❌ Failed to write publish manifest:');
         console.error(error);
