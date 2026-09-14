@@ -18,6 +18,9 @@
   "license": "MIT",
   "main": "./dist/index.js",
   "module": "dist/index.js",
+  "peerDependencies": {
+    "@skillsoft/gamut": ">=0.0.1"
+  },
   "publishConfig": {
     "access": "public"
   },

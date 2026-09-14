@@ -6282,6 +6282,16 @@ __metadata:
   resolution: "@skillsoft/eslint-plugin-gamut@workspace:packages/eslint-plugin-gamut"
   dependencies:
     "@typescript-eslint/utils": "npm:^8.57.0"
+  peerDependencies:
+    "@skillsoft/gamut": ">=0.0.1"
+  languageName: unknown
+  linkType: soft
+
+"@skillsoft/gamut-agent-tools@workspace:packages/gamut-agent-tools":
+  version: 0.0.0-use.local
+  resolution: "@skillsoft/gamut-agent-tools@workspace:packages/gamut-agent-tools"
+  peerDependencies:
+    "@skillsoft/gamut": ">=0.0.1"
   languageName: unknown
   linkType: soft
 
@@ -6355,6 +6365,7 @@ __metadata:
     component-test-setup: "npm:*"
     lodash: "npm:^4.17.23"
   peerDependencies:
+    "@skillsoft/gamut": ">=0.0.1"
     react: ^17.0.2 || ^18.3.0 || ^19.0.0
   languageName: unknown
   linkType: soft

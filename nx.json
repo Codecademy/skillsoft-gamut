@@ -90,7 +90,7 @@
         "projectsRelationship": "independent"
       },
       "tooling": {
-        "projects": ["gamut-tests", "eslint-plugin-gamut"],
+        "projects": ["gamut-tests", "eslint-plugin-gamut", "gamut-agent-tools"],
         "projectsRelationship": "independent"
       }
     },

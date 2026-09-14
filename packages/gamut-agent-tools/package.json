@@ -1,0 +1,30 @@
+{
+  "name": "@skillsoft/gamut-agent-tools",
+  "description": "AI agent skills, rules, and plugin tooling for building with the Gamut design system",
+  "version": "0.0.1",
+  "author": "Skillsoft Engineering <dev@codecademy.com>",
+  "bugs": "https://github.com/Codecademy/skillsoft-gamut/issues",
+  "files": [
+    "skills",
+    "rules",
+    "agents",
+    ".claude-plugin",
+    ".cursor-plugin",
+    "DESIGN.md",
+    "DESIGN.Codecademy.md",
+    "DESIGN.LXStudio.md",
+    "DESIGN.Percipio.md"
+  ],
+  "homepage": "https://github.com/Codecademy/skillsoft-gamut#readme",
+  "license": "MIT",
+  "peerDependencies": {
+    "@skillsoft/gamut": ">=0.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "Codecademy/skillsoft-gamut.git",
+  "scripts": {
+    "build": "nx build gamut-agent-tools"
+  }
+}

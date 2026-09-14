@@ -32,8 +32,7 @@
   },
   "files": [
     "dist",
-    "bin",
-    "agent-tools"
+    "bin"
   ],
   "license": "MIT",
   "main": "./dist/index.js",
