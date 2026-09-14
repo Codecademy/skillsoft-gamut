@@ -4,6 +4,7 @@ module.exports = {
   extends: [
     require.resolve('@codecademy/eslint-config'),
     'plugin:react/jsx-runtime',
+    'plugin:@skillsoft/gamut/recommended',
   ],
 
   plugins: ['@skillsoft/gamut'],
@@ -26,10 +27,6 @@ module.exports = {
   },
 
   rules: {
-    '@skillsoft/gamut/prefer-themed': 'error',
-    '@skillsoft/gamut/no-css-standalone': 'error',
-    '@skillsoft/gamut/no-inline-style': 'error',
-    '@skillsoft/gamut/import-paths': 'error',
     'import/no-extraneous-dependencies': 'off',
   },
 

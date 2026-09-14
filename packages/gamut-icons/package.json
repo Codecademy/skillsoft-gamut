@@ -2,7 +2,7 @@
   "name": "@skillsoft/gamut-icons",
   "description": "Icon library for codecademy.com",
   "version": "0.0.1",
-  "author": "Skillsoft Engineering <dev@skillsoft.com>",
+  "author": "Skillsoft Engineering <dev@codecademy.com>",
   "dependencies": {
     "@skillsoft/gamut-styles": "0.0.1",
     "@skillsoft/variance": "0.0.1"
@@ -24,7 +24,7 @@
   },
   "repository": "git@github.com:Codecademy/skillsoft-gamut.git",
   "scripts": {
-    "build": "nx build @skillsoft/gamut-icons",
+    "build": "nx build gamut-icons",
     "format": "svgo -f ./src/svg --pretty --config=.svgo.yml"
   },
   "sideEffects": false,

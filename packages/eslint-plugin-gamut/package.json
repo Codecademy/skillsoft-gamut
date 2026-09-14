@@ -2,7 +2,7 @@
   "name": "@skillsoft/eslint-plugin-gamut",
   "description": "Shared eslint plugin for Gamut applications",
   "version": "0.0.1",
-  "author": "Skillsoft Engineering <dev@skillsoft.com>",
+  "author": "Skillsoft Engineering <dev@codecademy.com>",
   "dependencies": {
     "@typescript-eslint/utils": "^8.57.0"
   },
@@ -23,7 +23,7 @@
   },
   "repository": "Codecademy/skillsoft-gamut.git",
   "scripts": {
-    "build": "nx build @skillsoft/eslint-plugin-gamut",
+    "build": "nx build eslint-plugin-gamut",
     "verify": "tsc --noEmit"
   },
   "types": "./dist/index.d.ts"

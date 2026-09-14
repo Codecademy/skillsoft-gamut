@@ -2,7 +2,7 @@
   "name": "skillsoft-gamut",
   "description": "Modules and components for Skillsoft",
   "version": "1.2.0",
-  "author": "Skillsoft Engineering <dev@skillsoft.com>",
+  "author": "Skillsoft Engineering <dev@codecademy.com>",
   "dependencies": {
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",

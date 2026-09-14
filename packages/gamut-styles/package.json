@@ -2,7 +2,7 @@
   "name": "@skillsoft/gamut-styles",
   "description": "Styleguide & Component library for codecademy.com",
   "version": "0.0.1",
-  "author": "Skillsoft Engineering <dev@skillsoft.com>",
+  "author": "Skillsoft Engineering <dev@codecademy.com>",
   "dependencies": {
     "@emotion/is-prop-valid": "^1.1.0",
     "@skillsoft/variance": "0.0.1",
@@ -34,6 +34,6 @@
   },
   "repository": "git@github.com:Codecademy/skillsoft-gamut.git",
   "scripts": {
-    "build": "nx build @skillsoft/gamut-styles"
+    "build": "nx build gamut-styles"
   }
 }

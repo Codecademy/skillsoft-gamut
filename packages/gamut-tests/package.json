@@ -2,7 +2,7 @@
   "name": "@skillsoft/gamut-tests",
   "description": "Shared component test setup for Gamut applications",
   "version": "0.0.1",
-  "author": "Skillsoft Engineering <dev@skillsoft.com>",
+  "author": "Skillsoft Engineering <dev@codecademy.com>",
   "dependencies": {
     "@skillsoft/gamut-styles": "0.0.1",
     "component-test-setup": "*",
@@ -29,7 +29,7 @@
   },
   "repository": "Codecademy/skillsoft-gamut.git",
   "scripts": {
-    "build": "nx build @skillsoft/gamut-tests",
+    "build": "nx build gamut-tests",
     "verify": "tsc --noEmit"
   },
   "types": "./dist/index.d.ts"

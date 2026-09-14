@@ -2,7 +2,7 @@
   "name": "@skillsoft/macros",
   "description": "Babel Utility Macros",
   "version": "0.0.1",
-  "author": "Skillsoft Engineering <dev@skillsoft.com>",
+  "author": "Skillsoft Engineering <dev@codecademy.com>",
   "bugs": "https://github.com/Codecademy/skillsoft-gamut/issues",
   "dependencies": {
     "babel-plugin-macros": "^3.0.1"

@@ -2,7 +2,7 @@
   "name": "@skillsoft/variance",
   "description": "Constraint based CSS in JS for building scalable design systems",
   "version": "0.0.1",
-  "author": "Skillsoft Engineering <dev@skillsoft.com>",
+  "author": "Skillsoft Engineering <dev@codecademy.com>",
   "dependencies": {
     "csstype": "^3.0.7",
     "lodash": "^4.17.23"
@@ -29,7 +29,7 @@
   },
   "repository": "Codecademy/skillsoft-gamut.git",
   "scripts": {
-    "build": "nx build @skillsoft/variance"
+    "build": "nx build variance"
   },
   "types": "dist/index.d.ts"
 }

@@ -2,7 +2,7 @@
   "name": "@skillsoft/styleguide",
   "description": "Styleguide & Component library for codecademy.com",
   "version": "0.0.1",
-  "author": "Skillsoft Engineering <dev@skillsoft.com>",
+  "author": "Skillsoft Engineering <dev@codecademy.com>",
   "license": "MIT",
   "private": true,
   "repository": "git@github.com:Codecademy/skillsoft-gamut.git"

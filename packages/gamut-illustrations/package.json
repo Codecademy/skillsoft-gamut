@@ -2,7 +2,7 @@
   "name": "@skillsoft/gamut-illustrations",
   "description": "Illustrations library for Codecademy",
   "version": "0.0.1",
-  "author": "Skillsoft Engineering <dev@skillsoft.com>",
+  "author": "Skillsoft Engineering <dev@codecademy.com>",
   "bugs": "https://github.com/Codecademy/skillsoft-gamut/issues",
   "dependencies": {
     "@skillsoft/gamut-styles": "0.0.1",
@@ -26,7 +26,7 @@
   },
   "repository": "Codecademy/skillsoft-gamut.git",
   "scripts": {
-    "build": "nx build @skillsoft/gamut-illustrations"
+    "build": "nx build gamut-illustrations"
   },
   "sideEffects": [
     "dist/**/[A-Z]**/[A-Z]*.js",
