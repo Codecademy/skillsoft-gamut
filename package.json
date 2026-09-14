@@ -131,7 +131,7 @@
     "build:graph": "nx graph",
     "clean-builds": "nx run-many --target=clean --all",
     "clear-modules": "yarn clean-builds && rm -rf node_modules",
-    "deploy": "rm -rf ./dist/docs && mv ./dist/storybook/styleguide ./dist/docs && cp -r ./dist/static/* ./dist/docs && gh-pages -b gh-pages -d dist",
+    "deploy": "rm -rf ./dist/docs && mv ./dist/storybook/styleguide ./dist/docs && cp -R ./dist/static/. ./dist/docs && gh-pages -t -b gh-pages -d dist",
     "format": "yarn lint:fix && yarn prettier --write",
     "format:verify": "yarn prettier --check",
     "lint": "eslint --ignore-path .eslintignore \"./**/*.{mdx,js,ts,tsx,json}\" --max-warnings 0",
