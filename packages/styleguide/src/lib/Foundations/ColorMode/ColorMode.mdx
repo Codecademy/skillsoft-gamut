@@ -62,7 +62,7 @@ Here's an example using components in context. By toggling dark mode you can see
 ### Usage
 
 ```tsx
-import { ColorMode } from '@codecademy/gamut-styles';
+import { ColorMode } from '@skillsoft/gamut-styles';
 
 const Page = ({ children }) => (
   <ColorMode mode="light">{children}</ColorMode>;
@@ -78,7 +78,7 @@ You can also provide `ColorMode` with `mode="system"` and it will automatically 
 ### Usage
 
 ```tsx
-import { ColorMode } from '@codecademy/gamut-styles';
+import { ColorMode } from '@skillsoft/gamut-styles';
 
 const Page = ({ children }) => (
   <ColorMode mode="system">{children}</ColorMode>;
@@ -96,7 +96,7 @@ When you use `Background` the selected background color is set to a theme variab
 ### Usage
 
 ```tsx
-import { Background } from '@codecademy/gamut-styles';
+import { Background } from '@skillsoft/gamut-styles';
 
 const Page = ({ children }) => (
   <Background bg="hyper">{children}</Background>;
@@ -111,7 +111,7 @@ For situations where you need to access the current mode in JS, the value is alw
 - `useCurrentMode(mode?)`: For simpler usages where you want the active mode key, or to override with a specific mode.
 
 ```tsx
-import { useColorModes, useCurrentMode } from '@codecademy/gamut-styles';
+import { useColorModes, useCurrentMode } from '@skillsoft/gamut-styles';
 
 const [current, currentColors, modes, getColorValue] = useColorModes();
 

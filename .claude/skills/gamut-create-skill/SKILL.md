@@ -113,7 +113,7 @@ Use this ordered structure. Omit sections that don't apply; do not reorder.
 
 {1–2 sentence purpose and scope. No "this skill covers…" framing.}
 
-Source: `@codecademy/gamut` — [ComponentName.tsx]({github-url})
+Source: `@skillsoft/gamut` — [ComponentName.tsx]({github-url})
 
 See also: [`gamut-x`](../gamut-x/SKILL.md) — {why}. [`gamut-y`](../gamut-y/SKILL.md) — {why}.
 
@@ -122,7 +122,7 @@ Storybook: [{Path / ComponentName}]({gamut.codecademy.com url})
 ## Components
 
 \`\`\`tsx
-import { ComponentName } from '@codecademy/gamut';
+import { ComponentName } from '@skillsoft/gamut';
 \`\`\`
 
 | Symbol          | Role           |

@@ -174,7 +174,7 @@ symlinks (the following instructions assume you have set up and built Gamut):
 1. `cd /path/to/gamut/packages/gamut`
 1. `yarn link`
 1. `cd path/to/other/repo`
-1. `yarn link @codecademy/gamut`
+1. `yarn link @skillsoft/gamut`
 1. `yarn install`
 
 If your other project uses React, you must link that copy of React in Gamut:

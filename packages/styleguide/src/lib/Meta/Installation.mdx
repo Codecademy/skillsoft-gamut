@@ -18,17 +18,17 @@ export const parameters = {
 1. Add gamut and peer dependencies
 
 ```bash
-yarn add @codecademy/gamut @emotion/react @emotion/styled
+yarn add @skillsoft/gamut @emotion/react @emotion/styled
 ```
 
-`@codecademy/gamut` brings in `gamut-styles`, `gamut-icons`, `gamut-illustrations`, `gamut-patterns`, and `variance` automatically as regular dependencies, so no separate install is needed for those.
+`@skillsoft/gamut` brings in `gamut-styles`, `gamut-icons`, `gamut-illustrations`, `gamut-patterns`, and `variance` automatically as regular dependencies, so no separate install is needed for those.
 
 3. Wrap your application root with `GamutProvider` and give it the theme you would like to use for your app.
 
 ```tsx
 import React from 'react';
 import { render } from 'react-dom';
-import { GamutProvider, theme } from '@codecademy/gamut-styles';
+import { GamutProvider, theme } from '@skillsoft/gamut-styles';
 
 import { App } from './App';
 
@@ -61,7 +61,7 @@ GamutProvider handles a few critical tasks that need to happen in order for comp
 import '@emotion/react';
 
 // Import the appropriate theme shape `PlatformTheme` or `CoreTheme`
-import { CoreTheme } from '@codecademy/gamut-styles';
+import { CoreTheme } from '@skillsoft/gamut-styles';
 
 declare module '@emotion/react' {
   export interface Theme extends CoreTheme {}
@@ -73,8 +73,8 @@ For more information this declaration please checkout the [official emotion docu
 6. Start Building!
 
 ```tsx
-import { Background } from '@codecademy/gamut-styles';
-import { Text } from '@codecademy/gamut';
+import { Background } from '@skillsoft/gamut-styles';
+import { Text } from '@skillsoft/gamut';
 
 export const App = () => (
   <Background bg="beige">

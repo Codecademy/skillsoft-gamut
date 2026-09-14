@@ -1,4 +1,4 @@
-# `@codecademy/variance`
+# `@skillsoft/variance`
 
 This is an experimental package for creating dynamic and typesafe style props.
 
@@ -8,7 +8,7 @@ Configure your props with a simple configuration object. The keys of your object
 
 ```tsx
 import styled from '@emotion/styled';
-import { variance } from '@codecademy/variance';
+import { variance } from '@skillsoft/variance';
 
 const Container = styled.div(
   variance.create({
@@ -27,7 +27,7 @@ const Container = styled.div(
 You can compose props that you've created seperately to create new prop functions.
 
 ```tsx
-import { variance } from '@codecademy/variance';
+import { variance } from '@skillsoft/variance';
 
 const spacing = variance.create({
   m: { property: 'padding', scale: 'margin' },
@@ -48,7 +48,7 @@ const Box = styled.div(combinedProps);
 
 ```tsx
 import styled from '@emotion/styled';
-import { variance } from '@codecademy/variance';
+import { variance } from '@skillsoft/variance';
 
 const css = variance.createCss({
   m: { property: 'padding', scale: 'margin' },
