@@ -19,7 +19,8 @@ Options:
                        all | skills | rules | agents
   --theme <theme>      Refresh ./DESIGN.md (same themes as install)
   --force              Overwrite existing DESIGN.md when using --theme
-  --plugin-dir <path>  Override the bundled agent-tools directory
+  --plugin-dir <path>  Use this directory instead of @skillsoft/gamut-agent-tools
+  --no-install         Don't auto-install @skillsoft/gamut-agent-tools if missing
   -h, --help           Show this help message
 
 Examples:

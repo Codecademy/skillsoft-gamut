@@ -33,8 +33,13 @@ Options:
                        core | admin | platform | percipio | lxstudio
                        (admin/platform use Codecademy DESIGN; aliases: codecademy, cc, lx-studio)
   --force              Overwrite existing DESIGN.md when using --theme
-  --plugin-dir <path>  Override the bundled agent-tools directory
+  --plugin-dir <path>  Use this directory instead of @skillsoft/gamut-agent-tools
+  --no-install         Don't auto-install @skillsoft/gamut-agent-tools if missing
   -h, --help           Show this help message
+
+@skillsoft/gamut-agent-tools ships separately from @skillsoft/gamut. If it
+isn't already installed, this command installs it (as a devDependency)
+before proceeding, unless --no-install is passed.
 
 Examples:
   gamut plugin install

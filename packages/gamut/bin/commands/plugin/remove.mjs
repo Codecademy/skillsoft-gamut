@@ -2,8 +2,9 @@ import { rm, stat } from 'node:fs/promises';
 
 import { claudePluginSpec, marketplaceName } from '../../lib/claude.mjs';
 import { cursorDestPath } from '../../lib/cursor.mjs';
+import { AGENT_TOOLS_PACKAGE } from '../../lib/install-agent-tools.mjs';
 import { log, warn } from '../../lib/io.mjs';
-import { resolvePluginDir } from '../../lib/resolve-plugin-dir.mjs';
+import { tryResolvePluginDir } from '../../lib/resolve-plugin-dir.mjs';
 import { runCommand } from '../../lib/run-command.mjs';
 import { TARGETS } from './install.mjs';
 
@@ -19,8 +20,11 @@ Arguments:
                        cursor | claude
 
 Options:
-  --plugin-dir <path>  Override the bundled agent-tools directory
+  --plugin-dir <path>  Use this directory instead of @skillsoft/gamut-agent-tools
   -h, --help           Show this help message
+
+Does not install @skillsoft/gamut-agent-tools if it's missing — there's
+nothing to remove in that case.
 
 Examples:
   gamut plugin remove
@@ -98,7 +102,12 @@ export default async function remove(args) {
     );
   }
 
-  const pluginDir = await resolvePluginDir(args);
+  const pluginDir = await tryResolvePluginDir(args);
+
+  if (!pluginDir) {
+    log(`Nothing to remove — ${AGENT_TOOLS_PACKAGE} is not installed.`);
+    return;
+  }
 
   if (target === 'cursor') {
     await removeCursor(pluginDir);

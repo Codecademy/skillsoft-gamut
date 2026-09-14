@@ -1,8 +1,9 @@
 import { stat } from 'node:fs/promises';
 
 import { cursorDestPath } from '../../lib/cursor.mjs';
+import { AGENT_TOOLS_PACKAGE } from '../../lib/install-agent-tools.mjs';
 import { log } from '../../lib/io.mjs';
-import { resolvePluginDir } from '../../lib/resolve-plugin-dir.mjs';
+import { tryResolvePluginDir } from '../../lib/resolve-plugin-dir.mjs';
 
 export function help() {
   log(`
@@ -12,8 +13,11 @@ Usage:
 Show installation status for all supported targets.
 
 Options:
-  --plugin-dir <path>  Override the bundled agent-tools directory
+  --plugin-dir <path>  Use this directory instead of @skillsoft/gamut-agent-tools
   -h, --help           Show this help message
+
+Does not install @skillsoft/gamut-agent-tools if it's missing — reports
+its absence instead.
 
 Examples:
   gamut plugin list
@@ -52,7 +56,15 @@ async function claudeStatus() {
  * @param {string[]} args
  */
 export default async function list(args) {
-  const pluginDir = await resolvePluginDir(args);
+  const pluginDir = await tryResolvePluginDir(args);
+
+  if (!pluginDir) {
+    log(
+      `\n${AGENT_TOOLS_PACKAGE} is not installed — nothing to list.\n` +
+        `Run "gamut plugin install" to install it.\n`
+    );
+    return;
+  }
 
   const rows = await Promise.all([cursorStatus(pluginDir), claudeStatus()]);
 
