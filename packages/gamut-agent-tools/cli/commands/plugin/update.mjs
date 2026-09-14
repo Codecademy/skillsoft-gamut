@@ -1,35 +1,6 @@
 import { log } from '../../lib/io.mjs';
-import { getFlag } from '../../lib/resolve-plugin-dir.mjs';
+import { getFlag } from '../../lib/source-root.mjs';
 import install, { TARGETS } from './install.mjs';
-
-export function help() {
-  log(`
-Usage:
-  gamut plugin update [target] [options]
-
-Update the Gamut plugin in an AI or design tool.
-Equivalent to re-running install — replaces the existing installation in place.
-
-Arguments:
-  target               Tool to update (default: cursor)
-                       cursor | claude
-
-Options:
-  --scope <scope>      Content to update (default: all)
-                       all | skills | rules | agents
-  --theme <theme>      Refresh ./DESIGN.md (same themes as install)
-  --force              Overwrite existing DESIGN.md when using --theme
-  --plugin-dir <path>  Use this directory instead of @skillsoft/gamut-agent-tools
-  --no-install         Don't auto-install @skillsoft/gamut-agent-tools if missing
-  -h, --help           Show this help message
-
-Examples:
-  gamut plugin update
-  gamut plugin update claude
-  gamut plugin update cursor --theme core --force
-  gamut plugin update cursor --scope skills
-`);
-}
 
 /**
  * gamut plugin update [cursor|claude] [--scope all|skills|rules|agents]

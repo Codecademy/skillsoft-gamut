@@ -9,47 +9,11 @@ import {
   resolveTheme,
 } from '../../lib/design.mjs';
 import { log, warn } from '../../lib/io.mjs';
-import { getFlag, resolvePluginDir } from '../../lib/resolve-plugin-dir.mjs';
 import { runCommand } from '../../lib/run-command.mjs';
+import { getFlag, resolveSourceRoot } from '../../lib/source-root.mjs';
 
 export const TARGETS = ['cursor', 'claude'];
 export const SCOPES = ['all', 'skills', 'rules', 'agents'];
-
-export function help() {
-  log(`
-Usage:
-  gamut plugin install [target] [options]
-
-Install the Gamut plugin into an AI tool.
-
-Arguments:
-  target               Tool to install into (default: cursor)
-                       cursor | claude
-
-Options:
-  --scope <scope>      Content to install (default: all)
-                       all | skills | rules | agents
-  --theme <theme>      Copy DESIGN.*.md to ./DESIGN.md in the current directory
-                       core | admin | platform | percipio | lxstudio
-                       (admin/platform use Codecademy DESIGN; aliases: codecademy, cc, lx-studio)
-  --force              Overwrite existing DESIGN.md when using --theme
-  --plugin-dir <path>  Use this directory instead of @skillsoft/gamut-agent-tools
-  --no-install         Don't auto-install @skillsoft/gamut-agent-tools if missing
-  -h, --help           Show this help message
-
-@skillsoft/gamut-agent-tools ships separately from @skillsoft/gamut. If it
-isn't already installed, this command installs it (as a devDependency)
-before proceeding, unless --no-install is passed.
-
-Examples:
-  gamut plugin install
-  gamut plugin install claude
-  gamut plugin install cursor --theme core
-  gamut plugin install cursor --theme percipio --force
-  gamut plugin install cursor --scope skills
-  gamut plugin install cursor --plugin-dir ./my-agent-tools
-`);
-}
 
 // ---------------------------------------------------------------------------
 
@@ -187,7 +151,7 @@ export default async function install(args) {
     );
   }
 
-  const pluginDir = await resolvePluginDir(args);
+  const sourceRoot = await resolveSourceRoot(args);
   const theme = getFlag(args, '--theme');
   const force = args.includes('--force');
 
@@ -196,14 +160,14 @@ export default async function install(args) {
   }
 
   if (target === 'cursor') {
-    await installCursor(pluginDir, scope);
+    await installCursor(sourceRoot, scope);
   } else if (target === 'claude') {
-    await installClaude(pluginDir);
+    await installClaude(sourceRoot);
   }
 
   if (theme) {
     const { dest, label } = await installDesignMd(
-      pluginDir,
+      sourceRoot,
       process.cwd(),
       theme,
       {

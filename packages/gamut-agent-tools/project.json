@@ -12,6 +12,20 @@
         "parallel": false
       }
     },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "packages/gamut-agent-tools",
+        "command": "node --test cli/__tests__/design.test.mjs"
+      }
+    },
+    "verify": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "packages/gamut-agent-tools",
+        "command": "tsc --noEmit"
+      }
+    },
     "publish-build": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],

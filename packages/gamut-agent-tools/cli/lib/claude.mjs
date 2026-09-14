@@ -33,7 +33,11 @@ export async function claudePluginSpec(sourceRoot) {
 
   const entry =
     plugins.find(
-      (p) => p.source === './' || p.source === '.' || p.source == null
+      (p) =>
+        p.source === './' ||
+        p.source === '.' ||
+        p.source === null ||
+        p.source === undefined
     ) ?? plugins[0];
 
   if (!entry?.name) {
