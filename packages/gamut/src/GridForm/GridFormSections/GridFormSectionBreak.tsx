@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { system } from '@skillsoft/gamut-styles';
 import { StyleProps, variance } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 import * as React from 'react';
 
 import { Column } from '../../Layout/Column';

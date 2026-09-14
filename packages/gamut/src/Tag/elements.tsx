@@ -1,5 +1,5 @@
-import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
 import styled from '@emotion/styled';
+import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
 
 import { Anchor } from '../Anchor';
 import { Box, FlexBox } from '../Box';

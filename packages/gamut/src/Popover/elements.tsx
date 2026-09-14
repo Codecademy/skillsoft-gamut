@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { timingValues, variant } from '@skillsoft/gamut-styles';
 import { StyleProps } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { BodyPortal } from '../BodyPortal';

@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { screenReaderOnly } from '@skillsoft/gamut-styles';
 import { StyleProps } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 import { forwardRef, InputHTMLAttributes, ReactNode } from 'react';
 import * as React from 'react';
 

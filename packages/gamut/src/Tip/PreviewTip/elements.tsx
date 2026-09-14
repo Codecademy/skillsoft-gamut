@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { CheckerDense } from '@skillsoft/gamut-patterns';
 import { css, variant } from '@skillsoft/gamut-styles';
-import styled from '@emotion/styled';
 import { useMemo } from 'react';
 
 import { Anchor } from '../../Anchor';

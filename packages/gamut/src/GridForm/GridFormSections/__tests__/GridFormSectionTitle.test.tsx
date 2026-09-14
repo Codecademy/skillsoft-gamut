@@ -1,6 +1,6 @@
+import { matchers } from '@emotion/jest';
 import { theme } from '@skillsoft/gamut-styles';
 import { setupRtl } from '@skillsoft/gamut-tests';
-import { matchers } from '@emotion/jest';
 
 import { GridFormSectionTitle } from '../GridFormSectionTitle';
 

@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import {
   Colors,
   styledOptions,
@@ -5,7 +6,6 @@ import {
   variant,
 } from '@skillsoft/gamut-styles';
 import { StyleProps, variance } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 
 import { appendIconToContent } from '../helpers';
 import { IconComponentType, WithChildrenProp } from '../utils';

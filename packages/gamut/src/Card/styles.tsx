@@ -1,3 +1,4 @@
+import { Theme, useTheme } from '@emotion/react';
 import {
   ElevationState,
   theme,
@@ -5,7 +6,6 @@ import {
   variant,
 } from '@skillsoft/gamut-styles';
 import { StyleProps } from '@skillsoft/variance';
-import { Theme, useTheme } from '@emotion/react';
 
 /**
  * The theme's elevation scale is flattened to dashcase tokens (`rest-shadow`,

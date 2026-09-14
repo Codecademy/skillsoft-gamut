@@ -1,5 +1,5 @@
-import { styledOptions, system } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
+import { styledOptions, system } from '@skillsoft/gamut-styles';
 
 import { boxProps, GridBoxProps, gridStates, sharedStates } from './props';
 

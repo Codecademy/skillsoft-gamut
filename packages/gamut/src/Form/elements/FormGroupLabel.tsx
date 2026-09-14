@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { states, variant } from '@skillsoft/gamut-styles';
 import { StyleProps } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 import { HTMLAttributes } from 'react';
 import * as React from 'react';
 

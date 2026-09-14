@@ -1,5 +1,5 @@
-import { css } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
+import { css } from '@skillsoft/gamut-styles';
 import React, { useMemo } from 'react';
 
 import { Box } from '../../Box';

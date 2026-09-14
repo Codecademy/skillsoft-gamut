@@ -1,5 +1,5 @@
-import { CSSObject } from '@skillsoft/variance';
 import { css, Global } from '@emotion/react';
+import { CSSObject } from '@skillsoft/variance';
 import * as React from 'react';
 
 const scopeVariables = (vars: CSSObject, scope = ':root') =>

@@ -1,5 +1,5 @@
-import { Background, css } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
+import { Background, css } from '@skillsoft/gamut-styles';
 import { motion } from 'framer-motion';
 import { ComponentProps, forwardRef } from 'react';
 

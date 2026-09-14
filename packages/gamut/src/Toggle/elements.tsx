@@ -1,3 +1,5 @@
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import {
   screenReaderOnly,
   states,
@@ -6,8 +8,6 @@ import {
   variant,
 } from '@skillsoft/gamut-styles';
 import { StyleProps, variance } from '@skillsoft/variance';
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 
 import { Box } from '../Box';
 

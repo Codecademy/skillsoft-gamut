@@ -1,3 +1,4 @@
+import styled, { StyledComponent } from '@emotion/styled';
 import {
   AlertIcon,
   CheckCircledIcon,
@@ -5,7 +6,6 @@ import {
 } from '@skillsoft/gamut-icons';
 import { css } from '@skillsoft/gamut-styles';
 import { StyleProps } from '@skillsoft/variance';
-import styled, { StyledComponent } from '@emotion/styled';
 import { ChangeEvent, forwardRef, InputHTMLAttributes, useState } from 'react';
 import * as React from 'react';
 

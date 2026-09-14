@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { states, variant } from '@skillsoft/gamut-styles';
 import { StyleProps } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 
 import { Anchor } from '../Anchor';
 import { FlexBox } from '../Box';

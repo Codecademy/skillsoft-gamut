@@ -1,6 +1,6 @@
-import { css, useCurrentMode } from '@skillsoft/gamut-styles';
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
+import { css, useCurrentMode } from '@skillsoft/gamut-styles';
 import * as React from 'react';
 
 import { Box, BoxProps } from '../Box';

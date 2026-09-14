@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { css, states } from '@skillsoft/gamut-styles';
 import { StyleProps } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 
 const segmentStyles = states({
   isEmpty: {

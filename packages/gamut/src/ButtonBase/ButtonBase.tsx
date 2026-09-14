@@ -1,5 +1,5 @@
-import { css, styledOptions } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
+import { css, styledOptions } from '@skillsoft/gamut-styles';
 import { ComponentProps, forwardRef, HTMLProps, Ref } from 'react';
 
 export type ButtonBaseElements = HTMLAnchorElement | HTMLButtonElement;

@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import {
   noSelect,
   screenReaderOnly,
@@ -5,7 +6,6 @@ import {
   timing,
 } from '@skillsoft/gamut-styles';
 import { StyleProps } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 import { forwardRef, InputHTMLAttributes, useEffect, useRef } from 'react';
 
 import { FlexBox } from '../../Box';

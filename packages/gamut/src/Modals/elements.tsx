@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { variant } from '@skillsoft/gamut-styles';
 import { StyleProps } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 
 import { PatternBackdrop } from '../PatternBackdrop/PatternBackdrop';
 import { focusVisibleStyle } from '../utils';

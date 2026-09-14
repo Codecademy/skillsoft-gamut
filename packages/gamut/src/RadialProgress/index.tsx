@@ -1,5 +1,5 @@
-import { css, theme } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
+import { css, theme } from '@skillsoft/gamut-styles';
 import { SVGProps } from 'react';
 import * as React from 'react';
 

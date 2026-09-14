@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { css, states, transitionConcat } from '@skillsoft/gamut-styles';
 import { StyleProps } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 
 export const CalendarTable = styled.table(
   css({

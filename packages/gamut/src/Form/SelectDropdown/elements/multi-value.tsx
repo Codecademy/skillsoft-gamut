@@ -1,7 +1,7 @@
-import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
-import { theme } from '@skillsoft/gamut-styles';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
+import { theme } from '@skillsoft/gamut-styles';
 import { KeyboardEvent, useContext } from 'react';
 import {
   components as SelectDropdownElements,

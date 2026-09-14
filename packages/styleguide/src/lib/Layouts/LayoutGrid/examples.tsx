@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { Column, ColumnProps } from '@skillsoft/gamut';
 import { css } from '@skillsoft/gamut-styles';
-import styled from '@emotion/styled';
 
 export const columns = [
   { size: 12 },

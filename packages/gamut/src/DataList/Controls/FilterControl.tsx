@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { FilterIcon } from '@skillsoft/gamut-icons';
 import { states } from '@skillsoft/gamut-styles';
-import styled from '@emotion/styled';
 import kebabCase from 'lodash/kebabCase';
 import { useRef, useState } from 'react';
 import * as React from 'react';

@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { Background } from '@skillsoft/gamut-styles';
 import { StyleProps } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 import * as React from 'react';
 import {
   Tabs as ReactAriaTabs,

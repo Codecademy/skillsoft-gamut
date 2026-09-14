@@ -1,7 +1,7 @@
-import { GridBox } from '@skillsoft/gamut';
-import { boxShadow } from '@skillsoft/gamut-styles';
 import { SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
+import { GridBox } from '@skillsoft/gamut';
+import { boxShadow } from '@skillsoft/gamut-styles';
 
 export const ShadowBox = styled.div<{ shadow?: SerializedStyles }>`
   display: inline-flex;

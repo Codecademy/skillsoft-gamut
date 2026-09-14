@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { styledOptions, system, variant } from '@skillsoft/gamut-styles';
 import { StyleProps, variance } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 import { ComponentProps, forwardRef } from 'react';
 
 const rows = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 };

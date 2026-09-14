@@ -1,3 +1,5 @@
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import {
   Badge,
   FlexBox,
@@ -10,8 +12,6 @@ import {
   Text,
 } from '@skillsoft/gamut';
 import { MiniStarIcon } from '@skillsoft/gamut-icons';
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 
 const components = {
   InfoTip: {

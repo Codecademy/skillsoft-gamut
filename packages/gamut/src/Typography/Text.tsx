@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import {
   states,
   styledOptions,
@@ -5,7 +6,6 @@ import {
   variant,
 } from '@skillsoft/gamut-styles';
 import { StyleProps, variance } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 import { ComponentProps, forwardRef } from 'react';
 
 import { typographyElementVariants, typographyStyleVariants } from './variants';

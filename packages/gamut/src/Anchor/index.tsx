@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { styledOptions, system, variant } from '@skillsoft/gamut-styles';
 import { StyleProps, variance } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 import {
   ComponentProps,
   ComponentType,

@@ -2,8 +2,8 @@
 /* eslint-disable @skillsoft/gamut/no-css-standalone */
 import './vidstack-styles.css';
 
-import { styledOptions } from '@skillsoft/gamut-styles';
 import styled, { CSSObject } from '@emotion/styled';
+import { styledOptions } from '@skillsoft/gamut-styles';
 import {
   isYouTubeProvider,
   MediaPlayer,

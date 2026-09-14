@@ -1,7 +1,7 @@
-import { MiniArrowDownIcon } from '@skillsoft/gamut-icons';
-import { themed, timing } from '@skillsoft/gamut-styles';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { MiniArrowDownIcon } from '@skillsoft/gamut-icons';
+import { themed, timing } from '@skillsoft/gamut-styles';
 import * as React from 'react';
 
 import { Box } from '../Box';

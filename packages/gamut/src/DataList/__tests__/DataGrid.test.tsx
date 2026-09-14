@@ -1,5 +1,5 @@
-import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
 import { matchers } from '@emotion/jest';
+import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
 import {
   act,
   fireEvent,

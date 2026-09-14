@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { PlayIcon } from '@skillsoft/gamut-icons';
 import { css, theme } from '@skillsoft/gamut-styles';
-import styled from '@emotion/styled';
 import ReactPlayer from 'react-player';
 
 import { FlexBox } from '../../Box';

@@ -1,5 +1,5 @@
-import { css, styledOptions } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
+import { css, styledOptions } from '@skillsoft/gamut-styles';
 import { motion } from 'framer-motion';
 
 import { FlexBox } from '../../Box';

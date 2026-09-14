@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { css, states, timing } from '@skillsoft/gamut-styles';
 import { StyleProps } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 
 import { Box, FlexBox } from '../../Box';
 import { Selectors } from '../../ButtonBase/ButtonBase';

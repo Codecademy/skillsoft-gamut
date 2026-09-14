@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import {
   css,
   states,
@@ -7,7 +8,6 @@ import {
   variant,
 } from '@skillsoft/gamut-styles';
 import { StyleProps, variance } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 
 import { Box } from '../Box';

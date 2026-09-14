@@ -1,5 +1,5 @@
-import { css } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
+import { css } from '@skillsoft/gamut-styles';
 import { motion, useReducedMotion } from 'framer-motion';
 
 import { Box, BoxProps } from '../Box';

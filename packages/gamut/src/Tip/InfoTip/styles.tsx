@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import {
   css,
   fontSmoothPixel,
@@ -6,7 +7,6 @@ import {
   variant,
 } from '@skillsoft/gamut-styles';
 import { StyleProps } from '@skillsoft/variance';
-import styled from '@emotion/styled';
 
 import { Box } from '../../Box';
 import { InteractiveSelectors } from '../../ButtonBase/ButtonBase';

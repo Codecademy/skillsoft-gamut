@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { MiniCalendarIcon } from '@skillsoft/gamut-icons';
 import { css } from '@skillsoft/gamut-styles';
-import styled from '@emotion/styled';
 import {
   type FocusEvent,
   forwardRef,

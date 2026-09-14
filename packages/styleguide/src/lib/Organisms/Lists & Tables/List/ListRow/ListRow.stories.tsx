@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import {
   Box,
   ExpandControl,
@@ -17,7 +18,6 @@ import {
   TrophyIcon,
 } from '@skillsoft/gamut-icons';
 import { Background, css } from '@skillsoft/gamut-styles';
-import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentType } from 'react';
 import { useState } from 'react';
