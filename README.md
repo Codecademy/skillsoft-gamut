@@ -255,7 +255,7 @@ Changelog content is driven by the description in version plan files (in `.nx/ve
 
 ## AI Tool Plugins
 
-Gamut ships an agent-tools plugin with skills, rules, and agents for Claude Code and Cursor. The `gamut` CLI is included in `@codecademy/gamut`, so run it via `npx` from any project that has the package installed.
+Gamut ships an agent-tools plugin with skills, rules, and agents for Claude Code and Cursor. The `gamut` CLI is included in `@skillsoft/gamut`, so run it via `npx` from any project that has the package installed. The plugin content itself lives in the separate, optional `@skillsoft/gamut-agent-tools` package; the CLI installs it automatically the first time you run `gamut plugin install` if it isn't already a dependency.
 
 ### Installing
 
@@ -311,7 +311,7 @@ npx gamut plugin list              # list installed plugins
 Run Claude Code with the plugin loaded for a single session without registering it:
 
 ```bash
-claude --plugin-dir ./node_modules/@codecademy/gamut/agent-tools
+claude --plugin-dir ./node_modules/@skillsoft/gamut-agent-tools
 ```
 
 ## Publishing Storybook

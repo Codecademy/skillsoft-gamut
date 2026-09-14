@@ -7,7 +7,7 @@ description: 'Blueprint — use this skill when authoring a new Gamut agent skil
 
 Blueprint playbook for authoring a new Gamut agent skill.
 
-Reference skills: [`gamut-buttons`](../../../packages/gamut/agent-tools/skills/gamut-buttons/SKILL.md) — reference for a tight component skill. [`gamut-datatable`](../../../packages/gamut/agent-tools/skills/gamut-datatable/SKILL.md) — reference for an organism skill with full API surface. [`gamut-review`](../../../packages/gamut/agent-tools/skills/gamut-review/SKILL.md) — reference for an audit/workflow skill.
+Reference skills: [`gamut-buttons`](../../../packages/gamut-agent-tools/skills/gamut-buttons/SKILL.md) — reference for a tight component skill. [`gamut-datatable`](../../../packages/gamut-agent-tools/skills/gamut-datatable/SKILL.md) — reference for an organism skill with full API surface. [`gamut-review`](../../../packages/gamut-agent-tools/skills/gamut-review/SKILL.md) — reference for an audit/workflow skill.
 
 Storybook: [Meta / AI Tooling / Gamut plugin / Best practices](https://gamut.codecademy.com/?path=/docs-meta-ai-tooling-gamut-plugin-best-practices--page)
 
@@ -61,7 +61,7 @@ There are two locations, depending on the intended audience:
 **Exported skills** — shipped to app repos via `gamut plugin install`:
 
 ```
-packages/gamut/agent-tools/skills/
+packages/gamut-agent-tools/skills/
   {skill-name}/
     SKILL.md
 ```
@@ -256,7 +256,7 @@ For skills covering a concept rather than a single component (e.g. `gamut-color-
 
 | Type                   | Skill                                                                                      | Read it for                                       |
 | ---------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------- |
-| Tight component        | [`gamut-buttons`](../../../packages/gamut/agent-tools/skills/gamut-buttons/SKILL.md)       | Scope discipline, clean "When to use / not use"   |
-| Organism with full API | [`gamut-datatable`](../../../packages/gamut/agent-tools/skills/gamut-datatable/SKILL.md)   | Props table + ColumnConfig + gotcha note pattern  |
-| Audit / workflow       | [`gamut-review`](../../../packages/gamut/agent-tools/skills/gamut-review/SKILL.md)         | Multi-phase check structure, remediation pointers |
-| System / concept       | [`gamut-color-mode`](../../../packages/gamut/agent-tools/skills/gamut-color-mode/SKILL.md) | Semantic-first framing, cross-skill boundaries    |
+| Tight component        | [`gamut-buttons`](../../../packages/gamut-agent-tools/skills/gamut-buttons/SKILL.md)       | Scope discipline, clean "When to use / not use"   |
+| Organism with full API | [`gamut-datatable`](../../../packages/gamut-agent-tools/skills/gamut-datatable/SKILL.md)   | Props table + ColumnConfig + gotcha note pattern  |
+| Audit / workflow       | [`gamut-review`](../../../packages/gamut-agent-tools/skills/gamut-review/SKILL.md)         | Multi-phase check structure, remediation pointers |
+| System / concept       | [`gamut-color-mode`](../../../packages/gamut-agent-tools/skills/gamut-color-mode/SKILL.md) | Semantic-first framing, cross-skill boundaries    |
