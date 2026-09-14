@@ -31,12 +31,12 @@ export default defineConfig({
         {
           icon: 'github',
           label: 'GitHub',
-          href: 'https://github.com/Codecademy/gamut',
+          href: 'https://github.com/Codecademy/skillsoft-gamut',
         },
       ],
       editLink: {
         baseUrl:
-          'https://github.com/Codecademy/gamut/edit/main/packages/starlight/',
+          'https://github.com/Codecademy/skillsoft-gamut/edit/main/packages/gamut-docs/',
       },
       customCss: ['./src/styles/gamut-core-theme.css'],
       plugins: [

@@ -2,7 +2,7 @@
 
 - **Status:** Proposed
 - **Date:** 2026-09-14
-- **Amended:** 2026-09-14 — decisions 3–5 revised to deploy to the GitHub Pages project URL first and defer the custom domain
+- **Amended:** 2026-09-14 — decisions 3–5 revised to deploy to the GitHub Pages project URL first and defer the custom domain; decisions 1–2 revised to sibling packages named for their roles (`packages/gamut-docs`) rather than an intermediate `packages/docs/` directory
 - **Ticket:** GMT-1727
 - **Deciders:** Gamut maintainers
 
@@ -12,7 +12,7 @@
 
 The current state makes each of those questions urgent:
 
-1. **The two projects are unrelated siblings.** `packages/starlight` (Astro 7 + Starlight, `@codecademy/gamut-docs`) and `packages/styleguide` (Storybook 10.3.3, webpack5 builder, `@codecademy/styleguide`) sit beside twelve library packages with nothing marking them as one documentation system. There is no single command that starts both, so a contributor editing a component page cannot see its embedded story without starting a second server by hand.
+1. **Neither project is named for what it is.** `packages/starlight` (Astro 7 + Starlight, package `@codecademy/gamut-docs`, Nx project `starlight`) and `packages/styleguide` (Storybook 10.3.3, webpack5 builder, `@codecademy/styleguide`) sit beside twelve library packages, and the first is named after the framework it happens to use rather than the thing it is — with its directory, Nx project, and npm package all disagreeing. There is also no single command that starts both, so a contributor editing a component page cannot see its embedded story without starting a second server by hand.
 2. **`StoryEmbed` points at production from localhost.** It hardcodes `storybookOrigin = 'https://gamut.codecademy.com'`, so local Starlight development renders iframes from the deployed site and cannot show local story changes at all.
 3. **Deploys from this repository go nowhere.** `deploy-production.yml` assembles `dist/docs` and pushes a `gh-pages` branch, but GitHub Pages is not enabled on `Codecademy/skillsoft-gamut` (the API returns 404). The live `gamut.codecademy.com` is still served by `Codecademy/gamut`, whose Pages site reports `source: {branch: gh-pages, path: /docs}` and `build_type: legacy`.
 4. **Jekyll will break Astro's output.** `build_type: legacy` means Pages runs Jekyll over the published branch, and Jekyll skips underscore-prefixed directories by default — including `_astro/`, where Astro emits all bundled CSS and JS.
@@ -21,29 +21,36 @@ The current state makes each of those questions urgent:
 
 ## Decision
 
-### 1. Both documentation projects live under one parent directory, as peers
+### 1. Both documentation projects are sibling packages, named for what they are
 
 ```text
-packages/docs/starlight/     was packages/starlight
-packages/docs/storybook/     was packages/styleguide
+packages/gamut-docs/     was packages/starlight
+packages/styleguide/     unchanged
 ```
 
-They are siblings under `packages/docs/`, not one nested inside the other. Nesting Storybook inside `packages/starlight/` would satisfy the same "one parent folder" goal but place one Nx project root inside another, and `nx.json` defines `namedInputs.default` as `["{projectRoot}/**/*"]` — Starlight's input glob would then contain all 339 of Storybook's tracked files, so every story edit would invalidate Starlight's build cache and vice versa. Peer directories keep the project roots disjoint, and peer structure matches ADR 0001's framing of the two systems as equals with different jobs rather than parent and child.
+`packages/` is the shared parent. The two halves sit beside each other there, as siblings, exactly like every other package in the workspace — there is no intermediate `packages/docs/` directory and neither is nested inside the other.
 
-This requires adding `packages/docs/*` to the `workspaces.packages` globs, which are single-level (`["packages/*"]`) and would otherwise stop treating either project as a workspace member.
+Nesting was rejected on a concrete cost: `nx.json` defines `namedInputs.default` as `["{projectRoot}/**/*"]`, so putting Storybook inside the Starlight project root would make Starlight's input glob contain all 339 of Storybook's tracked files, and every story edit would invalidate Starlight's build cache and vice versa. An intermediate shared parent was rejected as redundant — `packages/` already supplies the shared parent, and adding a level buys a grouping that the names now carry on their own. Sibling directories keep the project roots disjoint and match ADR 0001's framing of the two systems as equals with different jobs rather than parent and child.
 
-### 2. Projects and packages are renamed to match their role
+Two consequences of keeping both at the same depth, both simplifications relative to an intermediate directory:
 
-|             | before                   | after                         |
-| ----------- | ------------------------ | ----------------------------- |
-| Nx project  | `starlight`              | `docs-starlight`              |
-| Nx project  | `styleguide`             | `docs-storybook`              |
-| npm package | `@codecademy/styleguide` | `@codecademy/gamut-storybook` |
-| npm package | `@codecademy/gamut-docs` | unchanged                     |
+- **No workspace glob change.** `workspaces.packages` is the single-level `["packages/*"]`, which already matches both.
+- **No relative-path repairs.** `.storybook/main.ts` resolves seven package aliases by traversal (`resolve(__dirname, '../../gamut-styles/src')`); because `packages/styleguide` does not move, those depths stay correct. Under a nested or intermediate layout each would have needed an extra `../`, and missing one is a hard build failure.
 
-Target names (`build-storybook`, `storybook`, `storybook-test`, `dev`, `build`) are deliberately **not** renamed, so CI invocations and contributor muscle memory survive. The directory move already forces edits to all 24 references to `styleguide` across `nx.json`, four root scripts, three GitHub workflows, `.eslintrc.js`, `netlify.toml`, `tsconfig.json`, and `.vscode/settings.json`; renaming the project in the same pass is therefore close to free, and this is the only moment it is.
+### 2. Projects and packages are named to match their directories
 
-`.storybook/main.ts` resolves seven package aliases by relative traversal (`resolve(__dirname, '../../gamut-styles/src')`). The move adds one directory level, so each becomes `../../../`. Missing this is a hard build failure, not a degradation.
+| Directory             | Nx project   | npm package              |
+| --------------------- | ------------ | ------------------------ |
+| `packages/gamut-docs` | `gamut-docs` | `@codecademy/gamut-docs` |
+| `packages/styleguide` | `styleguide` | `@codecademy/styleguide` |
+
+The Starlight project was renamed from `starlight` to `gamut-docs` so that directory, Nx project, and npm package all agree; the package was already `@codecademy/gamut-docs`, so the directory and project names were the outliers. Renaming the directory without the Nx project would have left a project called `starlight` living at `packages/gamut-docs` with scripts reading `nx run starlight:build` — the same class of mismatch this decision exists to remove.
+
+`packages/styleguide` keeps all three names. Its directory is not moving, so there is no forcing change to piggyback a rename onto, and renaming the project alone would reintroduce the directory/name mismatch just described.
+
+Target names (`build-storybook`, `storybook`, `storybook-test`, `dev`, `build`) are unchanged, so CI invocations and contributor muscle memory survive.
+
+The `gamut-docs` rename touched nine references across six files plus `yarn.lock`: `project.json` (`name`, `sourceRoot`, three `cwd` options), two root scripts (`build-docs-site`, `start:docs`), two `.gitignore` paths, the `editLink` base URL in `astro.config.mjs`, and the workspace resolution in `yarn.lock`. The 24 references to `styleguide` elsewhere in the workspace are untouched.
 
 ### 3. Starlight owns the site root; Storybook is served from `<base>/storybook/`
 
@@ -116,7 +123,7 @@ The interim target of decision 3 constrains this further: **`agent-tools` URLs m
 
 ### Positive
 
-- **One directory is the whole documentation system.** `packages/docs/` contains both halves, so the two-system split of ADR 0001 is legible from the tree rather than only from prose, without coupling the two projects' build caches.
+- **The tree names the documentation system instead of grouping it.** `packages/gamut-docs` says what it is rather than which framework builds it, and directory, Nx project, and npm package finally agree. The two-system split of ADR 0001 stays legible without an extra directory level or any coupling of build caches.
 - **One command starts both servers.** `nx run-many --target=dev --parallel=2` needs no new dependency; the repo has neither `concurrently` nor `npm-run-all` and does not need them.
 - **Local development finally shows local stories.** Replacing the hardcoded production origin means an embedded canvas reflects the story file the contributor is editing, which was impossible before.
 - **Storybook links are written once and work everywhere.** Authors write one relative path in `.md` or `.mdx` or a component, with no environment branch, no custom URL scheme, and nothing for a contributor to remember.
@@ -127,8 +134,8 @@ The interim target of decision 3 constrains this further: **`agent-tools` URLs m
 
 ### Negative / risks
 
-- **A large mechanical diff.** 339 tracked files move and 24 configuration references change, so every open branch touching `packages/styleguide` will conflict. Mitigation: land it as one self-contained change rather than incrementally, and use `git mv` so history and blame follow.
-- **A hardcoded port in the dev middleware.** The 302 target `localhost:6006` must stay in sync with `docs-storybook`'s `port` option, and if Storybook is not running the failure is a connection refusal rather than a clear message. Mitigation: read the port from a single shared constant; accepted as cheaper than the proxy alternative it replaces.
+- **A rename still conflicts with open work.** 156 tracked files move under `packages/gamut-docs`, so any open branch touching the Starlight site will conflict. This is far smaller than the 339-file Storybook move an intermediate directory would have additionally required, and `packages/styleguide` is untouched. Mitigation: `git mv` so history and blame follow, and land it as one change rather than incrementally.
+- **A hardcoded port in the dev middleware.** The 302 target `localhost:6006` must stay in sync with the `styleguide` project's `storybook` target `port` option, and if Storybook is not running the failure is a connection refusal rather than a clear message. Mitigation: read the port from a single shared constant; accepted as cheaper than the proxy alternative it replaces.
 - **`astro preview` alone no longer represents production.** Previewing Starlight's own output 404s `/storybook` unless Storybook is assembled into it first, because the dev middleware does not exist in a built site. Mitigation: verify the assembled `dist/docs` with a static server rather than `astro preview`.
 - **Publishing depends on two easily-lost details.** Dropping either `.nojekyll` or `gh-pages -t` ships Starlight with no styles or scripts, and neither failure is visible in the build logs. Mitigation: assert both in the deploy pipeline rather than relying on the files' continued presence.
 - **Already-published deep links degrade eventually.** Decision 6 accepts that the baked URLs live only as long as the old repository's Pages site does, and their expiry is a manual sequencing obligation rather than something enforced by tooling. Mitigation: record the constraint in the retirement plan for `Codecademy/gamut`; note that the 52 URLs use a malformed shape (`?path=/docs-atoms-buttons-button--docs`, hyphen rather than the `?path=/docs/…` slash that Starlight's own content uses correctly), so they likely never resolved to the intended page.
@@ -146,8 +153,8 @@ The interim target of decision 3 constrains this further: **`agent-tools` URLs m
 
 ## Alternatives considered
 
-1. **Nest Storybook inside `packages/starlight/`.** Rejected: satisfies the same goal, but puts one Nx project root inside another, so Starlight's `{projectRoot}/**/*` default input swallows Storybook's 339 files and couples their caches. It also implies a subordination that ADR 0001's peer framing does not.
-2. **Leave both packages where they are and unify only output and dev commands.** Rejected: the URL topology and single dev command are achievable this way with zero file movement, but the source tree keeps giving no indication the two projects are one system, and the free renaming window (decision 2) closes.
+1. **Nest Storybook inside the Starlight package.** Rejected: puts one Nx project root inside another, so Starlight's `{projectRoot}/**/*` default input swallows Storybook's 339 files and couples their caches. It also implies a subordination that ADR 0001's peer framing does not.
+2. **Group both under an intermediate `packages/docs/` directory.** Rejected: `packages/` is already the shared parent, so the extra level restates in the tree what decision 2's names now carry, while requiring a `workspaces.packages` glob addition, a 339-file move of `packages/styleguide`, and an extra `../` on each of seven `.storybook/main.ts` aliases. The grouping was not worth those four changes once both packages were named for their roles.
 3. **Proxy Storybook's dev content under `/storybook`.** Rejected: achieves dev/production URL parity, but requires Starlight's root to claim Storybook's root-absolute asset prefixes, a list that changes between Storybook versions. The 302 redirect obtains the same parity without it.
 4. **Branch `StoryEmbed`'s origin on `import.meta.env.DEV`.** Rejected after initially being chosen: it resolves the iframes but not prose links, and the three plain-`.md` files cannot import a component at all, leaving two mechanisms and an unsolved gap.
 5. **A remark plugin rewriting a custom `storybook:` URL scheme.** Rejected _as the addressing mechanism_: it cannot touch the `StoryEmbed` component, so it would be a second mechanism alongside one for iframes, and a custom scheme is one contributors must learn and that editors and link checkers report as broken. Note that decision 4 does adopt a remark plugin for a narrower job — prefixing ordinary root-relative links with `BASE_URL` — which requires no custom scheme and leaves links valid to external tooling.
@@ -162,5 +169,5 @@ The interim target of decision 3 constrains this further: **`agent-tools` URLs m
 - ADR 0001: [Information architecture for the new Gamut documentation site](0001-documentation-site-information-architecture.md)
 - Diátaxis framework: <https://diataxis.fr>
 - GitHub Pages Jekyll bypass (`.nojekyll`): <https://docs.github.com/pages/getting-started-with-github-pages/about-github-pages>
-- Starlight source: `packages/starlight` · Storybook source: `packages/styleguide`
+- Starlight source: `packages/gamut-docs` · Storybook source: `packages/styleguide`
 - Deploy pipeline: `.github/workflows/deploy-production.yml`, root `deploy` script, `dist/static/`

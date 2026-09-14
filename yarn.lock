@@ -2030,9 +2030,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codecademy/gamut-docs@workspace:packages/starlight":
+"@codecademy/gamut-docs@workspace:packages/gamut-docs":
   version: 0.0.0-use.local
-  resolution: "@codecademy/gamut-docs@workspace:packages/starlight"
+  resolution: "@codecademy/gamut-docs@workspace:packages/gamut-docs"
   dependencies:
     "@astrojs/react": "npm:^6.0.4"
     "@astrojs/starlight": "npm:^0.41.9"

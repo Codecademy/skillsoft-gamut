@@ -52,8 +52,8 @@ dist/storybook
 dist/docs
 
 # Astro / Starlight build
-packages/starlight/dist
-packages/starlight/.astro
+packages/gamut-docs/dist
+packages/gamut-docs/.astro
 
 # NX
 dist/out-tsc

@@ -1,14 +1,14 @@
 {
-  "name": "starlight",
+  "name": "gamut-docs",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/starlight/src",
+  "sourceRoot": "packages/gamut-docs/src",
   "projectType": "application",
   "tags": [],
   "targets": {
     "dev": {
       "executor": "nx:run-commands",
       "options": {
-        "cwd": "packages/starlight",
+        "cwd": "packages/gamut-docs",
         "command": "astro dev"
       }
     },
@@ -16,7 +16,7 @@
       "executor": "nx:run-commands",
       "outputs": ["{projectRoot}/dist"],
       "options": {
-        "cwd": "packages/starlight",
+        "cwd": "packages/gamut-docs",
         "command": "astro build"
       }
     },
@@ -24,7 +24,7 @@
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "cwd": "packages/starlight",
+        "cwd": "packages/gamut-docs",
         "command": "astro preview"
       }
     }
