@@ -114,7 +114,7 @@ components:
 
 # Percipio
 
-This file defines the visual design tokens for the Skillsoft Percipio platform, implemented using the Gamut design system (`@codecademy/gamut`, `@codecademy/gamut-styles`). Percipio uses a dedicated Gamut theme that applies its own colors and typography — all Gamut components work without modification.
+This file defines the visual design tokens for the Skillsoft Percipio platform, implemented using the Gamut design system (`@skillsoft/gamut`, `@skillsoft/gamut-styles`). Percipio uses a dedicated Gamut theme that applies its own colors and typography — all Gamut components work without modification.
 
 **Storybook**: https://gamut.codecademy.com
 

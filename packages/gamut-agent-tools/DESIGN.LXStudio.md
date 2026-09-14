@@ -124,7 +124,7 @@ components:
 
 # LX Studio
 
-This file defines the visual design tokens for the Skillsoft LX Studio authoring platform, implemented using the Gamut design system (`@codecademy/gamut`, `@codecademy/gamut-styles`). LX Studio uses a dedicated Gamut theme with its own brand colors, typography, and border radii — all Gamut components work without modification.
+This file defines the visual design tokens for the Skillsoft LX Studio authoring platform, implemented using the Gamut design system (`@skillsoft/gamut`, `@skillsoft/gamut-styles`). LX Studio uses a dedicated Gamut theme with its own brand colors, typography, and border radii — all Gamut components work without modification.
 
 **Storybook**: https://gamut.codecademy.com
 

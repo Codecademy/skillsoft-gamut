@@ -7,7 +7,7 @@ description: Use this skill when building action menus, navigation menus, floati
 
 `Menu`, `MenuItem`, and `MenuSeparator` compose lists of actions, options, or navigation links.
 
-Source: `@codecademy/gamut` — [Menu.tsx](https://github.com/Codecademy/gamut/blob/main/packages/gamut/src/Menu/Menu.tsx)
+Source: `@skillsoft/gamut` — [Menu.tsx](https://github.com/Codecademy/gamut/blob/main/packages/gamut/src/Menu/Menu.tsx)
 
 See also: [`gamut-accessibility`](../gamut-accessibility/SKILL.md) — ARIA roles and focus rules. [`gamut-list`](../gamut-list/SKILL.md) — lower-level List primitives when `Menu` is too opinionated. [`gamut-z-index`](../gamut-z-index/SKILL.md) — stacking order for floating menus, including opening one inside a `Modal`.
 
@@ -16,7 +16,7 @@ Storybook: [Molecules / Menu](https://gamut.codecademy.com/?path=/docs-molecules
 ## Components
 
 ```tsx
-import { Menu, MenuItem, MenuSeparator } from '@codecademy/gamut';
+import { Menu, MenuItem, MenuSeparator } from '@skillsoft/gamut';
 ```
 
 | Symbol          | Role                                                          |

@@ -5,7 +5,7 @@ description: Use this skill when choosing or extending Gamut themes (Core, Admin
 
 # Gamut Theming
 
-Source: `@codecademy/gamut-styles`
+Source: `@skillsoft/gamut-styles`
 
 See also: [`gamut-style-utilities`](../gamut-style-utilities/SKILL.md) (`css`, `variant`, `states`, `StyleProps`, `useTheme` escape hatch). [`gamut-color-mode`](../gamut-color-mode/SKILL.md) (semantic color, `<ColorMode>`, `<Background>`). [`gamut-system-props`](../gamut-system-props/SKILL.md) (`system.*`, responsive `Box` props).
 
@@ -18,23 +18,23 @@ For authoring component styles (`css`, `variant`, `states`, system props, ColorM
 ## Install
 
 ```sh
-yarn add @codecademy/gamut @emotion/react @emotion/styled
+yarn add @skillsoft/gamut @emotion/react @emotion/styled
 ```
 
 `gamut` brings in `gamut-icons`, `gamut-illustrations`, `gamut-patterns`, `gamut-styles`, and `variance` automatically as regular dependencies.
 
 Full guide: [Meta / Installation](https://gamut.codecademy.com/?path=/docs-meta-installation--page) in Storybook (CSP `nonce` on `GamutProvider`, Jest, Next/Gatsby entry points).
 
-Optionally add a `peerDependencies` block in `package.json` listing `@codecademy/gamut`, `@codecademy/gamut-icons`, `@codecademy/gamut-illustrations`, `@codecademy/gamut-patterns`, `@codecademy/gamut-styles`, `@codecademy/gamut-tests`, and `@codecademy/variance` (e.g. `"*"`) so editors surface those packages — see Meta / Installation for the JSON snippet.
+Optionally add a `peerDependencies` block in `package.json` listing `@skillsoft/gamut`, `@skillsoft/gamut-icons`, `@skillsoft/gamut-illustrations`, `@skillsoft/gamut-patterns`, `@skillsoft/gamut-styles`, `@skillsoft/gamut-tests`, and `@skillsoft/variance` (e.g. `"*"`) so editors surface those packages — see Meta / Installation for the JSON snippet.
 
 ## Required wrapper
 
-Wrap the app root in `<GamutProvider>` from `@codecademy/gamut-styles`. This wires up the theme, color mode, and logical properties for all child components.
+Wrap the app root in `<GamutProvider>` from `@skillsoft/gamut-styles`. This wires up the theme, color mode, and logical properties for all child components.
 
 At runtime, `GamutProvider` defaults to Core when `theme` is omitted (`theme = coreTheme` in the implementation). For non-Core products and for TypeScript (`theme` is required on `GamutProviderProps`), pass `theme` explicitly using the table below.
 
 ```tsx
-import { GamutProvider, theme } from '@codecademy/gamut-styles';
+import { GamutProvider, theme } from '@skillsoft/gamut-styles';
 
 const App = () => (
   <GamutProvider theme={theme}>{/* app content */}</GamutProvider>
@@ -43,7 +43,7 @@ const App = () => (
 
 ## Available themes
 
-| Theme     | Used for                                                   | Import from `@codecademy/gamut-styles` |
+| Theme     | Used for                                                   | Import from `@skillsoft/gamut-styles` |
 | --------- | ---------------------------------------------------------- | -------------------------------------- |
 | Core      | Codecademy default                                         | `coreTheme` or `theme` (default)       |
 | Admin     | Codecademy admin tools                                     | `adminTheme`                           |
@@ -61,7 +61,7 @@ Add a root `theme.d.ts` (or merge into your existing global types):
 // theme.d.ts
 import '@emotion/react';
 
-import type { CoreTheme } from '@codecademy/gamut-styles';
+import type { CoreTheme } from '@skillsoft/gamut-styles';
 
 declare module '@emotion/react' {
   export interface Theme extends CoreTheme {}
@@ -84,7 +84,7 @@ Example when the app uses Percipio:
 // theme.d.ts
 import '@emotion/react';
 
-import type { PercipioTheme } from '@codecademy/gamut-styles';
+import type { PercipioTheme } from '@skillsoft/gamut-styles';
 
 declare module '@emotion/react' {
   export interface Theme extends PercipioTheme {}
@@ -105,4 +105,4 @@ See Emotion’s [TypeScript / define a theme](https://emotion.sh/docs/typescript
 
 ## Creating a new theme
 
-See [Creating Themes](https://gamut.codecademy.com/?path=/docs-foundations-theme-creating-themes--docs) in Storybook. Themes are defined in `@codecademy/gamut-styles` and must extend the base theme shape with all required token keys.
+See [Creating Themes](https://gamut.codecademy.com/?path=/docs-foundations-theme-creating-themes--docs) in Storybook. Themes are defined in `@skillsoft/gamut-styles` and must extend the base theme shape with all required token keys.

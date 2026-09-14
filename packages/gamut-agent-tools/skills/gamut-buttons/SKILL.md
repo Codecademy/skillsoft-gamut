@@ -85,7 +85,7 @@ Hover, active, and disabled colors are handled by the component. Do not override
 
 - `href` + `disabled`: `ButtonBase` (internal) drops `href` and renders a `<button disabled>` — link-style buttons cannot stay anchors while disabled.
 - `IconButton`: provide an accessible name via `tip` (used as `aria-label` when `aria-label` is omitted). See ToolTip / IconButton Storybook pages.
-- `ButtonBase` is not exported from `@codecademy/gamut` (only the `ButtonBaseElements` type is). Prefer stock atoms; custom button styling belongs in Gamut itself or via `css` / `variant` from `gamut-styles`, not by importing `ButtonBase`.
+- `ButtonBase` is not exported from `@skillsoft/gamut` (only the `ButtonBaseElements` type is). Prefer stock atoms; custom button styling belongs in Gamut itself or via `css` / `variant` from `gamut-styles`, not by importing `ButtonBase`.
 
 ## Focus management — buttons with ToolTip
 

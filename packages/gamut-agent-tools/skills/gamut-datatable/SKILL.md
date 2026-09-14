@@ -7,7 +7,7 @@ description: Use this skill when building a DataTable for bulk data analysis, co
 
 Structured, query-capable table for bulk data analysis and comparison. Sorting, filtering, loading, and empty states are built in. Use when the goal is to scan and compare information across rows — not to manage individual items.
 
-Source: `@codecademy/gamut` — `packages/gamut/src/DataList/DataTable.tsx`
+Source: `@skillsoft/gamut` — `packages/gamut/src/DataList/DataTable.tsx`
 
 See also: [`gamut-datalist`](../gamut-datalist/SKILL.md) — item-focused list with expansion and selection. [`gamut-list`](../gamut-list/SKILL.md) — lower-level list primitives for fully custom layouts. [`gamut-accessibility`](../gamut-accessibility/SKILL.md) — ARIA and keyboard interaction. [`gamut-color-mode`](../gamut-color-mode/SKILL.md) — dark/light mode with `Background`. [`gamut-z-index`](../gamut-z-index/SKILL.md) — why the row-menu-opens-Modal pattern below needs `inline` to work.
 
@@ -16,8 +16,8 @@ Storybook: [Organisms / Lists & Tables / DataTable](https://gamut.codecademy.com
 ## Components
 
 ```tsx
-import { DataTable } from '@codecademy/gamut';
-import { useLocalQuery } from '@codecademy/gamut';
+import { DataTable } from '@skillsoft/gamut';
+import { useLocalQuery } from '@skillsoft/gamut';
 ```
 
 | Symbol          | Role                                                                                      |
@@ -100,7 +100,7 @@ import { useLocalQuery } from '@codecademy/gamut';
 ## Basic usage
 
 ```tsx
-import { DataTable, useLocalQuery } from '@codecademy/gamut';
+import { DataTable, useLocalQuery } from '@skillsoft/gamut';
 
 const columns = [
   { key: 'name', header: 'Name', size: 'md', sortable: true },
@@ -160,8 +160,8 @@ import {
   MenuItem,
   Modal,
   PopoverContainer,
-} from '@codecademy/gamut';
-import { MiniKebabMenuIcon } from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut';
+import { MiniKebabMenuIcon } from '@skillsoft/gamut-icons';
 import { useRef, useState } from 'react';
 
 const RowActions = ({ rowId }) => {
@@ -251,10 +251,10 @@ Pass `loading` to replace row content with shimmer placeholders while data fetch
 
 ## Color mode
 
-DataTable inherits background color from the `current-background` token. Wrap in `Background` from `@codecademy/gamut-styles` to apply a surface color and automatically switch to dark mode contrast.
+DataTable inherits background color from the `current-background` token. Wrap in `Background` from `@skillsoft/gamut-styles` to apply a surface color and automatically switch to dark mode contrast.
 
 ```tsx
-import { Background } from '@codecademy/gamut-styles';
+import { Background } from '@skillsoft/gamut-styles';
 
 <Background bg="black" p={8}>
   <DataTable id="dark-table" idKey="id" rows={data} columns={columns} />

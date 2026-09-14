@@ -1,17 +1,17 @@
 ---
 name: gamut-style-utilities
-description: Use this skill when authoring Gamut styles with @codecademy/gamut-styles — css(), variant(), states(), StyleProps from variance, or the useTheme() escape hatch; choosing between these APIs and system props; semantic tokens with ColorMode.
+description: Use this skill when authoring Gamut styles with @skillsoft/gamut-styles — css(), variant(), states(), StyleProps from variance, or the useTheme() escape hatch; choosing between these APIs and system props; semantic tokens with ColorMode.
 ---
 
 # Gamut style utilities
 
-Source: `@codecademy/gamut-styles` — `packages/gamut-styles/src/variance/props.ts` (`css`, `variant`, `states` built on `PROPERTIES.all`).
+Source: `@skillsoft/gamut-styles` — `packages/gamut-styles/src/variance/props.ts` (`css`, `variant`, `states` built on `PROPERTIES.all`).
 
 See also: [`gamut-theming`](../gamut-theming/SKILL.md) (which theme, `GamutProvider`, new themes). [`gamut-system-props`](../gamut-system-props/SKILL.md) (`system.*`, responsive props, `Box`). [`gamut-color-mode`](../gamut-color-mode/SKILL.md) (semantic color, `<ColorMode>`, `<Background>`). [Best practices](https://gamut.codecademy.com/?path=/docs-meta-best-practices--page) and [system compose](https://gamut.codecademy.com/?path=/docs-foundations-system-compose--page).
 
 ## Overview
 
-Use `css()`, `variant()`, and `states()` from `@codecademy/gamut-styles` for typed, token-scaled style objects (same scales as composed `system.*` props). Prefer semantic color keys so styles track ColorMode and theme.
+Use `css()`, `variant()`, and `states()` from `@skillsoft/gamut-styles` for typed, token-scaled style objects (same scales as composed `system.*` props). Prefer semantic color keys so styles track ColorMode and theme.
 
 For layout-heavy styled components, prefer composing `system.*` via `variance.compose()` (see `gamut-system-props`) instead of re-stating every longhand in `css()`.
 
@@ -33,7 +33,7 @@ If you're not certain a key exists, grep the relevant file rather than guessing 
 ## `css()` — static style objects
 
 ```tsx
-import { css } from '@codecademy/gamut-styles';
+import { css } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 
 // fixed color — deliberately does NOT adapt to color mode (rare; see caveat below)
@@ -49,7 +49,7 @@ const Text = styled.div(css({ color: 'primary', p: 4 }));
 - `variant()` — mutually exclusive modes: `base`, `defaultVariant`, and a `variants` map (semantic colors, spacing shorthands, nested selectors such as `'&:hover'`).
 
 ```tsx
-import { variant } from '@codecademy/gamut-styles';
+import { variant } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 
 const Anchor = styled.a(
@@ -73,7 +73,7 @@ const Anchor = styled.a(
 - `states()` — independent boolean-style props (`base` + named keys).
 
 ```tsx
-import { states } from '@codecademy/gamut-styles';
+import { states } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 
 const UtilityBox = styled.div(
@@ -88,8 +88,8 @@ const UtilityBox = styled.div(
 ### `StyleProps` on React components
 
 ```tsx
-import { states } from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
+import { states } from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 import styled from '@emotion/styled';
 
 const panelShellStates = states({ base: { p: 4 }, dense: { p: 2 } });
@@ -124,7 +124,7 @@ const Sparkline = () => {
 **The exception**: a `var(...)` string doesn't mean anything to a consumer outside the DOM/CSS rendering pipeline — canvas 2D `fillStyle`, WebGL, or any color-math (contrast calculations, blending) that needs the actual resolved value. For those, use `useColorModes()` instead of bare `useTheme()` — but its `getColorValue()` only accepts a **raw palette key** (`hyper-500`, `navy-800`, …), not an alias: `getColorValue('primary')` silently returns `undefined`, since aliases are never merged into the raw-key map `getColorValue` reads. Resolve the alias first with `isColorAlias`, exactly like `packages/gamut-styles/src/Background.tsx` does before computing contrast:
 
 ```tsx
-import { isColorAlias, useColorModes } from '@codecademy/gamut-styles';
+import { isColorAlias, useColorModes } from '@skillsoft/gamut-styles';
 
 const useResolvedColor = (color: Colors) => {
   const [, activeColors, , getColorValue] = useColorModes();

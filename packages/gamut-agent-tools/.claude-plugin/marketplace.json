@@ -1,10 +1,10 @@
 {
   "name": "gamut-design-system",
   "owner": {
-    "name": "Codecademy"
+    "name": "Skillsoft"
   },
   "metadata": {
-    "description": "Local marketplace for @codecademy/gamut agent tools."
+    "description": "Local marketplace for @skillsoft/gamut-agent-tools."
   },
   "plugins": [
     {

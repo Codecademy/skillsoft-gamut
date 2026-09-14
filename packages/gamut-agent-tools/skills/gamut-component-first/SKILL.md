@@ -1,11 +1,11 @@
 ---
 name: gamut-component-first
-description: Use this skill BEFORE writing any new custom UI component, control, overlay, or interactive pattern in a codebase that depends on `@codecademy/gamut` — check whether Gamut already provides it before building bespoke markup/CSS. Triggers on requests to build/add a modal, dialog, dropdown, select, tooltip, popover, context menu, tabs, toggle/switch, accordion, avatar, badge, tag/chip, pagination, toast/notification, date picker, progress bar, loading spinner/skeleton, card, alert/banner, breadcrumb, or any custom `position: fixed`/`absolute` overlay, hand-rolled focus trap, or custom `role="dialog"`/`"menu"`/`"tooltip"`/`"listbox"`. Not for auditing code that already exists — see `gamut-review` (Check 6) for that.
+description: Use this skill BEFORE writing any new custom UI component, control, overlay, or interactive pattern in a codebase that depends on `@skillsoft/gamut` — check whether Gamut already provides it before building bespoke markup/CSS. Triggers on requests to build/add a modal, dialog, dropdown, select, tooltip, popover, context menu, tabs, toggle/switch, accordion, avatar, badge, tag/chip, pagination, toast/notification, date picker, progress bar, loading spinner/skeleton, card, alert/banner, breadcrumb, or any custom `position: fixed`/`absolute` overlay, hand-rolled focus trap, or custom `role="dialog"`/`"menu"`/`"tooltip"`/`"listbox"`. Not for auditing code that already exists — see `gamut-review` (Check 6) for that.
 ---
 
 # Gamut Component-First
 
-Before writing a new component, control, or interactive pattern from scratch, check whether `@codecademy/gamut` already provides it. Building a parallel bespoke version costs more than the one-time effort: it silently bypasses ColorMode/dark-mode support, the variance/system-props styling model, the focus-trap and dismiss conventions, and the accessibility work already done in the library — and it has to be independently maintained forever after.
+Before writing a new component, control, or interactive pattern from scratch, check whether `@skillsoft/gamut` already provides it. Building a parallel bespoke version costs more than the one-time effort: it silently bypasses ColorMode/dark-mode support, the variance/system-props styling model, the focus-trap and dismiss conventions, and the accessibility work already done in the library — and it has to be independently maintained forever after.
 
 Source: `packages/gamut/src/*` (component export surface). See also: [`gamut-review`](../gamut-review/SKILL.md) — Check 6 audits existing code for this same problem after the fact.
 
@@ -16,7 +16,7 @@ Source: `packages/gamut/src/*` (component export surface). See also: [`gamut-rev
 1. Name the UI need in plain language (e.g. "a way to confirm a destructive action," "a floating options list under a text input").
 2. Check the decision table below. If it names a component, use that — don't rebuild it, even partially.
 3. If the need isn't in the table, check the [full component index](#full-component-index) below, or the [Storybook navigation](https://gamut.codecademy.com/) / `packages/gamut/src` directory listing directly.
-4. Only after a genuine miss, build custom — and prefer _composing_ existing primitives (`Box`/`FlexBox`, `Overlay`, `FocusTrap`, `PopoverContainer`, system props, `css()`/`variant()`/`states()` from `@codecademy/gamut-styles`) over raw markup/CSS. Composing primitives is the intended pattern, not a violation of this rule.
+4. Only after a genuine miss, build custom — and prefer _composing_ existing primitives (`Box`/`FlexBox`, `Overlay`, `FocusTrap`, `PopoverContainer`, system props, `css()`/`variant()`/`states()` from `@skillsoft/gamut-styles`) over raw markup/CSS. Composing primitives is the intended pattern, not a violation of this rule.
 5. If what you just built feels like it could be needed again elsewhere in the app (not a one-off), say so — it's a candidate for becoming a real Gamut component upstream instead of living as a silently duplicated pattern.
 
 ---

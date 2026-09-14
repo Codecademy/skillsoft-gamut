@@ -1,11 +1,11 @@
 ---
 name: gamut-testing
-description: Use this skill when writing or fixing unit tests for React components that use Gamut — prefer setupRtl from @codecademy/gamut-tests, harness patterns for useLogicalProperties and ColorMode, RTL/dir testing, emotion matchers, or removing jest.mock of @codecademy/gamut / gamut-styles.
+description: Use this skill when writing or fixing unit tests for React components that use Gamut — prefer setupRtl from @skillsoft/gamut-tests, harness patterns for useLogicalProperties and ColorMode, RTL/dir testing, emotion matchers, or removing jest.mock of @skillsoft/gamut / gamut-styles.
 ---
 
 # Gamut Testing
 
-Source: `@codecademy/gamut-tests` — `packages/gamut-tests/src/index.tsx`
+Source: `@skillsoft/gamut-tests` — `packages/gamut-tests/src/index.tsx`
 
 ---
 
@@ -37,7 +37,7 @@ You normally do not import `MockGamutProvider` for plain component tests; `setup
 ## `setupRtl` — primary pattern
 
 ```tsx
-import { setupRtl } from '@codecademy/gamut-tests';
+import { setupRtl } from '@skillsoft/gamut-tests';
 
 import { MyComponent } from '../MyComponent';
 
@@ -89,7 +89,7 @@ it('calls onClick when clicked', async () => {
 ### Varying `useLogicalProperties` (logical vs physical CSS)
 
 ```tsx
-import { MockGamutProvider, setupRtl } from '@codecademy/gamut-tests';
+import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
 
 import { MyComponent } from '../MyComponent';
 
@@ -126,8 +126,8 @@ The outer `setupRtl` wrapper adds a default `MockGamutProvider`; the harness’s
 ### `ColorMode` without abandoning `setupRtl`
 
 ```tsx
-import { ColorMode } from '@codecademy/gamut-styles';
-import { setupRtl } from '@codecademy/gamut-tests';
+import { ColorMode } from '@skillsoft/gamut-styles';
+import { setupRtl } from '@skillsoft/gamut-tests';
 
 const DarkHarness = (props: React.ComponentProps<typeof MyComponent>) => (
   <ColorMode mode="dark">
@@ -174,10 +174,10 @@ expect(element).toHaveStyle({ borderRadius: '2px' });
 expect(element).toHaveStyleRule('padding', '1rem');
 ```
 
-Use `theme` from `@codecademy/gamut-styles` instead of hardcoding token strings:
+Use `theme` from `@skillsoft/gamut-styles` instead of hardcoding token strings:
 
 ```tsx
-import { theme } from '@codecademy/gamut-styles';
+import { theme } from '@skillsoft/gamut-styles';
 
 expect(element).toHaveStyle({ columnGap: theme.spacing[40] });
 ```
@@ -189,8 +189,8 @@ expect(element).toHaveStyle({ columnGap: theme.spacing[40] });
 Exported mocks and stories may wrap with `MockGamutProvider` and `ColorMode` explicitly (no `setupRtl` in Storybook):
 
 ```tsx
-import { MockGamutProvider } from '@codecademy/gamut-tests';
-import { ColorMode } from '@codecademy/gamut-styles';
+import { MockGamutProvider } from '@skillsoft/gamut-tests';
+import { ColorMode } from '@skillsoft/gamut-styles';
 
 export const MyComponentMock: React.FC<ComponentProps<typeof MyComponent>> = (
   props
@@ -209,11 +209,11 @@ export const MyComponentMock: React.FC<ComponentProps<typeof MyComponent>> = (
 
 | Anti-pattern                                                      | Fix                                                                                                |
 | ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `jest.mock('@codecademy/gamut', () => ({ ... }))`                 | Remove; use `setupRtl` (or harness + `setupRtl`)                                                   |
-| `jest.mock('@codecademy/gamut-styles', ...)`                      | Remove; `MockGamutProvider` / `setupRtl` supplies theme                                            |
+| `jest.mock('@skillsoft/gamut', () => ({ ... }))`                 | Remove; use `setupRtl` (or harness + `setupRtl`)                                                   |
+| `jest.mock('@skillsoft/gamut-styles', ...)`                      | Remove; `MockGamutProvider` / `setupRtl` supplies theme                                            |
 | `GamutProvider` in test files                                     | Use `MockGamutProvider` only when building a harness or story; default tests go through `setupRtl` |
-| `import { setupRtl } from 'component-test-setup'` in Gamut / apps | Import `setupRtl` from `@codecademy/gamut-tests` so `MockGamutProvider` is applied                 |
+| `import { setupRtl } from 'component-test-setup'` in Gamut / apps | Import `setupRtl` from `@skillsoft/gamut-tests` so `MockGamutProvider` is applied                 |
 | Repeated `render(<MockGamutProvider>…`                            | Harness + `setupRtl`, or a shared `renderView` factory                                             |
 | One `setupRtl` call per `it`                                      | Define `renderView` once outside `describe`, call it inside each `it`                              |
-| Asserting raw CSS strings for tokens                              | Use `theme` from `@codecademy/gamut-styles`                                                        |
+| Asserting raw CSS strings for tokens                              | Use `theme` from `@skillsoft/gamut-styles`                                                        |
 | Leaking `dir="rtl"` between tests                                 | Reset `document.documentElement` in `afterEach`                                                    |

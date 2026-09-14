@@ -5,13 +5,13 @@ description: 'Use this skill when composing system prop groups (`system.*`) on s
 
 # Gamut System Props
 
-Source: `@codecademy/gamut-styles` — `packages/gamut-styles/src/variance/config.ts` (definitions) and `packages/gamut-styles/src/variance/props.ts` (`variance.create` groups). `Box`, `FlexBox`, and `GridBox` compose the same groups in `packages/gamut/src/Box/props.ts`.
+Source: `@skillsoft/gamut-styles` — `packages/gamut-styles/src/variance/config.ts` (definitions) and `packages/gamut-styles/src/variance/props.ts` (`variance.create` groups). `Box`, `FlexBox`, and `GridBox` compose the same groups in `packages/gamut/src/Box/props.ts`.
 
 See also: [`gamut-style-utilities`](../gamut-style-utilities/SKILL.md) (`css`, `variant`, `states`, `StyleProps`). [`gamut-color-mode`](../gamut-color-mode/SKILL.md) — **read this before picking a value for `color`/`bg`/`borderColor`**; this skill only tells you the prop exists, not which token belongs in it. [Styleguide — Best practices](https://gamut.codecademy.com/?path=/docs-meta-best-practices--page) (semantic colors, responsive examples) and Storybook [Responsive properties](https://gamut.codecademy.com/storybook/?path=/docs-foundations-system-responsive-properties--page).
 
 ## Overview
 
-System props are strongly-typed, theme-connected CSS prop groups from `@codecademy/gamut-styles`. They give styled components a consistent, responsive API. All props are built on top of `@codecademy/variance`.
+System props are strongly-typed, theme-connected CSS prop groups from `@skillsoft/gamut-styles`. They give styled components a consistent, responsive API. All props are built on top of `@skillsoft/variance`.
 
 Each prop group has:
 
@@ -23,13 +23,13 @@ Each prop group has:
 
 ```tsx
 import styled from '@emotion/styled';
-import { system } from '@codecademy/gamut-styles';
+import { system } from '@skillsoft/gamut-styles';
 
 // Apply a single group
 const Box = styled.div(system.layout);
 
 // Compose multiple groups
-import { variance } from '@codecademy/variance';
+import { variance } from '@skillsoft/variance';
 
 const FlexBox = styled.div(
   variance.compose(system.layout, system.flex, system.space)
@@ -180,7 +180,7 @@ Full typings and behavior: [Responsive properties (Storybook)](https://gamut.cod
 
 ## Don't wrap a Gamut component in `styled()` to hand-write CSS
 
-`Box`, `FlexBox`, `GridBox`, `Text`, and the rest of `@codecademy/gamut` already compose the prop groups above. Writing ` styled(Box)`` display: flex; padding: 16px; `` (a tagged template) or  `styled(Box)({ display: 'flex', padding: 16 })`(a plain object, not`css()`) throws that API away — the wrapper's raw CSS gets none of the token scaling, responsive-object/array syntax, or ColorMode resolution the same properties would get as props, and it duplicates an API the component already exposes directly. This is the same bypass as `className`or an inline`style` prop on a Gamut component (see [`gamut-review`](../gamut-review/SKILL.md) Check 3b) — it's just wearing a `styled()` costume.
+`Box`, `FlexBox`, `GridBox`, `Text`, and the rest of `@skillsoft/gamut` already compose the prop groups above. Writing ` styled(Box)`` display: flex; padding: 16px; `` (a tagged template) or  `styled(Box)({ display: 'flex', padding: 16 })`(a plain object, not`css()`) throws that API away — the wrapper's raw CSS gets none of the token scaling, responsive-object/array syntax, or ColorMode resolution the same properties would get as props, and it duplicates an API the component already exposes directly. This is the same bypass as `className`or an inline`style` prop on a Gamut component (see [`gamut-review`](../gamut-review/SKILL.md) Check 3b) — it's just wearing a `styled()` costume.
 
 ```tsx
 // wrong — Box already has all of these as props
@@ -210,14 +210,14 @@ Either way, decide which case you're in — don't default to typing the literal 
 
 **Check the `system.background` prop before assuming a gradient needs `styled()`.** `background` (unlike `bg`) has no token scale — it passes straight through to the CSS `background` property, so a full gradient string (`background="radial-gradient(...)"` or `linear-gradient(...)`) is already valid as a plain prop, no wrapper needed. A gradient is not, on its own, a reason to reach for `styled()`.
 
-**If something genuinely isn't expressible as a prop** (`background-clip: text`, `background-blend-mode`, a variant that should branch on a prop rather than live as a boolean pile, pseudo-selectors like `&:hover`) — keep wrapping the component, but wrap the style value in `css()`, `variant()`, or `states()` from `@codecademy/gamut-styles` instead of a raw template literal or plain object. That keeps every _other_ property in the same block token-typed and theme-aware, and is the only form of `styled(GamutComponent)` this rule doesn't flag. See [`gamut-style-utilities`](../gamut-style-utilities/SKILL.md) for `css()`/`variant()`/`states()`. Don't let one non-expressible property drag otherwise-plain properties (`padding`, `display`) into the same raw-CSS escape hatch — move those back out to props.
+**If something genuinely isn't expressible as a prop** (`background-clip: text`, `background-blend-mode`, a variant that should branch on a prop rather than live as a boolean pile, pseudo-selectors like `&:hover`) — keep wrapping the component, but wrap the style value in `css()`, `variant()`, or `states()` from `@skillsoft/gamut-styles` instead of a raw template literal or plain object. That keeps every _other_ property in the same block token-typed and theme-aware, and is the only form of `styled(GamutComponent)` this rule doesn't flag. See [`gamut-style-utilities`](../gamut-style-utilities/SKILL.md) for `css()`/`variant()`/`states()`. Don't let one non-expressible property drag otherwise-plain properties (`padding`, `display`) into the same raw-CSS escape hatch — move those back out to props.
 
 ## Using `css()` for styled definitions
 
-For static styles in styled components, use `css()` from `@codecademy/gamut-styles` (same implementation as `system.css` on the `system` namespace).
+For static styles in styled components, use `css()` from `@skillsoft/gamut-styles` (same implementation as `system.css` on the `system` namespace).
 
 ```tsx
-import { css } from '@codecademy/gamut-styles';
+import { css } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 
 // Static color using raw token

@@ -7,7 +7,7 @@ description: Use when implementing or auditing SelectDropdown — single/multi m
 
 Styled dropdown built on react-select.
 
-Source: `@codecademy/gamut` — [SelectDropdown.tsx](https://github.com/Codecademy/gamut/blob/main/packages/gamut/src/Form/SelectDropdown/SelectDropdown.tsx)
+Source: `@skillsoft/gamut` — [SelectDropdown.tsx](https://github.com/Codecademy/gamut/blob/main/packages/gamut/src/Form/SelectDropdown/SelectDropdown.tsx)
 
 See also: [`gamut-forms`](../gamut-forms/SKILL.md) — FormGroup wiring, error regions, and validation UX.
 
@@ -34,7 +34,7 @@ The table below shows the keys and value types for an option object:
 | `disabled`     | `boolean`                         | no       | Option cannot be selected                                            |
 | `subtitle`     | `string`                          | no       | Secondary text below the label                                       |
 | `rightLabel`   | `string`                          | no       | Text on the right side of the option                                 |
-| `icon`         | icon component from `gamut-icons` | no       | A `@codecademy/gamut-icons` component                                |
+| `icon`         | icon component from `gamut-icons` | no       | A `@skillsoft/gamut-icons` component                                |
 | `abbreviation` | `string`                          | no       | Short text shown in the input while the full label shows in the menu |
 
 Grouped options: `{ label, options: [...], divider? }` (extends react-select `GroupBase`; `divider` draws a rule above the group).

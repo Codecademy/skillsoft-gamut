@@ -11,7 +11,7 @@ See also: [`gamut-system-props`](../gamut-system-props/SKILL.md) — `system.spa
 
 ## System props for spacing
 
-Gamut layout primitives (`Box`, `FlexBox`, `GridBox`, …) expose margin, padding, and gap props backed by `system.space` from `@codecademy/gamut-styles`. Pass spacing scale numbers (`4`, `8`, `16`, …), not raw pixel strings. For custom `styled` components, compose `system.space`.
+Gamut layout primitives (`Box`, `FlexBox`, `GridBox`, …) expose margin, padding, and gap props backed by `system.space` from `@skillsoft/gamut-styles`. Pass spacing scale numbers (`4`, `8`, `16`, …), not raw pixel strings. For custom `styled` components, compose `system.space`.
 
 Responsive behavior: All those props accept mobile-first object (`{ _: 8, md: 24 }`) or array syntax per [Responsive properties](https://gamut.codecademy.com/?path=/docs-foundations-system-responsive-properties--page). Container queries use keys `c_base`, `c_xs`, … `c_xl`; the parent must set a container (e.g. `containerType="inline-size"` on `FlexBox`). Prefer a media-query fallback when mixing `c_*` with viewport breakpoints.
 

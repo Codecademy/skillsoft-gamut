@@ -7,7 +7,7 @@ description: Use this skill when building a DataList for item-focused layouts wi
 
 Item-focused list for managing, engaging with, and expanding individual rows. Use when users interact with items — opening details, selecting for bulk actions, or viewing expanded layouts — rather than scanning and comparing data across rows.
 
-Source: `@codecademy/gamut` — `packages/gamut/src/DataList/DataList.tsx`
+Source: `@skillsoft/gamut` — `packages/gamut/src/DataList/DataList.tsx`
 
 See also: [`gamut-datatable`](../gamut-datatable/SKILL.md) — query-focused table for bulk data comparison. [`gamut-list`](../gamut-list/SKILL.md) — lower-level list primitives for fully custom layouts. [`gamut-accessibility`](../gamut-accessibility/SKILL.md) — ARIA and keyboard interaction. [`gamut-z-index`](../gamut-z-index/SKILL.md) — the `zIndex` values used by the sticky header row and `EmptyRows`/`emptyMessage` below.
 
@@ -16,8 +16,8 @@ Storybook: [Organisms / Lists & Tables / DataList](https://gamut.codecademy.com/
 ## Components
 
 ```tsx
-import { DataList } from '@codecademy/gamut';
-import { useLocalQuery } from '@codecademy/gamut';
+import { DataList } from '@skillsoft/gamut';
+import { useLocalQuery } from '@skillsoft/gamut';
 ```
 
 | Symbol          | Role                                                                                     |
@@ -90,7 +90,7 @@ Identical to DataTable — see [`gamut-datatable`](../gamut-datatable/SKILL.md#c
 ## Basic usage
 
 ```tsx
-import { DataList, useLocalQuery } from '@codecademy/gamut';
+import { DataList, useLocalQuery } from '@skillsoft/gamut';
 
 const columns = [
   { key: 'title', header: 'Title', size: 'md', type: 'header', fill: true },
@@ -254,7 +254,7 @@ Pass `loading` to replace row content with shimmer placeholders while data fetch
 DataList uses CSS container queries by default. Disable only when the list lives in a constrained container or you are managing your own responsive logic.
 
 ```tsx
-import { Box, DataList } from '@codecademy/gamut';
+import { Box, DataList } from '@skillsoft/gamut';
 
 <Box width={280}>
   <DataList

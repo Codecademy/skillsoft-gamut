@@ -35,9 +35,9 @@ Headlines, CTAs, and buttons should use `fontWeight="title"` so Percipio/LX get 
 Theme keys: `64`, `44`, `34`, `26`, `22`, `20`, `18`, `16`, `14`.
 
 ```tsx
-import { css } from '@codecademy/gamut-styles';
+import { css } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
-import { system } from '@codecademy/gamut-styles';
+import { system } from '@skillsoft/gamut-styles';
 
 const Paragraph = styled.p(system.typography);
 <Paragraph fontSize={16} lineHeight="base" />;
@@ -60,8 +60,8 @@ Tokens: `base` (1.5), `spacedTitle` (1.3), `title` (1.2). Prefer tokens over raw
 ## Accessing typography tokens
 
 ```tsx
-import { system } from '@codecademy/gamut-styles';
-import { variance } from '@codecademy/variance';
+import { system } from '@skillsoft/gamut-styles';
+import { variance } from '@skillsoft/variance';
 
 const Heading = styled.h2(variance.compose(system.typography, system.space));
 
@@ -73,14 +73,14 @@ const Heading = styled.h2(variance.compose(system.typography, system.space));
   mb={8}
 />;
 
-import { css } from '@codecademy/gamut-styles';
+import { css } from '@skillsoft/gamut-styles';
 
 const Caption = styled.span(
   css({ fontFamily: 'accent', fontSize: 14, color: 'text-secondary' })
 );
 ```
 
-Prefer `<Text>` from `@codecademy/gamut` with `variant` / `as` — see Storybook [Typography / Text](https://gamut.codecademy.com/?path=/docs-typography-text--docs).
+Prefer `<Text>` from `@skillsoft/gamut` with `variant` / `as` — see Storybook [Typography / Text](https://gamut.codecademy.com/?path=/docs-typography-text--docs).
 
 ## Codecademy (Core / Admin / Platform) — voice and layout
 

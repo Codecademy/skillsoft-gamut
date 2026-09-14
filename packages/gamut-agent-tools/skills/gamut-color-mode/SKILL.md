@@ -5,7 +5,7 @@ description: Use this skill when implementing light/dark behavior, semantic colo
 
 # Gamut ColorMode
 
-Source: `@codecademy/gamut-styles` — `packages/gamut-styles/src/ColorMode.tsx`
+Source: `@skillsoft/gamut-styles` — `packages/gamut-styles/src/ColorMode.tsx`
 
 ## Overview
 
@@ -33,7 +33,7 @@ Agent skill: [`gamut-style-utilities`](../gamut-style-utilities/SKILL.md) — `c
 Wraps content in a color mode context. Place `<ColorMode />` as high in the app tree as practical. For a nested or static themed area on a page, use `<Background />` instead.
 
 ```tsx
-import { ColorMode } from '@codecademy/gamut-styles';
+import { ColorMode } from '@skillsoft/gamut-styles';
 
 // Explicit light or dark
 <ColorMode mode="light">{children}</ColorMode>
@@ -83,7 +83,7 @@ Use `<Background>` instead of putting `bg` on a layout component when a section 
 `<Background>` switches light/dark to whichever mode gives the highest contrast between that surface and body `text`. Nested Gamut components inherit readable colors without extra setup.
 
 ```tsx
-import { Background } from '@codecademy/gamut-styles';
+import { Background } from '@skillsoft/gamut-styles';
 
 // Single background — mode switches automatically if needed
 const Card = ({ children }) => <Background bg="hyper">{children}</Background>;
@@ -109,7 +109,7 @@ import {
   useColorModes,
   useCurrentMode,
   usePrefersDarkMode,
-} from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-styles';
 
 // [activeModeKey, activeModeColors, allModes, getColorValue]
 const [current, currentColors, modes, getColorValue] = useColorModes();

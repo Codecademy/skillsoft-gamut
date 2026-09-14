@@ -175,7 +175,7 @@ components:
 
 # Codecademy
 
-This file defines the visual design tokens for codecademy.com, implemented using the Gamut design system (`@codecademy/gamut`, `@codecademy/gamut-styles`). Gamut ships 52 components with Figma ↔ code mappings via Figma Code Connect.
+This file defines the visual design tokens for codecademy.com, implemented using the Gamut design system (`@skillsoft/gamut`, `@skillsoft/gamut-styles`). Gamut ships 52 components with Figma ↔ code mappings via Figma Code Connect.
 
 **Figma file**: https://www.figma.com/design/ReGfRNillGABAj5SlITalN/📐-Gamut
 **Storybook**: https://gamut.codecademy.com

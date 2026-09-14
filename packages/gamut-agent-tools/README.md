@@ -1,6 +1,6 @@
 # Gamut agent tools
 
-Skills, rules, and product design context for AI coding agents (Cursor, Claude Code) working in apps that depend on `@codecademy/gamut`.
+Skills, rules, and product design context for AI coding agents (Cursor, Claude Code) working in apps that depend on `@skillsoft/gamut`. Ships as an independent, opt-in package — install it via `gamut plugin install`, which adds it automatically.
 
 ## What's here
 
@@ -16,7 +16,7 @@ Install the plugin from the app repo root, with the `--theme` matching that app:
 
 ```sh
 gamut plugin install cursor --theme <name>
-# refresh after upgrading @codecademy/gamut:
+# refresh after upgrading @skillsoft/gamut:
 gamut plugin update cursor --theme <name> --force
 ```
 
