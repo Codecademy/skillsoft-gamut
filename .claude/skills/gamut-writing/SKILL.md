@@ -1,9 +1,9 @@
 ---
-name: gamut-docs
+name: gamut-writing
 description: Use this skill when documenting Gamut — writing or revising a component `.mdx` page, a `.stories.tsx` file, an `About.mdx` index page, prop JSDoc, or code comments. Teaches the Gamut writing guide's structure, voice, and formatting rules plus a prose pass that strips AI-slop patterns; also use it when asked to clean up docs that read as AI-written.
 ---
 
-# Gamut Docs
+# Gamut Writing
 
 How to write and revise Gamut documentation so it is accurate, consistent with the writing guide, and free of generated filler.
 
