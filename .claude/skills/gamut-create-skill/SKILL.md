@@ -252,7 +252,7 @@ For skills covering a concept rather than a single component (e.g. `gamut-color-
 
 ---
 
-## Prop Reference skills by type
+## Reference skills by type
 
 | Type                   | Skill                                                                                      | Read it for                                       |
 | ---------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------- |
