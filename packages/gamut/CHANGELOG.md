@@ -1,3 +1,70 @@
+## 73.6.1 (2026-09-10)
+
+### 🩹 Fixes
+
+- update translations key from clearAllLabel to removeAllLabel for consistency ([#3433](https://github.com/Codecademy/gamut/pull/3433))
+
+### ❤️ Thank You
+
+- Amy Resnik
+- Claude Opus 4.8 (1M context)
+
+## 73.6.0 (2026-09-10)
+
+### 🚀 Features
+
+- SelectDropdown: add i18n translationsprop for customizable UI/microcopy (placeholder, empty-state, creatable label, and remove/clear/focus a11y strings), deprecating the standaloneplaceholder, formatCreateLabel, and validationMessageprops in favor of theirtranslations equivalents. ([#3428](https://github.com/Codecademy/gamut/pull/3428))
+
+### ❤️ Thank You
+
+- Amy Resnik
+- Claude Opus 4.8 (1M context)
+
+## 73.5.0 (2026-09-02)
+
+### 🚀 Features
+
+- Updates Popover to always render with the outlined border style and deprecates the now-no-op outline prop ([#3427](https://github.com/Codecademy/gamut/pull/3427))
+
+### ❤️ Thank You
+
+- Amy Resnik
+- Claude Opus 4.8 (1M context)
+
+## 73.4.0 (2026-09-01)
+
+### 🚀 Features
+
+- Promote deep-import-only paths to public exports (GMT-1740): InteractiveSelectors, buttonProps, Tip/shared/types, Form/types, PopoverContainer/types, Markdown override factories, and IconStyleProps. The Menu/elements (MenuList\*) and IconOptionComponent renames are moved to a separate PR for independent review. ([#3412](https://github.com/Codecademy/gamut/pull/3412))
+
+### 🧱 Updated Dependencies
+
+- Updated gamut-icons to 10.2.0
+
+### ❤️ Thank You
+
+- cassie spain @dreamwasp
+
+## 73.3.0 (2026-08-25)
+
+### 🚀 Features
+
+- Bumps Jest from 29.6.4 → 30.x across the gamut monorepo, refreshes the testing-library family to match, and removes some dead jest-related deps. ([#3413](https://github.com/Codecademy/gamut/pull/3413))
+
+### 🧱 Updated Dependencies
+
+- Updated gamut-illustrations to 1.1.0
+- Updated gamut-patterns to 1.1.0
+- Updated gamut-styles to 21.2.0
+- Updated gamut-icons to 10.1.0
+- Updated gamut-tests to 7.1.0
+- Updated variance to 1.1.0
+
+### ❤️ Thank You
+
+- Amy Resnik
+- Claude Opus 4.8 (1M context)
+
 ## 73.2.0 (2026-08-24)
 
 ### 🚀 Features

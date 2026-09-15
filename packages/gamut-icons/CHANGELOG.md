@@ -1,3 +1,30 @@
+## 10.2.0 (2026-09-01)
+
+### 🚀 Features
+
+- Promote deep-import-only paths to public exports (GMT-1740): InteractiveSelectors, buttonProps, Tip/shared/types, Form/types, PopoverContainer/types, Markdown override factories, and IconStyleProps. The Menu/elements (MenuList\*) and IconOptionComponent renames are moved to a separate PR for independent review. ([#3412](https://github.com/Codecademy/gamut/pull/3412))
+
+### ❤️ Thank You
+
+- cassie spain @dreamwasp
+
+## 10.1.0 (2026-08-25)
+
+### 🚀 Features
+
+- Bumps Jest from 29.6.4 → 30.x across the gamut monorepo, refreshes the testing-library family to match, and removes some dead jest-related deps. ([#3413](https://github.com/Codecademy/gamut/pull/3413))
+
+### 🧱 Updated Dependencies
+
+- Updated gamut-styles to 21.2.0
+- Updated gamut-tests to 7.1.0
+- Updated variance to 1.1.0
+
+### ❤️ Thank You
+
+- Amy Resnik
+- Claude Opus 4.8 (1M context)
+
 ## 10.0.1 (2026-08-24)
 
 ### 🩹 Fixes
