@@ -5,15 +5,13 @@ import { createRule } from './createRule';
 export default createRule({
   create(context) {
     return {
-      'ImportDeclaration[source.value=/(^@)codecademy(\\u002F)gamut/]':
+      'ImportDeclaration[source.value=/(^@)skillsoft(\\u002F)gamut/]':
         function (node: TSESTree.ImportDeclaration) {
           const filename = context.getFilename();
           const importPath = node.source.value;
 
           const fileDirectory = filename.split('/packages/')[1].split('/')[0];
-          const importPackage = importPath
-            .split('@codecademy/')[1]
-            .split('/')[0];
+          const importPackage = importPath.split('@skillsoft/')[1].split('/')[0];
 
           if (fileDirectory === importPackage) {
             context.report({
