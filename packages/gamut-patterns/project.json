@@ -41,6 +41,18 @@
         "command": "rm -rf ./dist"
       }
     },
+    "verify-package": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "cwd": "{projectRoot}",
+        "commands": [
+          "publint .",
+          "attw --pack . --ignore-rules false-cjs"
+        ],
+        "parallel": false
+      }
+    },
     "publish-build": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
