@@ -1,4 +1,4 @@
-import { Drawer } from '@codecademy/gamut';
+import { Drawer } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

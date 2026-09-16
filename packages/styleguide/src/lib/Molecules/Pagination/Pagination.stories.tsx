@@ -4,7 +4,7 @@ import {
   Input,
   Pagination,
   PaginationProps,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useState } from 'react';
 

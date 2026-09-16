@@ -1,4 +1,4 @@
-import { MockGamutProvider, setupRtl } from '@codecademy/gamut-tests';
+import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
 import { fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { FC } from 'react';

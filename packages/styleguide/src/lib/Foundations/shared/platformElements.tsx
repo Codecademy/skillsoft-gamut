@@ -4,7 +4,7 @@ import {
   platformSwatches,
   platformTheme,
   truePlatformColors,
-} from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-styles';
 
 import { Code, ColorScale, TokenTable } from '~styleguide/blocks';
 

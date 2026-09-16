@@ -5,8 +5,8 @@ import {
   FlexBox,
   StrokeButton,
   Text,
-} from '@codecademy/gamut';
-import { ColorMode } from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut';
+import { ColorMode } from '@skillsoft/gamut-styles';
 import type { Meta } from '@storybook/react';
 import { ComponentProps, useEffect, useRef, useState } from 'react';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';

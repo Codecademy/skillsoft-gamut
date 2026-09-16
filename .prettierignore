@@ -3,6 +3,7 @@ node_modules
 **/dist
 **/tmp
 packages/gamut-icons/src/icons
+packages/gamut-patterns/src/patterns
 packages/gamut-styles/**/*.d.ts
 packages/styleguide/stories/Core/Atoms/Markdown/*.md
 packages/code-connect/**/*

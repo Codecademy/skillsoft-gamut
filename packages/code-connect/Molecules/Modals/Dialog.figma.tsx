@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog } from '@codecademy/gamut';
+import { Dialog } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

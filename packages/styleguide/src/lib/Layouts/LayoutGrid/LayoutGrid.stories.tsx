@@ -1,4 +1,4 @@
-import { LayoutGrid } from '@codecademy/gamut';
+import { LayoutGrid } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import {

@@ -1,5 +1,5 @@
-import { pxRem } from '@codecademy/gamut-styles';
 import styled from '@emotion/styled';
+import { pxRem } from '@skillsoft/gamut-styles';
 import { HTMLAttributes } from 'react';
 import * as React from 'react';
 

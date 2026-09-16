@@ -26,7 +26,7 @@ For specific semantic name to color, please see the [ColorMode](https://gamut.co
 ### Use the utility functions from `gamut-styles` with ColorMode semantic color names + shorthands
 
 ```tsx
-import { css, states, variant } from '@codecademy/gamut-styles';
+import { css, states, variant } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 
 // Single value
@@ -78,8 +78,8 @@ const UtilityBox = styled.div(
 <Callout text="Share your css methods easily with StyleProps from gamut-styles!" />
 
 ```tsx
-import { states } from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
+import { states } from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 import styled from '@emotion/styled';
 import React from 'react';
 
@@ -108,8 +108,8 @@ export const CoolNumberComponent: React.FC<CoolNumberComponentProps> = ({
 System props are a core part of our new approach to dynamic and customized styling. Where writing custom styles is painful, system props are here to make it painless.
 
 ```tsx
-import { Box } from '@codecademy/gamut';
-import { pxRem } from '@codecademy/gamut-styles';
+import { Box } from '@skillsoft/gamut';
+import { pxRem } from '@skillsoft/gamut-styles';
 
 const MyContainer = ({ children }) => (
   <Box px={[16, 32, 64, , 96]}>{children}</Box>
@@ -168,7 +168,7 @@ type SystemProp<T> = T | BreakpointMap<T> | BreakpointArray<T>;
 **Usage:**
 
 ```tsx
-import { Box } from '@codecademy/gamut';
+import { Box } from '@skillsoft/gamut';
 
 // Object Syntax
 <Box width={{ _: '100%', sm: '50%' }} />
@@ -184,7 +184,7 @@ import { Box } from '@codecademy/gamut';
 **Mobile / Desktop specific content**
 
 ```tsx
-import { Box } from '@codecademy/gamut';
+import { Box } from '@skillsoft/gamut';
 
 const App = () => (
   <main>
@@ -198,7 +198,7 @@ const App = () => (
 **Adaptive Layouts** - 3 columns ⇒ 2 columns
 
 ```tsx
-import { GridBox } from '@codecademy/gamut';
+import { GridBox } from '@skillsoft/gamut';
 
 const SomeCoolLayout = ({ children }) => (
   <GridBox gridTemplateColumns={['1fr 1fr', , '1fr 1fr 1fr']}>
@@ -210,7 +210,7 @@ const SomeCoolLayout = ({ children }) => (
 **Design Token Access** - Responsively accessing tokens by key.
 
 ```tsx
-import { Box } from '@codecademy/gamut';
+import { Box } from '@skillsoft/gamut';
 
 const CardLikeThing = ({ children }) => (
   <Box

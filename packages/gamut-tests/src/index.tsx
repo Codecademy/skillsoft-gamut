@@ -1,4 +1,4 @@
-import { GamutProvider, theme } from '@codecademy/gamut-styles';
+import { GamutProvider, theme } from '@skillsoft/gamut-styles';
 import { setupRtl as setupRtlBase } from 'component-test-setup';
 import overArgs from 'lodash/overArgs';
 import * as React from 'react';

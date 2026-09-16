@@ -39,7 +39,7 @@ You can preview how components look across different themes using the **Theme Sw
 The theme switcher works in combination with the Color Mode selector, so you can test both light and dark variants of each theme. Available themes include Core, Admin, LX Studio, and Percipio.
 
 ```tsx
-import { css } from '@codecademy/gamut-styles';
+import { css } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 
 // Single value using static color
@@ -59,11 +59,11 @@ const styles = styled.div`
 `;
 ```
 
-Or by importing the object from `@codecademy/gamut-styles` if you are not using our css-in-js utilities.
+Or by importing the object from `@skillsoft/gamut-styles` if you are not using our css-in-js utilities.
 
 ```tsx
 import { css } from '@emotion/react';
-import { theme } from '@codecademy/gamut-styles';
+import { theme } from '@skillsoft/gamut-styles';
 
 const myStyles = css`
   font-size: ${theme.fontSize[14]};

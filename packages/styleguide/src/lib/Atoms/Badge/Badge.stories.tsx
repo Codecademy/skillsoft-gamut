@@ -1,5 +1,5 @@
-import { Badge, FlexBox } from '@codecademy/gamut';
-import * as icons from '@codecademy/gamut-icons';
+import { Badge, FlexBox } from '@skillsoft/gamut';
+import * as icons from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { TertiaryFillExample } from './examples';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton } from '@codecademy/gamut';
+import { IconButton } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

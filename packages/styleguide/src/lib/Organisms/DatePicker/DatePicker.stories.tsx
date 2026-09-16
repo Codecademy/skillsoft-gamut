@@ -6,7 +6,7 @@ import {
   matchDisabledDates,
   PopoverContainer,
   useDatePicker,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 

@@ -1,4 +1,4 @@
-import { Spinner } from '@codecademy/gamut';
+import { Spinner } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Spinner> = {

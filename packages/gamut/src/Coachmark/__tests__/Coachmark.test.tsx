@@ -1,4 +1,4 @@
-import { setupRtl } from '@codecademy/gamut-tests';
+import { setupRtl } from '@skillsoft/gamut-tests';
 import { act } from '@testing-library/react';
 
 import { Coachmark } from '..';

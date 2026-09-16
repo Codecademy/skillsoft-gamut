@@ -1,4 +1,4 @@
-import { Timer10Icon } from '@codecademy/gamut-icons';
+import { Timer10Icon } from '@skillsoft/gamut-icons';
 import { SeekButton, Tooltip } from '@vidstack/react';
 import { useDefaultLayoutWord } from '@vidstack/react/player/layouts/default';
 

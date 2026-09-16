@@ -1,5 +1,5 @@
-import { Coachmark, FillButton, FlexBox, Text } from '@codecademy/gamut';
-import * as patterns from '@codecademy/gamut-patterns';
+import { Coachmark, FillButton, FlexBox, Text } from '@skillsoft/gamut';
+import * as patterns from '@skillsoft/gamut-patterns';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useEffect, useState } from 'react';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';

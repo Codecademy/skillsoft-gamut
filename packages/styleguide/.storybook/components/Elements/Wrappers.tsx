@@ -1,4 +1,4 @@
-import { Box } from '@codecademy/gamut';
+import { Box } from '@skillsoft/gamut';
 
 export const SourceWrapper: React.FC<React.PropsWithChildren> = ({
   children,

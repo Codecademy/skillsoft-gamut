@@ -1,4 +1,4 @@
-import { useElementDir, useLogicalProperties } from '@codecademy/gamut-styles';
+import { useElementDir, useLogicalProperties } from '@skillsoft/gamut-styles';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useWindowScroll, useWindowSize } from 'react-use';
 
@@ -216,7 +216,7 @@ export const Popover: React.FC<PopoverProps> = ({
         ? { ref: popoverContainerRef as React.Ref<HTMLDivElement> }
         : {})}
       role={role}
-      // eslint-disable-next-line gamut/no-inline-style
+      // eslint-disable-next-line @skillsoft/gamut/no-inline-style
       style={getPopoverPosition()}
       tabIndex={-1}
     >

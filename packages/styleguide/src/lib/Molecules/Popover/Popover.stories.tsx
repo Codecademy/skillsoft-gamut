@@ -5,8 +5,8 @@ import {
   FlexBoxProps,
   Popover,
   PopoverProps,
-} from '@codecademy/gamut';
-import * as patterns from '@codecademy/gamut-patterns';
+} from '@skillsoft/gamut';
+import * as patterns from '@skillsoft/gamut-patterns';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 

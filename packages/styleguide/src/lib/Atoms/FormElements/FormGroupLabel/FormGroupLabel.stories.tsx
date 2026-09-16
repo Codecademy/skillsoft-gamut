@@ -1,4 +1,4 @@
-import { FormGroupLabel } from '@codecademy/gamut';
+import { FormGroupLabel } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 

@@ -19,15 +19,8 @@
         "parallel": false
       }
     },
-    "test-bin": {
-      "executor": "nx:run-commands",
-      "options": {
-        "cwd": "packages/gamut",
-        "command": "node --test bin/__tests__/design.test.mjs"
-      }
-    },
     "test": {
-      "dependsOn": ["^build", "test-bin"],
+      "dependsOn": ["^build"],
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/packages/gamut"],
       "options": {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StrokeButton } from '@codecademy/gamut';
+import { StrokeButton } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

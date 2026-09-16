@@ -1,4 +1,4 @@
-import { timingValues } from '@codecademy/gamut-styles';
+import { timingValues } from '@skillsoft/gamut-styles';
 import { motion } from 'framer-motion';
 import * as React from 'react';
 
@@ -35,7 +35,7 @@ export const Rotation: React.FC<RotationProps> = ({
   children,
   ...rest
 }) => (
-  /* eslint-disable gamut/no-inline-style */
+  /* eslint-disable @skillsoft/gamut/no-inline-style */
   <motion.div
     animate={rotated ? 'rotated' : 'normal'}
     style={{
@@ -53,5 +53,5 @@ export const Rotation: React.FC<RotationProps> = ({
   >
     {children}
   </motion.div>
-  /* eslint-enable gamut/no-inline-style */
+  /* eslint-enable @skillsoft/gamut/no-inline-style */
 );

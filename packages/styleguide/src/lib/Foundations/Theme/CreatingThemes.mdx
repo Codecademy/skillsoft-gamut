@@ -13,7 +13,7 @@ export const parameters = {
 
 <AboutHeader {...parameters} />
 
-The gamut-styles theme system is built on top of `@codecademy/variance` and provides a powerful, type-safe way to create custom themes. This guide will walk you through creating your own themes and understanding how they integrate with Gamut components.
+The gamut-styles theme system is built on top of `@skillsoft/variance` and provides a powerful, type-safe way to create custom themes. This guide will walk you through creating your own themes and understanding how they integrate with Gamut components.
 
 ## Overview
 
@@ -30,7 +30,7 @@ Themes in gamut-styles are created using the `createTheme` builder pattern, whic
 All themes extend from a base theme and can be customized using the builder pattern:
 
 ```tsx
-import { createTheme } from '@codecademy/variance';
+import { createTheme } from '@skillsoft/variance';
 
 const myTheme = createTheme({
   ...baseTheme,
@@ -50,8 +50,8 @@ const myTheme = createTheme({
 It's best to start with the `coreTheme` as your foundation unless you are _sure_ you have a full replacement for all the tokens. You can refer to the Core Theme documentation for a full list of essential tokens.
 
 ```tsx
-import { createTheme } from '@codecademy/variance';
-import { coreTheme } from '@codecademy/gamut-styles';
+import { createTheme } from '@skillsoft/variance';
+import { coreTheme } from '@skillsoft/gamut-styles';
 
 const myCustomTheme = createTheme({
   ...coreTheme,
@@ -318,8 +318,8 @@ const myTheme = createTheme({
 ## Complete Example
 
 ```tsx
-import { createTheme } from '@codecademy/variance';
-import { coreTheme } from '@codecademy/gamut-styles';
+import { createTheme } from '@skillsoft/variance';
+import { coreTheme } from '@skillsoft/gamut-styles';
 
 // Define your color palette
 const customPalette = {

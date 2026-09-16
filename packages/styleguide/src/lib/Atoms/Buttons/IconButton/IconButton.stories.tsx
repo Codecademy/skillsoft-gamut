@@ -1,6 +1,6 @@
-import { FlexBox, IconButton } from '@codecademy/gamut';
-import { SparkleIcon } from '@codecademy/gamut-icons';
-import * as icons from '@codecademy/gamut-icons';
+import { FlexBox, IconButton } from '@skillsoft/gamut';
+import { SparkleIcon } from '@skillsoft/gamut-icons';
+import * as icons from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 

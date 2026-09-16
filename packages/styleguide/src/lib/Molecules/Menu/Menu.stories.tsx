@@ -5,7 +5,7 @@ import {
   MenuSeparator,
   PopoverContainer,
   Text,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import {
   AiChatSparkIcon,
   BashShellIcon,
@@ -14,8 +14,8 @@ import {
   MultipleUsersIcon,
   PeopleIcon,
   RatingStarCircleIcon,
-} from '@codecademy/gamut-icons';
-import { Background } from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-icons';
+import { Background } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 

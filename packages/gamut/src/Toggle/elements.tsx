@@ -1,13 +1,13 @@
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import {
   screenReaderOnly,
   states,
   system,
   theme,
   variant,
-} from '@codecademy/gamut-styles';
-import { StyleProps, variance } from '@codecademy/variance';
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
+} from '@skillsoft/gamut-styles';
+import { StyleProps, variance } from '@skillsoft/variance';
 
 import { Box } from '../Box';
 

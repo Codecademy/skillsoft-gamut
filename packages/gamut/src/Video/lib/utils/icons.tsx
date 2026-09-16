@@ -16,7 +16,7 @@ import {
   VolumeControlFullIcon,
   VolumeControlMediumIcon,
   VolumeControlMuteIcon,
-} from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut-icons';
 import {
   DefaultLayoutIcon,
   DefaultLayoutIcons,

@@ -1,11 +1,11 @@
+import styled from '@emotion/styled';
 import {
   noSelect,
   screenReaderOnly,
   styledOptions,
   timing,
-} from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
-import styled from '@emotion/styled';
+} from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 import { forwardRef, InputHTMLAttributes, useEffect, useRef } from 'react';
 
 import { FlexBox } from '../../Box';

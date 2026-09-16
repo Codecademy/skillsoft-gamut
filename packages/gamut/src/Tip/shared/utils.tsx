@@ -1,4 +1,4 @@
-import { timingValues } from '@codecademy/gamut-styles';
+import { timingValues } from '@skillsoft/gamut-styles';
 
 export const runWithDelay = (func: () => void) => {
   return setTimeout(func, timingValues?.base);

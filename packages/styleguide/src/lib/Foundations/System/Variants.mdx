@@ -29,7 +29,7 @@ A standalone theme aware method that accepts an object of system props and retur
 **Usage**
 
 ```tsx
-import { css } from '@codecademy/gamut-styles';
+import { css } from '@skillsoft/gamut-styles';
 
 const CoolStuff = styled.a(
   css({
@@ -52,7 +52,7 @@ Built on top of `css` that accepts a number of mutually exclusive states a compo
 **Usage**
 
 ```tsx
-import { variant } from '@codecademy/gamut-styles';
+import { variant } from '@skillsoft/gamut-styles';
 
 const Anchor = styled.a(
   variant({
@@ -74,7 +74,7 @@ const Anchor = styled.a(
 `states` accepts an object of keyed CSS objects. Unlike `variant`, each key represents an individual boolean prop (instead of options of a single prop) that can be simultaneously configured. This makes enabling / disabling specific behaviors as needed far easier as they do not need to be reduced to a single mutually exclusive set of states.
 
 ```tsx
-import { states } from '@codecademy/gamut-styles';
+import { states } from '@skillsoft/gamut-styles';
 
 const FlexBox = styled.div(
   states({
@@ -147,7 +147,7 @@ Properties that are handled by a system prop with a shorthand will still be avai
 While it is **highly encouraged** to use system properties in all cases, there may be times where you need specific values that are outside of the contraints of normal system properties. In this event **do not** specify both properties and pick the only one that you need.
 
 ```tsx
-import { css } from '@codecademy/gamut-styles';
+import { css } from '@skillsoft/gamut-styles';
 
 // Wrong - Combining both properties
 const styles = css({

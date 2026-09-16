@@ -1,4 +1,4 @@
-import { CheckerDense } from '@codecademy/gamut-patterns';
+import { CheckerDense } from '@skillsoft/gamut-patterns';
 
 import {
   PopoverProps,

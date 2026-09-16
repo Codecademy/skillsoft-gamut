@@ -118,7 +118,7 @@ To faciliate this, developers can use the `useDebouncedField` hook, which connec
 
 ```tsx
 // DebouncedInput.tsx
-import { Input } from '@codecademy/gamut'
+import { Input } from '@skillsoft/gamut'
 
 export const DebouncedInput: React.FC<...> = ({ name }) => {
   const { onChange, onBlur, value } = useDebouncedField({ name, type: 'text' })
@@ -136,7 +136,7 @@ export const DebouncedInput: React.FC<...> = ({ name }) => {
 }
 
 // FormPage.tsx
-import { ConnectedForm } from '@codecademy/gamut'
+import { ConnectedForm } from '@skillsoft/gamut'
 import { DebouncedInput } from './DebouncedInput'
 
 enum FieldNames {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pagination } from '@codecademy/gamut';
+import { Pagination } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

@@ -8,8 +8,8 @@ import {
   InfoTip,
   Modal,
   Text,
-} from '@codecademy/gamut';
-import { SparkleIcon } from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut';
+import { SparkleIcon } from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 

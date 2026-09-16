@@ -30,7 +30,7 @@ it is better to express this as a pixel value that is closer to a round number.
 Do this by using the px => rem utility.
 
 ```tsx
-import { pxRem } from '@codecademy/gamut-styles';
+import { pxRem } from '@skillsoft/gamut-styles';
 
 pxRem(16); // => 1rem;
 pxRem('30px'); // => 1.875rem;
@@ -47,7 +47,7 @@ There are 5 depths of box shadows available to use.
 <ShadowExample />
 
 ```tsx
-import { boxShadow } from '@codecademy/gamut-styles';
+import { boxShadow } from '@skillsoft/gamut-styles';
 
 const Example = `
   ${boxShadow(3)}
@@ -59,7 +59,7 @@ const Example = `
 Enable font smoothing to make typography more readable.
 
 ```tsx
-import { fontSmoothing } from '@codecademy/gamut-styles';
+import { fontSmoothing } from '@skillsoft/gamut-styles';
 
 // As props
 const Smooth = `
@@ -77,7 +77,7 @@ const Smooth = `
 Prevent the user from selecting an image or text.
 
 ```tsx
-import { noSelect } from '@codecademy/gamut-styles';
+import { noSelect } from '@skillsoft/gamut-styles';
 
 const Unselectable = styled.div`
   ${noSelect}
@@ -94,7 +94,7 @@ just be aware of the content.
 import {
   screenReaderOnly,
   screenReaderOnlyFocusable,
-} from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-styles';
 
 const HiddenLabel = `
   ${screenReaderOnly}
@@ -114,7 +114,7 @@ for outline/shadow effects). It's the same selector set that backs all Button co
 styling a custom interactive element that needs to match those conventions.
 
 ```tsx
-import { InteractiveSelectors } from '@codecademy/gamut';
+import { InteractiveSelectors } from '@skillsoft/gamut';
 
 const CustomControl = styled.button(
   css({

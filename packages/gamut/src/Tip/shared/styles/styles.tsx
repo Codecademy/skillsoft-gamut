@@ -1,4 +1,4 @@
-import { fontSmoothPixel, theme, variant } from '@codecademy/gamut-styles';
+import { fontSmoothPixel, theme, variant } from '@skillsoft/gamut-styles';
 
 import { popoverPrimaryBgColor } from '../../../Popover/styles/base';
 import { tipAlignmentArray } from '../types';

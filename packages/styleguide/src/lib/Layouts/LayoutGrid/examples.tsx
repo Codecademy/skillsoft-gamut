@@ -1,6 +1,6 @@
-import { Column, ColumnProps } from '@codecademy/gamut';
-import { css } from '@codecademy/gamut-styles';
 import styled from '@emotion/styled';
+import { Column, ColumnProps } from '@skillsoft/gamut';
+import { css } from '@skillsoft/gamut-styles';
 
 export const columns = [
   { size: 12 },

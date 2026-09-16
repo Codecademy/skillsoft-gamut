@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '@codecademy/gamut';
+import { Spinner } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

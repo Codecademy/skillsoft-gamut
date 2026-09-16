@@ -1,5 +1,5 @@
-import { Anchor, Box, Card, FlexBox } from '@codecademy/gamut';
-import { Background } from '@codecademy/gamut-styles';
+import { Anchor, Box, Card, FlexBox } from '@skillsoft/gamut';
+import { Background } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Card> = {

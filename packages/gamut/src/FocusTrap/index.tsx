@@ -54,7 +54,7 @@ export const FocusTrap: React.FC<FocusTrapProps> = ({
       enabled={active}
       noIsolation={allowPageInteraction}
       scrollLock={!allowPageInteraction}
-      // eslint-disable-next-line gamut/no-inline-style
+      // eslint-disable-next-line @skillsoft/gamut/no-inline-style
       style={focusOnStyles}
       onClickOutside={onClickOutside}
       onEscapeKey={onEscapeKey}

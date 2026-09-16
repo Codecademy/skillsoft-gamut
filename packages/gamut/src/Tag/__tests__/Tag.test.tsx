@@ -1,4 +1,4 @@
-import { setupRtl } from '@codecademy/gamut-tests';
+import { setupRtl } from '@skillsoft/gamut-tests';
 import { fireEvent } from '@testing-library/dom';
 
 import { Tag } from '..';

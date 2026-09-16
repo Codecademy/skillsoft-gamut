@@ -1,4 +1,4 @@
-import { FormGroup, TextArea } from '@codecademy/gamut';
+import { FormGroup, TextArea } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof TextArea> = {

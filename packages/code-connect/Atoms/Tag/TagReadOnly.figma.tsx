@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag } from '@codecademy/gamut';
+import { Tag } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**
