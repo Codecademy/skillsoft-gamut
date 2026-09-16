@@ -1,0 +1,55 @@
+---
+/**
+ * A component page's Reference section (per
+ * docs/adr/0001-documentation-site-information-architecture.md §3) embeds
+ * this rather than re-authoring variants/accessibility/props/playground
+ * content: an iframe onto a live Storybook story canvas, paired with a link
+ * to open that same story directly in Storybook. Storybook stays the single
+ * source of truth for that content — this is a durable part of the site's
+ * architecture, not a stopgap pending further migration.
+ *
+ * The embedded canvas requires the Storybook deployment to remain live at
+ * gamut.codecademy.com. The accompanying link resolves per environment, so in
+ * local development it points at the local Storybook instead.
+ */
+interface Props {
+  /** Storybook story id, e.g. "atoms-buttons-fillbutton--default" */
+  id: string;
+  height?: string;
+}
+
+const { id, height = '10rem' } = Astro.props;
+
+const storybookOrigin = 'https://gamut.codecademy.com';
+const src = `${storybookOrigin}/iframe.html?id=${id}&viewMode=story`;
+
+// The canvas above always renders from the deployed Storybook, but this link is
+// a navigation action: in local development it should open the story in the
+// Storybook being edited, not the deployed one. Port must match the `storybook`
+// target's `port` option in the styleguide project's project.json.
+const linkOrigin = import.meta.env.DEV
+  ? 'http://localhost:6006'
+  : storybookOrigin;
+
+// Storybook ids are "<title>--<story-name>"; the docs page for the whole
+// story group lives at "<title>--docs".
+const storyGroupId = id.slice(0, id.lastIndexOf('--'));
+const docsHref = `${linkOrigin}/?path=/docs/${storyGroupId}--docs`;
+---
+
+<div style="margin: 1rem 0;">
+  <iframe
+    src={src}
+    title={`Storybook example: ${id}`}
+    loading="lazy"
+    style={`width: 100%; height: ${height}; display: block; border: 1px solid var(--sl-color-gray-5); border-radius: 0.5rem 0.5rem 0 0; background: white;`}
+  ></iframe>
+  <a
+    href={docsHref}
+    target="_blank"
+    rel="noreferrer"
+    style="display: block; padding: 0.5rem 0.75rem; font-size: var(--sl-text-sm); border: 1px solid var(--sl-color-gray-5); border-top: none; border-radius: 0 0 0.5rem 0.5rem; background: var(--sl-color-bg-inline-code); color: var(--sl-color-text-accent);"
+  >
+    Open full story in Storybook →
+  </a>
+</div>
