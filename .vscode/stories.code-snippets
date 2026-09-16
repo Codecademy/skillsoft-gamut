@@ -113,7 +113,7 @@
   "Component Story": {
     "prefix": "component-story",
     "body": [
-      "import { $1 } from '@codecademy/gamut';",
+      "import { $1 } from '@skillsoft/gamut';",
       "import type { Meta, StoryObj } from '@storybook/react';",
       "",
       "const meta: Meta<typeof $1> = {",

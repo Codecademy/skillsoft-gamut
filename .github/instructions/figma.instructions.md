@@ -82,7 +82,7 @@ When generating code from Figma designs, follow these rules:
   - Try to get icon layer names from Figma metadata
   - If layer names are not available, make your best guess based on the screenshot and verify the icon exists in the codebase
   - Generate the code with your best guess, then confirm with the user after
-  - Map icon layer names to Gamut components (e.g., "Regular/Interface/PersonIcon" → `PersonIcon` from `@codecademy/gamut-icons`)
+  - Map icon layer names to Gamut components (e.g., "Regular/Interface/PersonIcon" → `PersonIcon` from `@skillsoft/gamut-icons`)
 
 ## Styling Guidelines - STRICT RULES
 

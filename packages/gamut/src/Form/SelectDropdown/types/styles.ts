@@ -1,4 +1,4 @@
-import { StyleProps } from '@codecademy/variance';
+import { StyleProps } from '@skillsoft/variance';
 
 import { conditionalBorderStates } from '../core/styles';
 import { InternalInputsProps } from './component-props';

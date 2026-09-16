@@ -1,5 +1,5 @@
-import { Box, FlexBox, PreviewTip } from '@codecademy/gamut';
-import { SmileyIndifferentIcon } from '@codecademy/gamut-icons';
+import { Box, FlexBox, PreviewTip } from '@skillsoft/gamut';
+import { SmileyIndifferentIcon } from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 

@@ -3,12 +3,12 @@ import {
   BarProps,
   Box,
   PartialBarChartTranslations,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import {
   BookFlipPageIcon,
   DataScienceIcon,
   TerminalIcon,
-} from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from 'storybook/actions';
 

@@ -1,4 +1,4 @@
-import { Form } from '@codecademy/gamut';
+import { Form } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Form> = {

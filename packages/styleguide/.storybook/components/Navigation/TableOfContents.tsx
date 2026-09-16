@@ -1,5 +1,5 @@
-import { Box, Card, GridBox, Text } from '@codecademy/gamut';
-import { pxRem } from '@codecademy/gamut-styles';
+import { Box, Card, GridBox, Text } from '@skillsoft/gamut';
+import { pxRem } from '@skillsoft/gamut-styles';
 import * as React from 'react';
 
 import { StatusTab } from '../Elements/StatusIndicator';

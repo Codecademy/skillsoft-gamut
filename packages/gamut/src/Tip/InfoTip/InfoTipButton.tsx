@@ -1,7 +1,7 @@
 import {
   MiniInfoCircleIcon,
   MiniInfoOutlineIcon,
-} from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut-icons';
 import { ComponentProps, forwardRef } from 'react';
 
 import { createButtonComponent } from '../../Button/shared';

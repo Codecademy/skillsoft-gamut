@@ -1,11 +1,11 @@
+import styled from '@emotion/styled';
 import {
   Colors,
   styledOptions,
   system,
   variant,
-} from '@codecademy/gamut-styles';
-import { StyleProps, variance } from '@codecademy/variance';
-import styled from '@emotion/styled';
+} from '@skillsoft/gamut-styles';
+import { StyleProps, variance } from '@skillsoft/variance';
 
 import { appendIconToContent } from '../helpers';
 import { IconComponentType, WithChildrenProp } from '../utils';

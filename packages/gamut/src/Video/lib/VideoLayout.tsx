@@ -1,4 +1,4 @@
-import { useCurrentMode } from '@codecademy/gamut-styles';
+import { useCurrentMode } from '@skillsoft/gamut-styles';
 import { DefaultVideoLayout } from '@vidstack/react/player/layouts/default';
 import {
   DefaultLayoutTranslations,

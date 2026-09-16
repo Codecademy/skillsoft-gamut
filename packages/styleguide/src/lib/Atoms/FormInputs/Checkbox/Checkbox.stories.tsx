@@ -7,9 +7,9 @@ import {
   FlexBox,
   LayoutGrid,
   Text,
-} from '@codecademy/gamut';
-import { MiniStarIcon } from '@codecademy/gamut-icons';
-import { Background } from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut';
+import { MiniStarIcon } from '@skillsoft/gamut-icons';
+import { Background } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';

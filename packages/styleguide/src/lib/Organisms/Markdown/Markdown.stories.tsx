@@ -1,4 +1,4 @@
-import { Markdown, Text, TextProps } from '@codecademy/gamut';
+import { Markdown, Text, TextProps } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import exampleMarkdown from './example.md';

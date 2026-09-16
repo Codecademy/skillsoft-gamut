@@ -1,0 +1,72 @@
+name: 'Publish Prerelease'
+description: 'Set up the repo and publish a prerelease build (alpha/next/beta) under a given npm dist-tag using nx release'
+
+inputs:
+  tag-prefix:
+    description: 'Prerelease tag prefix, e.g. alpha, next, beta. The preid becomes <tag-prefix>.<short-sha>'
+    required: true
+  npm-tag:
+    description: 'npm dist-tag to publish under. Defaults to the generated preid (matches alpha per-build-unique tags); pass a stable value like "next" or "beta" for branch-based flows'
+    required: false
+    default: ''
+  manifest-name:
+    description: 'Filename for the JSON publish manifest written by the publish step'
+    required: true
+  dry-run:
+    description: "Pass --dry-run to the publish step. Set to 'true' while a channel is still scaffolded and shouldn't publish for real"
+    required: false
+    default: 'false'
+  npm-token-secret:
+    description: 'npm auth token used for both the registry auth file and the publish step'
+    required: true
+  gh-token:
+    description: 'GitHub token passed to the publish step (needed for changelog/release metadata lookups)'
+    required: true
+  ignore-commit-message:
+    description: 'Commit message pattern that should skip the build (e.g. the release-bot commit message)'
+    required: false
+    default: 'chore(release): publish'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup and Build
+      uses: ./.github/actions/yarn
+
+    - name: Set git user
+      uses: ./.github/actions/set-git-user
+
+    - name: Set npm token
+      uses: ./.github/actions/set-npm-token
+      with:
+        token-secret: ${{ inputs.npm-token-secret }}
+
+    - name: Skip build from automated commit
+      uses: ./.github/actions/skip-automated-commits
+      with:
+        ignore-commit-message: ${{ inputs.ignore-commit-message }}
+
+    - name: Build for publish
+      shell: bash
+      run: npx nx run-many --target=publish-build --parallel=3
+
+    - name: Publish ${{ inputs.tag-prefix }} packages
+      shell: bash
+      run: |
+        set -euo pipefail
+        SHORT_SHA=${GITHUB_SHA:0:6}
+        PREID="${{ inputs.tag-prefix }}.${SHORT_SHA}"
+        NPM_TAG="${{ inputs.npm-tag }}"
+
+        ARGS=(--preid="${PREID}" --manifest="${{ inputs.manifest-name }}")
+        if [ -n "${NPM_TAG}" ]; then
+          ARGS+=(--tag="${NPM_TAG}")
+        fi
+        if [ "${{ inputs.dry-run }}" = "true" ]; then
+          ARGS+=(--dry-run)
+        fi
+
+        npx nx run gamut-release:publish "${ARGS[@]}"
+      env:
+        GH_TOKEN: ${{ inputs.gh-token }}
+        NODE_AUTH_TOKEN: ${{ inputs.npm-token-secret }}

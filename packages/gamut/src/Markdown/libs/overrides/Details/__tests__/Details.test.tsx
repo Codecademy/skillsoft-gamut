@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-distracting-elements */
 
-import { setupRtl } from '@codecademy/gamut-tests';
+import { setupRtl } from '@skillsoft/gamut-tests';
 
 import { Markdown } from '../../../..';
 

@@ -1,4 +1,4 @@
-import { theme, transitionConcat, variant } from '@codecademy/gamut-styles';
+import { theme, transitionConcat, variant } from '@skillsoft/gamut-styles';
 
 import { InteractiveSelectors } from '../../ButtonBase/ButtonBase';
 import { buttonVariants, templateVariants } from './styles';

@@ -1,0 +1,38 @@
+{
+  "name": "gamut-agent-tools",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/gamut-agent-tools",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [],
+        "parallel": false
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "packages/gamut-agent-tools",
+        "command": "node --test cli/__tests__/design.test.mjs"
+      }
+    },
+    "verify": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "packages/gamut-agent-tools",
+        "command": "tsc --noEmit"
+      }
+    },
+    "publish-build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "commands": [],
+        "parallel": false
+      }
+    }
+  }
+}

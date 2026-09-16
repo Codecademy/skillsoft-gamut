@@ -3,7 +3,7 @@ import {
   CloseIcon,
   MiniChevronDownIcon,
   MiniDeleteIcon,
-} from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut-icons';
 
 export const iconSize = { small: 12, medium: 16 };
 export const selectedIconSize = { small: 16, medium: 24 };

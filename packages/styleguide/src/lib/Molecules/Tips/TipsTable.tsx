@@ -1,3 +1,5 @@
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import {
   Badge,
   FlexBox,
@@ -8,10 +10,8 @@ import {
   ListRow,
   PreviewTip,
   Text,
-} from '@codecademy/gamut';
-import { MiniStarIcon } from '@codecademy/gamut-icons';
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
+} from '@skillsoft/gamut';
+import { MiniStarIcon } from '@skillsoft/gamut-icons';
 
 const components = {
   InfoTip: {

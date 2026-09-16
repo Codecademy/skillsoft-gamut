@@ -4,14 +4,14 @@ import {
   IconButton,
   StrokeButton,
   ToolTip,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import {
   ArrowRightIcon,
   DeleteIcon,
   SmileyStarEyesIcon,
   SparkleIcon,
   StudyBookIcon,
-} from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof ToolTip> = {

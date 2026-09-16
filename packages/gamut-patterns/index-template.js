@@ -5,6 +5,6 @@ function indexTemplate(files) {
     const basename = path.basename(file, path.extname(file));
     return `export * from './${basename}';`;
   });
-  return exportEntries.join('\n');
+  return `${exportEntries.join('\n')}\n`;
 }
 module.exports = indexTemplate;

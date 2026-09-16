@@ -4,7 +4,7 @@ import {
   GridBox,
   InfoTip,
   Text,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import { Figma } from '@storybook/addon-designs/blocks';
 import { Title } from '@storybook/addon-docs/blocks';
 import * as React from 'react';

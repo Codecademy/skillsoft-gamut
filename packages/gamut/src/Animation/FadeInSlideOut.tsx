@@ -1,4 +1,4 @@
-import { timingValues } from '@codecademy/gamut-styles';
+import { timingValues } from '@skillsoft/gamut-styles';
 import { motion } from 'framer-motion';
 import * as React from 'react';
 

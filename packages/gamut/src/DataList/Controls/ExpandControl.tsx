@@ -1,4 +1,4 @@
-import { MiniChevronDownIcon } from '@codecademy/gamut-icons';
+import { MiniChevronDownIcon } from '@skillsoft/gamut-icons';
 import * as React from 'react';
 
 import { Rotation } from '../../Animation';

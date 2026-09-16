@@ -1,11 +1,11 @@
+import styled from '@emotion/styled';
 import {
   states,
   styledOptions,
   system,
   variant,
-} from '@codecademy/gamut-styles';
-import { StyleProps, variance } from '@codecademy/variance';
-import styled from '@emotion/styled';
+} from '@skillsoft/gamut-styles';
+import { StyleProps, variance } from '@skillsoft/variance';
 import { ComponentProps, forwardRef } from 'react';
 
 import { typographyElementVariants, typographyStyleVariants } from './variants';

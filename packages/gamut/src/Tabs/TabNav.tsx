@@ -1,6 +1,6 @@
-import { styledOptions } from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
 import styled from '@emotion/styled';
+import { styledOptions } from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 
 import { tabElementBaseProps, TabElementStyleProps } from './props';
 import { tabContainerStates, tabContainerVariants } from './styles';

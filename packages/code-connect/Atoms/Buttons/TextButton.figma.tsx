@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextButton } from '@codecademy/gamut';
+import { TextButton } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-distracting-elements */
 
-import { setupRtl } from '@codecademy/gamut-tests';
+import { setupRtl } from '@skillsoft/gamut-tests';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as React from 'react';

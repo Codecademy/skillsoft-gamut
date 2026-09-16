@@ -1572,145 +1572,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codecademy/gamut-icons@npm:10.2.0, @codecademy/gamut-icons@workspace:packages/gamut-icons":
-  version: 0.0.0-use.local
-  resolution: "@codecademy/gamut-icons@workspace:packages/gamut-icons"
-  dependencies:
-    "@codecademy/gamut-styles": "npm:21.2.0"
-    "@codecademy/variance": "npm:1.1.0"
-  peerDependencies:
-    "@emotion/react": ^11.4.0
-    "@emotion/styled": ^11.3.0
-    lodash: ^4.17.23
-    react: ^17.0.2 || ^18.3.0 || ^19.0.0
-  languageName: unknown
-  linkType: soft
-
-"@codecademy/gamut-illustrations@npm:1.1.0, @codecademy/gamut-illustrations@workspace:packages/gamut-illustrations":
-  version: 0.0.0-use.local
-  resolution: "@codecademy/gamut-illustrations@workspace:packages/gamut-illustrations"
-  dependencies:
-    "@codecademy/gamut-styles": "npm:21.2.0"
-    classnames: "npm:^2.2.5"
-  peerDependencies:
-    "@emotion/react": ^11.4.0
-    "@emotion/styled": ^11.3.0
-    react: ^17.0.2 || ^18.3.0 || ^19.0.0
-    react-dom: ^17.0.2 || ^18.3.0 || ^19.0.0
-  languageName: unknown
-  linkType: soft
-
-"@codecademy/gamut-kit@workspace:packages/gamut-kit":
-  version: 0.0.0-use.local
-  resolution: "@codecademy/gamut-kit@workspace:packages/gamut-kit"
-  dependencies:
-    "@codecademy/gamut": "npm:73.6.1"
-    "@codecademy/gamut-icons": "npm:10.2.0"
-    "@codecademy/gamut-illustrations": "npm:1.1.0"
-    "@codecademy/gamut-patterns": "npm:1.1.0"
-    "@codecademy/gamut-styles": "npm:21.2.0"
-    "@codecademy/gamut-tests": "npm:7.1.0"
-    "@codecademy/variance": "npm:1.1.0"
-    component-test-setup: "npm:^0.3.1"
-  languageName: unknown
-  linkType: soft
-
-"@codecademy/gamut-patterns@npm:1.1.0, @codecademy/gamut-patterns@workspace:packages/gamut-patterns":
-  version: 0.0.0-use.local
-  resolution: "@codecademy/gamut-patterns@workspace:packages/gamut-patterns"
-  dependencies:
-    "@codecademy/gamut-styles": "npm:21.2.0"
-    "@codecademy/variance": "npm:1.1.0"
-    classnames: "npm:^2.2.5"
-  peerDependencies:
-    "@emotion/react": ^11.4.0
-    "@emotion/styled": ^11.3.0
-    react: ^17.0.2 || ^18.3.0 || ^19.0.0
-    react-dom: ^17.0.2 || ^18.3.0 || ^19.0.0
-  languageName: unknown
-  linkType: soft
-
-"@codecademy/gamut-styles@npm:21.2.0, @codecademy/gamut-styles@workspace:packages/gamut-styles":
-  version: 0.0.0-use.local
-  resolution: "@codecademy/gamut-styles@workspace:packages/gamut-styles"
-  dependencies:
-    "@codecademy/variance": "npm:1.1.0"
-    "@emotion/is-prop-valid": "npm:^1.1.0"
-    framer-motion: "npm:^12.0.0"
-    get-nonce: "npm:^1.0.0"
-    polished: "npm:^4.1.2"
-  peerDependencies:
-    "@emotion/cache": ^11.4.0
-    "@emotion/react": ^11.4.0
-    "@emotion/styled": ^11.3.0
-    lodash: ^4.17.23
-    react: ^17.0.2 || ^18.3.0 || ^19.0.0
-    stylis: ^4.0.7
-  languageName: unknown
-  linkType: soft
-
-"@codecademy/gamut-tests@npm:7.1.0, @codecademy/gamut-tests@workspace:packages/gamut-tests":
-  version: 0.0.0-use.local
-  resolution: "@codecademy/gamut-tests@workspace:packages/gamut-tests"
-  dependencies:
-    "@codecademy/gamut-styles": "npm:21.2.0"
-    component-test-setup: "npm:*"
-    lodash: "npm:^4.17.23"
-  peerDependencies:
-    react: ^17.0.2 || ^18.3.0 || ^19.0.0
-  languageName: unknown
-  linkType: soft
-
-"@codecademy/gamut@npm:73.6.1, @codecademy/gamut@workspace:*, @codecademy/gamut@workspace:packages/gamut":
-  version: 0.0.0-use.local
-  resolution: "@codecademy/gamut@workspace:packages/gamut"
-  dependencies:
-    "@codecademy/gamut-icons": "npm:10.2.0"
-    "@codecademy/gamut-illustrations": "npm:1.1.0"
-    "@codecademy/gamut-patterns": "npm:1.1.0"
-    "@codecademy/gamut-styles": "npm:21.2.0"
-    "@codecademy/variance": "npm:1.1.0"
-    "@formatjs/intl-locale": "npm:5.3.1"
-    "@react-aria/interactions": "npm:3.25.0"
-    "@types/marked": "npm:^4.0.8"
-    "@vidstack/react": "npm:^1.12.12"
-    classnames: "npm:^2.2.5"
-    framer-motion: "npm:^12.0.0"
-    html-to-react: "npm:^1.6.0"
-    invariant: "npm:^2.2.4"
-    lodash: "npm:^4.17.23"
-    marked: "npm:^4.3.0"
-    polished: "npm:^4.1.2"
-    react-aria-components: "npm:1.7.1"
-    react-focus-on: "npm:3.10.0"
-    react-hook-form: "npm:^7.71.2"
-    react-player: "npm:^2.16.0"
-    react-select: "npm:^5.2.2"
-    react-truncate-markup: "npm:^5.1.2"
-    react-use: "npm:^17.6.1"
-    sanitize-markdown: "npm:^2.6.7"
-  peerDependencies:
-    "@emotion/react": ^11.4.0
-    "@emotion/styled": ^11.3.0
-    css-loader: ">=4.0.0"
-    react: ^17.0.2 || ^18.3.0 || ^19.0.0
-    react-dom: ^17.0.2 || ^18.3.0 || ^19.0.0
-  peerDependenciesMeta:
-    css-loader:
-      optional: true
-  bin:
-    gamut: ./bin/gamut.mjs
-  languageName: unknown
-  linkType: soft
-
-"@codecademy/macros@workspace:packages/macros":
-  version: 0.0.0-use.local
-  resolution: "@codecademy/macros@workspace:packages/macros"
-  dependencies:
-    babel-plugin-macros: "npm:^3.0.1"
-  languageName: unknown
-  linkType: soft
-
 "@codecademy/prettier-config@npm:^0.2.0":
   version: 0.2.0
   resolution: "@codecademy/prettier-config@npm:0.2.0"
@@ -1720,30 +1581,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codecademy/styleguide@workspace:packages/styleguide":
-  version: 0.0.0-use.local
-  resolution: "@codecademy/styleguide@workspace:packages/styleguide"
-  languageName: unknown
-  linkType: soft
-
 "@codecademy/tsconfig@npm:^0.3.0":
   version: 0.3.0
   resolution: "@codecademy/tsconfig@npm:0.3.0"
   checksum: 10c0/1aa401dd967fd00b1ffbe36aa93935334ad64cba3b47bea09706e4970a27a5131ac3257ac6caf1316e718ef8763f6e2f7a662258438479066807151f35749e8c
   languageName: node
   linkType: hard
-
-"@codecademy/variance@npm:1.1.0, @codecademy/variance@workspace:packages/variance":
-  version: 0.0.0-use.local
-  resolution: "@codecademy/variance@workspace:packages/variance"
-  dependencies:
-    csstype: "npm:^3.0.7"
-    lodash: "npm:^4.17.23"
-  peerDependencies:
-    "@emotion/react": "*"
-    typescript: ">=4.3.5"
-  languageName: unknown
-  linkType: soft
 
 "@commander-js/extra-typings@npm:^14.0.0":
   version: 14.0.0
@@ -6433,6 +6276,164 @@ __metadata:
   checksum: 10c0/de4522afe0699fa8d3ae9d1715cbaa4b47e518c707bb7988a9ec6c7c67557d9f6df451f6be0338598b984a86f65aab9fab38dd9ce75a3c0ffb801a9500d5b10d
   languageName: node
   linkType: hard
+
+"@skillsoft/eslint-plugin-gamut@workspace:*, @skillsoft/eslint-plugin-gamut@workspace:packages/eslint-plugin-gamut":
+  version: 0.0.0-use.local
+  resolution: "@skillsoft/eslint-plugin-gamut@workspace:packages/eslint-plugin-gamut"
+  dependencies:
+    "@typescript-eslint/utils": "npm:^8.57.0"
+  languageName: unknown
+  linkType: soft
+
+"@skillsoft/gamut-agent-tools@workspace:packages/gamut-agent-tools":
+  version: 0.0.0-use.local
+  resolution: "@skillsoft/gamut-agent-tools@workspace:packages/gamut-agent-tools"
+  peerDependencies:
+    "@skillsoft/gamut": ">=0.0.1"
+  languageName: unknown
+  linkType: soft
+
+"@skillsoft/gamut-icons@npm:0.0.1, @skillsoft/gamut-icons@workspace:packages/gamut-icons":
+  version: 0.0.0-use.local
+  resolution: "@skillsoft/gamut-icons@workspace:packages/gamut-icons"
+  dependencies:
+    "@skillsoft/gamut-styles": "npm:0.0.1"
+    "@skillsoft/variance": "npm:0.0.1"
+  peerDependencies:
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    lodash: ^4.17.23
+    react: ^17.0.2 || ^18.3.0 || ^19.0.0
+  languageName: unknown
+  linkType: soft
+
+"@skillsoft/gamut-illustrations@npm:0.0.1, @skillsoft/gamut-illustrations@workspace:packages/gamut-illustrations":
+  version: 0.0.0-use.local
+  resolution: "@skillsoft/gamut-illustrations@workspace:packages/gamut-illustrations"
+  dependencies:
+    "@skillsoft/gamut-styles": "npm:0.0.1"
+    classnames: "npm:^2.2.5"
+  peerDependencies:
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    react: ^17.0.2 || ^18.3.0 || ^19.0.0
+    react-dom: ^17.0.2 || ^18.3.0 || ^19.0.0
+  languageName: unknown
+  linkType: soft
+
+"@skillsoft/gamut-patterns@npm:0.0.1, @skillsoft/gamut-patterns@workspace:packages/gamut-patterns":
+  version: 0.0.0-use.local
+  resolution: "@skillsoft/gamut-patterns@workspace:packages/gamut-patterns"
+  dependencies:
+    "@skillsoft/gamut-styles": "npm:0.0.1"
+    "@skillsoft/variance": "npm:0.0.1"
+    classnames: "npm:^2.2.5"
+  peerDependencies:
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    react: ^17.0.2 || ^18.3.0 || ^19.0.0
+    react-dom: ^17.0.2 || ^18.3.0 || ^19.0.0
+  languageName: unknown
+  linkType: soft
+
+"@skillsoft/gamut-styles@npm:0.0.1, @skillsoft/gamut-styles@workspace:packages/gamut-styles":
+  version: 0.0.0-use.local
+  resolution: "@skillsoft/gamut-styles@workspace:packages/gamut-styles"
+  dependencies:
+    "@emotion/is-prop-valid": "npm:^1.1.0"
+    "@skillsoft/variance": "npm:0.0.1"
+    framer-motion: "npm:^12.0.0"
+    get-nonce: "npm:^1.0.0"
+    polished: "npm:^4.1.2"
+  peerDependencies:
+    "@emotion/cache": ^11.4.0
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    lodash: ^4.17.23
+    react: ^17.0.2 || ^18.3.0 || ^19.0.0
+    stylis: ^4.0.7
+  languageName: unknown
+  linkType: soft
+
+"@skillsoft/gamut-tests@workspace:packages/gamut-tests":
+  version: 0.0.0-use.local
+  resolution: "@skillsoft/gamut-tests@workspace:packages/gamut-tests"
+  dependencies:
+    "@skillsoft/gamut-styles": "npm:0.0.1"
+    component-test-setup: "npm:*"
+    lodash: "npm:^4.17.23"
+  peerDependencies:
+    react: ^17.0.2 || ^18.3.0 || ^19.0.0
+  languageName: unknown
+  linkType: soft
+
+"@skillsoft/gamut@workspace:*, @skillsoft/gamut@workspace:packages/gamut":
+  version: 0.0.0-use.local
+  resolution: "@skillsoft/gamut@workspace:packages/gamut"
+  dependencies:
+    "@formatjs/intl-locale": "npm:5.3.1"
+    "@react-aria/interactions": "npm:3.25.0"
+    "@skillsoft/gamut-icons": "npm:0.0.1"
+    "@skillsoft/gamut-illustrations": "npm:0.0.1"
+    "@skillsoft/gamut-patterns": "npm:0.0.1"
+    "@skillsoft/gamut-styles": "npm:0.0.1"
+    "@skillsoft/variance": "npm:0.0.1"
+    "@types/marked": "npm:^4.0.8"
+    "@vidstack/react": "npm:^1.12.12"
+    classnames: "npm:^2.2.5"
+    framer-motion: "npm:^12.0.0"
+    html-to-react: "npm:^1.6.0"
+    invariant: "npm:^2.2.4"
+    lodash: "npm:^4.17.23"
+    marked: "npm:^4.3.0"
+    polished: "npm:^4.1.2"
+    react-aria-components: "npm:1.7.1"
+    react-focus-on: "npm:3.10.0"
+    react-hook-form: "npm:^7.71.2"
+    react-player: "npm:^2.16.0"
+    react-select: "npm:^5.2.2"
+    react-truncate-markup: "npm:^5.1.2"
+    react-use: "npm:^17.6.1"
+    sanitize-markdown: "npm:^2.6.7"
+  peerDependencies:
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    css-loader: ">=4.0.0"
+    react: ^17.0.2 || ^18.3.0 || ^19.0.0
+    react-dom: ^17.0.2 || ^18.3.0 || ^19.0.0
+  peerDependenciesMeta:
+    css-loader:
+      optional: true
+  bin:
+    gamut: ./bin/gamut.mjs
+  languageName: unknown
+  linkType: soft
+
+"@skillsoft/macros@workspace:packages/macros":
+  version: 0.0.0-use.local
+  resolution: "@skillsoft/macros@workspace:packages/macros"
+  dependencies:
+    babel-plugin-macros: "npm:^3.0.1"
+  languageName: unknown
+  linkType: soft
+
+"@skillsoft/styleguide@workspace:packages/styleguide":
+  version: 0.0.0-use.local
+  resolution: "@skillsoft/styleguide@workspace:packages/styleguide"
+  languageName: unknown
+  linkType: soft
+
+"@skillsoft/variance@npm:0.0.1, @skillsoft/variance@workspace:packages/variance":
+  version: 0.0.0-use.local
+  resolution: "@skillsoft/variance@workspace:packages/variance"
+  dependencies:
+    csstype: "npm:^3.0.7"
+    lodash: "npm:^4.17.23"
+  peerDependencies:
+    "@emotion/react": "*"
+    typescript: ">=4.3.5"
+  languageName: unknown
+  linkType: soft
 
 "@standard-schema/spec@npm:^1.1.0":
   version: 1.1.0
@@ -11981,14 +11982,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-gamut@workspace:*, eslint-plugin-gamut@workspace:packages/eslint-plugin-gamut":
-  version: 0.0.0-use.local
-  resolution: "eslint-plugin-gamut@workspace:packages/eslint-plugin-gamut"
-  dependencies:
-    "@typescript-eslint/utils": "npm:^8.57.0"
-  languageName: unknown
-  linkType: soft
-
 "eslint-plugin-import@npm:^2.25.2":
   version: 2.31.0
   resolution: "eslint-plugin-import@npm:2.31.0"
@@ -13133,99 +13126,6 @@ __metadata:
   checksum: 10c0/33e77fd29bddc2d9bb78ab3eb854c165909201f88c75faa8272e35899e2d35a8a642a15e7420ef945e1f64a9670d6aa3ec744106b2aa42be68ca5114025954ca
   languageName: node
   linkType: hard
-
-"gamut-repo@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "gamut-repo@workspace:."
-  dependencies:
-    "@babel/cli": "npm:7.24.7"
-    "@babel/core": "npm:7.24.7"
-    "@babel/preset-env": "npm:^7.24.7"
-    "@babel/preset-react": "npm:^7.24.7"
-    "@babel/preset-typescript": "npm:^7.24.7"
-    "@codecademy/eslint-config": "npm:8.2.0"
-    "@codecademy/gamut": "workspace:*"
-    "@codecademy/prettier-config": "npm:^0.2.0"
-    "@codecademy/tsconfig": "npm:^0.3.0"
-    "@commander-js/extra-typings": "npm:^14.0.0"
-    "@emotion/babel-plugin": "npm:11.13.5"
-    "@emotion/jest": "npm:^11.11.0"
-    "@emotion/react": "npm:11.14.0"
-    "@emotion/styled": "npm:11.14.1"
-    "@nx/jest": "npm:22.6.0"
-    "@nx/js": "npm:22.6.0"
-    "@nx/react": "npm:22.6.0"
-    "@nx/storybook": "npm:22.6.0"
-    "@nx/web": "npm:22.6.0"
-    "@nx/webpack": "npm:22.6.0"
-    "@storybook/addon-a11y": "npm:^10.3.1"
-    "@storybook/addon-designs": "npm:^11.1.2"
-    "@storybook/addon-docs": "npm:^10.3.1"
-    "@storybook/addon-links": "npm:^10.3.1"
-    "@storybook/addon-webpack5-compiler-babel": "npm:^4.0.0"
-    "@storybook/icons": "npm:1.2.12"
-    "@storybook/react-webpack5": "npm:^10.3.1"
-    "@storybook/test-runner": "npm:^0.24.1"
-    "@svgr/cli": "npm:5.5.0"
-    "@swc-node/register": "npm:^1.11.1"
-    "@swc/core": "npm:^1.15.18"
-    "@testing-library/dom": "npm:^10.4.1"
-    "@testing-library/jest-dom": "npm:^7.0.1"
-    "@testing-library/react": "npm:^16.0.0"
-    "@testing-library/react-hooks": "npm:^7.0.2"
-    "@testing-library/user-event": "npm:^14.5.2"
-    "@types/classnames": "npm:2.2.10"
-    "@types/invariant": "npm:2.2.29"
-    "@types/jest": "npm:^30.0.0"
-    "@types/konami-code-js": "npm:^0.8.0"
-    "@types/lodash": "npm:4.17.23"
-    "@types/react": "npm:^18.2.0"
-    "@types/react-dom": "npm:^18.2.0"
-    "@types/react-test-renderer": "npm:^18.2.0"
-    "@types/stylis": "npm:^4.2.0"
-    "@typescript-eslint/eslint-plugin": "npm:^8.57.0"
-    "@typescript-eslint/parser": "npm:^8.57.0"
-    "@vidstack/react": "npm:^1.12.12"
-    babel-jest: "npm:30.4.1"
-    babel-plugin-macros: "npm:^3.0.1"
-    commander: "npm:^14.0.3"
-    component-test-setup: "npm:^0.3.1"
-    core-js: "npm:3.7.0"
-    cpy-cli: "npm:^4.1.0"
-    eslint: "npm:^8.57.0"
-    eslint-plugin-gamut: "workspace:*"
-    eslint-plugin-local-rules: "npm:^1.1.0"
-    eslint-plugin-lodash: "npm:^7.4.0"
-    gh-pages: "npm:^5.0.0"
-    http-server: "npm:^14.1.1"
-    husky: "npm:^9.1.7"
-    identity-obj-proxy: "npm:3.0.0"
-    jest: "npm:30.4.2"
-    jest-environment-jsdom: "npm:30.4.1"
-    jest-junit: "npm:^16.0.0"
-    lint-staged: "npm:^16.4.0"
-    lodash: "npm:^4.17.23"
-    nx: "npm:22.6.0"
-    nx-cloud: "npm:19.1.0"
-    onchange: "npm:^7.0.2"
-    playwright: "npm:^1.49.1"
-    prettier: "npm:^2.8.7"
-    react: "npm:^19.0.0"
-    react-dom: "npm:^19.0.0"
-    react-helmet-async: "npm:^2.0.5"
-    react-test-renderer: "npm:^19.0.0"
-    start-server-and-test: "npm:^2.1.5"
-    storybook: "npm:^10.3.1"
-    storybook-addon-deep-controls: "npm:^0.10.0"
-    style-loader: "npm:^4.0.0"
-    svgo: "npm:^1.3.2"
-    syncpack: "npm:^10.9.3"
-    ts-jest: "npm:^29.4.12"
-    ts-node: "npm:10.9.1"
-    tslib: "npm:2.4.0"
-    typescript: "npm:5.9.3"
-  languageName: unknown
-  linkType: soft
 
 "generator-function@npm:^2.0.0":
   version: 2.0.1
@@ -20882,6 +20782,99 @@ __metadata:
   checksum: 10c0/230ac975cca485b7f6fe2b96a711aa62a6a26ead3e6fb8ba17c5a00d61b8bed0d7adc21f5626b70d7c33c62ff4e63933017a6462942c719d1980bb0b1207ad46
   languageName: node
   linkType: hard
+
+"skillsoft-gamut@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "skillsoft-gamut@workspace:."
+  dependencies:
+    "@babel/cli": "npm:7.24.7"
+    "@babel/core": "npm:7.24.7"
+    "@babel/preset-env": "npm:^7.24.7"
+    "@babel/preset-react": "npm:^7.24.7"
+    "@babel/preset-typescript": "npm:^7.24.7"
+    "@codecademy/eslint-config": "npm:8.2.0"
+    "@codecademy/prettier-config": "npm:^0.2.0"
+    "@codecademy/tsconfig": "npm:^0.3.0"
+    "@commander-js/extra-typings": "npm:^14.0.0"
+    "@emotion/babel-plugin": "npm:11.13.5"
+    "@emotion/jest": "npm:^11.11.0"
+    "@emotion/react": "npm:11.14.0"
+    "@emotion/styled": "npm:11.14.1"
+    "@nx/jest": "npm:22.6.0"
+    "@nx/js": "npm:22.6.0"
+    "@nx/react": "npm:22.6.0"
+    "@nx/storybook": "npm:22.6.0"
+    "@nx/web": "npm:22.6.0"
+    "@nx/webpack": "npm:22.6.0"
+    "@skillsoft/eslint-plugin-gamut": "workspace:*"
+    "@skillsoft/gamut": "workspace:*"
+    "@storybook/addon-a11y": "npm:^10.3.1"
+    "@storybook/addon-designs": "npm:^11.1.2"
+    "@storybook/addon-docs": "npm:^10.3.1"
+    "@storybook/addon-links": "npm:^10.3.1"
+    "@storybook/addon-webpack5-compiler-babel": "npm:^4.0.0"
+    "@storybook/icons": "npm:1.2.12"
+    "@storybook/react-webpack5": "npm:^10.3.1"
+    "@storybook/test-runner": "npm:^0.24.1"
+    "@svgr/cli": "npm:5.5.0"
+    "@swc-node/register": "npm:^1.11.1"
+    "@swc/core": "npm:^1.15.18"
+    "@testing-library/dom": "npm:^10.4.1"
+    "@testing-library/jest-dom": "npm:^7.0.1"
+    "@testing-library/react": "npm:^16.0.0"
+    "@testing-library/react-hooks": "npm:^7.0.2"
+    "@testing-library/user-event": "npm:^14.5.2"
+    "@types/classnames": "npm:2.2.10"
+    "@types/invariant": "npm:2.2.29"
+    "@types/jest": "npm:^30.0.0"
+    "@types/konami-code-js": "npm:^0.8.0"
+    "@types/lodash": "npm:4.17.23"
+    "@types/react": "npm:^18.2.0"
+    "@types/react-dom": "npm:^18.2.0"
+    "@types/react-test-renderer": "npm:^18.2.0"
+    "@types/stylis": "npm:^4.2.0"
+    "@typescript-eslint/eslint-plugin": "npm:^8.57.0"
+    "@typescript-eslint/parser": "npm:^8.57.0"
+    "@vidstack/react": "npm:^1.12.12"
+    babel-jest: "npm:30.4.1"
+    babel-plugin-macros: "npm:^3.0.1"
+    commander: "npm:^14.0.3"
+    component-test-setup: "npm:^0.3.1"
+    core-js: "npm:3.7.0"
+    cpy-cli: "npm:^4.1.0"
+    eslint: "npm:^8.57.0"
+    eslint-plugin-local-rules: "npm:^1.1.0"
+    eslint-plugin-lodash: "npm:^7.4.0"
+    gh-pages: "npm:^5.0.0"
+    http-server: "npm:^14.1.1"
+    husky: "npm:^9.1.7"
+    identity-obj-proxy: "npm:3.0.0"
+    jest: "npm:30.4.2"
+    jest-environment-jsdom: "npm:30.4.1"
+    jest-junit: "npm:^16.0.0"
+    lint-staged: "npm:^16.4.0"
+    lodash: "npm:^4.17.23"
+    nx: "npm:22.6.0"
+    nx-cloud: "npm:19.1.0"
+    onchange: "npm:^7.0.2"
+    playwright: "npm:^1.49.1"
+    prettier: "npm:^2.8.7"
+    react: "npm:^19.0.0"
+    react-dom: "npm:^19.0.0"
+    react-helmet-async: "npm:^2.0.5"
+    react-test-renderer: "npm:^19.0.0"
+    start-server-and-test: "npm:^2.1.5"
+    storybook: "npm:^10.3.1"
+    storybook-addon-deep-controls: "npm:^0.10.0"
+    style-loader: "npm:^4.0.0"
+    svgo: "npm:^1.3.2"
+    syncpack: "npm:^10.9.3"
+    ts-jest: "npm:^29.4.12"
+    ts-node: "npm:10.9.1"
+    tslib: "npm:2.4.0"
+    typescript: "npm:5.9.3"
+  languageName: unknown
+  linkType: soft
 
 "slash@npm:^2.0.0":
   version: 2.0.0

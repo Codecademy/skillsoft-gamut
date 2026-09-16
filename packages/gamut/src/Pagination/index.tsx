@@ -1,8 +1,8 @@
 import {
   MiniChevronLeftIcon,
   MiniChevronRightIcon,
-} from '@codecademy/gamut-icons';
-import { useElementDir } from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-icons';
+import { useElementDir } from '@skillsoft/gamut-styles';
 import { useMemo, useRef, useState } from 'react';
 import * as React from 'react';
 

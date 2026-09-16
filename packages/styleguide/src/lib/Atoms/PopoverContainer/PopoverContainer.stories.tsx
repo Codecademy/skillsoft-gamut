@@ -1,5 +1,5 @@
-import { FlexBox, PopoverContainer, Text } from '@codecademy/gamut';
-import { Background } from '@codecademy/gamut-styles';
+import { FlexBox, PopoverContainer, Text } from '@skillsoft/gamut';
+import { Background } from '@skillsoft/gamut-styles';
 import type { Meta } from '@storybook/react';
 import { ComponentProps, useRef } from 'react';
 

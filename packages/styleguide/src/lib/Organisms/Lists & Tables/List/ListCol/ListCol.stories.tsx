@@ -7,14 +7,14 @@ import {
   ListRow,
   TableHeader,
   Text,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import {
   MiniDeleteIcon,
   MiniKebabMenuIcon,
   StarIcon,
   StreakIcon,
   TrophyIcon,
-} from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { listStoryRows as rows } from '../listStoryData';

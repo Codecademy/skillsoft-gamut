@@ -1,5 +1,5 @@
-import { Anchor } from '@codecademy/gamut';
-import { themed } from '@codecademy/gamut-styles';
+import { Anchor } from '@skillsoft/gamut';
+import { themed } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 import { linkTo } from '@storybook/addon-links';
 import { ComponentProps } from 'react';

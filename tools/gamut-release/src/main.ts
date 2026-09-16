@@ -2,14 +2,24 @@
 /* eslint-disable no-console */
 
 /**
- * Alpha Release Script
+ * Prerelease Publish Script
  *
- * This script uses the Nx Release programmatic API to publish alpha versions
- * of packages. It is designed to run in CI for pull requests via the Nx target
- * `gamut-release:alpha`, which injects the required Node experimental flags.
+ * This script uses the Nx Release programmatic API to publish prerelease
+ * versions of packages under a given npm dist-tag. It backs every
+ * non-production publish flow in this repo:
+ *
+ * - `alpha`: one build per PR, tagged uniquely per commit so concurrent PRs
+ *   never clobber each other's installable version (tag defaults to preid).
+ * - `next`: one build per merge to `main`, published under a single stable
+ *   `next` dist-tag that always points at the latest build (preid still
+ *   varies per commit so every version string stays unique).
+ * - `beta`: one build per merge to `beta`, published under a single stable
+ *   `beta` dist-tag, same mechanics as `next` one step further down the
+ *   branch flow (main -> beta -> production).
  *
  * Usage:
- *   npx nx run gamut-release:alpha --preid=alpha.abc123 [--manifest[=path]]
+ *   npx nx run gamut-release:publish --preid=alpha.abc123 [--manifest]
+ *   npx nx run gamut-release:publish --preid=next.abc123 --tag=next [--dry-run] [--manifest]
  */
 
 import { writeFile } from 'node:fs/promises';
@@ -23,8 +33,9 @@ import {
 } from '@nx/devkit';
 import { releasePublish, releaseVersion } from 'nx/release/index.js';
 
-type AlphaReleaseOptions = {
+type PrereleaseOptions = {
   preid: string;
+  tag?: string;
   dryRun?: boolean;
   verbose?: boolean;
   manifest?: string | boolean;
@@ -44,10 +55,10 @@ type PublishManifestEntry = {
 };
 
 function resolveManifestPath(
-  manifestArg: AlphaReleaseOptions['manifest']
+  manifestArg: PrereleaseOptions['manifest']
 ): string | null {
   if (manifestArg === true) {
-    return 'alpha-publish-manifest.json';
+    return 'publish-manifest.json';
   }
 
   if (typeof manifestArg === 'string' && manifestArg.trim()) {
@@ -108,14 +119,23 @@ async function buildPublishManifest(
 }
 
 const program = new Command()
-  .name('gamut-release-alpha')
-  .description('Publish alpha versions of packages using Nx Release.')
-  .requiredOption('--preid <preid>', 'Prerelease identifier, e.g. alpha.abc123')
+  .name('gamut-release-publish')
+  .description(
+    'Publish prerelease versions of packages using Nx Release, under a given npm dist-tag.'
+  )
+  .requiredOption(
+    '--preid <preid>',
+    'Prerelease identifier used in the version string, e.g. alpha.abc123 or next.abc123'
+  )
+  .option(
+    '--tag <tag>',
+    'npm dist-tag to publish under (defaults to --preid, matching per-build unique tags like alpha)'
+  )
   .option('-d, --dry-run', 'Run without publishing')
   .option('--verbose', 'Enable verbose logging')
   .option(
     '--manifest [path]',
-    'Write JSON manifest of published packages (default: alpha-publish-manifest.json)'
+    'Write JSON manifest of published packages (default: publish-manifest.json)'
   );
 
 program.parse(process.argv);
@@ -123,6 +143,7 @@ program.parse(process.argv);
 const options = program.opts();
 
 const preidArg = options.preid;
+const tagArg = options.tag ?? preidArg;
 const dryRun = options.dryRun ?? false;
 const verbose = options.verbose ?? false;
 const manifestPath = resolveManifestPath(options.manifest);
@@ -130,8 +151,10 @@ const manifestOutputPath = manifestPath
   ? resolve(process.cwd(), manifestPath)
   : null;
 
-async function releaseAlpha(): Promise<never> {
-  console.log(`📦 Starting alpha release with preid: ${preidArg}`);
+async function releasePrerelease(): Promise<never> {
+  console.log(
+    `📦 Starting prerelease publish with preid: ${preidArg} (tag: ${tagArg})`
+  );
   if (dryRun) {
     console.log('🔍 DRY RUN MODE - No changes will be made');
   }
@@ -163,10 +186,10 @@ async function releaseAlpha(): Promise<never> {
       });
     }
 
-    // Step 2: Publish packages with alpha tag
-    console.log(`\n📤 Publishing packages with tag: ${preidArg}...`);
+    // Step 2: Publish packages under the requested dist-tag
+    console.log(`\n📤 Publishing packages with tag: ${tagArg}...`);
     const publishStatus = await releasePublish({
-      tag: preidArg,
+      tag: tagArg,
       dryRun,
       verbose,
     });
@@ -198,9 +221,7 @@ async function releaseAlpha(): Promise<never> {
           manifestOutputPath,
           `${JSON.stringify(manifestEntries, null, 2)}\n`
         );
-        console.log(
-          `\n📄 Wrote alpha publish manifest to: ${manifestOutputPath}`
-        );
+        console.log(`\n📄 Wrote publish manifest to: ${manifestOutputPath}`);
       } catch (error) {
         console.error('\n❌ Failed to write publish manifest:');
         console.error(error);
@@ -210,10 +231,10 @@ async function releaseAlpha(): Promise<never> {
 
     process.exit(exitCode);
   } catch (error) {
-    console.error('\n❌ Alpha release failed:');
+    console.error('\n❌ Prerelease publish failed:');
     console.error(error);
     process.exit(1);
   }
 }
 
-void releaseAlpha();
+void releasePrerelease();

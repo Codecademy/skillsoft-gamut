@@ -3,7 +3,7 @@ import {
   states,
   theme as GamutTheme,
   variant,
-} from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-styles';
 import { StylesConfig } from 'react-select';
 
 import {

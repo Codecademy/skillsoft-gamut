@@ -1,4 +1,4 @@
-import { PatternProps } from '@codecademy/gamut-patterns';
+import { PatternProps } from '@skillsoft/gamut-patterns';
 import { HTMLAttributes, type RefObject } from 'react';
 
 import { PopoverVariants } from './elements';

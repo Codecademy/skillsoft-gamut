@@ -1,4 +1,4 @@
-import { MiniDeleteIcon } from '@codecademy/gamut-icons';
+import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
 import { ComponentProps, useId, useState } from 'react';
 import * as React from 'react';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Toggle } from '@codecademy/gamut';
+import { Toggle } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

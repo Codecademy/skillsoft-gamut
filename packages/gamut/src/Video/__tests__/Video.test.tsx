@@ -1,4 +1,4 @@
-import { setupRtl } from '@codecademy/gamut-tests';
+import { setupRtl } from '@skillsoft/gamut-tests';
 import * as React from 'react';
 
 import { Video } from '..';

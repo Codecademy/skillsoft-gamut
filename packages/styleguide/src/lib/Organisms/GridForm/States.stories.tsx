@@ -1,4 +1,4 @@
-import { GridForm } from '@codecademy/gamut';
+import { GridForm } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { action } from 'storybook/actions';

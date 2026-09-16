@@ -1,5 +1,5 @@
-import { states } from '@codecademy/gamut-styles';
 import styled from '@emotion/styled';
+import { states } from '@skillsoft/gamut-styles';
 
 import { TableHeader } from '../../../List';
 

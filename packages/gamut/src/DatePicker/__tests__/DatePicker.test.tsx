@@ -1,4 +1,4 @@
-import { setupRtl } from '@codecademy/gamut-tests';
+import { setupRtl } from '@skillsoft/gamut-tests';
 import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { FC, FormEvent, FormEventHandler } from 'react';

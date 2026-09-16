@@ -1,5 +1,5 @@
-import { ProgressBar } from '@codecademy/gamut';
-import * as patterns from '@codecademy/gamut-patterns';
+import { ProgressBar } from '@skillsoft/gamut';
+import * as patterns from '@skillsoft/gamut-patterns';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof ProgressBar> = {

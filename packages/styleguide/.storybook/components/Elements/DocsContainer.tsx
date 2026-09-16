@@ -10,7 +10,7 @@ import {
   CoreTheme,
   platformTheme,
   ColorMode,
-} from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-styles';
 import {
   DocsContainer as StorybookDocsContainer,
   DocsContextProps,
@@ -20,7 +20,7 @@ import { ThemeProvider } from 'storybook/theming';
 import { useMemo } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { createGamutDocsTheme } from '../../theming/GamutTheme';
-import { createTheme } from '@codecademy/variance';
+import { createTheme } from '@skillsoft/variance';
 export const storybookTheme = createTheme(coreTheme)
   .addColors(platformPalette)
   .build();

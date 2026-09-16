@@ -1,6 +1,6 @@
-import { GamutIconProps } from '@codecademy/gamut-icons';
-// eslint-disable-next-line gamut/import-paths
-import * as miniIcons from '@codecademy/gamut-icons/src/icons/mini';
+import { GamutIconProps } from '@skillsoft/gamut-icons';
+// eslint-disable-next-line @skillsoft/gamut/import-paths
+import * as miniIcons from '@skillsoft/gamut-icons/src/icons/mini';
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProgressBar } from '@codecademy/gamut';
+import { ProgressBar } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**
