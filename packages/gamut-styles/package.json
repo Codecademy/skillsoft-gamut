@@ -10,17 +10,21 @@
     "get-nonce": "^1.0.0",
     "polished": "^4.1.2"
   },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "files": [
     "dist",
-    "core",
-    "fonts",
-    "utils",
-    "core.scss",
-    "utils.scss"
+    "fonts"
   ],
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/index.js",
+  "module": "dist/index.mjs",
   "peerDependencies": {
     "@emotion/cache": "^11.4.0",
     "@emotion/react": "^11.4.0",
@@ -36,5 +40,6 @@
   "scripts": {
     "build": "nx build gamut-styles"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "types": "dist/index.d.ts"
 }

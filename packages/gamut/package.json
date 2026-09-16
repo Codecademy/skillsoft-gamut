@@ -30,13 +30,21 @@
     "react-use": "^17.6.1",
     "sanitize-markdown": "^2.6.7"
   },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "files": [
     "dist",
     "bin"
   ],
   "license": "MIT",
   "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "overrides": {
     "@react-aria/interactions": "3.25.0"
   },
@@ -58,14 +66,13 @@
   "repository": "git@github.com:Codecademy/skillsoft-gamut.git",
   "scripts": {
     "build": "nx build gamut",
-    "build:watch": "yarn build && onchange ./src -- yarn build",
+    "build:watch": "tsdown --watch",
     "compile": "babel ./src --out-dir ./dist --extensions \".ts,.tsx\"",
     "verify": "tsc --noEmit && tsc --project tsconfig.bin.json"
   },
   "sideEffects": [
     "**/*.css",
-    "**/*.scss",
-    "dist/**/[A-Z]**/[A-Z]*.js",
-    "dist/**/[A-Z]**/index.js"
-  ]
+    "**/*.scss"
+  ],
+  "types": "./dist/index.d.ts"
 }

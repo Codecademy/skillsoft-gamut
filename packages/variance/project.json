@@ -12,8 +12,8 @@
         "cwd": "packages/variance",
         "commands": [
           "rm -rf ./dist",
-          "tsc --project tsconfig.lib.json",
-          "babel ./src --out-dir ./dist --extensions \".ts,.tsx\""
+          "tsdown",
+          "tsc --project tsconfig.lib.json"
         ],
         "parallel": false
       }
