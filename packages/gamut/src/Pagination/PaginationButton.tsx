@@ -1,5 +1,5 @@
-import { GamutIconProps } from '@codecademy/gamut-icons';
-import { StyleProps } from '@codecademy/variance';
+import { GamutIconProps } from '@skillsoft/gamut-icons';
+import { StyleProps } from '@skillsoft/variance';
 import { ComponentProps, ComponentType, forwardRef, useMemo } from 'react';
 
 import { createButtonComponent } from '../Button/shared';

@@ -16,18 +16,18 @@ import {
   Text,
   TextButton,
   Toggle,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import {
   MiniArrowRightIcon,
   MiniDeleteIcon,
   SearchIcon,
   StreakIcon,
-} from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut-icons';
 import {
   Background,
   ColorMode,
   usePrefersDarkMode,
-} from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-styles';
 import { ComponentProps, useState } from 'react';
 import * as React from 'react';
 

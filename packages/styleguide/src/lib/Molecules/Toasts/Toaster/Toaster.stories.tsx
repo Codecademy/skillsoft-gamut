@@ -1,6 +1,6 @@
-import { FillButton, GridBox, Toast, Toaster } from '@codecademy/gamut';
-import { AddIcon, TrashIcon } from '@codecademy/gamut-icons';
-import { Target } from '@codecademy/gamut-illustrations';
+import { FillButton, GridBox, Toast, Toaster } from '@skillsoft/gamut';
+import { AddIcon, TrashIcon } from '@skillsoft/gamut-icons';
+import { Target } from '@skillsoft/gamut-illustrations';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, waitFor } from 'storybook/test';

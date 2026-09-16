@@ -1,5 +1,5 @@
-import { OpenIcon } from '@codecademy/gamut-icons';
-import { Anchor } from '@codecademy/gamut';
+import { OpenIcon } from '@skillsoft/gamut-icons';
+import { Anchor } from '@skillsoft/gamut';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 

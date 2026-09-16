@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { css, variant } from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
+import { css, variant } from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 
 export const badgeVariants = variant({
   prop: 'status',

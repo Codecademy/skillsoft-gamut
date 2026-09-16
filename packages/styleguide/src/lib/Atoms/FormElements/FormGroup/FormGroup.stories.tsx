@@ -1,4 +1,4 @@
-import { Box, FormGroup, Input } from '@codecademy/gamut';
+import { Box, FormGroup, Input } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 

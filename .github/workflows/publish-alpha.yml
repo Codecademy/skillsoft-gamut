@@ -5,10 +5,8 @@ on:
     types: [opened, synchronize, reopened]
 
 env:
-  NODE_VERSION: '22.13.1'
   NODE_OPTIONS: '--max_old_space_size=8196'
   NX_CLOUD: false
-  IGNORE_COMMIT_MESSAGE: 'chore(release): publish'
 
 permissions:
   id-token: write
@@ -17,46 +15,30 @@ permissions:
   issues: write
   actions: write
 
+concurrency:
+  group: publish-alpha-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   publish-alpha:
     runs-on: ubuntu-22.04
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
           ref: ${{  github.event.pull_request.head.ref }}
 
-      - name: Setup and Build
-        id: setup
-        uses: ./.github/actions/yarn
-
-      - name: Set git user
-        uses: ./.github/actions/set-git-user
-
-      - name: Set npm token
-        uses: ./.github/actions/set-npm-token
-        with:
-          token-secret: ${{ secrets.NODE_AUTH_TOKEN }}
-
       - name: Ensure workflow is associated with a pull request
         uses: ./.github/actions/validate-pr-context
 
-      - name: Skip build from automated commit
-        uses: ./.github/actions/skip-automated-commits
-        with:
-          ignore-commit-message: ${{ env.IGNORE_COMMIT_MESSAGE }}
-
-      - run: npx nx run-many --target=publish-build --parallel=3
-
       - name: Publish alpha packages
-        id: publish-alpha
-        run: |
-          SHORT_SHA=${GITHUB_SHA:0:6}
-          PREID="alpha.${SHORT_SHA}"
-          npx nx run gamut-release:alpha --preid="${PREID}" --manifest
-        env:
-          GH_TOKEN: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN  }}
+        uses: ./.github/actions/publish-prerelease
+        with:
+          tag-prefix: alpha
+          manifest-name: alpha-publish-manifest.json
+          npm-token-secret: ${{ secrets.NODE_AUTH_TOKEN }}
+          gh-token: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
 
       - name: List alpha packages versions
         id: published

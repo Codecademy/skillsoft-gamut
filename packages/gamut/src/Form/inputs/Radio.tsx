@@ -1,6 +1,6 @@
-import { screenReaderOnly } from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
 import styled from '@emotion/styled';
+import { screenReaderOnly } from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 import { forwardRef, InputHTMLAttributes, ReactNode } from 'react';
 import * as React from 'react';
 

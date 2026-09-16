@@ -14,7 +14,7 @@ It assumes you've completed [Installation](/getting-started/installation/) and h
 `Background` paints a semantic color behind its children and keeps text inside it readable in both color modes. Start your page component with one:
 
 ```tsx title="WelcomePage.tsx"
-import { Background } from '@codecademy/gamut-styles';
+import { Background } from '@skillsoft/gamut-styles';
 
 export const WelcomePage = () => (
   <Background bg="beige" p={32}>
@@ -30,8 +30,8 @@ Run your app. You should see a full-width beige panel with 32px of padding and n
 Drop in `Text` for the page title. The `as` prop controls which HTML element renders, independent of the visual style:
 
 ```tsx
-import { Background } from '@codecademy/gamut-styles';
-import { Text } from '@codecademy/gamut';
+import { Background } from '@skillsoft/gamut-styles';
+import { Text } from '@skillsoft/gamut';
 
 export const WelcomePage = () => (
   <Background bg="beige" p={32}>
@@ -49,9 +49,9 @@ Refresh — you now have a styled heading sitting in the beige panel.
 `GridBox` is a `display: grid` container that accepts Gamut's spacing and layout props. Use it to lay a card next to some supporting copy:
 
 ```tsx
-import { Background } from '@codecademy/gamut-styles';
-import { Text } from '@codecademy/gamut';
-import { GridBox } from '@codecademy/gamut';
+import { Background } from '@skillsoft/gamut-styles';
+import { Text } from '@skillsoft/gamut';
+import { GridBox } from '@skillsoft/gamut';
 
 export const WelcomePage = () => (
   <Background bg="beige" p={32}>
@@ -80,11 +80,11 @@ The `gridTemplateColumns` object is a responsive prop: one column on small scree
 `Card` gives you a contained surface with optional shadow and hover behavior. Put a `FillButton` inside it:
 
 ```tsx
-import { Background } from '@codecademy/gamut-styles';
-import { Card } from '@codecademy/gamut';
-import { FillButton } from '@codecademy/gamut';
-import { GridBox } from '@codecademy/gamut';
-import { Text } from '@codecademy/gamut';
+import { Background } from '@skillsoft/gamut-styles';
+import { Card } from '@skillsoft/gamut';
+import { FillButton } from '@skillsoft/gamut';
+import { GridBox } from '@skillsoft/gamut';
+import { Text } from '@skillsoft/gamut';
 
 export const WelcomePage = () => (
   <Background bg="beige" p={32}>

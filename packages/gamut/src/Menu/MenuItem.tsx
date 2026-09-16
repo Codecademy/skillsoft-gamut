@@ -1,4 +1,4 @@
-import { GamutIconProps } from '@codecademy/gamut-icons';
+import { GamutIconProps } from '@skillsoft/gamut-icons';
 import isString from 'lodash/isString';
 import {
   ComponentProps,

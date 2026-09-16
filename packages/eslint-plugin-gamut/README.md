@@ -10,13 +10,19 @@ Recommended eslint plugins for all Gamut applications. ✨
 module.exports = {
   root: true,
 
-  plugins: ['eslint-plugin-gamut'],
+  extends: ['plugin:@skillsoft/gamut/recommended'],
 
-  rules: {
-    'gamut/prefer-themed': 'error',
-    'gamut/no-css-standalone': 'error',
-    'gamut/import-paths': 'error',
-    'gamut/no-inline-style': 'error',
-  },
+  plugins: ['@skillsoft/gamut'],
 };
+```
+
+`plugin:@skillsoft/gamut/recommended` enables `prefer-themed`, `no-css-standalone`,
+`no-inline-style`, and `import-paths` as errors. Override or add individual rules under
+`rules` as needed, e.g. to enable `no-kbd-element` (off by default, since it only applies
+to MDX content):
+
+```tsx
+rules: {
+  '@skillsoft/gamut/no-kbd-element': 'error',
+},
 ```

@@ -1,5 +1,5 @@
-import { PatternProps } from '@codecademy/gamut-patterns';
-import { StyleProps } from '@codecademy/variance';
+import { PatternProps } from '@skillsoft/gamut-patterns';
+import { StyleProps } from '@skillsoft/variance';
 import { ComponentProps } from 'react';
 
 import { Box } from '../Box';

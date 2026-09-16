@@ -2,7 +2,7 @@ import { Preview } from '@storybook/react';
 
 import theme from './theming/GamutTheme';
 import { withEmotion } from './theming/GamutThemeProvider';
-import { breakpoints, css } from '@codecademy/gamut-styles';
+import { breakpoints, css } from '@skillsoft/gamut-styles';
 import { DocsContainer } from './components/Elements/DocsContainer';
 import { CodeOrSourceMdx, HeadersMdx } from '@storybook/addon-docs/blocks';
 import { components as htmlComponents } from 'storybook/internal/components';

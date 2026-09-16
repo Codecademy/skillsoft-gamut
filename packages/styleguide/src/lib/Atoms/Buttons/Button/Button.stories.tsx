@@ -6,14 +6,14 @@ import {
   IconButton,
   StrokeButton,
   TextButton,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import {
   MiniArrowLeftIcon,
   MiniArrowRightIcon,
   MiniDeleteIcon,
   MiniRibbonIcon,
   SearchIcon,
-} from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 
 // Using FillButton here to show the difference between primary and secondary variants

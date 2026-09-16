@@ -10,7 +10,7 @@ For best practices specific to one component — like alerts, errors, or confirm
 Access colors through Gamut's semantic aliases (`text`, `background`, `primary`, `secondary`) rather than raw color values — see [Color modes](/concepts/color-modes/) for why. Aliases guarantee you get the right color for the right theme and color mode, with the right types and states.
 
 ```tsx
-import { css } from '@codecademy/gamut-styles';
+import { css } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 
 // A single value
@@ -27,7 +27,7 @@ const OtherCoolThing = styled.div(css({ color: 'primary', p: 4 }));
 [System props](/foundations/system-props/) exist so writing custom, one-off styles is rarely necessary. They come with type-safe access to the right token scale for the context you're in, and a [responsive syntax](/foundations/system-props/responsive-properties/) shared across every prop:
 
 ```tsx
-import { Box } from '@codecademy/gamut';
+import { Box } from '@skillsoft/gamut';
 
 const MyContainer = ({ children }) => (
   <Box px={[16, 32, 64, , 96]}>{children}</Box>

@@ -1,11 +1,11 @@
+import { CSSObject, Theme, ThemeProvider, useTheme } from '@emotion/react';
+import styled from '@emotion/styled';
 import {
   serializeTokens,
   StyleProps,
   ThemeProps,
   variance,
-} from '@codecademy/variance';
-import { CSSObject, Theme, ThemeProvider, useTheme } from '@emotion/react';
-import styled from '@emotion/styled';
+} from '@skillsoft/variance';
 import mapValues from 'lodash/mapValues';
 import pick from 'lodash/pick';
 import {

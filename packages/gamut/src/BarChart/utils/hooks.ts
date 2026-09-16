@@ -1,4 +1,4 @@
-import { Colors, isColorAlias, useColorModes } from '@codecademy/gamut-styles';
+import { Colors, isColorAlias, useColorModes } from '@skillsoft/gamut-styles';
 import { getContrast } from 'polished';
 import {
   useCallback,

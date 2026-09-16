@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flyout } from '@codecademy/gamut';
+import { Flyout } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

@@ -28,8 +28,8 @@ For many nested and/or array-like fields, calling react-hook-form's `setValue` o
 
 ```tsx
 // DebouncedInput.tsx
-import { Input } from '@codecademy/gamut';
-import { useDebouncedField } from '@codecademy/gamut';
+import { Input } from '@skillsoft/gamut';
+import { useDebouncedField } from '@skillsoft/gamut';
 
 export const DebouncedInput: React.FC<{ name: string }> = ({ name }) => {
   const { onChange, onBlur, value } = useDebouncedField({ name, type: 'text' });
@@ -49,7 +49,7 @@ export const DebouncedInput: React.FC<{ name: string }> = ({ name }) => {
 
 ```tsx
 // FormPage.tsx
-import { ConnectedForm } from '@codecademy/gamut';
+import { ConnectedForm } from '@skillsoft/gamut';
 import { DebouncedInput } from './DebouncedInput';
 
 export const FormPage: React.FC = () => (

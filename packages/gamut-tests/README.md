@@ -10,7 +10,7 @@ Use this instead of `component-test-setup` to test Gamut components in Gamut app
 The API is functionally the same `component-test-setup`:
 
 ```tsx
-import { setupRtl } from '@codecademy/gamut-tests';
+import { setupRtl } from '@skillsoft/gamut-tests';
 
 const renderView = setupRtl(MyComponent, { prop: true });
 

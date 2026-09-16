@@ -1,10 +1,10 @@
+import styled from '@emotion/styled';
 import {
   styledOptions,
   system,
   transitionConcat,
-} from '@codecademy/gamut-styles';
-import { StyleProps, variance } from '@codecademy/variance';
-import styled from '@emotion/styled';
+} from '@skillsoft/gamut-styles';
+import { StyleProps, variance } from '@skillsoft/variance';
 import isObject from 'lodash/isObject';
 import { ComponentProps, forwardRef } from 'react';
 

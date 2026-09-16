@@ -1,5 +1,5 @@
-import { CheckerDense } from '@codecademy/gamut-patterns';
-import { borderRadii, Colors } from '@codecademy/gamut-styles';
+import { CheckerDense } from '@skillsoft/gamut-patterns';
+import { borderRadii, Colors } from '@skillsoft/gamut-styles';
 import * as React from 'react';
 
 import { DynamicCardWrapper, MotionBox, StaticCardWrapper } from './elements';
@@ -55,7 +55,7 @@ export const Card: React.FC<CardProps> = ({
             left={shadow === 'patternLeft' ? '-0.5rem' : undefined}
             position="absolute"
             right={shadow === 'patternRight' ? '-0.5rem' : undefined}
-            // eslint-disable-next-line gamut/no-inline-style
+            // eslint-disable-next-line @skillsoft/gamut/no-inline-style
             style={{ borderRadius: 'inherit', color: 'currentcolor' }}
             top=".5rem"
           />

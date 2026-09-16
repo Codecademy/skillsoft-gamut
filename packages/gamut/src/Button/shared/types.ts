@@ -1,5 +1,5 @@
-import { ColorModes } from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
+import { ColorModes } from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 import { ComponentProps, HTMLProps } from 'react';
 
 import { ButtonBase } from '../../ButtonBase';

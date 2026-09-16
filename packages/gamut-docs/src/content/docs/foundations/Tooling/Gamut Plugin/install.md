@@ -47,7 +47,7 @@ Aliases: `codecademy`, `cc`, `lx-studio`. Without `--theme`, `gamut plugin insta
 # Check what is installed
 gamut plugin list
 
-# Refresh after @codecademy/gamut updates
+# Refresh after @skillsoft/gamut updates
 gamut plugin update
 gamut plugin update cursor --theme core --force
 

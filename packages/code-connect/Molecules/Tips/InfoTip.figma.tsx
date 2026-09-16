@@ -1,5 +1,5 @@
 import React from 'react';
-import { InfoTip } from '@codecademy/gamut';
+import { InfoTip } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

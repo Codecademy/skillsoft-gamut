@@ -1,5 +1,5 @@
 import React from 'react';
-import { MenuSeparator } from '@codecademy/gamut';
+import { MenuSeparator } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

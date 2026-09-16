@@ -3,7 +3,7 @@ title: Theming your app
 description: Choose and wire up a Gamut theme for your application.
 ---
 
-Every Emotion component in Gamut has typed access to the current theme's tokens, without any extra imports — most directly through the `theme` prop every styled component receives, or through the `theme` object imported straight from `@codecademy/gamut-styles`.
+Every Emotion component in Gamut has typed access to the current theme's tokens, without any extra imports — most directly through the `theme` prop every styled component receives, or through the `theme` object imported straight from `@skillsoft/gamut-styles`.
 
 ## 1. Choose a theme
 
@@ -14,7 +14,7 @@ See [Themes](/foundations/themes/) for the available palettes (Core, Admin, LX S
 `GamutProvider` (covered in [Installation](/getting-started/installation/)) already puts the right theme's values on Emotion's context for you. From there, reach a token:
 
 ```tsx
-import { css } from '@codecademy/gamut-styles';
+import { css } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 
 // Preferred: through a system prop

@@ -1,37 +1,12 @@
 # Gamut
 
-_The component library & design system for Codecademy._ ✨
+_The component library & design system for Skillsoft and Codecademy._ ✨
 
 ---
 
 [![GitHub Actions](https://github.com/Codecademy/gamut/workflows/Test%20Suite/badge.svg)](https://github.com/Codecademy/gamut/actions)
 
 This repository is a monorepo that we manage using [NX](https://nx.dev/). That means that we publish several packages to npm from the same codebase, including:
-
-## Gamut Kit
-
-We provide a single package to manage the versions of a few core dependencies: `gamut`, `gamut-icons`, `gamut-illustrations`, `gamut-patterns`, `gamut-styles`. Since these packages are highly intertwined we suggest only installing `@codecademy/gamut-kit` when your app needs all of these.
-
-[`gamut-kit`: Include in your application instead of the individual packages to simplify version management. ](/packages/gamut-kit/README.md)
-
-- [![npm version](https://badge.fury.io/js/%40codecademy%2Fgamut-kit.svg)](https://badge.fury.io/js/%40codecademy%2Fgamut-kit)
-
-1. Run `yarn add @codecademy/gamut-kit`
-2. Add each of the managed packages to your peer dependencies (this is required for enabling intellisense for these packages and does not have any effect on version resolution)
-
-```json
-{
-  "peerDependencies": {
-    "@codecademy/gamut": "*",
-    "@codecademy/gamut-icons": "*",
-    "@codecademy/gamut-patterns": "*",
-    "@codecademy/gamut-illustrations": "*",
-    "@codecademy/gamut-styles": "*",
-    "@codecademy/gamut-tests": "*",
-    "@codecademy/variance": "*"
-  }
-}
-```
 
 ## Individual Packages
 
@@ -199,7 +174,7 @@ symlinks (the following instructions assume you have set up and built Gamut):
 1. `cd /path/to/gamut/packages/gamut`
 1. `yarn link`
 1. `cd path/to/other/repo`
-1. `yarn link @codecademy/gamut`
+1. `yarn link @skillsoft/gamut`
 1. `yarn install`
 
 If your other project uses React, you must link that copy of React in Gamut:
@@ -280,7 +255,7 @@ Changelog content is driven by the description in version plan files (in `.nx/ve
 
 ## AI Tool Plugins
 
-Gamut ships an agent-tools plugin with skills, rules, and agents for Claude Code and Cursor. The `gamut` CLI is included in `@codecademy/gamut` (and `@codecademy/gamut-kit`), so run it via `npx` from any project that has the package installed.
+Gamut ships an agent-tools plugin with skills, rules, and agents for Claude Code and Cursor. The `gamut` CLI is included in `@skillsoft/gamut`, so run it via `npx` from any project that has the package installed. The plugin content itself lives in the separate, optional `@skillsoft/gamut-agent-tools` package; the CLI installs it automatically the first time you run `gamut plugin install` if it isn't already a dependency.
 
 ### Installing
 
@@ -336,7 +311,7 @@ npx gamut plugin list              # list installed plugins
 Run Claude Code with the plugin loaded for a single session without registering it:
 
 ```bash
-claude --plugin-dir ./node_modules/@codecademy/gamut/agent-tools
+claude --plugin-dir ./node_modules/@skillsoft/gamut-agent-tools
 ```
 
 ## Publishing Storybook

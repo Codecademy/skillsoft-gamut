@@ -40,10 +40,10 @@ Enforces three import conventions: use relative imports within the same package,
 
 ```tsx
 // Instead of:
-import { FillButton } from '@codecademy/gamut/src';
+import { FillButton } from '@skillsoft/gamut/src';
 
 // Use:
-import { FillButton } from '@codecademy/gamut';
+import { FillButton } from '@skillsoft/gamut';
 ```
 
 ## `gamut/prefer-themed`

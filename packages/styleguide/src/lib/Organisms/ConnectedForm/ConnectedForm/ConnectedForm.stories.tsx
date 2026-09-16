@@ -10,8 +10,8 @@ import {
   SubmitButton,
   Text,
   useConnectedForm,
-} from '@codecademy/gamut';
-import { MiniArrowRightIcon, TerminalIcon } from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut';
+import { MiniArrowRightIcon, TerminalIcon } from '@skillsoft/gamut-icons';
 import type { Meta } from '@storybook/react';
 import { useState } from 'react';
 import { action } from 'storybook/actions';

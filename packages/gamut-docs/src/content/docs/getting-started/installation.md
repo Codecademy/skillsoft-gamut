@@ -8,7 +8,7 @@ sidebar:
 ## Add the packages
 
 ```bash
-yarn add @codecademy/gamut-kit @emotion/react @emotion/styled
+yarn add @skillsoft/gamut-kit @emotion/react @emotion/styled
 ```
 
 Add the rest of the Gamut scope as no-op peer dependencies so your editor's IntelliSense picks up their types:
@@ -16,13 +16,13 @@ Add the rest of the Gamut scope as no-op peer dependencies so your editor's Inte
 ```json title="package.json"
 {
   "peerDependencies": {
-    "@codecademy/gamut": "*",
-    "@codecademy/gamut-icons": "*",
-    "@codecademy/gamut-illustrations": "*",
-    "@codecademy/gamut-patterns": "*",
-    "@codecademy/gamut-styles": "*",
-    "@codecademy/gamut-tests": "*",
-    "@codecademy/variance": "*"
+    "@skillsoft/gamut": "*",
+    "@skillsoft/gamut-icons": "*",
+    "@skillsoft/gamut-illustrations": "*",
+    "@skillsoft/gamut-patterns": "*",
+    "@skillsoft/gamut-styles": "*",
+    "@skillsoft/gamut-tests": "*",
+    "@skillsoft/variance": "*"
   }
 }
 ```
@@ -32,7 +32,7 @@ Add the rest of the Gamut scope as no-op peer dependencies so your editor's Inte
 ```tsx title="index.tsx"
 import React from 'react';
 import { render } from 'react-dom';
-import { GamutProvider } from '@codecademy/gamut-styles';
+import { GamutProvider } from '@skillsoft/gamut-styles';
 
 import { App } from './App';
 
@@ -71,7 +71,7 @@ Gamut components read their allowed props from your Emotion theme shape, so decl
 import '@emotion/react';
 
 // Use whichever theme shape matches your app: `CoreTheme` or `PlatformTheme`.
-import { CoreTheme } from '@codecademy/gamut-styles';
+import { CoreTheme } from '@skillsoft/gamut-styles';
 
 declare module '@emotion/react' {
   export interface Theme extends CoreTheme {}
@@ -83,8 +83,8 @@ See the [Emotion TypeScript docs](https://emotion.sh/docs/typescript#define-a-th
 ## Start building
 
 ```tsx
-import { Background } from '@codecademy/gamut-styles';
-import { Text } from '@codecademy/gamut';
+import { Background } from '@skillsoft/gamut-styles';
+import { Text } from '@skillsoft/gamut';
 
 export const App = () => (
   <Background bg="beige">

@@ -1,6 +1,6 @@
-import { states, variant } from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
 import styled from '@emotion/styled';
+import { states, variant } from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 
 import { ButtonBase } from '../ButtonBase';
 import {

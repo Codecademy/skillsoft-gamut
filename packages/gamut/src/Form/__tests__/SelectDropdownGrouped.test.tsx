@@ -1,4 +1,4 @@
-import { setupRtl } from '@codecademy/gamut-tests';
+import { setupRtl } from '@skillsoft/gamut-tests';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react';
 
@@ -14,8 +14,8 @@ import { SelectDropdown } from '../SelectDropdown';
  *  Ticket to fix: https://skillsoftdev.atlassian.net/browse/GM-1297
  */
 
-jest.mock('@codecademy/gamut-icons', () => ({
-  ...jest.requireActual<{}>('@codecademy/gamut-icons'),
+jest.mock('@skillsoft/gamut-icons', () => ({
+  ...jest.requireActual<{}>('@skillsoft/gamut-icons'),
   MiniChevronDownIcon: () => (
     <svg>
       <title>Mini Chevron Down Icon</title>

@@ -2,7 +2,7 @@ import {
   CalendarIcon,
   DataTransferVerticalIcon,
   EarthIcon,
-} from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut-icons';
 import { fireEvent } from '@testing-library/dom';
 import { act } from 'react';
 

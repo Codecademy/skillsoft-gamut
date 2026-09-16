@@ -238,7 +238,7 @@ For more control over the link itself — for example, inside a component that n
 **Code in text**
 
 - Use backticks for inline code: props, CSS properties, component names, prop values (`onClick`, `flex-direction`, `Box`, `true`).
-- Use backticks for file and package names too: `Button.tsx`, `package.json`, `@codecademy/gamut`.
+- Use backticks for file and package names too: `Button.tsx`, `package.json`, `@skillsoft/gamut`.
 - Refer to a component as "the `Box` component" on first mention, then "the component" afterward.
 - Keep a component name singular even when referring to several instances — "these `Box` components," not "these `Boxes`."
 
@@ -247,7 +247,7 @@ For more control over the link itself — for example, inside a component that n
 Include the necessary imports, use realistic and working examples, add comments for complex logic, keep each example focused on one concept, and use TypeScript types:
 
 ```tsx
-import { StrokeButton } from '@codecademy/gamut';
+import { StrokeButton } from '@skillsoft/gamut';
 
 export const SimpleButtonExample: React.FC = () => (
   <StrokeButton variant="primary">Click me</StrokeButton>
@@ -259,7 +259,7 @@ export const SimpleButtonExample: React.FC = () => (
 Use shell (`sh`) syntax highlighting, skip the prompt symbol (`$`), and put one command per block unless several are directly related:
 
 ```bash
-yarn add @codecademy/gamut-kit
+yarn add @skillsoft/gamut-kit
 ```
 
 **File paths**

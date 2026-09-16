@@ -1,5 +1,5 @@
-import { breakpoints, css, timingValues } from '@codecademy/gamut-styles';
 import styled from '@emotion/styled';
+import { breakpoints, css, timingValues } from '@skillsoft/gamut-styles';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { useMedia } from 'react-use';

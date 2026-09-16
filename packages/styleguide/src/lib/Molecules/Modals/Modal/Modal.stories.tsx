@@ -6,8 +6,8 @@ import {
   Modal,
   StrokeButton,
   Text,
-} from '@codecademy/gamut';
-import { CodeCelebration } from '@codecademy/gamut-illustrations';
+} from '@skillsoft/gamut';
+import { CodeCelebration } from '@skillsoft/gamut-illustrations';
 import type { Meta } from '@storybook/react';
 import React, { ComponentProps, useEffect, useRef, useState } from 'react';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';

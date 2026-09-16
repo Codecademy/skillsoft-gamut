@@ -16,7 +16,7 @@ Three ways to build a form in Gamut, from most to least opinionated:
 Pass `fields` — a flat array of plain objects, each with a `type` discriminator — and `submit`:
 
 ```tsx
-import { GridForm } from '@codecademy/gamut';
+import { GridForm } from '@skillsoft/gamut';
 
 export const ContactForm = () => (
   <GridForm
@@ -99,7 +99,7 @@ See [GridForm: Patterns](/components/inputs-and-forms/gridform/patterns/#combini
 Use [ConnectedForm](/components/inputs-and-forms/connectedform/) instead — the same react-hook-form-backed validation and required/disabled state, without GridForm's grid structure. The `useConnectedForm` hook is the entry point:
 
 ```tsx
-import { ConnectedInput, useConnectedForm } from '@codecademy/gamut';
+import { ConnectedInput, useConnectedForm } from '@skillsoft/gamut';
 
 export const CustomLayoutForm = () => {
   const { ConnectedForm, ConnectedFormGroup, connectedFormProps } =

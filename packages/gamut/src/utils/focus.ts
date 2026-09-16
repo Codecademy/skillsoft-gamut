@@ -1,4 +1,4 @@
-import { theme } from '@codecademy/gamut-styles';
+import { theme } from '@skillsoft/gamut-styles';
 
 export const focusVisibleStyle = (outlineOffset = '4px') => ({
   '&:focus-visible': {

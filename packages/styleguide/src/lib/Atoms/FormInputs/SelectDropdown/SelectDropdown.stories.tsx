@@ -5,8 +5,8 @@ import {
   FormGroup,
   SelectDropdown,
   Text,
-} from '@codecademy/gamut';
-import { RadarIcon, ResponsiveIcon, RocketIcon } from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut';
+import { RadarIcon, ResponsiveIcon, RocketIcon } from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 import type { InputActionMeta } from 'react-select';

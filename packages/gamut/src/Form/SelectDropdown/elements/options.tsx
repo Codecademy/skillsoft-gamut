@@ -1,4 +1,4 @@
-import { CheckIcon } from '@codecademy/gamut-icons';
+import { CheckIcon } from '@skillsoft/gamut-icons';
 import {
   components as SelectDropdownElements,
   SingleValueProps,

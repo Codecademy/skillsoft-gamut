@@ -11,7 +11,7 @@ From your app repo root, install the plugin with the theme matching your product
 gamut plugin install cursor --theme core
 ```
 
-Use `percipio`, `lxstudio`, `admin`, or `platform` when that matches your product. Refresh after upgrading `@codecademy/gamut`:
+Use `percipio`, `lxstudio`, `admin`, or `platform` when that matches your product. Refresh after upgrading `@skillsoft/gamut`:
 
 ```sh
 gamut plugin update cursor --theme core --force

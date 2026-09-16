@@ -1,5 +1,5 @@
-import type { IllustrationProps } from '@codecademy/gamut-illustrations';
-import * as illustrations from '@codecademy/gamut-illustrations';
+import type { IllustrationProps } from '@skillsoft/gamut-illustrations';
+import * as illustrations from '@skillsoft/gamut-illustrations';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { ImageGallery } from '~styleguide/blocks';

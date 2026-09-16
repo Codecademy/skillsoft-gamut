@@ -47,7 +47,7 @@ const styles = styled.div`
 `;
 
 // or imported directly
-import { theme } from '@codecademy/gamut-styles';
+import { theme } from '@skillsoft/gamut-styles';
 const myStyles = css`
   font-size: ${theme.fontSize[14]};
 `;

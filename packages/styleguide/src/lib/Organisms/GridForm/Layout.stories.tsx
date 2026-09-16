@@ -1,4 +1,4 @@
-import { GridForm, Markdown } from '@codecademy/gamut';
+import { GridForm, Markdown } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from 'storybook/actions';
 

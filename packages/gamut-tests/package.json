@@ -1,10 +1,10 @@
 {
-  "name": "@codecademy/gamut-tests",
+  "name": "@skillsoft/gamut-tests",
   "description": "Shared component test setup for Gamut applications",
-  "version": "7.1.0",
-  "author": "Codecademy Engineering <dev@codecademy.com>",
+  "version": "0.0.1",
+  "author": "Skillsoft Engineering <dev@codecademy.com>",
   "dependencies": {
-    "@codecademy/gamut-styles": "21.2.0",
+    "@skillsoft/gamut-styles": "0.0.1",
     "component-test-setup": "*",
     "lodash": "^4.17.23"
   },
@@ -27,9 +27,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": "Codecademy/gamut.git",
+  "repository": "Codecademy/skillsoft-gamut.git",
   "scripts": {
-    "build": "nx build @codecademy/gamut-tests",
+    "build": "nx build gamut-tests",
     "verify": "tsc --noEmit"
   },
   "types": "./dist/index.d.ts"

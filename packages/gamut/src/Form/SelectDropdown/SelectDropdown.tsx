@@ -1,6 +1,6 @@
-import { screenReaderOnly } from '@codecademy/gamut-styles';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
+import { screenReaderOnly } from '@skillsoft/gamut-styles';
 import { useId, useMemo, useRef, useState } from 'react';
 import * as React from 'react';
 import { StylesConfig } from 'react-select';

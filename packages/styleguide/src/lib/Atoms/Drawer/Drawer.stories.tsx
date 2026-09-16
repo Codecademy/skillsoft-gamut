@@ -1,4 +1,4 @@
-import { Drawer, FlexBox, StrokeButton } from '@codecademy/gamut';
+import { Drawer, FlexBox, StrokeButton } from '@skillsoft/gamut';
 import type { Meta } from '@storybook/react';
 import { ComponentProps, useEffect, useState } from 'react';
 

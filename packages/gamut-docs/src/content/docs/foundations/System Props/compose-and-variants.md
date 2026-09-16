@@ -8,8 +8,8 @@ description: Combining system props into one function, and building variant- or 
 Combine several system prop functions into one with `variance.compose` — it merges them left to right (the last argument wins on conflicts) into a single function.
 
 ```tsx
-import { system } from '@codecademy/gamut-styles';
-import { variance } from '@codecademy/variance';
+import { system } from '@skillsoft/gamut-styles';
+import { variance } from '@skillsoft/variance';
 import styled from '@emotion/styled';
 
 const Grid = styled.div(variance.compose(system.layout, system.grid));
@@ -27,7 +27,7 @@ Composing has two real advantages over passing multiple functions to `styled` di
 `variant` builds on `css` — a lower-level, theme-aware function that turns a system-prop object into styles — to let a component switch between mutually exclusive styles via a single prop:
 
 ```tsx
-import { variant } from '@codecademy/gamut-styles';
+import { variant } from '@skillsoft/gamut-styles';
 
 const Anchor = styled.a(
   variant({
@@ -45,7 +45,7 @@ const Anchor = styled.a(
 `states` is `variant`'s counterpart for non-mutually-exclusive styles — each key is its own boolean prop, and any combination can be active together:
 
 ```tsx
-import { states } from '@codecademy/gamut-styles';
+import { states } from '@skillsoft/gamut-styles';
 
 const FlexBox = styled.div(
   states({

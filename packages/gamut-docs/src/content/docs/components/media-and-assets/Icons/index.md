@@ -11,7 +11,7 @@ sidebar:
 Both sets share one import path and one accessibility contract:
 
 ```tsx
-import { AlertIcon, MiniStarIcon } from '@codecademy/gamut-icons';
+import { AlertIcon, MiniStarIcon } from '@skillsoft/gamut-icons';
 ```
 
 Every icon is either `aria-hidden` (the default, since an icon is usually paired with visible text that already conveys its meaning) or explicitly `aria-hidden={false}` with a required `aria-label` — Gamut's types enforce one or the other, never neither.

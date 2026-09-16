@@ -5,7 +5,7 @@ sidebar:
   label: Overview
 ---
 
-Gamut ships a set of style functions, out of the box, through `@codecademy/gamut-styles`, standardized across every component. These props are strongly typed, and can be added to any styled component.
+Gamut ships a set of style functions, out of the box, through `@skillsoft/gamut-styles`, standardized across every component. These props are strongly typed, and can be added to any styled component.
 
 Every system prop:
 
@@ -14,8 +14,8 @@ Every system prop:
 - May transform the value you pass it into a standardized one — for example, `width={0.5}` becomes `width: 50%`.
 
 ```tsx
-import { variance } from '@codecademy/variance';
-import { system } from '@codecademy/gamut-styles';
+import { variance } from '@skillsoft/variance';
+import { system } from '@skillsoft/gamut-styles';
 
 const ExampleContainer = styled.div(
   variance.compose(system.layout, system.positioning)

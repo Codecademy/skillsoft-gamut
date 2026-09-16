@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { css } from '@codecademy/gamut-styles';
+import { css } from '@skillsoft/gamut-styles';
 
 export const KeyboardKey = styled.kbd(
   css({

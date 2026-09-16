@@ -1,7 +1,7 @@
 import {
   CSSObject,
   percentageOrAbsolute as percent,
-} from '@codecademy/variance';
+} from '@skillsoft/variance';
 
 import { PopoverContainerAlignment, PopoverPositionConfig } from './types';
 

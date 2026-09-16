@@ -1,9 +1,9 @@
-import { Box } from '@codecademy/gamut';
+import { Box } from '@skillsoft/gamut';
 import {
   Background,
   lxStudioColors,
   lxStudioTheme,
-} from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-styles';
 
 import { Code, ColorScale, TokenTable } from '~styleguide/blocks';
 

@@ -10,7 +10,7 @@ Gamut components are built on semantic color aliases (`text`, `background`, `pri
 Wrap a subtree in `<ColorMode>` to force a specific mode, or let it follow the reader's OS-level preference:
 
 ```tsx
-import { ColorMode } from '@codecademy/gamut-styles';
+import { ColorMode } from '@skillsoft/gamut-styles';
 
 const Page = ({ children }) => <ColorMode mode="light">{children}</ColorMode>;
 ```
@@ -25,7 +25,7 @@ const Page = ({ children }) => <ColorMode mode="system">{children}</ColorMode>;
 Use `<Background>` instead of picking a color mode by hand for a section's background — it checks the contrast between the background color you give it and the current mode's text color, and switches to an accessible mode automatically if the combination wouldn't pass:
 
 ```tsx
-import { Background } from '@codecademy/gamut-styles';
+import { Background } from '@skillsoft/gamut-styles';
 
 const Page = ({ children }) => <Background bg="hyper">{children}</Background>;
 ```

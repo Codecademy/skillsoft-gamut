@@ -1,4 +1,4 @@
-import { FeatureShimmer, Text } from '@codecademy/gamut';
+import { FeatureShimmer, Text } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof FeatureShimmer> = {

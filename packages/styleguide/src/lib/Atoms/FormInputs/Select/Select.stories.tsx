@@ -1,4 +1,4 @@
-import { FormGroup, Select } from '@codecademy/gamut';
+import { FormGroup, Select } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const fruitOptions = ['Apple', 'Banana', 'Cherry', 'Dragonfruit', 'Eggplant'];

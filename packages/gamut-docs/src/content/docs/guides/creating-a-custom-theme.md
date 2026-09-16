@@ -9,10 +9,10 @@ Most apps should [choose an existing theme](/guides/theming-your-app/) rather th
 
 ## The `createTheme` builder
 
-Themes are built with `createTheme` from `@codecademy/variance`, giving you type-safe autocomplete, automatic CSS variable generation, built-in light/dark color mode support, and full compatibility with existing Gamut components:
+Themes are built with `createTheme` from `@skillsoft/variance`, giving you type-safe autocomplete, automatic CSS variable generation, built-in light/dark color mode support, and full compatibility with existing Gamut components:
 
 ```tsx
-import { createTheme } from '@codecademy/variance';
+import { createTheme } from '@skillsoft/variance';
 
 const myTheme = createTheme({
   ...baseTheme,
@@ -30,8 +30,8 @@ const myTheme = createTheme({
 Extend `coreTheme` unless you're certain you have a full replacement for every token — see [Themes](/foundations/themes/) for what Core already provides:
 
 ```tsx
-import { createTheme } from '@codecademy/variance';
-import { coreTheme } from '@codecademy/gamut-styles';
+import { createTheme } from '@skillsoft/variance';
+import { coreTheme } from '@skillsoft/gamut-styles';
 
 const myCustomTheme = createTheme({
   ...coreTheme,

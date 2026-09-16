@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextArea } from '@codecademy/gamut';
+import { TextArea } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

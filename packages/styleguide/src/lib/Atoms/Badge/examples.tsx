@@ -1,7 +1,7 @@
-import { Badge, BadgeProps, Box } from '@codecademy/gamut';
-import { MiniStarIcon } from '@codecademy/gamut-icons';
-import { css } from '@codecademy/gamut-styles';
 import styled from '@emotion/styled';
+import { Badge, BadgeProps, Box } from '@skillsoft/gamut';
+import { MiniStarIcon } from '@skillsoft/gamut-icons';
+import { css } from '@skillsoft/gamut-styles';
 
 export const BadgeTemplate: React.FC<BadgeProps> = (args) => (
   <Badge {...args}>{args.children ? args.children : args.variant}</Badge>

@@ -1,6 +1,6 @@
-import { theme } from '@codecademy/gamut-styles';
-import { MockGamutProvider, setupRtl } from '@codecademy/gamut-tests';
 import { matchers } from '@emotion/jest';
+import { theme } from '@skillsoft/gamut-styles';
+import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
 import { render } from '@testing-library/react';
 
 import { List, ListProps } from '../List';

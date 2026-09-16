@@ -181,15 +181,15 @@ You can set the `shadow` prop to `true` to add a shadow to the DataTable when it
 
 ## Background colors
 
-DataTable's background is linked to the `current-background` token. You can change the color scheme of a DataTable by wrapping it in a `<Background />` component from `@codecademy/gamut-styles`.
+DataTable's background is linked to the `current-background` token. You can change the color scheme of a DataTable by wrapping it in a `<Background />` component from `@skillsoft/gamut-styles`.
 
 When you wrap a DataTable in `Background`, the component will also automatically adjust its colors to ensure proper contrast and accessibility. For example, using a dark background like `bg="black"` will switch the DataTable to dark mode, making text and UI elements light-colored for better contrast. You can find more information about the `Background` component in the <LinkTo id="Foundations/ColorMode">ColorMode documentation</LinkTo>.
 
 ### Usage
 
 ```tsx
-import { Background } from '@codecademy/gamut-styles';
-import { DataTable } from '@codecademy/gamut';
+import { Background } from '@skillsoft/gamut-styles';
+import { DataTable } from '@skillsoft/gamut';
 
 const MyDarkDataTable = () => {
   return (
@@ -226,8 +226,8 @@ import {
   Modal,
   PopoverContainer,
   Text,
-} from '@codecademy/gamut';
-import { MiniKebabMenuIcon } from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut';
+import { MiniKebabMenuIcon } from '@skillsoft/gamut-icons';
 import { useRef, useState } from 'react';
 
 const RowMenu: React.FC<{ rowName: string }> = ({ rowName }) => {

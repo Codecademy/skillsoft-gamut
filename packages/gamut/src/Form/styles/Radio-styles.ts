@@ -4,7 +4,7 @@ import {
   timing,
   transitionConcat,
   variant,
-} from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-styles';
 
 import {
   formBaseComponentStyles,

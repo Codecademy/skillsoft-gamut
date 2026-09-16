@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge } from '@codecademy/gamut';
+import { Badge } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

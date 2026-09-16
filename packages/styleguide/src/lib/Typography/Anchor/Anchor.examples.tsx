@@ -6,13 +6,13 @@ import {
   FlexBox,
   LayoutGrid,
   Text,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import {
   MiniArrowRightIcon,
   MiniInfoOutlineIcon,
   MiniStarIcon,
-} from '@codecademy/gamut-icons';
-import { Background } from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-icons';
+import { Background } from '@skillsoft/gamut-styles';
 import startCase from 'lodash/startCase';
 
 const variants = [

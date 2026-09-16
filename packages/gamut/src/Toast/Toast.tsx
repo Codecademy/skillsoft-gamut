@@ -1,7 +1,7 @@
-import { MiniDeleteIcon } from '@codecademy/gamut-icons';
-import { system } from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
 import styled from '@emotion/styled';
+import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
+import { system } from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 import { ReactNode, useMemo } from 'react';
 import * as React from 'react';
 

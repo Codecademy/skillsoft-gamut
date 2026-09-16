@@ -1,5 +1,5 @@
-import { MiniArrowLeftIcon, MiniArrowRightIcon } from '@codecademy/gamut-icons';
-import { useElementDir } from '@codecademy/gamut-styles';
+import { MiniArrowLeftIcon, MiniArrowRightIcon } from '@skillsoft/gamut-icons';
+import { useElementDir } from '@skillsoft/gamut-styles';
 import {
   useCallback,
   useEffect,

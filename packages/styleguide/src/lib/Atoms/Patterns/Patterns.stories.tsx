@@ -1,5 +1,5 @@
-import type { PatternProps } from '@codecademy/gamut-patterns';
-import * as patterns from '@codecademy/gamut-patterns';
+import type { PatternProps } from '@skillsoft/gamut-patterns';
+import * as patterns from '@skillsoft/gamut-patterns';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { ImageGallery } from '~styleguide/blocks';

@@ -1,4 +1,4 @@
-import { Box } from '@codecademy/gamut';
+import { Box } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
 // This file only exists because ConnectedFormInputs would break without it

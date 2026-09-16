@@ -1,5 +1,5 @@
 import React from 'react';
-import { Popover } from '@codecademy/gamut';
+import { Popover } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

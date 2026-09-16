@@ -1,4 +1,4 @@
-import { Box, BoxProps } from '@codecademy/gamut';
+import { Box, BoxProps } from '@skillsoft/gamut';
 import * as React from 'react';
 import styled from '@emotion/styled';
 

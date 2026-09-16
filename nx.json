@@ -74,8 +74,29 @@
   },
   "analytics": false,
   "release": {
-    "projects": ["packages/*", "!packages/styleguide", "!packages/macros"],
-    "projectsRelationship": "independent",
+    "groups": {
+      "core": {
+        "projects": [
+          "gamut",
+          "gamut-styles",
+          "variance",
+          "gamut-icons",
+          "gamut-patterns"
+        ],
+        "projectsRelationship": "fixed"
+      },
+      "assets": {
+        "projects": ["gamut-illustrations"],
+        "projectsRelationship": "independent"
+      },
+      "tooling": {
+        "projects": ["gamut-tests", "eslint-plugin-gamut", "gamut-agent-tools"],
+        "projectsRelationship": "independent"
+      }
+    },
+    "version": {
+      "updateDependents": "auto"
+    },
     "versionPlans": true,
     "changelog": {
       "workspaceChangelog": false,

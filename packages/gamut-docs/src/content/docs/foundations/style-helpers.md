@@ -10,7 +10,7 @@ description: Gamut's helper functions for style utilities — unit conversion, s
 Gamut prefers `rem` units for most sizing, but a specific rem value isn't always expressive — `1.875rem` for what's really "30px." Use `pxRem` to convert a pixel value (or plain number) to its `rem` equivalent:
 
 ```tsx
-import { pxRem } from '@codecademy/gamut-styles';
+import { pxRem } from '@skillsoft/gamut-styles';
 
 pxRem(16); // => '1rem'
 pxRem('30px'); // => '1.875rem'
@@ -23,7 +23,7 @@ pxRem('30px'); // => '1.875rem'
 Five depths of box shadow are available, each returning a CSS shadow value:
 
 ```tsx
-import { boxShadow } from '@codecademy/gamut-styles';
+import { boxShadow } from '@skillsoft/gamut-styles';
 
 const Example = `
   ${boxShadow(3)}
@@ -35,7 +35,7 @@ const Example = `
 Enable font smoothing to make typography more readable:
 
 ```tsx
-import { fontSmoothing } from '@codecademy/gamut-styles';
+import { fontSmoothing } from '@skillsoft/gamut-styles';
 
 // As a template literal partial
 const Smooth = `
@@ -53,7 +53,7 @@ const Smooth = `
 Prevent a reader from selecting an image or block of text:
 
 ```tsx
-import { noSelect } from '@codecademy/gamut-styles';
+import { noSelect } from '@skillsoft/gamut-styles';
 
 const Unselectable = styled.div`
   ${noSelect}
@@ -68,7 +68,7 @@ Hide content visually while keeping it available to screen readers — `screenRe
 import {
   screenReaderOnly,
   screenReaderOnlyFocusable,
-} from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-styles';
 
 const HiddenLabel = `
   ${screenReaderOnly}

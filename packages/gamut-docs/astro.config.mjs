@@ -15,7 +15,7 @@ export default defineConfig({
   },
   vite: {
     ssr: {
-      // CommonJS modules imported with named imports inside @codecademy/gamut.
+      // CommonJS modules imported with named imports inside @skillsoft/gamut.
       // Vite must bundle (rather than externalize) them during dev SSR to
       // generate the named-export interop; without this the dev server fails
       // with "[vite] Named export '…' not found".

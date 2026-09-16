@@ -1,4 +1,4 @@
-import { states, variant } from '@codecademy/gamut-styles';
+import { states, variant } from '@skillsoft/gamut-styles';
 
 import { toolTipBodyCss } from '../../Tip/shared/styles/styles';
 

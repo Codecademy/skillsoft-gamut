@@ -1,5 +1,5 @@
-import { StyleProps } from '@codecademy/variance';
 import styled from '@emotion/styled';
+import { StyleProps } from '@skillsoft/variance';
 import * as React from 'react';
 import {
   TabList as ReactAriaTabList,

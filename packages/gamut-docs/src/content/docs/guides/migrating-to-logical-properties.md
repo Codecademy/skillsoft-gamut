@@ -48,7 +48,7 @@ Toggle Storybook's **LogicalProps** toolbar button to preview logical CSS output
 If a custom component needs conditional styles or layout logic that has to mirror Gamut's physical-vs-logical output, read the same flag Gamut's own styled components use:
 
 ```ts
-import { useLogicalProperties } from '@codecademy/gamut-styles';
+import { useLogicalProperties } from '@skillsoft/gamut-styles';
 ```
 
 This returns `theme.useLogicalProperties`, which `GamutProvider` merges into the theme object. If you mount a plain `ThemeProvider` without `GamutProvider`, the hook may return `undefined` unless you set that field on your theme yourself.
@@ -58,7 +58,7 @@ This returns `theme.useLogicalProperties`, which `GamutProvider` merges into the
 `useElementDir` resolves the effective text direction (`'rtl'` or `'ltr'`) for a DOM subtree:
 
 ```ts
-import { useElementDir } from '@codecademy/gamut-styles';
+import { useElementDir } from '@skillsoft/gamut-styles';
 ```
 
 Pass a ref to the element whose direction matters; if you omit it, the hook falls back to `document.documentElement`. It resolves direction from the element's `dir` attribute, then its computed `direction`, then the root element's `dir` — the last fallback helps in test environments where computed style can come back empty. The returned value updates automatically when `dir` changes anywhere under the document root. During SSR, or when `document` isn't available, it returns `'ltr'`.

@@ -1,5 +1,5 @@
-import { Box, FlexBox, Tag } from '@codecademy/gamut';
-import * as icons from '@codecademy/gamut-icons';
+import { Box, FlexBox, Tag } from '@skillsoft/gamut';
+import * as icons from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Tag> = {

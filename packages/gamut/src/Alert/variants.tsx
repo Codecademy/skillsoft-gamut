@@ -4,8 +4,8 @@ import {
   MiniRemoveCircleIcon,
   MiniStarIcon,
   MiniWarningTriangleIcon,
-} from '@codecademy/gamut-icons';
-import { breakpoints, variant } from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-icons';
+import { breakpoints, variant } from '@skillsoft/gamut-styles';
 
 export const alertVariants = {
   general: {
