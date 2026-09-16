@@ -31,5 +31,6 @@
   "scripts": {
     "build": "nx build variance"
   },
+  "sideEffects": false,
   "types": "dist/index.d.ts"
 }

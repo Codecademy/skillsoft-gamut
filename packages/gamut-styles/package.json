@@ -35,5 +35,6 @@
   "repository": "git@github.com:Codecademy/skillsoft-gamut.git",
   "scripts": {
     "build": "nx build gamut-styles"
-  }
+  },
+  "sideEffects": false
 }
