@@ -1,7 +1,7 @@
 import { Markdown, Text, TextProps } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import exampleMarkdown from './example.md';
+import exampleMarkdown from './example.md?raw';
 
 const meta: Meta<typeof Markdown> = {
   component: Markdown,
