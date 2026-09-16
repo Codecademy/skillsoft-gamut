@@ -12,7 +12,7 @@
         "cwd": "packages/gamut-illustrations",
         "commands": [
           "rm -rf ./dist",
-          "babel ./src --out-dir ./dist --extensions \".ts,.tsx\"",
+          "tsdown",
           "tsc --emitDeclarationOnly"
         ],
         "parallel": false

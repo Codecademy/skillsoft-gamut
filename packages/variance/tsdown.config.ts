@@ -17,6 +17,11 @@ export default defineConfig({
   // own `dependencies` + `peerDependencies` (csstype, lodash, @emotion/react,
   // typescript) and externalizes them automatically. That matches today's Babel
   // build exactly — it never bundled third-party deps either.
+  // Mirror src/ file-by-file instead of concatenating into one dist/index.mjs.
+  // A single flat bundle defeats downstream tree-shaking entirely — verified on
+  // `gamut`: a single-component import pulled in the whole bundle plus every
+  // dependency any component uses (~15x the size of an unbundled equivalent).
+  unbundle: true,
   platform: 'neutral',
   sourcemap: true,
   treeshake: true,

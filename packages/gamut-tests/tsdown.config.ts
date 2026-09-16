@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsdown';
 
 export default defineConfig({
-  entry: ['src/index.ts'],
+  entry: ['src/index.tsx'],
   format: ['esm', 'cjs'],
   // Hybrid: declarations come from `tsc --emitDeclarationOnly`, not from here.
   // See packages/variance/tsdown.config.ts for the full rationale.
@@ -9,10 +9,10 @@ export default defineConfig({
   outDir: 'dist',
   // dist/ is shared with tsc's declaration output — never clean from here.
   clean: false,
-  // No explicit external needed — this package's own dependencies +
-  // peerDependencies (@emotion/*, @skillsoft/variance, lodash, react, stylis,
-  // framer-motion, polished, get-nonce) are auto-externalized by tsdown.
-  // Mirror src/ file-by-file — see packages/variance/tsdown.config.ts for why.
+  // No explicit external needed — dependencies + peerDependencies cover
+  // everything this package imports. Consumed from jest setup files via
+  // `require()`, so the CJS half of the dual output matters most here.
+  // Mirror src/ file-by-file for consistency with every other package here.
   unbundle: true,
   platform: 'neutral',
   sourcemap: true,
