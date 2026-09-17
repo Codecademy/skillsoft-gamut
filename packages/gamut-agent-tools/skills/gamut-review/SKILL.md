@@ -9,7 +9,7 @@ Audit existing code at the path the user provides (default: current working dire
 
 When `DESIGN.md` is present at the audit root, use it as the authoritative reference for product design intent, token names, and component patterns. It is copied from `DESIGN.Codecademy.md`, `DESIGN.Percipio.md`, or `DESIGN.LXStudio.md` in `@skillsoft/gamut` agent-tools (via `gamut plugin install --theme <name>`). When a finding maps to a skill, note it in the report so the developer knows where to get remediation guidance.
 
-Run Check 0 first, then Checks 1–6, then print a single consolidated report using the format at the end of this file.
+Run Check 0 first, then Checks 1–7, then print a single consolidated report using the format at the end of this file.
 
 Remediation skills: [`gamut-theming`](../gamut-theming/SKILL.md) · [`gamut-color-mode`](../gamut-color-mode/SKILL.md) · [`gamut-system-props`](../gamut-system-props/SKILL.md) · [`gamut-style-utilities`](../gamut-style-utilities/SKILL.md) · [`gamut-typography`](../gamut-typography/SKILL.md) · [`gamut-testing`](../gamut-testing/SKILL.md) · [`gamut-z-index`](../gamut-z-index/SKILL.md) · [`gamut-component-first`](../gamut-component-first/SKILL.md)
 
@@ -429,7 +429,7 @@ Skill reference for remediation: [`gamut-testing`](../gamut-testing/SKILL.md)
 
 ## Check 6 — Raw z-index values
 
-Gamut coordinates stacking order through one semantic scale, `zIndexes`, from `@codecademy/gamut-styles`: `underlay` (-100), `base` (0), `foreground` (100), `floating` (200), `appBar` (300), `flyout` (400), `modal` (500), `popover` (600), `topmost` (700). A raw numeric z-index bypasses this scale and is what the `gamut/no-raw-z-index` eslint rule (`error` level) exists to catch — this check finds the same violations by grep so they show up even in a repo that hasn't wired the rule into its eslint config yet.
+Gamut coordinates stacking order through one semantic scale, `zIndexes`, from `@skillsoft/gamut-styles`: `underlay` (-100), `base` (0), `foreground` (100), `floating` (200), `appBar` (300), `flyout` (400), `modal` (500), `popover` (600), `topmost` (700). A raw numeric z-index bypasses this scale and is what the `gamut/no-raw-z-index` eslint rule (`error` level) exists to catch — this check finds the same violations by grep so they show up even in a repo that hasn't wired the rule into its eslint config yet.
 
 Discovery: Grep source files (`.ts`, `.tsx`, `.js`, `.jsx`) for a raw numeric literal (optionally negative) in a `zIndex` JSX prop or a `zIndex`/`'z-index'` style-object key. Skip `node_modules`, `dist`, `.next`, `build`, `.turbo`.
 
@@ -460,7 +460,7 @@ Severity: ✗ error for every raw literal match (mirrors the eslint rule's `erro
 
 Reporting: `file:line  zIndex={<n>}  →  suggest: zIndexes.<token>` (JSX) or `file:line  zIndex: <n>  →  suggest: zIndexes.<token>` (style object). For unmapped "other" values: `file:line  zIndex={<n>}  →  ⚠ needs manual review — no obvious token`.
 
-Also check whether the project depends on `@codecademy/gamut-styles` at a version that exports `zIndexes` (see Check 1) — if not, note that upgrading is required before remediation.
+Also check whether the project depends on `@skillsoft/gamut-styles` at a version that exports `zIndexes` (see Check 1) — if not, note that upgrading is required before remediation.
 
 Skill reference: [`gamut-z-index`](../gamut-z-index/SKILL.md) — full scale reference, `ZIndexType`, and `gamut/no-raw-z-index` rule details.
 
@@ -502,7 +502,7 @@ Cross-reference with Check 3b's SCSS import list: a stylesheet named `Modal.scss
 
 **Reporting:** for each match, name the likely Gamut component from the [decision table](../gamut-component-first/SKILL.md#decision-table-common-needs) and note this needs manual confirmation — a real product-specific one-off will look identical to a grep tool.
 
-**Before finalizing the report**, re-scan every line under this section specifically for a `✗` icon. If you find one, that's a mistake — change it to `⚠`. **When computing the final `<N> error(s), <N> warning(s)` tally, count every Check 6 match toward the warning total, never the error total, even if a `✗` slipped through above** — this is the one place a stray icon can't corrupt the report's headline numbers.
+**Before finalizing the report**, re-scan every line under this section specifically for a `✗` icon. If you find one, that's a mistake — change it to `⚠`. **When computing the final `<N> error(s), <N> warning(s)` tally, count every Check 7 match toward the warning total, never the error total, even if a `✗` slipped through above** — this is the one place a stray icon can't corrupt the report's headline numbers.
 
 Skill reference for remediation: [`gamut-component-first`](../gamut-component-first/SKILL.md)
 

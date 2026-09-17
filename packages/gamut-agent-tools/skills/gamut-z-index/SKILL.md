@@ -5,7 +5,7 @@ description: Use this skill when something needs to float, stick, or portal abov
 
 # Gamut z-index
 
-Gamut coordinates stacking order through one semantic scale, `zIndexes`, exported from `@codecademy/gamut-styles`. Every `zIndex` in Gamut should reference a token from this scale rather than a magic number — a repo-wide eslint rule, `gamut/no-raw-z-index`, enforces it.
+Gamut coordinates stacking order through one semantic scale, `zIndexes`, exported from `@skillsoft/gamut-styles`. Every `zIndex` in Gamut should reference a token from this scale rather than a magic number — a repo-wide eslint rule, `gamut/no-raw-z-index`, enforces it.
 
 Source: `packages/gamut-styles/src/variables/zIndexes.ts` (scale + `ZIndexType`) · `packages/gamut-styles/src/variance/config.ts` (`zIndex` system prop config) · `packages/eslint-plugin-gamut/src/no-raw-z-index.ts` (lint rule).
 
@@ -57,7 +57,7 @@ Available on `Box`/`FlexBox`/`GridBox` and any styled component composing `syste
 Token names resolve the same way inside these — including in nested pseudo-selector objects — because they share the same scale-aware property config as the `zIndex` prop:
 
 ```tsx
-import { css, variant } from '@codecademy/gamut-styles';
+import { css, variant } from '@skillsoft/gamut-styles';
 
 const styles = css({
   position: 'absolute',
@@ -79,7 +79,7 @@ const cardVariants = variant({
 Use `ZIndexType` (a token name, a raw number, or a CSS global like `'inherit'`) instead of `number` so consumers can pass a token:
 
 ```tsx
-import { ZIndexType } from '@codecademy/gamut-styles';
+import { ZIndexType } from '@skillsoft/gamut-styles';
 
 export interface OverlayProps {
   zIndex?: ZIndexType;
