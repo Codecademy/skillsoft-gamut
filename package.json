@@ -14,7 +14,7 @@
     "react-helmet-async": "^2.0.5"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.18.5",
+    "@arethetypeswrong/cli": "0.18.5",
     "@babel/cli": "7.24.7",
     "@babel/core": "7.24.7",
     "@babel/preset-env": "^7.24.7",
@@ -82,7 +82,7 @@
     "onchange": "^7.0.2",
     "playwright": "^1.49.1",
     "prettier": "^2.8.7",
-    "publint": "^0.3.24",
+    "publint": "0.3.24",
     "react-test-renderer": "^19.0.0",
     "start-server-and-test": "^2.1.5",
     "storybook": "^10.3.1",

@@ -29,7 +29,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arethetypeswrong/cli@npm:^0.18.5":
+"@arethetypeswrong/cli@npm:0.18.5":
   version: 0.18.5
   resolution: "@arethetypeswrong/cli@npm:0.18.5"
   dependencies:
@@ -19550,7 +19550,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publint@npm:^0.3.24":
+"publint@npm:0.3.24":
   version: 0.3.24
   resolution: "publint@npm:0.3.24"
   dependencies:
@@ -21538,7 +21538,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "skillsoft-gamut@workspace:."
   dependencies:
-    "@arethetypeswrong/cli": "npm:^0.18.5"
+    "@arethetypeswrong/cli": "npm:0.18.5"
     "@babel/cli": "npm:7.24.7"
     "@babel/core": "npm:7.24.7"
     "@babel/preset-env": "npm:^7.24.7"
@@ -21611,7 +21611,7 @@ __metadata:
     onchange: "npm:^7.0.2"
     playwright: "npm:^1.49.1"
     prettier: "npm:^2.8.7"
-    publint: "npm:^0.3.24"
+    publint: "npm:0.3.24"
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
     react-helmet-async: "npm:^2.0.5"
