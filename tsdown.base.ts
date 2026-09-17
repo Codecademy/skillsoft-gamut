@@ -1,10 +1,7 @@
 import type { UserConfig } from 'tsdown';
 
 /**
- * Shared across every package's tsdown.config.ts. Mirrors babel.defaults.js's role for
- * the old Babel build: one place for the options every package needs identically, with
- * each package's own config only setting what's actually different for it (entry, and
- * for gamut, deps.neverBundle for its one relative .css import).
+ * Shared across every package's tsdown.config.ts.
  */
 export const baseConfig: UserConfig = {
   format: ['esm', 'cjs'],
