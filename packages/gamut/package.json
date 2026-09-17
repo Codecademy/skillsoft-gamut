@@ -67,7 +67,6 @@
   "scripts": {
     "build": "nx build gamut",
     "build:watch": "tsdown --watch",
-    "compile": "babel ./src --out-dir ./dist --extensions \".ts,.tsx\"",
     "verify": "tsc --noEmit && tsc --project tsconfig.bin.json"
   },
   "sideEffects": [
