@@ -60,21 +60,21 @@ const config: StorybookConfig = {
         ...config.resolve?.alias,
         '~styleguide/blocks': resolve(__dirname, './components/'),
         '~styleguide/argTypes': resolve(__dirname, './argTypes/'),
-        '@codecademy/gamut-styles$': resolve(
+        '@skillsoft/gamut-styles$': resolve(
           __dirname,
           '../../gamut-styles/src'
         ),
-        '@codecademy/gamut$': resolve(__dirname, '../../gamut/src'),
-        '@codecademy/gamut-illustrations$': resolve(
+        '@skillsoft/gamut$': resolve(__dirname, '../../gamut/src'),
+        '@skillsoft/gamut-illustrations$': resolve(
           __dirname,
           '../../gamut-illustrations/src'
         ),
-        '@codecademy/gamut-icons$': resolve(__dirname, '../../gamut-icons/src'),
-        '@codecademy/gamut-patterns$': resolve(
+        '@skillsoft/gamut-icons$': resolve(__dirname, '../../gamut-icons/src'),
+        '@skillsoft/gamut-patterns$': resolve(
           __dirname,
           '../../gamut-patterns/src'
         ),
-        '@codecademy/variance$': resolve(__dirname, '../../variance/src'),
+        '@skillsoft/variance$': resolve(__dirname, '../../variance/src'),
       },
     };
     config.infrastructureLogging = {

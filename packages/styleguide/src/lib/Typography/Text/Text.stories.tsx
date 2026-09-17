@@ -1,10 +1,10 @@
-import { Box, Column, LayoutGrid, Text } from '@codecademy/gamut';
-// eslint-disable-next-line gamut/import-paths
+import { Box, Column, LayoutGrid, Text } from '@skillsoft/gamut';
+// eslint-disable-next-line @skillsoft/gamut/import-paths
 import {
   typographyElementVariants,
   typographyStyleVariants,
   typographyUtilities,
-} from '@codecademy/gamut/src/Typography/variants';
+} from '@skillsoft/gamut/src/Typography/variants';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Fragment } from 'react';
 

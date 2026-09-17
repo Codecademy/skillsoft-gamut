@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Coachmark, Text, TextButton, FlexBox } from '@codecademy/gamut';
+import { Box, Coachmark, Text, TextButton, FlexBox } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

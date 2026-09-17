@@ -1,4 +1,4 @@
-import { ConnectedForm, FlexBox, SubmitButton, Text } from '@codecademy/gamut';
+import { ConnectedForm, FlexBox, SubmitButton, Text } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from 'storybook/actions';
 

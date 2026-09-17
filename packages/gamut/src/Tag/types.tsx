@@ -1,5 +1,5 @@
-import { system } from '@codecademy/gamut-styles';
-import { StyleProps, variance } from '@codecademy/variance';
+import { system } from '@skillsoft/gamut-styles';
+import { StyleProps, variance } from '@skillsoft/variance';
 import { ComponentProps, HTMLProps } from 'react';
 
 import { IconComponentType, WithChildrenProp } from '../utils';

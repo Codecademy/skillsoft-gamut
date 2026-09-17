@@ -1,0 +1,16 @@
+{
+  "name": "gamut-design-system",
+  "owner": {
+    "name": "Skillsoft"
+  },
+  "metadata": {
+    "description": "Local marketplace for @skillsoft/gamut-agent-tools."
+  },
+  "plugins": [
+    {
+      "name": "gamut-design-system",
+      "source": "./",
+      "description": "Gamut design system agent tools: skills and rules for AI-assisted development."
+    }
+  ]
+}

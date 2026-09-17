@@ -1,5 +1,5 @@
 import React from 'react';
-import { RadialProgress } from '@codecademy/gamut';
+import { RadialProgress } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

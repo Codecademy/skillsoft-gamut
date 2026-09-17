@@ -1,5 +1,5 @@
-import { contentWidths, variant } from '@codecademy/gamut-styles';
 import styled from '@emotion/styled';
+import { contentWidths, variant } from '@skillsoft/gamut-styles';
 
 import { Box } from '../Box';
 

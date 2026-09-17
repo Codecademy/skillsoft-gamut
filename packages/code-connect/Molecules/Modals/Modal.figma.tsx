@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from '@codecademy/gamut';
+import { Modal } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

@@ -1,4 +1,4 @@
-import { timingValues } from '@codecademy/gamut-styles';
+import { timingValues } from '@skillsoft/gamut-styles';
 import { motion } from 'framer-motion';
 
 import { WithChildrenProp } from '../utils';
@@ -11,7 +11,7 @@ export const ExpandInCollapseOut: React.FC<WithChildrenProp> = ({
       animate="expanded"
       exit="collapsed"
       initial="collapsed"
-      // eslint-disable-next-line gamut/no-inline-style
+      // eslint-disable-next-line @skillsoft/gamut/no-inline-style
       style={{ overflow: 'hidden' }}
       transition={{ duration: timingValues.medium / 1000, ease: 'easeInOut' }}
       variants={{

@@ -1,5 +1,5 @@
-import { DotLoose } from '@codecademy/gamut-patterns';
-import { timingValues } from '@codecademy/gamut-styles';
+import { DotLoose } from '@skillsoft/gamut-patterns';
+import { timingValues } from '@skillsoft/gamut-styles';
 import isArray from 'lodash/isArray';
 import { ComponentProps, forwardRef, useEffect } from 'react';
 import * as React from 'react';

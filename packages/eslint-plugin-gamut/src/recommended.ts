@@ -1,9 +1,9 @@
 export default {
   rules: {
-    'gamut/no-css-standalone': 'error',
-    'gamut/no-inline-style': 'error',
-    'gamut/no-raw-z-index': 'error',
-    'gamut/prefer-themed': 'off',
-    'gamut/gamut-import-paths': 'error',
+    '@skillsoft/gamut/no-css-standalone': 'error',
+    '@skillsoft/gamut/no-inline-style': 'error',
+    '@skillsoft/gamut/no-raw-z-index': 'error',
+    '@skillsoft/gamut/prefer-themed': 'error',
+    '@skillsoft/gamut/import-paths': 'error',
   },
 };

@@ -8,9 +8,9 @@ import {
   InfoTip,
   Modal,
   Text,
-} from '@codecademy/gamut';
-import { SparkleIcon } from '@codecademy/gamut-icons';
-import { zIndexes } from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut';
+import { SparkleIcon } from '@skillsoft/gamut-icons';
+import { zIndexes } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 

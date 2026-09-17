@@ -1,4 +1,4 @@
-import { MockGamutProvider } from '@codecademy/gamut-tests';
+import { MockGamutProvider } from '@skillsoft/gamut-tests';
 import { render } from '@testing-library/react';
 
 import { DatePickerProvider, useDatePicker } from '..';

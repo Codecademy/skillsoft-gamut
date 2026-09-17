@@ -1,6 +1,6 @@
 import React from 'react';
-import { Toaster } from '@codecademy/gamut';
-import { Target } from '@codecademy/gamut-illustrations';
+import { Toaster } from '@skillsoft/gamut';
+import { Target } from '@skillsoft/gamut-illustrations';
 import figma from '@figma/code-connect';
 
 /**

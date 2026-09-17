@@ -1,4 +1,4 @@
-import { FillButton, FlexBox, Overlay, Text } from '@codecademy/gamut';
+import { FillButton, FlexBox, Overlay, Text } from '@skillsoft/gamut';
 import type { Meta } from '@storybook/react';
 import { useEffect, useState } from 'react';
 

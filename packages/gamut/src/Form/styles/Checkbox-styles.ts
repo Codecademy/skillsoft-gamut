@@ -1,4 +1,4 @@
-import { system, theme, transitionConcat } from '@codecademy/gamut-styles';
+import { system, theme, transitionConcat } from '@skillsoft/gamut-styles';
 
 import { formBaseStyles, formFieldBaseDisabledStyles, InputSelectors } from '.';
 

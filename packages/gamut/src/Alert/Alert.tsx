@@ -1,5 +1,5 @@
-import { MiniChevronDownIcon, MiniDeleteIcon } from '@codecademy/gamut-icons';
-import { breakpoints, useCurrentMode } from '@codecademy/gamut-styles';
+import { MiniChevronDownIcon, MiniDeleteIcon } from '@skillsoft/gamut-icons';
+import { breakpoints, useCurrentMode } from '@skillsoft/gamut-styles';
 import { Children, isValidElement, useId, useMemo, useState } from 'react';
 import TruncateMarkup from 'react-truncate-markup';
 import { useMeasure } from 'react-use';

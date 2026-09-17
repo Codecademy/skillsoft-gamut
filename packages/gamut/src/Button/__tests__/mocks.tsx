@@ -1,5 +1,5 @@
-import { ColorMode } from '@codecademy/gamut-styles';
-import { MockGamutProvider } from '@codecademy/gamut-tests';
+import { ColorMode } from '@skillsoft/gamut-styles';
+import { MockGamutProvider } from '@skillsoft/gamut-tests';
 import React, { ComponentProps } from 'react';
 
 import { Box } from '../../Box';

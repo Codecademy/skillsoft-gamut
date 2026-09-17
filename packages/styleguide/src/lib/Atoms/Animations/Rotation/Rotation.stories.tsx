@@ -1,5 +1,5 @@
-import { Rotation, StrokeButton } from '@codecademy/gamut';
-import { MiniChevronDownIcon } from '@codecademy/gamut-icons';
+import { Rotation, StrokeButton } from '@skillsoft/gamut';
+import { MiniChevronDownIcon } from '@skillsoft/gamut-icons';
 import type { Meta } from '@storybook/react';
 import { ComponentProps, useEffect, useState } from 'react';
 

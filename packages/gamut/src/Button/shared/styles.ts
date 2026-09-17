@@ -1,12 +1,12 @@
+import styled from '@emotion/styled';
 import {
   fontSmoothPixel,
   modeColorProps,
   styledOptions,
   system,
   transitionConcat,
-} from '@codecademy/gamut-styles';
-import { CSSObject, ThemeProps, variance } from '@codecademy/variance';
-import styled from '@emotion/styled';
+} from '@skillsoft/gamut-styles';
+import { CSSObject, ThemeProps, variance } from '@skillsoft/variance';
 
 import { ButtonBase, InteractiveSelectors } from '../../ButtonBase/ButtonBase';
 import { ButtonBaseProps } from './types';

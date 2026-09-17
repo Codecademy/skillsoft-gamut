@@ -1,5 +1,5 @@
-import { FillButton } from '@codecademy/gamut';
-import * as icons from '@codecademy/gamut-icons';
+import { FillButton } from '@skillsoft/gamut';
+import * as icons from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof FillButton> = {

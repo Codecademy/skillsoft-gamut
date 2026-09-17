@@ -1,4 +1,4 @@
-import { Box, List, ListCol, ListRow, Text } from '@codecademy/gamut';
+import { Box, List, ListCol, ListRow, Text } from '@skillsoft/gamut';
 import * as React from 'react';
 
 import { LinkTo } from '~styleguide/blocks';

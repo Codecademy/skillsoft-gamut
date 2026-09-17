@@ -1,4 +1,4 @@
-import { FormGroup, Radio, RadioGroup } from '@codecademy/gamut';
+import { FormGroup, Radio, RadioGroup } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { ChangeEvent, useState } from 'react';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';

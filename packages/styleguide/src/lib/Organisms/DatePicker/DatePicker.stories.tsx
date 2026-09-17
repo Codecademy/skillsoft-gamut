@@ -6,7 +6,7 @@ import {
   matchDisabledDates,
   PopoverContainer,
   useDatePicker,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 
@@ -548,9 +548,18 @@ export const Translations: Story = {
       startDateLabel: 'Fecha de inicio',
       endDateLabel: 'Fecha de fin',
       calendarDialogAriaLabel: 'Elegir fecha',
+      openCalendarLabel: 'Abrir calendario',
       last7DaysDisplayText: 'Últimos 7 días',
       last30DaysDisplayText: 'Últimos 30 días',
       last90DaysDisplayText: 'Últimos 90 días',
+      invalidDate: 'Fecha no válida',
+      invalidDateIncomplete: 'Fecha incompleta',
+      invalidDateInvalidMonth: 'El mes debe estar entre 1 y 12',
+      invalidDateInvalidDay: '{{month}} no tiene {{day}} días',
+      invalidDateRollover: '{{month}} no tiene {{day}} días',
+      invalidDateNotAvailable: 'Esta fecha no está disponible',
+      invalidDateRangeContainsDisabledDate:
+        'Este rango de fechas contiene fechas no disponibles',
     },
     placement: 'floating',
   },

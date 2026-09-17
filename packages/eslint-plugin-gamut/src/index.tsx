@@ -15,4 +15,7 @@ const rules = {
   'prefer-themed': preferThemed,
 };
 
-export { rules, recommended };
+// Nested under `configs` so ESLint can resolve `extends: ['plugin:@skillsoft/gamut/recommended']`.
+const configs = { recommended };
+
+export { configs, rules };

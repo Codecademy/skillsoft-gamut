@@ -3,7 +3,7 @@ import {
   theme as gamutTheme,
   trueColors,
   coreSwatches,
-} from '@codecademy/gamut-styles/src';
+} from '@skillsoft/gamut-styles/src';
 
 import logo from '../assets/logo.svg';
 

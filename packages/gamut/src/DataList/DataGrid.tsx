@@ -1,5 +1,5 @@
-import { system } from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
+import { system } from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 import { ComponentProps, useMemo } from 'react';
 
 import { List } from '../List';

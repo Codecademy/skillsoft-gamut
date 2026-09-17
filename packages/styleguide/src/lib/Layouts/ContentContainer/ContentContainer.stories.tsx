@@ -1,4 +1,4 @@
-import { ContentContainer } from '@codecademy/gamut';
+import { ContentContainer } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof ContentContainer> = {

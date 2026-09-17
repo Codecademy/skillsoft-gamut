@@ -1,5 +1,5 @@
-// eslint-disable-next-line gamut/import-paths
-import * as icons from '@codecademy/gamut-icons/src/icons/regular';
+// eslint-disable-next-line @skillsoft/gamut/import-paths
+import * as icons from '@skillsoft/gamut-icons/src/icons/regular';
 import keys from 'lodash/keys';
 import omit from 'lodash/omit';
 import pick from 'lodash/pick';

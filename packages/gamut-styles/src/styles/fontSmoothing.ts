@@ -1,4 +1,4 @@
-import { variance } from '@codecademy/variance';
+import { variance } from '@skillsoft/variance';
 
 const smoothing = {
   pixel: {

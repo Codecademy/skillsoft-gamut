@@ -1,7 +1,7 @@
-import { CheckerDense } from '@codecademy/gamut-patterns';
-import { theme } from '@codecademy/gamut-styles';
-import { setupRtl } from '@codecademy/gamut-tests';
 import { ThemeProvider } from '@emotion/react';
+import { CheckerDense } from '@skillsoft/gamut-patterns';
+import { theme } from '@skillsoft/gamut-styles';
+import { setupRtl } from '@skillsoft/gamut-tests';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 

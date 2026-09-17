@@ -1,7 +1,7 @@
-import { MiniDeleteIcon } from '@codecademy/gamut-icons';
-import { theme } from '@codecademy/gamut-styles';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
+import { theme } from '@skillsoft/gamut-styles';
 import { KeyboardEvent, useContext } from 'react';
 import {
   components as SelectDropdownElements,
@@ -58,9 +58,10 @@ export const MultiValueWithColorMode = (
 export const MultiValueRemoveButton = (
   props: MultiValueRemoveProps<ExtendedOption, true, GroupBase<ExtendedOption>>
 ) => {
+  const { translations } = useContext(SelectDropdownContext);
   const { label } = props?.data ?? { label: '' };
 
-  props.innerProps['aria-label'] = `Remove ${label}`;
+  props.innerProps['aria-label'] = translations.removeOptionLabel(label);
 
   return (
     <MultiValueRemove {...props}>
@@ -92,7 +93,7 @@ export const RemoveAllButton = (props: SizedIndicatorProps) => {
     selectProps: { size },
   } = props;
 
-  const { removeAllButtonRef, selectInputRef } = useContext(
+  const { removeAllButtonRef, selectInputRef, translations } = useContext(
     SelectDropdownContext
   );
 
@@ -117,12 +118,12 @@ export const RemoveAllButton = (props: SizedIndicatorProps) => {
 
   return (
     <CustomStyledRemoveAllDiv
-      aria-label="Remove all selected"
+      aria-label={translations.removeAllLabel}
       role="button"
       tabIndex={0}
       {...restInnerProps}
       ref={removeAllButtonRef as React.Ref<HTMLDivElement>}
-      // eslint-disable-next-line gamut/no-inline-style
+      // eslint-disable-next-line @skillsoft/gamut/no-inline-style
       style={style}
       onKeyDown={onKeyPress}
     >

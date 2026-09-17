@@ -1,4 +1,4 @@
-import { Alert, Box, FillButton, FlexBox, Text } from '@codecademy/gamut';
+import { Alert, Box, FillButton, FlexBox, Text } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';

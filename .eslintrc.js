@@ -4,9 +4,10 @@ module.exports = {
   extends: [
     require.resolve('@codecademy/eslint-config'),
     'plugin:react/jsx-runtime',
+    'plugin:@skillsoft/gamut/recommended',
   ],
 
-  plugins: ['eslint-plugin-gamut'],
+  plugins: ['@skillsoft/gamut'],
 
   ignorePatterns: ['packages/code-connect/**/*'],
 
@@ -26,11 +27,6 @@ module.exports = {
   },
 
   rules: {
-    'gamut/prefer-themed': 'error',
-    'gamut/no-css-standalone': 'error',
-    'gamut/no-inline-style': 'error',
-    'gamut/no-raw-z-index': 'error',
-    'gamut/import-paths': 'error',
     'import/no-extraneous-dependencies': 'off',
   },
 
@@ -44,7 +40,7 @@ module.exports = {
     {
       files: ['*.mdx'],
       rules: {
-        'gamut/import-paths': 'off',
+        '@skillsoft/gamut/import-paths': 'off',
       },
     },
     {
@@ -96,13 +92,13 @@ module.exports = {
     {
       files: ['packages/gamut-illustrations/**'],
       rules: {
-        'gamut/no-inline-style': 'off',
+        '@skillsoft/gamut/no-inline-style': 'off',
       },
     },
     {
       files: ['packages/styleguide/**/*.mdx'],
       rules: {
-        'gamut/no-kbd-element': 'error',
+        '@skillsoft/gamut/no-kbd-element': 'error',
       },
     },
   ],

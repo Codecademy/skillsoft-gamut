@@ -1,5 +1,5 @@
-import { Background } from '@codecademy/gamut-styles';
 import styled from '@emotion/styled';
+import { Background } from '@skillsoft/gamut-styles';
 import { motion } from 'framer-motion';
 
 import { Box } from '../Box';

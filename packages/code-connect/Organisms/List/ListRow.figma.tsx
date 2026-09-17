@@ -5,8 +5,8 @@ import {
   ListRow,
   Rotation,
   TextButton,
-} from '@codecademy/gamut';
-import { ArrowChevronDownIcon } from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut';
+import { ArrowChevronDownIcon } from '@skillsoft/gamut-icons';
 import figma from '@figma/code-connect';
 
 /**

@@ -3,7 +3,7 @@ import { TrackProps } from '@vidstack/react';
 import { DetailedHTMLProps, VideoHTMLAttributes } from 'react';
 
 import { Video } from '../../../../Video';
-// eslint-disable-next-line gamut/no-css-standalone
+// eslint-disable-next-line @skillsoft/gamut/no-css-standalone
 
 export type MarkdownVideoProps = DetailedHTMLProps<
   VideoHTMLAttributes<HTMLVideoElement>,

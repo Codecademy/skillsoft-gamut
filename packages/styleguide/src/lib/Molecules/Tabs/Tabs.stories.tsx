@@ -11,8 +11,8 @@ import {
   TabPanels,
   Tabs,
   Text,
-} from '@codecademy/gamut';
-import { Background } from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut';
+import { Background } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useState } from 'react';
 

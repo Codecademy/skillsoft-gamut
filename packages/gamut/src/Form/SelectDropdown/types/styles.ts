@@ -1,5 +1,5 @@
-import { ZIndexType } from '@codecademy/gamut-styles';
-import { StyleProps } from '@codecademy/variance';
+import { ZIndexType } from '@skillsoft/gamut-styles';
+import { StyleProps } from '@skillsoft/variance';
 
 import { conditionalBorderStates } from '../core/styles';
 import { InternalInputsProps } from './component-props';

@@ -1,4 +1,4 @@
-import { setupRtl } from '@codecademy/gamut-tests';
+import { setupRtl } from '@skillsoft/gamut-tests';
 
 import { FormGroup } from '../elements/FormGroup';
 import { Input } from '../inputs/Input';

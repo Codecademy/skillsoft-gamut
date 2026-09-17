@@ -1,6 +1,6 @@
-import { Anchor, Toast } from '@codecademy/gamut';
-import * as icons from '@codecademy/gamut-icons';
-import { Target } from '@codecademy/gamut-illustrations';
+import { Anchor, Toast } from '@skillsoft/gamut';
+import * as icons from '@skillsoft/gamut-icons';
+import { Target } from '@skillsoft/gamut-illustrations';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Toast> = {

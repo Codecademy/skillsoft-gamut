@@ -27,7 +27,7 @@ The Percipio Theme is a theme used within the Percipio application. It is built 
 If you are using the Percipio Theme via the Gamut theme provider in your app (i.e. `<GamutProvider theme={percipioTheme}>`), you can access the Percipio Theme object via `theme` using our css-in-js utilities.
 
 ```tsx
-import { css } from '@codecademy/gamut-styles';
+import { css } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 
 const Box = styled.div(css({ bg: 'sapphire', p: 4 })); // our system props inherently use the current theme
@@ -39,11 +39,11 @@ const styles = styled.div`
 `;
 ```
 
-If you have to import the theme object from `@codecademy/gamut-styles`, you will need to import the `percipioTheme` object, as `theme` references the Core Theme.
+If you have to import the theme object from `@skillsoft/gamut-styles`, you will need to import the `percipioTheme` object, as `theme` references the Core Theme.
 
 ```tsx
 import { css } from '@emotion/react';
-import { percipioTheme, theme } from '@codecademy/gamut-styles';
+import { percipioTheme, theme } from '@skillsoft/gamut-styles';
 
 const myStyles = css`
   color: ${percipioTheme.colors.sapphire}; // exists on the Percipio theme

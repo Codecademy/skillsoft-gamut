@@ -17,7 +17,7 @@ The `eslint-plugin-gamut` package provides custom ESLint rules to enforce best p
 
 ## Available rules
 
-### `gamut/no-inline-style`
+### `@skillsoft/gamut/no-inline-style`
 
 **Level:** `error`
 
@@ -43,8 +43,8 @@ Disallows the use of inline `style` props on JSX elements. This rule encourages 
 ```tsx
 // Use styled components
 import styled from '@emotion/styled';
-import { css } from '@codecademy/gamut-styles';
-import { Box } from '@codecademy/gamut';
+import { css } from '@skillsoft/gamut-styles';
+import { Box } from '@skillsoft/gamut';
 
 const Container = styled(Box)(
   css({
@@ -54,12 +54,12 @@ const Container = styled(Box)(
 )
 
 // Use system props from Box components
-import { Box } from '@codecademy/gamut';
+import { Box } from '@skillsoft/gamut';
 
 <Box p={0} m={10} />
 
 // Use states utility for conditional styling
-import { states } from '@codecademy/gamut-styles';
+import { states } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 
 const ExpandableContainer = styled.Box(
@@ -82,13 +82,13 @@ const ExpandableContainer = styled.Box(
 For third-party components or edge cases where inline styles are necessary (e.g., framer-motion animations), you can disable the rule:
 
 ```tsx
-// eslint-disable-next-line gamut/no-inline-style
+// eslint-disable-next-line @skillsoft/gamut/no-inline-style
 <motion.div style={{ transformOrigin: 'center' }} />
 ```
 
 ---
 
-### `gamut/no-css-standalone`
+### `@skillsoft/gamut/no-css-standalone`
 
 **Level:** `error`
 
@@ -109,8 +109,8 @@ import '../components/Button.scss';
 ```tsx
 // Use styled components
 import styled from '@emotion/styled';
-import { StrokeButton } from '@codecademy/gamut';
-import { css } from '@codecademy/gamut-styles';
+import { StrokeButton } from '@skillsoft/gamut';
+import { css } from '@skillsoft/gamut-styles';
 
 const StyledStrokeButton = styled(StrokeButton)(
   css({
@@ -120,7 +120,7 @@ const StyledStrokeButton = styled(StrokeButton)(
 );
 
 // Use utility functions from gamut-styles
-import { variant } from '@codecademy/gamut-styles';
+import { variant } from '@skillsoft/gamut-styles';
 
 const buttonStyles = variant({
   variants: {
@@ -134,7 +134,7 @@ const buttonStyles = variant({
 
 ---
 
-### `gamut/import-paths`
+### `@skillsoft/gamut/import-paths`
 
 **Level:** `error`
 **Fixable:** Yes (auto-fixable using `--fix`)
@@ -151,14 +151,14 @@ Ensures Gamut import statements use proper module paths. This rule enforces thre
 
 ```tsx
 // Don't use package imports within the same package
-// (when in @codecademy/gamut package)
-import { FillButton } from '@codecademy/gamut';
+// (when in @skillsoft/gamut package)
+import { FillButton } from '@skillsoft/gamut';
 
 // Don't append /src
-import { FillButton } from '@codecademy/gamut/src';
+import { FillButton } from '@skillsoft/gamut/src';
 
 // Don't append /dist
-import { theme } from '@codecademy/gamut-styles/dist';
+import { theme } from '@skillsoft/gamut-styles/dist';
 ```
 
 #### ✅ Correct
@@ -168,8 +168,8 @@ import { theme } from '@codecademy/gamut-styles/dist';
 import { Box } from '../Box';
 
 // Use clean package imports from other packages
-import { FillButton } from '@codecademy/gamut';
-import { theme } from '@codecademy/gamut-styles';
+import { FillButton } from '@skillsoft/gamut';
+import { theme } from '@skillsoft/gamut-styles';
 ```
 
 <Callout text="This rule includes auto-fix capabilities for /src and /dist violations!" />
@@ -227,7 +227,7 @@ For a deliberate in-between value that doesn't map to an existing token, disable
 
 ---
 
-### `gamut/prefer-themed`
+### `@skillsoft/gamut/prefer-themed`
 
 **Level:** `off` (by default)
 **Fixable:** Yes (auto-fixable using `--fix`)
@@ -247,8 +247,8 @@ const StyledDiv = styled.div`
 #### ✅ Preferred
 
 ```tsx
-import { css, themed } from '@codecademy/gamut-styles';
-import { Box } from '@codecademy/gamut';
+import { css, themed } from '@skillsoft/gamut-styles';
+import { Box } from '@skillsoft/gamut';
 
 const StyledBox = styled(Box)(
   css({
@@ -270,11 +270,18 @@ These rules are automatically included when you extend the recommended configura
 module.exports = {
   plugins: ['eslint-plugin-gamut'],
   rules: {
+<<<<<<< HEAD
     'gamut/no-inline-style': 'error',
     'gamut/no-css-standalone': 'error',
     'gamut/import-paths': 'error',
     'gamut/no-raw-z-index': 'error',
     'gamut/prefer-themed': 'off',
+=======
+    '@skillsoft/gamut/no-inline-style': 'error',
+    '@skillsoft/gamut/no-css-standalone': 'error',
+    '@skillsoft/gamut/import-paths': 'error',
+    '@skillsoft/gamut/prefer-themed': 'off',
+>>>>>>> main
   },
 };
 ```
@@ -290,7 +297,7 @@ module.exports = {
     {
       files: ['packages/gamut-illustrations/**'],
       rules: {
-        'gamut/no-inline-style': 'off',
+        '@skillsoft/gamut/no-inline-style': 'off',
       },
     },
   ],

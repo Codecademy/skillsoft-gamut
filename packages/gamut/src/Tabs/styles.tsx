@@ -1,4 +1,4 @@
-import { system, variant } from '@codecademy/gamut-styles';
+import { system, variant } from '@skillsoft/gamut-styles';
 
 export const tabContainerVariants = variant({
   base: {

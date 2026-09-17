@@ -22,7 +22,7 @@ From your **app repo root**, install the plugin with the product theme that matc
 gamut plugin install cursor --theme core
 ```
 
-Use `percipio`, `lxstudio`, `admin`, or `platform` when that matches your product. Refresh after upgrading `@codecademy/gamut`:
+Use `percipio`, `lxstudio`, `admin`, or `platform` when that matches your product. Refresh after upgrading `@skillsoft/gamut`:
 
 ```sh
 gamut plugin update cursor --theme core --force
@@ -81,7 +81,7 @@ Without `DESIGN.md` at the repo root, color findings are lower confidence — in
 
 ### Exported skills
 
-Installed into app repos via `gamut plugin install`. Source: [`packages/gamut/agent-tools/skills/`](https://github.com/Codecademy/gamut/tree/main/packages/gamut/agent-tools/skills/)
+Installed into app repos via `gamut plugin install`. Source: [`packages/gamut-agent-tools/skills/`](https://github.com/Codecademy/gamut/tree/main/packages/gamut-agent-tools/skills/)
 
 - `gamut-review` — codebase audit playbook, including `styled()` wrappers that bypass system props and bespoke components that duplicate existing ones
 - `gamut-component-first` — check for an existing Gamut component before building bespoke UI; the proactive counterpart to `gamut-review`'s audit
@@ -105,6 +105,7 @@ Installed into app repos via `gamut plugin install`. Source: [`packages/gamut/ag
 Available in this repo only — never exported. These live directly in [`.claude/skills/`](https://github.com/Codecademy/gamut/tree/main/.claude/skills/), read natively by Claude Code and by Cursor via its [Claude-compatibility path](https://cursor.com/docs/skills).
 
 - `gamut-create-skill` — blueprint playbook for authoring a new Gamut agent skill from scratch
+- `gamut-writing` — writing and revising Gamut's own documentation: component `.mdx` pages, `.stories.tsx` files, prop JSDoc, and a prose pass that strips AI-slop patterns
 
 ## Design-to-code (Figma MCP)
 

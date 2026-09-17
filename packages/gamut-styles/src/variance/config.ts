@@ -1,4 +1,4 @@
-import { getPropertyMode, transformSize } from '@codecademy/variance';
+import { getPropertyMode, transformSize } from '@skillsoft/variance';
 
 export const color = {
   color: { property: 'color', scale: 'colors' },

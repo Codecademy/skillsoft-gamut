@@ -1,0 +1,7 @@
+{
+  "name": "gamut-design-system",
+  "version": "0.0.2",
+  "description": "Gamut design system agent tools: skills and rules for AI-assisted development.",
+  "license": "MIT",
+  "keywords": ["skillsoft", "gamut", "design-system", "agent-skills"]
+}

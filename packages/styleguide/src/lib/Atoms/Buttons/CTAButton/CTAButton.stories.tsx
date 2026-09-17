@@ -1,4 +1,4 @@
-import { CTAButton } from '@codecademy/gamut';
+import { CTAButton } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof CTAButton> = {

@@ -1,4 +1,4 @@
-import { Text, Toggle } from '@codecademy/gamut';
+import { Text, Toggle } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect } from 'storybook/test';

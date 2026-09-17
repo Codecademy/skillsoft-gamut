@@ -1,5 +1,5 @@
 import React from 'react';
-import { Anchor } from '@codecademy/gamut';
+import { Anchor } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

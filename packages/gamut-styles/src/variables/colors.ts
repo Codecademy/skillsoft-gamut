@@ -1,4 +1,4 @@
-import { flattenScale } from '@codecademy/variance';
+import { flattenScale } from '@skillsoft/variance';
 import { rgba } from 'polished';
 /**
  * Core Colors

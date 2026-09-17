@@ -1,4 +1,4 @@
-import { List, ListCol, ListRow, TableHeader } from '@codecademy/gamut';
+import { List, ListCol, ListRow, TableHeader } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentType } from 'react';
 

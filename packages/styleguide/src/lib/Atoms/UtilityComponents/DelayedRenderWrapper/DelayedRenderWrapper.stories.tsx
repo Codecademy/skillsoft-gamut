@@ -4,7 +4,7 @@ import {
   FillButton,
   FlexBox,
   Text,
-} from '@codecademy/gamut';
+} from '@skillsoft/gamut';
 import type { Meta } from '@storybook/react';
 import { ComponentProps, useState } from 'react';
 

@@ -1,12 +1,18 @@
 name: Publish Production
 
+# TODO(release-scaffold): the `production` branch doesn't exist yet (see
+# https://skillsoftdev.atlassian.net/wiki/spaces/779a16d9c7ea452eab11b39cbbe771ce/whiteboard/6753517596).
+# This workflow is intentionally dormant until that branch is created and the
+# beta -> production promotion flow is built. The branch flow is now
+# main (next tag, publish-next.yml) -> beta (beta tag, publish-beta.yml) ->
+# production (this workflow, real releases).
+
 on:
   push:
     branches:
-      - main
+      - production
 
 env:
-  NODE_VERSION: '22.13.1'
   NODE_OPTIONS: '--max_old_space_size=8196'
   NX_CLOUD: false
   IGNORE_COMMIT_MESSAGE: 'chore(release): publish'

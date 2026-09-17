@@ -1,4 +1,4 @@
-import { ColorMode, ColorModes } from '@codecademy/gamut-styles';
+import { ColorMode, ColorModes } from '@skillsoft/gamut-styles';
 import { AnimatePresence } from 'framer-motion';
 import { ReactNode } from 'react';
 import * as React from 'react';

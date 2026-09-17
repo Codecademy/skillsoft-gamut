@@ -4,7 +4,7 @@ import {
   theme as GamutTheme,
   variant,
   ZIndexType,
-} from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut-styles';
 import { StylesConfig } from 'react-select';
 
 import {

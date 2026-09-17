@@ -1,5 +1,5 @@
 import React from 'react';
-import { Breadcrumbs } from '@codecademy/gamut';
+import { Breadcrumbs } from '@skillsoft/gamut';
 import figma from '@figma/code-connect';
 
 /**

@@ -1,4 +1,4 @@
-import { SkipToContent } from '@codecademy/gamut';
+import { SkipToContent } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof SkipToContent> = {
