@@ -1,4 +1,4 @@
-import { ZIndexType } from '@codecademy/gamut-styles';
+import { ZIndexType } from '@skillsoft/gamut-styles';
 import { ComponentProps, ReactNode } from 'react';
 
 import { Text } from '../../Typography';
@@ -80,8 +80,8 @@ export type TipPlacementComponentProps = Omit<
   id?: string;
   isTipHidden?: boolean;
   contentRef?:
-    | React.RefObject<HTMLDivElement>
-    | ((node: HTMLDivElement | null) => void);
+  | React.RefObject<HTMLDivElement>
+  | ((node: HTMLDivElement | null) => void);
   closeOnClick?: boolean;
   type: 'info' | 'tool' | 'preview';
   wrapperRef?: React.Ref<HTMLDivElement | null>;

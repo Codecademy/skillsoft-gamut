@@ -70,7 +70,7 @@ These come from the Gamut writing guide and hold across every kind of documentat
 
 **Code and component references**
 
-- Backticks for anything that appears in code: `onClick`, `Box`, `variant`, `16px`, `true`, `null`, `Button.tsx`, `@codecademy/gamut`, `packages/gamut/src/Button/index.tsx`.
+- Backticks for anything that appears in code: `onClick`, `Box`, `variant`, `16px`, `true`, `null`, `Button.tsx`, `@skillsoft/gamut`, `packages/gamut/src/Button/index.tsx`.
 - `PascalCase` for components, `camelCase` for props and variables, `SCREAMING_SNAKE_CASE` for true constants.
 - First mention is "the `Box` component"; after that, "the component".
 - Pluralize the word, not the identifier: "These `Box` components are…", not "These `Boxes` are…".
