@@ -11,8 +11,8 @@ const storybookDir = join(__dirname, 'packages/styleguide/.storybook');
  * Vitest browser-mode config for running stories as tests. The storybookTest
  * plugin reads the styleguide's .storybook/main.ts (framework, viteFinal →
  * emotion transform, aliases, process.env define) and turns each story into a
- * test case; the setup file applies the preview.ts decorators/globals to those
- * renders. Lives at the repo root because the plugin resolves story globs
+ * test case; it also auto-applies the preview.ts decorators/globals (Storybook
+ * 10.3+). Lives at the repo root because the plugin resolves story globs
  * relative to the workspace root.
  */
 export default defineConfig({
@@ -30,6 +30,8 @@ export default defineConfig({
   ],
   test: {
     name: 'storybook',
+    // Reusable browser-mode setup: jest-dom matchers + deterministic Date.
+    setupFiles: [join(__dirname, 'script/vitest/setup.ts')],
     browser: {
       enabled: true,
       provider: 'playwright',
