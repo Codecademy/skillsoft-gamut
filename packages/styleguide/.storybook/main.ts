@@ -2,7 +2,14 @@ import { createRequire } from 'node:module';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import react from '@vitejs/plugin-react';
+// `@vitejs/plugin-react-swc`, `@swc/plugin-emotion`, and the `@swc/core`
+// resolution below are pinned to versions from the same release window
+// (June-July 2026) on purpose, not left behind by accident. Newer
+// `@swc/plugin-emotion`/`@swc/core` pairs (as of Sept 2026) crash with an
+// opaque WASM panic on real story/mdx files due to an undocumented ABI
+// mismatch between the plugin and swc_core - see the "storybook swc emotion
+// spike" notes for the repro. Bump these three together, not individually.
+import react from '@vitejs/plugin-react-swc';
 import type { StorybookConfig } from '@storybook/react-vite';
 import type { Alias, AliasOptions } from 'vite';
 
@@ -52,25 +59,24 @@ const config: StorybookConfig = {
   viteFinal(config, { configType }) {
     /*
      * Storybook's react-vite framework transpiles JSX with esbuild and does not
-     * add @vitejs/plugin-react. We add it ourselves so Emotion's Babel plugin
-     * runs, reproducing the webpack setup's `.babelrc.json` transform (autoLabel
-     * + source maps for stable, readable Emotion class names).
+     * add a react plugin. We add @vitejs/plugin-react-swc ourselves so
+     * Emotion's swc plugin runs, reproducing the webpack setup's `.babelrc.json`
+     * transform (autoLabel + source maps for stable, readable Emotion class
+     * names).
      */
     config.plugins = [
       ...(config.plugins ?? []),
       react({
-        babel: {
-          plugins: [
-            [
-              '@emotion/babel-plugin',
-              {
-                sourceMap: true,
-                autoLabel: 'always',
-                labelFormat: '[local]',
-              },
-            ],
+        plugins: [
+          [
+            '@swc/plugin-emotion',
+            {
+              sourceMap: true,
+              autoLabel: 'always',
+              labelFormat: '[local]',
+            },
           ],
-        },
+        ],
       }),
     ];
 
