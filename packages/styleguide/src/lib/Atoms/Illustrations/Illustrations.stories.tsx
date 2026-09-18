@@ -37,7 +37,11 @@ export const Default: Story = {
   },
 };
 
+// Visual catalog of every illustration — slow to render + axe, and redundant
+// with `Default`. `!test` removes the auto-applied `test` tag so addon-vitest
+// skips it; it still renders in Storybook.
 export const AllIllustrations: Story = {
+  tags: ['!test'],
   render: () => {
     return (
       <ImageGallery
