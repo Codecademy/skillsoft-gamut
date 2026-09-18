@@ -3,11 +3,13 @@ import starlight from '@astrojs/starlight';
 import { defineConfig } from 'astro/config';
 import starlightSidebarTopics from 'starlight-sidebar-topics';
 
-// Sidebar structure follows docs/adr/0001-documentation-site-information-architecture.md.
 // Top level maps to Diátaxis modes: Getting started (tutorials), Guides (how-to),
-// Components + Reference (reference), Concepts (explanation).
+// Components + Patterns + Foundations (reference), Concepts (explanation).
+// Patterns catalogs reusable multi-component compositions, one level up from
+// Components' single-component reference — see its overview page for what
+// qualifies as a pattern versus a one-off composition or a missing prop.
 // Each top-level section is its own topic (starlight-sidebar-topics), so its
-// sidebar replaces the others instead of all five being stacked in one long list.
+// sidebar replaces the others instead of all six being stacked in one long list.
 export default defineConfig({
   site: 'https://gamut.codecademy.com',
   server: {
@@ -144,6 +146,12 @@ export default defineConfig({
                   ],
                 },
               ],
+            },
+            {
+              label: 'Patterns',
+              icon: 'bars',
+              link: '/patterns/',
+              items: [{ autogenerate: { directory: 'patterns' } }],
             },
             {
               label: 'Concepts',
