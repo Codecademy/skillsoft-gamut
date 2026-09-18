@@ -26,6 +26,10 @@ jobs:
       - uses: ./.github/actions/yarn
       - name: Build All Packages
         run: yarn build
+      - name: Verify published package shape (publint, attw)
+        run: npx nx run-many --target=verify-package --all
+      - name: Verify exports maps resolve
+        run: node script/verify-exports.mjs
       - name: Install Playwright (Storybook test runner)
         run: yarn playwright install chromium --with-deps
       - name: Storybook build and accessibility tests
