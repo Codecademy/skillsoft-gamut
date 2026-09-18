@@ -28,15 +28,8 @@ export const Children: Story = {
 };
 
 export const Animating: Story = {
-  render: () => (
-    <Box maxHeight="190px" maxWidth="190px">
-      <Video
-        autoplay
-        controls={false}
-        loop
-        videoTitle="RadialProgress animation example"
-        videoUrl="https://i.imgur.com/115O6iY.mp4"
-      />
-    </Box>
-  ),
+  args: {
+    value: [0, 100],
+    duration: 5000,
+  },
 };
