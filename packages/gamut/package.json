@@ -36,6 +36,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
+    },
+    "./Video": {
+      "types": "./dist/Video/index.d.ts",
+      "import": "./dist/Video/index.mjs",
+      "require": "./dist/Video/index.js"
     }
   },
   "files": [

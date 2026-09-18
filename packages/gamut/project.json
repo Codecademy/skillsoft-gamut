@@ -41,7 +41,7 @@
         "cwd": "{projectRoot}",
         "commands": [
           "publint .",
-          "attw --pack . --ignore-rules false-cjs"
+          "attw --pack . --ignore-rules false-cjs no-resolution"
         ],
         "parallel": false
       }

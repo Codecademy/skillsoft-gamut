@@ -1,5 +1,5 @@
 import React from 'react';
-import { Video } from '@skillsoft/gamut';
+import { Video } from '@skillsoft/gamut/Video';
 import figma from '@figma/code-connect';
 
 /**
