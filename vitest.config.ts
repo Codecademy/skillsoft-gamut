@@ -30,6 +30,8 @@ export default defineConfig({
   ],
   test: {
     name: 'storybook',
+    // Reusable browser-mode setup: jest-dom matchers + deterministic Date.
+    setupFiles: [join(__dirname, 'script/vitest/setup.ts')],
     // The stories globs in main.ts include `.mdx` docs pages (needed by
     // Storybook), but those have no runnable stories and just show up as noisy
     // skipped "(0 test)" entries. Drop them from test collection.
