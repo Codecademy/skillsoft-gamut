@@ -2,7 +2,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
-import { defineConfig } from 'vitest/config';
+import { configDefaults, defineConfig } from 'vitest/config';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const storybookDir = join(__dirname, 'packages/styleguide/.storybook');
@@ -32,6 +32,10 @@ export default defineConfig({
     name: 'storybook',
     // Reusable browser-mode setup: jest-dom matchers + deterministic Date.
     setupFiles: [join(__dirname, 'script/vitest/setup.ts')],
+    // The stories globs in main.ts include `.mdx` docs pages (needed by
+    // Storybook), but those have no runnable stories and just show up as noisy
+    // skipped "(0 test)" entries. Drop them from test collection.
+    exclude: [...configDefaults.exclude, '**/*.mdx'],
     browser: {
       enabled: true,
       provider: 'playwright',

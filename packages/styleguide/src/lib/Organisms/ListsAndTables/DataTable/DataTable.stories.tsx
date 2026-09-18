@@ -25,6 +25,7 @@ import {
 } from '../examples';
 
 const meta: Meta<typeof DataTable> = {
+  title: 'Organisms/Lists & Tables/DataTable',
   component: DataTable,
   args: {
     id: 'crew',

@@ -14,6 +14,7 @@ import {
 } from '../examples';
 
 const meta: Meta<typeof DataList> = {
+  title: 'Organisms/Lists & Tables/DataList',
   component: DataList,
   args: {
     id: 'crew',
