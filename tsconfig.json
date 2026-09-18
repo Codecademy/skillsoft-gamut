@@ -3,6 +3,25 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "baseUrl": ".",
-    "paths": {}
+    "paths": {},
+    // Not used by any real build — every package builds/verifies against its own
+    // scoped tsconfig (packages/*/tsconfig.lib.json etc.), picked up via `cwd`.
+    // This root config only governs editor language servers (Zed, VS Code) for
+    // files no package-scoped tsconfig covers, which today means the tsdown
+    // build configs (tsdown.config.ts, tsdown.base.ts) — they live at package
+    // roots, outside every package's `src/**/*`-scoped tsconfig, and their
+    // cross-file import needs a literal `.ts` extension (see
+    // packages/variance/tsdown.config.ts for why). `noEmit` is required
+    // alongside `allowImportingTsExtensions` — TS enforces that pairing — and
+    // is harmless here since this config never emits anyway. `tsdown` itself has
+    // no `main`/`types` fields at all — only a modern `exports` map — so it's
+    // completely unresolvable under tsconfig.base.json's legacy
+    // `moduleResolution: "node"` (not just ambiguous; there's no fallback path).
+    // Overriding to "bundler" here doesn't affect any package's real build or
+    // typecheck — see gamut-moduleresolution-bundler-migration.md in base camp
+    // for the separate, scoped follow-up to change that repo-wide.
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "moduleResolution": "bundler"
   }
 }
