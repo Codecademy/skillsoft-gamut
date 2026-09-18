@@ -22,6 +22,7 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-a11y'),
     getAbsolutePath('@storybook/addon-designs'),
     getAbsolutePath('storybook-addon-deep-controls'),
+    getAbsolutePath('@storybook/addon-vitest'),
   ],
 
   framework: {
