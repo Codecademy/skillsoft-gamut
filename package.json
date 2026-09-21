@@ -19,6 +19,8 @@
     "@babel/preset-env": "^7.24.7",
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^2.31.0",
     "@codecademy/eslint-config": "8.2.0",
     "@codecademy/prettier-config": "^0.2.0",
     "@codecademy/tsconfig": "^0.3.0",

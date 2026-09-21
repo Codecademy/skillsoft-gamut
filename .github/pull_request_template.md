@@ -4,11 +4,11 @@
 
 - [ ] Related to designs:
 - [ ] Related to JIRA ticket: [ABC-123]
-- [ ] Version plan added/updated (or not needed)
+- [ ] Changeset added (or empty changeset if no release)
 - [ ] I have run this code to verify it works
 - [ ] This PR includes unit tests for the code change
 - [ ] This PR includes testing instructions tests for the code change
-- [ ] The alpha package of this PR is passing end-to-end tests in all relevant Codecademy repositories
+- [ ] Package previews from this PR are passing end-to-end tests in all relevant consuming repositories
 
 #### Testing Instructions
 
