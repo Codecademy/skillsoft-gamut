@@ -1,6 +1,6 @@
 import type { UserConfig } from 'tsdown';
 
-/**
+/*
  * Shared across every package's tsdown.config.ts.
  */
 export const baseConfig: UserConfig = {

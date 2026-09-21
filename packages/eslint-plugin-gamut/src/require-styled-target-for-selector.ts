@@ -2,7 +2,7 @@ import { AST_NODE_TYPES, TSESTree } from '@typescript-eslint/utils';
 
 import { createRule } from './createRule';
 
-/**
+/*
  * `@emotion/babel-plugin` stamps a `target` property on every `styled()`
  * call automatically — that's what makes a component-selector interpolation
  * like `` [`&:hover ${OtherComponent}`] `` work at runtime. Gamut's
