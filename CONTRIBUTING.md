@@ -76,12 +76,53 @@ Add a `ghost` variant to `Button`.
 Pull request titles and descriptions do not reach the changelog.
 Only the changeset summary does.
 
+### Choosing the bump
+
+While we are on `0.x.x`, pick the bump for what we are willing to publish this week, not for how 1.0 will feel:
+
+- `patch` — fix, no API change
+- `minor` — feature **or** breaking change
+- never `major`
+
+A `major` on `main` makes the next Version Packages merge `1.0.0` with no beta or rc.
+
+After `1.0.0`, ordinary semver applies: `patch` for fixes, `minor` for features. `major` (breaking changes) should be avoided for as long as possible.
+
 ### Breaking changes
 
-Breaking changes **must** be coordinated with maintainers ahead of time since we have a strong commitment to backwards compatibility.
+Breaking changes **must** be coordinated with maintainers ahead of time since we have a strong commitment to backwards compatibility and generally target at least a year between majors.
+The summary should include short migration guidance or links to more complete migration guides.
 
-`major` bumps happen for anything that requires consumers to change their code.
-The summary for a breaking change should include short migration guidance or links to more complete migration guides.
+### Prereleases
+
+[Prerelease mode](https://changesets.dev/guide/prereleases) suffixes versions (`1.1.0-beta.0`) and publishes them to that dist-tag (`beta`), not `latest`.
+
+```bash
+yarn changeset pre enter beta
+```
+
+That only writes `.changeset/pre.json` on `main`.
+It does not publish.
+Unreleased changesets already on `main` are included in the first prerelease, so an open Version Packages PR that still shows `1.1.0` becomes `1.1.0-beta.0` after `release.yml` rebuilds it.
+Do not merge that PR while it still shows a stable version if you wanted a beta.
+`pre enter` after a stable `1.1.0` has published cannot turn it into `1.1.0-beta.0`.
+
+The bump type still selects the number in front of `-beta`:
+
+- from `0.x.x`, a `major` is `1.0.0-beta.0` (this is how we start the 1.0 train)
+- from `1.0.x`, a `minor` is `1.1.0-beta.0`; a `major` is `2.0.0-beta.0`
+- a `patch` only ticks the patch, e.g. `1.0.1-beta.0`
+
+Later changesets in the same train tick `1.1.0-beta.1`, `.2`, and so on.
+
+```bash
+yarn changeset pre exit
+```
+
+The next Version Packages merge is the matching stable release (`1.0.0`, `1.1.0`, …).
+
+If `1.0.x` patches must continue while `1.1.0-beta` is in flight, that needs a backport branch.
+`pre enter` on `main` does not keep a stable line open.
 
 ## Testing your changes in another app
 
