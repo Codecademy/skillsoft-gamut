@@ -26,10 +26,10 @@ jobs:
       - uses: ./.github/actions/yarn
       - name: Build All Packages
         run: yarn build
-      - name: Install Playwright (Storybook test runner)
+      - name: Install Playwright (Vitest browser mode)
         run: yarn playwright install chromium --with-deps
-      - name: Storybook build and accessibility tests
-        run: npx nx run styleguide:storybook-test
+      - name: Storybook stories + accessibility tests (Vitest)
+        run: yarn test:stories
 
   test:
     runs-on: ubuntu-24.04
