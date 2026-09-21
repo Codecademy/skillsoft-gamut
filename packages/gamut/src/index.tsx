@@ -53,4 +53,9 @@ export * from './typings/responsive-properties';
 export * from './Typography/Text';
 export type { HeadingTags } from './Typography/types';
 export * from './utils';
-export * from './Video';
+// Not re-exported from the root barrel — import from '@skillsoft/gamut/Video'
+// instead. First step toward eventually moving Video out of gamut into its own
+// package: it pulls in @vidstack/react and a CSS chain with an optional peer dep
+// (css-loader), and keeping it off the barrel means only consumers who actually
+// use Video are exposed to that. See tsdown.config.ts for the entry and
+// package.json for the exports subpath.

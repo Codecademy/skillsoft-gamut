@@ -12,7 +12,7 @@
         "cwd": "packages/gamut-illustrations",
         "commands": [
           "rm -rf ./dist",
-          "babel ./src --out-dir ./dist --extensions \".ts,.tsx\"",
+          "tsdown",
           "tsc --emitDeclarationOnly"
         ],
         "parallel": false
@@ -30,6 +30,18 @@
       "options": {
         "cwd": "{projectRoot}",
         "command": "rm -rf ./dist"
+      }
+    },
+    "verify-package": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "cwd": "{projectRoot}",
+        "commands": [
+          "publint .",
+          "attw --pack . --ignore-rules false-cjs"
+        ],
+        "parallel": false
       }
     },
     "publish-build": {

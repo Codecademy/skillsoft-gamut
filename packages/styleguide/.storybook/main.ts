@@ -91,6 +91,19 @@ const config: StorybookConfig = {
         { find: /^@skillsoft\/gamut-icons$/, replacement: resolve(__dirname, '../../gamut-icons/src') },
         { find: /^@skillsoft\/gamut-patterns$/, replacement: resolve(__dirname, '../../gamut-patterns/src') },
         { find: /^@skillsoft\/variance$/, replacement: resolve(__dirname, '../../variance/src') },
+        // The bare-specifier aliases above only cover each package's public
+        // surface (their src/index). These four docs-only pages reach past
+        // that into groupings with no public export (icon categories, raw
+        // typography variant metadata, the full system-props registry) — the
+        // source's own `@skillsoft/gamut/import-paths` eslint rule already
+        // flags each of these sites with an acknowledged disable comment.
+        // Resolving them here, rather than adding them to any package's
+        // `exports` map, keeps that map an honest description of the
+        // published surface instead of growing it to fit docs tooling.
+        { find: /^@skillsoft\/gamut-icons\/src\/icons\/mini$/, replacement: resolve(__dirname, '../../gamut-icons/src/icons/mini') },
+        { find: /^@skillsoft\/gamut-icons\/src\/icons\/regular$/, replacement: resolve(__dirname, '../../gamut-icons/src/icons/regular') },
+        { find: /^@skillsoft\/gamut\/src\/Typography\/variants$/, replacement: resolve(__dirname, '../../gamut/src/Typography/variants') },
+        { find: /^@skillsoft\/gamut-styles\/src\/variance\/config$/, replacement: resolve(__dirname, '../../gamut-styles/src/variance/config') },
         ...normalizeAlias(config.resolve?.alias),
       ],
     };

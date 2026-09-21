@@ -15,7 +15,14 @@ export const TotalValueLabelsHoverTarget = styled(FlexBox)(
   })
 );
 
-export const CategoryLabel = styled(Text)(
+// `target` is normally stamped automatically by `@emotion/babel-plugin`, which
+// only runs the source through Babel — not through the tsdown/rolldown build.
+// It's what makes the `${CategoryLabel}` component-selector interpolation below
+// work; without it, `@emotion/styled` falls back to `.undefined` in production.
+// Pass it explicitly here since this is the only component-selector site in the
+// package — a lint rule flags any future `${Component}` style interpolation
+// that doesn't have an explicit `target`.
+export const CategoryLabel = styled(Text, { target: 'gmt-category-label' })(
   css({
     fontWeight: 'bold',
 
