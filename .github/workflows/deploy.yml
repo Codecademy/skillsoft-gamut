@@ -1,0 +1,41 @@
+# Placeholder for the documentation site deploy.
+#
+# Nothing is deployed from this repo right now, by design — it's pre-1.0 alpha
+# and there are no published docs to serve.
+#
+# The docs site (Astro Starlight) isn't in the repo yet. Once it lands, this
+# workflow builds Storybook into the site's `public/storybook/` directory, then
+# builds and deploys the site itself. Per-PR previews arrive at the same time,
+# in `preview.yml`.
+#
+# It stays a stub until then: `yarn build:docs` doesn't exist and the host isn't
+# settled. `workflow_dispatch` keeps it from running a no-op job on every merge;
+# switch it to `push: branches: [main]` when there's a site to ship.
+name: Deploy
+
+on:
+  workflow_dispatch:
+
+env:
+  NODE_OPTIONS: '--max_old_space_size=8196'
+
+permissions:
+  contents: read
+
+# A half-finished deploy is worse than a delayed one, so runs queue rather than
+# cancelling each other.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: ⚙️ Setup and install
+        uses: ./.github/actions/setup-and-install
+      - name: 📖 Build docs
+        run: yarn build:docs

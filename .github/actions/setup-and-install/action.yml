@@ -1,0 +1,40 @@
+name: 'Setup and install'
+description: 'Set up Node from .nvmrc, activate the pinned package manager, and install dependencies'
+
+runs:
+  using: 'composite'
+  steps:
+    # `package-manager-cache` is off because setup-node resolves the cache folder
+    # by asking the active package manager where it is — and at this point that's
+    # still the runner's preinstalled Yarn 1.22, which reports a path Yarn 4 never
+    # writes to. Caching happens below instead, after corepack activates Yarn 4.
+    - name: ⚙️ Setup Node
+      uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      with:
+        node-version-file: .nvmrc
+        package-manager-cache: 'false'
+
+    # `corepack enable` only installs the shims. `prepare --activate` is what
+    # downloads and switches to the exact version in package.json's
+    # `packageManager` field
+    - name: 📦 Activate Yarn
+      shell: bash
+      run: |
+        corepack enable
+        corepack prepare --activate
+
+    - name: 🔍 Resolve Yarn cache folder
+      id: yarn-cache
+      shell: bash
+      run: echo "dir=$(yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
+
+    - name: 🗂️ Restore Yarn cache
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      with:
+        path: ${{ steps.yarn-cache.outputs.dir }}
+        key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+        restore-keys: yarn-${{ runner.os }}-
+
+    - name: 📦 Install dependencies
+      shell: bash
+      run: yarn install --immutable

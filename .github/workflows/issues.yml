@@ -1,0 +1,30 @@
+# Issue and PR lifecycle management
+name: Issues
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  stale:
+    name: Close stale issues
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      issues: write
+    steps:
+      - name: 🗑 Mark and close stale issues
+        uses: actions/stale@4391f3da665fdf50b6810c1a66712fb9ba21aa93 # v11.0.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-issue-message: 'This issue has been automatically marked as stale because it has not had recent activity. 😱. It will be closed in 7 days unless you remove the `stale` label or add a comment.'
+          stale-issue-label: 'stale'
+          exempt-issue-labels: 'pinned'
+          days-before-stale: 60
+          days-before-close: 7
+          # Issues only — PRs are triaged by their author, not by a bot.
+          days-before-pr-stale: -1
+          days-before-pr-close: -1
