@@ -63,20 +63,20 @@ Set a fallback media-query value alongside any container-query value, for browse
 ### Media queries
 
 <StoryEmbed
-  id="foundations-system-responsiveproperties--media-queries"
+  id="foundations-system-responsive-properties--media-queries"
   height="10rem"
 />
 
 ### Container queries
 
 <StoryEmbed
-  id="foundations-system-responsiveproperties--container-queries"
+  id="foundations-system-responsive-properties--container-queries"
   height="10rem"
 />
 
 ### Combined queries
 
 <StoryEmbed
-  id="foundations-system-responsiveproperties--combined-queries"
+  id="foundations-system-responsive-properties--combined-queries"
   height="10rem"
 />

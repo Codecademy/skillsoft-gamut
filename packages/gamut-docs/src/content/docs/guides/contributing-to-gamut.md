@@ -259,7 +259,7 @@ export const SimpleButtonExample: React.FC = () => (
 Use shell (`sh`) syntax highlighting, skip the prompt symbol (`$`), and put one command per block unless several are directly related:
 
 ```bash
-yarn add @skillsoft/gamut-kit
+yarn add @skillsoft/gamut
 ```
 
 **File paths**

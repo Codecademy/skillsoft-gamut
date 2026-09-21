@@ -34,8 +34,8 @@ import { Background } from '@skillsoft/gamut-styles';
 import { Text } from '@skillsoft/gamut';
 
 export const WelcomePage = () => (
-  <Background bg="beige" p={32}>
-    <Text as="h1" fontSize={32} fontWeight="title">
+  <Background bg="beige" p={24}>
+    <Text as="h1" fontSize={34} fontWeight="title">
       Welcome to Gamut
     </Text>
   </Background>
@@ -100,7 +100,7 @@ export const WelcomePage = () => (
         Gamut components read theme values for color, spacing, and typography,
         so this page already matches the rest of a Gamut app.
       </Text>
-      <Card shadow="soft" p={24}>
+      <Card shadow="patternLeft" p={24}>
         <Text as="h2" fontSize={20} fontWeight="title" mb={8}>
           Ready to keep going?
         </Text>

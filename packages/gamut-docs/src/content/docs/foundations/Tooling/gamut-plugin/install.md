@@ -58,7 +58,7 @@ gamut plugin remove claude
 
 ## What gets installed
 
-From `packages/gamut/agent-tools/`:
+From `packages/gamut-agent-tools/`:
 
 | Directory | Purpose                                                                      |
 | --------- | ---------------------------------------------------------------------------- |

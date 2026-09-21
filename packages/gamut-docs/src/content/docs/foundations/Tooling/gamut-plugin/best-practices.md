@@ -33,7 +33,7 @@ Before large PRs, or when onboarding an existing codebase, run the `gamut-review
 
 ### Exported skills
 
-Installed into app repos via `gamut plugin install`, from [`packages/gamut/agent-tools/skills/`](https://github.com/Codecademy/gamut/tree/main/packages/gamut/agent-tools/skills/):
+Installed into app repos via `gamut plugin install`, from [`packages/gamut-agent-tools/skills/`](https://github.com/Codecademy/gamut/tree/main/packages/gamut-agent-tools/skills/):
 
 - `gamut-review` — codebase audit playbook, including `styled()` wrappers that bypass system props and bespoke components that duplicate existing ones.
 - `gamut-component-first` — check for an existing Gamut component before building bespoke UI; the proactive counterpart to `gamut-review`.

@@ -54,13 +54,76 @@ export default defineConfig({
               label: 'Guides',
               icon: 'open-book',
               link: '/guides/',
-              items: [{ autogenerate: { directory: 'guides' } }],
+              items: [
+                { slug: 'guides' },
+                { slug: 'guides/building-forms' },
+                { slug: 'guides/contributing-to-gamut' },
+                { slug: 'guides/creating-a-custom-theme' },
+                { slug: 'guides/migrating-to-logical-properties' },
+                { slug: 'guides/supporting-dark-mode' },
+                { slug: 'guides/theming-your-app' },
+                {
+                  // `autogenerate` labels nested groups from the raw directory
+                  // name, so hyphenated directories (kept short for tooling
+                  // and URLs) need their sidebar labels set explicitly here.
+                  label: 'Writing UX copy',
+                  items: [
+                    { slug: 'guides/writing-ux-copy' },
+                    { slug: 'guides/writing-ux-copy/accessibility-guidelines' },
+                    {
+                      label: 'Component guidelines',
+                      items: [
+                        {
+                          autogenerate: {
+                            directory: 'guides/writing-ux-copy/component-guidelines',
+                          },
+                        },
+                      ],
+                    },
+                    {
+                      slug: 'guides/writing-ux-copy/diy-ux-writing-in-8-steps',
+                    },
+                  ],
+                },
+              ],
             },
             {
               label: 'Foundations',
               icon: 'information',
               link: '/foundations/',
-              items: [{ autogenerate: { directory: 'foundations' } }],
+              items: [
+                { slug: 'foundations' },
+                { slug: 'foundations/design-tokens' },
+                { slug: 'foundations/eslint-rules' },
+                { slug: 'foundations/icon-and-asset-catalog' },
+                { slug: 'foundations/layout' },
+                { slug: 'foundations/style-helpers' },
+                {
+                  // See the note above `Writing UX copy` for why this
+                  // needs an explicit label instead of a bare autogenerate.
+                  label: 'System props',
+                  items: [
+                    { autogenerate: { directory: 'foundations/system-props' } },
+                  ],
+                },
+                { slug: 'foundations/themes' },
+                {
+                  label: 'Tooling',
+                  items: [
+                    { slug: 'foundations/tooling' },
+                    { autogenerate: { directory: 'foundations/Tooling/Figma' } },
+                    {
+                      label: 'Gamut plugin',
+                      items: [
+                        {
+                          autogenerate: { directory: 'foundations/Tooling/gamut-plugin' },
+                        },
+                      ],
+                    },
+                  ],
+                },
+                { slug: 'foundations/typography' },
+              ],
             },
             {
               label: 'Components',
@@ -118,9 +181,21 @@ export default defineConfig({
                 {
                   label: 'Data display',
                   items: [
+                    { slug: 'components/data-display' },
+                    { slug: 'components/data-display/bar-chart' },
                     {
-                      autogenerate: { directory: 'components/data-display' },
+                      // See the note above `Writing UX copy` for why this
+                      // needs an explicit label instead of a bare autogenerate.
+                      label: 'List & Tables',
+                      items: [
+                        {
+                          autogenerate: {
+                            directory: 'components/data-display/list-and-tables',
+                          },
+                        },
+                      ],
                     },
+                    { slug: 'components/data-display/markdown' },
                   ],
                 },
                 {

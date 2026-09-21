@@ -8,7 +8,7 @@ sidebar:
 ## Add the packages
 
 ```bash
-yarn add @skillsoft/gamut-kit @emotion/react @emotion/styled
+yarn add @skillsoft/gamut @emotion/react @emotion/styled
 ```
 
 Add the rest of the Gamut scope as no-op peer dependencies so your editor's IntelliSense picks up their types:
