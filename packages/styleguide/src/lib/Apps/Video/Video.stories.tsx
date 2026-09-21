@@ -1,4 +1,4 @@
-import { Video } from '@skillsoft/gamut';
+import { Video } from '@skillsoft/gamut/Video';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Video> = {

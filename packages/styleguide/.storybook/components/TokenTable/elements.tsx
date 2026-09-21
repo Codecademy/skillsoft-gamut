@@ -1,4 +1,4 @@
-import { system, variant } from '@skillsoft/gamut-styles/src';
+import { system, variant } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
 import { StyleProps } from '@skillsoft/variance';
 import { Box } from '@skillsoft/gamut';
