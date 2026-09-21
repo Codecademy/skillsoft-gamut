@@ -50,7 +50,7 @@ export default createRule({
         // Only care about template literals used as a computed style-object
         // key, e.g. `[`&:hover ${Foo}`]: { ... }` — not every template
         // literal in the file.
-        const parent = node.parent;
+        const { parent } = node;
         if (
           parent?.type !== AST_NODE_TYPES.Property ||
           parent.key !== node ||
