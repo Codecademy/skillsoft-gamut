@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { TextArea } from '../..';
-import { useField } from '..';
+import { TextArea } from '../../Form';
+import { useField } from '../utils';
 import { ConnectedTextAreaProps } from './types';
 
 export const ConnectedTextArea: React.FC<ConnectedTextAreaProps> = ({

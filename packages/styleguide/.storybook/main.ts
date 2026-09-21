@@ -84,6 +84,24 @@ const config: StorybookConfig = {
     ];
 
     /*
+     * `@emotion/babel-plugin` skips stamping `target` when the source already
+     * passes one (see BarChart/BarRow/elements.tsx); `@swc/plugin-emotion`
+     * stamps it unconditionally, so the transformed output has the key twice
+     * and esbuild flags it. Duplicate keys written by hand are still caught
+     * upstream by TypeScript and eslint's `no-dupe-keys`, so the only ones
+     * reaching esbuild here are the plugin's.
+     */
+    if (config.esbuild !== false) {
+      config.esbuild = {
+        ...config.esbuild,
+        logOverride: {
+          ...config.esbuild?.logOverride,
+          'duplicate-object-key': 'silent',
+        },
+      };
+    }
+
+    /*
      * Reproduce the webpack `resolve.alias` map. The `$`-suffixed webpack
      * aliases matched the bare package specifier only, so we use anchored
      * regexes to avoid rewriting subpaths (e.g. `@skillsoft/gamut-styles/src`).

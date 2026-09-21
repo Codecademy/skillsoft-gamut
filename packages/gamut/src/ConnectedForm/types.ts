@@ -1,6 +1,6 @@
 import { FieldValues, FormState } from 'react-hook-form';
 
-import {
+import type {
   ConnectedCheckbox,
   ConnectedInput,
   ConnectedNestedCheckboxes,
@@ -8,7 +8,7 @@ import {
   ConnectedSelect,
   ConnectedTextArea,
 } from './ConnectedInputs';
-import { BaseConnectedFieldProps } from './ConnectedInputs/types';
+import type { BaseConnectedFieldProps } from './ConnectedInputs/types';
 
 export type ConnectedField =
   | typeof ConnectedCheckbox

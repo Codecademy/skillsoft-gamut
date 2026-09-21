@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { Select } from '../..';
-import { useField } from '..';
+import { Select } from '../../Form';
+import { useField } from '../utils';
 import { ConnectedSelectProps } from './types';
 
 export const ConnectedSelect: React.FC<ConnectedSelectProps> = ({

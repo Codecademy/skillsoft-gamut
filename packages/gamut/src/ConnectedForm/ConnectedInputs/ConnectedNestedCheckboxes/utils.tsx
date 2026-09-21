@@ -1,4 +1,5 @@
-import { Box, Checkbox, CheckboxLabelUnion } from '../../..';
+import { Box } from '../../../Box';
+import { Checkbox, CheckboxLabelUnion } from '../../../Form';
 import { NestedGridFormCheckboxOption } from '../../../GridForm/types';
 import { MinimalCheckboxProps, NestedConnectedCheckboxOption } from '../types';
 

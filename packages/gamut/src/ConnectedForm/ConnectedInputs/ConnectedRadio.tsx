@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { Radio } from '../..';
-import { useField } from '..';
+import { Radio } from '../../Form';
+import { useField } from '../utils';
 import { ConnectedRadioProps } from './types';
 
 export const ConnectedRadio: React.FC<ConnectedRadioProps> = ({

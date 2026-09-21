@@ -23,12 +23,14 @@ import {
 import { FormRequiredText } from '../Form';
 import {
   ConnectedForm,
-  ConnectedFormGroup,
-  ConnectedFormGroupProps,
   ConnectedFormProps,
   FormPropsContext,
-} from '.';
-import { ConnectedField, SubmitContextProps } from './types';
+} from './ConnectedForm';
+import {
+  ConnectedFormGroup,
+  ConnectedFormGroupProps,
+} from './ConnectedFormGroup';
+import type { ConnectedField, SubmitContextProps } from './types';
 
 interface ConnectedGroupStrictProps<Values extends {}> {
   <Name extends keyof Values, Component extends ConnectedField>(

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { Input } from '../..';
-import { useField } from '..';
+import { Input } from '../../Form';
+import { useField } from '../utils';
 import { ConnectedInputProps } from './types';
 
 export const ConnectedInput: React.FC<ConnectedInputProps> = ({
