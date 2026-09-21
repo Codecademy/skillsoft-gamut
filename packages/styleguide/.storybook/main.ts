@@ -2,13 +2,16 @@ import { createRequire } from 'node:module';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// `@vitejs/plugin-react-swc`, `@swc/plugin-emotion`, and the `@swc/core`
-// resolution below are pinned to versions from the same release window
-// (June-July 2026) on purpose, not left behind by accident. Newer
-// `@swc/plugin-emotion`/`@swc/core` pairs (as of Sept 2026) crash with an
-// opaque WASM panic on real story/mdx files due to an undocumented ABI
-// mismatch between the plugin and swc_core - see the "storybook swc emotion
-// spike" notes for the repro. Bump these three together, not individually.
+/*
+* `@vitejs/plugin-react-swc`, `@swc/plugin-emotion`, and the `@swc/core`
+* resolution below are pinned to versions from the same release window
+* (June-July 2026) on purpose, not left behind by accident. Newer
+* `@swc/plugin-emotion`/`@swc/core` pairs (as of Sept 2026) crash with an
+* opaque WASM panic on real story/mdx files due to an undocumented ABI
+* mismatch between the plugin and swc_core - see the "storybook swc emotion
+* spike" notes for the repro. Bump these three together, not individually.
+*/
+
 import react from '@vitejs/plugin-react-swc';
 import type { StorybookConfig } from '@storybook/react-vite';
 import type { Alias, AliasOptions } from 'vite';
