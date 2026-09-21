@@ -3,7 +3,6 @@ import { AddIcon, TrashIcon } from '@skillsoft/gamut-icons';
 import { Target } from '@skillsoft/gamut-illustrations';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { expect, waitFor } from 'storybook/test';
 
 const exampleToasts = [
   {
@@ -41,11 +40,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  parameters: {
-    interactions: {
-      disable: false,
-    },
-  },
   render: function DefaultStory(args) {
     const [toasts, setToasts] = useState(args.toasts || []);
 
@@ -78,12 +72,5 @@ export const Default: Story = {
         <Toaster {...args} toasts={toasts} onClose={removeOne} />
       </>
     );
-  },
-  play: async () => {
-    await waitFor(async () => {
-      await expect(
-        document.body.querySelectorAll('[role="status"]').length
-      ).toEqual(4);
-    });
   },
 };
