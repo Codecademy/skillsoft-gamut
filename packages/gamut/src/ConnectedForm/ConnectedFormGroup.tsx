@@ -5,12 +5,7 @@ import * as React from 'react';
 import { RegisterOptions } from 'react-hook-form';
 
 import { Anchor } from '../Anchor';
-import {
-  FormError,
-  FormGroup,
-  FormGroupLabel,
-  FormGroupProps,
-} from '../Form';
+import { FormError, FormGroup, FormGroupLabel, FormGroupProps } from '../Form';
 import { Markdown } from '../Markdown';
 import { InfoTipSubComponentProps } from '../Tip/InfoTip/type-utils';
 import { Text } from '../Typography';
