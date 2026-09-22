@@ -3,6 +3,15 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "baseUrl": ".",
-    "paths": {}
+    "paths": {},
+    // Editor-only: no real build uses this root config, only package-scoped
+    // tsconfigs. This covers files outside those, i.e. the tsdown.config.ts /
+    // tsdown.base.ts files at package roots. `noEmit` must pair with
+    // `allowImportingTsExtensions` (TS-enforced). `moduleResolution: "bundler"`
+    // is needed because tsdown ships only an `exports` map, unresolvable under
+    // the base config's legacy "node" resolution — tbd on repo-wide follow-up.
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "moduleResolution": "bundler"
   }
 }

@@ -19,7 +19,7 @@
           "rm -rf ./dist",
           "rm -rf ./src/patterns",
           "svgr --out-dir ./src/patterns --ext 'tsx' ./src/svg",
-          "babel ./src --out-dir ./dist --extensions \".ts,.tsx\"",
+          "tsdown",
           "tsc --emitDeclarationOnly",
           "cpy './src/**/*.svg' ./dist"
         ],
@@ -39,6 +39,15 @@
       "options": {
         "cwd": "{projectRoot}",
         "command": "rm -rf ./dist"
+      }
+    },
+    "verify-package": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "cwd": "{projectRoot}",
+        "commands": ["publint .", "attw --pack . --ignore-rules false-cjs"],
+        "parallel": false
       }
     },
     "publish-build": {

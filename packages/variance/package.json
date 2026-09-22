@@ -7,6 +7,14 @@
     "csstype": "^3.0.7",
     "lodash": "^4.17.23"
   },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -19,7 +27,7 @@
   ],
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/index.js",
+  "module": "dist/index.mjs",
   "peerDependencies": {
     "@emotion/react": "*",
     "typescript": ">=4.3.5"
@@ -31,5 +39,6 @@
   "scripts": {
     "build": "nx build variance"
   },
+  "sideEffects": false,
   "types": "dist/index.d.ts"
 }

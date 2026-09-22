@@ -7,7 +7,6 @@ on:
       - main
 
 env:
-  NODE_VERSION: '22.13.1'
   NODE_OPTIONS: '--max_old_space_size=8196'
   NX_CLOUD: false
 
@@ -26,6 +25,10 @@ jobs:
       - uses: ./.github/actions/yarn
       - name: Build All Packages
         run: yarn build
+      - name: Verify published package shape (publint, attw)
+        run: npx nx run-many --target=verify-package --all
+      - name: Verify exports maps resolve
+        run: node script/verify-exports.mjs
       - name: Install Playwright (Vitest browser mode)
         run: yarn playwright install chromium --with-deps
       - name: Storybook stories + accessibility tests (Vitest)

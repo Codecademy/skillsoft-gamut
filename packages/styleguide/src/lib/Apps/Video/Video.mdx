@@ -1,6 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 
-import { ComponentHeader } from '~styleguide/blocks';
+import { Callout, ComponentHeader } from '~styleguide/blocks';
 
 import * as VideoStories from './Video.stories';
 
@@ -23,13 +23,26 @@ export const parameters = {
 
 <ComponentHeader {...parameters} />
 
+<Callout
+  text={
+    <>
+      Import <code>Video</code> from <code>@skillsoft/gamut/Video</code> — it is
+      not included in <code>@skillsoft/gamut</code>'s default export.
+    </>
+  }
+/>
+
 ## Usage
 
-The Video component is a feature-rich video player that supports multiple video sources and formats with enhanced accessibility features.
+```tsx
+import { Video } from '@skillsoft/gamut/Video';
+```
 
-### Key Features
+The `Video` component is a video player that supports multiple video sources and formats with enhanced accessibility features.
 
-- **Multiple Sources**: Supports YouTube, Vimeo, HLS, and DASH video streams
+### Key features
+
+- **Multiple sources**: Supports YouTube, Vimeo, HLS, and DASH video streams
 - **Accessibility**: Enhanced keyboard navigation and screen reader support
 - **Internationalization**: Customizable UI text through translations props
 - **Captions**: Supports multiple caption formats (VTT, SRT, SSA)
