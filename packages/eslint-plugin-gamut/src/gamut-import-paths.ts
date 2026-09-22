@@ -11,7 +11,9 @@ export default createRule({
           const importPath = node.source.value;
 
           const fileDirectory = filename.split('/packages/')[1].split('/')[0];
-          const importPackage = importPath.split('@skillsoft/')[1].split('/')[0];
+          const importPackage = importPath
+            .split('@skillsoft/')[1]
+            .split('/')[0];
 
           if (fileDirectory === importPackage) {
             context.report({
