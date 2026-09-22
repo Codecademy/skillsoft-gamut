@@ -47,10 +47,7 @@
       "dependsOn": ["build"],
       "options": {
         "cwd": "{projectRoot}",
-        "commands": [
-          "publint .",
-          "attw --pack . --ignore-rules false-cjs"
-        ],
+        "commands": ["publint .", "attw --pack . --ignore-rules false-cjs"],
         "parallel": false
       }
     },

@@ -64,8 +64,7 @@ export default createRule({
 
           const variable = context.sourceCode
             .getScope(expression)
-            .references.find((ref) => ref.identifier === expression)
-            ?.resolved;
+            .references.find((ref) => ref.identifier === expression)?.resolved;
           const declarator = variable?.defs.find(
             (def) => def.node.type === AST_NODE_TYPES.VariableDeclarator
           )?.node as TSESTree.VariableDeclarator | undefined;
@@ -95,7 +94,7 @@ export default createRule({
       missingTarget:
         '`{{name}}` is interpolated into a style selector but its styled() call has no explicit `target`. ' +
         '@emotion/babel-plugin normally stamps this automatically, but the production build does not run ' +
-        'that plugin — add `styled(X, { target: \'some-stable-name\' })` or the selector silently breaks in production.',
+        "that plugin — add `styled(X, { target: 'some-stable-name' })` or the selector silently breaks in production.",
     },
     type: 'problem',
     schema: [],
