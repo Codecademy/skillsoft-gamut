@@ -1,7 +1,7 @@
 import {
   DefaultVideoLayoutProps,
   DefaultVideoLayoutSlots,
-} from '@vidstack/react/types/vidstack-react';
+} from '@vidstack/react/player/layouts/default';
 
 import { SeekBackwardsButton } from './SeekBackwards';
 
