@@ -10,11 +10,7 @@
       "executor": "nx:run-commands",
       "options": {
         "cwd": "packages/gamut-illustrations",
-        "commands": [
-          "rm -rf ./dist",
-          "tsdown",
-          "tsc --emitDeclarationOnly"
-        ],
+        "commands": ["rm -rf ./dist", "tsdown", "tsc --emitDeclarationOnly"],
         "parallel": false
       }
     },
@@ -37,10 +33,7 @@
       "dependsOn": ["build"],
       "options": {
         "cwd": "{projectRoot}",
-        "commands": [
-          "publint .",
-          "attw --pack . --ignore-rules false-cjs"
-        ],
+        "commands": ["publint .", "attw --pack . --ignore-rules false-cjs"],
         "parallel": false
       }
     },
