@@ -29,9 +29,6 @@ const preview: Preview = {
     a11y: {
       test: 'error',
     },
-    interactions: {
-      disable: true,
-    },
     backgrounds: {
       disable: true,
     },
