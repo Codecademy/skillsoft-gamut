@@ -49,4 +49,4 @@ jobs:
       # One invocation for every package, which is how pkg.pr.new keeps itself to
       # a single PR comment. `--yarn` packs with `yarn pack` rather than npm.
       - name: 📦 Publish preview packages
-        run: yarn pkg-pr-new publish --yarn './packages/*'
+        run: yarn pkg-pr-new publish --yarn --packageManager=npm,yarn './packages/*'
