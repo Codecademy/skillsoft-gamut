@@ -36,7 +36,11 @@ export const Default: Story = {
   },
 };
 
+// Visual catalog of every pattern — slow to render + axe, and redundant with
+// `Default`. `!test` removes the auto-applied `test` tag so addon-vitest skips
+// it; it still renders in Storybook.
 export const AllPatterns: Story = {
+  tags: ['!test'],
   render: () => {
     return (
       <ImageGallery

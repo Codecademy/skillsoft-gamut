@@ -12,7 +12,6 @@ import { parameters as popoverParameters } from './Popover/Popover.mdx';
 import { parameters as tabsParameters } from './Tabs/Tabs.mdx';
 import { parameters as tipsParameters } from './Tips/About.mdx';
 import { parameters as toastsParameters } from './Toasts/About.mdx';
-import { parameters as videoParameters } from './Video/Video.mdx';
 
 export const MoleculeAboutToC = () => (
   <TableOfContents
@@ -29,7 +28,6 @@ export const MoleculeAboutToC = () => (
       tabsParameters,
       tipsParameters,
       toastsParameters,
-      videoParameters,
     ])}
   />
 );

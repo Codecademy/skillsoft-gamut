@@ -9,13 +9,21 @@
     "@skillsoft/variance": "0.0.1",
     "classnames": "^2.2.5"
   },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
   "homepage": "https://github.com/Codecademy/skillsoft-gamut#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/index.js",
+  "module": "dist/index.mjs",
   "peerDependencies": {
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",

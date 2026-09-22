@@ -30,7 +30,8 @@
       "cache": true
     },
     "verify": {
-      "cache": true
+      "cache": true,
+      "dependsOn": ["^build"]
     },
     "@nx/jest:jest": {
       "cache": true,
