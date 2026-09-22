@@ -138,6 +138,7 @@
     "prettier": "prettier --ignore-path .prettierignore \"./**/*.{mdx,js,ts,tsx,json,css,scss}\"",
     "start": "yarn && yarn start:storybook",
     "start:storybook": "nx storybook styleguide",
+    "storybook": "storybook dev -p 6008 -c packages/.storybook",
     "test": "nx run-many --target=test --all",
     "test:stories": "vitest run --project=storybook",
     "test:stories:watch": "vitest --project=storybook",
