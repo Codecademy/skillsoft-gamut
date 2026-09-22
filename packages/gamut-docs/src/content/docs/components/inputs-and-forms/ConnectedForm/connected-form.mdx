@@ -15,7 +15,7 @@ import StoryEmbed from '~/components/StoryEmbed.astro';
 
 - Always pass `defaultValues` — it's required for reliable behavior, particularly resets.
 - Every key in `validationRules` must have a matching key in `defaultValues`.
- - `validation="onChange"` (the default) controls when validation runs; `SubmitButton` is not disabled automatically. Pass `disabled={(formState) => !formState.isValid}` when it should follow form validity.
+- `validation="onChange"` (the default) controls when validation runs; `SubmitButton` is not disabled automatically. Pass `disabled={(formState) => !formState.isValid}` when it should follow form validity.
 - `watchedFields` is useful for conditionally rendering fields based on another field's live value, but re-runs on every render — only reach for it when you actually need a value before submission.
 
 **When NOT to use:**
