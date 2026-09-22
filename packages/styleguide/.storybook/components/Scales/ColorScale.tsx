@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { themed } from '@skillsoft/gamut-styles';
 import styled from '@emotion/styled';
-import { Box, GridBox } from '@skillsoft/gamut/src';
+import { Box, GridBox } from '@skillsoft/gamut';
 
 const HexCode = styled.span`
   font-family: ${themed('fontFamily.monospace')};
