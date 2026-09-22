@@ -39,6 +39,11 @@ export const Default: Story = {
 };
 
 export const AllMiniIcons: Story = {
+  // Skip the render/a11y test on the full gallery — it's a visual catalog of
+  // every icon (slow to render + axe), and `Default` already covers the
+  // component's behavior. `!test` removes the auto-applied `test` tag so
+  // addon-vitest ignores this story (it still shows in Storybook).
+  tags: ['!test'],
   render: () => {
     return <ImageGallery imageType="icon" images={miniIcons} />;
   },

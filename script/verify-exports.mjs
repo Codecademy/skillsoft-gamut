@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/**
+/*
  * Resolves every publishable package's `exports` map from the repo root,
  * the same way a real consumer would, and asserts:
  *   1. the root subpath resolves AND loads (via both ESM `import` and CJS

@@ -3,14 +3,14 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 /*
-* `@vitejs/plugin-react-swc`, `@swc/plugin-emotion`, and the `@swc/core`
-* resolution below are pinned to versions from the same release window
-* (June-July 2026) on purpose, not left behind by accident. Newer
-* `@swc/plugin-emotion`/`@swc/core` pairs (as of Sept 2026) crash with an
-* opaque WASM panic on real story/mdx files due to an undocumented ABI
-* mismatch between the plugin and swc_core - see the "storybook swc emotion
-* spike" notes for the repro. Bump these three together, not individually.
-*/
+ * `@vitejs/plugin-react-swc`, `@swc/plugin-emotion`, and the `@swc/core`
+ * resolution below are pinned to versions from the same release window
+ * (June-July 2026) on purpose, not left behind by accident. Newer
+ * `@swc/plugin-emotion`/`@swc/core` pairs (as of Sept 2026) crash with an
+ * opaque WASM panic on real story/mdx files due to an undocumented ABI
+ * mismatch between the plugin and swc_core - see the "storybook swc emotion
+ * spike" notes for the repro. Bump these three together, not individually.
+ */
 
 import react from '@vitejs/plugin-react-swc';
 import type { StorybookConfig } from '@storybook/react-vite';
@@ -110,14 +110,38 @@ const config: StorybookConfig = {
     config.resolve = {
       ...config.resolve,
       alias: [
-        { find: '~styleguide/blocks', replacement: resolve(__dirname, './components') },
-        { find: '~styleguide/argTypes', replacement: resolve(__dirname, './argTypes') },
-        { find: /^@skillsoft\/gamut-styles$/, replacement: resolve(__dirname, '../../gamut-styles/src') },
-        { find: /^@skillsoft\/gamut$/, replacement: resolve(__dirname, '../../gamut/src') },
-        { find: /^@skillsoft\/gamut-illustrations$/, replacement: resolve(__dirname, '../../gamut-illustrations/src') },
-        { find: /^@skillsoft\/gamut-icons$/, replacement: resolve(__dirname, '../../gamut-icons/src') },
-        { find: /^@skillsoft\/gamut-patterns$/, replacement: resolve(__dirname, '../../gamut-patterns/src') },
-        { find: /^@skillsoft\/variance$/, replacement: resolve(__dirname, '../../variance/src') },
+        {
+          find: '~styleguide/blocks',
+          replacement: resolve(__dirname, './components'),
+        },
+        {
+          find: '~styleguide/argTypes',
+          replacement: resolve(__dirname, './argTypes'),
+        },
+        {
+          find: /^@skillsoft\/gamut-styles$/,
+          replacement: resolve(__dirname, '../../gamut-styles/src'),
+        },
+        {
+          find: /^@skillsoft\/gamut$/,
+          replacement: resolve(__dirname, '../../gamut/src'),
+        },
+        {
+          find: /^@skillsoft\/gamut-illustrations$/,
+          replacement: resolve(__dirname, '../../gamut-illustrations/src'),
+        },
+        {
+          find: /^@skillsoft\/gamut-icons$/,
+          replacement: resolve(__dirname, '../../gamut-icons/src'),
+        },
+        {
+          find: /^@skillsoft\/gamut-patterns$/,
+          replacement: resolve(__dirname, '../../gamut-patterns/src'),
+        },
+        {
+          find: /^@skillsoft\/variance$/,
+          replacement: resolve(__dirname, '../../variance/src'),
+        },
         // The bare-specifier aliases above only cover each package's public
         // surface (their src/index). These four docs-only pages reach past
         // that into groupings with no public export (icon categories, raw
@@ -127,10 +151,31 @@ const config: StorybookConfig = {
         // Resolving them here, rather than adding them to any package's
         // `exports` map, keeps that map an honest description of the
         // published surface instead of growing it to fit docs tooling.
-        { find: /^@skillsoft\/gamut-icons\/src\/icons\/mini$/, replacement: resolve(__dirname, '../../gamut-icons/src/icons/mini') },
-        { find: /^@skillsoft\/gamut-icons\/src\/icons\/regular$/, replacement: resolve(__dirname, '../../gamut-icons/src/icons/regular') },
-        { find: /^@skillsoft\/gamut\/src\/Typography\/variants$/, replacement: resolve(__dirname, '../../gamut/src/Typography/variants') },
-        { find: /^@skillsoft\/gamut-styles\/src\/variance\/config$/, replacement: resolve(__dirname, '../../gamut-styles/src/variance/config') },
+        {
+          find: /^@skillsoft\/gamut-icons\/src\/icons\/mini$/,
+          replacement: resolve(__dirname, '../../gamut-icons/src/icons/mini'),
+        },
+        {
+          find: /^@skillsoft\/gamut-icons\/src\/icons\/regular$/,
+          replacement: resolve(
+            __dirname,
+            '../../gamut-icons/src/icons/regular'
+          ),
+        },
+        {
+          find: /^@skillsoft\/gamut\/src\/Typography\/variants$/,
+          replacement: resolve(
+            __dirname,
+            '../../gamut/src/Typography/variants'
+          ),
+        },
+        {
+          find: /^@skillsoft\/gamut-styles\/src\/variance\/config$/,
+          replacement: resolve(
+            __dirname,
+            '../../gamut-styles/src/variance/config'
+          ),
+        },
         ...normalizeAlias(config.resolve?.alias),
       ],
     };

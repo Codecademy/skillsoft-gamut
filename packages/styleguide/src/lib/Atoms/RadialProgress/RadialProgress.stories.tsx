@@ -1,5 +1,4 @@
-import { Box, RadialProgress } from '@skillsoft/gamut';
-import { Video } from '@skillsoft/gamut/Video';
+import { RadialProgress } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof RadialProgress> = {
