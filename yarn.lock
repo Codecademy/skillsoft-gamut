@@ -8008,6 +8008,7 @@ __metadata:
     "@types/react-dom": "npm:^18.3.1"
     astro: "npm:^7.2.6"
     astro-live-code: "npm:^0.0.6"
+    cookie: "npm:^2.0.1"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     starlight-sidebar-topics: "npm:^0.8.0"

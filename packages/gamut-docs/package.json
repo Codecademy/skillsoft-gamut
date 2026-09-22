@@ -12,6 +12,7 @@
     "@skillsoft/gamut-styles": "workspace:*",
     "astro": "^7.2.6",
     "astro-live-code": "^0.0.6",
+    "cookie": "^2.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "starlight-sidebar-topics": "^0.8.0"

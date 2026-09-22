@@ -11,7 +11,7 @@ import starlightSidebarTopics from 'starlight-sidebar-topics';
 // Each top-level section is its own topic (starlight-sidebar-topics), so its
 // sidebar replaces the others instead of all six being stacked in one long list.
 export default defineConfig({
-  site: 'https://gamut.codecademy.com',
+  site: 'https://gamut.skillsoft.com',
   server: {
     port: 3333,
   },

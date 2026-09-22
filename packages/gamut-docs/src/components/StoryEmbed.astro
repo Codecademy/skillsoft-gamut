@@ -21,17 +21,12 @@ interface Props {
 
 const { id, height = '10rem' } = Astro.props;
 
-// Port must match the `storybook` target's `port` option in the styleguide
-// project's project.json.
-const storybookOrigin = import.meta.env.DEV
-  ? 'http://localhost:6006'
-  : 'https://gamut.codecademy.com';
-const src = `${storybookOrigin}/iframe.html?id=${id}&viewMode=story`;
+const src = `/storybook/iframe.html?id=${id}&viewMode=story`;
 
 // Storybook ids are "<title>--<story-name>"; the docs page for the whole
 // story group lives at "<title>--docs".
 const storyGroupId = id.slice(0, id.lastIndexOf('--'));
-const docsHref = `${storybookOrigin}/?path=/docs/${storyGroupId}--docs`;
+const docsHref = `/storybook/?path=/docs/${storyGroupId}--docs`;
 ---
 
 <div style="margin: 1rem 0;">
