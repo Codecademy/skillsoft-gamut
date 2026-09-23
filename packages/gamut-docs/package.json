@@ -1,0 +1,35 @@
+{
+  "name": "@skillsoft/gamut-docs",
+  "description": "Gamut documentation site (Astro + Starlight)",
+  "version": "0.1.0",
+  "dependencies": {
+    "@astrojs/react": "^6.0.4",
+    "@astrojs/starlight": "^0.41.9",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@skillsoft/gamut": "workspace:*",
+    "@skillsoft/gamut-icons": "workspace:*",
+    "@skillsoft/gamut-styles": "workspace:*",
+    "astro": "^7.2.6",
+    "astro-live-code": "^0.0.6",
+    "cookie": "^2.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "starlight-sidebar-topics": "^0.8.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1"
+  },
+  "license": "MIT",
+  "private": true,
+  "repository": "git@github.com:Codecademy/gamut.git",
+  "scripts": {
+    "build": "astro build",
+    "check": "astro check",
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "start": "astro dev"
+  },
+  "type": "module"
+}
