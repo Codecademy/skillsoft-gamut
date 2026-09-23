@@ -1,0 +1,52 @@
+# Installable previews of the packages on a pull request, published through
+# pkg.pr.new. Nothing reaches npm — pkg.pr.new serves npm-compatible tarballs
+# from its own URLs, so this needs no registry credentials and no version bump.
+# The pkg.pr.new GitHub App posts the install instructions as a PR comment,
+# which is why the job needs no permissions of its own.
+#
+# Installs resolve as:
+#   yarn add https://pkg.pr.new/@skillsoft/gamut@<pr-number>
+#
+# Previews are throwaway. They expire, and they are not a release channel — real
+# prereleases go through Changesets onto an npm dist-tag. Don't put a preview URL
+# in a lockfile on a long-lived branch, and don't cite one in docs or changelogs.
+#
+# Docs previews join this workflow as a second job once the site exists.
+name: Preview
+
+on:
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_OPTIONS: '--max_old_space_size=8196'
+
+permissions:
+  contents: read
+
+# Previews are disposable, so a new push should abandon the build it supersedes.
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  packages:
+    # Nobody installs a preview of the version bump itself, and the real versions
+    # publish minutes later.
+    if: github.event.pull_request.head.ref != 'changeset-release/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # A preview is a convenience. pkg.pr.new outages are upstream and unannounced,
+    # so a failure here shouldn't read as a broken pull request.
+    continue-on-error: true
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: ⚙️ Setup and install
+        uses: ./.github/actions/setup-and-install
+      - name: 🏗 Build all packages
+        run: yarn build
+      # One invocation for every package, which is how pkg.pr.new keeps itself to
+      # a single PR comment. `--yarn` packs with `yarn pack` rather than npm.
+      - name: 📦 Publish preview packages
+        run: yarn pkg-pr-new publish --yarn --packageManager=npm,yarn './packages/*'
