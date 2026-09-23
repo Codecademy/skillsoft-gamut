@@ -132,17 +132,11 @@ const config: StorybookConfig = {
         },
         {
           find: /^@skillsoft\/gamut-icons\/src\/icons\/regular$/,
-          replacement: resolve(
-            __dirname,
-            '../gamut-icons/src/icons/regular'
-          ),
+          replacement: resolve(__dirname, '../gamut-icons/src/icons/regular'),
         },
         {
           find: /^@skillsoft\/gamut\/src\/Typography\/variants$/,
-          replacement: resolve(
-            __dirname,
-            '../gamut/src/Typography/variants'
-          ),
+          replacement: resolve(__dirname, '../gamut/src/Typography/variants'),
         },
         {
           find: /^@skillsoft\/gamut-styles\/src\/variance\/config$/,
