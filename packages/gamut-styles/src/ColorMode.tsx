@@ -1,15 +1,18 @@
-import { CSSObject, Theme, ThemeProvider, useTheme } from '@emotion/react';
+import type { CSSObject, Theme} from '@emotion/react';
+import { ThemeProvider, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
+import type {
+  StyleProps,
+  ThemeProps} from '@skillsoft/variance';
 import {
   serializeTokens,
-  StyleProps,
-  ThemeProps,
   variance,
 } from '@skillsoft/variance';
 import mapValues from 'lodash/mapValues';
 import pick from 'lodash/pick';
+import type {
+  ComponentProps} from 'react';
 import {
-  ComponentProps,
   createContext,
   forwardRef,
   useContext,
@@ -18,7 +21,7 @@ import {
   useState,
 } from 'react';
 
-import { theme as GamutTheme } from '.';
+import type { theme as GamutTheme } from '.';
 import {
   background,
   border,

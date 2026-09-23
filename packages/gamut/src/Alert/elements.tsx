@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
 import { Background, css } from '@skillsoft/gamut-styles';
 import { motion } from 'framer-motion';
-import { ComponentProps, forwardRef } from 'react';
+import type { ComponentProps} from 'react';
+import { forwardRef } from 'react';
 
 import { Box } from '../Box';
 import { FillButton } from '../Button';
-import { AlertProps } from './Alert';
+import type { AlertProps } from './Alert';
 import { placementVariants } from './variants';
 
 const StyledAlertBanner =

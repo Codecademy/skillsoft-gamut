@@ -1,9 +1,10 @@
+import type {
+  PaginationProps} from '@skillsoft/gamut';
 import {
   FlexBox,
   FormGroup,
   Input,
-  Pagination,
-  PaginationProps,
+  Pagination
 } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useState } from 'react';

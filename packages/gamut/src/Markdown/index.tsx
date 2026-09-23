@@ -2,25 +2,27 @@ import styled from '@emotion/styled';
 import cx from 'classnames';
 import HtmlToReact from 'html-to-react';
 import { marked } from 'marked';
+import type * as React from 'react';
 import { PureComponent } from 'react';
-import * as React from 'react';
 import sanitizeMarkdown from 'sanitize-markdown';
 
 import { omitProps } from '../utils/omitProps';
+import type {
+  MarkdownOverrideSettings} from './libs/overrides';
 import {
   createCodeBlockOverride,
   createInputOverride,
   createTagOverride,
   createVideoOverride,
-  MarkdownOverrideSettings,
   standardOverrides,
 } from './libs/overrides';
 import { MarkdownCheckbox } from './libs/overrides/Checkbox';
 import { Details } from './libs/overrides/Details';
 import { Iframe } from './libs/overrides/Iframe';
+import type {
+  MarkdownAnchorProps} from './libs/overrides/MarkdownAnchor';
 import {
-  MarkdownAnchor,
-  MarkdownAnchorProps,
+  MarkdownAnchor
 } from './libs/overrides/MarkdownAnchor';
 import { Table } from './libs/overrides/Table';
 import { MarkdownVideo } from './libs/overrides/Video';

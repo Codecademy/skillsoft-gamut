@@ -1,8 +1,9 @@
+import type {
+  BarProps,
+  PartialBarChartTranslations} from '@skillsoft/gamut';
 import {
   BarChart,
-  BarProps,
-  Box,
-  PartialBarChartTranslations,
+  Box
 } from '@skillsoft/gamut';
 import {
   BookFlipPageIcon,

@@ -1,15 +1,16 @@
 import styled from '@emotion/styled';
 import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
 import { system } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
-import { ReactNode, useMemo } from 'react';
-import * as React from 'react';
+import type { StyleProps } from '@skillsoft/variance';
+import type { ReactNode} from 'react';
+import type * as React from 'react';
+import { useMemo } from 'react';
 
 import { Box, FlexBox } from '../Box';
 import { IconButton } from '../Button/IconButton';
 import { PatternBackdrop } from '../PatternBackdrop/PatternBackdrop';
 import { Text } from '../Typography';
-import { WithChildrenProp } from '../utils';
+import type { WithChildrenProp } from '../utils';
 
 const layoutVariants = system.variant({
   prop: 'layout',

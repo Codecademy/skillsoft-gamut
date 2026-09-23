@@ -1,9 +1,9 @@
 import isString from 'lodash/isString';
-import * as React from 'react';
-import { UseFormReturn } from 'react-hook-form';
+import type * as React from 'react';
+import type { UseFormReturn } from 'react-hook-form';
 
 import { Radio, RadioGroup } from '../../../Form';
-import { BaseFormInputProps, GridFormRadioGroupField } from '../../types';
+import type { BaseFormInputProps, GridFormRadioGroupField } from '../../types';
 
 export interface GridFormRadioGroupInputProps extends BaseFormInputProps {
   field: GridFormRadioGroupField;

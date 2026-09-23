@@ -1,4 +1,4 @@
-import { FieldValues, FormState } from 'react-hook-form';
+import type { FieldValues, FormState } from 'react-hook-form';
 
 import type {
   ConnectedCheckbox,

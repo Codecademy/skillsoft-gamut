@@ -2,23 +2,26 @@
 /* eslint-disable @skillsoft/gamut/no-css-standalone */
 import './vidstack-styles.css';
 
-import styled, { CSSObject } from '@emotion/styled';
+import type { CSSObject } from '@emotion/styled';
+import styled from '@emotion/styled';
 import { styledOptions } from '@skillsoft/gamut-styles';
+import type {
+  MediaPlayerInstance,
+  MediaProviderAdapter} from '@vidstack/react';
 import {
   isYouTubeProvider,
   MediaPlayer,
-  MediaPlayerInstance,
   MediaProvider,
-  MediaProviderAdapter,
   Poster,
   Track,
   useMediaRemote,
   useMediaState,
 } from '@vidstack/react';
-import React, { useRef } from 'react';
+import type React from 'react';
+import { useRef } from 'react';
 
 import { Box } from '../../../Box';
-import { VideoProps } from '../..';
+import type { VideoProps } from '../..';
 import { keyboardShortcuts } from '../utils/constants';
 import { VideoLayout } from '../VideoLayout';
 import { vdsVariables } from './variables';

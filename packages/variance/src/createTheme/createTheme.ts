@@ -1,11 +1,13 @@
 import mapValues from 'lodash/mapValues';
 import merge from 'lodash/merge';
 
-import { CSSObject } from '../types/props';
-import { AbstractTheme } from '../types/theme';
-import { flattenScale, LiteralPaths } from '../utils/flattenScale';
-import { KeyAsVariable, serializeTokens } from '../utils/serializeTokens';
-import { ColorModeConfig, Merge, MergeTheme, PrivateThemeKeys } from './types';
+import type { CSSObject } from '../types/props';
+import type { AbstractTheme } from '../types/theme';
+import type { LiteralPaths } from '../utils/flattenScale';
+import { flattenScale } from '../utils/flattenScale';
+import type { KeyAsVariable} from '../utils/serializeTokens';
+import { serializeTokens } from '../utils/serializeTokens';
+import type { ColorModeConfig, Merge, MergeTheme, PrivateThemeKeys } from './types';
 
 class ThemeBuilder<T extends AbstractTheme> {
   #theme = {} as T;

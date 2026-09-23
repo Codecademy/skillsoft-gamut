@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
 import { states, variant } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
+import type { StyleProps } from '@skillsoft/variance';
 
 import { ButtonBase } from '../ButtonBase';
+import type {
+  TabElementStyleProps} from './props';
 import {
   tabElementBaseProps,
-  TabElementStyleProps,
   TabSelectors,
 } from './props';
 

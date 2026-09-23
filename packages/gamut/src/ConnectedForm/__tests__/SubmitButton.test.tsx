@@ -1,6 +1,7 @@
 import { theme } from '@skillsoft/gamut-styles';
 import { setupRtl } from '@skillsoft/gamut-tests';
-import hookform, { FormState } from 'react-hook-form';
+import type { FormState } from 'react-hook-form';
+import hookform from 'react-hook-form';
 
 import { CTAButton } from '../../Button';
 import { SubmitButton } from '../SubmitButton';

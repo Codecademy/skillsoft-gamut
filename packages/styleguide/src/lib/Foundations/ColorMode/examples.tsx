@@ -1,7 +1,8 @@
+import type {
+  ButtonProps} from '@skillsoft/gamut';
 import {
   Anchor,
   Box,
-  ButtonProps,
   Checkbox,
   CTAButton,
   FillButton,
@@ -28,8 +29,9 @@ import {
   ColorMode,
   usePrefersDarkMode,
 } from '@skillsoft/gamut-styles';
-import { ComponentProps, useState } from 'react';
-import * as React from 'react';
+import type { ComponentProps} from 'react';
+import type * as React from 'react';
+import { useState } from 'react';
 
 const renderText = () => (
   <Text as="p" color="text" mb={16}>

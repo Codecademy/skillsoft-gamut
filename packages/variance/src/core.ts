@@ -6,7 +6,7 @@ import isUndefined from 'lodash/isUndefined';
 import merge from 'lodash/merge';
 
 import { createScaleLookup } from './scales/createScaleLookup';
-import {
+import type {
   AbstractParser,
   AbstractPropTransformer,
   Compose,
@@ -18,8 +18,8 @@ import {
   TransformerMap,
   Variant,
 } from './types/config';
-import { DirectionalProperties } from './types/properties';
-import { BreakpointCache, CSSObject, ThemeProps } from './types/props';
+import type { DirectionalProperties } from './types/properties';
+import type { BreakpointCache, CSSObject, ThemeProps } from './types/props';
 import { getStaticCss } from './utils/getStaticProperties';
 import { orderPropNames } from './utils/propNames';
 import {

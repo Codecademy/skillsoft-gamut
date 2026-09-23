@@ -1,15 +1,17 @@
 import { matchers } from '@emotion/jest';
 import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
+import type {
+  RenderResult} from '@testing-library/react';
 import {
   act,
   fireEvent,
   render,
-  RenderResult,
   screen,
 } from '@testing-library/react';
 
-import { DataGrid, DataGridProps } from '../DataGrid';
-import { ColumnConfig } from '../types';
+import type { DataGridProps } from '../DataGrid';
+import { DataGrid } from '../DataGrid';
+import type { ColumnConfig } from '../types';
 
 // Add the custom matchers provided by '@emotion/jest'
 expect.extend(matchers);

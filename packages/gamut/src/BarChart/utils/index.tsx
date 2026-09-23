@@ -1,9 +1,10 @@
+import type {
+  BarChartTranslations} from '../shared/translations';
 import {
-  BarChartTranslations,
   getDefaultSingleValueBarSummary,
   getDefaultStackedBarSummary,
 } from '../shared/translations';
-import {
+import type {
   BarChartUnit,
   BarProps,
   MaxScaleValue,

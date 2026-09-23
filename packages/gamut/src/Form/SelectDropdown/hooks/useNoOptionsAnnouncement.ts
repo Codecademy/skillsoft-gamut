@@ -1,6 +1,7 @@
-import {
+import type {
   ComponentType,
-  ReactNode,
+  ReactNode} from 'react';
+import {
   useCallback,
   useEffect,
   useMemo,

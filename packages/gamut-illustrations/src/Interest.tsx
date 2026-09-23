@@ -1,6 +1,6 @@
-import React from 'react';
+import type React from 'react';
 
-import { IllustrationProps } from './types';
+import type { IllustrationProps } from './types';
 
 export const Interest: React.FC<IllustrationProps> = ({
   'aria-hidden': ariaHidden,

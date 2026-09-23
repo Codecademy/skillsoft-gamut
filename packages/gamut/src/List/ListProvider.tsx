@@ -1,6 +1,6 @@
 import { createContext, useContext, useMemo } from 'react';
 
-import { PrivateListProps } from './types';
+import type { PrivateListProps } from './types';
 
 export interface ListContextProps extends PrivateListProps {
   depth: number;

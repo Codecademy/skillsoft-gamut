@@ -1,11 +1,11 @@
 import { CheckerDense } from '@skillsoft/gamut-patterns';
 
-import {
+import type {
   PopoverProps,
   PopoverXPositionType,
   PopoverYPositionType,
 } from '../../Popover';
-import { TipPlacementComponentProps, TipWrapperProps } from './types';
+import type { TipPlacementComponentProps, TipWrapperProps } from './types';
 
 export const getAlignmentStyles = ({
   alignment,

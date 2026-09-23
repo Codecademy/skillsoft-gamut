@@ -1,7 +1,8 @@
 import { FlexBox, PopoverContainer, Text } from '@skillsoft/gamut';
 import { Background } from '@skillsoft/gamut-styles';
 import type { Meta } from '@storybook/react';
-import { ComponentProps, useRef } from 'react';
+import type { ComponentProps} from 'react';
+import { useRef } from 'react';
 
 const meta: Meta<typeof PopoverContainer> = {
   component: PopoverContainer,

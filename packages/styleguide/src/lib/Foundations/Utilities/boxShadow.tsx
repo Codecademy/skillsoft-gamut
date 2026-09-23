@@ -1,4 +1,4 @@
-import { SerializedStyles } from '@emotion/react';
+import type { SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
 import { GridBox } from '@skillsoft/gamut';
 import { boxShadow } from '@skillsoft/gamut-styles';

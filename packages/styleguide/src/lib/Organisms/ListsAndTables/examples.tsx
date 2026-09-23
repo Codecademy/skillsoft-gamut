@@ -1,6 +1,7 @@
+import type {
+  ColumnConfig} from '@skillsoft/gamut';
 import {
   Box,
-  ColumnConfig,
   DataList,
   DataTable,
   FillButton,
@@ -20,7 +21,8 @@ import {
 } from '@skillsoft/gamut-icons';
 import { BlueprintWhite } from '@skillsoft/gamut-illustrations';
 import uniq from 'lodash/uniq';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import type React from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 
 interface MenuItemConfig {
   action: string;

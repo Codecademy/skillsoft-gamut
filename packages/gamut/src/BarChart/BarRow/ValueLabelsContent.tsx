@@ -2,7 +2,7 @@ import { MiniArrowRightIcon } from '@skillsoft/gamut-icons';
 
 import { Text } from '../../Typography';
 import { iconPadding } from '../shared/styles';
-import { BarChartStyles } from '../shared/types';
+import type { BarChartStyles } from '../shared/types';
 
 export type ValueLabelsContentProps = {
   seriesOneFormatted: string;

@@ -1,7 +1,7 @@
 import orderBy from 'lodash/orderBy';
 import { useCallback, useMemo, useState } from 'react';
 
-import { ColumnConfig, IdentifiableKeys, OnQueryChange, Query } from '../types';
+import type { ColumnConfig, IdentifiableKeys, OnQueryChange, Query } from '../types';
 
 export interface LocalQueryShape<
   Row,

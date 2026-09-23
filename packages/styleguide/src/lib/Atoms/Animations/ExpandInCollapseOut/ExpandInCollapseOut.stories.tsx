@@ -6,7 +6,8 @@ import {
 } from '@skillsoft/gamut';
 import type { Meta } from '@storybook/react';
 import { AnimatePresence } from 'framer-motion';
-import { PropsWithChildren, useState } from 'react';
+import type { PropsWithChildren} from 'react';
+import { useState } from 'react';
 
 const meta: Meta<typeof ExpandInCollapseOut> = {
   component: ExpandInCollapseOut,

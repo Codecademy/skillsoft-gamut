@@ -1,6 +1,7 @@
-import {
+import type {
   ComponentProps,
-  FocusEvent,
+  FocusEvent} from 'react';
+import {
   useEffect,
   useId,
   useMemo,
@@ -8,13 +9,15 @@ import {
   useState,
 } from 'react';
 
-import { Anchor, Text } from '../..';
+import type { Anchor} from '../..';
+import { Text } from '../..';
 import { FloatingTip } from '../shared/FloatingTip';
 import { InlineTip } from '../shared/InlineTip';
-import {
+import type {
   PreviewTipContent,
   TipBaseAlignment,
-  TipBaseProps,
+  TipBaseProps} from '../shared/types';
+import {
   tipDefaultProps,
 } from '../shared/types';
 import { PreviewTipAnchor } from './elements';

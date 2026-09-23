@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { Text } from '../../Typography';
-import { WithChildrenProp } from '../../utils';
+import type { WithChildrenProp } from '../../utils';
 import { FloatingTip } from '../shared/FloatingTip';
 import { InlineTip } from '../shared/InlineTip';
-import {
+import type {
   TipBaseProps,
-  TipCenterAlignment,
+  TipCenterAlignment} from '../shared/types';
+import {
   tipDefaultProps,
 } from '../shared/types';
 

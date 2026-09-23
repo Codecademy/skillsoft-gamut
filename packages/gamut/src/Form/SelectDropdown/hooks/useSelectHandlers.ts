@@ -1,8 +1,9 @@
-import { KeyboardEvent, useCallback, useEffect, useState } from 'react';
-import * as React from 'react';
-import { ActionMeta, Options as OptionsType } from 'react-select';
+import type { KeyboardEvent} from 'react';
+import type * as React from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import type { ActionMeta, Options as OptionsType } from 'react-select';
 
-import { SelectOptionBase } from '../../utils';
+import type { SelectOptionBase } from '../../utils';
 import { ON_CHANGE_ACTION } from '../core/constants';
 import {
   filterValueFromOptions,
@@ -12,7 +13,7 @@ import {
   isSingleSelectProps,
   removeValueFromSelectedOptions,
 } from '../core/utils';
-import {
+import type {
   MultiSelectDropdownProps,
   OptionStrict,
   SelectDropdownGroup,

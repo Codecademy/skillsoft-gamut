@@ -1,12 +1,14 @@
 import styled from '@emotion/styled';
 import { system } from '@skillsoft/gamut-styles';
-import * as React from 'react';
+import type * as React from 'react';
+import type {
+  TabPanelProps as ReactAriaTabPanelProps} from 'react-aria-components';
 import {
-  TabPanel as ReactAriaTabPanel,
-  TabPanelProps as ReactAriaTabPanelProps,
+  TabPanel as ReactAriaTabPanel
 } from 'react-aria-components';
 
-import { tabElementBaseProps, TabElementStyleProps } from './props';
+import type { TabElementStyleProps } from './props';
+import { tabElementBaseProps } from './props';
 
 interface TabPanelBaseProps
   extends TabElementStyleProps,

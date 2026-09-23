@@ -1,10 +1,12 @@
-import { ColorModes } from '@skillsoft/gamut-styles';
-import { ComponentProps } from 'react';
-import * as React from 'react';
+import type { ColorModes } from '@skillsoft/gamut-styles';
+import type { ComponentProps } from 'react';
+import type * as React from 'react';
 
 import { GridBox } from '../../Box';
-import { ButtonProps, CTAButton, FillButton, TextButton } from '../../Button';
-import { SubmitButton, SubmitButtonProps } from '../../ConnectedForm';
+import type { ButtonProps} from '../../Button';
+import { CTAButton, FillButton, TextButton } from '../../Button';
+import type { SubmitButtonProps } from '../../ConnectedForm';
+import { SubmitButton } from '../../ConnectedForm';
 import { Column } from '../../Layout';
 
 export type GridFormButtonsPosition = keyof typeof positions;

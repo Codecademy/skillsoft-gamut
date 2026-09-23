@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 import { ArrowChevronDownFilledIcon } from '@skillsoft/gamut-icons';
 import { css, states } from '@skillsoft/gamut-styles';
-import * as React from 'react';
+import type * as React from 'react';
 
 import { Anchor } from '../..';
 import { FlexBox } from '../../Box';
 import { useListState } from '../hooks/useListState';
-import { OnSort, SortDirection, SortOrder } from '../types';
+import type { OnSort, SortDirection, SortOrder } from '../types';
 
 const SortAnchor = styled(Anchor)(
   css({

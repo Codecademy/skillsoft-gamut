@@ -1,10 +1,12 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
-import { fireEvent, queries } from '@testing-library/dom';
-import { act, RenderResult, waitFor } from '@testing-library/react';
+import type { queries } from '@testing-library/dom';
+import { fireEvent } from '@testing-library/dom';
+import type { RenderResult} from '@testing-library/react';
+import { act, waitFor } from '@testing-library/react';
 
 import { createPromise } from '../../utils';
 import { GridForm } from '../GridForm';
-import { GridFormField } from '../types';
+import type { GridFormField } from '../types';
 import {
   stubCheckboxField,
   stubFieldCases,

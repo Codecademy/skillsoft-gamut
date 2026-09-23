@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { css } from '@skillsoft/gamut-styles';
-import * as React from 'react';
+import type * as React from 'react';
 
 import { Anchor } from '../Anchor';
 import { Box, FlexBox } from '../Box';

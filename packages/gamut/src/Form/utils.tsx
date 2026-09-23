@@ -1,7 +1,7 @@
 import each from 'lodash/each';
 import isObject from 'lodash/isObject';
 
-import {
+import type {
   ExtendedOption,
   IconOption,
   OptionStrict,

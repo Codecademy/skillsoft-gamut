@@ -7,7 +7,7 @@ import {
   stubSelectField,
   stubTextField,
 } from '../../__tests__/stubs';
-import { GridFormTextField } from '../../types';
+import type { GridFormTextField } from '../../types';
 import { GridFormSectionTestComponent } from '../__fixtures__/renderers';
 
 const fields = [stubTextField, stubSelectField, stubFileField];

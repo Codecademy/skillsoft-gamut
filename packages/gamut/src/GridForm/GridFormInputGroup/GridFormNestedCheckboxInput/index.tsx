@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import { useEffect, useMemo, useState } from 'react';
 import { Controller } from 'react-hook-form';
 
@@ -10,8 +10,8 @@ import {
   handleCheckboxChange,
   renderCheckbox,
 } from '../../../ConnectedForm/ConnectedInputs/ConnectedNestedCheckboxes/utils';
-import { BaseFormInputProps, GridFormNestedCheckboxField } from '../../types';
-import { GridFormInputGroupProps } from '..';
+import type { BaseFormInputProps, GridFormNestedCheckboxField } from '../../types';
+import type { GridFormInputGroupProps } from '..';
 
 export interface GridFormNestedCheckboxInputProps extends BaseFormInputProps {
   field: GridFormNestedCheckboxField;

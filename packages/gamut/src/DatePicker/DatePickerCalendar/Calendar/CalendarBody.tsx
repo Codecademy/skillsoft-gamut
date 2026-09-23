@@ -1,8 +1,8 @@
+import type * as React from 'react';
 import { useCallback, useLayoutEffect, useMemo, useRef } from 'react';
-import * as React from 'react';
 
 import { useIsoFirstWeekday, useResolvedLocale } from '../../utils/locale';
-import { CalendarBodyProps } from './types';
+import type { CalendarBodyProps } from './types';
 import {
   getDatesWithRow,
   getMonthGrid,

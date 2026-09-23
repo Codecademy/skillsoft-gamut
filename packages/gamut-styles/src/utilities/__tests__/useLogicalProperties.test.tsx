@@ -1,5 +1,6 @@
-import { Theme, ThemeProvider } from '@emotion/react';
-import * as React from 'react';
+import type { Theme} from '@emotion/react';
+import { ThemeProvider } from '@emotion/react';
+import type * as React from 'react';
 
 import { setupRtl } from '../../__tests__/testUtils';
 import { coreTheme as theme } from '../../themes';

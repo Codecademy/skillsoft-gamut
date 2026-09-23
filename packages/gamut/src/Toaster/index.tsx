@@ -1,9 +1,10 @@
-import { ColorMode, ColorModes } from '@skillsoft/gamut-styles';
+import type { ColorModes } from '@skillsoft/gamut-styles';
+import { ColorMode } from '@skillsoft/gamut-styles';
 import { AnimatePresence } from 'framer-motion';
-import { ReactNode } from 'react';
-import * as React from 'react';
+import type { ReactNode } from 'react';
+import type * as React from 'react';
 
-import { ToastProps } from '..';
+import type { ToastProps } from '..';
 import { FadeInSlideOut } from '../Animation/FadeInSlideOut';
 import { BodyPortal } from '../BodyPortal';
 import { Box } from '../Box';

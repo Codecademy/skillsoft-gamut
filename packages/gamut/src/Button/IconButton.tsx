@@ -1,8 +1,10 @@
-import { ComponentProps, forwardRef } from 'react';
+import type { ComponentProps} from 'react';
+import { forwardRef } from 'react';
 
-import { ButtonBaseElements } from '../ButtonBase/ButtonBase';
-import { ToolTip, ToolTipProps } from '../Tip/ToolTip';
-import { IconComponentType } from '../utils';
+import type { ButtonBaseElements } from '../ButtonBase/ButtonBase';
+import type { ToolTipProps } from '../Tip/ToolTip';
+import { ToolTip } from '../Tip/ToolTip';
+import type { IconComponentType } from '../utils';
 import {
   createButtonComponent,
   iconSizeMapping,

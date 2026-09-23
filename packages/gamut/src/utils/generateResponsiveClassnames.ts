@@ -3,7 +3,7 @@
  * to match the styleMaps classes returning a concatenated classname string
  */
 
-import {
+import type {
   OptionalResponsiveProperty,
   ResponsiveProperty,
 } from '../typings/responsive-properties';

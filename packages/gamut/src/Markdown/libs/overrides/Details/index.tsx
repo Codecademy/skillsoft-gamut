@@ -1,8 +1,9 @@
-import { HTMLAttributes, useMemo } from 'react';
-import * as React from 'react';
+import type { HTMLAttributes} from 'react';
+import type * as React from 'react';
+import { useMemo } from 'react';
 
 import { Box } from '../../../../Box';
-import { HTMLToReactNode } from '..';
+import type { HTMLToReactNode } from '..';
 // import styles from '../../../styles/_'
 
 interface MarkdownHTMLDetailsAttributes

@@ -10,9 +10,10 @@ import {
 import { getFocusableElements as getFocusableElementsUtil } from '../../utils/focus';
 import { FloatingTip } from '../shared/FloatingTip';
 import { InlineTip } from '../shared/InlineTip';
-import {
+import type {
   TipBaseAlignment,
-  TipBaseProps,
+  TipBaseProps} from '../shared/types';
+import {
   tipDefaultProps,
 } from '../shared/types';
 import { isFloatingElementOpen } from '../shared/utils';

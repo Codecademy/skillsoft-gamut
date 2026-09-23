@@ -1,9 +1,10 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { css, useCurrentMode } from '@skillsoft/gamut-styles';
-import * as React from 'react';
+import type * as React from 'react';
 
-import { Box, BoxProps } from '../Box';
+import type { BoxProps } from '../Box';
+import { Box } from '../Box';
 
 const slide = keyframes({
   from: { left: -500 },

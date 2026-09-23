@@ -1,5 +1,6 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
-import { RenderResult, waitFor } from '@testing-library/react';
+import type { RenderResult} from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 
 import { Drawer } from '..';
 

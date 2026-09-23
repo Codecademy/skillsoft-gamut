@@ -1,7 +1,8 @@
+import type {
+  MouseEventHandler,
+  MutableRefObject} from 'react';
 import {
   forwardRef,
-  MouseEventHandler,
-  MutableRefObject,
   useMemo,
   useRef,
 } from 'react';
@@ -9,7 +10,7 @@ import {
 import { Box, FlexBox } from '../../Box';
 import { Text } from '../../Typography';
 import { iconPadding, iconWidth, minBarWidth } from '../shared/styles';
-import { BarProps } from '../shared/types';
+import type { BarProps } from '../shared/types';
 import {
   calculateBarWidth,
   formatValueWithUnit,

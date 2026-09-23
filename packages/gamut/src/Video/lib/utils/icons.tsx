@@ -17,9 +17,10 @@ import {
   VolumeControlMediumIcon,
   VolumeControlMuteIcon,
 } from '@skillsoft/gamut-icons';
-import {
+import type {
   DefaultLayoutIcon,
-  DefaultLayoutIcons,
+  DefaultLayoutIcons} from '@vidstack/react/player/layouts/default';
+import {
   defaultLayoutIcons,
 } from '@vidstack/react/player/layouts/default';
 

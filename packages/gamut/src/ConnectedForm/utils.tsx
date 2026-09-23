@@ -1,34 +1,38 @@
 import isNull from 'lodash/isNull';
 import isUndefined from 'lodash/isUndefined';
 import omit from 'lodash/omit';
-import {
+import type {
   ChangeEvent,
   ChangeEventHandler,
-  HTMLInputTypeAttribute,
+  HTMLInputTypeAttribute} from 'react';
+import {
   useContext,
   useEffect,
   useMemo,
   useState,
 } from 'react';
-import {
+import type {
   FieldError,
   FieldErrorsImpl,
   Merge,
   Path,
-  RegisterOptions,
+  RegisterOptions} from 'react-hook-form';
+import {
   useFieldArray,
   useFormContext,
 } from 'react-hook-form';
 
 import { FormRequiredText } from '../Form';
+import type {
+  ConnectedFormProps} from './ConnectedForm';
 import {
   ConnectedForm,
-  ConnectedFormProps,
   FormPropsContext,
 } from './ConnectedForm';
+import type {
+  ConnectedFormGroupProps} from './ConnectedFormGroup';
 import {
-  ConnectedFormGroup,
-  ConnectedFormGroupProps,
+  ConnectedFormGroup
 } from './ConnectedFormGroup';
 import type { ConnectedField, SubmitContextProps } from './types';
 

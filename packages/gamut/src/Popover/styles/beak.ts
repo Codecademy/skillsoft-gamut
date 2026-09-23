@@ -8,7 +8,7 @@ import {
   horizontalCenterBeakRtlPopover,
   tooltipBgColor,
 } from '../../Tip/shared/styles/styles';
-import { PopoverProps } from '../types';
+import type { PopoverProps } from '../types';
 import { popoverPrimaryBgColor } from './base';
 
 const rtlBeakBoxRight = horizontalCenterBeakRtlPopover('right');

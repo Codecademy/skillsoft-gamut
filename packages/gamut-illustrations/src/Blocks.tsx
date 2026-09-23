@@ -1,6 +1,6 @@
-import * as React from 'react';
+import type * as React from 'react';
 
-import { IllustrationProps } from '.';
+import type { IllustrationProps } from '.';
 
 export const Blocks: React.FC<IllustrationProps> = ({
   'aria-hidden': ariaHidden,

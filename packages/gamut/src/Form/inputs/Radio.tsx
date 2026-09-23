@@ -1,13 +1,15 @@
 import styled from '@emotion/styled';
 import { screenReaderOnly } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
-import { forwardRef, InputHTMLAttributes, ReactNode } from 'react';
-import * as React from 'react';
+import type { StyleProps } from '@skillsoft/variance';
+import type { InputHTMLAttributes, ReactNode } from 'react';
+import type * as React from 'react';
+import { forwardRef } from 'react';
 
 import { FlexBox } from '../../Box';
 import { InfoTip } from '../../Tip/InfoTip';
+import type {
+  InfoTipSubComponentProps} from '../../Tip/InfoTip/type-utils';
 import {
-  InfoTipSubComponentProps,
   useInfotipProps,
 } from '../../Tip/InfoTip/type-utils';
 import {
@@ -17,7 +19,7 @@ import {
   radioInput,
   radioLabel,
 } from '../styles';
-import { BaseInputProps } from '../types';
+import type { BaseInputProps } from '../types';
 
 export type RadioProps = InputHTMLAttributes<HTMLInputElement> &
   Omit<BaseInputProps, 'label'> & {

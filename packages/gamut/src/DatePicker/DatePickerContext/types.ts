@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import { CalendarQuickAction, DatePickerSharedProps } from '../sharedTypes';
+import type { CalendarQuickAction, DatePickerSharedProps } from '../sharedTypes';
 import type { DatePickerTranslations } from '../utils/translations';
 
 interface DatePickerBaseContextValue<Mode extends 'single' | 'range'>

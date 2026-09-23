@@ -6,10 +6,11 @@ import {
   system,
   transitionConcat,
 } from '@skillsoft/gamut-styles';
-import { CSSObject, ThemeProps, variance } from '@skillsoft/variance';
+import type { CSSObject, ThemeProps} from '@skillsoft/variance';
+import { variance } from '@skillsoft/variance';
 
 import { ButtonBase, InteractiveSelectors } from '../../ButtonBase/ButtonBase';
-import { ButtonBaseProps } from './types';
+import type { ButtonBaseProps } from './types';
 
 export const config = styledOptions<'button', 'size'>(['size']);
 

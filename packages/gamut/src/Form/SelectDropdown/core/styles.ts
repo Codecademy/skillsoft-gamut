@@ -1,10 +1,11 @@
+import type {
+  theme as GamutTheme} from '@skillsoft/gamut-styles';
 import {
   css,
   states,
-  theme as GamutTheme,
   variant,
 } from '@skillsoft/gamut-styles';
-import { StylesConfig } from 'react-select';
+import type { StylesConfig } from 'react-select';
 
 import {
   dismissSharedStyles,
@@ -19,8 +20,8 @@ import {
   formFieldPaddingStyles,
   InputSelectors,
 } from '../../styles';
-import { ControlState, OptionState } from '../types';
-import { BaseSelectComponentProps } from '../types/styles';
+import type { ControlState, OptionState } from '../types';
+import type { BaseSelectComponentProps } from '../types/styles';
 
 const selectDropdownStyles = css({
   ...formBaseFieldStylesObject,

@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 import { css } from '@skillsoft/gamut-styles';
 import { motion, useReducedMotion } from 'framer-motion';
 
-import { Box, BoxProps } from '../Box';
+import type { BoxProps } from '../Box';
+import { Box } from '../Box';
 
 const BaseContainer = motion.create(Box);
 const Shimmer = styled(BaseContainer)(

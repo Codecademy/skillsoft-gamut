@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { css, theme } from '@skillsoft/gamut-styles';
-import { SVGProps } from 'react';
-import * as React from 'react';
+import type { SVGProps } from 'react';
+import type * as React from 'react';
 
 import { FlexBox } from '../Box';
 import { Text } from '../Typography';

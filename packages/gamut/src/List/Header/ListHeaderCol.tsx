@@ -1,8 +1,9 @@
-import { ComponentProps, forwardRef } from 'react';
+import type { ComponentProps} from 'react';
+import { forwardRef } from 'react';
 
 import { ColEl } from '../elements';
 import { useListContext } from '../ListProvider';
-import { PublicListProps } from '../types';
+import type { PublicListProps } from '../types';
 
 export interface ListColProps
   extends PublicListProps<ComponentProps<typeof ColEl>> {}

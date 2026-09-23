@@ -1,6 +1,6 @@
-import * as React from 'react';
+import type * as React from 'react';
 
-import { GridFormField } from '../types';
+import type { GridFormField } from '../types';
 import { GridFormContent } from './GridFormContent';
 
 export type GridFormSectionProps = {

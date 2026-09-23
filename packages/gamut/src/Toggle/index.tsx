@@ -1,5 +1,5 @@
 import { Circle, ToggleInput, ToggleLabel, ToggleTrack } from './elements';
-import { ToggleProps } from './types';
+import type { ToggleProps } from './types';
 import { getToggleElementProps } from './utils';
 
 export const Toggle = <Props extends ToggleProps>({

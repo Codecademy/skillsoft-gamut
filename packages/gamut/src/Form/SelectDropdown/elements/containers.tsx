@@ -1,13 +1,15 @@
-import { createContext, ReactNode, useEffect, useLayoutEffect } from 'react';
-import ReactSelect, {
-  components as SelectDropdownElements,
+import type { ReactNode} from 'react';
+import { createContext, useEffect, useLayoutEffect } from 'react';
+import type {
   GroupBase,
-  Props,
+  Props} from 'react-select';
+import ReactSelect, {
+  components as SelectDropdownElements
 } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 
 import { DEFAULT_SELECT_DROPDOWN_TRANSLATIONS } from '../core/translations';
-import {
+import type {
   CustomSelectComponentProps,
   SelectDropdownContextValueTypes,
   TypedReactSelectProps,

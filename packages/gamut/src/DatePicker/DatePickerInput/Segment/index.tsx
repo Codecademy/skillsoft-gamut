@@ -2,13 +2,14 @@ import { type Dispatch, type SetStateAction, useCallback, useId } from 'react';
 
 import type { DatePartKind } from '../utils';
 import { Segment } from './elements';
+import type {
+  SegmentValues} from './utils';
 import {
   appendSegmentDigit,
   getSegmentPlaceholder,
   getSegmentSpinBounds,
   parseSegmentNumericString,
   segmentMaxLength,
-  SegmentValues,
   spinSegment,
 } from './utils';
 

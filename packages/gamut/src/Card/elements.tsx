@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 import { Box } from '../Box';
 import { cardVariants, shadowVariants } from './styles';
-import { CardWrapperProps } from './types';
+import type { CardWrapperProps } from './types';
 
 export const MotionBox = motion.create(Box);
 

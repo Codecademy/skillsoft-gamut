@@ -1,9 +1,9 @@
-import * as React from 'react';
+import type * as React from 'react';
 
 import { FlexBox } from '../../../Box';
 import { TextButton } from '../../../Button';
 import { DEFAULT_DATE_PICKER_TRANSLATIONS } from '../../utils/translations';
-import { CalendarFooterProps } from './types';
+import type { CalendarFooterProps } from './types';
 
 export const CalendarFooter: React.FC<CalendarFooterProps> = ({
   clearButton,

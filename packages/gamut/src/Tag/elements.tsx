@@ -19,12 +19,13 @@ import {
   tagWrapperStates,
   textSizeVariants,
 } from './styles';
-import {
+import type {
   BaseTagProps,
   DismissButtonProps,
   TagAnchorProps,
-  tagProps,
-  TagTextProps,
+  TagTextProps} from './types';
+import {
+  tagProps
 } from './types';
 
 export const Outline = styled(FlexBox)(outlineStyling, outlineStates);

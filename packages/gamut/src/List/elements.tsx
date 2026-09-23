@@ -7,7 +7,8 @@ import {
   theme,
   variant,
 } from '@skillsoft/gamut-styles';
-import { StyleProps, variance } from '@skillsoft/variance';
+import type { StyleProps} from '@skillsoft/variance';
+import { variance } from '@skillsoft/variance';
 import { motion } from 'framer-motion';
 
 import { Box } from '../Box';

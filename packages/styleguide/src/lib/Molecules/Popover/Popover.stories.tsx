@@ -1,10 +1,11 @@
+import type {
+  FlexBoxProps,
+  PopoverProps} from '@skillsoft/gamut';
 import {
   Box,
   FillButton,
   FlexBox,
-  FlexBoxProps,
-  Popover,
-  PopoverProps,
+  Popover
 } from '@skillsoft/gamut';
 import * as patterns from '@skillsoft/gamut-patterns';
 import type { Meta, StoryObj } from '@storybook/react';

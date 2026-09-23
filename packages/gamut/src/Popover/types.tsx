@@ -1,7 +1,8 @@
-import { PatternProps } from '@skillsoft/gamut-patterns';
-import { HTMLAttributes, type RefObject } from 'react';
+import type { PatternProps } from '@skillsoft/gamut-patterns';
+import type { HTMLAttributes} from 'react';
+import { type RefObject } from 'react';
 
-import { PopoverVariants } from './elements';
+import type { PopoverVariants } from './elements';
 
 export type FocusTrapPopoverProps = {
   /**

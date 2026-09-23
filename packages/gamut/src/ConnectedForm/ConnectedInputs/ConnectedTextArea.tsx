@@ -1,8 +1,8 @@
-import * as React from 'react';
+import type * as React from 'react';
 
 import { TextArea } from '../../Form';
 import { useField } from '../utils';
-import { ConnectedTextAreaProps } from './types';
+import type { ConnectedTextAreaProps } from './types';
 
 export const ConnectedTextArea: React.FC<ConnectedTextAreaProps> = ({
   disabled,

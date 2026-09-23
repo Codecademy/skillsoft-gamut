@@ -1,10 +1,10 @@
-import * as React from 'react';
+import type * as React from 'react';
 import { useEffect, useMemo, useState } from 'react';
 import { Controller } from 'react-hook-form';
 
 import { Box } from '../../../Box';
 import { useField } from '../../utils';
-import { ConnectedNestedCheckboxesProps } from '../types';
+import type { ConnectedNestedCheckboxesProps } from '../types';
 import {
   calculateStates,
   flattenOptions,

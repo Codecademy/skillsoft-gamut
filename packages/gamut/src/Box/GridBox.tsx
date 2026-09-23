@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { styledOptions, system } from '@skillsoft/gamut-styles';
 
-import { boxProps, GridBoxProps, gridStates, sharedStates } from './props';
+import type { GridBoxProps} from './props';
+import { boxProps, gridStates, sharedStates } from './props';
 
 export const GridBox = styled(
   'div',

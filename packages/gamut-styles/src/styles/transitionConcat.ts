@@ -1,4 +1,4 @@
-import { Property, StandardPropertiesHyphen } from 'csstype';
+import type { Property, StandardPropertiesHyphen } from 'csstype';
 
 import { timing } from '../variables';
 

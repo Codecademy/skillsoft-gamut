@@ -1,4 +1,5 @@
-import { Colors, isColorAlias, useColorModes } from '@skillsoft/gamut-styles';
+import type { Colors} from '@skillsoft/gamut-styles';
+import { isColorAlias, useColorModes } from '@skillsoft/gamut-styles';
 import { getContrast } from 'polished';
 import {
   useCallback,
@@ -10,14 +11,15 @@ import {
   useState,
 } from 'react';
 
-import { SelectOptions } from '../../Form/inputs/Select';
+import type { SelectOptions } from '../../Form/inputs/Select';
+import type {
+  BarChartContextProps} from '../BarChartProvider';
 import {
   BarChartContext,
-  BarChartContextProps,
   defaultStyleConfig,
 } from '../BarChartProvider';
-import { BarChartTranslations } from '../shared/translations';
-import {
+import type { BarChartTranslations } from '../shared/translations';
+import type {
   BarChartStyles,
   BarProps,
   InferBarType,

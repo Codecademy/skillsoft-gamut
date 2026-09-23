@@ -1,9 +1,12 @@
-import { ComponentProps, useState } from 'react';
+import type { ComponentProps} from 'react';
+import { useState } from 'react';
 
 import { FillButton } from '../../Button';
 import { Modal } from '../../Modals';
-import { InfoTip, InfoTipProps } from '../InfoTip';
-import { ToolTip, ToolTipProps } from '../ToolTip';
+import type { InfoTipProps } from '../InfoTip';
+import { InfoTip } from '../InfoTip';
+import type { ToolTipProps } from '../ToolTip';
+import { ToolTip } from '../ToolTip';
 
 export const ToolTipMock: React.FC<
   ToolTipProps & ComponentProps<typeof FillButton>

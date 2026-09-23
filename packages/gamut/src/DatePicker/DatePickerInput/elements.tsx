@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { variant } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
+import type { StyleProps } from '@skillsoft/variance';
 
 import { FlexBox } from '../../Box';
 import {

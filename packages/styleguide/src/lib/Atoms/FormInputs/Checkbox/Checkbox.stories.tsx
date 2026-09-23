@@ -1,8 +1,9 @@
+import type {
+  CheckboxProps} from '@skillsoft/gamut';
 import {
   Anchor,
   Box,
   Checkbox,
-  CheckboxProps,
   Column,
   FlexBox,
   LayoutGrid,

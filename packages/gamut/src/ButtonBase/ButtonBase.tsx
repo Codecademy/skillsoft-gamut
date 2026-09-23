@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { css, styledOptions } from '@skillsoft/gamut-styles';
-import { ComponentProps, forwardRef, HTMLProps, Ref } from 'react';
+import type { ComponentProps, HTMLProps, Ref } from 'react';
+import { forwardRef } from 'react';
 
 export type ButtonBaseElements = HTMLAnchorElement | HTMLButtonElement;
 export type ButtonBaseRef = Ref<ButtonBaseElements | null>;

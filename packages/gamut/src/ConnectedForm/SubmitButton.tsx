@@ -1,9 +1,10 @@
-import { ComponentType } from 'react';
-import * as React from 'react';
-import { FieldValues, FormState } from 'react-hook-form';
+import type { ComponentType } from 'react';
+import type * as React from 'react';
+import type { FieldValues, FormState } from 'react-hook-form';
 
 import { Box, FlexBox } from '../Box';
-import { ButtonProps, FillButton } from '../Button';
+import type { ButtonProps} from '../Button';
+import { FillButton } from '../Button';
 import { Spinner } from '../Loading/Spinner';
 import { Text } from '../Typography';
 import { useSubmitState } from './utils';

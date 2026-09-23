@@ -1,5 +1,5 @@
-import { MediaKeyShortcuts } from '@vidstack/react';
-import { DefaultLayoutTranslations } from '@vidstack/react/types/vidstack';
+import type { MediaKeyShortcuts } from '@vidstack/react';
+import type { DefaultLayoutTranslations } from '@vidstack/react/types/vidstack';
 
 export const keyboardShortcuts: MediaKeyShortcuts = {
   togglePaused: 'k Space',

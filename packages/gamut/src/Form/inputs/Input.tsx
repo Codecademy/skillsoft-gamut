@@ -1,17 +1,21 @@
-import styled, { StyledComponent } from '@emotion/styled';
+import type { StyledComponent } from '@emotion/styled';
+import styled from '@emotion/styled';
+import type {
+  GamutIconProps} from '@skillsoft/gamut-icons';
 import {
   AlertIcon,
-  CheckCircledIcon,
-  GamutIconProps,
+  CheckCircledIcon
 } from '@skillsoft/gamut-icons';
 import { css } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
-import { ChangeEvent, forwardRef, InputHTMLAttributes, useState } from 'react';
-import * as React from 'react';
+import type { StyleProps } from '@skillsoft/variance';
+import type { ChangeEvent, InputHTMLAttributes} from 'react';
+import type * as React from 'react';
+import { forwardRef, useState } from 'react';
 
 import { Box, FlexBox } from '../../Box';
+import type {
+  conditionalStyleProps} from '../styles';
 import {
-  conditionalStyleProps,
   conditionalStyles,
   conditionalStyleState,
   formBaseFieldStyles,
@@ -20,7 +24,7 @@ import {
   formFieldStyles,
   inputSizeStyles,
 } from '../styles';
-import { BaseInputProps } from '../types';
+import type { BaseInputProps } from '../types';
 
 export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> &
   BaseInputProps & {

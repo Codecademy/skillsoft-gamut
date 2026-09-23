@@ -1,9 +1,9 @@
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { screenReaderOnly } from '@skillsoft/gamut-styles';
+import type * as React from 'react';
 import { useId, useMemo, useRef, useState } from 'react';
-import * as React from 'react';
-import { StylesConfig } from 'react-select';
+import type { StylesConfig } from 'react-select';
 
 import { getDefaultComponents } from './core/constants';
 import { getMemoizedStyles } from './core/styles';
@@ -18,7 +18,7 @@ import {
 import { useNoOptionsAnnouncement } from './hooks/useNoOptionsAnnouncement';
 import { useSelectHandlers } from './hooks/useSelectHandlers';
 import { useSelectOptions } from './hooks/useSelectOptions';
-import { OptionStrict, SelectDropdownProps } from './types';
+import type { OptionStrict, SelectDropdownProps } from './types';
 
 /** Announces the custom `validationMessage` menu text - see `useNoOptionsAnnouncement`. */
 const NoOptionsLiveRegion = styled.div(screenReaderOnly);

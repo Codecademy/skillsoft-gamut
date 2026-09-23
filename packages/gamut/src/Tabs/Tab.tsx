@@ -1,12 +1,14 @@
 import styled from '@emotion/styled';
-import * as React from 'react';
+import type * as React from 'react';
+import type {
+  TabProps as ReactAriaTabProps} from 'react-aria-components';
 import {
-  Tab as ReactAriaTab,
-  TabProps as ReactAriaTabProps,
+  Tab as ReactAriaTab
 } from 'react-aria-components';
 
 import { tabElementBaseProps } from './props';
-import { TabButtonProps, tabStates, tabVariants } from './TabButton';
+import type { TabButtonProps} from './TabButton';
+import { tabStates, tabVariants } from './TabButton';
 import { useTab } from './TabProvider';
 
 interface TabBaseProps extends TabButtonProps, ReactAriaTabProps {}

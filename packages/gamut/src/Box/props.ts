@@ -1,7 +1,8 @@
 import { system } from '@skillsoft/gamut-styles';
-import { StyleProps, variance } from '@skillsoft/variance';
+import type { StyleProps} from '@skillsoft/variance';
+import { variance } from '@skillsoft/variance';
 
-import { WithChildrenProp } from '../utils';
+import type { WithChildrenProp } from '../utils';
 
 export const boxProps = variance.compose(
   system.space,
