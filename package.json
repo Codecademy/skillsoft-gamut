@@ -132,7 +132,7 @@
     "format": "yarn lint:fix && yarn prettier --write",
     "format:verify": "yarn prettier --check",
     "lint": "nx run-many --target=lint",
-    "lint:fix": "yarn lint --fix",
+    "lint:fix": "nx run-many --target=lint --fix",
     "prepare": "husky",
     "prettier": "prettier --ignore-path .prettierignore \"./**/*.{mdx,js,ts,tsx,json,css,scss}\"",
     "start": "yarn && yarn start:storybook",
