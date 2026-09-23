@@ -83,6 +83,8 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: ⚙️ Setup and install
         uses: ./.github/actions/setup-and-install
+      - name: 🏗 Build ESLint plugin
+        run: yarn build:eslint-plugin-gamut
       - name: 🔍 Lint
         run: yarn lint
 
@@ -155,8 +157,6 @@ jobs:
           path: .nx/cache
           key: nx-${{ runner.os }}-${{ github.sha }}
           restore-keys: nx-${{ runner.os }}-
-      # build-storybook doesn't depend on ^build, so the packages it imports
-      # have to be built first.
       - name: 🏗 Build all packages
         run: yarn build
       - name: ⚙️ Install Playwright
