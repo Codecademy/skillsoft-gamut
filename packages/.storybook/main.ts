@@ -19,10 +19,8 @@ const config: StorybookConfig = {
   ],
   staticDirs: ['../styleguide/src/static'],
   addons: [
-    getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-docs'),
     getAbsolutePath('@storybook/addon-a11y'),
-    getAbsolutePath('@storybook/addon-designs'),
     getAbsolutePath('storybook-addon-deep-controls'),
     getAbsolutePath('@storybook/addon-vitest'),
   ],
