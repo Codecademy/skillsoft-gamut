@@ -1,0 +1,123 @@
+---
+title: Alert
+description: An alert displays an important, succinct message and provides actions for users to address or dismiss it. It requires a user action to be dismissed.
+---
+
+import StoryEmbed from '~/components/StoryEmbed.astro';
+
+**Status:** Current · [Figma](https://www.figma.com/file/ReGfRNillGABAj5SlITalN/%F0%9F%93%90-Gamut?node-id=30186-40358) · [Source](https://github.com/Codecademy/gamut/blob/main/packages/gamut/src/Alert/Alert.tsx)
+
+## Usage
+
+Use an alert to display an important, succinct message with actions for users to address (or dismiss) the alert. It requires a user action to be dismissed.
+
+**Best practices:**
+
+- Choose the alert type that applies most to your case.
+- Only use `feature` for product/feature announcements that are specific to the current page.
+- Alerts should be persistent and non-modal — let the user ignore them or interact with them at any time.
+
+**When NOT to use:**
+
+- **Low priority feedback** — for decorative or celebratory feedback, use **Toast** instead.
+- **Non-critical or promotional content** — for informational content that isn't urgent, use **Banner** instead.
+- **Passive updates** — for non-urgent updates a user can check at their convenience, use **NotificationList** instead.
+- **Form field validation** — for inline form errors, use inline messaging within the form field instead of an alert.
+
+## Anatomy
+
+An `Alert` is composed of up to four parts, left to right:
+
+1. **Icon** — automatically set by `type` (`general`, `success`, `error`, `subtle`, …). It's decorative (`aria-hidden`), so it needs no alt text.
+2. **Text** (`children`) — what happened and, when applicable, what the user can do about it. Write conversationally, front-load the important part.
+3. **CTA button** (optional, `cta`) — prompts the user to act on the alert.
+4. **Dismiss button** (optional, rendered when `onClose` is passed) — lets the user remove the alert once they've acknowledged it. Only omit this when the alert must stay visible until a specific condition is met.
+
+When a floating alert's text would overflow, Alert truncates it to one line and adds an expand/collapse toggle automatically — no extra wiring required.
+
+## Usage examples
+
+### Handling dismissal
+
+Pass `onClose` to render a dismiss button and react to it. `Alert` doesn't track its own visibility — unmount it yourself once the user dismisses it:
+
+<StoryEmbed id="molecules-alert--dismissible" height="10rem" />
+
+### Customizing the close button
+
+The close button's tooltip text, tooltip alignment, disabled state, and ref are configured through `closeButtonProps` rather than as top-level props, since they only apply when `onClose` is set:
+
+<StoryEmbed id="molecules-alert--close-button-customization" height="10rem" />
+
+### Adding a call to action
+
+`cta` accepts either a `text` string or full `FillButton` children/props, so you can wire a click handler without composing a separate button element:
+
+```tsx
+<Alert
+  type="general"
+  cta={{ text: 'View details', onClick: () => openDetails() }}
+>
+  A new version is available.
+</Alert>
+```
+
+## Prop Reference
+
+### Type
+
+`type` accepts `general`, `success`, `feature`, `notice`, `error`, or `subtle`, setting the icon and color treatment. `subtle` requires `placement="inline"` — see Placement below.
+
+#### General
+
+<StoryEmbed id="molecules-alert--general" height="5rem" />
+
+#### Success
+
+<StoryEmbed id="molecules-alert--success" height="5rem" />
+
+#### Feature
+
+<StoryEmbed id="molecules-alert--feature" height="5rem" />
+
+#### Notice
+
+<StoryEmbed id="molecules-alert--notice" height="5rem" />
+
+#### Error
+
+<StoryEmbed id="molecules-alert--error" height="5rem" />
+
+### Placement
+
+`placement` accepts `inline` or `floating` (default). Floating alerts truncate long content behind the expand/collapse toggle described in Anatomy; inline alerts render in full. `subtle` only appears at `inline` placement.
+
+#### General, inline
+
+<StoryEmbed id="molecules-alert--general-inline" height="4rem" />
+
+#### Subtle, inline
+
+<StoryEmbed id="molecules-alert--subtle-inline" height="4rem" />
+
+#### Success, inline
+
+<StoryEmbed id="molecules-alert--success-inline" height="4rem" />
+
+#### Feature, inline
+
+<StoryEmbed id="molecules-alert--feature-inline" height="4rem" />
+
+#### Notice, inline
+
+<StoryEmbed id="molecules-alert--notice-inline" height="4rem" />
+
+#### Error, inline
+
+<StoryEmbed id="molecules-alert--error-inline" height="4rem" />
+
+### Small width
+
+Below 480px wide, the CTA button stacks below the text automatically:
+
+<StoryEmbed id="molecules-alert--small-width" height="10rem" />
