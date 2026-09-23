@@ -91,7 +91,11 @@ export const WelcomePage = () => (
     <Text as="h1" fontSize={32} fontWeight="title">
       Welcome to Gamut
     </Text>
-    <GridBox gap={24} mt={24}>
+    <GridBox
+      gridTemplateColumns={{ xs: '1fr', sm: '1fr 1fr' }}
+      gap={24}
+      mt={24}
+    >
       <Text>
         Gamut components read theme values for color, spacing, and typography,
         so this page already matches the rest of a Gamut app.
