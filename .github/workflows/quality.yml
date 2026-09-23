@@ -84,7 +84,7 @@ jobs:
       - name: ⚙️ Setup and install
         uses: ./.github/actions/setup-and-install
       - name: 🏗 Build ESLint plugin
-        run: yarn build:eslint-plugin-gamut
+        run: yarn nx build eslint-plugin-gamut
       - name: 🔍 Lint
         run: yarn lint
 
