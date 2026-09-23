@@ -19,6 +19,8 @@
     "@babel/preset-env": "^7.24.7",
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
+    "@changesets/changelog-github": "1.0.1",
+    "@changesets/cli": "3.0.3",
     "@codecademy/eslint-config": "8.2.0",
     "@codecademy/prettier-config": "^0.2.0",
     "@codecademy/tsconfig": "^0.3.0",
@@ -39,7 +41,6 @@
     "@storybook/addon-vitest": "10.3.3",
     "@storybook/icons": "1.2.12",
     "@storybook/react-vite": "10.3.3",
-    "@storybook/test-runner": "^0.24.1",
     "@svgr/cli": "5.5.0",
     "@swc-node/register": "^1.11.1",
     "@swc/core": "^1.15.18",
@@ -70,7 +71,6 @@
     "eslint-plugin-local-rules": "^1.1.0",
     "eslint-plugin-lodash": "^7.4.0",
     "gh-pages": "^5.0.0",
-    "http-server": "^14.1.1",
     "husky": "^9.1.7",
     "identity-obj-proxy": "3.0.0",
     "jest": "30.4.2",
@@ -80,11 +80,11 @@
     "nx": "22.6.0",
     "nx-cloud": "19.1.0",
     "onchange": "^7.0.2",
+    "pkg-pr-new": "^0.0.88",
     "playwright": "^1.49.1",
     "prettier": "^2.8.7",
     "publint": "0.3.24",
     "react-test-renderer": "^19.0.0",
-    "start-server-and-test": "^2.1.5",
     "storybook": "^10.3.1",
     "storybook-addon-deep-controls": "^0.10.0",
     "svgo": "^1.3.2",
@@ -97,10 +97,6 @@
     "vite": "^7.0.0",
     "vitest": "^3.2.4"
   },
-  "engines": {
-    "node": "^22.18.0 || ^24.11.0 || >=26.0.0",
-    "yarn": "^4.12.0"
-  },
   "license": "MIT",
   "lint-staged": {
     "**/*.{mdx,js,ts,tsx,json}": [
@@ -111,7 +107,7 @@
       "prettier --ignore-path .prettierignore --write"
     ]
   },
-  "packageManager": "yarn@4.12.0+sha512.f45ab632439a67f8bc759bf32ead036a1f413287b9042726b7cc4818b7b49e14e9423ba49b18f9e06ea4941c1ad062385b1d8760a8d5091a1a31e5f6219afca8",
+  "packageManager": "yarn@4.18.0+sha512.fcb8716fe7cd0eece141ffc18b92193a9df9204c1ba83189c288835223fc0bbe64af473bab0d5e9927a7daeb5caf2bb07eb2787cc9338ca040ea125f2a1f2f7e",
   "private": true,
   "repository": "git@github.com:Codecademy/skillsoft-gamut.git",
   "resolutions": {
@@ -146,7 +142,6 @@
     "test": "nx run-many --target=test --all",
     "test:stories": "vitest run --project=storybook",
     "test:stories:watch": "vitest --project=storybook",
-    "test:storybook": "nx run styleguide:storybook-test",
     "verify": "nx run-many --target=verify --parallel=3 --all",
     "verify-all": "yarn verify"
   },

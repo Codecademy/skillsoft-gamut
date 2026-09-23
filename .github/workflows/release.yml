@@ -1,0 +1,52 @@
+# Versions and publishes the packages. A merge to `main` carrying changesets
+# opens the "Version Packages" pull request; merging that one publishes to npm.
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+env:
+  NODE_OPTIONS: '--max_old_space_size=8196'
+
+permissions:
+  contents: read
+
+# Never cancel a publish in flight. Two quick merges queue instead of racing
+# `changeset publish`.
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+    steps:
+      - name: 🔑 Mint app token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ secrets.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+      - name: 📥 Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+      - name: ⚙️ Setup and install
+        uses: ./.github/actions/setup-and-install
+      # Packages publish their `dist` directory and have no prepack hook, so the
+      # build has to happen before `changeset publish` packs the tarballs.
+      - name: 🏗 Build all packages
+        run: yarn build
+      - name: 🦋 Create release PR or publish
+        uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
+        with:
+          publish-script: yarn changeset publish
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
