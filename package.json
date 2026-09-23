@@ -131,7 +131,7 @@
     "deploy": "rm -rf ./dist/docs && mv ./dist/storybook/styleguide ./dist/docs && cp -r ./dist/static/* ./dist/docs && gh-pages -b gh-pages -d dist",
     "format": "yarn lint:fix && yarn prettier --write",
     "format:verify": "yarn prettier --check",
-    "lint": "eslint --ignore-path .eslintignore \"./**/*.{mdx,js,ts,tsx,json}\" --max-warnings 0",
+    "lint": "nx run-many --target=lint",
     "lint:fix": "yarn lint --fix",
     "prepare": "husky",
     "prettier": "prettier --ignore-path .prettierignore \"./**/*.{mdx,js,ts,tsx,json,css,scss}\"",

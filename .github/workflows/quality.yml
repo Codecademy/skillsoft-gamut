@@ -83,8 +83,6 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: ⚙️ Setup and install
         uses: ./.github/actions/setup-and-install
-      - name: 🏗 Build all packages
-        run: yarn build
       - name: 🔍 Lint
         run: yarn lint
 
