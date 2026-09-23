@@ -18,12 +18,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: npm install
-      - run: npm run build
-        working-directory: packages/gamut-docs
+      - run: yarn install
+      - run: yarn build-storybook
+      - run: yarn build-docs
+      - run: |
+          rm -rf ./dist/docs
+          mkdir -p ./dist/docs/storybook
+          cp -R ./packages/gamut-docs/dist/. ./dist/docs
+          cp -R ./dist/storybook/styleguide/. ./dist/docs/storybook
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: packages/gamut-docs/dist
+          path: dist/docs
 
   deploy:
     needs: build
