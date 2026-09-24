@@ -7,11 +7,11 @@ Run `corepack enable` once, then `yarn install`.
 
 Useful scripts:
 
-| Script | What it does |
-| --- | --- |
-| `yarn build` | Build every package |
-| `yarn test` | Run unit tests |
-| `yarn lint` | ESLint over the repo |
+| Script        | What it does                     |
+| ------------- | -------------------------------- |
+| `yarn build`  | Build every package              |
+| `yarn test`   | Run unit tests                   |
+| `yarn lint`   | ESLint over the repo             |
 | `yarn format` | Fix lint and formatting in place |
 
 ## Changesets

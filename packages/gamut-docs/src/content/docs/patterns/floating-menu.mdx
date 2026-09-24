@@ -1,0 +1,44 @@
+---
+title: Floating menu
+description: An icon-only trigger that reveals a small set of contextual actions in a popover.
+---
+
+import StoryEmbed from '~/components/StoryEmbed.astro';
+
+A floating menu reveals a small set of contextual actions from a trigger, without navigating away or opening a full [Dialog](/components/overlays/dialog/). It's the composition behind a row of "…" actions on a card or a table row.
+
+## Usage
+
+Use a floating menu when a reader needs to choose from a short list of actions tied to one specific item — edit, delete, or clone a single row, for example — and showing every action inline would crowd the layout.
+
+**Best practices:**
+
+- Use `MiniKebabMenuIcon` as the trigger's icon when the actions apply to one item in a list, so it reads as "more options for this row" rather than a page-level action.
+- Give the trigger `IconButton` a `tip` that names what it opens (`"Show options"`), not just `"Menu"` — `IconButton` requires `tip`, and it also becomes the button's accessible name.
+- Give the floating `Menu` `role="menu"`, since its items trigger actions rather than navigate.
+
+**When NOT to use:**
+
+- **Choosing a value in a form** — use [SelectDropdown](/components/inputs-and-forms/select-dropdown/) instead.
+- **Switching between views in the same context** — use [Tabs](/components/navigation/tabs/) instead.
+- **Only one action** — a single `IconButton` doesn't need a menu wrapped around it.
+
+## Composition
+
+Three components, each doing one job:
+
+- **`IconButton`** — the trigger. Its own `isOpen` state lives in the parent, not in `IconButton` itself.
+- **`PopoverContainer`** — positions the menu relative to the trigger and closes it on an outside click or a viewport exit.
+- **`Menu`** (`variant="popover"`), holding the actions as `MenuItem`s.
+
+An action that needs confirmation before it runs — deleting something, for example — opens a [Dialog](/components/overlays/dialog/) instead of running immediately; the menu closes first.
+
+<StoryEmbed id="patterns-floatingmenu--default" height="16rem" />
+
+[DataTable](/components/data-display/list-and-tables/data-table/#adding-a-floating-row-menu) uses this same composition for its row menu, anchored to a table row instead of a bare trigger.
+
+## Reference
+
+- [IconButton](/components/actions/buttons/icon-button/)
+- [PopoverContainer](/components/overlays/popover-container/)
+- [Menu](/components/actions/menu/) — see its own page for role, spacing, and floating-menu positioning options beyond this pattern's defaults
