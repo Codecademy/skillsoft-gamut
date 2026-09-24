@@ -16,7 +16,10 @@ name: Preview
 
 on:
   pull_request:
-    branches: [main]
+    # TEMPORARY: cass-gmt-1795 is here so PRs stacked on it (the
+    # @skillsoft/gamut-codemods PR) publish previews. Revert this before
+    # either branch ships to main.
+    branches: [main, cass-gmt-1795]
 
 env:
   NODE_OPTIONS: '--max_old_space_size=8196'
