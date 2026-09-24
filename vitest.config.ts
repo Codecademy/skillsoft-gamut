@@ -47,11 +47,15 @@ export default defineConfig({
    * Pre-bundle Emotion so Vitest doesn't discover it mid-run and force a reload
    * (which aborts the browser test runner on a cold cache). gamut-styles is
    * aliased to source, so its Emotion imports aren't caught by default scanning.
+   * Storybook/Vitest run in development mode, so the JSX transform emits the
+   * *dev* runtime (`jsx-dev-runtime`); include it too, or a cold cache discovers
+   * it mid-run and reloads (was flaking DatePicker/SelectDropdown/Modal in CI).
    */
   optimizeDeps: {
     include: [
       '@emotion/react',
       '@emotion/react/jsx-runtime',
+      '@emotion/react/jsx-dev-runtime',
       '@emotion/styled',
       '@emotion/styled/base',
     ],
