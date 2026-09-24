@@ -57,7 +57,7 @@ export interface SpliceMigration extends MigrationBase {
   edits(ctx: SourceContext): Edit[];
 }
 
-/* Gets raw text for non-source files (package.json, .eslintrc). */
+/* Gets raw text for non-source files (package.json, .eslintrc, .mdx). */
 export interface FileMigration extends MigrationBase {
   kind: 'file';
   match(path: string): boolean;
@@ -66,6 +66,11 @@ export interface FileMigration extends MigrationBase {
     manifest: Manifest;
     warn: (message: string) => void;
     note: Note;
+    /*
+      Runs the preset's source migrations (respecting --only) over a
+      snippet of JS/TS, for files that embed code, like MDX's ESM blocks.
+    */
+    transformSource: (code: string) => string;
   }): string | null;
 }
 

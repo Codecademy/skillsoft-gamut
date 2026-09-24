@@ -5,6 +5,12 @@ import type { FileMigration } from '../../lib/types';
   manifest.targetVersions. Removed packages are replaced by the packages
   they bundled. Only touched fields are re-sorted; indentation and the
   trailing newline are kept.
+
+  A new package that's already listed keeps its value. People add the new
+  names by hand before running this, often pointed at a preview tarball,
+  and overwriting that with a range that isn't published yet breaks
+  install. A `*` peer range stays `*`: it means "whatever the host has",
+  and narrowing it is a decision for the package owner.
 */
 
 const FIELDS = [
@@ -43,7 +49,8 @@ export const packageJson: FileMigration = {
         if (!(removed in next)) continue;
         delete next[removed];
         for (const old of expandTo) {
-          if (!(old in next)) next[old] = '*';
+          const renamed = manifest.packages[old]?.to;
+          if (!(old in next) && !(renamed && renamed in next)) next[old] = '*';
         }
         warn(
           `${field}: replaced '${removed}' with its individual packages. ${why}`
@@ -54,9 +61,14 @@ export const packageJson: FileMigration = {
 
       for (const [from, { to }] of Object.entries(manifest.packages)) {
         if (!(from in next)) continue;
+        const range = next[from];
         delete next[from];
-        next[to] = manifest.targetVersions[to];
         touched = true;
+        if (to in next) continue;
+        next[to] =
+          field === 'peerDependencies' && range === '*'
+            ? '*'
+            : manifest.targetVersions[to];
       }
 
       if (touched) {

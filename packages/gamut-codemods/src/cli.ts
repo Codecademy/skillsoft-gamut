@@ -3,8 +3,15 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
+import jscodeshift from 'jscodeshift';
+
 import { dirtyTreeReason } from './lib/git';
 import { findLeftovers, walk } from './lib/leftovers';
+import {
+  activeSourceMigrations,
+  mentionsOldNames,
+  runSourceMigrations,
+} from './lib/run-source';
 import type { FileMigration, Preset } from './lib/types';
 import { getPreset, presets } from './presets';
 
@@ -80,11 +87,27 @@ const runFileMigrations = (
         const source = fs.readFileSync(file, 'utf8');
         const warn = (msg: string) =>
           console.log(`[${migration.name}] ${file} ${msg}`);
+        const transformSource = (code: string) =>
+          mentionsOldNames(preset.manifest, code)
+            ? runSourceMigrations({
+                j: jscodeshift.withParser('tsx'),
+                source: code,
+                migrations: activeSourceMigrations(
+                  preset.migrations,
+                  opts.only
+                ),
+                manifest: preset.manifest,
+                warnFor: (name) => (_node, message) =>
+                  console.log(`[${name}] ${file} ${message}`),
+                note,
+              })
+            : code;
         const next = migration.run({
           source,
           manifest: preset.manifest,
           warn,
           note,
+          transformSource,
         });
         if (next === null) continue;
         changed += 1;

@@ -81,6 +81,7 @@ describe.each(Object.values(presets))('preset $name', (preset) => {
             manifest: preset.manifest,
             warn: (w) => warnings.push(w),
             note: () => {},
+            transformSource: (code) => runSource(preset.name, code).out,
           });
           expect((out ?? c.input).trim()).toBe(c.output.trim());
           expectWarnings(warnings, c.warnings);

@@ -2,10 +2,12 @@ import type { Preset } from '../../lib/types';
 import { deepImports } from '../../migrations/deep-imports';
 import { eslintComments } from '../../migrations/eslint-comments';
 import { eslintConfig } from '../../migrations/eslint-config';
+import { mdxImports } from '../../migrations/mdx-imports';
 import { mfShared } from '../../migrations/mf-shared';
 import { movedExports } from '../../migrations/moved-exports';
 import { packageJson } from '../../migrations/package-json';
 import { scopeRename } from '../../migrations/scope-rename';
+import { yarnrc } from '../../migrations/yarnrc';
 import { manifest } from './manifest';
 
 export const scopeSwap: Preset = {
@@ -21,6 +23,8 @@ export const scopeSwap: Preset = {
     scopeRename,
     packageJson,
     eslintConfig,
+    mdxImports,
+    yarnrc,
   ],
   checklist: [
     'Run your formatter (prettier --write / eslint --fix). Split imports come out in recast style.',
