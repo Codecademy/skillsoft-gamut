@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
-import { RegisterOptions } from 'react-hook-form';
+import type { ReactNode } from 'react';
+import type { RegisterOptions } from 'react-hook-form';
 
-import {
+import type {
   CheckboxLabelUnion,
   CheckboxProps,
   InputWrapperProps,

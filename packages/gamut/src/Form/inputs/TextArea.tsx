@@ -1,18 +1,14 @@
 import styled from '@emotion/styled';
-import { StyleProps } from '@skillsoft/variance';
-import {
-  ChangeEvent,
-  forwardRef,
-  TextareaHTMLAttributes,
-  useState,
-} from 'react';
+import type { StyleProps } from '@skillsoft/variance';
+import type { ChangeEvent, TextareaHTMLAttributes } from 'react';
+import { forwardRef, useState } from 'react';
 
 import {
   conditionalStyles,
   conditionalStyleState,
   formFieldStyles,
 } from '../styles';
-import { BaseInputProps } from '../types';
+import type { BaseInputProps } from '../types';
 
 export type TextWrapperProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
   Omit<BaseInputProps, 'label'> & {

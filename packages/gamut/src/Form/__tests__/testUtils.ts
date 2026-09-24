@@ -1,4 +1,4 @@
-import { RenderResult } from '@testing-library/react';
+import type { RenderResult } from '@testing-library/react';
 
 /**
  * Creates and appends an external label element to the test container.

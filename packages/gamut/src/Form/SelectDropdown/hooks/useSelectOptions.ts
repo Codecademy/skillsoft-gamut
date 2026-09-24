@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 
-import { parseOptions, SelectOptionBase } from '../../utils';
+import type { SelectOptionBase } from '../../utils';
+import { parseOptions } from '../../utils';
 import { isOptionsGrouped } from '../core/utils';
-import {
+import type {
   SelectDropdownGroup,
   SelectDropdownOptions,
   SelectDropdownSizes,

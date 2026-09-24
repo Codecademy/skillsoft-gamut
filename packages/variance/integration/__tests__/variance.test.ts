@@ -1,4 +1,4 @@
-import { Theme } from '@emotion/react';
+import type { Theme } from '@emotion/react';
 
 import { variance } from '../../src/core';
 import { createScale } from '../../src/scales/createScale';

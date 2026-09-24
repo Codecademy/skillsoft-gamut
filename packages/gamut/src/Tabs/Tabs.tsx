@@ -1,14 +1,13 @@
 import styled from '@emotion/styled';
 import { Background } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
-import * as React from 'react';
-import {
-  Tabs as ReactAriaTabs,
-  TabsProps as ReactAriaTabsProps,
-} from 'react-aria-components';
+import type { StyleProps } from '@skillsoft/variance';
+import type * as React from 'react';
+import type { TabsProps as ReactAriaTabsProps } from 'react-aria-components';
+import { Tabs as ReactAriaTabs } from 'react-aria-components';
 
-import { tabElementBaseProps, TabElementStyleProps } from './props';
-import { tabContainerVariants } from './styles';
+import type { TabElementStyleProps } from './props';
+import { tabElementBaseProps } from './props';
+import type { tabContainerVariants } from './styles';
 import { TabProvider } from './TabProvider';
 
 export interface TabsBaseProps

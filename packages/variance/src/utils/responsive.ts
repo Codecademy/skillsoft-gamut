@@ -1,14 +1,14 @@
 import intersection from 'lodash/intersection';
 import omit from 'lodash/omit';
 
-import { AbstractPropTransformer } from '../types/config';
-import {
+import type { AbstractPropTransformer } from '../types/config';
+import type {
   BreakpointCache,
   BreakpointMap,
   CSSObject,
   ThemeProps,
 } from '../types/props';
-import { Breakpoints } from '../types/theme';
+import type { Breakpoints } from '../types/theme';
 
 const BREAKPOINT_KEYS = [
   '_',

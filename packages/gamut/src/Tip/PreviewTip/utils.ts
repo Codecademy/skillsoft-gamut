@@ -1,4 +1,4 @@
-import { PreviewTipProps } from '.';
+import type { PreviewTipProps } from '.';
 
 export const getPreviewDescription = ({
   linkDescription,

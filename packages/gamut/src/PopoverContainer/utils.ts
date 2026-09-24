@@ -1,9 +1,7 @@
-import {
-  CSSObject,
-  percentageOrAbsolute as percent,
-} from '@skillsoft/variance';
+import type { CSSObject } from '@skillsoft/variance';
+import { percentageOrAbsolute as percent } from '@skillsoft/variance';
 
-import { PopoverContainerAlignment, PopoverPositionConfig } from './types';
+import type { PopoverContainerAlignment, PopoverPositionConfig } from './types';
 
 export interface PopoverPositionResult {
   /** Edge insets pinning the popover to the container (`left` / `right` / `top` / `bottom`). */

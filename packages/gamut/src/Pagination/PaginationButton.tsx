@@ -1,9 +1,10 @@
-import { GamutIconProps } from '@skillsoft/gamut-icons';
-import { StyleProps } from '@skillsoft/variance';
-import { ComponentProps, ComponentType, forwardRef, useMemo } from 'react';
+import type { GamutIconProps } from '@skillsoft/gamut-icons';
+import type { StyleProps } from '@skillsoft/variance';
+import type { ComponentProps, ComponentType } from 'react';
+import { forwardRef, useMemo } from 'react';
 
 import { createButtonComponent } from '../Button/shared';
-import { ButtonBaseElements } from '../ButtonBase/ButtonBase';
+import type { ButtonBaseElements } from '../ButtonBase/ButtonBase';
 import {
   paginationStrokeButtonStates,
   paginationStrokeVariant,

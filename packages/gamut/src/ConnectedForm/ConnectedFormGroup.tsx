@@ -1,15 +1,16 @@
 import styled from '@emotion/styled';
 import { css } from '@skillsoft/gamut-styles';
+import type * as React from 'react';
 import { useEffect, useId } from 'react';
-import * as React from 'react';
-import { RegisterOptions } from 'react-hook-form';
+import type { RegisterOptions } from 'react-hook-form';
 
-import { FormError, FormGroup, FormGroupLabel, FormGroupProps } from '..';
 import { Anchor } from '../Anchor';
+import type { FormGroupProps } from '../Form';
+import { FormError, FormGroup, FormGroupLabel } from '../Form';
 import { Markdown } from '../Markdown';
-import { InfoTipSubComponentProps } from '../Tip/InfoTip/type-utils';
+import type { InfoTipSubComponentProps } from '../Tip/InfoTip/type-utils';
 import { Text } from '../Typography';
-import { ConnectedField, FieldProps, SubmitContextProps } from './types';
+import type { ConnectedField, FieldProps, SubmitContextProps } from './types';
 import { getErrorMessage, useField } from './utils';
 
 const ErrorAnchor = styled(Anchor)(

@@ -1,6 +1,8 @@
-import { css, SerializedStyles } from '@emotion/react';
+import type { SerializedStyles } from '@emotion/react';
+import { css } from '@emotion/react';
 
-import { mediaQueries, MediaSize } from '../variables/responsive';
+import type { MediaSize } from '../variables/responsive';
+import { mediaQueries } from '../variables/responsive';
 
 export const atViewport = (
   size: MediaSize,

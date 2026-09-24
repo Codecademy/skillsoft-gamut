@@ -5,15 +5,14 @@ import {
   styledOptions,
   timing,
 } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
-import { forwardRef, InputHTMLAttributes, useEffect, useRef } from 'react';
+import type { StyleProps } from '@skillsoft/variance';
+import type { InputHTMLAttributes } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 
 import { FlexBox } from '../../Box';
 import { InfoTip } from '../../Tip/InfoTip';
-import {
-  InfoTipSubComponentProps,
-  useInfotipProps,
-} from '../../Tip/InfoTip/type-utils';
+import type { InfoTipSubComponentProps } from '../../Tip/InfoTip/type-utils';
+import { useInfotipProps } from '../../Tip/InfoTip/type-utils';
 import {
   checkboxElement,
   checkboxElementStates,
@@ -25,8 +24,8 @@ import {
   InputWrapper,
   polyline,
 } from '../styles';
-import { BaseInputProps } from '../types';
-import { CheckboxCheckedUnion, CheckboxLabelUnion } from './types';
+import type { BaseInputProps } from '../types';
+import type { CheckboxCheckedUnion, CheckboxLabelUnion } from './types';
 
 export type CheckboxTextProps = StyleProps<typeof checkboxTextStates>;
 export type CheckboxPaddingProps = StyleProps<typeof checkboxPadding>;

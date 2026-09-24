@@ -1,10 +1,10 @@
-import * as React from 'react';
+import type * as React from 'react';
 import { useId } from 'react';
 import { Controller } from 'react-hook-form';
 
-import { Checkbox } from '../..';
-import { useField } from '..';
-import { ConnectedCheckboxProps } from './types';
+import { Checkbox } from '../../Form';
+import { useField } from '../utils';
+import type { ConnectedCheckboxProps } from './types';
 
 export const ConnectedCheckbox: React.FC<ConnectedCheckboxProps> = ({
   className,

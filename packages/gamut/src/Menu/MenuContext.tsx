@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 
-import { ListProps } from '../List';
+import type { ListProps } from '../List';
 
 export interface MenuContextProps {
   spacing: 'normal' | 'condensed';

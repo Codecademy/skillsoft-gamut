@@ -1,18 +1,16 @@
 import styled from '@emotion/styled';
 import { states, variant } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
-import { HTMLAttributes } from 'react';
-import * as React from 'react';
+import type { StyleProps } from '@skillsoft/variance';
+import type { HTMLAttributes } from 'react';
+import type * as React from 'react';
 
 import { FlexBox } from '../../Box';
 import { InfoTip } from '../../Tip/InfoTip';
-import {
-  InfoTipSubComponentProps,
-  useInfotipProps,
-} from '../../Tip/InfoTip/type-utils';
+import type { InfoTipSubComponentProps } from '../../Tip/InfoTip/type-utils';
+import { useInfotipProps } from '../../Tip/InfoTip/type-utils';
 import { Text } from '../../Typography/Text';
 import { formBaseStyles, formFieldTextDisabledStyles } from '../styles';
-import { BaseInputProps } from '../types';
+import type { BaseInputProps } from '../types';
 
 const labelSizeVariants = variant({
   defaultVariant: 'small',

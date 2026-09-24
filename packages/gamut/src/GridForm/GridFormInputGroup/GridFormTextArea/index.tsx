@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { UseFormReturn } from 'react-hook-form';
+import type * as React from 'react';
+import type { UseFormReturn } from 'react-hook-form';
 
 import { TextArea } from '../../../Form';
-import { BaseFormInputProps, GridFormTextAreaField } from '../../types';
+import type { BaseFormInputProps, GridFormTextAreaField } from '../../types';
 
 export interface GridFormTextAreaProps extends BaseFormInputProps {
   field: Omit<GridFormTextAreaField, 'label'>;

@@ -1,14 +1,15 @@
 import styled from '@emotion/styled';
 import { variant } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
-import { ComponentProps } from 'react';
-import * as React from 'react';
+import type { StyleProps } from '@skillsoft/variance';
+import type { ComponentProps } from 'react';
+import type * as React from 'react';
 
 import { Box } from '../../Box';
-import { BaseInputProps } from '../types';
+import type { BaseInputProps } from '../types';
 import { FormError } from './FormError';
 import { FormGroupDescription } from './FormGroupDescription';
-import { FormGroupLabel, FormGroupLabelProps } from './FormGroupLabel';
+import type { FormGroupLabelProps } from './FormGroupLabel';
+import { FormGroupLabel } from './FormGroupLabel';
 
 export interface FormGroupProps
   extends ComponentProps<typeof FormGroupContainer>,

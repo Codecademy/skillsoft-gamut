@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
-import { tabElementBaseProps, TabElementStyleProps } from './props';
+import type { TabElementStyleProps } from './props';
+import { tabElementBaseProps } from './props';
 
 export interface TabPanelsProps extends TabElementStyleProps {}
 

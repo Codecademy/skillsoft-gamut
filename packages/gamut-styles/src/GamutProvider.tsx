@@ -1,10 +1,6 @@
-import {
-  CacheProvider,
-  EmotionCache,
-  Theme,
-  ThemeProvider,
-} from '@emotion/react';
-import { CSSObject } from '@skillsoft/variance';
+import type { EmotionCache, Theme } from '@emotion/react';
+import { CacheProvider, ThemeProvider } from '@emotion/react';
+import type { CSSObject } from '@skillsoft/variance';
 import { MotionConfig } from 'framer-motion';
 import { setNonce } from 'get-nonce';
 import { useContext, useEffect, useMemo, useRef } from 'react';

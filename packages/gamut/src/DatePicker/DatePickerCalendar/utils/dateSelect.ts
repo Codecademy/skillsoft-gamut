@@ -2,7 +2,7 @@ import type {
   DatePickerRangeContextValue,
   DatePickerSingleContextValue,
 } from '../../DatePickerContext/types';
-import { DatePickerSharedProps } from '../../sharedTypes';
+import type { DatePickerSharedProps } from '../../sharedTypes';
 import type { DatePickerProps, DatePickerRangeProps } from '../../types';
 import {
   getOrderedCalendarEndpoints,

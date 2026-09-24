@@ -1,4 +1,5 @@
-import createCache, { Options, StylisPlugin } from '@emotion/cache';
+import type { Options, StylisPlugin } from '@emotion/cache';
+import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
 
 import { focusVisible } from './stylisPlugins';

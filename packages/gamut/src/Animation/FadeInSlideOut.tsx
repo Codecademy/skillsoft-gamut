@@ -1,9 +1,9 @@
 import { timingValues } from '@skillsoft/gamut-styles';
 import { motion } from 'framer-motion';
-import * as React from 'react';
+import type * as React from 'react';
 
 import { Box } from '../Box';
-import { WithChildrenProp } from '../utils';
+import type { WithChildrenProp } from '../utils';
 
 const exitDuration = timingValues.fast / 1000;
 

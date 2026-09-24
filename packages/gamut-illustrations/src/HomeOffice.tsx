@@ -1,6 +1,6 @@
-import * as React from 'react';
+import type * as React from 'react';
 
-import { IllustrationProps } from './types';
+import type { IllustrationProps } from './types';
 
 export const HomeOffice: React.FC<IllustrationProps> = ({
   className,

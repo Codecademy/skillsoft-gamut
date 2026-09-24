@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { css } from '@skillsoft/gamut-styles';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import { Box } from '../../Box';
 import { barListItemPadding } from '../shared/styles';

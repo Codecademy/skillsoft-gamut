@@ -1,9 +1,10 @@
-import { ComponentProps, forwardRef } from 'react';
+import type { ComponentProps } from 'react';
+import { forwardRef } from 'react';
 
 import { Box } from '../Box';
 import { HeaderRowEl } from './elements';
 import { useListContext } from './ListProvider';
-import { PublicListProps } from './types';
+import type { PublicListProps } from './types';
 
 export interface TableHeaderProps
   extends Partial<PublicListProps<ComponentProps<typeof HeaderRowEl>>> {}

@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
 import { css } from '@skillsoft/gamut-styles';
-import React, { useMemo } from 'react';
+import type React from 'react';
+import { useMemo } from 'react';
 
 import { Box, FlexBox } from '../../Box';
 import { Text } from '../../Typography';
-import { ScaleAxisLayoutProps } from '../shared/types';
+import type { ScaleAxisLayoutProps } from '../shared/types';
 import { formatNumberUnitCompact } from '../utils';
 import { useBarChartContext, useLabelPositions } from '../utils/hooks';
 import { LabelSpacer } from './LabelSpacer';

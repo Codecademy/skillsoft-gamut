@@ -1,15 +1,15 @@
-import { ColorModes } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
-import { ComponentProps, HTMLProps } from 'react';
+import type { ColorModes } from '@skillsoft/gamut-styles';
+import type { StyleProps } from '@skillsoft/variance';
+import type { ComponentProps, HTMLProps } from 'react';
 
-import { ButtonBase } from '../../ButtonBase';
-import { IconComponentType } from '../../utils';
-import { CTAButton } from '../CTAButton';
-import { FillButton } from '../FillButton';
-import { IconButton } from '../IconButton';
-import { StrokeButton } from '../StrokeButton';
-import { TextButton } from '../TextButton';
-import { buttonProps, buttonVariants } from './styles';
+import type { ButtonBase } from '../../ButtonBase';
+import type { IconComponentType } from '../../utils';
+import type { CTAButton } from '../CTAButton';
+import type { FillButton } from '../FillButton';
+import type { IconButton } from '../IconButton';
+import type { StrokeButton } from '../StrokeButton';
+import type { TextButton } from '../TextButton';
+import type { buttonProps, buttonVariants } from './styles';
 
 export interface ButtonBaseProps extends StyleProps<typeof buttonProps> {
   onClick?: HTMLProps<HTMLButtonElement>['onClick'];

@@ -1,6 +1,6 @@
-import * as React from 'react';
+import type * as React from 'react';
 
-import { sizes, ToggleInput, ToggleStyleProps } from './elements';
+import type { sizes, ToggleInput, ToggleStyleProps } from './elements';
 
 export type ToggleSizes = keyof typeof sizes;
 

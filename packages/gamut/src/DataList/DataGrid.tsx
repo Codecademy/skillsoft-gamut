@@ -1,14 +1,16 @@
-import { system } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
-import { ComponentProps, useMemo } from 'react';
+import type { system } from '@skillsoft/gamut-styles';
+import type { StyleProps } from '@skillsoft/variance';
+import type { ComponentProps } from 'react';
+import { useMemo } from 'react';
 
 import { List } from '../List';
 import { EmptyRows } from './EmptyRows';
 import { ListControlContext, useListControls } from './hooks/useListControls';
 import { ListStateContext } from './hooks/useListState';
 import { HeaderRow } from './Tables/Rows/TableHeaderRow';
-import { DataRow, MarshaledColProps } from './Tables/Rows/TableRow';
-import { ColumnConfig, DataListControls, IdentifiableKeys } from './types';
+import type { MarshaledColProps } from './Tables/Rows/TableRow';
+import { DataRow } from './Tables/Rows/TableRow';
+import type { ColumnConfig, DataListControls, IdentifiableKeys } from './types';
 
 export interface DataGridProps<
   Row,

@@ -1,7 +1,7 @@
-import { RefObject } from 'react';
+import type { RefObject } from 'react';
 
-import { FocusTrapProps } from '../FocusTrap';
-import { WithChildrenProp } from '../utils';
+import type { FocusTrapProps } from '../FocusTrap';
+import type { WithChildrenProp } from '../utils';
 
 export type PopoverContainerAlignment =
   | 'top-left'

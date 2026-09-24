@@ -1,10 +1,10 @@
 import { forwardRef } from 'react';
 
-import { ButtonBaseElements } from '../../ButtonBase/ButtonBase';
+import type { ButtonBaseElements } from '../../ButtonBase/ButtonBase';
 import { appendIconToContent } from '../../helpers';
-import { FillButtonProps } from '../FillButton';
-import { StrokeButtonProps } from '../StrokeButton';
-import { TextButtonProps } from '../TextButton';
+import type { FillButtonProps } from '../FillButton';
+import type { StrokeButtonProps } from '../StrokeButton';
+import type { TextButtonProps } from '../TextButton';
 
 type InlineIconButtonComponents =
   | FillButtonProps

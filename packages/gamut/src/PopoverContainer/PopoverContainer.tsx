@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { elementDir, system, useElementDir } from '@skillsoft/gamut-styles';
 import { variance } from '@skillsoft/variance';
+import type * as React from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import * as React from 'react';
 import { useWindowScroll, useWindowSize } from 'react-use';
 
 import { BodyPortal } from '../BodyPortal';
@@ -14,7 +14,7 @@ import {
   useScrollingParents,
   useScrollingParentsEffect,
 } from './hooks';
-import {
+import type {
   PopoverContainerProps,
   PopoverContainerState,
   TargetRef,

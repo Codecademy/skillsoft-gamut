@@ -3,8 +3,8 @@ import {
   MiniChevronRightIcon,
 } from '@skillsoft/gamut-icons';
 import { useElementDir } from '@skillsoft/gamut-styles';
+import type * as React from 'react';
 import { useMemo, useRef, useState } from 'react';
-import * as React from 'react';
 
 import { Text } from '..';
 import { FlexBox } from '../Box';

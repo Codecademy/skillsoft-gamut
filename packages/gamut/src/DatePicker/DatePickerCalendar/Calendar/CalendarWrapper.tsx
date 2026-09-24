@@ -1,8 +1,8 @@
 import { CheckerDense } from '@skillsoft/gamut-patterns';
-import * as React from 'react';
+import type * as React from 'react';
 
 import { Box } from '../../../Box';
-import { WithChildrenProp } from '../../../utils';
+import type { WithChildrenProp } from '../../../utils';
 
 export const CalendarWrapper: React.FC<WithChildrenProp> = ({ children }) => (
   <Box position="relative" width="max-content">

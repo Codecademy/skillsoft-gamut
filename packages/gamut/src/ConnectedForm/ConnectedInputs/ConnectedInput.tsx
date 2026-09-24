@@ -1,8 +1,8 @@
-import * as React from 'react';
+import type * as React from 'react';
 
-import { Input } from '../..';
-import { useField } from '..';
-import { ConnectedInputProps } from './types';
+import { Input } from '../../Form';
+import { useField } from '../utils';
+import type { ConnectedInputProps } from './types';
 
 export const ConnectedInput: React.FC<ConnectedInputProps> = ({
   disabled,

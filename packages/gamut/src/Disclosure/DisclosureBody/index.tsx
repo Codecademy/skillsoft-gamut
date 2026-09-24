@@ -1,9 +1,9 @@
-import * as React from 'react';
+import type * as React from 'react';
 
 import { Text } from '../../Typography';
 import { DisclosureBodyWrapper } from '../elements';
 import { getSpacing, renderButton } from '../helpers';
-import { DisclosureBodyProps } from '../types';
+import type { DisclosureBodyProps } from '../types';
 
 export const DisclosureBody: React.FC<DisclosureBodyProps> = ({
   body,

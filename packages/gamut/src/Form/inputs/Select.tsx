@@ -5,14 +5,9 @@ import {
   MiniChevronDownIcon,
 } from '@skillsoft/gamut-icons';
 import { variant } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
-import {
-  ChangeEvent,
-  forwardRef,
-  SelectHTMLAttributes,
-  useMemo,
-  useState,
-} from 'react';
+import type { StyleProps } from '@skillsoft/variance';
+import type { ChangeEvent, SelectHTMLAttributes } from 'react';
+import { forwardRef, useMemo, useState } from 'react';
 
 import { Box, FlexBox } from '../../Box';
 import {
@@ -20,7 +15,7 @@ import {
   conditionalStyleState,
   formFieldStyles,
 } from '../styles';
-import { BaseInputProps } from '../types';
+import type { BaseInputProps } from '../types';
 import { parseSelectOptions } from '../utils';
 
 export type SelectOptions = string[] | Record<string, number | string>;

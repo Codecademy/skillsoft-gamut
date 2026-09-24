@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import { Badge, BadgeProps, Box } from '@skillsoft/gamut';
+import type { BadgeProps } from '@skillsoft/gamut';
+import { Badge, Box } from '@skillsoft/gamut';
 import { MiniStarIcon } from '@skillsoft/gamut-icons';
 import { css } from '@skillsoft/gamut-styles';
 

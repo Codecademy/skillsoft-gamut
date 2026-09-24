@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
-import { TrackProps } from '@vidstack/react';
-import { DetailedHTMLProps, VideoHTMLAttributes } from 'react';
+import type { TrackProps } from '@vidstack/react';
+import type { DetailedHTMLProps, VideoHTMLAttributes } from 'react';
 
 import { Video } from '../../../../Video';
 // eslint-disable-next-line @skillsoft/gamut/no-css-standalone

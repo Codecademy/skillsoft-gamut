@@ -1,6 +1,6 @@
 import isArray from 'lodash/isArray';
 
-import { GridFormField } from './types';
+import type { GridFormField } from './types';
 
 export const assignDefaultValue = (field: GridFormField) => {
   switch (field.type) {

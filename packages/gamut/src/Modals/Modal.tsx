@@ -1,14 +1,16 @@
 import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
-import { ComponentProps, useId, useState } from 'react';
-import * as React from 'react';
+import type { ComponentProps } from 'react';
+import type * as React from 'react';
+import { useId, useState } from 'react';
 
 import { Box } from '../Box';
-import { ButtonProps, FillButton, IconButton, TextButton } from '../Button';
+import type { ButtonProps } from '../Button';
+import { FillButton, IconButton, TextButton } from '../Button';
 import { Overlay } from '../Overlay';
 import { Text } from '../Typography';
 import { ModalContainer } from './elements';
 import { ImageContainer } from './ImageContainer';
-import { CloseButtonProps, ModalBaseProps } from './types';
+import type { CloseButtonProps, ModalBaseProps } from './types';
 
 interface DialogButtonProps {
   children: React.ReactNode;

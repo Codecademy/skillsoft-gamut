@@ -1,5 +1,7 @@
-import { Disclosure, FlexBox, Text, WithChildrenProp } from '@skillsoft/gamut';
-import { Background, BackgroundProps } from '@skillsoft/gamut-styles';
+import type { WithChildrenProp } from '@skillsoft/gamut';
+import { Disclosure, FlexBox, Text } from '@skillsoft/gamut';
+import type { BackgroundProps } from '@skillsoft/gamut-styles';
+import { Background } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Disclosure> = {

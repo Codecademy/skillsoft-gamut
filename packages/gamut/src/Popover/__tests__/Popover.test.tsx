@@ -5,7 +5,8 @@ import { setupRtl } from '@skillsoft/gamut-tests';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 
-import { Popover, PopoverProps } from '..';
+import type { PopoverProps } from '..';
+import { Popover } from '..';
 
 const targetRefObj = {
   current: {

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { states } from '@skillsoft/gamut-styles';
+import type * as React from 'react';
 import { useCallback } from 'react';
-import * as React from 'react';
 
 import { BodyPortal } from '../BodyPortal';
 import { FlexBox } from '../Box';

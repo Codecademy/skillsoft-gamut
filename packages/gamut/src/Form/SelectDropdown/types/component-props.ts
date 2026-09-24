@@ -1,17 +1,17 @@
-import { Ref, SelectHTMLAttributes } from 'react';
-import { Options as OptionsType, Props as NamedProps } from 'react-select';
+import type { Ref, SelectHTMLAttributes } from 'react';
+import type { Options as OptionsType, Props as NamedProps } from 'react-select';
 
-import { SelectComponentProps } from '../../inputs/Select';
-import {
+import type { SelectComponentProps } from '../../inputs/Select';
+import type {
   SelectDropdownTranslations,
   ValidationMessage,
 } from '../core/translations';
-import {
+import type {
   OptionStrict,
   SelectDropdownGroup,
   SelectDropdownOptions,
 } from './options';
-import {
+import type {
   ReactSelectAdditionalProps,
   SelectDropdownSizes,
   SharedProps,

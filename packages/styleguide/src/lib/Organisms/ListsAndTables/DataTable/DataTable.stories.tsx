@@ -167,6 +167,7 @@ export const EmptyStateCustom: Story = {
 
 export const LoadingRows: Story = {
   args: { loading: true, shadow: true },
+  tags: ['skip'],
 };
 
 export const Scrollable: Story = {

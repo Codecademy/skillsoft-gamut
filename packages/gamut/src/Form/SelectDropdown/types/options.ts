@@ -1,9 +1,9 @@
-import { GamutIconProps } from '@skillsoft/gamut-icons';
-import * as React from 'react';
-import { GroupBase } from 'react-select';
+import type { GamutIconProps } from '@skillsoft/gamut-icons';
+import type * as React from 'react';
+import type { GroupBase } from 'react-select';
 
-import { SelectOptions } from '../../inputs/Select';
-import { SelectDropdownSizes } from './styles';
+import type { SelectOptions } from '../../inputs/Select';
+import type { SelectDropdownSizes } from './styles';
 
 /**
  * Basic option structure with required label and value properties.

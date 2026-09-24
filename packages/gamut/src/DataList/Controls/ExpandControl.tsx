@@ -1,10 +1,10 @@
 import { MiniChevronDownIcon } from '@skillsoft/gamut-icons';
-import * as React from 'react';
+import type * as React from 'react';
 
 import { Rotation } from '../../Animation';
 import { FlexBox } from '../../Box/FlexBox';
 import { TextButton } from '../../Button/TextButton';
-import { RowChange } from '../types';
+import type { RowChange } from '../types';
 
 export interface ExpandColProps {
   expanded?: boolean;
