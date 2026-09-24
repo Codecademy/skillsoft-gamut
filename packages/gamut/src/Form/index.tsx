@@ -13,3 +13,12 @@ export * from './inputs/Radio';
 export * from './inputs/RadioGroup';
 export * from './inputs/types';
 export * from './types';
+/*
+  For custom inputs that should look like Input, such as third-party hosted
+  payment fields. The rest of ./styles is internal.
+*/
+export {
+  conditionalStyles,
+  formFieldPaddingStyles,
+  formFieldStyles,
+} from './styles';

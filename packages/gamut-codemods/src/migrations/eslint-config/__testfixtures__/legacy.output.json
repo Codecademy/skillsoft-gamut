@@ -1,0 +1,9 @@
+{
+  "plugins": ["@skillsoft/gamut"],
+  "extends": ["plugin:@skillsoft/gamut/recommended"],
+  "rules": {
+    // keep these on
+    "@skillsoft/gamut/no-css-standalone": "error",
+    "@skillsoft/gamut/no-inline-style": "error"
+  }
+}

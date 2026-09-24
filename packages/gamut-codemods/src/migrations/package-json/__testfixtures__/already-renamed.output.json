@@ -1,0 +1,12 @@
+{
+  "name": "app",
+  "dependencies": {
+    "@skillsoft/gamut": "https://pkg.pr.new/@skillsoft/gamut@28",
+    "@skillsoft/gamut-icons": "https://pkg.pr.new/@skillsoft/gamut-icons@28",
+    "@skillsoft/gamut-illustrations": "^{{version}}",
+    "@skillsoft/gamut-patterns": "^{{version}}",
+    "@skillsoft/gamut-styles": "^{{version}}",
+    "@skillsoft/gamut-tests": "^{{version}}",
+    "@skillsoft/variance": "^{{version}}"
+  }
+}

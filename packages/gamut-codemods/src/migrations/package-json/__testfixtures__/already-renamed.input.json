@@ -1,0 +1,9 @@
+{
+  "name": "app",
+  "dependencies": {
+    "@codecademy/gamut-kit": "3.0.25",
+    "@skillsoft/gamut": "https://pkg.pr.new/@skillsoft/gamut@28",
+    "@skillsoft/gamut-icons": "https://pkg.pr.new/@skillsoft/gamut-icons@28",
+    "@codecademy/gamut-styles": "21.2.0"
+  }
+}
