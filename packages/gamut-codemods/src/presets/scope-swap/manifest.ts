@@ -107,25 +107,33 @@ export const manifest: Manifest = {
       to: '@codecademy/gamut',
     },
     /*
-      No public replacement for the next three. Upstream GMT-1740 renamed
-      them (List -> MenuList, IconOption -> IconOptionComponent) and promoted
-      ButtonBase, then reverted all three before merging (upstream 009aa43f6)
-      as breaking changes for a separate PR. skillsoft-gamut matches that.
+      Renamed on the way to the root: `List` and `IconOption` collided with
+      the public List component and IconOption type. This is the rename
+      upstream GMT-1740 held back (upstream 009aa43f6); skillsoft-gamut
+      ships it.
     */
+    {
+      from: '@codecademy/gamut/dist/Menu/elements',
+      to: '@codecademy/gamut',
+      renames: {
+        List: 'MenuList',
+        ListProps: 'MenuListProps',
+        ListItem: 'MenuListItem',
+        ListItemProps: 'MenuListItemProps',
+        ListLink: 'MenuListLink',
+        ListLinkProps: 'MenuListLinkProps',
+        ListButton: 'MenuListButton',
+      },
+    },
+    {
+      from: '@codecademy/gamut/dist/Form/SelectDropdown/elements',
+      to: '@codecademy/gamut',
+      renames: { IconOption: 'IconOptionComponent' },
+    },
     {
       from: '@codecademy/gamut/dist/ButtonBase/ButtonBase',
       to: null,
       note: 'ButtonBase is deliberately not public. Use FillButton, StrokeButton, TextButton, IconButton, or CTAButton.',
-    },
-    {
-      from: '@codecademy/gamut/dist/Menu/elements',
-      to: null,
-      note: 'Menu list elements are not public (a MenuList* rename was held back upstream). Compose Menu/MenuItem, or copy the element.',
-    },
-    {
-      from: '@codecademy/gamut/dist/Form/SelectDropdown/elements',
-      to: null,
-      note: 'The IconOption component is not public. Copy it into your app if you need it.',
     },
     {
       from: '@codecademy/gamut/dist/Form/styles',

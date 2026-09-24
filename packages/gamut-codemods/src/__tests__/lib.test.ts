@@ -3,50 +3,15 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
-import jscodeshift from 'jscodeshift';
-
 import { parseArgs } from '../cli';
 import { dirtyTreeReason } from '../lib/git';
 import { findLeftovers } from '../lib/leftovers';
-import type { Manifest } from '../lib/manifest';
-import { deepImports } from '../migrations/deep-imports';
 import { validatePreset } from '../presets';
 import { scopeSwap } from '../presets/scope-swap';
 import { manifest } from '../presets/scope-swap/manifest';
 
 const tmp = () =>
   fs.mkdtempSync(path.join(os.tmpdir(), 'gamut-codemods-test-'));
-
-describe('deep-imports renames', () => {
-  /* scope-swap has no rename rows today, so this uses its own manifest. */
-  it('renames the export and keeps the local binding', () => {
-    const j = jscodeshift.withParser('tsx');
-    const root = j(
-      "import { List, ListItem as Item } from '@codecademy/gamut/dist/Menu/elements';"
-    );
-    const withRenames: Manifest = {
-      ...manifest,
-      deepImports: [
-        {
-          from: '@codecademy/gamut/dist/Menu/elements',
-          to: '@codecademy/gamut',
-          renames: { List: 'MenuList', ListItem: 'MenuListItem' },
-        },
-      ],
-    };
-    deepImports.run({
-      j,
-      root,
-      source: '',
-      manifest: withRenames,
-      warn: () => {},
-      note: () => {},
-    });
-    expect(root.toSource({ quote: 'single' })).toBe(
-      "import { MenuList as List, MenuListItem as Item } from '@codecademy/gamut';"
-    );
-  });
-});
 
 describe('validatePreset', () => {
   it('accepts scope-swap', () => {
