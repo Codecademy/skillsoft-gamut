@@ -1,8 +1,5 @@
-import type {
-  CSSObject} from '@skillsoft/variance';
-import {
-  percentageOrAbsolute as percent,
-} from '@skillsoft/variance';
+import type { CSSObject } from '@skillsoft/variance';
+import { percentageOrAbsolute as percent } from '@skillsoft/variance';
 
 import type { PopoverContainerAlignment, PopoverPositionConfig } from './types';
 

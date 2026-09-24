@@ -1,10 +1,7 @@
 import { createContext } from 'react';
 
-import type {
-  BarChartTranslations} from './shared/translations';
-import {
-  defaultBarChartTranslations,
-} from './shared/translations';
+import type { BarChartTranslations } from './shared/translations';
+import { defaultBarChartTranslations } from './shared/translations';
 import type { BarChartStyles, MaxScaleValue } from './shared/types';
 
 export interface BarChartContextProps {

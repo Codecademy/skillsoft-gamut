@@ -1,22 +1,16 @@
 import styled from '@emotion/styled';
 import { styledOptions, system, variant } from '@skillsoft/gamut-styles';
-import type { StyleProps} from '@skillsoft/variance';
+import type { StyleProps } from '@skillsoft/variance';
 import { variance } from '@skillsoft/variance';
-import type {
-  ComponentProps,
-  ComponentType,
-  HTMLProps,
-  Ref} from 'react';
-import {
-  forwardRef
-} from 'react';
+import type { ComponentProps, ComponentType, HTMLProps, Ref } from 'react';
+import { forwardRef } from 'react';
 
 import {
   ButtonBase,
   InteractiveSelectors,
   narrowButtonBaseRef,
 } from '../ButtonBase/ButtonBase';
-import type { AppendedIconProps} from '../helpers';
+import type { AppendedIconProps } from '../helpers';
 import { appendIconToContent } from '../helpers';
 
 export interface AnchorProps

@@ -1,20 +1,15 @@
 import type { StyledComponent } from '@emotion/styled';
 import styled from '@emotion/styled';
-import type {
-  GamutIconProps} from '@skillsoft/gamut-icons';
-import {
-  AlertIcon,
-  CheckCircledIcon
-} from '@skillsoft/gamut-icons';
+import type { GamutIconProps } from '@skillsoft/gamut-icons';
+import { AlertIcon, CheckCircledIcon } from '@skillsoft/gamut-icons';
 import { css } from '@skillsoft/gamut-styles';
 import type { StyleProps } from '@skillsoft/variance';
-import type { ChangeEvent, InputHTMLAttributes} from 'react';
+import type { ChangeEvent, InputHTMLAttributes } from 'react';
 import type * as React from 'react';
 import { forwardRef, useState } from 'react';
 
 import { Box, FlexBox } from '../../Box';
-import type {
-  conditionalStyleProps} from '../styles';
+import type { conditionalStyleProps } from '../styles';
 import {
   conditionalStyles,
   conditionalStyleState,

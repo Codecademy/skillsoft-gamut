@@ -19,10 +19,9 @@ import {
 } from '@skillsoft/gamut-icons';
 import type {
   DefaultLayoutIcon,
-  DefaultLayoutIcons} from '@vidstack/react/player/layouts/default';
-import {
-  defaultLayoutIcons,
+  DefaultLayoutIcons,
 } from '@vidstack/react/player/layouts/default';
+import { defaultLayoutIcons } from '@vidstack/react/player/layouts/default';
 
 const IconWrapper = (Icon: DefaultLayoutIcon) => (props: any) =>
   <Icon {...props} height={20} width={20} />;

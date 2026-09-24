@@ -1,6 +1,6 @@
 import type { system } from '@skillsoft/gamut-styles';
 import type { StyleProps } from '@skillsoft/variance';
-import type { ComponentProps} from 'react';
+import type { ComponentProps } from 'react';
 import { useMemo } from 'react';
 
 import { List } from '../List';

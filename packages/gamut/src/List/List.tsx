@@ -1,11 +1,11 @@
 import { DotLoose } from '@skillsoft/gamut-patterns';
 import { timingValues } from '@skillsoft/gamut-styles';
 import isArray from 'lodash/isArray';
-import type { ComponentProps} from 'react';
+import type { ComponentProps } from 'react';
 import type * as React from 'react';
 import { forwardRef, useEffect } from 'react';
 
-import type { BoxProps} from '../Box';
+import type { BoxProps } from '../Box';
 import { Box, FlexBox } from '../Box';
 import {
   AnimatedListWrapper,

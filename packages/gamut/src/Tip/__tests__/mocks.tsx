@@ -1,4 +1,4 @@
-import type { ComponentProps} from 'react';
+import type { ComponentProps } from 'react';
 import { useState } from 'react';
 
 import { FillButton } from '../../Button';

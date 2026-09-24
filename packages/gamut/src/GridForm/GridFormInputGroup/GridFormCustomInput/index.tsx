@@ -1,7 +1,10 @@
 import type * as React from 'react';
 import type { UseFormReturn } from 'react-hook-form';
 
-import type { GridFormCustomField, GridFormCustomGroupField } from '../../types';
+import type {
+  GridFormCustomField,
+  GridFormCustomGroupField,
+} from '../../types';
 
 export type GridFormCustomInputProps = {
   className?: string;

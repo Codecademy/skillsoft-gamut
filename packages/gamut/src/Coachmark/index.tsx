@@ -5,10 +5,9 @@ import { DelayedRenderWrapper } from '../DelayedRenderWrapper';
 import type {
   PopoverFocusProps,
   PopoverProps,
-  PopoverYPositionType} from '../Popover';
-import {
-  Popover
+  PopoverYPositionType,
 } from '../Popover';
+import { Popover } from '../Popover';
 
 export type CoachmarkProps = PopoverFocusProps & {
   /**

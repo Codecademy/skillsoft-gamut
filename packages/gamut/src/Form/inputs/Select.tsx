@@ -6,14 +6,8 @@ import {
 } from '@skillsoft/gamut-icons';
 import { variant } from '@skillsoft/gamut-styles';
 import type { StyleProps } from '@skillsoft/variance';
-import type {
-  ChangeEvent,
-  SelectHTMLAttributes} from 'react';
-import {
-  forwardRef,
-  useMemo,
-  useState,
-} from 'react';
+import type { ChangeEvent, SelectHTMLAttributes } from 'react';
+import { forwardRef, useMemo, useState } from 'react';
 
 import { Box, FlexBox } from '../../Box';
 import {

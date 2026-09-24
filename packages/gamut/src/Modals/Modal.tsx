@@ -1,10 +1,10 @@
 import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
-import type { ComponentProps} from 'react';
+import type { ComponentProps } from 'react';
 import type * as React from 'react';
 import { useId, useState } from 'react';
 
 import { Box } from '../Box';
-import type { ButtonProps} from '../Button';
+import type { ButtonProps } from '../Button';
 import { FillButton, IconButton, TextButton } from '../Button';
 import { Overlay } from '../Overlay';
 import { Text } from '../Typography';

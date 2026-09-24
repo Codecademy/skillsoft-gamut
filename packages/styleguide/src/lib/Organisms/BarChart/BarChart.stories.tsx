@@ -1,10 +1,5 @@
-import type {
-  BarProps,
-  PartialBarChartTranslations} from '@skillsoft/gamut';
-import {
-  BarChart,
-  Box
-} from '@skillsoft/gamut';
+import type { BarProps, PartialBarChartTranslations } from '@skillsoft/gamut';
+import { BarChart, Box } from '@skillsoft/gamut';
 import {
   BookFlipPageIcon,
   DataScienceIcon,

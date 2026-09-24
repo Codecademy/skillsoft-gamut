@@ -1,5 +1,4 @@
-import type {
-  ConnectedFormGroupProps} from '@skillsoft/gamut';
+import type { ConnectedFormGroupProps } from '@skillsoft/gamut';
 import {
   ConnectedForm,
   ConnectedFormGroup,

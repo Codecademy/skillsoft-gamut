@@ -1,5 +1,4 @@
-import type {
-  BarChartTranslations} from '../shared/translations';
+import type { BarChartTranslations } from '../shared/translations';
 import {
   getDefaultSingleValueBarSummary,
   getDefaultStackedBarSummary,

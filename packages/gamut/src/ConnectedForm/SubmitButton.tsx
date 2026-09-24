@@ -3,7 +3,7 @@ import type * as React from 'react';
 import type { FieldValues, FormState } from 'react-hook-form';
 
 import { Box, FlexBox } from '../Box';
-import type { ButtonProps} from '../Button';
+import type { ButtonProps } from '../Button';
 import { FillButton } from '../Button';
 import { Spinner } from '../Loading/Spinner';
 import { Text } from '../Typography';

@@ -8,11 +8,9 @@ import type {
   RegisterOptions,
   SubmitErrorHandler,
   SubmitHandler,
-  UseFormProps} from 'react-hook-form';
-import {
-  FormProvider,
-  useForm
+  UseFormProps,
 } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import { Form } from '../Form';
 import type { FormProps } from '../Form/elements/Form';

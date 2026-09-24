@@ -3,7 +3,7 @@ import type { ComponentProps } from 'react';
 import type * as React from 'react';
 
 import { GridBox } from '../../Box';
-import type { ButtonProps} from '../../Button';
+import type { ButtonProps } from '../../Button';
 import { CTAButton, FillButton, TextButton } from '../../Button';
 import type { SubmitButtonProps } from '../../ConnectedForm';
 import { SubmitButton } from '../../ConnectedForm';

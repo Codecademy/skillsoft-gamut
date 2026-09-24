@@ -1,11 +1,5 @@
-import type {
-  ReactElement} from 'react';
-import {
-  isValidElement,
-  memo,
-  useCallback,
-  useMemo,
-} from 'react';
+import type { ReactElement } from 'react';
+import { isValidElement, memo, useCallback, useMemo } from 'react';
 
 import { Text } from '../../..';
 import { ListCol, ListRow } from '../../../List';

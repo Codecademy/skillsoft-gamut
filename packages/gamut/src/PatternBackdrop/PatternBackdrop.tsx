@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { CheckerDense } from '@skillsoft/gamut-patterns';
 import { styledOptions, system } from '@skillsoft/gamut-styles';
-import type { StyleProps} from '@skillsoft/variance';
+import type { StyleProps } from '@skillsoft/variance';
 import { variance } from '@skillsoft/variance';
-import type { ComponentProps} from 'react';
+import type { ComponentProps } from 'react';
 import { forwardRef } from 'react';
 
 import { Box } from '../Box';

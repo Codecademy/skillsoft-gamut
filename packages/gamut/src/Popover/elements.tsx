@@ -7,12 +7,8 @@ import { BodyPortal } from '../BodyPortal';
 import { Box, FlexBox } from '../Box';
 import { popoverToolTipBodyAlignments } from '../Tip/shared/styles/styles';
 import type { WithChildrenProp } from '../utils';
-import type {
-  popoverStates} from './styles/base';
-import {
-  raisedDivVariants,
-  transformValues,
-} from './styles/base';
+import type { popoverStates } from './styles/base';
+import { raisedDivVariants, transformValues } from './styles/base';
 import { patternContainerBaseStyles } from './styles/pattern';
 import {
   beakBoxVariants,

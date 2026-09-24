@@ -1,6 +1,6 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
 import { fireEvent } from '@testing-library/dom';
-import type { RenderResult} from '@testing-library/react';
+import type { RenderResult } from '@testing-library/react';
 import { act, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 

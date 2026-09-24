@@ -1,10 +1,8 @@
-import type { ReactNode} from 'react';
+import type { ReactNode } from 'react';
 import { createContext, useEffect, useLayoutEffect } from 'react';
-import type {
-  GroupBase,
-  Props} from 'react-select';
+import type { GroupBase, Props } from 'react-select';
 import ReactSelect, {
-  components as SelectDropdownElements
+  components as SelectDropdownElements,
 } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 

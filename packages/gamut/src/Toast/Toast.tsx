@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
 import { system } from '@skillsoft/gamut-styles';
 import type { StyleProps } from '@skillsoft/variance';
-import type { ReactNode} from 'react';
+import type { ReactNode } from 'react';
 import type * as React from 'react';
 import { useMemo } from 'react';
 

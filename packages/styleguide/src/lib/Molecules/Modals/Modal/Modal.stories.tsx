@@ -9,7 +9,7 @@ import {
 } from '@skillsoft/gamut';
 import { CodeCelebration } from '@skillsoft/gamut-illustrations';
 import type { Meta } from '@storybook/react';
-import type { ComponentProps} from 'react';
+import type { ComponentProps } from 'react';
 import type React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';

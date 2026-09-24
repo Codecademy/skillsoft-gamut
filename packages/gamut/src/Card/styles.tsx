@@ -1,12 +1,7 @@
-import type { Theme} from '@emotion/react';
+import type { Theme } from '@emotion/react';
 import { useTheme } from '@emotion/react';
-import type {
-  ElevationState} from '@skillsoft/gamut-styles';
-import {
-  theme,
-  timingValues,
-  variant,
-} from '@skillsoft/gamut-styles';
+import type { ElevationState } from '@skillsoft/gamut-styles';
+import { theme, timingValues, variant } from '@skillsoft/gamut-styles';
 import type { StyleProps } from '@skillsoft/variance';
 
 /**

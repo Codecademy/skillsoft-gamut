@@ -1,5 +1,4 @@
-import type {
-  AnchorProps} from '@skillsoft/gamut';
+import type { AnchorProps } from '@skillsoft/gamut';
 import {
   Anchor,
   Box,

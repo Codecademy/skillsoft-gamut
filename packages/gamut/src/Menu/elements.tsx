@@ -4,10 +4,10 @@ import {
   system,
   transitionConcat,
 } from '@skillsoft/gamut-styles';
-import type { StyleProps} from '@skillsoft/variance';
+import type { StyleProps } from '@skillsoft/variance';
 import { variance } from '@skillsoft/variance';
 import isObject from 'lodash/isObject';
-import type { ComponentProps} from 'react';
+import type { ComponentProps } from 'react';
 import { forwardRef } from 'react';
 
 import { sharedStates } from '../Box/props';

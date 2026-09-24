@@ -10,7 +10,10 @@ import {
   handleCheckboxChange,
   renderCheckbox,
 } from '../../../ConnectedForm/ConnectedInputs/ConnectedNestedCheckboxes/utils';
-import type { BaseFormInputProps, GridFormNestedCheckboxField } from '../../types';
+import type {
+  BaseFormInputProps,
+  GridFormNestedCheckboxField,
+} from '../../types';
 import type { GridFormInputGroupProps } from '..';
 
 export interface GridFormNestedCheckboxInputProps extends BaseFormInputProps {

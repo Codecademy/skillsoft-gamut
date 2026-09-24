@@ -5,9 +5,14 @@ import type { CSSObject } from '../types/props';
 import type { AbstractTheme } from '../types/theme';
 import type { LiteralPaths } from '../utils/flattenScale';
 import { flattenScale } from '../utils/flattenScale';
-import type { KeyAsVariable} from '../utils/serializeTokens';
+import type { KeyAsVariable } from '../utils/serializeTokens';
 import { serializeTokens } from '../utils/serializeTokens';
-import type { ColorModeConfig, Merge, MergeTheme, PrivateThemeKeys } from './types';
+import type {
+  ColorModeConfig,
+  Merge,
+  MergeTheme,
+  PrivateThemeKeys,
+} from './types';
 
 class ThemeBuilder<T extends AbstractTheme> {
   #theme = {} as T;

@@ -1,7 +1,7 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
 import type { queries } from '@testing-library/dom';
 import { fireEvent } from '@testing-library/dom';
-import type { RenderResult} from '@testing-library/react';
+import type { RenderResult } from '@testing-library/react';
 import { act, waitFor } from '@testing-library/react';
 
 import { createPromise } from '../../utils';

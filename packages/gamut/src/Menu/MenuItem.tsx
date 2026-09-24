@@ -1,26 +1,13 @@
 import type { GamutIconProps } from '@skillsoft/gamut-icons';
 import isString from 'lodash/isString';
-import type {
-  ComponentProps,
-  MouseEventHandler,
-  Ref} from 'react';
-import {
-  forwardRef,
-  useId,
-} from 'react';
+import type { ComponentProps, MouseEventHandler, Ref } from 'react';
+import { forwardRef, useId } from 'react';
 
 import { FlexBox } from '../Box';
 import type { ToolTipProps } from '../Tip/ToolTip';
 import { Text } from '../Typography';
-import type {
-  ListItemProps,
-  ListLinkProps} from './elements';
-import {
-  ListButton,
-  ListItem,
-  ListLink,
-  MenuToolTipWrapper,
-} from './elements';
+import type { ListItemProps, ListLinkProps } from './elements';
+import { ListButton, ListItem, ListLink, MenuToolTipWrapper } from './elements';
 import { useMenuContext } from './MenuContext';
 
 const getListItemType = (href: boolean, onClick: boolean) =>

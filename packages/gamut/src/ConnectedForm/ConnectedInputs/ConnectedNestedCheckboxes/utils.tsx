@@ -2,7 +2,10 @@ import { Box } from '../../../Box';
 import type { CheckboxLabelUnion } from '../../../Form';
 import { Checkbox } from '../../../Form';
 import type { NestedGridFormCheckboxOption } from '../../../GridForm/types';
-import type { MinimalCheckboxProps, NestedConnectedCheckboxOption } from '../types';
+import type {
+  MinimalCheckboxProps,
+  NestedConnectedCheckboxOption,
+} from '../types';
 
 type FlatCheckbox = Omit<MinimalCheckboxProps, 'value'> &
   CheckboxLabelUnion & {

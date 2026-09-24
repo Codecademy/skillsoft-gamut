@@ -1,4 +1,4 @@
-import type { KeyboardEvent} from 'react';
+import type { KeyboardEvent } from 'react';
 import type * as React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import type { ActionMeta, Options as OptionsType } from 'react-select';

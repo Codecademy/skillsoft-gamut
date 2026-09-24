@@ -1,4 +1,4 @@
-import type { HTMLAttributes} from 'react';
+import type { HTMLAttributes } from 'react';
 import type * as React from 'react';
 import { useMemo } from 'react';
 

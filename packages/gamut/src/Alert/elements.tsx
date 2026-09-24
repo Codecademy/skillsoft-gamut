@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Background, css } from '@skillsoft/gamut-styles';
 import { motion } from 'framer-motion';
-import type { ComponentProps} from 'react';
+import type { ComponentProps } from 'react';
 import { forwardRef } from 'react';
 
 import { Box } from '../Box';

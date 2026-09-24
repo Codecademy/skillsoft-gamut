@@ -1,9 +1,6 @@
 import { CheckIcon } from '@skillsoft/gamut-icons';
-import type {
-  SingleValueProps} from 'react-select';
-import {
-  components as SelectDropdownElements
-} from 'react-select';
+import type { SingleValueProps } from 'react-select';
+import { components as SelectDropdownElements } from 'react-select';
 
 import { Box, FlexBox } from '../../../Box';
 import type {

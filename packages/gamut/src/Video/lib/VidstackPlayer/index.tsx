@@ -7,7 +7,8 @@ import styled from '@emotion/styled';
 import { styledOptions } from '@skillsoft/gamut-styles';
 import type {
   MediaPlayerInstance,
-  MediaProviderAdapter} from '@vidstack/react';
+  MediaProviderAdapter,
+} from '@vidstack/react';
 import {
   isYouTubeProvider,
   MediaPlayer,

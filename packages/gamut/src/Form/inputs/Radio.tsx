@@ -7,11 +7,8 @@ import { forwardRef } from 'react';
 
 import { FlexBox } from '../../Box';
 import { InfoTip } from '../../Tip/InfoTip';
-import type {
-  InfoTipSubComponentProps} from '../../Tip/InfoTip/type-utils';
-import {
-  useInfotipProps,
-} from '../../Tip/InfoTip/type-utils';
+import type { InfoTipSubComponentProps } from '../../Tip/InfoTip/type-utils';
+import { useInfotipProps } from '../../Tip/InfoTip/type-utils';
 import {
   conditionalRadioInputStyles,
   conditionalRadioLabelStyles,

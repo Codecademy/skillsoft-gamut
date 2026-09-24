@@ -2,7 +2,7 @@ import { css, Global } from '@emotion/react';
 import type * as React from 'react';
 
 import type { coreTheme } from '../themes';
-import type { FontConfig} from '../utilities/fontUtils';
+import type { FontConfig } from '../utilities/fontUtils';
 import { getFonts } from '../utilities/fontUtils';
 
 /**

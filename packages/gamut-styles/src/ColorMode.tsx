@@ -1,17 +1,11 @@
-import type { CSSObject, Theme} from '@emotion/react';
+import type { CSSObject, Theme } from '@emotion/react';
 import { ThemeProvider, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import type {
-  StyleProps,
-  ThemeProps} from '@skillsoft/variance';
-import {
-  serializeTokens,
-  variance,
-} from '@skillsoft/variance';
+import type { StyleProps, ThemeProps } from '@skillsoft/variance';
+import { serializeTokens, variance } from '@skillsoft/variance';
 import mapValues from 'lodash/mapValues';
 import pick from 'lodash/pick';
-import type {
-  ComponentProps} from 'react';
+import type { ComponentProps } from 'react';
 import {
   createContext,
   forwardRef,

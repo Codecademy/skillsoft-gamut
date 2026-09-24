@@ -23,10 +23,9 @@ import type {
   BaseTagProps,
   DismissButtonProps,
   TagAnchorProps,
-  TagTextProps} from './types';
-import {
-  tagProps
+  TagTextProps,
 } from './types';
+import { tagProps } from './types';
 
 export const Outline = styled(FlexBox)(outlineStyling, outlineStates);
 

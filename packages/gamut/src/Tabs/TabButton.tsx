@@ -3,12 +3,8 @@ import { states, variant } from '@skillsoft/gamut-styles';
 import type { StyleProps } from '@skillsoft/variance';
 
 import { ButtonBase } from '../ButtonBase';
-import type {
-  TabElementStyleProps} from './props';
-import {
-  tabElementBaseProps,
-  TabSelectors,
-} from './props';
+import type { TabElementStyleProps } from './props';
+import { tabElementBaseProps, TabSelectors } from './props';
 
 export interface TabButtonProps
   extends StyleProps<typeof tabVariants>,

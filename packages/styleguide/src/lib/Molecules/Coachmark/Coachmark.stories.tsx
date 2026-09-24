@@ -1,7 +1,7 @@
 import { Coachmark, FillButton, FlexBox, Text } from '@skillsoft/gamut';
 import * as patterns from '@skillsoft/gamut-patterns';
 import type { Meta, StoryObj } from '@storybook/react';
-import type { ComponentProps} from 'react';
+import type { ComponentProps } from 'react';
 import { useEffect, useState } from 'react';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 

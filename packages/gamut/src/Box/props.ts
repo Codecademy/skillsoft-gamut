@@ -1,5 +1,5 @@
 import { system } from '@skillsoft/gamut-styles';
-import type { StyleProps} from '@skillsoft/variance';
+import type { StyleProps } from '@skillsoft/variance';
 import { variance } from '@skillsoft/variance';
 
 import type { WithChildrenProp } from '../utils';

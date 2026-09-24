@@ -3,7 +3,7 @@ import type * as React from 'react';
 
 import { webFonts } from './remoteAssets/fonts';
 import { coreTheme } from './themes';
-import type { FontConfig} from './utilities/fontUtils';
+import type { FontConfig } from './utilities/fontUtils';
 import { getFonts } from './utilities/fontUtils';
 
 /*

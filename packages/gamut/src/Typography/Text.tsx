@@ -5,9 +5,9 @@ import {
   system,
   variant,
 } from '@skillsoft/gamut-styles';
-import type { StyleProps} from '@skillsoft/variance';
+import type { StyleProps } from '@skillsoft/variance';
 import { variance } from '@skillsoft/variance';
-import type { ComponentProps} from 'react';
+import type { ComponentProps } from 'react';
 import { forwardRef } from 'react';
 
 import { typographyElementVariants, typographyStyleVariants } from './variants';

@@ -1,4 +1,4 @@
-import type { Theme} from '@emotion/react';
+import type { Theme } from '@emotion/react';
 import { ThemeProvider } from '@emotion/react';
 import type * as React from 'react';
 

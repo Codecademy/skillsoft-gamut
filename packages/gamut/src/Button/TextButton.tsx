@@ -1,8 +1,7 @@
 import { forwardRef } from 'react';
 
 import type { ButtonBaseElements } from '../ButtonBase/ButtonBase';
-import type {
-  InlineIconButtonProps} from './shared';
+import type { InlineIconButtonProps } from './shared';
 import {
   createButtonComponent,
   InlineIconButton,

@@ -6,7 +6,7 @@ import {
   system,
   transitionConcat,
 } from '@skillsoft/gamut-styles';
-import type { CSSObject, ThemeProps} from '@skillsoft/variance';
+import type { CSSObject, ThemeProps } from '@skillsoft/variance';
 import { variance } from '@skillsoft/variance';
 
 import { ButtonBase, InteractiveSelectors } from '../../ButtonBase/ButtonBase';

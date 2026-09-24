@@ -1,13 +1,7 @@
 import { matchers } from '@emotion/jest';
 import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
-import type {
-  RenderResult} from '@testing-library/react';
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-} from '@testing-library/react';
+import type { RenderResult } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 
 import type { DataGridProps } from '../DataGrid';
 import { DataGrid } from '../DataGrid';

@@ -1,12 +1,7 @@
 import styled from '@emotion/styled';
 import type { StyleProps } from '@skillsoft/variance';
-import type {
-  ChangeEvent,
-  TextareaHTMLAttributes} from 'react';
-import {
-  forwardRef,
-  useState,
-} from 'react';
+import type { ChangeEvent, TextareaHTMLAttributes } from 'react';
+import { forwardRef, useState } from 'react';
 
 import {
   conditionalStyles,

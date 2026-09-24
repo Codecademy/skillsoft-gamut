@@ -9,7 +9,10 @@ import { InteractiveSelectors } from '../../ButtonBase/ButtonBase';
 import { Shimmer } from '../../Loading/Shimmer';
 import { patternContainerBaseStyles } from '../../Popover/styles/pattern';
 import { Text } from '../../Typography';
-import type { PreviewTipContent, TipPlacementComponentProps } from '../shared/types';
+import type {
+  PreviewTipContent,
+  TipPlacementComponentProps,
+} from '../shared/types';
 import {
   avatarColumnTemplate,
   avatarGridTemplate,

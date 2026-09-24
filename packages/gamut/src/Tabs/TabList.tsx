@@ -3,10 +3,9 @@ import type { StyleProps } from '@skillsoft/variance';
 import type * as React from 'react';
 import type {
   TabListProps as ReactAriaTabListProps,
-  TabProps} from 'react-aria-components';
-import {
-  TabList as ReactAriaTabList
+  TabProps,
 } from 'react-aria-components';
+import { TabList as ReactAriaTabList } from 'react-aria-components';
 
 import type { TabElementStyleProps } from './props';
 import { tabElementBaseProps } from './props';

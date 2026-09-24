@@ -1,5 +1,4 @@
-import type {
-  ButtonProps} from '@skillsoft/gamut';
+import type { ButtonProps } from '@skillsoft/gamut';
 import {
   Anchor,
   Box,
@@ -29,7 +28,7 @@ import {
   ColorMode,
   usePrefersDarkMode,
 } from '@skillsoft/gamut-styles';
-import type { ComponentProps} from 'react';
+import type { ComponentProps } from 'react';
 import type * as React from 'react';
 import { useState } from 'react';
 

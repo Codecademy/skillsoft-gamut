@@ -1,7 +1,7 @@
 import { Rotation, StrokeButton } from '@skillsoft/gamut';
 import { MiniChevronDownIcon } from '@skillsoft/gamut-icons';
 import type { Meta } from '@storybook/react';
-import type { ComponentProps} from 'react';
+import type { ComponentProps } from 'react';
 import { useEffect, useState } from 'react';
 
 const meta: Meta<typeof Rotation> = {

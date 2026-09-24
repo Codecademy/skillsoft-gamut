@@ -1,11 +1,5 @@
-import type {
-  MouseEventHandler,
-  MutableRefObject} from 'react';
-import {
-  forwardRef,
-  useMemo,
-  useRef,
-} from 'react';
+import type { MouseEventHandler, MutableRefObject } from 'react';
+import { forwardRef, useMemo, useRef } from 'react';
 
 import { Box, FlexBox } from '../../Box';
 import { Text } from '../../Typography';

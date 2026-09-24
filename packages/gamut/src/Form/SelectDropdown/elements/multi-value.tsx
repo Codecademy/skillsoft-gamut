@@ -2,15 +2,14 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
 import { theme } from '@skillsoft/gamut-styles';
-import type { KeyboardEvent} from 'react';
+import type { KeyboardEvent } from 'react';
 import { useContext } from 'react';
 import type {
   GroupBase,
   MultiValueProps,
-  MultiValueRemoveProps} from 'react-select';
-import {
-  components as SelectDropdownElements
+  MultiValueRemoveProps,
 } from 'react-select';
+import { components as SelectDropdownElements } from 'react-select';
 
 import type { ExtendedOption, SizedIndicatorProps } from '../types';
 import { indicatorIcons } from './constants';

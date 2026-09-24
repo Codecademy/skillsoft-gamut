@@ -1,5 +1,4 @@
-import type {
-  ColumnConfig} from '@skillsoft/gamut';
+import type { ColumnConfig } from '@skillsoft/gamut';
 import {
   Box,
   DataList,

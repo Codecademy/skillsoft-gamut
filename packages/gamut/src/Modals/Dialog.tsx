@@ -1,5 +1,5 @@
 import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
-import type { ComponentProps} from 'react';
+import type { ComponentProps } from 'react';
 import type * as React from 'react';
 import { useId } from 'react';
 

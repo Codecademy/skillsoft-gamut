@@ -6,7 +6,7 @@ import { useMeasure } from 'react-use';
 
 import { Rotation } from '../Animation';
 import { Box } from '../Box';
-import type { FillButton} from '../Button';
+import type { FillButton } from '../Button';
 import { IconButton, TextButton } from '../Button';
 import type { CloseButtonProps } from '../Modals/types';
 import { ToolTip } from '../Tip/ToolTip';

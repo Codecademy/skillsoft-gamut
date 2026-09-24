@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { styledOptions, system } from '@skillsoft/gamut-styles';
 import { variance } from '@skillsoft/variance';
-import type { ComponentProps} from 'react';
+import type { ComponentProps } from 'react';
 import type * as React from 'react';
 import { forwardRef } from 'react';
 

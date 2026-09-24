@@ -6,16 +6,13 @@ import {
   timing,
 } from '@skillsoft/gamut-styles';
 import type { StyleProps } from '@skillsoft/variance';
-import type { InputHTMLAttributes} from 'react';
+import type { InputHTMLAttributes } from 'react';
 import { forwardRef, useEffect, useRef } from 'react';
 
 import { FlexBox } from '../../Box';
 import { InfoTip } from '../../Tip/InfoTip';
-import type {
-  InfoTipSubComponentProps} from '../../Tip/InfoTip/type-utils';
-import {
-  useInfotipProps,
-} from '../../Tip/InfoTip/type-utils';
+import type { InfoTipSubComponentProps } from '../../Tip/InfoTip/type-utils';
+import { useInfotipProps } from '../../Tip/InfoTip/type-utils';
 import {
   checkboxElement,
   checkboxElementStates,
