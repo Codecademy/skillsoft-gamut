@@ -11,7 +11,8 @@ import starlightSidebarTopics from 'starlight-sidebar-topics';
 // Each top-level section is its own topic (starlight-sidebar-topics), so its
 // sidebar replaces the others instead of all six being stacked in one long list.
 export default defineConfig({
-  site: 'https://gamut.skillsoft.com',
+  site: 'https://codecademy.github.io',
+  base: process.env.CI ? '/skillsoft-gamut' : '/',
   server: {
     port: 3333,
   },
@@ -75,7 +76,8 @@ export default defineConfig({
                       items: [
                         {
                           autogenerate: {
-                            directory: 'guides/writing-ux-copy/component-guidelines',
+                            directory:
+                              'guides/writing-ux-copy/component-guidelines',
                           },
                         },
                       ],
@@ -111,12 +113,16 @@ export default defineConfig({
                   label: 'Tooling',
                   items: [
                     { slug: 'foundations/tooling' },
-                    { autogenerate: { directory: 'foundations/Tooling/Figma' } },
+                    {
+                      autogenerate: { directory: 'foundations/Tooling/Figma' },
+                    },
                     {
                       label: 'Gamut plugin',
                       items: [
                         {
-                          autogenerate: { directory: 'foundations/Tooling/gamut-plugin' },
+                          autogenerate: {
+                            directory: 'foundations/Tooling/gamut-plugin',
+                          },
                         },
                       ],
                     },
@@ -190,7 +196,8 @@ export default defineConfig({
                       items: [
                         {
                           autogenerate: {
-                            directory: 'components/data-display/list-and-tables',
+                            directory:
+                              'components/data-display/list-and-tables',
                           },
                         },
                       ],
