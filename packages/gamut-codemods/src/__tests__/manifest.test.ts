@@ -24,38 +24,115 @@ const readJson = (file: string) =>
   consumer's bundler would, through the exports map.
 */
 const importsToCheck = () => {
-  const lines: string[] = [];
+  const byModule = new Map<string, Set<string>>();
+  const add = (spec: string | null, names: string[]) => {
+    if (!spec) return;
+    const set = byModule.get(spec) ?? new Set<string>();
+    names.forEach((name) => set.add(name));
+    byModule.set(spec, set);
+  };
   for (const preset of Object.values(presets)) {
     const m = preset.manifest;
     for (const rule of m.movedExports) {
-      lines.push(
-        `import type { ${rule.names.join(', ')} } from '${renameSpecifier(
-          m,
-          rule.to
-        )}';`
-      );
+      add(renameSpecifier(m, rule.to), rule.names);
     }
     for (const row of m.deepImports) {
-      if (row.to && row.onlyNames) {
-        lines.push(
-          `import type { ${row.onlyNames.join(', ')} } from '${renameSpecifier(
-            m,
-            row.to
-          )}';`
+      if (!row.to) continue;
+      const to = renameSpecifier(m, row.to);
+      if (row.onlyNames) {
+        add(
+          to,
+          row.onlyNames.map((name) => row.renames?.[name] ?? name)
         );
       }
-      if (!row.to || !row.renames) continue;
-      lines.push(
-        `import type { ${Object.values(row.renames).join(
-          ', '
-        )} } from '${renameSpecifier(m, row.to)}';`
-      );
+      if (row.renames) add(to, Object.values(row.renames));
     }
   }
-  return lines.join('\n');
+  return [...byModule]
+    .map(
+      ([spec, names]) =>
+        `import type { ${[...names].join(', ')} } from '${spec}';`
+    )
+    .join('\n');
+};
+
+/* `@codecademy/gamut/dist/Form/styles` -> packages/gamut/src/Form/styles(.ts|/index.tsx|...) */
+const sourceModuleFor = (deepPath: string) => {
+  const match = /^@codecademy\/([\w-]+)\/dist\/(.+)$/.exec(deepPath);
+  if (!match) return null;
+  const base = path.join(REPO, 'packages', match[1], 'src', match[2]);
+  return (
+    ['.ts', '.tsx', '/index.ts', '/index.tsx']
+      .map((ext) => base + ext)
+      .find((file) => fs.existsSync(file)) ?? null
+  );
+};
+
+/* Export names of each module specifier, resolved like a bundler would. */
+const exportsOf = (specifiers: string[]) => {
+  const file = path.join(REPO, 'packages/gamut-codemods/__exports-check__.ts');
+  const source = specifiers
+    .map((spec, i) => `import * as m${i} from '${spec}';`)
+    .join('\n');
+  const host = ts.createCompilerHost({});
+  const readFile = host.readFile.bind(host);
+  host.readFile = (f) => (f === file ? source : readFile(f));
+  const fileExists = host.fileExists.bind(host);
+  host.fileExists = (f) => f === file || fileExists(f);
+  const program = ts.createProgram(
+    [file],
+    {
+      noEmit: true,
+      skipLibCheck: true,
+      jsx: ts.JsxEmit.ReactJSX,
+      module: ts.ModuleKind.ESNext,
+      moduleResolution: ts.ModuleResolutionKind.Bundler,
+      types: [],
+    },
+    host
+  );
+  const checker = program.getTypeChecker();
+  const imports = program
+    .getSourceFile(file)!
+    .statements.filter(ts.isImportDeclaration);
+  return specifiers.map((_, i) => {
+    const symbol = checker.getSymbolAtLocation(imports[i].moduleSpecifier);
+    return new Set(
+      symbol ? checker.getExportsOfModule(symbol).map((s) => s.name) : []
+    );
+  });
 };
 
 describe('manifests', () => {
+  /*
+    A deep-import row sends every name imported from `from` to `to`, so
+    everything `from` exports has to be available there: directly, via
+    `renames`, or be left out on purpose by listing what is public in
+    `onlyNames`. Otherwise the codemod writes imports that don't compile.
+  */
+  it('only rewrite deep imports whose names all exist at the target', () => {
+    const rows = manifest.deepImports.filter((row) => row.to && !row.onlyNames);
+    const sources = rows.map((row) => sourceModuleFor(row.from));
+    const targets = rows.map((row) => renameSpecifier(manifest, row.to!)!);
+    const found = exportsOf([
+      ...sources.map((s) => s ?? 'missing'),
+      ...targets,
+    ]);
+
+    const problems = rows.flatMap((row, i) => {
+      if (!sources[i]) return [`${row.from}: no source module found`];
+      const available = found[rows.length + i];
+      const missing = [...found[i]]
+        .map((name) => row.renames?.[name] ?? name)
+        .filter((name) => !available.has(name));
+      return missing.length
+        ? [`${row.from} -> ${targets[i]}: missing ${missing.join(', ')}`]
+        : [];
+    });
+
+    expect(problems).toEqual([]);
+  });
+
   it('only point at exports that exist in the built packages', () => {
     const file = path.join(
       REPO,

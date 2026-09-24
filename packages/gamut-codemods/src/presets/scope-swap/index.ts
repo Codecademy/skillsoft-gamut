@@ -7,6 +7,7 @@ import { mfShared } from '../../migrations/mf-shared';
 import { movedExports } from '../../migrations/moved-exports';
 import { packageJson } from '../../migrations/package-json';
 import { scopeRename } from '../../migrations/scope-rename';
+import { tsconfigDom } from '../../migrations/tsconfig-dom';
 import { yarnrc } from '../../migrations/yarnrc';
 import { manifest } from './manifest';
 
@@ -25,6 +26,7 @@ export const scopeSwap: Preset = {
     eslintConfig,
     mdxImports,
     yarnrc,
+    tsconfigDom,
   ],
   checklist: [
     'Run your formatter (prettier --write / eslint --fix). Split imports come out in recast style.',
@@ -33,7 +35,9 @@ export const scopeSwap: Preset = {
   ],
   conditionalChecklist: {
     'removed:@codecademy/gamut-kit':
-      'gamut-kit is gone. Delete anything that reads it for versions, such as a sync-gamut-deps script.',
+      "gamut-kit is gone. Delete anything that reads it for versions, such as a sync-gamut-deps script. @skillsoft/gamut-styles has a stylis peer dependency, and it's now a direct dependency of yours, so add stylis if yarn warns that it isn't provided.",
+    'tsconfig-no-dom':
+      'Some tsconfig files set "lib" without "dom" (see the tsconfig-dom warnings). Video no longer loads with the root import, and it was supplying the DOM types. Add "dom" to those files if type-checking fails on document, HTMLElement, ResizeObserver, and so on.',
     'mf-shared':
       "Module Federation shared config changed. Gamut is now a real singleton: run the host and every remote together, and update the remotes' shared config to match.",
   },

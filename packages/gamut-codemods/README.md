@@ -33,6 +33,25 @@ A run ends with three things:
 2. **Leftovers**: every line that still names an old package. These are for you to fix: jest `moduleNameMapper` regexes, tsconfig `paths`, flat ESLint configs, comments, and docs.
 3. **Next steps**, built from what actually happened in the run.
 
+### Trying it against a preview build
+
+Every skillsoft-gamut pull request publishes installable previews through pkg.pr.new. To test a migration against one:
+
+1. Add the `@skillsoft/*` packages to your root `package.json` first, pointed at the preview URLs. The codemod keeps any `@skillsoft/*` entry that's already there.
+2. Preview packages point at each other through commit-pinned URLs, so without help yarn installs a second copy of `gamut-styles`, `variance`, and so on under `@skillsoft/gamut/node_modules`. Pin every `@skillsoft/*` package you use with `resolutions`:
+
+   ```json
+   "resolutions": {
+     "@skillsoft/gamut": "https://pkg.pr.new/@skillsoft/gamut@<pr>",
+     "@skillsoft/gamut-styles": "https://pkg.pr.new/@skillsoft/gamut-styles@<pr>",
+     "@skillsoft/variance": "https://pkg.pr.new/@skillsoft/variance@<pr>"
+   }
+   ```
+
+   Published releases don't need this. The packages share one version through the changesets `fixed` group, so their dependencies on each other line up.
+
+3. Commit, then run the codemod (or pass `--force`).
+
 ### What scope-swap changes
 
 | Migration         | What it does                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
@@ -46,6 +65,7 @@ A run ends with three things:
 | `eslint-config`   | `.eslintrc` / `.eslintrc.json`: plugin name, `plugin:` extends, and rule keys.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `mdx-imports`     | Runs the migrations above over `import`/`export` statements in `.mdx` files. Fenced code blocks are left alone.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `yarnrc`          | `.yarnrc.yml` list items, like `npmPreapprovedPackages`: renames old package names, or drops them if a glob like `'@skillsoft/*'` already covers the new one.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `tsconfig-dom`    | Report only. Warns about `tsconfig` files whose `lib` has no `"dom"`, since Video used to supply the DOM types through the root import.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
 ### Known limits
 

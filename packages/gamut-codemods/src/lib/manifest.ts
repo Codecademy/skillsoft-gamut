@@ -31,8 +31,10 @@ export interface DeepImport {
   /* Old imported name -> new exported name. Local bindings are kept. */
   renames?: Record<string, string>;
   /*
-    When only some of the old module went public: the names `to` exports.
-    A declaration importing anything else is left alone with a warning.
+    When only some of the old module went public: the old names that work
+    from `to` (after `renames`). A declaration importing anything else is
+    left alone with a warning. manifest.test.ts fails if a row sends names
+    to `to` that it doesn't export, so partial rows must list these.
   */
   onlyNames?: string[];
   note?: string;

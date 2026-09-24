@@ -96,15 +96,33 @@ export const manifest: Manifest = {
       to: '@codecademy/gamut',
     },
     { from: '@codecademy/gamut/dist/Form/types', to: '@codecademy/gamut' },
-    { from: '@codecademy/gamut/dist/Box/props', to: '@codecademy/gamut' },
+    {
+      from: '@codecademy/gamut/dist/Box/props',
+      to: '@codecademy/gamut',
+      onlyNames: ['BoxProps', 'FlexBoxProps', 'GridBoxProps'],
+    },
     {
       from: '@codecademy/gamut/dist/Tip/shared/types',
       to: '@codecademy/gamut',
     },
-    { from: '@codecademy/gamut/dist/Button/shared', to: '@codecademy/gamut' },
+    {
+      from: '@codecademy/gamut/dist/Button/shared',
+      to: '@codecademy/gamut',
+      onlyNames: ['ButtonBaseProps', 'ButtonProps', 'buttonProps'],
+    },
     {
       from: '@codecademy/gamut/dist/Markdown/libs/overrides',
       to: '@codecademy/gamut',
+      onlyNames: [
+        'HTMLToReactNode',
+        'MarkdownOverrideSetting',
+        'MarkdownOverrideSettings',
+        'createCodeBlockOverride',
+        'createInputOverride',
+        'createTagOverride',
+        'createVideoOverride',
+        'standardOverrides',
+      ],
     },
     /*
       Renamed on the way to the root: `List` and `IconOption` collided with
@@ -129,6 +147,7 @@ export const manifest: Manifest = {
       from: '@codecademy/gamut/dist/Form/SelectDropdown/elements',
       to: '@codecademy/gamut',
       renames: { IconOption: 'IconOptionComponent' },
+      onlyNames: ['IconOption'],
     },
     {
       from: '@codecademy/gamut/dist/ButtonBase/ButtonBase',
@@ -156,6 +175,7 @@ export const manifest: Manifest = {
     {
       from: '@codecademy/gamut-icons/dist/props',
       to: '@codecademy/gamut-icons',
+      onlyNames: ['GamutIconProps', 'IconStyleProps'],
     },
     {
       from: '@codecademy/variance/dist/types/config',
