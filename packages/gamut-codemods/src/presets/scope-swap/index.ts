@@ -35,7 +35,7 @@ export const scopeSwap: Preset = {
   ],
   conditionalChecklist: {
     'removed:@codecademy/gamut-kit':
-      "gamut-kit is gone. Delete anything that reads it for versions, such as a sync-gamut-deps script. @skillsoft/gamut-styles has a stylis peer dependency, and it's now a direct dependency of yours, so add stylis if yarn warns that it isn't provided.",
+      'gamut-kit is gone. Delete anything that reads it for versions, such as a sync-gamut-deps script.',
     'tsconfig-no-dom':
       'Some tsconfig files set "lib" without "dom" (see the tsconfig-dom warnings). Video no longer loads with the root import, and it was supplying the DOM types. Add "dom" to those files if type-checking fails on document, HTMLElement, ResizeObserver, and so on.',
     'mf-shared':

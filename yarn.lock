@@ -8173,25 +8173,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@skillsoft/gamut-icons@npm:0.0.1, @skillsoft/gamut-icons@workspace:*, @skillsoft/gamut-icons@workspace:packages/gamut-icons":
+"@skillsoft/gamut-icons@npm:^0.0.1, @skillsoft/gamut-icons@workspace:*, @skillsoft/gamut-icons@workspace:packages/gamut-icons":
   version: 0.0.0-use.local
   resolution: "@skillsoft/gamut-icons@workspace:packages/gamut-icons"
   dependencies:
-    "@skillsoft/gamut-styles": "npm:0.0.1"
-    "@skillsoft/variance": "npm:0.0.1"
+    "@skillsoft/gamut-styles": "npm:^0.0.1"
+    "@skillsoft/variance": "npm:^0.0.1"
   peerDependencies:
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
-    lodash: ^4.17.23
     react: ^17.0.2 || ^18.3.0 || ^19.0.0
   languageName: unknown
   linkType: soft
 
-"@skillsoft/gamut-illustrations@npm:0.0.1, @skillsoft/gamut-illustrations@workspace:packages/gamut-illustrations":
+"@skillsoft/gamut-illustrations@npm:^0.0.1, @skillsoft/gamut-illustrations@workspace:packages/gamut-illustrations":
   version: 0.0.0-use.local
   resolution: "@skillsoft/gamut-illustrations@workspace:packages/gamut-illustrations"
   dependencies:
-    "@skillsoft/gamut-styles": "npm:0.0.1"
+    "@skillsoft/gamut-styles": "npm:^0.0.1"
     classnames: "npm:^2.2.5"
   peerDependencies:
     "@emotion/react": ^11.4.0
@@ -8201,12 +8200,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@skillsoft/gamut-patterns@npm:0.0.1, @skillsoft/gamut-patterns@workspace:packages/gamut-patterns":
+"@skillsoft/gamut-patterns@npm:^0.0.1, @skillsoft/gamut-patterns@workspace:packages/gamut-patterns":
   version: 0.0.0-use.local
   resolution: "@skillsoft/gamut-patterns@workspace:packages/gamut-patterns"
   dependencies:
-    "@skillsoft/gamut-styles": "npm:0.0.1"
-    "@skillsoft/variance": "npm:0.0.1"
+    "@skillsoft/gamut-styles": "npm:^0.0.1"
+    "@skillsoft/variance": "npm:^0.0.1"
     classnames: "npm:^2.2.5"
   peerDependencies:
     "@emotion/react": ^11.4.0
@@ -8216,22 +8215,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@skillsoft/gamut-styles@npm:0.0.1, @skillsoft/gamut-styles@workspace:*, @skillsoft/gamut-styles@workspace:packages/gamut-styles":
+"@skillsoft/gamut-styles@npm:^0.0.1, @skillsoft/gamut-styles@workspace:*, @skillsoft/gamut-styles@workspace:packages/gamut-styles":
   version: 0.0.0-use.local
   resolution: "@skillsoft/gamut-styles@workspace:packages/gamut-styles"
   dependencies:
+    "@emotion/cache": "npm:^11.4.0"
     "@emotion/is-prop-valid": "npm:^1.1.0"
-    "@skillsoft/variance": "npm:0.0.1"
+    "@skillsoft/variance": "npm:^0.0.1"
     framer-motion: "npm:^12.0.0"
     get-nonce: "npm:^1.0.0"
+    lodash: "npm:^4.17.23"
     polished: "npm:^4.1.2"
+    stylis: "npm:^4.2.0"
   peerDependencies:
-    "@emotion/cache": ^11.4.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
-    lodash: ^4.17.23
     react: ^17.0.2 || ^18.3.0 || ^19.0.0
-    stylis: ^4.0.7
   languageName: unknown
   linkType: soft
 
@@ -8239,8 +8238,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@skillsoft/gamut-tests@workspace:packages/gamut-tests"
   dependencies:
-    "@skillsoft/gamut-styles": "npm:0.0.1"
-    component-test-setup: "npm:*"
+    "@skillsoft/gamut-styles": "npm:^0.0.1"
+    component-test-setup: "npm:^0.3.1"
     lodash: "npm:^4.17.23"
   peerDependencies:
     react: ^17.0.2 || ^18.3.0 || ^19.0.0
@@ -8253,11 +8252,11 @@ __metadata:
   dependencies:
     "@formatjs/intl-locale": "npm:5.3.1"
     "@react-aria/interactions": "npm:3.25.0"
-    "@skillsoft/gamut-icons": "npm:0.0.1"
-    "@skillsoft/gamut-illustrations": "npm:0.0.1"
-    "@skillsoft/gamut-patterns": "npm:0.0.1"
-    "@skillsoft/gamut-styles": "npm:0.0.1"
-    "@skillsoft/variance": "npm:0.0.1"
+    "@skillsoft/gamut-icons": "npm:^0.0.1"
+    "@skillsoft/gamut-illustrations": "npm:^0.0.1"
+    "@skillsoft/gamut-patterns": "npm:^0.0.1"
+    "@skillsoft/gamut-styles": "npm:^0.0.1"
+    "@skillsoft/variance": "npm:^0.0.1"
     "@types/marked": "npm:^4.0.8"
     "@vidstack/react": "npm:^1.12.12"
     classnames: "npm:^2.2.5"
@@ -8303,7 +8302,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@skillsoft/variance@npm:0.0.1, @skillsoft/variance@workspace:packages/variance":
+"@skillsoft/variance@npm:^0.0.1, @skillsoft/variance@workspace:packages/variance":
   version: 0.0.0-use.local
   resolution: "@skillsoft/variance@workspace:packages/variance"
   dependencies:
@@ -8312,6 +8311,9 @@ __metadata:
   peerDependencies:
     "@emotion/react": "*"
     typescript: ">=4.3.5"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -12193,7 +12195,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"component-test-setup@npm:*, component-test-setup@npm:^0.3.1":
+"component-test-setup@npm:^0.3.1":
   version: 0.3.3
   resolution: "component-test-setup@npm:0.3.3"
   checksum: 10c0/f85ee9a5bf5f65b8440cd6fe03a626e1222b1bba2f29798a4de1c1d7fdbf87397a5ad11e19b0ed20030033c7bede66d2ae6c5bfba426e00b9383adbe0dd0a584
@@ -23871,10 +23873,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylis@npm:^4.3.0":
-  version: 4.3.4
-  resolution: "stylis@npm:4.3.4"
-  checksum: 10c0/4899c2674cd2538e314257abd1ba7ea3c2176439659ddac6593c78192cfd4a06f814a0a4fc69bc7f8fcc6b997e13d383dd9b578b71074746a0fb86045a83e42d
+"stylis@npm:^4.2.0, stylis@npm:^4.3.0":
+  version: 4.4.0
+  resolution: "stylis@npm:4.4.0"
+  checksum: 10c0/259be096d90dfbfe903c8656dcb7591e52a421e577e950ef42ebd9ca02f387623a1165dd08761492fb6e92a7a562d62a53a694a10b0a2f6dcd7a0db107b4bf55
   languageName: node
   linkType: hard
 
