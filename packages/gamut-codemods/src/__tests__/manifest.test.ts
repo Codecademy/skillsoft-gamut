@@ -36,6 +36,14 @@ const importsToCheck = () => {
       );
     }
     for (const row of m.deepImports) {
+      if (row.to && row.onlyNames) {
+        lines.push(
+          `import type { ${row.onlyNames.join(', ')} } from '${renameSpecifier(
+            m,
+            row.to
+          )}';`
+        );
+      }
       if (!row.to || !row.renames) continue;
       lines.push(
         `import type { ${Object.values(row.renames).join(

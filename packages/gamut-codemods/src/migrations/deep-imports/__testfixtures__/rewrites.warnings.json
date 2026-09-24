@@ -1,1 +1,1 @@
-["'@codecademy/gamut/dist/Form/styles' has no public replacement", "'@codecademy/gamut/dist/ButtonBase/ButtonBase' has no public replacement", "unmapped deep import '@codecademy/gamut/dist/Nope'"]
+["'@codecademy/gamut/dist/Form/styles' is only partly public. formStyles isn't exported from '@codecademy/gamut'", "'@codecademy/gamut/dist/ButtonBase/ButtonBase' has no public replacement", "unmapped deep import '@codecademy/gamut/dist/Nope'", "rewrote '@codecademy/gamut/dist/Box/props' to '@codecademy/gamut' in a mock or require(). That now covers the whole package."]

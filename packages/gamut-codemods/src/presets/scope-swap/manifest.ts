@@ -137,8 +137,13 @@ export const manifest: Manifest = {
     },
     {
       from: '@codecademy/gamut/dist/Form/styles',
-      to: null,
-      note: 'Form/styles has no public replacement. Inline the styles or use system props / css().',
+      to: '@codecademy/gamut',
+      onlyNames: [
+        'conditionalStyles',
+        'formFieldPaddingStyles',
+        'formFieldStyles',
+      ],
+      note: 'The rest of Form/styles is internal. Inline the styles, or use system props / css().',
     },
     {
       from: '@codecademy/gamut-styles/dist/AssetProvider',

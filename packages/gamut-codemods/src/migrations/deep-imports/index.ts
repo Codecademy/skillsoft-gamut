@@ -90,6 +90,30 @@ export const deepImports: AstMigration = {
         );
         continue;
       }
+      if (row.onlyNames) {
+        const allowed = new Set(row.onlyNames);
+        const specifiers =
+          'specifiers' in node ? ((node.specifiers ?? []) as Specifier[]) : [];
+        const blocked = specifiers
+          .map((spec) =>
+            spec.type === 'ImportSpecifier'
+              ? nameOf((spec as ImportSpecifier).imported)
+              : spec.type === 'ExportSpecifier'
+              ? nameOf((spec as ExportSpecifier).local)
+              : '*'
+          )
+          .filter((name) => !allowed.has(name));
+        if (node.type === 'ExportAllDeclaration') blocked.push('*');
+        if (blocked.length > 0) {
+          warn(
+            node,
+            `'${row.from}' is only partly public. ${blocked.join(
+              ', '
+            )} isn't exported from '${row.to}'. ${row.note ?? ''}`
+          );
+          continue;
+        }
+      }
       if (row.renames && 'specifiers' in node && node.specifiers) {
         node.specifiers = renameSpecifiers(
           j,
@@ -112,12 +136,15 @@ export const deepImports: AstMigration = {
         );
         continue;
       }
-      if (row.renames) {
-        warn(
-          literal,
-          `'${literal.value}' has renamed exports. Check the mock factory by hand.`
-        );
-      }
+      /* jest.mock of a deep path now mocks the whole package. */
+      warn(
+        literal,
+        `rewrote '${literal.value}' to '${
+          row.to
+        }' in a mock or require(). That now covers the whole package${
+          row.renames ? ', and some exports were renamed' : ''
+        }. Check it by hand.`
+      );
       literal.value = row.to;
       changed = true;
     }

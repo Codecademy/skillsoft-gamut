@@ -30,6 +30,11 @@ export interface DeepImport {
   to: string | null;
   /* Old imported name -> new exported name. Local bindings are kept. */
   renames?: Record<string, string>;
+  /*
+    When only some of the old module went public: the names `to` exports.
+    A declaration importing anything else is left alone with a warning.
+  */
+  onlyNames?: string[];
   note?: string;
 }
 
