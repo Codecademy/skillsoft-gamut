@@ -124,7 +124,7 @@
   "scripts": {
     "build": "nx run-many --target=build --all",
     "build-all": "yarn build",
-    "build-storybook": "nx run styleguide:build-storybook",
+    "build-storybook": "nx run storybook:build-storybook",
     "build:graph": "nx graph",
     "clean-builds": "nx run-many --target=clean --all",
     "clear-modules": "yarn clean-builds && rm -rf node_modules",
@@ -136,8 +136,7 @@
     "prepare": "husky",
     "prettier": "prettier --ignore-path .prettierignore \"./**/*.{mdx,js,ts,tsx,json,css,scss}\"",
     "start": "yarn && yarn start:storybook",
-    "start:storybook": "nx storybook styleguide",
-    "storybook": "storybook dev -p 6008 -c packages/.storybook",
+    "start:storybook": "nx run storybook:dev",
     "test": "nx run-many --target=test --all",
     "test:stories": "vitest run --project=storybook",
     "test:stories:watch": "vitest --project=storybook",
