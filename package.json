@@ -138,7 +138,7 @@
     "prepare": "husky",
     "prettier": "prettier --ignore-path .prettierignore \"./**/*.{mdx,js,ts,tsx,json,css,scss}\"",
     "start": "yarn && yarn start:all",
-    "start:all": "yarn start:docs & yarn start:storybook",
+    "start:all": "nx run-many --target=dev --projects=gamut-docs,storybook --parallel=2",
     "start:docs": "nx run gamut-docs:dev",
     "start:storybook": "nx run storybook:dev",
     "test": "nx run-many --target=test --all",
