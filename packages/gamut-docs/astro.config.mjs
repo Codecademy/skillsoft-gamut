@@ -12,7 +12,6 @@ import starlightSidebarTopics from 'starlight-sidebar-topics';
 // sidebar replaces the others instead of all six being stacked in one long list.
 export default defineConfig({
   site: 'https://codecademy.github.io',
-  base: process.env.CI ? '/skillsoft-gamut' : '/',
   server: {
     port: 3333,
   },

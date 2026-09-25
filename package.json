@@ -125,7 +125,7 @@
     "build": "nx run-many --target=build --all",
     "build-all": "yarn build",
     "build-docs": "nx run gamut-docs:build",
-    "build-docs:full": "yarn build-storybook --outputDir packages/gamut-docs/dist/storybook && yarn build-docs",
+    "build-docs:full": "yarn build-docs && yarn build-storybook --outputDir packages/gamut-docs/dist/storybook",
     "build-storybook": "nx run styleguide:build-storybook",
     "build:graph": "nx graph",
     "clean-builds": "nx run-many --target=clean --all",
