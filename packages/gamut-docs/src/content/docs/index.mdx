@@ -5,11 +5,15 @@ template: splash
 hero:
   tagline: Codecademy's design system for the web — components, tokens, and guidance for building consistent, accessible product UI.
   actions:
+    # Relative, not root-relative: Starlight reads hero actions from the
+    # collection entry, which the base-prefixing rehype plugin in
+    # astro.config.mjs cannot reach. This page is always the base root, so
+    # these resolve correctly whether or not a base is set.
     - text: Get started
-      link: /getting-started/installation/
+      link: getting-started/installation/
       icon: right-arrow
     - text: Browse components
-      link: /components/
+      link: components/
       icon: right-arrow
       variant: minimal
 ---

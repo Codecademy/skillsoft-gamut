@@ -33,7 +33,8 @@
       "dependsOn": ["build"],
       "inputs": [
         { "input": "production", "projects": ["styleguide"] },
-        "^production"
+        "^production",
+        { "env": "CI" }
       ],
       "outputs": ["{projectRoot}/dist"],
       "options": {

@@ -22,6 +22,7 @@
     },
     "build-storybook": {
       "executor": "@nx/storybook:build",
+      "dependsOn": ["^build"],
       "outputs": ["{options.outputDir}"],
       "options": {
         "outputDir": "dist/storybook/styleguide",
