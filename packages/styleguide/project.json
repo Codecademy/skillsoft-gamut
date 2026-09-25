@@ -7,40 +7,6 @@
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"
-    },
-    "storybook": {
-      "executor": "@nx/storybook:storybook",
-      "options": {
-        "port": 6006,
-        "configDir": "packages/styleguide/.storybook"
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      }
-    },
-    "build-storybook": {
-      "executor": "@nx/storybook:build",
-      "outputs": ["{options.outputDir}"],
-      "options": {
-        "outputDir": "dist/storybook/styleguide",
-        "configDir": "packages/styleguide/.storybook"
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      }
-    },
-    "storybook-test": {
-      "executor": "nx:run-commands",
-      "dependsOn": ["build-storybook"],
-      "options": {
-        "cwd": "{workspaceRoot}",
-        "forwardAllArgs": false,
-        "command": "start-server-and-test \"http-server dist/storybook/styleguide -p 6007 --silent\" http://127.0.0.1:6007 \"test-storybook --url http://127.0.0.1:6007 --config-dir packages/styleguide/.storybook\""
-      }
     }
   }
 }

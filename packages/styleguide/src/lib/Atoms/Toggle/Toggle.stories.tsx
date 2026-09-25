@@ -82,12 +82,6 @@ export const ButtonElement: Story = {
 };
 
 export const InteractiveInputToggle: Story = {
-  // TODO: remove parameters block when we enable interactions globally in preview.ts
-  parameters: {
-    interactions: {
-      disable: false,
-    },
-  },
   render: function InteractiveInputToggleStory() {
     const [checked, setChecked] = useState(false);
     return (

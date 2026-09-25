@@ -4,7 +4,9 @@ _The component library & design system for Skillsoft and Codecademy._ ✨
 
 ---
 
-[![GitHub Actions](https://github.com/Codecademy/gamut/workflows/Test%20Suite/badge.svg)](https://github.com/Codecademy/gamut/actions)
+[![ci](https://github.com/Codecademy/skillsoft-gamut/actions/workflows/quality.yml/badge.svg?label=ci)](https://github.com/Codecademy/skillsoft-gamut/actions/workflows/quality.yml)
+[![coverage](https://img.shields.io/codecov/c/github/Codecademy/skillsoft-gamut?label=coverage)](https://codecov.io/gh/Codecademy/skillsoft-gamut)
+[![npm](https://img.shields.io/npm/v/@skillsoft/gamut.svg?label=npm)](https://www.npmjs.com/package/@skillsoft/gamut)
 
 This repository is a monorepo that we manage using [NX](https://nx.dev/). That means that we publish several packages to npm from the same codebase, including:
 
@@ -12,19 +14,19 @@ This repository is a monorepo that we manage using [NX](https://nx.dev/). That m
 
 [`gamut`: Our React UI component library](/packages/gamut/README.md)
 
-- [![npm version](https://badge.fury.io/js/%40codecademy%2Fgamut.svg)](https://badge.fury.io/js/%40codecademy%2Fgamut)
+- [![npm: @skillsoft/gamut](https://img.shields.io/npm/v/@skillsoft/gamut.svg?label=npm:%20@skillsoft/gamut)](https://www.npmjs.com/package/@skillsoft/gamut)
 
 [`gamut-styles`: Utility styles for Gamut components and codecademy apps](/packages/gamut-styles/README.md)
 
-- [![npm version](https://badge.fury.io/js/%40codecademy%2Fgamut-styles.svg)](https://badge.fury.io/js/%40codecademy%2Fgamut-styles)
+- [![npm: @skillsoft/gamut-styles](https://img.shields.io/npm/v/@skillsoft/gamut-styles.svg?label=npm:%20@skillsoft/gamut-styles)](https://www.npmjs.com/package/@skillsoft/gamut-styles)
 
 [`gamut-icons`: SVG Icons for Gamut components and codecademy apps](/packages/gamut-icons/README.md)
 
-- [![npm version](https://badge.fury.io/js/%40codecademy%2Fgamut-icons.svg)](https://badge.fury.io/js/%40codecademy%2Fgamut-icons)
+- [![npm: @skillsoft/gamut-icons](https://img.shields.io/npm/v/@skillsoft/gamut-icons.svg?label=npm:%20@skillsoft/gamut-icons)](https://www.npmjs.com/package/@skillsoft/gamut-icons)
 
 [`variance`: TypeScript CSS in JS utility library](/packages/variance/README.md)
 
-- [![npm version](https://badge.fury.io/js/%40codecademy%2Fvariance.svg)](https://badge.fury.io/js/%40codecademy%2Fvariance)
+- [![npm: @skillsoft/variance](https://img.shields.io/npm/v/@skillsoft/variance.svg?label=npm:%20@skillsoft/variance)](https://www.npmjs.com/package/@skillsoft/variance)
 
 [`styleguide`: Styleguide Documentation & storybook development sandbox](/packages/styleguide/README.md)
 
@@ -41,59 +43,23 @@ This repository is a monorepo that we manage using [NX](https://nx.dev/). That m
 
 ### Publishing Modules
 
-This repository uses [NX Release](https://nx.dev/recipes/nx-release) with [Version Plans](https://nx.dev/recipes/nx-release/file-based-versioning-version-plans) for package versioning and publishing.
+Versioning and publishing run on [Changesets](https://github.com/changesets/changesets).
+A pull request that changes a versionable package needs a changeset.
+Merging to `main` opens a "Version Packages" pull request that publishes when merged.
 
-#### Creating a Version Plan
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add one and which packages release together.
+Coordinate breaking changes with maintainers first.
 
-1.  Create a version plan for your changes using `yarn nx release plan`. This interactive command will prompt you to:
-    - Select which packages are affected by your changes
-    - Choose the type of version bump (major, minor, or patch)
-    - Provide a description of the changes for the changelog
-1.  The version plan will be saved as a markdown file in `.nx/version-plans/`
-1.  Commit this version plan file along with your code changes
-1.  The version plan will be applied when your PR is merged to main
+### Testing a change in another app
 
-#### Version Plan Format
+Every pull request publishes installable preview packages through pkg.pr.new.
+A bot comments with the install commands:
 
-Version plan files are markdown files with YAML front matter. Here's an example:
-
-```markdown
----
-gamut: minor
-gamut-styles: patch
----
-
-Add new Button variant and fix spacing issues
-
-- Added a new "ghost" variant to the Button component
-- Fixed margin spacing in the Card component
+```bash
+yarn add https://pkg.pr.new/@skillsoft/gamut@<pr-number>
 ```
 
-#### Publishing Process
-
-1.  Make your changes in a feature branch, and get another engineer to review your code
-1.  Create and commit a version plan for the changes (`yarn nx release plan`)
-1.  CI checks that a version plan is present for the PR
-1.  After reviews and checks pass, you can merge your branch into main
-1.  Once your branch is merged into main, it will be published automatically by GitHub Actions using NX Release.
-    - NX Release will apply all version plans found in `.nx/version-plans/`
-    - It will bump package versions according to the plans
-    - It will generate changelog entries from the version plan descriptions
-    - It will publish the packages to npm
-    - It will create git tags and GitHub releases
-1.  You can find the new version number on npmjs.com/package/<package-name>, or find it in that package's `package.json` on the `main` branch
-
-### Publishing an alpha version of a module
-
-Every PR that changes files in a package publishes alpha releases that you can use to test your changes across applications.
-
-> NOTE: in case an alpha build is not published upon opening of the PR or Draft PR, re-run the `build-test` check and that will re-run the alpha build publishing flows
-
-1.  Create a PR or Draft PR.
-    - This will kickoff a Github Action workflow which will publish an alpha build. (This will appear in Github as the "Deploy")
-1.  After the alpha build is published, the `codecademydev` bot should comment on your PR with the names of the published alpha packages. <br/>
-    <img width="290" height="auto" src="https://user-images.githubusercontent.com/4298857/114948632-3fa88a80-9e04-11eb-89ef-d016a1c9c572.png">
-1.  Install this version of the package in your application you wish to test your changes on.
+Previews never reach npm and they expire, so don't commit one to a lockfile on a long-lived branch.
 
 ### Working with pre-published changes
 
@@ -192,66 +158,45 @@ for more information for why you have to do this.
 </details>
 <br/>
 
-### Adding a New Package
-
-1. Use NX generators to create the new package. For example:
-   ```bash
-   yarn nx g @nx/react:library <package-name> --buildable --publishable
-   ```
-   - Make sure to set the `publishConfig` field to `{ "access": "public" }` in the generated package.json to let your published package be public by default
-1. Customize the generated source code as needed for your package
-1. Run `yarn install` from the repository root
-1. Send a `feat` PR adding that package with a version plan (using `yarn nx release plan`)
-1. Once merged, message out in our #frontend Slack channel to other Gamut developers to re-run `yarn install` after they merge from `main`
-
-Notes:
-
-If your package will be used in other packages in the monorepo, you may need to set up aliases in jest and storybook so that they can be run without building your package first. You can find these aliases in [jest.config.js](/jest.config.js) and the [styleguide storybook config](/packages/styleguide/.storybook/main.ts).
-
 **NX**
 
 This monorepo uses [NX](https://nx.dev/) to cache previous builds locally and in CI.
 
 The config for NX is located at [/nx.json](/nx.json), along with `project.json` files for each package.
 
-For new packages, please use an NX generator plugin to create your initial package, this will ensure that all of the configuration for linting & testing is set up correctly.
-
 ### Breaking Changes
 
-Breaking changes are indicated in version plans by specifying a `major` version bump. When creating a version plan with `yarn nx release plan`, select "major" as the bump type for packages that introduce breaking changes.
-
-Examples of version plans with breaking changes:
+Breaking changes must be coordinated with the maintainers ahead of time.
+While packages are on `0.x.x`, select `minor` when `yarn changeset` asks for the bump type.
+After `1.0.0`, select `major`.
 
 ```markdown
 ---
-gamut: major
+'@skillsoft/gamut': minor
 ---
 
-Breaking: Removed deprecated Button variants
-
-This removes the previously deprecated "primary-blue" and "secondary-red" variants.
+Remove the deprecated `primary-blue` and `secondary-red` Button variants.
 ```
 
-You should create a major version bump if your changes introduce any incompatibilities with previous versions of the module.
-This will indicate to package consumers that they need to refactor their usage of the module to upgrade.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the complete versioning and prerelease policy.
 
 #### Breaking Changes Release Process
 
 Because Gamut is a separate repository from its consumers, it can be tricky to coordinate technically breaking changes.
 If your changes will require changes in any downstream repositories:
 
-1. Create a PR in Gamut to create alpha package versions
-2. Create PRs in the repositories using those alpha package versions
-3. Update each downstream PR description to link to the Gamut PR, and vice versa
-4. Once all PRs have been approved, merge your Gamut PR first
-5. Update your repository PRs to use the new (non-alpha) package versions once published
-6. Merge your repository PRs
+1. Open a PR in Gamut, which publishes preview packages
+1. Open PRs in the consuming repositories against those previews
+1. Update each downstream PR description to link to the Gamut PR, and vice versa
+1. Once all PRs have been approved, merge your Gamut PR first
+1. Update your repository PRs to use the published version once the release PR merges
+1. Merge your repository PRs
 
 This process minimizes the likelihood of accidental breaking changes in Gamut negatively affecting development on our other repositories.
 
 ### Changelog Descriptions
 
-Changelog content is driven by the description in version plan files (in `.nx/version-plans/`), not the PR title or PR description.
+Changelog content comes from the changeset summary, not the PR title or PR description.
 
 ## AI Tool Plugins
 

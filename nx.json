@@ -1,14 +1,4 @@
 {
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx-cloud",
-      "options": {
-        "cacheableOperations": ["lint", "build", "test", "verify"],
-        "parallel": 3,
-        "accessToken": "ZmVjZWYxNzctYTdmZC00ODYzLTg4MzEtZTE1YTVmZDdkZmY1fHJlYWQ="
-      }
-    }
-  },
   "extends": "nx/presets/npm.json",
   "workspaceLayout": {
     "appsDir": "packages",
@@ -16,10 +6,6 @@
   },
   "namedInputs": {
     "babelConfig": ["{workspaceRoot}/babel.defaults.js"],
-    "ci": [
-      "{workspaceRoot}/.github/workflows/**/*.yml",
-      "{workspaceRoot}/.github/actions/**/*.yml"
-    ],
     "default": ["{projectRoot}/**/*"],
     "production": [
       "default",
@@ -33,21 +19,38 @@
   },
   "targetDefaults": {
     "build": {
+      "cache": true,
       "dependsOn": ["^build"],
-      "inputs": ["production", "^production", "babelConfig", "ci"]
+      "inputs": ["production", "^production", "babelConfig", { "env": "CI" }]
     },
-    "verify": {
+    "lint": {
+      "cache": true,
+      "dependsOn": [
+        "^build",
+        { "projects": ["eslint-plugin-gamut"], "target": "build" }
+      ],
+      "options": {
+        "lintFilePatterns": ["{projectRoot}/**/*.{mdx,js,ts,tsx,json}"],
+        "maxWarnings": 0,
+        "ignorePath": ".eslintignore"
+      }
+    },
+    "test": {
       "cache": true
     },
+    "verify": {
+      "cache": true,
+      "dependsOn": ["^build"]
+    },
     "@nx/jest:jest": {
+      "cache": true,
       "dependsOn": ["^build"],
       "inputs": [
         "default",
         "^production",
         "{workspaceRoot}/jest.config.base.ts",
         "{workspaceRoot}/jest.preset.js",
-        "babelConfig",
-        "ci"
+        "babelConfig"
       ]
     }
   },
@@ -72,42 +75,5 @@
       "projectsAffectedByDependencyUpdates": "auto"
     }
   },
-  "analytics": false,
-  "release": {
-    "groups": {
-      "core": {
-        "projects": [
-          "gamut",
-          "gamut-styles",
-          "variance",
-          "gamut-icons",
-          "gamut-patterns"
-        ],
-        "projectsRelationship": "fixed"
-      },
-      "assets": {
-        "projects": ["gamut-illustrations"],
-        "projectsRelationship": "independent"
-      },
-      "tooling": {
-        "projects": ["gamut-tests", "eslint-plugin-gamut", "gamut-agent-tools"],
-        "projectsRelationship": "independent"
-      }
-    },
-    "version": {
-      "updateDependents": "auto"
-    },
-    "versionPlans": true,
-    "changelog": {
-      "workspaceChangelog": false,
-      "projectChangelogs": {
-        "createRelease": "github"
-      }
-    },
-    "git": {
-      "commit": true,
-      "commitMessage": "chore(release): publish",
-      "tag": true
-    }
-  }
+  "analytics": false
 }

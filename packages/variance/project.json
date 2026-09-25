@@ -5,6 +5,9 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
     "build": {
       "outputs": ["{projectRoot}/dist"],
       "executor": "nx:run-commands",
@@ -12,8 +15,8 @@
         "cwd": "packages/variance",
         "commands": [
           "rm -rf ./dist",
-          "tsc --project tsconfig.lib.json",
-          "babel ./src --out-dir ./dist --extensions \".ts,.tsx\""
+          "tsdown",
+          "tsc --project tsconfig.lib.json"
         ],
         "parallel": false
       }
@@ -38,6 +41,15 @@
       "options": {
         "cwd": "{projectRoot}",
         "command": "rm -rf ./dist"
+      }
+    },
+    "verify-package": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "cwd": "{projectRoot}",
+        "commands": ["publint .", "attw --pack . --ignore-rules false-cjs"],
+        "parallel": false
       }
     },
     "publish-build": {

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@4.0.1/schema.json",
+  "changelog": [
+    "@changesets/changelog-github",
+    { "repo": "Codecademy/skillsoft-gamut" }
+  ],
+  "commit": false,
+  "fixed": [
+    [
+      "@skillsoft/gamut-agent-tools",
+      "@skillsoft/gamut-icons",
+      "@skillsoft/gamut-patterns",
+      "@skillsoft/gamut-styles",
+      "@skillsoft/gamut",
+      "@skillsoft/variance"
+    ]
+  ],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "privatePackages": false,
+  "ignore": ["@skillsoft/macros"]
+}
