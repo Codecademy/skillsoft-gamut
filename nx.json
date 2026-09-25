@@ -24,7 +24,16 @@
       "inputs": ["production", "^production", "babelConfig", { "env": "CI" }]
     },
     "lint": {
-      "cache": true
+      "cache": true,
+      "dependsOn": [
+        "^build",
+        { "projects": ["eslint-plugin-gamut"], "target": "build" }
+      ],
+      "options": {
+        "lintFilePatterns": ["{projectRoot}/**/*.{mdx,js,ts,tsx,json}"],
+        "maxWarnings": 0,
+        "ignorePath": ".eslintignore"
+      }
     },
     "test": {
       "cache": true

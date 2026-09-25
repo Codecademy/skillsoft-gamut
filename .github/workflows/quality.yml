@@ -155,8 +155,6 @@ jobs:
           path: .nx/cache
           key: nx-${{ runner.os }}-${{ github.sha }}
           restore-keys: nx-${{ runner.os }}-
-      # build-storybook doesn't depend on ^build, so the packages it imports
-      # have to be built first.
       - name: 🏗 Build all packages
         run: yarn build
       - name: ⚙️ Install Playwright
