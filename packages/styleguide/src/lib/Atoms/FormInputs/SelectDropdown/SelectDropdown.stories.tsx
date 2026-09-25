@@ -906,11 +906,7 @@ export const zIndexOnMenu: Story = {
             id="usesDefaultZIndex"
             name="usesDefaultZIndex"
             options={args.options}
-<<<<<<< HEAD
-            placeholder="Uses the default zIndex ('popover'), already above the table's header"
-=======
             translations={{ placeholder: 'Uses the default zIndex of 2' }}
->>>>>>> main
           />
         </FormGroup>
         <FormGroup
@@ -922,13 +918,8 @@ export const zIndexOnMenu: Story = {
             id="hasSetZIndex"
             name="hasSetZIndex"
             options={args.options}
-<<<<<<< HEAD
-            placeholder="Overridden to zIndexes.topmost"
-            zIndex={zIndexes.topmost}
-=======
             translations={{ placeholder: 'Has a zIndex of 5' }}
-            zIndex={5}
->>>>>>> main
+            zIndex={zIndexes.topmost}
           />
         </FormGroup>
       </FlexBox>
