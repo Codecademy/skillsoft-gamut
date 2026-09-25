@@ -10,9 +10,62 @@ import starlightSidebarTopics from 'starlight-sidebar-topics';
 // qualifies as a pattern versus a one-off composition or a missing prop.
 // Each top-level section is its own topic (starlight-sidebar-topics), so its
 // sidebar replaces the others instead of all six being stacked in one long list.
+
+// TODO: remove base once DNS for gamut.skillsoft.com is live
+
+// GitHub Pages serves this repo from a subpath, so CI builds are mounted under
+// a prefix while local builds stay root-served.
+const BASE = process.env.CI ? '/skillsoft-gamut' : '/';
+
+// Astro prefixes the asset URLs it emits and Starlight prefixes the links it
+// generates (sidebar, nav, search), but neither touches hrefs authored by hand
+// in page content — those stay root-relative and 404 under a subpath. This
+// closes that gap. It only sees markdown/MDX content, never component output or
+// Starlight's own UI, so it cannot double-prefix what those already handled.
+function rehypeBaseUrls() {
+  // Empty when BASE is '/', which makes every rewrite below a no-op.
+  const prefix = BASE.replace(/\/$/, '');
+
+  const withBase = (value) => {
+    if (!prefix || typeof value !== 'string') return value;
+    // Leave external, protocol-relative, anchor and already-prefixed URLs be.
+    if (!value.startsWith('/') || value.startsWith('//')) return value;
+    if (value === prefix || value.startsWith(`${prefix}/`)) return value;
+    return prefix + value;
+  };
+
+  const srcTags = new Set(['img', 'iframe', 'source', 'video', 'audio']);
+
+  const walk = (node) => {
+    if (node.type === 'element' && node.properties) {
+      const { properties: props, tagName } = node;
+      if (tagName === 'a' && typeof props.href === 'string') {
+        props.href = withBase(props.href);
+      }
+      if (srcTags.has(tagName) && typeof props.src === 'string') {
+        props.src = withBase(props.src);
+      }
+    }
+    node.children?.forEach(walk);
+  };
+
+  return (tree, file) => {
+    walk(tree);
+    // Splash hero actions live in frontmatter, which is not part of the content
+    // tree, so they have to be reached through Astro's frontmatter handle.
+    const actions = file?.data?.astro?.frontmatter?.hero?.actions;
+    if (Array.isArray(actions)) {
+      for (const action of actions) action.link = withBase(action.link);
+    }
+  };
+}
+
 export default defineConfig({
   site: 'https://codecademy.github.io',
-  base: process.env.CI ? '/skillsoft-gamut' : '/',
+  base: BASE,
+  markdown: {
+    rehypePlugins: [rehypeBaseUrls],
+  },
   server: {
     port: 3333,
   },
