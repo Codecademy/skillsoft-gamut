@@ -1,0 +1,34 @@
+{
+  "name": "storybook",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/.storybook",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "dev": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "port": 6006,
+        "configDir": "packages/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nx/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/styleguide",
+        "configDir": "packages/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
+  }
+}
