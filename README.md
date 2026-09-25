@@ -79,7 +79,7 @@ For each of your local `gamut` packages (e.g. `gamut`), you'll need to do 2 thin
    - `yarn build`<br/>or<br/>
      `yarn build:watch` (not all packages support this yet)
 
-1. Copy that built `/dist` folder to your project's `node_modules/@codecademy/[package]` folder.
+1. Copy that built `/dist` folder to your project's `node_modules/@skillsoft/[package]` folder.
    ```bash
    cd myProjectRepo
    npm-link-better --copy --watch path/to/gamut/packages/[package]
