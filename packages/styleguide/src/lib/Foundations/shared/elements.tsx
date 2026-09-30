@@ -11,7 +11,7 @@ import {
   trueColors,
   zIndexes as zIndexesTokens,
 } from '@skillsoft/gamut-styles';
-// eslint-disable-next-line gamut/import-paths
+// eslint-disable-next-line @skillsoft/gamut/import-paths
 import * as ALL_PROPS from '@skillsoft/gamut-styles/src/variance/config';
 import kebabCase from 'lodash/kebabCase';
 import { useMemo } from 'react';
