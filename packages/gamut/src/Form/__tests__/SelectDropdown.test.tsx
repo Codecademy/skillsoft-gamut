@@ -1158,13 +1158,13 @@ describe('SelectDropdown', () => {
     });
 
     it('applies a raw zIndex override to the portaled menu when provided', async () => {
-      // eslint-disable-next-line gamut/no-raw-z-index -- testing the raw-number escape hatch itself
+      // eslint-disable-next-line @skillsoft/gamut/no-raw-z-index -- testing the raw-number escape hatch itself
       const { view } = renderView({ zIndex: 12345 });
 
       await openDropdown(view);
 
       expect(getPortalNode(view)).toHaveStyle({
-        // eslint-disable-next-line gamut/no-raw-z-index -- testing the raw-number escape hatch itself
+        // eslint-disable-next-line @skillsoft/gamut/no-raw-z-index -- testing the raw-number escape hatch itself
         zIndex: 12345,
       });
     });
