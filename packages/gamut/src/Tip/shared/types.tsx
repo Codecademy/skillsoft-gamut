@@ -80,8 +80,8 @@ export type TipPlacementComponentProps = Omit<
   id?: string;
   isTipHidden?: boolean;
   contentRef?:
-  | React.RefObject<HTMLDivElement>
-  | ((node: HTMLDivElement | null) => void);
+    | React.RefObject<HTMLDivElement>
+    | ((node: HTMLDivElement | null) => void);
   closeOnClick?: boolean;
   type: 'info' | 'tool' | 'preview';
   wrapperRef?: React.Ref<HTMLDivElement | null>;
