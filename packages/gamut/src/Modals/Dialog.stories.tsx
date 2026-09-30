@@ -1,20 +1,36 @@
 import { ColorMode } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
+import { ComponentProps, useState } from 'react';
 import { expect, fn, screen } from 'storybook/test';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
 import { closeButtonPropsArgTypes } from '~styleguide/argTypes';
 
 import { Box, FlexBox } from '../Box';
-import { StrokeButton } from '../Button';
+import { FillButton, StrokeButton } from '../Button';
 import { Text } from '../Typography';
 import { Dialog } from './Dialog';
+
+const TriggerableDialog = ({
+  children,
+  ...args
+}: ComponentProps<typeof Dialog>) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <FillButton onClick={() => setIsOpen(true)}>Open dialog</FillButton>
+      <Dialog {...args} isOpen={isOpen}>
+        {children}
+      </Dialog>
+    </>
+  );
+};
 
 const meta: TypeWithDeepControls<Meta<typeof Dialog>> = {
   title: 'Molecules/Modals/Dialog',
   component: Dialog,
   args: {
-    isOpen: true,
     title: 'Depeche Modal',
     children: 'All I ever wanted, all I ever needed is here in my',
     onRequestClose: fn(),
@@ -31,16 +47,25 @@ const meta: TypeWithDeepControls<Meta<typeof Dialog>> = {
       defaultTipAlignment: 'top-center',
     }),
   },
+  render: (args) => <TriggerableDialog {...args} />,
 };
 
 export default meta;
 
 type Story = StoryObj<typeof Dialog>;
 
-export const Default: Story = {};
+const openDialog: NonNullable<Story['play']> = async ({
+  canvas,
+  userEvent,
+}) => {
+  await userEvent.click(canvas.getByRole('button', { name: 'Open dialog' }));
+};
+
+export const Default: Story = {
+  play: openDialog,
+};
 
 export const Closed: Story = {
-  args: { isOpen: false },
   play: async () => {
     await expect(screen.queryByRole('dialog')).toBeNull();
   },
@@ -48,6 +73,7 @@ export const Closed: Story = {
 
 export const Danger: Story = {
   args: { variant: 'danger' },
+  play: openDialog,
 };
 
 export const DarkMode: Story = {
@@ -58,6 +84,7 @@ export const DarkMode: Story = {
       </ColorMode>
     ),
   ],
+  play: openDialog,
 };
 
 export const CustomClose: Story = {
@@ -66,7 +93,7 @@ export const CustomClose: Story = {
     closeButtonProps: { hidden: true },
   },
   render: (args) => (
-    <Dialog {...args}>
+    <TriggerableDialog {...args}>
       <FlexBox column gap={16} m={16}>
         <Box>
           <Text>Missing a close button?</Text>
@@ -75,8 +102,9 @@ export const CustomClose: Story = {
           <StrokeButton>No problem, click me!</StrokeButton>
         </Box>
       </FlexBox>
-    </Dialog>
+    </TriggerableDialog>
   ),
+  play: openDialog,
 };
 
 export const CloseButtonCustomization: Story = {
@@ -88,7 +116,9 @@ export const CloseButtonCustomization: Story = {
       disabled: true,
     },
   },
-  play: async () => {
+  play: async (context) => {
+    await openDialog(context);
+
     const closeButton = screen.getByRole('button', {
       name: 'Close this very important Dialog',
     });
@@ -101,7 +131,10 @@ export const CloseButtonCustomization: Story = {
 };
 
 export const ConfirmAndCancel: Story = {
-  play: async ({ args, userEvent }) => {
+  play: async (context) => {
+    await openDialog(context);
+    const { args, userEvent } = context;
+
     await userEvent.click(screen.getByRole('button', { name: 'Arms!' }));
     await expect(args.confirmCta.onClick).toHaveBeenCalledTimes(1);
 
@@ -113,10 +146,11 @@ export const ConfirmAndCancel: Story = {
 };
 
 export const Dismissal: Story = {
-  play: async ({ args, userEvent }) => {
-    const dialog = screen.getByRole('dialog');
+  play: async (context) => {
+    await openDialog(context);
+    const { args, userEvent } = context;
 
-    await userEvent.click(dialog);
+    await userEvent.click(screen.getByRole('dialog'));
     await expect(args.onRequestClose).not.toHaveBeenCalled();
 
     await userEvent.click(screen.getByRole('button', { name: 'Close dialog' }));
