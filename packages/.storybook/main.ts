@@ -96,6 +96,14 @@ const config: StorybookConfig = {
           replacement: resolve(__dirname, './argTypes'),
         },
         {
+          find: '~storybook/blocks',
+          replacement: resolve(__dirname, './components'),
+        },
+        {
+          find: '~storybook/argTypes',
+          replacement: resolve(__dirname, './argTypes'),
+        },
+        {
           find: /^@skillsoft\/gamut-styles$/,
           replacement: resolve(__dirname, '../gamut-styles/src'),
         },

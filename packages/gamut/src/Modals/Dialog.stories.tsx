@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { expect, fn, screen } from 'storybook/test';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
-import { closeButtonPropsArgTypes } from '~styleguide/argTypes';
+import { closeButtonPropsArgTypes } from '~storybook/argTypes';
 
 import { Box, FlexBox } from '../Box';
 import { FillButton, StrokeButton } from '../Button';
