@@ -111,7 +111,28 @@ Commented-out code — delete it. Git tracks history, and a commented block leav
 
 ## Naming
 
-Clear names remove the need for most comments, so naming is the first documentation decision in a file.
+Clear names remove the need for most comments, so naming is the first documentation decision in a file. These conventions won't cover every case, but three principles handle most of them:
+
+- **Be consistent** — a name or convention probably already exists; find it and reuse it rather than inventing a new one.
+- **Be readable** — the name should make sense to the next reader, not just the person who wrote it. Names are self-documentation, and abbreviations trip up agents as well as people.
+- **Be specific** — a name should point to exactly one thing. Avoid catch-alls like `data`, `value`, or `handler`.
+
+**Components**
+
+- `PascalCase`: `Button`, `UserProfile`, `NavigationMenu`
+- The folder matches the component name, and the file inside matches it too: `Button/Button.tsx`, `UserProfile/UserProfile.tsx`
+- Names that indicate purpose: `SkipToContent`, `RadialProgress`, `Toggle`
+- Avoid `Component`, `Container`, or `Wrapper` without further context — they describe the shape of the code rather than what it does
+
+**Component props**
+
+- The native HTML attribute name, when one exists: `disabled`, `checked`, `readOnly`, `required`, `hidden`, `open`, `value`, `placeholder`, `href`
+- A boolean prop without a native attribute takes an `is`, `has`, or `can` prefix: `isVisible`, `hasWatermark`, `canBeProtected`
+- Plurals for array props: `books`, `items`, `activeLocations`
+- An enum over a cluster of exclusive booleans: `variant="primary" | "secondary"`, not separate `isPrimary` and `isSecondary` props
+- An `on` prefix followed by the event or callback in present tense, whether the event is native or invented: `onChange`, `onClick`, `onClose`, `onSelect`
+- The state, not its negation: `visible`, not `hidden={false}`
+- What the prop controls, not how it's built: `size="sm"`, not `smallVariant` or `useSmallStyles`
 
 **Variables and constants**
 
@@ -120,7 +141,6 @@ Clear names remove the need for most comments, so naming is the first documentat
 - Booleans take an `is`, `has`, `should`, or `can` prefix: `isVisible`, `hasError`, `shouldRender`
 - `SCREAMING_SNAKE_CASE` for true constants: `MAX_RETRY_COUNT`, `DEFAULT_TIMEOUT`
 - Plurals for arrays and collections: `users`, `menuItems`
-- Single letters only in short loops or mathematical operations
 
 **Functions and methods**
 
@@ -128,10 +148,3 @@ Clear names remove the need for most comments, so naming is the first documentat
 - Event handlers take a `handle` prefix: `handleSubmit`, `handleClickOutside`
 - Functions returning a boolean read as a question: `isValidEmail`, `canAccessResource`, `hasPermission`
 - Concise but descriptive: `fetchUserProfile`, not `getUserProfileDataFromAPI`
-
-**Components**
-
-- `PascalCase`: `Button`, `UserProfile`, `NavigationMenu`
-- The folder matches the component name, and the file inside matches it too: `Button/Button.tsx`, `UserProfile/UserProfile.tsx`
-- Names that indicate purpose: `SkipToContent`, `RadialProgress`, `Toggle`
-- Avoid `Component`, `Container`, or `Wrapper` without further context — they describe the shape of the code rather than what it does
