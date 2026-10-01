@@ -36,7 +36,37 @@ export const MyComponent: React.FC<MyComponentProps> = (
 
 ### Naming conventions
 
-Clear, descriptive names reduce the need for comments and make code self-documenting.
+We’ve established these conventions to help provide guidance on one of the most difficult exercises in programming — naming. These guidelines are not hard and fast rules, they won’t cover every single case, but generally, they will provide a frame of mind to write helpful names for anyone reading this code, including agents.
+
+#### Principles
+
+1. Be consistent - there’s a good chance that a name or convention already exists, check for it, use it and continue to use it.
+
+2. Be readable - ensure that the name can be understood by other people, not just your current self.
+
+- Names should serve as self-documentation
+- Abbreviations can trip up agents, and even people.
+
+3. Be specific - a name should point to exactly one thing; avoid catch-alls like data, value, or handler.
+
+**Components**
+
+- Use `PascalCase`: `Button`, `UserProfile`, `NavigationMenu`.
+- Name the folder to match the component, and the file inside it to match the folder: `Button/Button.tsx`.
+- Use names that indicate purpose — `SkipToContent`, `RadialProgress`, `Toggle` — and avoid generic ones like `Component`, `Container`, or `Wrapper` without further context.
+
+**Component Props**
+
+- Use the native HTML attribute name when one exists.
+  - e.g. `disabled`, `checked`, `readOnly`, `required`, `hidden`, `open`, `value`, `placeholder`, `href`
+- Boolean props that don’t have a native attribute should include a prefix: `is`, `has`, `can`, etc... e.g. `isVisible`, `hasWatermark`, `canBeProtected`.
+- Array props should be the plural noun. e.g. `books`, `items`, `activeLocations`
+- Use an enum over a cluster of exclusive booleans.
+  - `variant="primary" | "secondary"` is better than two separate props `isPrimary` + `isSecondary`.
+- Event and callback props have an on prefix followed by the event/callback in present tense, e.g. `onChange`, `onClick`, `onClose`, `onSelect`. Same pattern whether the event is native or invented.
+- Name the state, not its negation.
+  - e.g. `visible`, not `hidden={false}`.
+- Name what the prop controls, not how it's built. `size="sm"`, not `smallVariant` or `useSmallStyles`.
 
 **Variables and constants**
 
@@ -44,7 +74,6 @@ Clear, descriptive names reduce the need for comments and make code self-documen
 - Use names that reveal purpose: `filteredResults`, not `arr`.
 - Prefix booleans with `is`, `has`, `should`, or `can`: `isVisible`, `hasError`, `shouldRender`.
 - Use `SCREAMING_SNAKE_CASE` for true constants: `MAX_RETRY_COUNT`, `DEFAULT_TIMEOUT`.
-- Avoid single-letter names, except in short loops or math.
 - Use plural names for arrays and collections: `users`, `menuItems`.
 
 **Functions and methods**
@@ -53,17 +82,6 @@ Clear, descriptive names reduce the need for comments and make code self-documen
 - Prefix event handlers with `handle`: `handleSubmit`, `handleClickOutside`.
 - Phrase a boolean-returning function as a question: `isValidEmail`, `canAccessResource`, `hasPermission`.
 - Keep names concise but descriptive: `fetchUserProfile`, not `getUserProfileDataFromAPI`.
-
-**Components**
-
-- Use `PascalCase`: `Button`, `UserProfile`, `NavigationMenu`.
-- Name the folder to match the component, and the file inside it to match the folder: `Button/Button.tsx`.
-- Use names that indicate purpose — `SkipToContent`, `RadialProgress`, `Toggle` — and avoid generic ones like `Component`, `Container`, or `Wrapper` without further context.
-
-### Consistency
-
-- Use a single term for the same concept, in the heading, body copy, and code examples alike — and don't reuse a term for two different concepts.
-- Keep component naming consistent across packages, following the patterns established by existing components.
 
 ### Code comments
 
