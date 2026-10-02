@@ -34,69 +34,7 @@ export const MyComponent: React.FC<MyComponentProps> = (
 };
 ```
 
-### Naming conventions
-
-Clear, descriptive names reduce the need for comments and make code self-documenting.
-
-**Variables and constants**
-
-- Use `camelCase`: `userName`, `isLoading`, `itemCount`.
-- Use names that reveal purpose: `filteredResults`, not `arr`.
-- Prefix booleans with `is`, `has`, `should`, or `can`: `isVisible`, `hasError`, `shouldRender`.
-- Use `SCREAMING_SNAKE_CASE` for true constants: `MAX_RETRY_COUNT`, `DEFAULT_TIMEOUT`.
-- Avoid single-letter names, except in short loops or math.
-- Use plural names for arrays and collections: `users`, `menuItems`.
-
-**Functions and methods**
-
-- Use `camelCase`, starting with a verb that describes the action: `get`, `set`, `fetch`, `handle`, `render`, `calculate`.
-- Prefix event handlers with `handle`: `handleSubmit`, `handleClickOutside`.
-- Phrase a boolean-returning function as a question: `isValidEmail`, `canAccessResource`, `hasPermission`.
-- Keep names concise but descriptive: `fetchUserProfile`, not `getUserProfileDataFromAPI`.
-
-**Components**
-
-- Use `PascalCase`: `Button`, `UserProfile`, `NavigationMenu`.
-- Name the folder to match the component, and the file inside it to match the folder: `Button/Button.tsx`.
-- Use names that indicate purpose — `SkipToContent`, `RadialProgress`, `Toggle` — and avoid generic ones like `Component`, `Container`, or `Wrapper` without further context.
-
-### Consistency
-
-- Use a single term for the same concept, in the heading, body copy, and code examples alike — and don't reuse a term for two different concepts.
-- Keep component naming consistent across packages, following the patterns established by existing components.
-
-### Code comments
-
-Comments should explain _why_ code exists, not _what_ it does — well-named variables and functions already handle the "what." Reserve comments for non-obvious decisions, complex logic, and important context:
-
-```tsx
-// Use binary search for O(log n) performance on sorted arrays
-const index = binarySearch(sortedArray, target);
-
-// Per WCAG 2.2, focus must return to the trigger element on close
-previousFocusRef.current?.focus();
-
-// Safari doesn't support :focus-visible, fallback to :focus
-// TODO: Remove when Safari 15+ is the minimum supported version
-
-// Delay state update to avoid a race condition with async validation
-setTimeout(() => setIsValid(true), 0);
-```
-
-Skip a comment when the code is already self-explanatory:
-
-```tsx
-// Avoid: the comment only restates the code
-// Set loading to true
-setIsLoading(true);
-
-// Prefer: the code is already self-documenting
-setIsLoading(true);
-```
-
-Delete commented-out code instead of leaving it in place — git already tracks its history.
-
-**Style:** use `//` for single-line comments, with a space after the slashes; use `/** */` JSDoc comments on exports (functions, types, components); write complete sentences with proper punctuation; keep comments up to date as the code changes.
+Naming, code comments, formatting, and linking conventions all live in the [Writing guidance](/guides/writing-guidance/) guide — read it before writing or revising a component, its props, or its documentation.
 
 ### Props documentation
 
@@ -125,31 +63,15 @@ export type ButtonProps = {
 
 Add unit tests in a `__tests__/MyComponent-test.tsx` file within the component's directory, using `setupRtl` from `gamut-tests`. Unit test all component logic, with the exception of class names on components that already contain other tested logic.
 
-## Writing stories
+## Writing stories and documentation
 
-Every component needs Storybook stories demonstrating its use, in a `.stories.tsx` file alongside a `.mdx` documentation file. This structure is the source every component page's `StoryEmbed`s pull from, so both files need to stay accurate.
+A component needs two things: Storybook stories for interactive reference, and a doc page on this site for a reader deciding whether and how to use it. They live in different packages, so a component change usually touches both.
 
-### File structure and naming
+<!-- TODO: Update once files move to be colocated with components  -->
 
-The folder structure mirrors both Gamut's atomic-design tiers and the generated Storybook hierarchy. Find the right folder under `packages/styleguide/src/lib` (`Atoms`, `Molecules`, `Organisms`, and so on), then create a new folder containing `ComponentName.stories.tsx` and `ComponentName.mdx` — plus any example or utility files the stories need.
+### Writing the `.stories.tsx` file
 
-- Non-component files with more than one word use a space and sentence case: `General principles.mdx`.
-- Component-related files use the component's own `PascalCase` name: `RadialProgress.mdx`.
-
-### Writing the `.mdx` documentation file
-
-A component's `.mdx` file combines its interactive stories with written documentation, usage guidance, and metadata. A good one has four parts:
-
-1. **General information** — set in the file's `parameters` object: `title` (the component's name, used for linking), `subtitle` (what it does and when to reach for it), `source` (its package and a GitHub link), `design` (a Figma link), and `status`:
-   - `current` — stable, recommended for use.
-   - `updating` — in progress; the API may still change.
-   - `deprecated` — still supported, but slated for removal — don't use it for new work.
-   - `static` — reference material, with no active development.
-2. **Flagship story and props** — a single default story showing the component's baseline state, with `sourceState="shown"` on its `Canvas` so the code is visible, and a connected props table right below it.
-3. **Variation stories** — a subsection per meaningful behavior or configuration, each showing one variation with a short description and any variant-specific guidance.
-4. **Usage instructions** — when to use the component (and when not to), plus any guidelines a reader should follow.
-
-### Writing the `.stories.tsx` code file
+Add stories in `packages/styleguide/src/lib/<Tier>/<ComponentName>/ComponentName.stories.tsx`. Storybook builds that story group's docs page automatically from the component's props and JSDoc (`tags: ['autodocs']` in `packages/.storybook/preview.ts`), so a new component needs no Storybook `.mdx` file — accurate [props documentation](#props-documentation) is what drives that page instead.
 
 Use concrete, realistic example values instead of placeholders like `foo`/`bar` — a boolean controlling a modal should be named `isModalOpen`, not `isBar`, so the example reads like something a consumer would actually write.
 
@@ -172,107 +94,22 @@ export const Default: Story = {
 };
 ```
 
+### Writing the component doc page
+
+A component's written documentation lives on this site, not in Storybook. Add `packages/gamut-docs/src/content/docs/components/<category>/<component-name>.mdx`, kebab-case, under whichever [category](/components/) the component belongs to. See [Using this site](/getting-started/using-this-site/) for the five-part structure every component page follows — Header, Usage, Anatomy, Usage examples, and Playground or Prop Reference.
+
+A few things specific to writing one of these pages:
+
+- Frontmatter needs only `title` and `description` — there's no `parameters` object.
+- The header is a line of plain text, not a component: `**Status:** <Current|Updating|Deprecated|Static> · [Figma](figma-url) · [Source](github-url)` — drop the Figma link when the component has no design file.
+- Pull in a live Storybook example with `<StoryEmbed id="storybook-story-id" height="..." />` instead of retyping a prop table or re-describing a variation — Storybook stays the source of truth for that content. Run `yarn nx run storybook:dev` and copy a story's id from the address bar rather than guessing it.
+- Embed a Figma frame for the anatomy diagram with `<FigmaEmbed url="figma-url-with-a-node-id" />`.
+
+A page added under a `components/` category folder appears in the sidebar automatically. A page added under `guides/` doesn't — add its slug by hand to the `Guides` section of `packages/gamut-docs/astro.config.ts`.
+
 ### Group overview pages
 
-When a folder holds more than one related component or story, add an `About.mdx` file as its landing page — for example, the Icons folder's `About.mdx` links out to its Mini and Regular sub-pages. Give it a clear overview of what the folder contains and how its components relate, organized by importance or usage frequency, and keep it concise — it's an entry point, not detailed documentation.
-
-## Formatting
-
-**Numbers and units**
-
-- Use numerals for all numbers, with commas for thousands (1,000).
-- Use standard units — `px`, `rem`, `em`, `%`.
-- In prose, put a space between a number and its unit ("16 pixels"); in code, don't ("16px").
-
-**Lists**
-
-- Bulleted lists are for unordered items — keep them in parallel structure, and end each item with a period only if it's a complete sentence.
-- Numbered lists are for sequential steps or prioritized items — start each item with a capital letter.
-
-**Code blocks**
-
-- Use triple backticks with a language identifier (` ```tsx `, ` ```javascript `, ` ```css `).
-- Include comments for complex examples, and keep examples concise and focused.
-
-**Headings**
-
-- Start at the second level (`##`) — the first level is set automatically from the page's title.
-- Don't skip a heading level; it breaks the reading order.
-
-**Whitespace**
-
-- Separate sections with a blank line, and never stack multiple consecutive blank lines.
-- Indent code consistently — 2 spaces for TypeScript/TSX, with tabs set to 2 spaces if you use them.
-
-## Linking
-
-**Internal links**
-
-In Storybook's own `.mdx` files, use the `LinkTo` component with an `id` matching the target story's id:
-
-```tsx
-import { LinkTo } from '~styleguide/blocks';
-
-<LinkTo id="Atoms/Animations/About">Animation</LinkTo>;
-```
-
-- Link text describes the destination, not the action — "See the Stories page," not "Click here."
-- Make link text meaningful out of context: "the Stories page," not "click here."
-- Link a component's name to its documentation.
-- Verify the link actually works.
-- Use at least 2–3 words, so the link is easy to click.
-- Give each link unique text when more than one appears on the same page.
-
-**External links**
-
-Use a plain Markdown link for something like an external tool or reference — most renderers already open these in a new tab:
-
-```markdown
-[GitHub Repository](https://github.com/Codecademy/gamut)
-```
-
-For more control over the link itself — for example, inside a component that needs an `Anchor` — pass `target="_blank"` together with `rel="noreferrer"` for security, but don't force that behavior unless it's actually needed; a reader can already choose to open a link in a new tab themselves.
-
-## Referencing code
-
-**Code in text**
-
-- Use backticks for inline code: props, CSS properties, component names, prop values (`onClick`, `flex-direction`, `Box`, `true`).
-- Use backticks for file and package names too: `Button.tsx`, `package.json`, `@skillsoft/gamut`.
-- Refer to a component as "the `Box` component" on first mention, then "the component" afterward.
-- Keep a component name singular even when referring to several instances — "these `Box` components," not "these `Boxes`."
-
-**Code samples**
-
-Include the necessary imports, use realistic and working examples, add comments for complex logic, keep each example focused on one concept, and use TypeScript types:
-
-```tsx
-import { StrokeButton } from '@skillsoft/gamut';
-
-export const SimpleButtonExample: React.FC = () => (
-  <StrokeButton variant="primary">Click me</StrokeButton>
-);
-```
-
-**Command-line syntax**
-
-Use shell (`sh`) syntax highlighting, skip the prompt symbol (`$`), and put one command per block unless several are directly related:
-
-```bash
-yarn add @skillsoft/gamut
-```
-
-**File paths**
-
-Use backticks for file paths (`packages/gamut/src/Button/index.tsx`); use a relative path when the context already makes it clear (`./types.ts`), and a workspace-root path when it doesn't. Say "in the `ComponentName.mdx` file" for a code location, rather than a bare path.
-
-**UI element references**
-
-- Bold a UI label: **Next**, **Back**, **Close**.
-- Describe where an element is: "Click the **Theme Switcher** (paintbrush icon)."
-- Use sentence case: "the **Show code** button."
-- Prefer device-agnostic language — "click," not a touch- or mouse-specific verb.
-- Avoid directional language like "the form on the right" or "the section above" — say "the following form" or "the previous section" instead.
+When a category folder holds more than one component, its `index.md` is the landing page — give it `sidebar: { label: Overview }` in frontmatter (see `packages/gamut-docs/src/content/docs/components/navigation/index.md` for reference). Give it a clear overview of what the category contains and how its components relate, organized by importance or usage frequency, and keep it concise — it's an entry point, not detailed documentation.
 
 ## Pull requests
 
