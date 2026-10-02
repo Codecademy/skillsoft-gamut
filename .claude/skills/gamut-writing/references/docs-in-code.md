@@ -113,8 +113,8 @@ Commented-out code — delete it. Git tracks history, and a commented block leav
 
 Clear names remove the need for most comments, so naming is the first documentation decision in a file. These conventions won't cover every case, but three principles handle most of them:
 
-- **Be consistent** — a name or convention probably already exists; find it and reuse it rather than inventing a new one.
 - **Be readable** — the name should make sense to the next reader, not just the person who wrote it. Names are self-documentation, and abbreviations trip up agents as well as people.
+- **Be consistent** — a name or convention probably already exists; find it and reuse it rather than inventing a new one.
 - **Be specific** — a name should point to exactly one thing. Avoid catch-alls like `data`, `value`, or `handler`.
 
 **Components**
@@ -126,12 +126,13 @@ Clear names remove the need for most comments, so naming is the first documentat
 
 **Component props**
 
-- The native HTML attribute name, when one exists: `disabled`, `checked`, `readOnly`, `required`, `hidden`, `open`, `value`, `placeholder`, `href`
+- The native HTML attribute name, when one exists: `disabled`, `checked`, `readOnly`, `required`, `hidden`, `value`, `placeholder`, `href`
+  - Exception: when the native attribute name is ambiguous about type — `open` reads as a verb, with no clue it is a boolean rather than a function — prefer a readable prefixed name, e.g. `is`, instead: `isOpen`.
 - A boolean prop without a native attribute takes an `is`, `has`, or `can` prefix: `isVisible`, `hasWatermark`, `canBeProtected`
 - Plurals for array props: `books`, `items`, `activeLocations`
 - An enum over a cluster of exclusive booleans: `variant="primary" | "secondary"`, not separate `isPrimary` and `isSecondary` props
 - An `on` prefix followed by the event or callback in present tense, whether the event is native or invented: `onChange`, `onClick`, `onClose`, `onSelect`
-- The state, not its negation: `visible`, not `hidden={false}`
+- The state the component is usually in, and default to that state: `visible` (defaulting to `true`) beats `hidden` (defaulting to `false`) when a component is visible most of the time
 - What the prop controls, not how it's built: `size="sm"`, not `smallVariant` or `useSmallStyles`
 
 **Variables and constants**
