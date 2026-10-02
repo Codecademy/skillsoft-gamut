@@ -134,6 +134,7 @@ Clear names remove the need for most comments, so naming is the first documentat
 - An `on` prefix followed by the event or callback in present tense, whether the event is native or invented: `onChange`, `onClick`, `onClose`, `onSelect`
 - The state the component is usually in, and default to that state: `visible` (defaulting to `true`) beats `hidden` (defaulting to `false`) when a component is visible most of the time
 - What the prop controls, not how it's built: `size="sm"`, not `smallVariant` or `useSmallStyles`
+- Logical property names over physical or visual ones, so the name holds up under RTL: `leading`/`trailing` over `left`/`right`, `start`/`end` over `top`/`bottom`
 
 **Variables and constants**
 
