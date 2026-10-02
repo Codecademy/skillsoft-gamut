@@ -63,24 +63,15 @@ export type ButtonProps = {
 
 Add unit tests in a `__tests__/MyComponent-test.tsx` file within the component's directory, using `setupRtl` from `gamut-tests`. Unit test all component logic, with the exception of class names on components that already contain other tested logic.
 
-## Writing stories
+## Writing stories and documentation
 
-Every component needs Storybook stories demonstrating its use, in a `.stories.tsx` file alongside a `.mdx` documentation file. This structure is the source every component page's `StoryEmbed`s pull from, so both files need to stay accurate. File structure and naming conventions live in the [Writing guidance](/guides/writing-guidance/) guide.
+A component needs two things: Storybook stories for interactive reference, and a doc page on this site for a reader deciding whether and how to use it. They live in different packages, so a component change usually touches both.
 
-### Writing the `.mdx` documentation file
+<!-- TODO: Update once files move to be colocated with components  -->
 
-A component's `.mdx` file combines its interactive stories with written documentation, usage guidance, and metadata. A good one has four parts:
+### Writing the `.stories.tsx` file
 
-1. **General information** — set in the file's `parameters` object: `title` (the component's name, used for linking), `subtitle` (what it does and when to reach for it), `source` (its package and a GitHub link), `design` (a Figma link), and `status`:
-   - `current` — stable, recommended for use.
-   - `updating` — in progress; the API may still change.
-   - `deprecated` — still supported, but slated for removal — don't use it for new work.
-   - `static` — reference material, with no active development.
-2. **Flagship story and props** — a single default story showing the component's baseline state, with `sourceState="shown"` on its `Canvas` so the code is visible, and a connected props table right below it.
-3. **Variation stories** — a subsection per meaningful behavior or configuration, each showing one variation with a short description and any variant-specific guidance.
-4. **Usage instructions** — when to use the component (and when not to), plus any guidelines a reader should follow.
-
-### Writing the `.stories.tsx` code file
+Add stories in `packages/styleguide/src/lib/<Tier>/<ComponentName>/ComponentName.stories.tsx`. Storybook builds that story group's docs page automatically from the component's props and JSDoc (`tags: ['autodocs']` in `packages/.storybook/preview.ts`), so a new component needs no Storybook `.mdx` file — accurate [props documentation](#props-documentation) is what drives that page instead.
 
 Use concrete, realistic example values instead of placeholders like `foo`/`bar` — a boolean controlling a modal should be named `isModalOpen`, not `isBar`, so the example reads like something a consumer would actually write.
 
@@ -103,9 +94,22 @@ export const Default: Story = {
 };
 ```
 
+### Writing the component doc page
+
+A component's written documentation lives on this site, not in Storybook. Add `packages/gamut-docs/src/content/docs/components/<category>/<component-name>.mdx`, kebab-case, under whichever [category](/components/) the component belongs to. See [Using this site](/getting-started/using-this-site/) for the five-part structure every component page follows — Header, Usage, Anatomy, Usage examples, and Playground or Prop Reference.
+
+A few things specific to writing one of these pages:
+
+- Frontmatter needs only `title` and `description` — there's no `parameters` object.
+- The header is a line of plain text, not a component: `**Status:** <Current|Updating|Deprecated|Static> · [Figma](figma-url) · [Source](github-url)` — drop the Figma link when the component has no design file.
+- Pull in a live Storybook example with `<StoryEmbed id="storybook-story-id" height="..." />` instead of retyping a prop table or re-describing a variation — Storybook stays the source of truth for that content. Run `yarn nx run storybook:dev` and copy a story's id from the address bar rather than guessing it.
+- Embed a Figma frame for the anatomy diagram with `<FigmaEmbed url="figma-url-with-a-node-id" />`.
+
+A page added under a `components/` category folder appears in the sidebar automatically. A page added under `guides/` doesn't — add its slug by hand to the `Guides` section of `packages/gamut-docs/astro.config.ts`.
+
 ### Group overview pages
 
-When a folder holds more than one related component or story, add an `About.mdx` file as its landing page — for example, the Icons folder's `About.mdx` links out to its Mini and Regular sub-pages. Give it a clear overview of what the folder contains and how its components relate, organized by importance or usage frequency, and keep it concise — it's an entry point, not detailed documentation.
+When a category folder holds more than one component, its `index.md` is the landing page — give it `sidebar: { label: Overview }` in frontmatter (see `packages/gamut-docs/src/content/docs/components/navigation/index.md` for reference). Give it a clear overview of what the category contains and how its components relate, organized by importance or usage frequency, and keep it concise — it's an entry point, not detailed documentation.
 
 ## Pull requests
 
