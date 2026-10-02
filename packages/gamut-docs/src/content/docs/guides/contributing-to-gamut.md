@@ -40,12 +40,12 @@ We’ve established these conventions to help provide guidance on one of the mos
 
 #### Principles
 
-1. Be consistent - there’s a good chance that a name or convention already exists, check for it, use it and continue to use it.
-
-2. Be readable - ensure that the name can be understood by other people, not just your current self.
+1. Be readable - ensure that the name can be understood by other people, not just your current self.
 
 - Names should serve as self-documentation
 - Abbreviations can trip up agents, and even people.
+
+2. Be consistent - there’s a good chance that a name or convention already exists, check for it, use it and continue to use it.
 
 3. Be specific - a name should point to exactly one thing; avoid catch-alls like data, value, or handler.
 
@@ -58,7 +58,8 @@ We’ve established these conventions to help provide guidance on one of the mos
 **Component Props**
 
 - Use the native HTML attribute name when one exists.
-  - e.g. `disabled`, `checked`, `readOnly`, `required`, `hidden`, `open`, `value`, `placeholder`, `href`
+  - e.g. `disabled`, `checked`, `readOnly`, `required`, `hidden`, `value`, `placeholder`, `href`
+  - caveat: if an attribute is ambigious, e.g. `open` where it is verb but unclear if it is supposed to be a boolean or function then opt for readability, use `isOpen` since it is supposed to be a boolean value
 - Boolean props that don’t have a native attribute should include a prefix: `is`, `has`, `can`, etc... e.g. `isVisible`, `hasWatermark`, `canBeProtected`.
 - Array props should be the plural noun. e.g. `books`, `items`, `activeLocations`
 - Use an enum over a cluster of exclusive booleans.
@@ -66,6 +67,8 @@ We’ve established these conventions to help provide guidance on one of the mos
 - Event and callback props have an on prefix followed by the event/callback in present tense, e.g. `onChange`, `onClick`, `onClose`, `onSelect`. Same pattern whether the event is native or invented.
 - Name the state, not its negation.
   - e.g. `visible`, not `hidden={false}`.
+- Name the state for which the component is usually in, and default to that state
+  - `visible` (defaulting to `true`) beats `hidden` (defaulting to `false`) when a component is visible most of the time.
 - Name what the prop controls, not how it's built. `size="sm"`, not `smallVariant` or `useSmallStyles`.
 
 **Variables and constants**
