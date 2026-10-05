@@ -21,11 +21,11 @@ Let's explain using an example, if we use props such like `isPrimary` and `isSec
 
 If a prop is used to determine the state of the component, consider what the default state of that component is supposed to be, and name the prop (and its default) around that state rather than its opposite.
 
-Let's explain using an example: `List`, `DataGrid`, and `DataTable` all set `disableContainerQuery` to `false` by default, meaning container queries are on for most consumers. But reading that default means resolving a double negative first — "not disabled" — before you know container queries are actually active.
+Let's explore using an example: `hideLabel` on `ConnectedFormGroup` has no default, so it's falsy until a caller sets it — the label shows by default, the predominant state here. Hiding it is the deliberate exception, and even then nothing is torn down: a hidden label still renders for screen readers instead of disappearing outright. Naming the prop after the exception, not the common case, means `false` doesn't need a comment to explain what it does.
 
 ## Naming the interface, not the implementation
 
-`smallVariant` or `useSmallStyles` describes how "small" happens to be built today. `size="sm"` describes what the prop controls. If the implementation changes later, a name like `useSmallStyles` becomes actively wrong, while `size="sm"` still means the same thing. It never promised anything about the mechanism.
+`size="sm"` describes what the prop controls, not how it's built, so it keeps meaning the same thing even if the implementation behind "small" changes later. `smallVariant` or `useSmallStyles` name how "small" happens to be built today instead — the moment that changes, a name like `useSmallStyles` becomes actively wrong.
 
 ## Staying correct in both reading directions
 
