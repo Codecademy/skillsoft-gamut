@@ -5,6 +5,9 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
     "dev": {
       "executor": "nx:run-commands",
       "options": {
@@ -32,13 +35,16 @@
       "executor": "@nx/storybook:build",
       "dependsOn": ["build"],
       "inputs": [
-        { "input": "production", "projects": ["styleguide"] },
+        {
+          "input": "default",
+          "projects": ["storybook", "styleguide"]
+        },
         "^production"
       ],
       "outputs": ["{projectRoot}/dist"],
       "options": {
         "outputDir": "packages/gamut-docs/dist/storybook",
-        "configDir": "packages/styleguide/.storybook"
+        "configDir": "packages/.storybook"
       }
     }
   }
