@@ -18,13 +18,13 @@
   ],
   "homepage": "https://github.com/Codecademy/skillsoft-gamut#readme",
   "keywords": [
-    "ai",
     "agent-skills",
-    "cursor",
+    "ai",
     "claude",
+    "cursor",
+    "design-system",
     "gamut",
-    "skillsoft",
-    "design-system"
+    "skillsoft"
   ],
   "license": "MIT",
   "peerDependencies": {

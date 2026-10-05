@@ -27,7 +27,10 @@ const { id, height = '10rem' } = Astro.props;
 
 // Port must match the `storybook` target's `port` option in the styleguide
 // project's project.json.
-const storybookOrigin = import.meta.env.DEV ? 'http://localhost:6006' : '/storybook';
+// TODO: update the origin after DNS skillsoft.gamut.com is live 
+const storybookOrigin = import.meta.env.DEV
+  ? 'http://localhost:6006'
+  : `${import.meta.env.BASE_URL.replace(/\/$/, '')}/storybook`;
 const src = `${storybookOrigin}/iframe.html?id=${id}&viewMode=story`;
 
 // Storybook ids are "<title>--<story-name>"; the docs page for the whole
