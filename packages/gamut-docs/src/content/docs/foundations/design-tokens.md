@@ -36,6 +36,10 @@ See [Color modes](/concepts/color-modes/) for the semantic aliases (`text`, `bac
 
 - `elevation` — how a surface like Card renders shadow and lift. Three states — `rest`, `hover`, `hoverMirrored` — each with a `shadow` and a `transform` token, accessed as `elevation['<state>-<property>']`. `hoverMirrored` is for a surface that casts its shadow to the right instead of the left. Shadow colors reference the `shadow-primary` alias, so they follow color mode automatically; a theme can supply its own elevation scale — Percipio, for example, swaps the hard offset shadow for a soft, blurred one with no lift.
 
+## Z-index
+
+- `zIndexes` — the semantic scale for coordinating stacking order. See [Z-index](/foundations/z-index/) for the full token list and the `isolation` prop that scopes a stacking context.
+
 ## Accessing tokens directly
 
 Reach for a token directly only when a [system prop](/foundations/system-props/) can't express what you need — most components should consume tokens through system props instead.
