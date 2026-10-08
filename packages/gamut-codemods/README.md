@@ -33,6 +33,20 @@ A run ends with three things:
 2. **Leftovers**: every line that still names an old package. These are for you to fix: jest `moduleNameMapper` regexes, tsconfig `paths`, flat ESLint configs, comments, and docs.
 3. **Next steps**, built from what actually happened in the run.
 
+### Getting help from an AI agent
+
+The `gamut-scope-swap` skill, in [`@skillsoft/gamut-agent-tools`](../gamut-agent-tools/README.md), knows what this codemod does and what it leaves behind. It can go through the warnings and leftovers with you and help fix what the codemod can't rewrite. Install it from the app repo once `@skillsoft/gamut` is in place:
+
+```sh
+# Cursor
+gamut plugin install cursor
+
+# Claude Code
+gamut plugin install claude
+```
+
+Then ask the agent to work through the output. Paste the warnings and leftovers, or let it grep for old names. The skill won't run the codemod unless you ask it to.
+
 ### Trying it against a preview build
 
 Every skillsoft-gamut pull request publishes installable previews through pkg.pr.new. To test a migration against one:
