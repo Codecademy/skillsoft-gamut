@@ -78,4 +78,32 @@ describe('findLeftovers', () => {
     );
     expect(findLeftovers([dir], manifest).map((h) => h.line)).toEqual([1, 4]);
   });
+
+  it('tags every old package the manifest replaces, including gamut-kit', () => {
+    const dir = tmp();
+    const old = [
+      ...Object.keys(manifest.packages),
+      ...Object.keys(manifest.removedPackages),
+    ];
+    fs.writeFileSync(
+      path.join(dir, 'README.md'),
+      old.map((name) => `import x from '${name}/dist/x';`).join('\n')
+    );
+    expect(findLeftovers([dir], manifest).map((h) => h.line)).toEqual(
+      old.map((_, i) => i + 1)
+    );
+  });
+
+  it('flags /dist paths into published packages only', () => {
+    const dir = tmp();
+    fs.writeFileSync(
+      path.join(dir, 'README.md'),
+      [
+        "import { X } from '@codecademy/gamut-styles/dist/AssetProvider';",
+        "import { Y } from '@codecademy/gamut-foo/dist/bar';",
+        "import { Z } from '@skillsoft/gamut-styles/dist/bar';",
+      ].join('\n')
+    );
+    expect(findLeftovers([dir], manifest).map((h) => h.line)).toEqual([1]);
+  });
 });

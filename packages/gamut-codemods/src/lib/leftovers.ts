@@ -30,19 +30,23 @@ const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&');
   Old names, not already followed by a longer package name, and not the
   tail of a new one (`@skillsoft/eslint-plugin-gamut` contains
   `eslint-plugin-gamut`).
+
+  A `/dist` path into one of the packages this repo publishes also counts,
+  even outside files the parser reads (docs, JSON, Flow). Only the packages
+  in manifest.packages are checked. Removed and unrelated `@codecademy`
+  packages aren't ours to rewrite.
 */
 const oldNamesPattern = (manifest: Manifest) => {
-  const names = [
-    ...Object.keys(manifest.packages),
-    ...Object.keys(manifest.removedPackages),
-  ]
+  const published = Object.keys(manifest.packages);
+  const names = [...published, ...Object.keys(manifest.removedPackages)]
     .sort((a, b) => b.length - a.length)
     .map(escape);
+  const dist = published.map(escape).join('|');
   const prefix = escape(manifest.eslintPlugin.from);
   return new RegExp(
     `(?<![\\w@/-])(?:${names.join(
       '|'
-    )})(?![\\w-])|plugin:${prefix}/|["'\`]${prefix}/`
+    )})(?![\\w-])|plugin:${prefix}/|["'\`]${prefix}/|(?<![\\w@/-])(?:${dist})/dist(?![\\w-])`
   );
 };
 
