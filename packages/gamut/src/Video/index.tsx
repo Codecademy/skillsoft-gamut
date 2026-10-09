@@ -94,21 +94,39 @@ export const Video: React.FC<VideoProps> = (props) => {
 
   // react-player v3 puts `title` on its custom element, not the inner provider
   // iframe, so the iframe would otherwise have no accessible name (WCAG 4.1.2).
-  const labelProviderIframe = () => {
-    const iframe = playerWrapperRef.current?.querySelector('iframe');
-    if (iframe && !iframe.title) {
-      iframe.title = videoTitle || DEFAULT_VIDEO_TITLE;
-    }
+  // Provider elements like <youtube-video> render that iframe inside an open
+  // shadow root, so search shadow roots too. `onShadowRoot` lets the observer
+  // below watch each shadow root it finds.
+  const labelProviderIframe = (onShadowRoot?: (root: ShadowRoot) => void) => {
+    const label = (root: ParentNode) => {
+      root.querySelectorAll('iframe').forEach((iframe) => {
+        if (!iframe.title) iframe.title = videoTitle || DEFAULT_VIDEO_TITLE;
+      });
+      root.querySelectorAll('*').forEach((el) => {
+        if (el.shadowRoot) {
+          onShadowRoot?.(el.shadowRoot);
+          label(el.shadowRoot);
+        }
+      });
+    };
+    if (playerWrapperRef.current) label(playerWrapperRef.current);
   };
 
   // The provider inserts its iframe asynchronously, often before `onReady`
-  // fires, so label it as soon as it appears rather than waiting.
+  // fires, and may replace it later (e.g. on src change), so label it
+  // whenever it appears rather than waiting.
   useEffect(() => {
     const wrapper = playerWrapperRef.current;
     if (!wrapper) return;
-    labelProviderIframe();
-    const observer = new MutationObserver(labelProviderIframe);
-    observer.observe(wrapper, { childList: true, subtree: true });
+    const observed = new WeakSet<Node>();
+    const observe = (root: Node) => {
+      if (observed.has(root)) return;
+      observed.add(root);
+      observer.observe(root, { childList: true, subtree: true });
+    };
+    const observer = new MutationObserver(() => labelProviderIframe(observe));
+    observe(wrapper);
+    labelProviderIframe(observe);
     return () => observer.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoTitle, videoUrl, isMounted]);
