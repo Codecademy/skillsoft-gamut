@@ -86,6 +86,7 @@ Every skillsoft-gamut pull request publishes installable previews through pkg.pr
 - Every file is parsed with the `tsx` parser, so Flow-typed JS won't parse.
 - Flat ESLint configs (`eslint.config.*`) and `.eslintrc.js` aren't rewritten. In a flat config the rule prefix is whatever key you register the plugin under, so renaming rule keys blindly would break it. They show up in the leftovers.
 - The leftovers report uses regex, not an AST, so expect some false positives.
+- The codemod doesn't change how Gamut loads at runtime. Next.js apps with `experimental.esmExternals: false` can fail at build or prerender on `@emotion/*` or `react-select` default imports, with errors like `Element type is invalid ... got: object` or `c(...) is not a function`. See [NEXT_EMOTION_INTEROP.md](../gamut-agent-tools/skills/gamut-scope-swap/NEXT_EMOTION_INTEROP.md) for the fix.
 
 ## Contributing
 

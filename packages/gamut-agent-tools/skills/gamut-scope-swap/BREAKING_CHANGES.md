@@ -20,6 +20,7 @@ Short list of what changed. The codemod handles most of these. Entries marked **
 ## Runtime
 
 - Gamut is now a real singleton. Module Federation host and remotes must share the same version, so update each remote's `shared` config and deploy them together. **Manual.**
+- Next.js apps that set `experimental.esmExternals: false` can fail to build or prerender on `@emotion/*` or `react-select` default imports. Remove `esmExternals: false` and any `@emotion/*` aliases. If you can't yet, see `NEXT_EMOTION_INTEROP.md` for the fallback. **Manual.**
 
 ## Build and tooling
 
