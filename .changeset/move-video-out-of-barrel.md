@@ -1,5 +1,5 @@
 ---
-'@skillsoft/gamut': major
+'@skillsoft/gamut': minor
 ---
 
 Upgrade `react-player` to v3 and move `Video` out of the main barrel.
