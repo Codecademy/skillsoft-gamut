@@ -1,0 +1,7 @@
+{
+  "name": "lib",
+  "peerDependencies": {
+    "@skillsoft/gamut": "*",
+    "@skillsoft/gamut-styles": "^{{version}}"
+  }
+}

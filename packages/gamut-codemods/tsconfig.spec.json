@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "./dist",
+    "lib": ["es2022"],
+    "types": ["jest", "node"]
+  },
+  "exclude": ["**/__testfixtures__/**"],
+  "include": ["jest.config.ts", "**/*.test.ts", "**/*.d.ts"]
+}

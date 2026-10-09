@@ -1,0 +1,4 @@
+{
+  // server code
+  "compilerOptions": { "lib": ["es2022"] }
+}

@@ -12,3 +12,4 @@ packages/gamut-patterns/src/patterns
 packages/code-connect
 .nx
 packages/gamut-agent-tools/skills/*-workspace
+packages/gamut-codemods/**/__testfixtures__

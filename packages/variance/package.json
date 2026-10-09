@@ -40,5 +40,10 @@
     "build": "nx build variance"
   },
   "sideEffects": false,
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  }
 }

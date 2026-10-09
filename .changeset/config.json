@@ -8,9 +8,12 @@
   "fixed": [
     [
       "@skillsoft/gamut-agent-tools",
+      "@skillsoft/gamut-codemods",
       "@skillsoft/gamut-icons",
+      "@skillsoft/gamut-illustrations",
       "@skillsoft/gamut-patterns",
       "@skillsoft/gamut-styles",
+      "@skillsoft/gamut-tests",
       "@skillsoft/gamut",
       "@skillsoft/variance"
     ]

@@ -1,0 +1,16 @@
+{
+  "name": "app",
+  "dependencies": {
+    "@skillsoft/gamut": "^{{version}}",
+    "@skillsoft/gamut-icons": "^{{version}}",
+    "@skillsoft/gamut-illustrations": "^{{version}}",
+    "@skillsoft/gamut-patterns": "^{{version}}",
+    "@skillsoft/gamut-styles": "^{{version}}",
+    "@skillsoft/gamut-tests": "^{{version}}",
+    "@skillsoft/variance": "^{{version}}",
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@skillsoft/eslint-plugin-gamut": "^0.0.1"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "lib",
+  "peerDependencies": {
+    "@codecademy/gamut": "*",
+    "@codecademy/gamut-styles": "^21.0.0"
+  }
+}

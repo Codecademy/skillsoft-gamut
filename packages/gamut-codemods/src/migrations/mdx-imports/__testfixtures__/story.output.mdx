@@ -1,0 +1,19 @@
+import { Canvas, Meta } from '@storybook/blocks';
+import { Box } from '@skillsoft/gamut';
+import { Video } from '@skillsoft/gamut/Video';
+import {
+  PopoverContainerProps,
+} from '@skillsoft/gamut';
+import * as Stories from './Card.stories';
+
+<Meta of={Stories} />
+
+# Card
+
+Built on `@codecademy/gamut`'s Box.
+
+```tsx
+import { Card } from '@codecademy/gamut';
+```
+
+<Canvas of={Stories.Default} />

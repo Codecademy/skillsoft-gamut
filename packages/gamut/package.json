@@ -7,12 +7,11 @@
   "dependencies": {
     "@formatjs/intl-locale": "5.3.1",
     "@react-aria/interactions": "3.25.0",
-    "@skillsoft/gamut-icons": "0.0.1",
-    "@skillsoft/gamut-illustrations": "0.0.1",
-    "@skillsoft/gamut-patterns": "0.0.1",
-    "@skillsoft/gamut-styles": "0.0.1",
-    "@skillsoft/variance": "0.0.1",
-    "@types/marked": "^4.0.8",
+    "@skillsoft/gamut-icons": "^0.0.1",
+    "@skillsoft/gamut-illustrations": "^0.0.1",
+    "@skillsoft/gamut-patterns": "^0.0.1",
+    "@skillsoft/gamut-styles": "^0.0.1",
+    "@skillsoft/variance": "^0.0.1",
     "@vidstack/react": "^1.12.12",
     "classnames": "^2.2.5",
     "framer-motion": "^12.0.0",
@@ -30,6 +29,9 @@
     "react-use": "^17.6.1",
     "sanitize-markdown": "^2.6.7"
   },
+  "devDependencies": {
+    "@types/marked": "^4.0.8"
+  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -45,7 +47,8 @@
   },
   "files": [
     "dist",
-    "bin"
+    "bin",
+    "Video"
   ],
   "license": "MIT",
   "main": "./dist/index.js",

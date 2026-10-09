@@ -18,7 +18,7 @@ export {
 } from './containers';
 
 export {
-  IconOption,
+  IconOptionComponent,
   AbbreviatedSingleValue,
   formatOptionLabel,
   formatGroupLabel,

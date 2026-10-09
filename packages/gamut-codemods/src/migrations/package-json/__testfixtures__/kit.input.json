@@ -1,0 +1,11 @@
+{
+  "name": "app",
+  "dependencies": {
+    "@codecademy/gamut": "73.6.1",
+    "@codecademy/gamut-kit": "3.0.24",
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "eslint-plugin-gamut": "3.1.0"
+  }
+}
