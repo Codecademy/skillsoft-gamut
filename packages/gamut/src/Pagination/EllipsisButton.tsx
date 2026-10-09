@@ -1,7 +1,8 @@
 import { forwardRef, useState } from 'react';
 
-import { ButtonBaseElements } from '../ButtonBase/ButtonBase';
-import { PaginationButton, PaginationButtonProps } from './PaginationButton';
+import type { ButtonBaseElements } from '../ButtonBase/ButtonBase';
+import type { PaginationButtonProps } from './PaginationButton';
+import { PaginationButton } from './PaginationButton';
 import { wrapWithSlideAnimation } from './utils';
 
 export type EllipsisButtonProps = PaginationButtonProps & {

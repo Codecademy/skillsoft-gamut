@@ -1,10 +1,11 @@
 import { CheckerDense } from '@skillsoft/gamut-patterns';
-import { borderRadii, Colors } from '@skillsoft/gamut-styles';
-import * as React from 'react';
+import type { Colors } from '@skillsoft/gamut-styles';
+import { borderRadii } from '@skillsoft/gamut-styles';
+import type * as React from 'react';
 
 import { DynamicCardWrapper, MotionBox, StaticCardWrapper } from './elements';
 import { patternFadeInOut, useCardElevation } from './styles';
-import { CardProps } from './types';
+import type { CardProps } from './types';
 
 type BorderRadiusToken = keyof typeof borderRadii;
 

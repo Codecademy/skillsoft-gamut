@@ -1,8 +1,8 @@
-import { Theme } from '@emotion/react';
+import type { Theme } from '@emotion/react';
 import isObject from 'lodash/isObject';
 import merge from 'lodash/merge';
 
-import { CSSObject } from '../types/props';
+import type { CSSObject } from '../types/props';
 
 /**
  * Returns an type of any object with { key: 'var(--key) }

@@ -1,13 +1,14 @@
 import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
-import { Background, Colors } from '@skillsoft/gamut-styles';
-import * as React from 'react';
+import type { Colors } from '@skillsoft/gamut-styles';
+import { Background } from '@skillsoft/gamut-styles';
+import type * as React from 'react';
 
 import { FlexBox } from '../Box';
 import { IconButton } from '../Button';
 import { Drawer } from '../Drawer';
 import { Overlay } from '../Overlay';
 import { Text } from '../Typography';
-import { WithChildrenProp } from '../utils';
+import type { WithChildrenProp } from '../utils';
 
 export interface FlyoutProps extends WithChildrenProp {
   /**

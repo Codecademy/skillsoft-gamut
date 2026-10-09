@@ -1,6 +1,6 @@
-import * as React from 'react';
+import type * as React from 'react';
 
-import { ExtendedOption } from '../types/options';
+import type { ExtendedOption } from '../types/options';
 
 /**
  * Function form of the no-options message: receives the current input value

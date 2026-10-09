@@ -1,8 +1,8 @@
-import * as React from 'react';
+import type * as React from 'react';
 
-import { RadioGroup } from '../..';
-import { useField } from '..';
-import { ConnectedRadioGroupProps } from './types';
+import { RadioGroup } from '../../Form';
+import { useField } from '../utils';
+import type { ConnectedRadioGroupProps } from './types';
 
 export const ConnectedRadioGroup: React.FC<ConnectedRadioGroupProps> = ({
   name,

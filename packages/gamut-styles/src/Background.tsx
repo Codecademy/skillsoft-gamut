@@ -1,14 +1,14 @@
 import { getContrast } from 'polished';
-import { ComponentProps, forwardRef, useCallback, useMemo } from 'react';
+import type { ComponentProps } from 'react';
+import { forwardRef, useCallback, useMemo } from 'react';
 
-import {
+import type {
   ColorAlias,
-  ColorMode,
   ColorModes,
   ColorModeShape,
   Colors,
-  useColorModes,
 } from './ColorMode';
+import { ColorMode, useColorModes } from './ColorMode';
 
 export interface BackgroundProps
   extends Omit<

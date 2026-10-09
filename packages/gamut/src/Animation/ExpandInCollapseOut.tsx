@@ -1,7 +1,7 @@
 import { timingValues } from '@skillsoft/gamut-styles';
 import { motion } from 'framer-motion';
 
-import { WithChildrenProp } from '../utils';
+import type { WithChildrenProp } from '../utils';
 
 export const ExpandInCollapseOut: React.FC<WithChildrenProp> = ({
   children,

@@ -9,7 +9,8 @@ function patternTemplate(api, opts, { jsx }) {
 
   return template.ast`
     import * as React from 'react';
-    import { Svg, PatternProps } from '../props';
+    import { Svg } from '../props';
+    import type { PatternProps } from '../props';
     import { usePatternId } from '../usePatternId';
 
     export const ${exportName} = React.forwardRef<SVGSVGElement, PatternProps>(({

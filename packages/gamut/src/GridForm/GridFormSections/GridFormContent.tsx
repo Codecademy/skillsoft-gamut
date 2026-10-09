@@ -1,8 +1,8 @@
-import * as React from 'react';
+import type * as React from 'react';
 
 import { getErrorMessage, useField } from '../../ConnectedForm/utils';
 import { GridFormInputGroup } from '../GridFormInputGroup';
-import { GridFormField } from '../types';
+import type { GridFormField } from '../types';
 
 export type GridFormContentProps = {
   field: GridFormField;

@@ -1,5 +1,5 @@
 import { Box, FlexBox } from '../Box';
-import { IconComponentType, WithChildrenProp } from '../utils';
+import type { IconComponentType, WithChildrenProp } from '../utils';
 import { pixelToEm } from './pixelToEmCalc';
 
 export interface AppendedIconProps

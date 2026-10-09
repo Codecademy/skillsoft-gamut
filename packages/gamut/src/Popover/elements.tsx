@@ -1,17 +1,14 @@
 import styled from '@emotion/styled';
 import { timingValues, variant } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
+import type { StyleProps } from '@skillsoft/variance';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { BodyPortal } from '../BodyPortal';
 import { Box, FlexBox } from '../Box';
 import { popoverToolTipBodyAlignments } from '../Tip/shared/styles/styles';
-import { WithChildrenProp } from '../utils';
-import {
-  popoverStates,
-  raisedDivVariants,
-  transformValues,
-} from './styles/base';
+import type { WithChildrenProp } from '../utils';
+import type { popoverStates } from './styles/base';
+import { raisedDivVariants, transformValues } from './styles/base';
 import { patternContainerBaseStyles } from './styles/pattern';
 import {
   beakBoxVariants,
@@ -20,7 +17,7 @@ import {
   patternVariantStyles,
   widthStates,
 } from './styles/variants';
-import { PopoverProps } from './types';
+import type { PopoverProps } from './types';
 
 export type PopoverVariants = StyleProps<typeof raisedDivVariants> & {
   widthRestricted?: boolean;

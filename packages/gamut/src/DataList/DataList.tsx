@@ -1,7 +1,8 @@
-import { ReactElement } from 'react';
+import type { ReactElement } from 'react';
 
-import { DataGrid, DataGridProps } from './DataGrid';
-import { ColumnConfig, IdentifiableKeys } from './types';
+import type { DataGridProps } from './DataGrid';
+import { DataGrid } from './DataGrid';
+import type { ColumnConfig, IdentifiableKeys } from './types';
 
 export interface DataList {
   <Row, IdKey extends IdentifiableKeys<Row>, Cols extends ColumnConfig<Row>[]>(

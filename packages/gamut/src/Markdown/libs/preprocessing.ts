@@ -1,6 +1,6 @@
 import cx from 'classnames';
 
-import { HTMLToReactNode } from './overrides';
+import type { HTMLToReactNode } from './overrides';
 
 /**
  * Preprocessing Instructions:

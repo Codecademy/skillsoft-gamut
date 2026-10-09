@@ -1,10 +1,10 @@
-import * as React from 'react';
+import type * as React from 'react';
 
 import { Box } from '../../Box';
 import { FormRequiredText } from '../../Form';
 import { Column } from '../../Layout/Column';
 import { Text } from '../../Typography/Text';
-import {
+import type {
   GridFormRequiredTextProps,
   GridFormSectionTitleBaseProps,
 } from '../types';

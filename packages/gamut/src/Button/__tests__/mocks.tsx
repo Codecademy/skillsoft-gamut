@@ -1,6 +1,7 @@
 import { ColorMode } from '@skillsoft/gamut-styles';
 import { MockGamutProvider } from '@skillsoft/gamut-tests';
-import React, { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
+import type React from 'react';
 
 import { Box } from '../../Box';
 import { IconButton } from '..';

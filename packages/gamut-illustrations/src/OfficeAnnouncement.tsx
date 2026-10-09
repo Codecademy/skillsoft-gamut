@@ -1,4 +1,4 @@
-import { IllustrationProps } from './types';
+import type { IllustrationProps } from './types';
 
 export const OfficeAnnouncement: React.FC<IllustrationProps> = ({
   'aria-hidden': ariaHidden,

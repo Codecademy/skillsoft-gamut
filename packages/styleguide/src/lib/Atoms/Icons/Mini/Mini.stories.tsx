@@ -1,8 +1,8 @@
-import { GamutIconProps } from '@skillsoft/gamut-icons';
+import type { GamutIconProps } from '@skillsoft/gamut-icons';
 // eslint-disable-next-line @skillsoft/gamut/import-paths
 import * as miniIcons from '@skillsoft/gamut-icons/src/icons/mini';
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
+import type React from 'react';
 
 import { ImageGallery } from '~styleguide/blocks';
 

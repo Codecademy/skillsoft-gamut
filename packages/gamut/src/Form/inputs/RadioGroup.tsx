@@ -1,7 +1,8 @@
-import { cloneElement, HTMLAttributes, InputHTMLAttributes } from 'react';
+import type { HTMLAttributes, InputHTMLAttributes } from 'react';
+import { cloneElement } from 'react';
 import * as React from 'react';
 
-import { BaseInputProps } from '../types';
+import type { BaseInputProps } from '../types';
 
 export type RadioGroupProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
   Pick<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'disabled'> &

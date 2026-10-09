@@ -11,7 +11,7 @@ import {
 } from './elements';
 import { getAlignmentStyles } from './styles/composeVariantsUtils';
 import { narrowWidth } from './styles/styles';
-import { TipWrapperProps } from './types';
+import type { TipWrapperProps } from './types';
 
 export const InlineTip: React.FC<TipWrapperProps> = ({
   alignment,

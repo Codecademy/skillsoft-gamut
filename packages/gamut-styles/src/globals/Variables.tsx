@@ -1,6 +1,6 @@
 import { css, Global } from '@emotion/react';
-import { CSSObject } from '@skillsoft/variance';
-import * as React from 'react';
+import type { CSSObject } from '@skillsoft/variance';
+import type * as React from 'react';
 
 const scopeVariables = (vars: CSSObject, scope = ':root') =>
   css({ [scope]: vars });

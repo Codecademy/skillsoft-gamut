@@ -1,11 +1,12 @@
 import { TerminalIcon } from '@skillsoft/gamut-icons';
 import { setupRtl } from '@skillsoft/gamut-tests';
 import userEvent from '@testing-library/user-event';
-import { act, HTMLProps } from 'react';
+import type { HTMLProps } from 'react';
+import { act } from 'react';
 
-import { ButtonProps } from '../../Button';
+import type { ButtonProps } from '../../Button';
 import { BarChart } from '..';
-import { BarProps } from '../shared/types';
+import type { BarProps } from '../shared/types';
 
 const defaultBarValues = [
   { categoryLabel: 'Python', seriesOneValue: 100 },

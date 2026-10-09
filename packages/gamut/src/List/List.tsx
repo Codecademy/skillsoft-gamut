@@ -1,10 +1,12 @@
 import { DotLoose } from '@skillsoft/gamut-patterns';
 import { timingValues } from '@skillsoft/gamut-styles';
 import isArray from 'lodash/isArray';
-import { ComponentProps, forwardRef, useEffect } from 'react';
-import * as React from 'react';
+import type { ComponentProps } from 'react';
+import type * as React from 'react';
+import { forwardRef, useEffect } from 'react';
 
-import { Box, BoxProps, FlexBox } from '../Box';
+import type { BoxProps } from '../Box';
+import { Box, FlexBox } from '../Box';
 import {
   AnimatedListWrapper,
   hiddenVariant,
@@ -14,7 +16,7 @@ import {
 } from './elements';
 import { useScrollabilityCheck } from './hooks';
 import { ListProvider, useList } from './ListProvider';
-import { AllListProps } from './types';
+import type { AllListProps } from './types';
 
 export interface ListProps extends AllListProps<ComponentProps<typeof ListEl>> {
   /** Whether List should be an ol, ul element, or table */

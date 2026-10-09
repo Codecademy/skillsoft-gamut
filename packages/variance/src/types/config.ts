@@ -1,13 +1,13 @@
-import { Theme } from '@emotion/react';
+import type { Theme } from '@emotion/react';
 
-import {
+import type {
   DefaultCSSPropertyValue,
   DirectionalProperties,
   DirectionalProperty,
   PropertyMode,
   PropertyTypes,
 } from './properties';
-import {
+import type {
   AbstractProps,
   CSSObject,
   CSSPropMap,
@@ -15,7 +15,7 @@ import {
   ResponsiveProp,
   ThemeProps,
 } from './props';
-import { AllUnionKeys, Key, KeyFromUnion } from './utils';
+import type { AllUnionKeys, Key, KeyFromUnion } from './utils';
 
 export type MapScale = Record<string | number, string | number>;
 export type ArrayScale = readonly (string | number)[] & { length: 0 };

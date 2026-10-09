@@ -2,7 +2,8 @@ import { setupRtl } from '@skillsoft/gamut-tests';
 import userEvent from '@testing-library/user-event';
 import { act, useState } from 'react';
 
-import { Tab, TabList, TabPanel, TabPanels, Tabs, TabsProps } from '../index';
+import type { TabsProps } from '../index';
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../index';
 
 const FullTabs = (props: TabsProps) => (
   <Tabs {...props}>

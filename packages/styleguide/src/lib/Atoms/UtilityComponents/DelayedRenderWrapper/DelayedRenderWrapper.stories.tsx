@@ -6,7 +6,8 @@ import {
   Text,
 } from '@skillsoft/gamut';
 import type { Meta } from '@storybook/react';
-import { ComponentProps, useState } from 'react';
+import type { ComponentProps } from 'react';
+import { useState } from 'react';
 
 const meta: Meta<typeof DelayedRenderWrapper> = {
   component: DelayedRenderWrapper,

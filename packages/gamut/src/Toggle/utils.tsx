@@ -1,4 +1,4 @@
-import { ToggleInputStyledProps, ToggleProps } from './types';
+import type { ToggleInputStyledProps, ToggleProps } from './types';
 
 export const getToggleElementProps = <Props extends ToggleProps>({
   ariaLabel,

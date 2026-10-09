@@ -1,5 +1,6 @@
-import { css, Global, Theme } from '@emotion/react';
-import * as React from 'react';
+import type { Theme } from '@emotion/react';
+import { css, Global } from '@emotion/react';
+import type * as React from 'react';
 
 export const Reboot: React.FC<{ theme: Theme }> = ({ theme }) => {
   const { useLogicalProperties } = theme;

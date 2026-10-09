@@ -1,10 +1,10 @@
 import { timingValues } from '@skillsoft/gamut-styles';
 import { AnimatePresence, motion } from 'framer-motion';
+import type * as React from 'react';
 import { useEffect, useRef } from 'react';
-import * as React from 'react';
 
-import { BaseEllipsisButton } from './EllipsisButton';
-import { PaginationButton } from './PaginationButton';
+import type { BaseEllipsisButton } from './EllipsisButton';
+import type { PaginationButton } from './PaginationButton';
 
 const FADE_DURATION_SECONDS = timingValues.base / 1000;
 

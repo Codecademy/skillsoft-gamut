@@ -1,7 +1,7 @@
 import kebabCase from 'lodash/kebabCase';
 import { createContext, useCallback, useContext, useMemo } from 'react';
 
-import {
+import type {
   ColumnConfig,
   DataListControls,
   ExpandRow,

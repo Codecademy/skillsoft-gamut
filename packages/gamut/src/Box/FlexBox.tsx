@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { css, styledOptions } from '@skillsoft/gamut-styles';
 
-import { boxProps, FlexBoxProps, flexStates, sharedStates } from './props';
+import type { FlexBoxProps } from './props';
+import { boxProps, flexStates, sharedStates } from './props';
 
 export const FlexBox = styled(
   'div',

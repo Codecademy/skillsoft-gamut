@@ -4,14 +4,17 @@ import {
   system,
   transitionConcat,
 } from '@skillsoft/gamut-styles';
-import { StyleProps, variance } from '@skillsoft/variance';
+import type { StyleProps } from '@skillsoft/variance';
+import { variance } from '@skillsoft/variance';
 import isObject from 'lodash/isObject';
-import { ComponentProps, forwardRef } from 'react';
+import type { ComponentProps } from 'react';
+import { forwardRef } from 'react';
 
 import { sharedStates } from '../Box/props';
 import { resetStyles, Selectors } from '../ButtonBase/ButtonBase';
-import { ToolTip, ToolTipProps } from '../Tip/ToolTip';
-import { MenuItem } from './MenuItem';
+import type { ToolTipProps } from '../Tip/ToolTip';
+import { ToolTip } from '../Tip/ToolTip';
+import type { MenuItem } from './MenuItem';
 
 enum MenuItemSelectors {
   OUTLINE = '&:after',

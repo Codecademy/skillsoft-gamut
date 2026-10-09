@@ -1,12 +1,12 @@
 import { AnimatePresence } from 'framer-motion';
+import type * as React from 'react';
 import { useState } from 'react';
-import * as React from 'react';
 
 import { ExpandInCollapseOut } from '../Animation';
 import { DisclosureBody } from './DisclosureBody';
 import { DisclosureButton } from './DisclosureButton';
 import { DisclosureWrapper } from './elements';
-import { DisclosureProps } from './types';
+import type { DisclosureProps } from './types';
 
 export const Disclosure: React.FC<DisclosureProps> = ({
   body,

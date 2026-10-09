@@ -1,7 +1,8 @@
+import type * as React from 'react';
 import { useState } from 'react';
-import * as React from 'react';
 
-import { Checkbox, CheckboxProps } from '../../../../Form';
+import type { CheckboxProps } from '../../../../Form';
+import { Checkbox } from '../../../../Form';
 
 export type MarkdownCheckboxProps = Pick<CheckboxProps, 'checked'> & {
   label: string;

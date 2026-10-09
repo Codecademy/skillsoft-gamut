@@ -1,8 +1,8 @@
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 
-import { Input } from '../Form/inputs/Input';
-import { CalendarQuickAction, DatePickerSharedProps } from './sharedTypes';
-import { DatePickerTranslations } from './utils/translations';
+import type { Input } from '../Form/inputs/Input';
+import type { CalendarQuickAction, DatePickerSharedProps } from './sharedTypes';
+import type { DatePickerTranslations } from './utils/translations';
 
 interface DatePickerBaseProps<Mode extends 'single' | 'range'>
   extends DatePickerSharedProps {

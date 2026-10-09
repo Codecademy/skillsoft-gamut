@@ -1,4 +1,4 @@
-import { theme } from './__fixtures__/theme';
+import type { theme } from './__fixtures__/theme';
 
 type LocalTheme = typeof theme;
 

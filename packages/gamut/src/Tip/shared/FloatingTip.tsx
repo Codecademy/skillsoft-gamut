@@ -1,5 +1,5 @@
+import type * as React from 'react';
 import { useCallback, useLayoutEffect, useRef, useState } from 'react';
-import * as React from 'react';
 import { useMeasure } from 'react-use';
 
 import { Box } from '../../Box';
@@ -13,7 +13,7 @@ import {
   getAlignmentStyles,
   getPopoverAlignmentAndPattern,
 } from './styles/composeVariantsUtils';
-import { TipWrapperProps } from './types';
+import type { TipWrapperProps } from './types';
 import { runWithDelay } from './utils';
 
 type FocusOrMouseEvent =

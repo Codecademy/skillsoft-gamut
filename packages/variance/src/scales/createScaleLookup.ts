@@ -3,8 +3,8 @@ import isArray from 'lodash/isArray';
 import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 
-import { Prop } from '../types/config';
-import { ThemeProps } from '../types/props';
+import type { Prop } from '../types/config';
+import type { ThemeProps } from '../types/props';
 
 type GetScaleValue = (
   val: string | number,

@@ -11,7 +11,7 @@ import { useMedia } from 'react-use';
 
 import { Box, FlexBox } from '../../Box';
 import { useDatePicker } from '../DatePickerContext';
-import { CalendarQuickAction } from '../sharedTypes';
+import type { CalendarQuickAction } from '../sharedTypes';
 import {
   CalendarBody,
   CalendarFooter,

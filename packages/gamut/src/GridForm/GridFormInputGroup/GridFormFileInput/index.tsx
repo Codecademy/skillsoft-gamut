@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { UseFormReturn } from 'react-hook-form';
+import type * as React from 'react';
+import type { UseFormReturn } from 'react-hook-form';
 
 import { Input } from '../../../Form';
-import { BaseFormInputProps, GridFormFileField } from '../../types';
+import type { BaseFormInputProps, GridFormFileField } from '../../types';
 
 export interface GridFormFileInputProps extends BaseFormInputProps {
   field: Omit<GridFormFileField, 'label'>;

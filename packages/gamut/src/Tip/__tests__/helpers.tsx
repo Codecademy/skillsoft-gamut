@@ -1,12 +1,13 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { createRef, RefObject } from 'react';
+import type { RefObject } from 'react';
+import { createRef } from 'react';
 
 import { Anchor } from '../../Anchor';
 import { Text } from '../../Typography';
-import { InfoTip } from '../InfoTip';
-import { TipPlacements } from '../shared/types';
+import type { InfoTip } from '../InfoTip';
+import type { TipPlacements } from '../shared/types';
 
 type InfoTipView = ReturnType<
   ReturnType<typeof setupRtl<typeof InfoTip>>

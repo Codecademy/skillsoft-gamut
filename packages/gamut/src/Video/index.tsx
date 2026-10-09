@@ -1,11 +1,11 @@
-import { PlayerSrc, TrackProps } from '@vidstack/react';
-import {
+import type { PlayerSrc, TrackProps } from '@vidstack/react';
+import type {
   DefaultLayoutTranslations,
   ThumbnailSrc,
 } from '@vidstack/react/types/vidstack';
-import * as React from 'react';
+import type * as React from 'react';
 import { useState } from 'react';
-import { BaseReactPlayerProps } from 'react-player/base';
+import type { BaseReactPlayerProps } from 'react-player/base';
 
 import { Box } from '../Box';
 import { useIsMounted } from '../utils';

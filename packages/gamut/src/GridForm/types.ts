@@ -1,13 +1,13 @@
-import { ReactNode } from 'react';
-import { RegisterOptions, UseFormReturn } from 'react-hook-form';
+import type { ReactNode } from 'react';
+import type { RegisterOptions, UseFormReturn } from 'react-hook-form';
 
-import { BoxProps } from '../Box';
-import { MinimalCheckboxProps } from '../ConnectedForm';
-import { CheckboxLabelUnion, TextAreaProps } from '../Form';
-import { CheckboxPaddingProps } from '../Form/types';
-import { ColumnProps } from '../Layout';
-import { InfoTipSubComponentProps } from '../Tip/InfoTip/type-utils';
-import { Text, TextProps } from '../Typography/Text';
+import type { BoxProps } from '../Box';
+import type { MinimalCheckboxProps } from '../ConnectedForm';
+import type { CheckboxLabelUnion, TextAreaProps } from '../Form';
+import type { CheckboxPaddingProps } from '../Form/types';
+import type { ColumnProps } from '../Layout';
+import type { InfoTipSubComponentProps } from '../Tip/InfoTip/type-utils';
+import type { Text, TextProps } from '../Typography/Text';
 
 export interface BaseFormInputProps {
   className?: string;

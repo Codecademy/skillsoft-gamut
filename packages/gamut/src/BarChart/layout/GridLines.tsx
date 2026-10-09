@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 import { css } from '@skillsoft/gamut-styles';
-import React, { useMemo } from 'react';
+import type React from 'react';
+import { useMemo } from 'react';
 
 import { Box } from '../../Box';
-import { ScaleAxisLayoutProps } from '../shared/types';
+import type { ScaleAxisLayoutProps } from '../shared/types';
 import { useLabelPositions } from '../utils/hooks';
 import { LabelSpacer } from './LabelSpacer';
 

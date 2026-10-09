@@ -7,14 +7,14 @@ import { BarRow } from './BarRow';
 import { GridLines } from './layout/GridLines';
 import { ScaleChartHeader } from './layout/ScaleChartHeader';
 import { BarsList } from './shared/elements';
-import {
+import type {
   BarChartSingleValueBarSummaryContext,
   BarChartStackedSummaryContext,
   BarChartTranslations,
-  defaultBarChartTranslations,
   PartialBarChartTranslations,
 } from './shared/translations';
-import { BarChartProps, BarProps, InferBarType } from './shared/types';
+import { defaultBarChartTranslations } from './shared/translations';
+import type { BarChartProps, BarProps, InferBarType } from './shared/types';
 import { StyledFormGroupLabel, WidthSelect } from './SortSelect';
 import { getBarRowKey } from './utils';
 import { useBarChart, useBarChartSort } from './utils/hooks';

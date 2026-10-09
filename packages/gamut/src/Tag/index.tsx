@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 
 import { appendIconToContent } from '../helpers';
 import {
@@ -10,7 +10,7 @@ import {
   TagLabelWrapper,
   TagText,
 } from './elements';
-import { TagProps } from './types';
+import type { TagProps } from './types';
 
 export const Tag: React.FC<TagProps> = ({
   children,

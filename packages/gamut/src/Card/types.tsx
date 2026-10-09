@@ -1,11 +1,11 @@
-import { PatternProps } from '@skillsoft/gamut-patterns';
-import { StyleProps } from '@skillsoft/variance';
-import { ComponentProps } from 'react';
+import type { PatternProps } from '@skillsoft/gamut-patterns';
+import type { StyleProps } from '@skillsoft/variance';
+import type { ComponentProps } from 'react';
 
-import { Box } from '../Box';
-import { WithChildrenProp } from '../utils';
-import { DynamicCardWrapper } from './elements';
-import { cardVariants, shadowVariants } from './styles';
+import type { Box } from '../Box';
+import type { WithChildrenProp } from '../utils';
+import type { DynamicCardWrapper } from './elements';
+import type { cardVariants, shadowVariants } from './styles';
 
 export interface CardWrapperProps
   extends StyleProps<typeof cardVariants>,

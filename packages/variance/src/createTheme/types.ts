@@ -1,5 +1,5 @@
-import { CSSObject } from '../types/props';
-import { AbstractTheme } from '../types/theme';
+import type { CSSObject } from '../types/props';
+import type { AbstractTheme } from '../types/theme';
 
 /**
  * This is a custom generic that ensures the safety of adding additional values to a theme object without accidentally wiping out

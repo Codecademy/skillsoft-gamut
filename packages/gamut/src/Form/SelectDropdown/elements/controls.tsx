@@ -1,6 +1,6 @@
 import { components as SelectDropdownElements } from 'react-select';
 
-import { SizedIndicatorProps } from '../types';
+import type { SizedIndicatorProps } from '../types';
 import { indicatorIcons } from './constants';
 
 const { DropdownIndicator } = SelectDropdownElements;

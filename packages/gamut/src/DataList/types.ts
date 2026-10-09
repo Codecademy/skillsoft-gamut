@@ -1,6 +1,6 @@
-import { ReactElement } from 'react';
+import type { ReactElement } from 'react';
 
-import { ListColProps } from '..';
+import type { ListColProps } from '..';
 
 export type SortDirection = 'asc' | 'desc' | 'none';
 

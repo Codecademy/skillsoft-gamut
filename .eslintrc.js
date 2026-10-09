@@ -50,6 +50,19 @@ module.exports = {
       // being applied to subsequent plugin imports/extensions. Wild.
       files: ['*.tsx', '*.ts'],
       rules: {
+        // Bundlers (esbuild/Vite dev, tsdown/rolldown) elide type-only
+        // imports based on per-file usage heuristics, not full type info.
+        // A value-imported type re-exported via `export type {}` can look
+        // used to the heuristic, get preserved as a runtime import, and
+        // crash at runtime since the source has no matching runtime export.
+        '@typescript-eslint/consistent-type-imports': [
+          'error',
+          {
+            prefer: 'type-imports',
+            fixStyle: 'separate-type-imports',
+            disallowTypeAnnotations: false,
+          },
+        ],
         '@typescript-eslint/no-empty-object-type': [
           'error',
           {

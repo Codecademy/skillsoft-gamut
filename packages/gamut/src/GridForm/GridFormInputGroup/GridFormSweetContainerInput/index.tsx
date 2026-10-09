@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { UseFormReturn } from 'react-hook-form';
+import type * as React from 'react';
+import type { UseFormReturn } from 'react-hook-form';
 
 import { Box } from '../../..';
 import { Input } from '../../../Form';
-import { GridFormSweetContainerField } from '../../types';
+import type { GridFormSweetContainerField } from '../../types';
 
 export type GridFormSweetContainerInputProps = {
   field: GridFormSweetContainerField;

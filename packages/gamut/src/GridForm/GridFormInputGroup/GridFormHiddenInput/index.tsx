@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { UseFormReturn } from 'react-hook-form';
+import type * as React from 'react';
+import type { UseFormReturn } from 'react-hook-form';
 
 import { Input } from '../../../Form';
-import { GridFormHiddenField } from '../../types';
+import type { GridFormHiddenField } from '../../types';
 
 export type GridFormHiddenInputProps = {
   field: GridFormHiddenField;

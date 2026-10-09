@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import HtmlToReact from 'html-to-react';
 import camelCaseMap from 'html-to-react/lib/camel-case-attribute-names';
 import get from 'lodash/get';
-import * as React from 'react';
+import type * as React from 'react';
 
 import { getLabel, isCheckboxParent, isInput, isLabelText } from './utils';
 

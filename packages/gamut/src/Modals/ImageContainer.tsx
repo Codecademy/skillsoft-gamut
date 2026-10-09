@@ -1,8 +1,8 @@
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 
 import { Box } from '../Box';
-import { ModalContainer } from './elements';
-import { ModalBaseProps } from './types';
+import type { ModalContainer } from './elements';
+import type { ModalBaseProps } from './types';
 
 interface ImageProps extends Pick<ModalBaseProps, 'image'> {
   size: Exclude<

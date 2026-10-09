@@ -7,7 +7,7 @@ import * as React from 'react';
 
 import { IconButton } from '../../../Button';
 import { useResolvedLocale } from '../../utils/locale';
-import { CalendarNavProps } from './types';
+import type { CalendarNavProps } from './types';
 import { getRelativeMonthLabels } from './utils/format';
 
 export const CalendarNavNextMonth: React.FC<CalendarNavProps> = ({

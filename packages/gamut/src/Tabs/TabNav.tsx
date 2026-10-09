@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 import { styledOptions } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
+import type { StyleProps } from '@skillsoft/variance';
 
-import { tabElementBaseProps, TabElementStyleProps } from './props';
+import type { TabElementStyleProps } from './props';
+import { tabElementBaseProps } from './props';
 import { tabContainerStates, tabContainerVariants } from './styles';
 
 export interface TabNavProps

@@ -1,14 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { Text } from '../../Typography';
-import { WithChildrenProp } from '../../utils';
+import type { WithChildrenProp } from '../../utils';
 import { FloatingTip } from '../shared/FloatingTip';
 import { InlineTip } from '../shared/InlineTip';
-import {
-  TipBaseProps,
-  TipCenterAlignment,
-  tipDefaultProps,
-} from '../shared/types';
+import type { TipBaseProps, TipCenterAlignment } from '../shared/types';
+import { tipDefaultProps } from '../shared/types';
 
 export type ToolTipProps = TipBaseProps &
   WithChildrenProp & {

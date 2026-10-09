@@ -17,11 +17,11 @@ import {
   VolumeControlMediumIcon,
   VolumeControlMuteIcon,
 } from '@skillsoft/gamut-icons';
-import {
+import type {
   DefaultLayoutIcon,
   DefaultLayoutIcons,
-  defaultLayoutIcons,
 } from '@vidstack/react/player/layouts/default';
+import { defaultLayoutIcons } from '@vidstack/react/player/layouts/default';
 
 const IconWrapper = (Icon: DefaultLayoutIcon) => (props: any) =>
   <Icon {...props} height={20} width={20} />;

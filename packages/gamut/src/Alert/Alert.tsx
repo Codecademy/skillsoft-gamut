@@ -6,10 +6,11 @@ import { useMeasure } from 'react-use';
 
 import { Rotation } from '../Animation';
 import { Box } from '../Box';
-import { FillButton, IconButton, TextButton } from '../Button';
-import { CloseButtonProps } from '../Modals/types';
+import type { FillButton } from '../Button';
+import { IconButton, TextButton } from '../Button';
+import type { CloseButtonProps } from '../Modals/types';
 import { ToolTip } from '../Tip/ToolTip';
-import { WithChildrenProp } from '../utils';
+import type { WithChildrenProp } from '../utils';
 import {
   AlertBanner,
   AlertBox,

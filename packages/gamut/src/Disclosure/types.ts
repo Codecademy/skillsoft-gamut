@@ -1,4 +1,4 @@
-import {
+import type {
   DisclosureBodyWrapperStyles,
   DisclosureWrapperStyles,
 } from './elements';
