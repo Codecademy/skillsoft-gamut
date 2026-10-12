@@ -182,6 +182,7 @@ export default defineConfig({
                   ],
                 },
                 { slug: 'foundations/typography' },
+                { slug: 'foundations/z-index' },
               ],
             },
             {

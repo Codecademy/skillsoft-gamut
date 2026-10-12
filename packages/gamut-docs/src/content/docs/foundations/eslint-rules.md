@@ -46,6 +46,29 @@ import { FillButton } from '@skillsoft/gamut/src';
 import { FillButton } from '@skillsoft/gamut';
 ```
 
+## `gamut/no-raw-z-index`
+
+**Level:** `error`
+
+Discourages raw numeric `zIndex` values — in JSX props (`<Box zIndex={2} />`) and style objects (`zIndex`/`'z-index'` in `css()` or styled-component style objects) — in favor of semantic tokens from the [`zIndexes` scale](/foundations/z-index/):
+
+```tsx
+// Instead of:
+<Box position="relative" zIndex={100} />;
+
+// Use a semantic token:
+import { zIndexes } from '@skillsoft/gamut-styles';
+
+<Box position="relative" zIndex={zIndexes.foreground} />;
+```
+
+Disable it inline, with a comment justifying the choice, for a deliberate in-between value that doesn't map to an existing token:
+
+```tsx
+// eslint-disable-next-line gamut/no-raw-z-index -- must sit one layer below the legacy FCN nav (12)
+<Box zIndex={11} />
+```
+
 ## `gamut/prefer-themed`
 
 **Level:** `off` by default · Auto-fixable
@@ -72,6 +95,7 @@ module.exports = {
     'gamut/no-inline-style': 'error',
     'gamut/no-css-standalone': 'error',
     'gamut/import-paths': 'error',
+    'gamut/no-raw-z-index': 'error',
     'gamut/prefer-themed': 'off',
   },
 };

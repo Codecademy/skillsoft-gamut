@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { CheckerDense } from '@skillsoft/gamut-patterns';
-import { css, variant } from '@skillsoft/gamut-styles';
+import { css, variant, zIndexes } from '@skillsoft/gamut-styles';
 import { useMemo } from 'react';
 
 import { Anchor } from '../../Anchor';
@@ -143,11 +143,19 @@ export const PreviewTipShadow: React.FC<PreviewTipShadowProps> = ({
   zIndex,
 }) => {
   const shadowAlignment = getShadowAlignment(alignment);
+  // The shadow sits two layers below the tip. Resolve a token name to its numeric value so
+  // we can offset it; a raw number is used directly; anything else (a CSS global) falls back.
+  const numericZIndex =
+    typeof zIndex === 'number'
+      ? zIndex
+      : typeof zIndex === 'string' && zIndex in zIndexes
+      ? zIndexes[zIndex as keyof typeof zIndexes]
+      : undefined;
 
   return (
     <PreviewTipPattern
       aria-hidden
-      zIndex={zIndex ? zIndex - 2 : -1}
+      zIndex={numericZIndex ? numericZIndex - 2 : 'underlay'}
       {...shadowAlignment}
     >
       <CheckerDense />

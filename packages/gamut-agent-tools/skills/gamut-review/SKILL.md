@@ -9,7 +9,7 @@ Audit existing code at the path the user provides (default: current working dire
 
 When `DESIGN.md` is present at the audit root, use it as the authoritative reference for product design intent, token names, and component patterns. It is copied from `DESIGN.Codecademy.md`, `DESIGN.Percipio.md`, or `DESIGN.LXStudio.md` in `@skillsoft/gamut` agent-tools (via `gamut plugin install --theme <name>`). When a finding maps to a skill, note it in the report so the developer knows where to get remediation guidance.
 
-Run Check 0 first, then Checks 1–6, then print a single consolidated report using the format at the end of this file.
+Run Check 0 first, then Checks 1–7, then print a single consolidated report using the format at the end of this file.
 
 Remediation skills: [`gamut-theming`](../gamut-theming/SKILL.md) · [`gamut-color-mode`](../gamut-color-mode/SKILL.md) · [`gamut-system-props`](../gamut-system-props/SKILL.md) · [`gamut-style-utilities`](../gamut-style-utilities/SKILL.md) · [`gamut-typography`](../gamut-typography/SKILL.md) · [`gamut-testing`](../gamut-testing/SKILL.md) · [`gamut-z-index`](../gamut-z-index/SKILL.md) · [`gamut-component-first`](../gamut-component-first/SKILL.md)
 
@@ -427,9 +427,48 @@ Skill reference for remediation: [`gamut-testing`](../gamut-testing/SKILL.md)
 
 ---
 
-## Check 6 — Bespoke component duplication
+## Check 6 — Raw z-index values
 
-Unlike Checks 1–5, this check is heuristic, not deterministic — every match needs a human glance before acting. **Every Check 6 finding is reported with `⚠`. There is no `✗` option for this check** — if a match feels like a clear-cut violation, that feeling is exactly the failure mode this rule exists to catch (a confident-looking ARIA-role/hand-rolled-listener match is still just a pattern match, not a certainty).
+Gamut coordinates stacking order through one semantic scale, `zIndexes`, from `@skillsoft/gamut-styles`: `underlay` (-100), `base` (0), `foreground` (100), `floating` (200), `appBar` (300), `flyout` (400), `modal` (500), `popover` (600), `topmost` (700). A raw numeric z-index bypasses this scale and is what the `gamut/no-raw-z-index` eslint rule (`error` level) exists to catch — this check finds the same violations by grep so they show up even in a repo that hasn't wired the rule into its eslint config yet.
+
+Discovery: Grep source files (`.ts`, `.tsx`, `.js`, `.jsx`) for a raw numeric literal (optionally negative) in a `zIndex` JSX prop or a `zIndex`/`'z-index'` style-object key. Skip `node_modules`, `dist`, `.next`, `build`, `.turbo`.
+
+- JSX prop: `zIndex=\{-?[0-9]+\}`
+- Style object key: `\bzIndex:\s*-?[0-9]+\b` and `['"]z-index['"]:\s*-?[0-9]+`
+
+Exclude a match when:
+
+- The line (or the line above it) has `eslint-disable-next-line gamut/no-raw-z-index` / `eslint-disable-line gamut/no-raw-z-index` with a justifying comment — the rule allows this as a deliberate escape hatch. Report as `ℹ note`, not a violation.
+- The value is arithmetic on a token, e.g. `zIndex={zIndexes.foreground - 2}` — the regexes above only match when a number immediately follows `{`/`:`, so a leading token identifier already excludes these; discard any accidental match where the captured "number" is preceded by an identifier or `.`.
+- A variable is being passed (`zIndex={zIndex}`, `zIndex: props.zIndex`) — not a literal, not flagged (same as the eslint rule).
+
+### Workflow (each match)
+
+1. Record the raw number and whether it's a JSX prop or style-object key.
+2. Suggest the nearest scale token:
+
+   | Raw value | Suggested token                                                                                                                                                                                           |
+   | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | `-1`      | `zIndexes.underlay`                                                                                                                                                                                       |
+   | `0`       | `zIndexes.base`                                                                                                                                                                                           |
+   | `1`–`3`   | `zIndexes.foreground` (common legacy in-flow/sticky value)                                                                                                                                                |
+   | other     | Nearest token by magnitude (e.g. `12` → `zIndexes.foreground` or `zIndexes.appBar - 288`, depending on stacking intent) — flag `⚠ needs manual review` since intent isn't inferable from the number alone |
+
+3. For an "other" value with no obvious nearest token, still report the match but mark it for manual review rather than guessing a token — the developer who wrote the number knows what it needed to sit above/below.
+
+Severity: ✗ error for every raw literal match (mirrors the eslint rule's `error` level) except lines exempted by an inline disable comment (→ ℹ note).
+
+Reporting: `file:line  zIndex={<n>}  →  suggest: zIndexes.<token>` (JSX) or `file:line  zIndex: <n>  →  suggest: zIndexes.<token>` (style object). For unmapped "other" values: `file:line  zIndex={<n>}  →  ⚠ needs manual review — no obvious token`.
+
+Also check whether the project depends on `@skillsoft/gamut-styles` at a version that exports `zIndexes` (see Check 1) — if not, note that upgrading is required before remediation.
+
+Skill reference: [`gamut-z-index`](../gamut-z-index/SKILL.md) — full scale reference, `ZIndexType`, and `gamut/no-raw-z-index` rule details.
+
+---
+
+## Check 7 — Bespoke component duplication
+
+Unlike Checks 1–6, this check is heuristic, not deterministic — every match needs a human glance before acting. **Every Check 7 finding is reported with `⚠`. There is no `✗` option for this check** — if a match feels like a clear-cut violation, that feeling is exactly the failure mode this rule exists to catch (a confident-looking ARIA-role/hand-rolled-listener match is still just a pattern match, not a certainty).
 
 The goal: find custom-built UI that duplicates something `@skillsoft/gamut` already provides — a hand-rolled modal, dropdown, tooltip, or focus trap living next to the library that already solves it. See [`gamut-component-first`](../gamut-component-first/SKILL.md) for the full decision table and the "signals" list this check is built from.
 
@@ -463,7 +502,7 @@ Cross-reference with Check 3b's SCSS import list: a stylesheet named `Modal.scss
 
 **Reporting:** for each match, name the likely Gamut component from the [decision table](../gamut-component-first/SKILL.md#decision-table-common-needs) and note this needs manual confirmation — a real product-specific one-off will look identical to a grep tool.
 
-**Before finalizing the report**, re-scan every line under this section specifically for a `✗` icon. If you find one, that's a mistake — change it to `⚠`. **When computing the final `<N> error(s), <N> warning(s)` tally, count every Check 6 match toward the warning total, never the error total, even if a `✗` slipped through above** — this is the one place a stray icon can't corrupt the report's headline numbers.
+**Before finalizing the report**, re-scan every line under this section specifically for a `✗` icon. If you find one, that's a mistake — change it to `⚠`. **When computing the final `<N> error(s), <N> warning(s)` tally, count every Check 7 match toward the warning total, never the error total, even if a `✗` slipped through above** — this is the one place a stray icon can't corrupt the report's headline numbers.
 
 Skill reference for remediation: [`gamut-component-first`](../gamut-component-first/SKILL.md)
 
@@ -539,6 +578,12 @@ Test setup                                                               [→ ga
        src/components/Bar/__tests__/Bar.test.tsx:5
   ⚠  direct component-test-setup import   1 occurrence — import from @skillsoft/gamut-tests
        src/components/Baz/__tests__/Baz.test.tsx:2
+
+Raw z-index                                                              [→ gamut-z-index]
+  ✗  src/HeroBanner.tsx:9    zIndex={3}   →  suggest: zIndexes.foreground
+  ✗  src/Nav.tsx:14     zIndex: 12  →  ⚠ needs manual review — no obvious token
+  ℹ  src/Vendor.tsx:31  zIndex={9999}  (eslint-disable-next-line gamut/no-raw-z-index — justified)
+  (or: ✓  none found)
 
 Bespoke component duplication (heuristic — confirm manually)              [→ gamut-component-first]
   ⚠  src/components/ConfirmDialog/ConfirmDialog.tsx:9   role="dialog" with no Modal/Dialog import — likely reinventing gamut-modal
