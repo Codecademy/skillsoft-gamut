@@ -9,6 +9,7 @@ import { Column, LayoutGrid } from '../Layout';
 import { Text } from '../Typography';
 import { Anchor } from '.';
 
+// TODO: see if we can not hardcode this
 const variants = [
   'inline',
   'interface',
