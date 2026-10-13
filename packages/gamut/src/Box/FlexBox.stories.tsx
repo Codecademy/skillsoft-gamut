@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Box, FlexBox } from '.';
 
 const meta: Meta<typeof FlexBox> = {
-  title: 'Layouts/Boxes/FlexBox',
+  title: 'Containers/Boxes/FlexBox',
   component: FlexBox,
   args: {},
 };

@@ -49,7 +49,7 @@ const AnchorVariants = ({ useIcon }: { useIcon: boolean }) => (
 );
 
 const meta: Meta<typeof Anchor> = {
-  title: 'Typography/Anchor',
+  title: 'Navigation/Anchor',
   component: Anchor,
   args: {
     children: 'Click me',

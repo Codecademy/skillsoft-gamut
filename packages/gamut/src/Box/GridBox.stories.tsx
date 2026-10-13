@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Box, GridBox } from '.';
 
 const meta: Meta<typeof GridBox> = {
-  title: 'Layouts/Boxes/GridBox',
+  title: 'Containers/Boxes/GridBox',
   component: GridBox,
   args: {},
 };

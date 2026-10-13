@@ -21,7 +21,7 @@ const openDialog: NonNullable<Story['play']> = async ({
 };
 
 const meta: TypeWithDeepControls<Meta<typeof Dialog>> = {
-  title: 'Molecules/Modals/Dialog',
+  title: 'Overlays/Dialog',
   component: Dialog,
   args: {
     title: 'Depeche Modal',

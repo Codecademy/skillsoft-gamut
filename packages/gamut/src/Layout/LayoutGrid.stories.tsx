@@ -76,7 +76,7 @@ const renderColumnChildren = (
 const gapOptions = [8, 16, 24, 32, 48] as const;
 
 const meta: Meta<typeof LayoutGrid> = {
-  title: 'Layouts/LayoutGrid',
+  title: 'Containers/LayoutGrid',
   component: LayoutGrid,
   args: { gap: 24 },
   argTypes: {

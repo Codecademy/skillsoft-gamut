@@ -5,7 +5,7 @@ import { ContentContainer } from '.';
 const sizes = ['small', 'medium', 'wide'] as const;
 
 const meta: Meta<typeof ContentContainer> = {
-  title: 'Layouts/ContentContainer',
+  title: 'Containers/ContentContainer',
   component: ContentContainer,
   args: { children: 'Some random content' },
   argTypes: {
