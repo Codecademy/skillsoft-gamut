@@ -1,12 +1,15 @@
-import { Box, FlexBox } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { Box, FlexBox } from '.';
+
 const meta: Meta<typeof FlexBox> = {
+  title: 'Layouts/Boxes/FlexBox',
   component: FlexBox,
-  args: { justifyContent: 'space-around' },
+  args: {},
 };
 
 export default meta;
+
 type Story = StoryObj<typeof FlexBox>;
 
 export const Default: Story = {
