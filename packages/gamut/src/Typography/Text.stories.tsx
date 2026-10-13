@@ -1,28 +1,67 @@
-import { Box, Column, LayoutGrid, Text } from '@skillsoft/gamut';
-// eslint-disable-next-line @skillsoft/gamut/import-paths
+import { fontSize } from '@skillsoft/gamut-styles';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Fragment } from 'react';
+
+import { Box } from '../Box';
+import { Column, LayoutGrid } from '../Layout';
+import { Text } from './Text';
 import {
   typographyElementVariants,
   typographyStyleVariants,
   typographyUtilities,
-} from '@skillsoft/gamut/src/Typography/variants';
-import type { Meta, StoryObj } from '@storybook/react';
-import { Fragment } from 'react';
+} from './variants';
 
 const meta: Meta<typeof Text> = {
+  title: 'Typography/Text',
   component: Text,
   args: {
     children: 'Welcome to Gamut!',
   },
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: Object.keys(typographyStyleVariants),
+      table: {
+        type: { summary: Object.keys(typographyStyleVariants).join(' | ') },
+      },
+    },
+    as: {
+      control: 'select',
+      options: Object.keys(typographyElementVariants),
+      table: {
+        type: { summary: Object.keys(typographyElementVariants).join(' | ') },
+        defaultValue: { summary: 'span' },
+      },
+    },
+    truncate: {
+      control: 'radio',
+      options: typographyUtilities.truncation,
+      table: { type: { summary: typographyUtilities.truncation.join(' | ') } },
+    },
+    truncateLines: {
+      control: 'select',
+      options: typographyUtilities.truncateLines,
+      table: {
+        type: { summary: typographyUtilities.truncateLines.join(' | ') },
+      },
+    },
+    fontSize: {
+      control: 'select',
+      options: Object.keys(fontSize).map(Number),
+      table: { type: { summary: Object.keys(fontSize).join(' | ') } },
+    },
+  },
 };
 
 export default meta;
+
 type Story = StoryObj<typeof Text>;
+
+const layoutGridStyles = { gap: 32, ml: 4 } as const;
 
 export const Default: Story = {
   args: {},
 };
-
-const layoutGridStyles = { gap: 32, ml: 4 } as const;
 
 export const Elements: Story = {
   render: () => (
