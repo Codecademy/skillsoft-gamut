@@ -1,4 +1,4 @@
-import { fontSize } from '@skillsoft/gamut-styles';
+import { theme } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Fragment } from 'react';
 
@@ -47,8 +47,8 @@ const meta: Meta<typeof Text> = {
     },
     fontSize: {
       control: 'select',
-      options: Object.keys(fontSize).map(Number),
-      table: { type: { summary: Object.keys(fontSize).join(' | ') } },
+      options: Object.keys(theme.fontSize).map(Number),
+      table: { type: { summary: Object.keys(theme.fontSize).join(' | ') } },
     },
   },
 };
