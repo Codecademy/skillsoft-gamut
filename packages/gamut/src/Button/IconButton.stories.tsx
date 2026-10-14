@@ -1,10 +1,15 @@
-import { FlexBox, IconButton } from '@skillsoft/gamut';
-import { SparkleIcon } from '@skillsoft/gamut-icons';
 import * as icons from '@skillsoft/gamut-icons';
+import { SparkleIcon } from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect, fn, screen, waitFor } from 'storybook/test';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
+import { FlexBox } from '../Box';
+import { IconButton } from './IconButton';
+import { buttonVariants } from './shared';
+
 const meta: TypeWithDeepControls<Meta<typeof IconButton>> = {
+  title: 'Actions/Buttons/IconButton',
   component: IconButton,
   args: {
     disabled: false,
@@ -12,15 +17,29 @@ const meta: TypeWithDeepControls<Meta<typeof IconButton>> = {
     icon: icons.SearchIcon,
     tip: 'ToolTip',
     tipProps: { placement: 'floating', alignment: 'top-center' },
+    variant: 'secondary',
+    onClick: fn(),
   },
   argTypes: {
     href: {
       description: 'If defined, component will use an anchor tag',
       type: 'string',
     },
+    variant: {
+      control: 'radio',
+      options: buttonVariants,
+      table: {
+        type: { summary: buttonVariants.join(' | ') },
+        defaultValue: { summary: 'secondary' },
+      },
+    },
     size: {
       control: 'radio',
       options: ['normal', 'small', 'large'],
+      table: {
+        type: { summary: 'small | normal | large' },
+        defaultValue: { summary: 'normal' },
+      },
     },
     icon: {
       control: 'select',
@@ -44,29 +63,55 @@ const meta: TypeWithDeepControls<Meta<typeof IconButton>> = {
 };
 
 export default meta;
+
 type Story = StoryObj<typeof IconButton>;
 
 export const Default: Story = {
   args: {},
+  play: async ({ args, canvas, userEvent }) => {
+    const button = canvas.getByRole('button', { name: 'ToolTip' });
+    canvas.getByRole('img', { hidden: true });
+    await expect(
+      canvas.getByRole('tooltip', { hidden: true })
+    ).toHaveTextContent('ToolTip');
+
+    await expect(screen.queryAllByText('ToolTip')).toHaveLength(1);
+    await userEvent.hover(button);
+    await waitFor(() =>
+      expect(screen.queryAllByText('ToolTip')).toHaveLength(2)
+    );
+
+    await userEvent.click(button);
+    await expect(args.onClick).toHaveBeenCalled();
+  },
 };
 
-// eslint-disable-next-line no-console
-const logClick = () => console.log('button onClick fired');
+export const AriaLabel: Story = {
+  args: {
+    'aria-label': 'Search the catalog',
+  },
+  play: async ({ canvas }) => {
+    canvas.getByRole('button', { name: 'Search the catalog' });
+    await expect(
+      canvas.getByRole('tooltip', { hidden: true })
+    ).toHaveTextContent('ToolTip');
+  },
+};
 
 export const CloseOnClick: Story = {
-  render: () => (
+  render: (args) => (
     <FlexBox center justifyContent="space-around" pt={48}>
       <IconButton
         icon={SparkleIcon}
         tip="Closes on click (floating)"
         tipProps={{ placement: 'floating', alignment: 'top-center' }}
-        onClick={logClick}
+        onClick={args.onClick}
       />
       <IconButton
         icon={SparkleIcon}
         tip="Closes on click (inline)"
         tipProps={{ placement: 'inline', alignment: 'top-center' }}
-        onClick={logClick}
+        onClick={args.onClick}
       />
       <IconButton
         icon={SparkleIcon}
@@ -76,7 +121,7 @@ export const CloseOnClick: Story = {
           alignment: 'top-center',
           closeOnClick: false,
         }}
-        onClick={logClick}
+        onClick={args.onClick}
       />
       <IconButton
         icon={SparkleIcon}
@@ -86,8 +131,22 @@ export const CloseOnClick: Story = {
           alignment: 'top-center',
           closeOnClick: false,
         }}
-        onClick={logClick}
+        onClick={args.onClick}
       />
     </FlexBox>
   ),
+  play: async ({ args, canvas, userEvent }) => {
+    const tips = [
+      'Closes on click (floating)',
+      'Closes on click (inline)',
+      'Stays open on click (floating)',
+      'Stays open on click (inline)',
+    ];
+
+    for (const tip of tips) {
+      await userEvent.click(canvas.getByRole('button', { name: tip }));
+    }
+
+    await expect(args.onClick).toHaveBeenCalledTimes(tips.length);
+  },
 };
