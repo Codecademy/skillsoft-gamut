@@ -1,4 +1,4 @@
-import { ListProps } from './List';
+import type { ListProps } from './List';
 
 export interface PrivateListProps {
   listType?: ListProps['as'];

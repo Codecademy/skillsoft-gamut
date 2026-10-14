@@ -1,4 +1,5 @@
-import { memo, ReactElement } from 'react';
+import type { ReactElement } from 'react';
+import { memo } from 'react';
 
 import { FlexBox } from '../../..';
 import { ListCol } from '../../../List';
@@ -11,7 +12,7 @@ import {
 } from '../../Controls';
 import { useControlContext } from '../../hooks/useListControls';
 import { useListState } from '../../hooks/useListState';
-import { ColumnConfig, Query } from '../../types';
+import type { ColumnConfig, Query } from '../../types';
 import { StyledHeaderRow } from './elements';
 
 interface HeaderComponent {

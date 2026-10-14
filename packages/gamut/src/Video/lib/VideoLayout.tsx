@@ -1,6 +1,6 @@
 import { useCurrentMode } from '@skillsoft/gamut-styles';
 import { DefaultVideoLayout } from '@vidstack/react/player/layouts/default';
-import {
+import type {
   DefaultLayoutTranslations,
   ThumbnailSrc,
 } from '@vidstack/react/types/vidstack';

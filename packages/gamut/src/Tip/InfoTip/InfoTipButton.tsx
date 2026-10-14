@@ -2,16 +2,14 @@ import {
   MiniInfoCircleIcon,
   MiniInfoOutlineIcon,
 } from '@skillsoft/gamut-icons';
-import { ComponentProps, forwardRef } from 'react';
+import type { ComponentProps } from 'react';
+import { forwardRef } from 'react';
 
 import { createButtonComponent } from '../../Button/shared';
-import { ButtonBaseElements } from '../../ButtonBase/ButtonBase';
-import { InfoTipProps } from '.';
-import {
-  infoButtonStates,
-  InfoButtonStatesProps,
-  infoButtonStyles,
-} from './styles';
+import type { ButtonBaseElements } from '../../ButtonBase/ButtonBase';
+import type { InfoTipProps } from '.';
+import type { InfoButtonStatesProps } from './styles';
+import { infoButtonStates, infoButtonStyles } from './styles';
 
 const InfoTipButtonBase = createButtonComponent<InfoButtonStatesProps>(
   infoButtonStyles,

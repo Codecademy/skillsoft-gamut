@@ -1,8 +1,8 @@
-import * as React from 'react';
+import type * as React from 'react';
 import { Controller } from 'react-hook-form';
 
 import { Checkbox } from '../../../Form';
-import { BaseFormInputProps, GridFormCheckboxField } from '../../types';
+import type { BaseFormInputProps, GridFormCheckboxField } from '../../types';
 
 export interface GridFormCheckboxInputProps extends BaseFormInputProps {
   field: GridFormCheckboxField;

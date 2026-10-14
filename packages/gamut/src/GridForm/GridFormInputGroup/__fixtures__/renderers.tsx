@@ -1,5 +1,5 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
-import * as React from 'react';
+import type * as React from 'react';
 
 import { FormContext } from '../../__fixtures__/helpers';
 import {
@@ -10,7 +10,8 @@ import {
   stubTextareaField,
   stubTextField,
 } from '../../__tests__/stubs';
-import { GridFormInputGroup, GridFormInputGroupProps } from '..';
+import type { GridFormInputGroupProps } from '..';
+import { GridFormInputGroup } from '..';
 import { GridFormCheckboxInput } from '../GridFormCheckboxInput';
 import { GridFormFileInput } from '../GridFormFileInput';
 import { GridFormRadioGroupInput } from '../GridFormRadioGroupInput';

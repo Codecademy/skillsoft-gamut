@@ -1,5 +1,5 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
-import * as React from 'react';
+import type * as React from 'react';
 
 import { Video } from '..';
 

@@ -1,7 +1,8 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
 import { fireEvent } from '@testing-library/react';
 
-import { Overlay, OverlayProps } from '..';
+import type { OverlayProps } from '..';
+import { Overlay } from '..';
 
 const OverlayTest = (props?: Partial<OverlayProps>) => {
   return (

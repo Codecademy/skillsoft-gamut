@@ -1,4 +1,4 @@
-import {
+import type {
   DefaultVideoLayoutProps,
   DefaultVideoLayoutSlots,
 } from '@vidstack/react/player/layouts/default';

@@ -1,10 +1,10 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
 import { fireEvent } from '@testing-library/dom';
 import { act } from '@testing-library/react';
-import * as React from 'react';
+import type * as React from 'react';
 
 import { Checkbox, Input } from '../../Form';
-import { WithChildrenProp } from '../../utils';
+import type { WithChildrenProp } from '../../utils';
 import { ConnectedForm } from '../ConnectedForm';
 import { useDebouncedField, useFormState } from '../utils';
 

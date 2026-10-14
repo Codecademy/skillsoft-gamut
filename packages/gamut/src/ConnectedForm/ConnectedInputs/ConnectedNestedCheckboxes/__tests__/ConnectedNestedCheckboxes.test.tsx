@@ -4,7 +4,7 @@ import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { ConnectedForm, ConnectedFormGroup, SubmitButton } from '../../..';
-import { NestedConnectedCheckboxOption } from '../../types';
+import type { NestedConnectedCheckboxOption } from '../../types';
 import { ConnectedNestedCheckboxes } from '../index';
 
 const mockOptions: NestedConnectedCheckboxOption[] = [

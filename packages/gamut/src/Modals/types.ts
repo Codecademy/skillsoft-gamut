@@ -1,9 +1,9 @@
-import { ComponentProps, Ref } from 'react';
-import * as React from 'react';
+import type { ComponentProps, Ref } from 'react';
+import type * as React from 'react';
 
-import { OverlayProps } from '../Overlay';
-import { TipCenterAlignment } from '../Tip/shared/types';
-import { ModalContainer } from './elements';
+import type { OverlayProps } from '../Overlay';
+import type { TipCenterAlignment } from '../Tip/shared/types';
+import type { ModalContainer } from './elements';
 
 export interface ModalOverlayProps
   extends Pick<

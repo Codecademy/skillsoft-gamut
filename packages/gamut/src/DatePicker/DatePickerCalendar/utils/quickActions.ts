@@ -1,6 +1,6 @@
-import { CalendarQuickAction } from '../../sharedTypes';
+import type { CalendarQuickAction } from '../../sharedTypes';
 import { stringifyLocale } from '../../utils/locale';
-import { DatePickerTranslations } from '../../utils/translations';
+import type { DatePickerTranslations } from '../../utils/translations';
 import { capitalizeFirst } from '../Calendar/utils/format';
 
 const getRelativeDisplayText = ({

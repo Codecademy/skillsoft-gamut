@@ -1,5 +1,5 @@
-import { BaseProperty, PropertyValue } from '../types/config';
-import { DirectionalProperties } from '../types/properties';
+import type { BaseProperty, PropertyValue } from '../types/config';
+import type { DirectionalProperties } from '../types/properties';
 
 const SHORTHAND_PROPERTIES = [
   'border',

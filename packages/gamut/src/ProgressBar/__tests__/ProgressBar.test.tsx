@@ -2,7 +2,8 @@ import { DiagonalADense } from '@skillsoft/gamut-patterns';
 import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
 import { render, screen } from '@testing-library/react';
 
-import { ProgressBar, ProgressBarProps } from '..';
+import type { ProgressBarProps } from '..';
+import { ProgressBar } from '..';
 
 const renderView = setupRtl(ProgressBar, {
   percent: 50,
