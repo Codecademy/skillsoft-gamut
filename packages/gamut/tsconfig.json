@@ -14,7 +14,11 @@
     "strictFunctionTypes": false,
     "strictPropertyInitialization": false,
     "noUnusedParameters": false,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "paths": {
+      "~storybook/blocks": ["../.storybook/components/"],
+      "~storybook/argTypes": ["../.storybook/argTypes/"]
+    }
   },
   "files": [],
   "include": [],
@@ -24,6 +28,9 @@
     },
     {
       "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./tsconfig.storybook.json"
     }
   ]
 }
