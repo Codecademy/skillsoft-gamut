@@ -18,21 +18,6 @@ const preview: Preview = {
       container: DocsContainer,
       theme,
     },
-    options: {
-      storySort: {
-        method: 'configure',
-        includeNames: true,
-        order: [
-          'Foundations',
-          'Layouts',
-          'Typography',
-          'Atoms',
-          'Molecules',
-          'Organisms',
-          '*',
-        ],
-      },
-    },
     viewport: {
       options: {
         xs: {

@@ -1,12 +1,15 @@
-import { Box, GridBox } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { Box, GridBox } from '.';
+
 const meta: Meta<typeof GridBox> = {
+  title: 'Containers/Boxes/GridBox',
   component: GridBox,
-  args: { justifyContent: 'space-around' },
+  args: {},
 };
 
 export default meta;
+
 type Story = StoryObj<typeof GridBox>;
 
 export const Default: Story = {
