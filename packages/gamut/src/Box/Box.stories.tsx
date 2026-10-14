@@ -1,12 +1,15 @@
-import { Box } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { Box } from '.';
+
 const meta: Meta<typeof Box> = {
+  title: 'Containers/Boxes/Box',
   component: Box,
   args: {},
 };
 
 export default meta;
+
 type Story = StoryObj<typeof Box>;
 
 export const Default: Story = {
