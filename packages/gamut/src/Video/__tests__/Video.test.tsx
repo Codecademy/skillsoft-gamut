@@ -1,10 +1,6 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
-<<<<<<< HEAD
 import { waitFor } from '@testing-library/react';
-import * as React from 'react';
-=======
 import type * as React from 'react';
->>>>>>> origin
 
 import { Video } from '..';
 

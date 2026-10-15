@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-import { Markdown, Text, TextProps } from '@skillsoft/gamut';
-import { Iframe, MarkdownVideo } from '@skillsoft/gamut/Video';
-=======
 import type { TextProps } from '@skillsoft/gamut';
 import { Markdown, Text } from '@skillsoft/gamut';
->>>>>>> origin
+import { Iframe, MarkdownVideo } from '@skillsoft/gamut/Video';
 import type { Meta, StoryObj } from '@storybook/react';
 
 // `?raw` (Vite built-in) imports the file's contents as a string to feed the
