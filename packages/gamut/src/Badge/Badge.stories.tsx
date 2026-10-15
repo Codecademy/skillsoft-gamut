@@ -1,10 +1,14 @@
-import { Badge, FlexBox } from '@skillsoft/gamut';
+import styled from '@emotion/styled';
 import * as icons from '@skillsoft/gamut-icons';
+import { MiniStarIcon } from '@skillsoft/gamut-icons';
+import { css } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { TertiaryFillExample } from './examples';
+import { Box, FlexBox } from '../Box';
+import { Badge } from '.';
 
 const meta: Meta<typeof Badge> = {
+  title: 'Status/Badge',
   component: Badge,
   args: { children: 'Badge' },
   argTypes: {
@@ -21,6 +25,9 @@ type Story = StoryObj<typeof Badge>;
 
 export const Default: Story = {
   args: {},
+  play: ({ canvas }) => {
+    canvas.getByText('Badge');
+  },
 };
 
 export const Secondary: Story = {
@@ -35,10 +42,19 @@ export const Tertiary: Story = {
   },
 };
 
+const AbsoluteBadge = styled(Badge)(
+  css({ position: 'absolute', top: 12, left: 12 })
+);
+
 export const TertiaryFill: Story = {
-  render: () => {
-    return <TertiaryFillExample />;
-  },
+  render: () => (
+    <Box bg="background-primary" height="30px" pt={16}>
+      <AbsoluteBadge icon={MiniStarIcon} variant="tertiaryFill">
+        Badge
+      </AbsoluteBadge>
+      <Box bg="text" height="100%" width="100%" />
+    </Box>
+  ),
 };
 
 export const Accent: Story = {

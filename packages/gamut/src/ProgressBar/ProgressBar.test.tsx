@@ -1,13 +1,7 @@
-import { DiagonalADense } from '@skillsoft/gamut-patterns';
-import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
+import { MockGamutProvider } from '@skillsoft/gamut-tests';
 import { render, screen } from '@testing-library/react';
 
-import { ProgressBar, ProgressBarProps } from '..';
-
-const renderView = setupRtl(ProgressBar, {
-  percent: 50,
-  variant: 'blue',
-});
+import { ProgressBar, ProgressBarProps } from '.';
 
 describe('ProgressBar', () => {
   describe.each([
@@ -45,34 +39,4 @@ describe('ProgressBar', () => {
       });
     }
   );
-
-  it('does not include percentage visually when size is small', () => {
-    const { view } = renderView({ size: 'small' });
-    /** RTL doesn't differentiate between visible and invisible
-     test so this tests that only the screen reader text renders */
-
-    view.getByText('Progress: 50%');
-  });
-
-  it('includes percentage visually when size is large', () => {
-    const { view } = renderView({ size: 'large' });
-    /** RTL doesn't differentiate between visible and invisible
-     test so this tests that only the screen reader text renders */
-
-    view.getByText('Progress: 50%');
-    expect(view.getByText('50%')).toHaveAttribute('aria-hidden', 'true');
-  });
-
-  it('uses an svg when given a pattern', () => {
-    const { view } = renderView({ pattern: DiagonalADense });
-
-    view.getByRole('img', { hidden: true });
-    view.getByTitle('Diagonal A Dense');
-  });
-
-  it('does not use an svg when not given a pattern', () => {
-    const { view } = renderView();
-
-    expect(view.queryByRole('img', { hidden: true })).toBeNull();
-  });
 });

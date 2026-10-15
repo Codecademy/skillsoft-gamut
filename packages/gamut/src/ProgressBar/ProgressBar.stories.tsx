@@ -1,8 +1,11 @@
-import { ProgressBar } from '@skillsoft/gamut';
 import * as patterns from '@skillsoft/gamut-patterns';
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect } from 'storybook/test';
+
+import { ProgressBar } from '.';
 
 const meta: Meta<typeof ProgressBar> = {
+  title: 'Status/ProgressBar',
   component: ProgressBar,
   args: {
     percent: 50,
@@ -13,6 +16,13 @@ const meta: Meta<typeof ProgressBar> = {
       options: Object.keys(patterns),
       mapping: patterns,
     },
+    variant: {
+      control: 'radio',
+      options: ['default', 'blue', 'yellow'],
+      table: {
+        defaultValue: { summary: 'default' },
+      },
+    },
   },
 };
 
@@ -22,6 +32,11 @@ type Story = StoryObj<typeof ProgressBar>;
 export const Default: Story = {
   args: {
     variant: 'default',
+  },
+  play: async ({ canvas }) => {
+    canvas.getByRole('figure');
+    canvas.getByText('Progress: 50%');
+    await expect(canvas.queryByRole('img', { hidden: true })).toBeNull();
   },
 };
 
@@ -58,6 +73,13 @@ export const Large: Story = {
     percent: 75,
     variant: 'blue',
   },
+  play: async ({ canvas }) => {
+    canvas.getByText('Progress: 75%');
+    await expect(canvas.getByText('75%')).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
+  },
 };
 
 export const XL: Story = {
@@ -90,6 +112,10 @@ export const PatternBackgroundStripesDense: Story = {
     variant: 'blue',
     pattern: patterns.DiagonalADense,
     percent: 33,
+  },
+  play: ({ canvas }) => {
+    canvas.getByRole('img', { hidden: true });
+    canvas.getByTitle('Diagonal A Dense');
   },
 };
 

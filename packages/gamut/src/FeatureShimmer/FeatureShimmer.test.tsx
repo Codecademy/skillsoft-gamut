@@ -1,6 +1,6 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
 
-import { FeatureShimmer } from '..';
+import { FeatureShimmer } from '.';
 
 const mockIntersectionObserver = jest.fn();
 const mockUseReducedMotion = jest.fn();
@@ -19,10 +19,10 @@ describe('FeatureShimmer', () => {
       observe: jest.fn(),
       unobserve: jest.fn(),
       disconnect: jest.fn(),
-      unobserve: jest.fn(),
     });
     window.IntersectionObserver = mockIntersectionObserver;
   });
+
   it('renders shimmer when reduced motion is false', () => {
     mockUseReducedMotion.mockReturnValue(false);
 
@@ -39,14 +39,5 @@ describe('FeatureShimmer', () => {
 
     view.getByText('Testing');
     expect(view.queryByTestId('feature-shimmer')).toBeNull();
-  });
-
-  it('renders shimmer', () => {
-    mockUseReducedMotion.mockReturnValue(false);
-
-    const { view } = renderView();
-
-    view.getByText('Testing');
-    view.getByTestId('feature-shimmer');
   });
 });
