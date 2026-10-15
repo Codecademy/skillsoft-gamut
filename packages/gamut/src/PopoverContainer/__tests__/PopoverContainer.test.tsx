@@ -3,7 +3,7 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 
 import { PopoverContainer } from '..';
-import { PopoverContainerProps } from '../types';
+import type { PopoverContainerProps } from '../types';
 import * as utils from '../utils';
 import {
   createMockDOMRect,

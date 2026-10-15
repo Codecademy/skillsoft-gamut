@@ -6,7 +6,7 @@ import {
   timing,
   variant,
 } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
+import type { StyleProps } from '@skillsoft/variance';
 
 import { Box } from '../../Box';
 import { InteractiveSelectors } from '../../ButtonBase/ButtonBase';
@@ -15,7 +15,7 @@ import {
   tooltipBgColor,
   tooltipVariantStyles,
 } from '../shared/styles/styles';
-import { TipPlacementComponentProps } from '../shared/types';
+import type { TipPlacementComponentProps } from '../shared/types';
 
 const textColor = 'secondary';
 

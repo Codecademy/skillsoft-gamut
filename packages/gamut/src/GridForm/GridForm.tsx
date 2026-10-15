@@ -1,25 +1,28 @@
+import type * as React from 'react';
 import { Fragment, useMemo } from 'react';
-import * as React from 'react';
-import {
+import type {
   DeepPartial,
   DefaultValues,
   Mode,
   SubmitHandler,
 } from 'react-hook-form';
 
-import { ButtonProps } from '../Button';
-import { ConnectedForm, FormContextProps } from '../ConnectedForm';
+import type { ButtonProps } from '../Button';
+import type { FormContextProps } from '../ConnectedForm';
+import { ConnectedForm } from '../ConnectedForm';
 import { FormRequiredText } from '../Form/elements/FormRequiredText';
-import { FormValues } from '../Form/types';
-import { Column, LayoutGrid, LayoutGridProps } from '../Layout';
-import { GridFormButtons, GridFormSubmitProps } from './GridFormButtons';
+import type { FormValues } from '../Form/types';
+import type { LayoutGridProps } from '../Layout';
+import { Column, LayoutGrid } from '../Layout';
+import type { GridFormSubmitProps } from './GridFormButtons';
+import { GridFormButtons } from './GridFormButtons';
 import {
   GridFormContent,
   GridFormSection,
   GridFormSectionBreak,
   GridFormSectionTitle,
 } from './GridFormSections';
-import {
+import type {
   GridFormField,
   GridFormFieldsProps,
   GridFormRequiredTextProps,

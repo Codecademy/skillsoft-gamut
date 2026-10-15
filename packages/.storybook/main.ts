@@ -16,6 +16,10 @@ const config: StorybookConfig = {
       directory: '../styleguide/src/lib',
       files: '**/*.stories.@(js|jsx|ts|tsx)',
     },
+    {
+      directory: '../gamut/src',
+      files: '**/*.stories.@(js|jsx|ts|tsx)',
+    },
   ],
   staticDirs: ['../styleguide/src/static'],
   addons: [
@@ -89,6 +93,14 @@ const config: StorybookConfig = {
         },
         {
           find: '~styleguide/argTypes',
+          replacement: resolve(__dirname, './argTypes'),
+        },
+        {
+          find: '~storybook/blocks',
+          replacement: resolve(__dirname, './components'),
+        },
+        {
+          find: '~storybook/argTypes',
           replacement: resolve(__dirname, './argTypes'),
         },
         {

@@ -1,8 +1,8 @@
-import * as React from 'react';
+import type * as React from 'react';
 import { FocusOn } from 'react-focus-on';
-import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
+import type { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 
-import { WithChildrenProp } from '../utils';
+import type { WithChildrenProp } from '../utils';
 
 const focusOnStyles = {
   /**

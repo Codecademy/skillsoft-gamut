@@ -1,5 +1,6 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
-import { fireEvent, queries, RenderResult } from '@testing-library/react';
+import type { queries, RenderResult } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 
 import { Pagination } from '..';
 

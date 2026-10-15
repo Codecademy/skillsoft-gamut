@@ -1,11 +1,11 @@
 // @vidstack/react and react-player are peer deps of @codecademy/gamut.
 // If they can't be resolved, install them: yarn add @vidstack/react react-player
-import { PlayerSrc, TrackProps } from '@vidstack/react';
-import {
+import type { PlayerSrc, TrackProps } from '@vidstack/react';
+import type {
   DefaultLayoutTranslations,
   ThumbnailSrc,
 } from '@vidstack/react/types/vidstack';
-import * as React from 'react';
+import type * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 
 import { Box } from '../Box';

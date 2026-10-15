@@ -1,28 +1,26 @@
 import styled from '@emotion/styled';
-import cx from 'classnames';
 import HtmlToReact from 'html-to-react';
 import { marked } from 'marked';
 import { PureComponent } from 'react';
-import * as React from 'react';
+import { Table } from 'react-aria-components';
 import sanitizeMarkdown from 'sanitize-markdown';
 
-import { omitProps } from '../utils/omitProps';
+import { omitProps } from '../utils';
+import type {
+  MarkdownOverrideSetting,
+  MarkdownOverrideSettings,
+} from './libs/overrides';
 import {
   createCodeBlockOverride,
   createInputOverride,
   createTagOverride,
   createVideoOverride,
-  MarkdownOverrideSetting,
-  MarkdownOverrideSettings,
   standardOverrides,
 } from './libs/overrides';
 import { MarkdownCheckbox } from './libs/overrides/Checkbox';
 import { Details } from './libs/overrides/Details';
-import {
-  MarkdownAnchor,
-  MarkdownAnchorProps,
-} from './libs/overrides/MarkdownAnchor';
-import { Table } from './libs/overrides/Table';
+import type { MarkdownAnchorProps } from './libs/overrides/MarkdownAnchor';
+import { MarkdownAnchor } from './libs/overrides/MarkdownAnchor';
 import { createPreprocessingInstructions } from './libs/preprocessing';
 import { defaultSanitizationConfig } from './libs/sanitizationConfig';
 import { markdownStyles } from './styles';

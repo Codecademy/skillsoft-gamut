@@ -1,8 +1,9 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
 import { fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
+import type * as React from 'react';
 
-import { FocusTrap, FocusTrapProps } from '..';
+import type { FocusTrapProps } from '..';
+import { FocusTrap } from '..';
 
 const FocusTrapContainer: React.FC<Partial<FocusTrapProps>> = (props) => {
   return (

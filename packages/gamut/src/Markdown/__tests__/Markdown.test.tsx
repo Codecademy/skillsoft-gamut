@@ -3,7 +3,7 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import * as React from 'react';
+import type * as React from 'react';
 
 import { Iframe, MarkdownVideo } from '../../Video';
 import { Markdown } from '../index';

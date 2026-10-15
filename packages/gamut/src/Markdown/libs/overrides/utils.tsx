@@ -1,6 +1,6 @@
 import find from 'lodash/find';
 
-import { HTMLToReactNode } from '.';
+import type { HTMLToReactNode } from '.';
 
 export const isCheckboxParent = (node: HTMLToReactNode, type: string) =>
   Boolean(

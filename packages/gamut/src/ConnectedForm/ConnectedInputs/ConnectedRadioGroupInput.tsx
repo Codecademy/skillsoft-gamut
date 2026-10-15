@@ -1,7 +1,7 @@
-import * as React from 'react';
+import type * as React from 'react';
 
 import { ConnectedRadio, ConnectedRadioGroup } from '.';
-import { ConnectedRadioGroupInputProps } from './types';
+import type { ConnectedRadioGroupInputProps } from './types';
 
 export const ConnectedRadioGroupInput: React.FC<
   ConnectedRadioGroupInputProps
