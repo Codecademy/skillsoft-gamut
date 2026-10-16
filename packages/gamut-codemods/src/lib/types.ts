@@ -34,6 +34,12 @@ export interface Edit {
 interface MigrationBase {
   name: string;
   description: string;
+  /*
+    Checked once per run, before any file is touched. Return a reason to
+    skip this migration for the whole run (the CLI prints it and notes
+    `skipped:<name>`), or null to run it.
+  */
+  skipReason?(roots: string[]): string | null;
 }
 
 /*

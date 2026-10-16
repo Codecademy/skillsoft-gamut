@@ -47,6 +47,12 @@ export interface Manifest {
   removedPackages: Record<string, RemovedPackage>;
   /* Version range written to package.json, keyed by NEW package name. */
   targetVersions: Record<string, string>;
+  /*
+    Newest release of each OLD package the new one is known to match,
+    keyed by OLD name. A consumer already on something newer may use APIs
+    the new package doesn't have yet; package-json warns.
+  */
+  sourceVersions: Record<string, string>;
   movedExports: MovedExport[];
   deepImports: DeepImport[];
   /* ESLint plugin prefix, for rule keys, `plugin:` extends, and comments. */
@@ -62,6 +68,32 @@ export const matchPackage = (specifier: string, pkg: string) => {
   if (specifier === pkg) return '';
   if (specifier.startsWith(`${pkg}/`)) return specifier.slice(pkg.length);
   return null;
+};
+
+/*
+  The lowest x.y.z a package.json range allows, or null for anything that
+  isn't a plain version, `^`/`~`/`>=` range, or `npm:` alias (`*`, URLs,
+  `workspace:`). Prerelease tags are ignored.
+*/
+export const minVersion = (range: string) => {
+  const match =
+    /^(?:npm:(?:@[^/]+\/)?[^@]+@)?(?:\^|~|>=)?\s*v?(\d+)\.(\d+)\.(\d+)/.exec(
+      range.trim()
+    );
+  return match ? match.slice(1, 4).map(Number) : null;
+};
+
+const parseVersion = (version: string) => version.split('.').map(Number);
+
+/* True when `range` can't be satisfied by `version` or anything older. */
+export const isNewerThan = (range: string, version: string) => {
+  const min = minVersion(range);
+  if (!min) return false;
+  const max = parseVersion(version);
+  for (let i = 0; i < 3; i += 1) {
+    if (min[i] !== max[i]) return min[i] > max[i];
+  }
+  return false;
 };
 
 /* The new name for an old specifier, keeping any subpath. */

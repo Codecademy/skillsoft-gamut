@@ -1,3 +1,4 @@
+import { isNewerThan } from '../../lib/manifest';
 import type { FileMigration } from '../../lib/types';
 
 /*
@@ -11,6 +12,9 @@ import type { FileMigration } from '../../lib/types';
   and overwriting that with a range that isn't published yet breaks
   install. A `*` peer range stays `*`: it means "whatever the host has",
   and narrowing it is a decision for the package owner.
+
+  A range newer than manifest.sourceVersions gets a warning: the code may
+  already use APIs that only exist upstream, which no rename can fix.
 */
 
 const FIELDS = [
@@ -62,6 +66,13 @@ export const packageJson: FileMigration = {
       for (const [from, { to }] of Object.entries(manifest.packages)) {
         if (!(from in next)) continue;
         const range = next[from];
+        const covered = manifest.sourceVersions[from];
+        if (covered && isNewerThan(range, covered)) {
+          warn(
+            `${field}: '${from}@${range}' is newer than ${covered}, the last release ${to} matches. Code written against the newer release may not type-check until ${to} catches up.`
+          );
+          note('newer-than-source');
+        }
         delete next[from];
         touched = true;
         if (to in next) continue;

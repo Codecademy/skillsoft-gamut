@@ -5,6 +5,7 @@ import path from 'node:path';
 
 import jscodeshift from 'jscodeshift';
 
+import { findFlatEslintConfig } from './lib/eslint';
 import { dirtyTreeReason } from './lib/git';
 import { findLeftovers, walk } from './lib/leftovers';
 import {
@@ -40,6 +41,8 @@ interface Options {
   dry: boolean;
   force: boolean;
   only?: string;
+  /* Filled in by the CLI from each migration's skipReason, not a flag. */
+  skip?: string;
   report: boolean;
 }
 
@@ -74,8 +77,10 @@ const runFileMigrations = (
   note: (key: string) => void
 ) => {
   const only = opts.only ? new Set(opts.only.split(',')) : null;
+  const skip = new Set(opts.skip ? opts.skip.split(',') : []);
   const active = preset.migrations.filter(
-    (m): m is FileMigration => m.kind === 'file' && (!only || only.has(m.name))
+    (m): m is FileMigration =>
+      m.kind === 'file' && (!only || only.has(m.name)) && !skip.has(m.name)
   );
   let changed = 0;
 
@@ -94,7 +99,8 @@ const runFileMigrations = (
                 source: code,
                 migrations: activeSourceMigrations(
                   preset.migrations,
-                  opts.only
+                  opts.only,
+                  opts.skip
                 ),
                 manifest: preset.manifest,
                 warnFor: (name) => (_node, message) =>
@@ -164,6 +170,16 @@ export const main = async (argv: string[]) => {
     }
   }
 
+  const notes = new Set<string>();
+  const skipped = preset.migrations.flatMap((m) => {
+    const reason = m.skipReason?.(opts.paths);
+    if (!reason) return [];
+    console.log(`[${m.name}] skipped: ${reason}`);
+    notes.add(`skipped:${m.name}`);
+    return [m.name];
+  });
+  opts.skip = skipped.join(',') || undefined;
+
   const notesDir = fs.mkdtempSync(path.join(os.tmpdir(), 'gamut-codemods-'));
   try {
     heading('source files');
@@ -173,6 +189,7 @@ export const main = async (argv: string[]) => {
       {
         preset: preset.name,
         only: opts.only,
+        skip: opts.skip,
         notesDir,
         dry: opts.dry,
         extensions: 'ts,tsx,js,jsx,mjs,cjs,mts,cts',
@@ -184,7 +201,9 @@ export const main = async (argv: string[]) => {
       }
     );
 
-    const notes = new Set(fs.readdirSync(notesDir).map(decodeURIComponent));
+    fs.readdirSync(notesDir).forEach((key) =>
+      notes.add(decodeURIComponent(key))
+    );
 
     heading('package.json and .eslintrc');
     const changed = runFileMigrations(preset, opts, (key) => notes.add(key));
@@ -195,7 +214,9 @@ export const main = async (argv: string[]) => {
         'leftovers skipped in --dry (nothing was written, so everything would show up)'
       );
     } else if (opts.report) {
-      const hits = findLeftovers(opts.paths, preset.manifest);
+      const hits = findLeftovers(opts.paths, preset.manifest, {
+        eslintRuleKeys: !findFlatEslintConfig(opts.paths),
+      });
       heading(`leftovers (${hits.length})`);
       hits.forEach((hit) =>
         console.log(`${hit.file}:${hit.line}  ${hit.text}`)

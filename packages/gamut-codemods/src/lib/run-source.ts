@@ -97,12 +97,16 @@ export const mentionsOldNames = (manifest: Manifest, source: string) =>
     `${manifest.eslintPlugin.from}/`,
   ].some((name) => source.includes(name));
 
+/* `only` and `skip` are comma-separated migration names. */
 export const activeSourceMigrations = (
   migrations: { kind: string; name: string }[],
-  only?: string
+  only?: string,
+  skip?: string
 ) => {
   const names = only ? new Set(only.split(',')) : null;
+  const skipped = new Set(skip ? skip.split(',') : []);
   return migrations.filter(
-    (m) => m.kind !== 'file' && (!names || names.has(m.name))
+    (m) =>
+      m.kind !== 'file' && (!names || names.has(m.name)) && !skipped.has(m.name)
   ) as SourceMigration[];
 };

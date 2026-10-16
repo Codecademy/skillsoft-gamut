@@ -4,8 +4,11 @@ import os from 'node:os';
 import path from 'node:path';
 
 import { parseArgs } from '../cli';
+import { findFlatEslintConfig } from '../lib/eslint';
 import { dirtyTreeReason } from '../lib/git';
 import { findLeftovers } from '../lib/leftovers';
+import { isNewerThan, minVersion } from '../lib/manifest';
+import { eslintComments } from '../migrations/eslint-comments';
 import { validatePreset } from '../presets';
 import { scopeSwap } from '../presets/scope-swap';
 import { manifest } from '../presets/scope-swap/manifest';
@@ -105,5 +108,93 @@ describe('findLeftovers', () => {
       ].join('\n')
     );
     expect(findLeftovers([dir], manifest).map((h) => h.line)).toEqual([1]);
+  });
+
+  it('reads editor config and extensionless scripts', () => {
+    const dir = tmp();
+    const line = "require('@codecademy/gamut-kit/package.json');";
+    fs.writeFileSync(
+      path.join(dir, 'sync-deps'),
+      `#!/usr/bin/env node\n${line}`
+    );
+    fs.writeFileSync(path.join(dir, 'LICENSE'), line);
+    fs.writeFileSync(path.join(dir, 'rules.mdc'), line);
+    fs.writeFileSync(path.join(dir, 'react.code-snippets'), line);
+    expect(
+      findLeftovers([dir], manifest)
+        .map((h) => path.basename(h.file))
+        .sort()
+    ).toEqual(['react.code-snippets', 'rules.mdc', 'sync-deps']);
+  });
+
+  it('skips quoted rule keys when told the repo uses a flat config', () => {
+    const dir = tmp();
+    fs.writeFileSync(
+      path.join(dir, 'eslint.config.ts'),
+      [
+        "rules: { 'gamut/no-inline-style': 'error' },",
+        "import gamut from '@codecademy/eslint-plugin-gamut';",
+        "import gamut from 'eslint-plugin-gamut';",
+      ].join('\n')
+    );
+    expect(findLeftovers([dir], manifest).map((h) => h.line)).toEqual([1, 3]);
+    expect(
+      findLeftovers([dir], manifest, { eslintRuleKeys: false }).map(
+        (h) => h.line
+      )
+    ).toEqual([3]);
+  });
+});
+
+describe('eslint-comments skipReason', () => {
+  it('runs for legacy .eslintrc repos', () => {
+    const dir = tmp();
+    fs.writeFileSync(path.join(dir, '.eslintrc.json'), '{}');
+    expect(eslintComments.skipReason?.([dir])).toBeNull();
+  });
+
+  it('skips when a flat config is inside the target', () => {
+    const dir = tmp();
+    fs.mkdirSync(path.join(dir, 'libs', 'a'), { recursive: true });
+    fs.writeFileSync(path.join(dir, 'libs', 'a', 'eslint.config.mjs'), '');
+    expect(findFlatEslintConfig([dir])).toBe(
+      path.join(dir, 'libs', 'a', 'eslint.config.mjs')
+    );
+    expect(eslintComments.skipReason?.([dir])).toMatch(/flat ESLint config/);
+  });
+
+  it('skips when the target is under a flat-config repo', () => {
+    const dir = tmp();
+    fs.writeFileSync(path.join(dir, 'eslint.config.ts'), '');
+    fs.mkdirSync(path.join(dir, 'src'));
+    fs.writeFileSync(path.join(dir, 'src', 'a.tsx'), '');
+    expect(findFlatEslintConfig([path.join(dir, 'src')])).toBe(
+      path.join(dir, 'eslint.config.ts')
+    );
+    expect(findFlatEslintConfig([path.join(dir, 'src', 'a.tsx')])).toBe(
+      path.join(dir, 'eslint.config.ts')
+    );
+  });
+});
+
+describe('isNewerThan', () => {
+  it.each([
+    ['74.0.0', '73.6.1', true],
+    ['^73.7.0', '73.6.1', true],
+    ['~73.6.2', '73.6.1', true],
+    ['npm:@codecademy/gamut@74.0.0', '73.6.1', true],
+    ['73.6.1', '73.6.1', false],
+    ['^73.0.0', '73.6.1', false],
+    ['74.0.0-alpha.1', '74.0.0', false],
+    ['*', '73.6.1', false],
+    ['workspace:*', '73.6.1', false],
+    ['https://example.com/gamut.tgz', '73.6.1', false],
+  ])('%s vs %s -> %s', (range, version, expected) => {
+    expect(isNewerThan(range, version)).toBe(expected);
+  });
+
+  it('reads the lowest version a range allows', () => {
+    expect(minVersion('>= 1.2.3')).toEqual([1, 2, 3]);
+    expect(minVersion('latest')).toBeNull();
   });
 });

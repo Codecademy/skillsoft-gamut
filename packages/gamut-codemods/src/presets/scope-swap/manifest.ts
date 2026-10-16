@@ -73,6 +73,22 @@ export const manifest: Manifest = {
     '@skillsoft/eslint-plugin-gamut': '^0.0.1',
   },
 
+  /*
+    The upstream @codecademy release each package was forked from (the top
+    of its CHANGELOG.md before any @skillsoft entries). Bump these when
+    upstream changes are synced in.
+  */
+  sourceVersions: {
+    '@codecademy/gamut': '73.6.1',
+    '@codecademy/gamut-styles': '21.2.0',
+    '@codecademy/gamut-icons': '10.2.0',
+    '@codecademy/gamut-illustrations': '1.1.0',
+    '@codecademy/gamut-patterns': '1.1.0',
+    '@codecademy/gamut-tests': '7.1.0',
+    '@codecademy/variance': '1.1.0',
+    'eslint-plugin-gamut': '3.1.0',
+  },
+
   movedExports: [
     {
       from: '@codecademy/gamut',

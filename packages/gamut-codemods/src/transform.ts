@@ -18,6 +18,8 @@ import { getPreset } from './presets';
   Options:
     preset:   preset name (default: scope-swap)
     only:     comma-separated migration names to run (default: all)
+    skip:     comma-separated migration names the CLI ruled out for this
+              run (see Migration.skipReason)
     notesDir: directory the CLI reads checklist notes back from. jscodeshift
               only aggregates api.stats in --dry runs, so workers leave an
               empty marker file per note key instead.
@@ -27,6 +29,7 @@ import { getPreset } from './presets';
 export interface TransformOptions {
   preset?: string;
   only?: string;
+  skip?: string;
   notesDir?: string;
   onWarn?: (message: string) => void;
 }
@@ -58,7 +61,11 @@ export default function transform(
   const source = runSourceMigrations({
     j: api.jscodeshift,
     source: file.source,
-    migrations: activeSourceMigrations(preset.migrations, options.only),
+    migrations: activeSourceMigrations(
+      preset.migrations,
+      options.only,
+      options.skip
+    ),
     manifest,
     warnFor,
     note,

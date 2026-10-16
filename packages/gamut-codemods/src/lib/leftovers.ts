@@ -21,8 +21,22 @@ export const SKIP_DIRS = new Set([
 ]);
 const SKIP_FILES =
   /(^|\/)(yarn\.lock|package-lock\.json|pnpm-lock\.yaml|CHANGELOG\.md)$/;
+/* .mdc is Cursor rules; .code-snippets is VS Code snippets (JSONC). */
 const TEXT_EXT =
-  /\.(m?[jt]sx?|c[jt]s|json|ya?ml|md|mdx|html|scss|css)$|(^|\/)\.eslintrc$/;
+  /\.(m?[jt]sx?|c[jt]s|json|ya?ml|md|mdx|mdc|html|scss|css|code-snippets)$|(^|\/)\.eslintrc$/;
+
+/* Extensionless executables, like tools/script/sync-gamut-deps. */
+const isScript = (file: string) => {
+  if (path.basename(file).includes('.')) return false;
+  const fd = fs.openSync(file, 'r');
+  try {
+    const head = Buffer.alloc(2);
+    fs.readSync(fd, head, 0, 2, 0);
+    return head.toString() === '#!';
+  } finally {
+    fs.closeSync(fd);
+  }
+};
 
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&');
 
@@ -35,18 +49,22 @@ const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&');
   even outside files the parser reads (docs, JSON, Flow). Only the packages
   in manifest.packages are checked. Removed and unrelated `@codecademy`
   packages aren't ours to rewrite.
+
+  Quoted `gamut/` rule keys and `plugin:gamut/` only count when
+  eslintRuleKeys is set. In a flat config they're correct as written.
 */
-const oldNamesPattern = (manifest: Manifest) => {
+const oldNamesPattern = (manifest: Manifest, eslintRuleKeys: boolean) => {
   const published = Object.keys(manifest.packages);
   const names = [...published, ...Object.keys(manifest.removedPackages)]
     .sort((a, b) => b.length - a.length)
     .map(escape);
   const dist = published.map(escape).join('|');
   const prefix = escape(manifest.eslintPlugin.from);
+  const ruleKeys = eslintRuleKeys ? `|plugin:${prefix}/|["'\`]${prefix}/` : '';
   return new RegExp(
     `(?<![\\w@/-])(?:${names.join(
       '|'
-    )})(?![\\w-])|plugin:${prefix}/|["'\`]${prefix}/|(?<![\\w@/-])(?:${dist})/dist(?![\\w-])`
+    )})(?![\\w-])${ruleKeys}|(?<![\\w@/-])(?:${dist})/dist(?![\\w-])`
   );
 };
 
@@ -66,13 +84,18 @@ export interface Leftover {
   text: string;
 }
 
-export const findLeftovers = (roots: string[], manifest: Manifest) => {
-  const pattern = oldNamesPattern(manifest);
+export const findLeftovers = (
+  roots: string[],
+  manifest: Manifest,
+  { eslintRuleKeys = true }: { eslintRuleKeys?: boolean } = {}
+) => {
+  const pattern = oldNamesPattern(manifest, eslintRuleKeys);
   const hits: Leftover[] = [];
   for (const root of roots) {
     const files = fs.statSync(root).isDirectory() ? walk(root) : [root];
     for (const file of files) {
-      if (SKIP_FILES.test(file) || !TEXT_EXT.test(file)) continue;
+      if (SKIP_FILES.test(file)) continue;
+      if (!TEXT_EXT.test(file) && !isScript(file)) continue;
       fs.readFileSync(file, 'utf8')
         .split('\n')
         .forEach((text, i) => {
