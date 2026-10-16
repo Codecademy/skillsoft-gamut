@@ -7759,11 +7759,11 @@ __metadata:
     get-nonce: "npm:^1.0.0"
     lodash: "npm:^4.17.23"
     polished: "npm:^4.1.2"
-    stylis: "npm:^4.2.0"
   peerDependencies:
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     react: ^17.0.2 || ^18.3.0 || ^19.0.0
+    stylis: ^4.0.7
   languageName: unknown
   linkType: soft
 
@@ -23410,7 +23410,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylis@npm:^4.2.0, stylis@npm:^4.3.0":
+"stylis@npm:^4.3.0":
   version: 4.4.0
   resolution: "stylis@npm:4.4.0"
   checksum: 10c0/259be096d90dfbfe903c8656dcb7591e52a421e577e950ef42ebd9ca02f387623a1165dd08761492fb6e92a7a562d62a53a694a10b0a2f6dcd7a0db107b4bf55
