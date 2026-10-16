@@ -95,6 +95,7 @@ export const manifest: Manifest = {
       to: '@codecademy/gamut/Video',
       names: ['Video', 'VideoProps'],
       note: 'Video is no longer on the root barrel. See packages/gamut/src/index.tsx.',
+      checklist: 'video-peers',
     },
   ],
 

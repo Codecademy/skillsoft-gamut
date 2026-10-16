@@ -22,6 +22,8 @@ export interface MovedExport {
   to: string;
   names: string[];
   note: string;
+  /* Checklist key (see the preset) to print when this rule moves anything. */
+  checklist?: string;
 }
 
 export interface DeepImport {

@@ -4,6 +4,7 @@ import { eslintComments } from '../../migrations/eslint-comments';
 import { eslintConfig } from '../../migrations/eslint-config';
 import { mdxImports } from '../../migrations/mdx-imports';
 import { mfShared } from '../../migrations/mf-shared';
+import { markdownVideoOverrides } from '../../migrations/markdown-video-overrides';
 import { movedExports } from '../../migrations/moved-exports';
 import { nextConfig } from '../../migrations/next-config';
 import { packageJson } from '../../migrations/package-json';
@@ -19,6 +20,7 @@ export const scopeSwap: Preset = {
   migrations: [
     deepImports,
     movedExports,
+    markdownVideoOverrides,
     mfShared,
     eslintComments,
     /* Last: everything above matches on @codecademy names. */
@@ -38,6 +40,8 @@ export const scopeSwap: Preset = {
   conditionalChecklist: {
     'removed:@codecademy/gamut-kit':
       'gamut-kit is gone. Delete anything that reads it for versions, such as a sync-gamut-deps script.',
+    'video-peers':
+      'Video needs two peer dependencies that Gamut no longer installs for you: `@vidstack/react` and `react-player`. Gamut supports @vidstack/react 1.12.x only (its npm `latest` tag is 0.6.x). Install them: `yarn add @vidstack/react@~1.12.12 react-player@^3.4.0`.',
     'tsconfig-no-dom':
       'Some tsconfig files set "lib" without "dom" (see the tsconfig-dom warnings). Video no longer loads with the root import, and it was supplying the DOM types. Add "dom" to those files if type-checking fails on document, HTMLElement, ResizeObserver, and so on.',
     'newer-than-source':

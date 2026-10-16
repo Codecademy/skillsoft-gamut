@@ -209,7 +209,7 @@ export const movedExports: AstMigration = {
   kind: 'ast',
   description:
     'Move exports that left a package root (e.g. Video) to their new subpath.',
-  run({ j, root, manifest, warn }) {
+  run({ j, root, manifest, warn, note }) {
     let changed = false;
     for (const rule of manifest.movedExports) {
       const paths = [
@@ -220,9 +220,12 @@ export const movedExports: AstMigration = {
           .find(j.ExportNamedDeclaration, { source: { value: rule.from } })
           .paths(),
       ] as ASTPath<Declaration>[];
+      let moved = false;
       for (const p of paths) {
-        changed = moveSpecifiers(j, root, p, rule) || changed;
+        moved = moveSpecifiers(j, root, p, rule) || moved;
       }
+      if (moved && rule.checklist) note(rule.checklist);
+      changed = moved || changed;
       warnAboutUnsafeShapes(j, root, rule, warn);
     }
     return changed;

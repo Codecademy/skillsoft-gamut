@@ -22,7 +22,11 @@ describe('validatePreset', () => {
   });
 
   it('rejects an ast migration listed after a splice one', () => {
-    const [deep, moved, mf] = scopeSwap.migrations;
+    const [deep, moved, mf] = [
+      'deep-imports',
+      'moved-exports',
+      'mf-shared',
+    ].map((name) => scopeSwap.migrations.find((m) => m.name === name)!);
     expect(() =>
       validatePreset({ ...scopeSwap, migrations: [deep, mf, moved] })
     ).toThrow(/moved-exports/);
