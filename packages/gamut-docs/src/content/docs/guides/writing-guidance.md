@@ -149,7 +149,7 @@ import { LinkTo } from '~styleguide/blocks';
 Use a plain Markdown link for something like an external tool or reference — most renderers already open these in a new tab:
 
 ```markdown
-[GitHub Repository](https://github.com/Codecademy/gamut)
+[GitHub Repository](https://github.com/Codecademy/skillsoft-gamut)
 ```
 
 For more control over the link itself — for example, inside a component that needs an `Anchor` — pass `target="_blank"` together with `rel="noreferrer"` for security, but don't force that behavior unless it's actually needed; a reader can already choose to open a link in a new tab themselves.
