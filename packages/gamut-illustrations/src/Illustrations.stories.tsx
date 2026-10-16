@@ -1,8 +1,9 @@
-import type { IllustrationProps } from '@skillsoft/gamut-illustrations';
-import * as illustrations from '@skillsoft/gamut-illustrations';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ImageGallery } from '~styleguide/blocks';
+import { ImageGallery } from '~storybook/blocks';
+
+import type { IllustrationProps } from '.';
+import * as illustrations from '.';
 
 type IllustrationComponentProps = IllustrationProps & {
   illustration: React.ComponentType<IllustrationProps>;
@@ -16,6 +17,7 @@ const IllustrationComponent: React.FC<IllustrationComponentProps> = ({
 };
 
 const meta: Meta<typeof IllustrationComponent> = {
+  title: 'Media & Assets/Illustrations',
   component: IllustrationComponent,
   argTypes: {
     illustration: {
