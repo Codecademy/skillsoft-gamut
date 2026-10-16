@@ -3,7 +3,7 @@ title: Overview
 description: Task-oriented recipes for things you already know you need to build.
 ---
 
-How-to guides for cross-cutting tasks that don't have a home under a single component.
+How-to guides for common tasks that users might encounter.
 
 - [Theming your app](/guides/theming-your-app/)
 - [Creating a custom theme](/guides/creating-a-custom-theme/)
