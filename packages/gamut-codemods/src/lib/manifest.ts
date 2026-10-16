@@ -98,6 +98,17 @@ export const isNewerThan = (range: string, version: string) => {
   return false;
 };
 
+/* True when every version `range` allows is `version` or newer. */
+export const isAtLeast = (range: string, version: string) => {
+  const min = minVersion(range);
+  if (!min) return false;
+  const floor = parseVersion(version);
+  for (let i = 0; i < 3; i += 1) {
+    if (min[i] !== floor[i]) return min[i] > floor[i];
+  }
+  return true;
+};
+
 /* The new name for an old specifier, keeping any subpath. */
 export const renameSpecifier = (manifest: Manifest, value: string) => {
   for (const [from, { to }] of Object.entries(manifest.packages)) {

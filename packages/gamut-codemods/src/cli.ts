@@ -172,7 +172,7 @@ export const main = async (argv: string[]) => {
 
   const notes = new Set<string>();
   const skipped = preset.migrations.flatMap((m) => {
-    const reason = m.skipReason?.(opts.paths);
+    const reason = m.skipReason?.(opts.paths, preset.manifest);
     if (!reason) return [];
     console.log(`[${m.name}] skipped: ${reason}`);
     notes.add(`skipped:${m.name}`);

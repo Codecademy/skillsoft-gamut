@@ -39,7 +39,7 @@ interface MigrationBase {
     skip this migration for the whole run (the CLI prints it and notes
     `skipped:<name>`), or null to run it.
   */
-  skipReason?(roots: string[]): string | null;
+  skipReason?(roots: string[], manifest: Manifest): string | null;
 }
 
 /*

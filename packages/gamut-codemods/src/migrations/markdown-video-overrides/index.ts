@@ -1,6 +1,8 @@
 import type { ASTPath, JSXAttribute, JSXOpeningElement } from 'jscodeshift';
 
+import { isAtLeast, minVersion } from '../../lib/manifest';
 import { nameOf } from '../../lib/module-strings';
+import { findPackageRanges } from '../../lib/package-ranges';
 import type { AstMigration, Warn } from '../../lib/types';
 
 /*
@@ -25,6 +27,12 @@ import type { AstMigration, Warn } from '../../lib/types';
 */
 
 const MARKDOWN_MODULE = '@codecademy/gamut';
+/*
+  The upstream release that made this change. A repo already on it has
+  either passed the overrides or left them out on purpose, so adding them
+  would turn iframes and videos back on where they were meant to be off.
+*/
+const UPSTREAM_SINCE = '74.0.0';
 const VIDEO_MODULE = '@codecademy/gamut/Video';
 
 const OVERRIDES = [
@@ -102,6 +110,16 @@ export const markdownVideoOverrides: AstMigration = {
   kind: 'ast',
   description:
     'Pass iframeOverride / videoOverride to <Markdown> so iframes and videos still render through Video, and drop the removed skipDefaultOverrides.iframe / .video keys.',
+  skipReason(roots) {
+    /* `*` peers, URLs, and workspace: ranges say nothing about the version. */
+    const ranges = findPackageRanges(roots, MARKDOWN_MODULE).filter(
+      (range) => minVersion(range) !== null
+    );
+    return ranges.length > 0 &&
+      ranges.every((range) => isAtLeast(range, UPSTREAM_SINCE))
+      ? `${MARKDOWN_MODULE} is already at ${UPSTREAM_SINCE} or newer, which made this change upstream.`
+      : null;
+  },
   run({ j, root, warn, note }) {
     const markdownImports = root.find(j.ImportDeclaration, {
       source: { value: MARKDOWN_MODULE },
