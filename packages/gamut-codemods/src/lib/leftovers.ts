@@ -82,7 +82,24 @@ export interface Leftover {
   file: string;
   line: number;
   text: string;
+  /* Why the line is listed, when the old name alone doesn't explain it. */
+  note?: string;
 }
+
+/*
+  Under a flat config the directive prefix is the plugins key. Older builds
+  of this codemod rewrote `gamut/` directives to `@skillsoft/gamut/` anyway.
+  Unless some file registers the plugin under that key, those directives
+  name a rule that doesn't exist and stop suppressing the real one.
+*/
+const scopedDirectivePattern = (manifest: Manifest) =>
+  new RegExp(
+    `eslint-(?:disable|enable)\\S*\\s.*(?<![\\w-])${escape(
+      manifest.eslintPlugin.to
+    )}/`
+  );
+const registersScopedKey = (manifest: Manifest) =>
+  new RegExp(`["'\`]${escape(manifest.eslintPlugin.to)}["'\`]\\s*:`);
 
 export const findLeftovers = (
   roots: string[],
@@ -90,7 +107,11 @@ export const findLeftovers = (
   { eslintRuleKeys = true }: { eslintRuleKeys?: boolean } = {}
 ) => {
   const pattern = oldNamesPattern(manifest, eslintRuleKeys);
+  const scopedDirective = scopedDirectivePattern(manifest);
+  const registersKey = registersScopedKey(manifest);
   const hits: Leftover[] = [];
+  const directives: Leftover[] = [];
+  let keyRegistered = false;
   for (const root of roots) {
     const files = fs.statSync(root).isDirectory() ? walk(root) : [root];
     for (const file of files) {
@@ -101,8 +122,17 @@ export const findLeftovers = (
         .forEach((text, i) => {
           if (pattern.test(text))
             hits.push({ file, line: i + 1, text: text.trim() });
+          if (eslintRuleKeys) return;
+          if (registersKey.test(text)) keyRegistered = true;
+          if (scopedDirective.test(text))
+            directives.push({
+              file,
+              line: i + 1,
+              text: text.trim(),
+              note: `no flat config registers the plugin as '${manifest.eslintPlugin.to}'; use its plugins key, e.g. ${manifest.eslintPlugin.from}/`,
+            });
         });
     }
   }
-  return hits;
+  return keyRegistered ? hits : [...hits, ...directives];
 };

@@ -256,3 +256,35 @@ describe('markdown-video-overrides skipReason', () => {
     expect(markdownVideoOverrides.skipReason?.([dir], manifest)).toBeNull();
   });
 });
+
+describe('findLeftovers: scoped directives under a flat config', () => {
+  const directive =
+    '// eslint-disable-next-line @skillsoft/gamut/no-inline-style';
+
+  it('lists them when no file registers the scoped plugin key', () => {
+    const dir = tmp();
+    fs.writeFileSync(path.join(dir, 'eslint.config.ts'), 'plugins: { gamut }');
+    fs.writeFileSync(path.join(dir, 'a.tsx'), directive);
+    const hits = findLeftovers([dir], manifest, { eslintRuleKeys: false });
+    expect(hits).toHaveLength(1);
+    expect(hits[0].note).toMatch(/plugins key/);
+  });
+
+  it('leaves them alone when the plugin is registered under that key', () => {
+    const dir = tmp();
+    fs.writeFileSync(
+      path.join(dir, 'eslint.config.ts'),
+      "plugins: { '@skillsoft/gamut': gamut }"
+    );
+    fs.writeFileSync(path.join(dir, 'a.tsx'), directive);
+    expect(findLeftovers([dir], manifest, { eslintRuleKeys: false })).toEqual(
+      []
+    );
+  });
+
+  it('is not checked for legacy configs', () => {
+    const dir = tmp();
+    fs.writeFileSync(path.join(dir, 'a.tsx'), directive);
+    expect(findLeftovers([dir], manifest)).toEqual([]);
+  });
+});

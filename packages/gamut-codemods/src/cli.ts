@@ -219,7 +219,11 @@ export const main = async (argv: string[]) => {
       });
       heading(`leftovers (${hits.length})`);
       hits.forEach((hit) =>
-        console.log(`${hit.file}:${hit.line}  ${hit.text}`)
+        console.log(
+          `${hit.file}:${hit.line}  ${hit.text}${
+            hit.note ? `  (${hit.note})` : ''
+          }`
+        )
       );
     }
 
