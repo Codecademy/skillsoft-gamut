@@ -1,39 +1,13 @@
 import { theme } from '@skillsoft/gamut-styles';
-import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
+import { MockGamutProvider } from '@skillsoft/gamut-tests';
 import { renderHook } from '@testing-library/react';
 
-import { Card } from '..';
 import { useCardElevation } from '../styles';
-
-const renderView = setupRtl(Card, { children: 'Card content' });
 
 const renderElevation = (...args: Parameters<typeof useCardElevation>) =>
   renderHook(() => useCardElevation(...args), {
     wrapper: MockGamutProvider,
   }).result.current;
-
-describe('Card', () => {
-  it('renders its children', () => {
-    const { view } = renderView();
-
-    expect(view.getByText('Card content')).toBeInTheDocument();
-  });
-
-  it.each(['patternLeft', 'patternRight', 'outline'] as const)(
-    'renders children when interactive with the %s shadow',
-    (shadow) => {
-      const { view } = renderView({ isInteractive: true, shadow });
-
-      expect(view.getByText('Card content')).toBeInTheDocument();
-    }
-  );
-
-  it('renders children for non-default variants', () => {
-    const { view } = renderView({ variant: 'white' });
-
-    expect(view.getByText('Card content')).toBeInTheDocument();
-  });
-});
 
 describe('useCardElevation', () => {
   it('maps the theme elevation tokens onto the motion variants', () => {

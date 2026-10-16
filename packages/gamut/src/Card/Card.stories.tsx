@@ -1,11 +1,46 @@
-import { Anchor, Box, Card, FlexBox } from '@skillsoft/gamut';
 import { Background } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { Anchor } from '../Anchor';
+import { Box, FlexBox } from '../Box';
+import { Card } from '.';
+
 const meta: Meta<typeof Card> = {
+  title: 'Containers/Card',
   component: Card,
   args: {
     children: 'Hello world I am a Card',
+  },
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['default', 'white', 'yellow', 'beige', 'navy', 'hyper'],
+      table: {
+        type: {
+          summary:
+            "'default' | 'white' | 'yellow' | 'beige' | 'navy' | 'hyper'",
+        },
+        defaultValue: { summary: 'default' },
+      },
+    },
+    shadow: {
+      control: 'radio',
+      options: ['none', 'patternLeft', 'patternRight', 'outline'],
+      table: {
+        type: {
+          summary: "'none' | 'patternLeft' | 'patternRight' | 'outline'",
+        },
+        defaultValue: { summary: 'none' },
+      },
+    },
+    borderRadius: {
+      control: 'select',
+      options: ['none', 'sm', 'md', 'lg', 'xl', 'full'],
+      table: {
+        type: { summary: "'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'" },
+        defaultValue: { summary: "isInteractive ? 'md' : 'none'" },
+      },
+    },
   },
 };
 
@@ -18,6 +53,9 @@ export const Default: Story = {
     variant: 'default',
     isInteractive: true,
     borderRadius: 'md',
+  },
+  play: ({ canvas }) => {
+    canvas.getByText('Hello world I am a Card');
   },
 };
 
@@ -37,6 +75,11 @@ export const StaticLight: Story = {
       </FlexBox>
     </Background>
   ),
+  play: ({ canvas }) => {
+    canvas.getByText('White variant');
+    canvas.getByText('Yellow variant');
+    canvas.getByText('Beige variant');
+  },
 };
 
 export const StaticDark: Story = {
@@ -281,6 +324,10 @@ export const IsInteractive: Story = {
       </Background>
     </FlexBox>
   ),
+  play: ({ canvas }) => {
+    canvas.getByText('Default, patternRight, and isInteractive');
+    canvas.getByText('Beige, outline, and isInteractive');
+  },
 };
 
 export const Dynamic: Story = {
