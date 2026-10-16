@@ -116,6 +116,7 @@ export default defineConfig({
                 { slug: 'guides/migrating-to-logical-properties' },
                 { slug: 'guides/supporting-dark-mode' },
                 { slug: 'guides/theming-your-app' },
+                { slug: 'guides/writing-guidance' },
                 {
                   // `autogenerate` labels nested groups from the raw directory
                   // name, so hyphenated directories (kept short for tooling
