@@ -1,5 +1,7 @@
 import type {
+  Collection,
   ExportSpecifier,
+  ImportDeclaration,
   ImportSpecifier,
   JSCodeshift,
 } from 'jscodeshift';
@@ -53,6 +55,64 @@ const renameSpecifiers = (
     return spec;
   });
 
+/* Only plain `{ a, b as c }` imports can be merged; defaults and `* as` can't. */
+const namedOnly = (node: ImportDeclaration) =>
+  (node.specifiers ?? []).every((spec) => spec.type === 'ImportSpecifier');
+
+const mergeKey = (node: ImportDeclaration) =>
+  `${String(node.source.value)}\0${node.importKind ?? 'value'}`;
+
+type NamedSpecifier = ImportSpecifier & { importKind?: string };
+
+const specifierKey = (spec: NamedSpecifier) =>
+  `${spec.importKind ?? 'value'} ${nameOf(spec.imported)} ${nameOf(
+    spec.local ?? spec.imported
+  )}`;
+
+/*
+  A rewritten deep import often lands on a package the file already
+  imports from, and two declarations from one source trip
+  import/no-duplicates. Fold each rewritten declaration into the first
+  plain named import of the same source and kind. Declarations the file
+  already had are never merged with each other.
+*/
+const mergeRewritten = (
+  j: JSCodeshift,
+  root: Collection,
+  rewritten: Set<unknown>
+) => {
+  const targets = new Map<string, ImportDeclaration>();
+  root.find(j.ImportDeclaration).forEach((p) => {
+    const { node } = p;
+    if (!namedOnly(node)) return;
+    const key = mergeKey(node);
+    const target = targets.get(key);
+    if (!target) {
+      targets.set(key, node);
+      return;
+    }
+    if (!rewritten.has(node)) return;
+
+    const existing = new Set(
+      (target.specifiers as NamedSpecifier[]).map(specifierKey)
+    );
+    /* Clone into the target; recast's patcher can crash on moved nodes. */
+    const moved = (node.specifiers as NamedSpecifier[])
+      .filter((spec) => !existing.has(specifierKey(spec)))
+      .map((spec) =>
+        Object.assign(
+          j.importSpecifier(
+            j.identifier(nameOf(spec.imported)),
+            j.identifier(nameOf(spec.local ?? spec.imported))
+          ),
+          { importKind: spec.importKind }
+        )
+      );
+    target.specifiers = [...(target.specifiers ?? []), ...moved];
+    j(p).remove();
+  });
+};
+
 export const deepImports: AstMigration = {
   name: 'deep-imports',
   kind: 'ast',
@@ -68,6 +128,7 @@ export const deepImports: AstMigration = {
       ...root.find(j.ExportAllDeclaration).nodes(),
     ];
     const handled = new Set<unknown>();
+    const rewritten = new Set<unknown>();
 
     for (const node of declarations) {
       const source = node.source as { value?: unknown } | null | undefined;
@@ -122,8 +183,11 @@ export const deepImports: AstMigration = {
         ) as typeof node.specifiers;
       }
       node.source = j.stringLiteral(row.to);
+      if (node.type === 'ImportDeclaration') rewritten.add(node);
       changed = true;
     }
+
+    if (rewritten.size > 0) mergeRewritten(j, root, rewritten);
 
     /* Then mocks, require(), import(): only the string can change here. */
     for (const literal of findModuleStrings(j, root)) {

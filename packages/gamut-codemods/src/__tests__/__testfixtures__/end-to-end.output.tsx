@@ -1,6 +1,5 @@
-import { Box } from '@skillsoft/gamut';
+import { Box, PopoverContainerProps } from '@skillsoft/gamut';
 import { Video } from '@skillsoft/gamut/Video';
-import { PopoverContainerProps } from '@skillsoft/gamut';
 import { theme } from '@skillsoft/gamut-styles';
 
 // eslint-disable-next-line @skillsoft/gamut/no-inline-style
