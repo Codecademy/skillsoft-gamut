@@ -1,8 +1,12 @@
-import { Box, FlexBox, Tag } from '@skillsoft/gamut';
 import * as icons from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect, fn } from 'storybook/test';
+
+import { Box, FlexBox } from '../Box';
+import { Tag } from '.';
 
 const meta: Meta<typeof Tag> = {
+  title: 'Actions/Tag',
   component: Tag,
   args: {
     children: 'Tag',
@@ -19,12 +23,7 @@ const meta: Meta<typeof Tag> = {
 export default meta;
 type Story = StoryObj<typeof Tag>;
 
-export const Default: Story = {
-  args: {
-    children: 'Read-only',
-    variant: 'readOnly',
-  },
-};
+export const Default: Story = {};
 
 export const ReadOnly: Story = {
   args: {
@@ -42,12 +41,17 @@ export const ReadOnly: Story = {
       </Box>
     </FlexBox>
   ),
+  play: async ({ canvas }) => {
+    canvas.getByText('Read-only');
+    canvas.getByText('Large read-only');
+    await expect(canvas.queryByRole('button')).toBeNull();
+  },
 };
 
 export const Selection: Story = {
   args: {
     variant: 'selection',
-    onDismiss: () => {},
+    onDismiss: fn(),
   },
   render: (args) => (
     <FlexBox gap={24}>
@@ -71,6 +75,12 @@ export const Selection: Story = {
       </Box>
     </FlexBox>
   ),
+  play: async ({ args, canvas, userEvent }) => {
+    const buttons = canvas.getAllByRole('button');
+    await userEvent.click(buttons[0]);
+    await expect(args.onDismiss).toHaveBeenCalledTimes(1);
+    await expect(buttons[buttons.length - 1]).toBeDisabled();
+  },
 };
 
 export const Navigation: Story = {
@@ -100,12 +110,17 @@ export const Navigation: Story = {
       </Box>
     </FlexBox>
   ),
+  play: async ({ canvas }) => {
+    const link = canvas.getByRole('link', { name: 'Navigation' });
+    await expect(link).toHaveAttribute('href', '/');
+    await expect(canvas.getAllByRole('button')[0]).toBeDisabled();
+  },
 };
 
 export const Suggestion: Story = {
   args: {
     variant: 'suggestion',
-    onClick: () => {},
+    onClick: fn(),
   },
   render: (args) => (
     <FlexBox gap={24}>
@@ -129,6 +144,12 @@ export const Suggestion: Story = {
       </Box>
     </FlexBox>
   ),
+  play: async ({ args, canvas, userEvent }) => {
+    const suggestion = canvas.getByRole('button', { name: 'Suggestion' });
+    await userEvent.click(suggestion);
+    await expect(args.onClick).toHaveBeenCalledTimes(1);
+    await expect(canvas.getAllByRole('button').at(-1)).toBeDisabled();
+  },
 };
 
 export const WithIcon: Story = {
@@ -209,6 +230,7 @@ export const WithIcon: Story = {
 export const Overflow: Story = {
   args: {
     variant: 'selection',
+    onDismiss: () => null,
   },
   render: (args) => (
     <Box width="12rem">
