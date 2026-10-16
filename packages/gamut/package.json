@@ -29,7 +29,6 @@
     "sanitize-markdown": "^2.6.7"
   },
   "devDependencies": {
-    "@types/marked": "^4.0.8",
     "@vidstack/react": "~1.12.12",
     "react-player": "^3.4.0"
   },

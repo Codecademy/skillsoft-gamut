@@ -15,4 +15,3 @@ Fewer packages to install by hand. `@skillsoft/gamut` now needs only `react`, `r
 - `@skillsoft/variance`: the `typescript` peer dependency is now optional.
 - `@skillsoft/*` packages depend on each other with `^` ranges instead of exact versions, so installs share one copy of `gamut-styles` and `variance`.
 - `@skillsoft/gamut-tests`: `component-test-setup` is now `^0.3.1` instead of `*`.
-- `@skillsoft/gamut`: `@types/marked` moved to devDependencies. The published types don't reference it.
