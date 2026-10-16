@@ -1,8 +1,9 @@
-import type { PatternProps } from '@skillsoft/gamut-patterns';
-import * as patterns from '@skillsoft/gamut-patterns';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ImageGallery } from '~styleguide/blocks';
+import { ImageGallery } from '~storybook/blocks';
+
+import type { PatternProps } from '.';
+import * as patterns from '.';
 
 type PatternComponentProps = PatternProps & {
   pattern: React.ComponentType<PatternProps>;
@@ -16,6 +17,7 @@ const PatternComponent: React.FC<PatternComponentProps> = ({
 };
 
 const meta: Meta<typeof PatternComponent> = {
+  title: 'Media & Assets/Patterns',
   component: PatternComponent,
   argTypes: {
     pattern: {

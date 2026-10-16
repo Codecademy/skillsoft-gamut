@@ -20,6 +20,18 @@ const config: StorybookConfig = {
       directory: '../gamut/src',
       files: '**/*.stories.@(js|jsx|ts|tsx)',
     },
+    {
+      directory: '../gamut-icons/src',
+      files: '**/*.stories.@(js|jsx|ts|tsx)',
+    },
+    {
+      directory: '../gamut-illustrations/src',
+      files: '**/*.stories.@(js|jsx|ts|tsx)',
+    },
+    {
+      directory: '../gamut-patterns/src',
+      files: '**/*.stories.@(js|jsx|ts|tsx)',
+    },
   ],
   staticDirs: ['../styleguide/src/static'],
   addons: [
