@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { theme, variant } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
-import { HTMLAttributes } from 'react';
-import * as React from 'react';
+import type { StyleProps } from '@skillsoft/variance';
+import type { HTMLAttributes } from 'react';
+import type * as React from 'react';
 
 const errorSpanVariants = variant({
   base: {

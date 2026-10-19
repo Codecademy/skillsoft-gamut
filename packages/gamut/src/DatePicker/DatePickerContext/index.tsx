@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 
-import { DatePickerContext, DatePickerContextValue } from './types';
+import type { DatePickerContextValue } from './types';
+import { DatePickerContext } from './types';
 
 export const DatePickerProvider = DatePickerContext.Provider;
 

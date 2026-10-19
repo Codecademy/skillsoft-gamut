@@ -1,11 +1,11 @@
 import '@testing-library/jest-dom';
 
-import { setupRtl } from '@skillsoft/gamut-tests';
+import type { setupRtl } from '@skillsoft/gamut-tests';
 import { queryByAttribute } from '@testing-library/dom';
 import { act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { getComponent } from './renderers';
+import type { getComponent } from './renderers';
 
 const getById = queryByAttribute.bind(null, 'id');
 

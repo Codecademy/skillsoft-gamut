@@ -1,4 +1,4 @@
-import { StylisPlugin } from '@emotion/cache';
+import type { StylisPlugin } from '@emotion/cache';
 
 export const focusVisible: StylisPlugin = (element) => {
   if (element.type === 'rule' && element.value.includes(':focus-visible')) {

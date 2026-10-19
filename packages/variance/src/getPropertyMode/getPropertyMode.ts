@@ -1,4 +1,4 @@
-import { PropertyMode } from '../types/properties';
+import type { PropertyMode } from '../types/properties';
 
 export const getPropertyMode = (
   useLogicalProperties: boolean

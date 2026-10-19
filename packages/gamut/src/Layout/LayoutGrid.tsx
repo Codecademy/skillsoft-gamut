@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { pxRem, styledOptions, system, theme } from '@skillsoft/gamut-styles';
-import { StyleProps, variance } from '@skillsoft/variance';
+import type { StyleProps } from '@skillsoft/variance';
+import { variance } from '@skillsoft/variance';
 import pick from 'lodash/pick';
 
 const columns = 12;

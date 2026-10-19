@@ -1,21 +1,20 @@
 import { forwardRef, useEffect, useMemo } from 'react';
 import * as React from 'react';
-import {
+import type {
   FieldValues,
-  FormProvider,
   FormProviderProps,
   Mode,
   Path,
   RegisterOptions,
   SubmitErrorHandler,
   SubmitHandler,
-  useForm,
   UseFormProps,
 } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import { Form } from '../Form';
-import { FormProps } from '../Form/elements/Form';
-import { FormValues } from '../Form/types';
+import type { FormProps } from '../Form/elements/Form';
+import type { FormValues } from '../Form/types';
 import { submitSuccessStatus } from './utils';
 
 export interface FormContextProps {

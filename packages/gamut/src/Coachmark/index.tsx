@@ -1,13 +1,13 @@
+import type * as React from 'react';
 import { useRef } from 'react';
-import * as React from 'react';
 
 import { DelayedRenderWrapper } from '../DelayedRenderWrapper';
-import {
-  Popover,
+import type {
   PopoverFocusProps,
   PopoverProps,
   PopoverYPositionType,
 } from '../Popover';
+import { Popover } from '../Popover';
 
 export type CoachmarkProps = PopoverFocusProps & {
   /**

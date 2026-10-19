@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
 import { css } from '@skillsoft/gamut-styles';
-import * as React from 'react';
-import { UseFormReturn } from 'react-hook-form';
+import type * as React from 'react';
+import type { UseFormReturn } from 'react-hook-form';
 
 import { Anchor } from '../../Anchor';
 import { FormError, FormGroup, FormGroupLabel } from '../../Form';
 import { Column } from '../../Layout';
 import { Markdown } from '../../Markdown';
 import { Text } from '../../Typography';
-import {
+import type {
   GridFormField,
   GridFormHiddenField,
   GridFormSweetContainerField,

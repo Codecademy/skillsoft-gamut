@@ -1,11 +1,12 @@
-import { Theme, useTheme } from '@emotion/react';
+import type { Theme } from '@emotion/react';
+import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Anchor, Box } from '@skillsoft/gamut';
+import type { ElevationState } from '@skillsoft/gamut-styles';
 import {
   Background,
   coreSwatches,
   css,
-  ElevationState,
   lxStudioColors,
   theme,
   trueColors,

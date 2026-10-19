@@ -9,7 +9,7 @@ import {
   createScrollableParent,
   setupWindowDimensions,
 } from './testUtils';
-import { PopoverContainerProps } from './types';
+import type { PopoverContainerProps } from './types';
 import * as utils from './utils';
 
 const defaultBounding = {

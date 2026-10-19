@@ -1,11 +1,11 @@
-import * as React from 'react';
+import type * as React from 'react';
 
 import { FlexBox } from '../../../Box';
 import { Text } from '../../../Typography';
 import { useResolvedLocale } from '../../utils/locale';
 import { CalendarNavLastMonth } from './CalendarNavLastMonth';
 import { CalendarNavNextMonth } from './CalendarNavNextMonth';
-import { CalendarHeaderProps } from './types';
+import type { CalendarHeaderProps } from './types';
 import { formatMonthYear } from './utils/format';
 
 export const CalendarHeader: React.FC<CalendarHeaderProps> = ({

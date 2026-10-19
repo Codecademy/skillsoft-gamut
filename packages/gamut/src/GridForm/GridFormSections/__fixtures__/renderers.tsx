@@ -1,8 +1,10 @@
-import * as React from 'react';
+import type * as React from 'react';
 
 import { FormContext } from '../../__fixtures__/helpers';
-import { GridFormContent, GridFormContentProps } from '../GridFormContent';
-import { GridFormSection, GridFormSectionProps } from '../GridFormSection';
+import type { GridFormContentProps } from '../GridFormContent';
+import { GridFormContent } from '../GridFormContent';
+import type { GridFormSectionProps } from '../GridFormSection';
+import { GridFormSection } from '../GridFormSection';
 
 type GridFormContentTestComponentProps = GridFormContentProps & {
   mode?: 'onSubmit' | 'onChange';

@@ -1,7 +1,8 @@
 import { MockGamutProvider } from '@skillsoft/gamut-tests';
 import { render, screen } from '@testing-library/react';
 
-import { ProgressBar, ProgressBarProps } from '.';
+import { ProgressBar } from '.';
+import type { ProgressBarProps } from './types';
 
 describe('ProgressBar', () => {
   describe.each([

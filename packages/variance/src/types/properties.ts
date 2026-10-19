@@ -1,4 +1,4 @@
-import { Globals, StandardProperties, VendorProperties } from 'csstype';
+import type { Globals, StandardProperties, VendorProperties } from 'csstype';
 
 type ColorProperties = 'color' | `${string}Color`;
 

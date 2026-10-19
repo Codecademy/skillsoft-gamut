@@ -1,4 +1,6 @@
-import { Markdown, Text, TextProps } from '@skillsoft/gamut';
+import type { TextProps } from '@skillsoft/gamut';
+import { Markdown, Text } from '@skillsoft/gamut';
+import { Iframe, MarkdownVideo } from '@skillsoft/gamut/Video';
 import type { Meta, StoryObj } from '@storybook/react';
 
 // `?raw` (Vite built-in) imports the file's contents as a string to feed the
@@ -25,8 +27,10 @@ This is markdown
 
 export const FullExample: Story = {
   args: {
+    iframeOverride: { component: Iframe },
     // Not sure why there's a type mismatch, but the story renders
     text: exampleMarkdown as any,
+    videoOverride: { component: MarkdownVideo },
   },
 };
 
@@ -75,6 +79,20 @@ export const LinkOverride: Story = {
         component: (props) => <Text {...props} as="span" color="blue-500" />,
       },
     },
+  },
+};
+
+export const VideoOverride: Story = {
+  args: {
+    iframeOverride: { component: Iframe },
+    text: `<iframe src="https://www.youtube.com/embed/zhDwjnYZiCo" title="Ghibli Coffee Shop"></iframe>`,
+    videoOverride: { component: MarkdownVideo },
+  },
+};
+
+export const WithoutVideoOverride: Story = {
+  args: {
+    text: `<iframe src="https://www.youtube.com/embed/zhDwjnYZiCo" title="Ghibli Coffee Shop"></iframe>`,
   },
 };
 

@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
 import { styledOptions, system } from '@skillsoft/gamut-styles';
-import { StyleProps, variance } from '@skillsoft/variance';
-import { ComponentProps, forwardRef } from 'react';
+import type { StyleProps } from '@skillsoft/variance';
+import { variance } from '@skillsoft/variance';
+import type { ComponentProps } from 'react';
+import { forwardRef } from 'react';
 
 const patternStyles = variance.compose(
   system.layout,
