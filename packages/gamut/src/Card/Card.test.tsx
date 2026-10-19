@@ -2,7 +2,7 @@ import { theme } from '@skillsoft/gamut-styles';
 import { MockGamutProvider } from '@skillsoft/gamut-tests';
 import { renderHook } from '@testing-library/react';
 
-import { useCardElevation } from '../styles';
+import { useCardElevation } from './styles';
 
 const renderElevation = (...args: Parameters<typeof useCardElevation>) =>
   renderHook(() => useCardElevation(...args), {
