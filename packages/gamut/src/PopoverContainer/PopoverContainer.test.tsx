@@ -2,15 +2,15 @@ import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 
-import { PopoverContainer } from '..';
-import { PopoverContainerProps } from '../types';
-import * as utils from '../utils';
+import { PopoverContainer } from '.';
 import {
   createMockDOMRect,
   createNestedScrollableParents,
   createScrollableParent,
   setupWindowDimensions,
-} from './utils';
+} from './testUtils';
+import { PopoverContainerProps } from './types';
+import * as utils from './utils';
 
 const defaultBounding = {
   bottom: 350,
