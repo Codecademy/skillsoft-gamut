@@ -19,7 +19,7 @@ export const yarnrc: FileMigration = {
   name: 'yarnrc',
   kind: 'file',
   description: 'Rename or drop old package names in .yarnrc.yml lists.',
-  match: (file) => /(^|\/)\.yarnrc\.yml$/.test(file),
+  appliesTo: (file) => /(^|\/)\.yarnrc\.yml$/.test(file),
   run({ source, manifest }) {
     const lines = source.split('\n');
     const globs = lines
