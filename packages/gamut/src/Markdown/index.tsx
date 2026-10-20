@@ -197,6 +197,7 @@ export class Markdown extends PureComponent<MarkdownProps> {
 }
 
 export type {
+  HTMLToReactNode,
   MarkdownOverrideSetting,
   MarkdownOverrideSettings,
 } from './libs/overrides';

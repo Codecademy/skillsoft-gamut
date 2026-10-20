@@ -91,7 +91,106 @@ export const manifest: Manifest = {
 
   movedExports: [],
 
-  deepImports: [],
+  /*
+    From the GMT-1740 deep-import inventory. Rows are only added once the
+    target is really exported; manifest.test.ts checks.
+  */
+  deepImports: [
+    {
+      from: '@codecademy/gamut/dist/PopoverContainer/types',
+      to: '@codecademy/gamut',
+    },
+    {
+      from: '@codecademy/gamut/dist/Form/SelectDropdown/types',
+      to: '@codecademy/gamut',
+    },
+    { from: '@codecademy/gamut/dist/Form/types', to: '@codecademy/gamut' },
+    {
+      from: '@codecademy/gamut/dist/Box/props',
+      to: '@codecademy/gamut',
+      onlyNames: ['BoxProps', 'FlexBoxProps', 'GridBoxProps'],
+    },
+    {
+      from: '@codecademy/gamut/dist/Tip/shared/types',
+      to: '@codecademy/gamut',
+    },
+    {
+      from: '@codecademy/gamut/dist/Button/shared',
+      to: '@codecademy/gamut',
+      onlyNames: ['ButtonBaseProps', 'ButtonProps', 'buttonProps'],
+    },
+    {
+      from: '@codecademy/gamut/dist/Markdown/libs/overrides',
+      to: '@codecademy/gamut',
+      onlyNames: [
+        'HTMLToReactNode',
+        'MarkdownOverrideSetting',
+        'MarkdownOverrideSettings',
+        'createCodeBlockOverride',
+        'createInputOverride',
+        'createTagOverride',
+        'createVideoOverride',
+        'standardOverrides',
+      ],
+    },
+    /*
+      Renamed on the way to the root: `List` and `IconOption` collided with
+      the public List component and IconOption type. This is the rename
+      upstream GMT-1740 held back (upstream 009aa43f6); skillsoft-gamut
+      ships it.
+    */
+    {
+      from: '@codecademy/gamut/dist/Menu/elements',
+      to: '@codecademy/gamut',
+      renames: {
+        List: 'MenuList',
+        ListProps: 'MenuListProps',
+        ListItem: 'MenuListItem',
+        ListItemProps: 'MenuListItemProps',
+        ListLink: 'MenuListLink',
+        ListLinkProps: 'MenuListLinkProps',
+        ListButton: 'MenuListButton',
+      },
+    },
+    {
+      from: '@codecademy/gamut/dist/Form/SelectDropdown/elements',
+      to: '@codecademy/gamut',
+      renames: { IconOption: 'IconOptionComponent' },
+      onlyNames: ['IconOption'],
+    },
+    {
+      from: '@codecademy/gamut/dist/ButtonBase/ButtonBase',
+      to: null,
+      note: 'ButtonBase is deliberately not public. Use FillButton, StrokeButton, TextButton, IconButton, or CTAButton.',
+    },
+    {
+      from: '@codecademy/gamut/dist/Form/styles',
+      to: '@codecademy/gamut',
+      onlyNames: [
+        'conditionalStyles',
+        'formFieldPaddingStyles',
+        'formFieldStyles',
+      ],
+      note: 'The rest of Form/styles is internal. Inline the styles, or use system props / css().',
+    },
+    {
+      from: '@codecademy/gamut-styles/dist/AssetProvider',
+      to: '@codecademy/gamut-styles',
+    },
+    {
+      from: '@codecademy/gamut-icons/dist/types',
+      to: '@codecademy/gamut-icons',
+    },
+    {
+      from: '@codecademy/gamut-icons/dist/props',
+      to: '@codecademy/gamut-icons',
+      onlyNames: ['GamutIconProps', 'IconStyleProps'],
+    },
+    {
+      from: '@codecademy/variance/dist/types/config',
+      to: '@codecademy/variance',
+    },
+  ],
 
   eslintPlugin: { from: 'gamut', to: '@skillsoft/gamut' },
 };
