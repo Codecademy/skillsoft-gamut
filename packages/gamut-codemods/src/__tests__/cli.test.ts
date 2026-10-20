@@ -142,12 +142,16 @@ describe('main: refusing to write', () => {
 });
 
 describe('main: full run', () => {
-  it('lists leftovers and prints the checklist', async () => {
+  it('rewrites sources, manifests, and docs, then prints the checklist', async () => {
     const dir = project({
       'src/Post.tsx': POST,
+      'docs/story.mdx': "import { Box } from '@codecademy/gamut';\n\n# Hi\n",
       'package.json': JSON.stringify({
         name: 'app',
-        dependencies: { '@codecademy/gamut': '^73.0.0' },
+        dependencies: {
+          '@codecademy/gamut': '^73.0.0',
+          '@codecademy/gamut-kit': '^73.0.0',
+        },
       }),
       'jest.config.js':
         "module.exports = { moduleNameMapper: { '^@codecademy/gamut/(.*)$': '<rootDir>/x/$1' } };\n",
@@ -155,13 +159,17 @@ describe('main: full run', () => {
 
     expect(await main(['scope-swap', dir, '--force'])).toBe(0);
 
+    expect(read(dir, 'src/Post.tsx')).toContain("from '@skillsoft/gamut'");
+    expect(read(dir, 'docs/story.mdx')).toContain("'@skillsoft/gamut'");
+    expect(read(dir, 'package.json')).toContain('"@skillsoft/gamut"');
+    expect(read(dir, 'package.json')).not.toContain('gamut-kit');
+
     const out = output();
     expect(out).toMatch(/file\(s\) changed/);
     expect(out).toMatch(/leftovers \(\d+\)/);
-    expect(out).toMatch(/Post\.tsx:1/);
-    expect(out).toMatch(/package\.json:1/);
     expect(out).toMatch(/jest\.config\.js:1/);
     expect(out).toMatch(/next steps/);
+    expect(out).toMatch(/gamut-kit is gone/);
     expect(out).toMatch(/Reinstall \(yarn\)/);
   });
 
@@ -173,6 +181,7 @@ describe('main: full run', () => {
     expect(await main(['scope-swap', dir, '--dry'])).toBe(0);
     expect(read(dir, 'src/Post.tsx')).toBe(POST);
     expect(read(dir, 'package.json')).toBe(pkg);
+    expect(output()).toMatch(/would update .*package\.json/);
     expect(output()).toMatch(/skipped in --dry/);
     expect(output()).not.toMatch(/next steps/);
   });
@@ -182,6 +191,20 @@ describe('main: full run', () => {
     expect(await main(['scope-swap', dir, '--force', '--no-report'])).toBe(0);
     expect(output()).not.toMatch(/leftovers \(/);
     expect(output()).not.toMatch(/leftovers skipped/);
+  });
+
+  it('runs only the named migrations with --only', async () => {
+    const dir = project({
+      'src/Post.tsx': POST,
+      'package.json': JSON.stringify({
+        dependencies: { '@codecademy/gamut': '^73.0.0' },
+      }),
+    });
+    expect(
+      await main(['scope-swap', dir, '--force', '--only=package-json'])
+    ).toBe(0);
+    expect(read(dir, 'src/Post.tsx')).toBe(POST);
+    expect(read(dir, 'package.json')).toContain('"@skillsoft/gamut"');
   });
 
   it('returns 1 when the source runner reports errors', async () => {

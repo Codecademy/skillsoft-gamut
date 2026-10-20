@@ -84,12 +84,13 @@ describe('findLeftovers', () => {
         "moduleNameMapper: { '^@codecademy/gamut(.*)$': 'x' }",
         "'@skillsoft/eslint-plugin-gamut'",
         "'@skillsoft/gamut-styles'",
+        "'@codecademy/gamut-kit'",
       ].join('\n')
     );
-    expect(findLeftovers([dir], manifest).map((h) => h.line)).toEqual([1]);
+    expect(findLeftovers([dir], manifest).map((h) => h.line)).toEqual([1, 4]);
   });
 
-  it('tags every old package the manifest replaces', () => {
+  it('tags every old package the manifest replaces, including gamut-kit', () => {
     const dir = tmp();
     const old = [
       ...Object.keys(manifest.packages),
@@ -119,7 +120,7 @@ describe('findLeftovers', () => {
 
   it('reads editor config and extensionless scripts', () => {
     const dir = tmp();
-    const line = "require('@codecademy/gamut/package.json');";
+    const line = "require('@codecademy/gamut-kit/package.json');";
     fs.writeFileSync(
       path.join(dir, 'sync-deps'),
       `#!/usr/bin/env node\n${line}`
