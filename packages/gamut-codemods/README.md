@@ -54,8 +54,13 @@ Every skillsoft-gamut pull request publishes installable previews through pkg.pr
 
 ### What scope-swap changes
 
-| Migration | What it does |
-| --------- | ------------ |
+| Migration      | What it does                                                                                                                                                                                                                                                                                                                                                                |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mf-shared`    | Replaces `@codecademy/gamut-kit` in Module Federation `shared` config with the packages it bundled. Gamut becomes a real singleton, so test the host and remotes together.                                                                                                                                                                                                  |
+| `scope-rename` | Every `@codecademy/gamut*` module string becomes `@skillsoft/gamut*`: imports, exports, `require`, `import()`, `jest.mock`/`vi.mock`, `declare module`, and `import('x').T`. Also exact package-name strings elsewhere, like `transpilePackages`, with one warning per file, and package names in comments (`/dist` paths and removed packages are left for the leftovers). |
+| `package-json` | Renames dependencies and sets their versions. A new package that's already listed keeps its value (a preview URL, say), and a `*` peer range stays `*`. Replaces `@codecademy/gamut-kit` with the individual packages.                                                                                                                                                      |
+| `mdx-imports`  | Runs the migrations above over `import`/`export` statements in `.mdx` files. Fenced code blocks are left alone.                                                                                                                                                                                                                                                             |
+| `yarnrc`       | `.yarnrc.yml` list items, like `npmPreapprovedPackages`: renames old package names, or drops them if a glob like `'@skillsoft/*'` already covers the new one.                                                                                                                                                                                                               |
 
 ### Known limits
 
