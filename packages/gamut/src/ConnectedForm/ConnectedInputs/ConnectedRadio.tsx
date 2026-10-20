@@ -1,8 +1,8 @@
-import * as React from 'react';
+import type * as React from 'react';
 
-import { Radio } from '../..';
-import { useField } from '..';
-import { ConnectedRadioProps } from './types';
+import { Radio } from '../../Form';
+import { useField } from '../utils';
+import type { ConnectedRadioProps } from './types';
 
 export const ConnectedRadio: React.FC<ConnectedRadioProps> = ({
   disabled,

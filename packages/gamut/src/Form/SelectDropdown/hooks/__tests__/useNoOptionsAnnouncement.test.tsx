@@ -1,5 +1,5 @@
 import { act, render, renderHook } from '@testing-library/react';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import { useNoOptionsAnnouncement } from '../useNoOptionsAnnouncement';
 

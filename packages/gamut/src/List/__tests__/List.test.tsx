@@ -3,7 +3,8 @@ import { theme } from '@skillsoft/gamut-styles';
 import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
 import { render } from '@testing-library/react';
 
-import { List, ListProps } from '../List';
+import type { ListProps } from '../List';
+import { List } from '../List';
 import { ListCol } from '../ListCol';
 import { ListRow } from '../ListRow';
 

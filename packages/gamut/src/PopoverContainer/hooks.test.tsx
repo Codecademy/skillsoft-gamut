@@ -1,8 +1,8 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { useLayoutEffect, useRef, useState } from 'react';
 
-import { Box } from '../../Box';
-import { useScrollingParents } from '../hooks';
+import { Box } from '../Box';
+import { useScrollingParents } from './hooks';
 
 /**
  * Reacts attach after paint; a render that mounts the ref target still sees

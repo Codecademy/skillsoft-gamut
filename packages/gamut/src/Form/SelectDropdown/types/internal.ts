@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { DropdownIndicatorProps, GroupBase } from 'react-select';
+import type * as React from 'react';
+import type { DropdownIndicatorProps, GroupBase } from 'react-select';
 
-import { SelectOptionBase } from '../../utils';
-import { SelectDropdownTranslations } from '../core/translations';
-import { OptionStrict } from './options';
-import { SelectDropdownSizes, SharedProps } from './styles';
+import type { SelectOptionBase } from '../../utils';
+import type { SelectDropdownTranslations } from '../core/translations';
+import type { OptionStrict } from './options';
+import type { SelectDropdownSizes, SharedProps } from './styles';
 
 /**
  * Internal props passed to custom select components.

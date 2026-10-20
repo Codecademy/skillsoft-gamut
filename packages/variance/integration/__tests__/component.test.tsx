@@ -2,8 +2,8 @@ import { matchers } from '@emotion/jest';
 import { ThemeProvider } from '@emotion/react';
 import styled from '@emotion/styled';
 import { render } from '@testing-library/react';
-import { ComponentProps } from 'react';
-import * as React from 'react';
+import type { ComponentProps } from 'react';
+import type * as React from 'react';
 
 import { variance } from '../../src/core';
 import { theme } from '../__fixtures__/theme';

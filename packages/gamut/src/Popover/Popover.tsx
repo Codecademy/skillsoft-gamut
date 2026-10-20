@@ -17,7 +17,7 @@ import {
   RaisedDiv,
 } from './elements';
 import { getBeakVariant } from './styles/beak';
-import { PopoverProps } from './types';
+import type { PopoverProps } from './types';
 import { getDefaultOffset, resolveHorizontalSideForRtl } from './utils';
 
 export const Popover: React.FC<PopoverProps> = ({

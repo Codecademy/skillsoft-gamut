@@ -1,6 +1,6 @@
 import { setupRtl as setupRtlBase } from 'component-test-setup';
 import overArgs from 'lodash/overArgs';
-import * as React from 'react';
+import type * as React from 'react';
 
 import { GamutProvider } from '../GamutProvider';
 import { coreTheme as theme } from '../themes';

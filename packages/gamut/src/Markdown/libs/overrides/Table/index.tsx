@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { pxRem } from '@skillsoft/gamut-styles';
-import { HTMLAttributes } from 'react';
-import * as React from 'react';
+import type { HTMLAttributes } from 'react';
+import type * as React from 'react';
 
 const TableWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.colors['gray-300']};

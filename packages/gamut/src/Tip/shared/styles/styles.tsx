@@ -1,6 +1,6 @@
 import { fontSmoothPixel, theme, variant } from '@skillsoft/gamut-styles';
 
-import { popoverPrimaryBgColor } from '../../../Popover/styles/base';
+import type { popoverPrimaryBgColor } from '../../../Popover/styles/base';
 import { tipAlignmentArray } from '../types';
 import { createToolTipVariantFromAlignment } from './composeVariantsUtils';
 import { createVariantsFromAlignments } from './createVariantsUtils';

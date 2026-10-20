@@ -1,13 +1,14 @@
 import styled from '@emotion/styled';
-import { StyleProps } from '@skillsoft/variance';
-import * as React from 'react';
-import {
-  TabList as ReactAriaTabList,
+import type { StyleProps } from '@skillsoft/variance';
+import type * as React from 'react';
+import type {
   TabListProps as ReactAriaTabListProps,
   TabProps,
 } from 'react-aria-components';
+import { TabList as ReactAriaTabList } from 'react-aria-components';
 
-import { tabElementBaseProps, TabElementStyleProps } from './props';
+import type { TabElementStyleProps } from './props';
+import { tabElementBaseProps } from './props';
 import { tabContainerStates, tabContainerVariants } from './styles';
 import { useTab } from './TabProvider';
 
