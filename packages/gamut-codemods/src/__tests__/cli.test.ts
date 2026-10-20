@@ -104,6 +104,7 @@ describe('main: no-op paths', () => {
   it('lists presets and their migrations', async () => {
     expect(await main(['list'])).toBe(0);
     expect(output()).toMatch(/scope-swap/);
+    expect(output()).toMatch(/markdown-video-overrides/);
   });
 
   it('prints usage for --help and for a missing path', async () => {
@@ -196,6 +197,8 @@ describe('main: full run', () => {
     expect(out).toMatch(
       /\[moved-exports\] .*reexport\.mdx .*no longer re-exports Video/
     );
+  });
+
   it('flags esmExternals: false in next.config', async () => {
     const dir = project({
       'src/Post.tsx': POST,

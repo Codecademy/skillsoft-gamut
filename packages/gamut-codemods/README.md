@@ -33,6 +33,20 @@ A run ends with three things:
 2. **Leftovers**: every line that still names an old package. These are for you to fix: jest `moduleNameMapper` regexes, tsconfig `paths`, flat ESLint configs, comments, and docs.
 3. **Next steps**, built from what actually happened in the run.
 
+### Getting help from an AI agent
+
+The `gamut-scope-swap` skill, in [`@skillsoft/gamut-agent-tools`](../gamut-agent-tools/README.md), knows what this codemod does and what it leaves behind. It can go through the warnings and leftovers with you and help fix what the codemod can't rewrite. Install it from the app repo once `@skillsoft/gamut` is in place:
+
+```sh
+# Cursor
+gamut plugin install cursor
+
+# Claude Code
+gamut plugin install claude
+```
+
+Then ask the agent to work through the output. Paste the warnings and leftovers, or let it grep for old names. The skill won't run the codemod unless you ask it to.
+
 ### Trying it against a preview build
 
 Every skillsoft-gamut pull request publishes installable previews through pkg.pr.new. To test a migration against one:
@@ -74,7 +88,7 @@ Every skillsoft-gamut pull request publishes installable previews through pkg.pr
 - Every file is parsed with the `tsx` parser, so Flow-typed JS won't parse.
 - Flat ESLint configs (`eslint.config.*`) and `.eslintrc.js` aren't rewritten. In a flat config the rule prefix is whatever key you register the plugin under, so renaming rule keys blindly would break it. They show up in the leftovers.
 - The leftovers report uses regex, not an AST, so expect some false positives.
-- The codemod doesn't change how Gamut loads at runtime. Next.js apps with `experimental.esmExternals: false` can fail at build or prerender on `@emotion/*` or `react-select` default imports, with errors like `Element type is invalid ... got: object` or `c(...) is not a function`. `next-config` warns about the flag; remove it, along with any `@emotion/*` aliases that were working around it.
+- The codemod doesn't change how Gamut loads at runtime. Next.js apps with `experimental.esmExternals: false` can fail at build or prerender on `@emotion/*` or `react-select` default imports, with errors like `Element type is invalid ... got: object` or `c(...) is not a function`. `next-config` warns about the flag; remove it, along with any `@emotion/*` aliases that were working around it. If you can't yet, see [NEXT_EMOTION_INTEROP.md](../gamut-agent-tools/skills/gamut-scope-swap/NEXT_EMOTION_INTEROP.md) for the fallback.
 
 ## Contributing
 

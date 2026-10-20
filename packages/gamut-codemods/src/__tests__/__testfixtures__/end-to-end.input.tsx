@@ -1,5 +1,7 @@
-import { Box } from '@codecademy/gamut';
+import { Box, Video } from '@codecademy/gamut';
+import { PopoverContainerProps } from '@codecademy/gamut/dist/PopoverContainer/types';
 import { theme } from '@codecademy/gamut-styles';
 
-export const Thing = () => <Box color={theme.colors.text} />;
+// eslint-disable-next-line gamut/no-inline-style
+export const Thing = (p: PopoverContainerProps) => <Box style={{}}><Video videoUrl="x" /></Box>;
 export const shared = { '@codecademy/gamut-kit': { singleton: true } };
