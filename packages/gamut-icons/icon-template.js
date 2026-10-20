@@ -5,7 +5,8 @@ function iconTemplate(api, opts, { jsx }) {
 
   return template.ast`
     import * as React from 'react';
-    import { Svg, GamutIconProps } from '../../props';
+    import { Svg } from '../../props';
+    import type { GamutIconProps } from '../../props';
     import { useIconId } from '../../useIconId';
 
     export const ${exportName} = React.forwardRef<SVGSVGElement, GamutIconProps>(({

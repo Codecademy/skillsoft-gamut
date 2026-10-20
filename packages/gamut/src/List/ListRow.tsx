@@ -1,14 +1,15 @@
 import styled from '@emotion/styled';
 import { css } from '@skillsoft/gamut-styles';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ComponentProps, forwardRef, MouseEvent } from 'react';
-import * as React from 'react';
+import type { ComponentProps, MouseEvent } from 'react';
+import type * as React from 'react';
+import { forwardRef } from 'react';
 
 import { Box } from '../Box';
-import { WithChildrenProp } from '../utils';
+import type { WithChildrenProp } from '../utils';
 import { RowEl } from './elements';
 import { useListContext } from './ListProvider';
-import { PublicListProps } from './types';
+import type { PublicListProps } from './types';
 
 export interface RowProps
   extends Partial<PublicListProps<ComponentProps<typeof RowEl>>> {

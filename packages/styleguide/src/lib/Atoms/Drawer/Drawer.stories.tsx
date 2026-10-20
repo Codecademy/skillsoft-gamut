@@ -1,6 +1,7 @@
 import { Drawer, FlexBox, StrokeButton } from '@skillsoft/gamut';
 import type { Meta } from '@storybook/react';
-import { ComponentProps, useEffect, useState } from 'react';
+import type { ComponentProps } from 'react';
+import { useEffect, useState } from 'react';
 
 const meta: Meta<typeof Drawer> = {
   component: Drawer,

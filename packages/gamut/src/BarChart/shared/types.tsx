@@ -1,12 +1,12 @@
-import { GamutIconProps } from '@skillsoft/gamut-icons';
-import { ColorAlias } from '@skillsoft/gamut-styles';
-import { ComponentProps, HTMLProps } from 'react';
+import type { GamutIconProps } from '@skillsoft/gamut-icons';
+import type { ColorAlias } from '@skillsoft/gamut-styles';
+import type { ComponentProps, HTMLProps } from 'react';
 
-import { ButtonProps } from '../../Button';
-import { Text } from '../../Typography/Text';
-import { HeadingTags } from '../../Typography/types';
-import { CustomSortOption } from '../utils/hooks';
-import { PartialBarChartTranslations } from './translations';
+import type { ButtonProps } from '../../Button';
+import type { Text } from '../../Typography/Text';
+import type { HeadingTags } from '../../Typography/types';
+import type { CustomSortOption } from '../utils/hooks';
+import type { PartialBarChartTranslations } from './translations';
 
 type titleType =
   | string

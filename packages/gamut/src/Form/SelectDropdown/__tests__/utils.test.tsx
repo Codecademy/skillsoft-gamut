@@ -1,4 +1,4 @@
-import { SelectOptionBase } from '../../utils';
+import type { SelectOptionBase } from '../../utils';
 import {
   filterValueFromOptions,
   getCreatedOptionValue,
@@ -6,7 +6,7 @@ import {
   isOptionsGrouped,
   removeValueFromSelectedOptions,
 } from '../core/utils';
-import { ExtendedOption, SelectDropdownGroup } from '../types';
+import type { ExtendedOption, SelectDropdownGroup } from '../types';
 
 describe('SelectDropdown Utils', () => {
   describe('getCreatedOptionValue', () => {

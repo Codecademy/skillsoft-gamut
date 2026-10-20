@@ -4,7 +4,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { useMedia } from 'react-use';
 
-import { Box, BoxProps } from '../Box';
+import type { BoxProps } from '../Box';
+import { Box } from '../Box';
 import { focusVisibleStyle } from '../utils';
 
 const drawerVisibleStyle = focusVisibleStyle('-3px');

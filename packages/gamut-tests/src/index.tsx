@@ -1,7 +1,7 @@
 import { GamutProvider, theme } from '@skillsoft/gamut-styles';
 import { setupRtl as setupRtlBase } from 'component-test-setup';
 import overArgs from 'lodash/overArgs';
-import * as React from 'react';
+import type * as React from 'react';
 
 // See https://skillsoftdev.atlassian.net/wiki/spaces/779a16d9c7ea452eab11b39cbbe771ce/pages/4441315387/Frontend+Unit+Tests for more info
 

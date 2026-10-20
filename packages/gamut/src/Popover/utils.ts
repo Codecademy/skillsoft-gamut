@@ -1,4 +1,4 @@
-import { PopoverProps } from './types';
+import type { PopoverProps } from './types';
 
 /**
  * Mirrors horizontal `left` / `right` in RTL when `useLogicalProperties` is enabled

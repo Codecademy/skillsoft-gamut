@@ -1,8 +1,8 @@
 import { timingValues } from '@skillsoft/gamut-styles';
 import { motion } from 'framer-motion';
-import * as React from 'react';
+import type * as React from 'react';
 
-import { WithChildrenProp } from '../utils';
+import type { WithChildrenProp } from '../utils';
 
 export interface RotationProps extends WithChildrenProp {
   /**

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { StyleProps } from '@skillsoft/variance';
+import type { StyleProps } from '@skillsoft/variance';
 
 import { Box } from '../../Box';
 import { toolTipAlignmentVariants } from '../shared/styles/styles';

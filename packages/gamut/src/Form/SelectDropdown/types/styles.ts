@@ -1,8 +1,8 @@
 import { ZIndexType } from '@skillsoft/gamut-styles';
-import { StyleProps } from '@skillsoft/variance';
+import type { StyleProps } from '@skillsoft/variance';
 
-import { conditionalBorderStates } from '../core/styles';
-import { InternalInputsProps } from './component-props';
+import type { conditionalBorderStates } from '../core/styles';
+import type { InternalInputsProps } from './component-props';
 
 /**
  * Size variants for the SelectDropdown component.

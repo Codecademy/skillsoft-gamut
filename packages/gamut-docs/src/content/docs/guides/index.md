@@ -12,3 +12,4 @@ How-to guides for cross-cutting tasks that don't have a home under a single comp
 - [Writing UX copy](/guides/writing-ux-copy/)
 - [Migrating to logical properties](/guides/migrating-to-logical-properties/)
 - [Contributing to Gamut](/guides/contributing-to-gamut/)
+- [Writing guidance](/guides/writing-guidance/)

@@ -1,7 +1,7 @@
 import { ZIndexType } from '@skillsoft/gamut-styles';
-import { ComponentProps, ReactNode } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
-import { Text } from '../../Typography';
+import type { Text } from '../../Typography';
 
 export const tipBaseAlignmentArray = [
   'bottom-left',

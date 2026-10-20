@@ -1,8 +1,8 @@
-import { ActionMeta, Options as OptionsType } from 'react-select';
+import type { ActionMeta, Options as OptionsType } from 'react-select';
 
 import { isDefined } from '../../../utils/nullish';
-import { SelectOptionBase } from '../../utils';
-import {
+import type { SelectOptionBase } from '../../utils';
+import type {
   BaseOnChangeProps,
   ExtendedOption,
   MultiSelectDropdownProps,
@@ -12,7 +12,7 @@ import {
   SelectDropdownProps,
   SingleSelectDropdownProps,
 } from '../types';
-import { ValidationMessage, ValidationMessageFn } from './translations';
+import type { ValidationMessage, ValidationMessageFn } from './translations';
 
 export const isMultipleSelectProps = (
   props: BaseOnChangeProps
