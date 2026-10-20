@@ -10,8 +10,8 @@ import {
   selectOptions,
   selectOptionsObject,
 } from '../__fixtures__/utils';
-import { SelectDropdown } from '../SelectDropdown';
-import { DEFAULT_SELECT_DROPDOWN_TRANSLATIONS } from '../SelectDropdown/core/translations';
+import { SelectDropdown } from '.';
+import { DEFAULT_SELECT_DROPDOWN_TRANSLATIONS } from './core/translations';
 
 const ToggleValidationMessageHarness = () => {
   const [hasCustomMessage, setHasCustomMessage] = useState(true);

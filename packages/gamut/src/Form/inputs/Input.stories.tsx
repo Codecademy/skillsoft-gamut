@@ -1,8 +1,12 @@
-import { FormGroup, Input } from '@skillsoft/gamut';
 import * as icons from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect } from 'storybook/test';
+
+import { FormGroup } from '../elements/FormGroup';
+import { Input } from './Input';
 
 const meta: Meta<typeof Input> = {
+  title: 'Inputs & forms/Input',
   component: Input,
   args: {
     id: 'example-input',
@@ -33,6 +37,10 @@ export const Text: Story = {
     type: 'text',
     required: true,
   },
+  play: async ({ canvas }) => {
+    const input = canvas.getByRole('textbox');
+    await expect(input).toHaveValue('Text');
+  },
 };
 
 export const Number: Story = {
@@ -40,6 +48,11 @@ export const Number: Story = {
     id: 'example-number',
     type: 'number',
     defaultValue: 1,
+  },
+  play: async ({ canvas }) => {
+    const input = canvas.getByRole('spinbutton');
+    await expect(input).toHaveAttribute('type', 'number');
+    await expect(input).toHaveValue(1);
   },
 };
 

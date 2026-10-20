@@ -1,10 +1,12 @@
-import { FormGroupLabel } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
-import { infotipNestedArgTypes } from '~styleguide/argTypes';
+import { infotipNestedArgTypes } from '~storybook/argTypes';
+
+import { FormGroupLabel } from './FormGroupLabel';
 
 const meta: TypeWithDeepControls<Meta<typeof FormGroupLabel>> = {
+  title: 'Inputs & forms/Form/FormGroupLabel',
   component: FormGroupLabel,
   args: { children: 'I am a label' },
   argTypes: {

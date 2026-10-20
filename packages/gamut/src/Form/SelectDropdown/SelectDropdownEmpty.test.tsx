@@ -1,6 +1,6 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
 
-import { SelectDropdown } from '../SelectDropdown';
+import { SelectDropdown } from '.';
 
 const renderView = setupRtl(SelectDropdown, {
   options: [],

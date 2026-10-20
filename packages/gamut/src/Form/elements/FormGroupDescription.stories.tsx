@@ -1,7 +1,9 @@
-import { FormGroupDescription } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { FormGroupDescription } from './FormGroupDescription';
+
 const meta: Meta<typeof FormGroupDescription> = {
+  title: 'Inputs & forms/Form/FormGroupDescription',
   component: FormGroupDescription,
   args: {},
 };

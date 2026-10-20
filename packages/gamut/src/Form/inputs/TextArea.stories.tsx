@@ -1,7 +1,11 @@
-import { FormGroup, TextArea } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect } from 'storybook/test';
+
+import { FormGroup } from '../elements/FormGroup';
+import { TextArea } from './TextArea';
 
 const meta: Meta<typeof TextArea> = {
+  title: 'Inputs & forms/TextArea',
   component: TextArea,
   args: {
     id: 'example-input',
@@ -22,6 +26,10 @@ type Story = StoryObj<typeof TextArea>;
 
 export const Default: Story = {
   args: {},
+  play: async ({ canvas }) => {
+    const textarea = canvas.getByRole('textbox', { name: 'Enter text' });
+    await expect(textarea).toHaveValue('Some text');
+  },
 };
 
 export const Disabled: Story = {

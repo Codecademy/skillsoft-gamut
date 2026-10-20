@@ -8,7 +8,7 @@ import {
   groupedOptionsWithTitles,
   openDropdown,
 } from '../__fixtures__/utils';
-import { SelectDropdown } from '../SelectDropdown';
+import { SelectDropdown } from '.';
 
 /** There is a state pollution issue with SelectDropdown and jest which is why these are broken up into their own file.
  *  Ticket to fix: https://skillsoftdev.atlassian.net/browse/GM-1297

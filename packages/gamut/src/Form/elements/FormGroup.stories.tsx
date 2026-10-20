@@ -1,10 +1,15 @@
-import { Box, FormGroup, Input } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect } from 'storybook/test';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
-import { infotipNestedArgTypes } from '~styleguide/argTypes';
+import { infotipNestedArgTypes } from '~storybook/argTypes';
+
+import { Box } from '../../Box';
+import { Input } from '../inputs/Input';
+import { FormGroup } from './FormGroup';
 
 const meta: TypeWithDeepControls<Meta<typeof FormGroup>> = {
+  title: 'Inputs & forms/Form/FormGroup',
   component: FormGroup,
   argTypes: { ...infotipNestedArgTypes },
 };
@@ -17,6 +22,9 @@ export const Default: Story = {
     label: "Don't you label me!",
     description: 'This is a form group, it is pretty darn cool',
   },
+  play: ({ canvas }) => {
+    canvas.getByText('This is a form group, it is pretty darn cool');
+  },
 };
 
 export const FormGroupHtmlFor: Story = {
@@ -25,6 +33,9 @@ export const FormGroupHtmlFor: Story = {
       <Input id="example1" />
     </FormGroup>
   ),
+  play: ({ canvas }) => {
+    canvas.getByLabelText('I am a label!! (optional)');
+  },
 };
 
 export const FormGroupDiv: Story = {
@@ -36,6 +47,9 @@ export const FormGroupDiv: Story = {
       <Input aria-labelledby="div-form-group" defaultValue="😔" />
     </FormGroup>
   ),
+  play: ({ canvas }) => {
+    canvas.getByText(/I look like a label, but I'm actually a div/);
+  },
 };
 
 export const DefaultState: Story = {
@@ -45,6 +59,9 @@ export const DefaultState: Story = {
     description: 'You can tell by the asterisk.',
     htmlFor: 'required1',
     children: <Input id="required1" />,
+  },
+  play: ({ canvas }) => {
+    canvas.getByLabelText('I am required!!*');
   },
 };
 
@@ -56,6 +73,11 @@ export const Error: Story = {
     error: 'You messed up dude.',
     htmlFor: 'required-error',
     children: <Input defaultValue=">_>" error id="required-error" />,
+  },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole('alert')).toHaveTextContent(
+      'You messed up dude.'
+    );
   },
 };
 
@@ -130,4 +152,9 @@ export const InfoTipAutoLabelling: Story = {
       </FormGroup>
     </Box>
   ),
+  play: ({ canvas }) => {
+    canvas.getByRole('button', { name: /Auto-labelling/ });
+    canvas.getByRole('button', { name: 'Email privacy information' });
+    canvas.getByRole('button', { name: 'Custom label for InfoTip button' });
+  },
 };

@@ -1,22 +1,21 @@
-import type { CheckboxProps } from '@skillsoft/gamut';
-import {
-  Anchor,
-  Box,
-  Checkbox,
-  Column,
-  FlexBox,
-  LayoutGrid,
-  Text,
-} from '@skillsoft/gamut';
 import { MiniStarIcon } from '@skillsoft/gamut-icons';
 import { Background } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
+import { expect, fn, screen, waitFor } from 'storybook/test';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
-import { infotipNestedArgTypes } from '~styleguide/argTypes';
+import { infotipNestedArgTypes } from '~storybook/argTypes';
+
+import { Anchor } from '../../Anchor';
+import { Box, FlexBox } from '../../Box';
+import { Column, LayoutGrid } from '../../Layout';
+import { Text } from '../../Typography';
+import { Checkbox } from './Checkbox';
+import type { CheckboxProps } from './types';
 
 const meta: TypeWithDeepControls<Meta<typeof Checkbox>> = {
+  title: 'Inputs & forms/Checkbox',
   component: Checkbox,
   args: {
     htmlFor: 'example-checkbox',
@@ -54,6 +53,9 @@ export const Checked: Story = {
     name: 'example-checked',
     checked: true,
   },
+  play: ({ canvas }) => {
+    canvas.getByRole('checkbox', { checked: true });
+  },
 };
 
 export const Indeterminate: Story = {
@@ -61,7 +63,31 @@ export const Indeterminate: Story = {
     htmlFor: 'indeterminate',
     label: 'indeterminate',
     name: 'example-indeterminate',
+    checked: false,
     indeterminate: true,
+  },
+  play: async ({ canvas }) => {
+    const checkbox = canvas.getByRole('checkbox');
+    await expect(checkbox).toHaveProperty('indeterminate', true);
+  },
+};
+
+export const CheckedOverridesIndeterminate: Story = {
+  render: () => (
+    <Checkbox
+      {...({
+        checked: true,
+        indeterminate: true,
+        htmlFor: 'checked-overrides',
+        label: 'checked wins over indeterminate',
+        name: 'checked-overrides',
+        readOnly: true,
+      } as unknown as CheckboxProps)}
+    />
+  ),
+  play: async ({ canvas }) => {
+    const checkbox = canvas.getByRole('checkbox', { checked: true });
+    await expect(checkbox).toHaveProperty('indeterminate', false);
   },
 };
 
@@ -127,6 +153,11 @@ export const SpacingTight: Story = {
 
 export const LabelsAsReactNodes: Story = {
   args: {},
+  play: ({ canvas }) => {
+    canvas.getByText('a string');
+    canvas.getByLabelText('a node');
+    canvas.getByRole('link', { name: 'click' });
+  },
   render: () => (
     <Box as="fieldset" m={0} p={0}>
       <legend>Labels as React Nodes</legend>
@@ -184,6 +215,67 @@ export const InfoTip: Story = {
     },
     checked: false,
   },
+  play: async ({ canvas, userEvent }) => {
+    const trigger = canvas.getByRole('button', {
+      name: 'Checkbox with InfoTip',
+    });
+
+    await userEvent.click(trigger);
+    await waitFor(() =>
+      expect(
+        screen.getByText(
+          'This is an infotip that provides additional information about the checkbox.'
+        )
+      ).toBeVisible()
+    );
+  },
+};
+
+export const InfoTipLabelling: Story = {
+  render: () => (
+    <FlexBox as="ul" column gap={32} listStyle="none" m={0} p={0}>
+      <Box as="li">
+        <Checkbox
+          htmlFor="checkbox-auto"
+          infotip={{ info: 'Shared info', placement: 'floating' }}
+          label={<span>Auto Checkbox Label</span>}
+          name="checkbox-auto"
+        />
+      </Box>
+      <Box as="li">
+        <Checkbox
+          htmlFor="checkbox-aria"
+          infotip={{
+            info: 'Shared info',
+            ariaLabel: 'Custom checkbox aria label',
+            placement: 'floating',
+          }}
+          label="With ariaLabel"
+          name="checkbox-aria"
+        />
+      </Box>
+      <Box as="li">
+        <Text id="checkbox-ext-label" pt={8}>
+          External Checkbox Label
+        </Text>
+        <Checkbox
+          htmlFor="checkbox-labelledby"
+          infotip={{
+            info: 'Shared info',
+            ariaLabelledby: 'checkbox-ext-label',
+            placement: 'floating',
+          }}
+          label="With ariaLabelledBy"
+          name="checkbox-labelledby"
+        />
+      </Box>
+    </FlexBox>
+  ),
+  play: ({ canvas }) => {
+    canvas.getByRole('button', { name: 'Auto Checkbox Label' });
+    canvas.getByRole('button', { name: 'Custom checkbox aria label' });
+    canvas.getByRole('button', { name: 'External Checkbox Label' });
+  },
 };
 
 type CustomCheckboxProps = Omit<
@@ -194,17 +286,19 @@ type CustomCheckboxProps = Omit<
   label: string;
 };
 
-export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
+const ControllableCheckbox: React.FC<CustomCheckboxProps> = ({
   htmlFor,
   label,
   defaultChecked = false,
   disabled,
+  onChange,
   ...rest
 }) => {
   const [currentChecked, setCurrentChecked] = useState(defaultChecked);
 
-  const changeHandler = () => {
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentChecked(!currentChecked);
+    onChange?.(event);
   };
 
   return (
@@ -219,19 +313,41 @@ export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
   );
 };
 
-export const ControlledCheckbox: React.FC = () => {
-  return (
+export const CustomCheckbox: Story = {
+  args: {
+    onChange: fn(),
+  },
+  render: (args) => (
+    <ControllableCheckbox
+      htmlFor="a-custom-checkbox"
+      label="a custom controlled checkbox"
+      name="a-custom-checkbox"
+      onChange={args.onChange}
+    />
+  ),
+  play: async ({ args, canvas, userEvent }) => {
+    const checkbox = canvas.getByRole('checkbox');
+    await expect(checkbox).not.toBeChecked();
+
+    await userEvent.click(checkbox);
+    await expect(checkbox).toBeChecked();
+    await expect(args.onChange).toHaveBeenCalled();
+  },
+};
+
+export const ControlledCheckbox: Story = {
+  render: () => (
     <Box border={1} p={16}>
       <LayoutGrid>
         <Column size={4}>
-          <CustomCheckbox
+          <ControllableCheckbox
             htmlFor="a-custom-checkbox"
             label="a fancy custom checkbox made with the example below, isn't it so so nice?"
             multiline
           />
         </Column>
         <Column size={4}>
-          <CustomCheckbox
+          <ControllableCheckbox
             defaultChecked
             disabled
             htmlFor="a-custom-checkbox-again"
@@ -240,7 +356,7 @@ export const ControlledCheckbox: React.FC = () => {
         </Column>
         <Column size={4}>
           <Background bg="black" pl={8}>
-            <CustomCheckbox
+            <ControllableCheckbox
               htmlFor="a-custom-checkbox-the-third"
               label="a dark mode fancy checkbox"
             />
@@ -248,7 +364,7 @@ export const ControlledCheckbox: React.FC = () => {
         </Column>
       </LayoutGrid>
     </Box>
-  );
+  ),
 };
 
 export const NestedCheckboxes: Story = {

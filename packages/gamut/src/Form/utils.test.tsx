@@ -1,4 +1,4 @@
-import { parseOptions, parseSelectOptions } from '../utils';
+import { parseOptions, parseSelectOptions } from './utils';
 
 describe(parseSelectOptions, () => {
   it('creates an option list', () => {

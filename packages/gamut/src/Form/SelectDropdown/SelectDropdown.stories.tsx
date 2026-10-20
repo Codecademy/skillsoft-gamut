@@ -1,20 +1,20 @@
-import {
-  Box,
-  DataList,
-  FlexBox,
-  FormGroup,
-  SelectDropdown,
-  Text,
-} from '@skillsoft/gamut';
 import { RadarIcon, ResponsiveIcon, RocketIcon } from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 import type { InputActionMeta } from 'react-select';
+import { expect, screen, waitFor } from 'storybook/test';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
+
+import { Box, FlexBox } from '../../Box';
+import { DataList } from '../../DataList';
+import { Text } from '../../Typography';
+import { FormGroup } from '../elements/FormGroup';
+import { SelectDropdown } from '.';
 
 const fruitOptions = ['Apple', 'Banana', 'Cherry', 'Dragonfruit', 'Eggplant'];
 
 const meta: TypeWithDeepControls<Meta<typeof SelectDropdown>> = {
+  title: 'Inputs & forms/SelectDropdown',
   component: SelectDropdown,
   args: {
     id: 'example-select',
@@ -106,6 +106,25 @@ export const Base: Story = {
       <SelectDropdown {...args} />
     </Box>
   ),
+};
+
+export const OpenAndSelect: Story = {
+  args: {
+    id: 'open-and-select',
+    name: 'open-and-select',
+    options: ['Apple', 'Banana', 'Cherry'],
+    'aria-label': 'Select a fruit',
+  },
+  render: (args) => (
+    <Box height="15rem">
+      <SelectDropdown {...args} />
+    </Box>
+  ),
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole('combobox'));
+    await userEvent.click(await screen.findByText('Banana'));
+    await waitFor(() => expect(canvas.getByText('Banana')).toBeVisible());
+  },
 };
 
 export const Searchable: Story = {

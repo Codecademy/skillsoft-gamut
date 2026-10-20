@@ -1,7 +1,7 @@
 import { act, render, renderHook } from '@testing-library/react';
 import type { ReactNode } from 'react';
 
-import { useNoOptionsAnnouncement } from '../useNoOptionsAnnouncement';
+import { useNoOptionsAnnouncement } from './useNoOptionsAnnouncement';
 
 /**
  * react-select's own `NoOptionsMessage` (rendered by `noOptionsMessageComponent`)

@@ -1,9 +1,13 @@
-import { FormGroup, Select } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect } from 'storybook/test';
+
+import { FormGroup } from '../elements/FormGroup';
+import { Select } from './Select';
 
 const fruitOptions = ['Apple', 'Banana', 'Cherry', 'Dragonfruit', 'Eggplant'];
 
 const meta: Meta<typeof Select> = {
+  title: 'Inputs & forms/Select',
   component: Select,
   args: {
     id: 'example-select',
@@ -23,6 +27,28 @@ type Story = StoryObj<typeof Select>;
 
 export const Default: Story = {
   args: {},
+  play: async ({ canvas }) => {
+    const select = canvas.getByRole('combobox');
+    await expect(select).toHaveAttribute('id', 'example-select');
+    await expect(canvas.getAllByRole('option')).toHaveLength(
+      fruitOptions.length
+    );
+    canvas.getByTestId('example-select-Apple');
+  },
+};
+
+export const ObjectOptions: Story = {
+  args: {
+    id: 'colors',
+    options: { redKey: 'red', greenKey: 'green', yellowKey: 'yellow' },
+  },
+  play: async ({ canvas }) => {
+    await expect(canvas.getAllByRole('option')).toHaveLength(3);
+    await expect(canvas.getByRole('option', { name: 'yellow' })).toHaveValue(
+      'yellowKey'
+    );
+    canvas.getByTestId('colors-redKey');
+  },
 };
 
 export const Base: Story = {
