@@ -15,7 +15,7 @@ export const eslintConfig: FileMigration = {
   kind: 'file',
   description:
     'Update the plugin name, `plugin:` extends, and rule prefix in .eslintrc(.json).',
-  match: (file) => /(^|\/)\.eslintrc(\.json)?$/.test(file),
+  appliesTo: (file) => /(^|\/)\.eslintrc(\.json)?$/.test(file),
   run({ source, manifest }) {
     const { from, to } = manifest.eslintPlugin;
     const old = escape(from);
