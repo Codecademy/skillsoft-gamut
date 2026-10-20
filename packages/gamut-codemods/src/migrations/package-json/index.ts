@@ -71,7 +71,6 @@ export const packageJson: FileMigration = {
           warn(
             `${field}: '${from}@${range}' is newer than ${covered}, the last release ${to} matches. Code written against the newer release may not type-check until ${to} catches up.`
           );
-          note('newer-than-source');
         }
         delete next[from];
         touched = true;
