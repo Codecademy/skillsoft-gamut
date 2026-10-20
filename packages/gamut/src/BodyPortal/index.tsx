@@ -1,10 +1,6 @@
 import styled from '@emotion/styled';
-import {
-  ColorMode,
-  system,
-  useCurrentMode,
-  ZIndexType,
-} from '@skillsoft/gamut-styles';
+import type { ZIndexType } from '@skillsoft/gamut-styles';
+import { ColorMode, system, useCurrentMode } from '@skillsoft/gamut-styles';
 import type * as React from 'react';
 import { useState } from 'react';
 import ReactDOM from 'react-dom';

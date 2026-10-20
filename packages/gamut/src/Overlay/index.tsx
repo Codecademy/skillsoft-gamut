@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import { states, ZIndexType } from '@skillsoft/gamut-styles';
+import type { ZIndexType } from '@skillsoft/gamut-styles';
+import { states } from '@skillsoft/gamut-styles';
 import type * as React from 'react';
 import { useCallback } from 'react';
 

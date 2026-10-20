@@ -1,5 +1,5 @@
-import type { theme as GamutTheme } from '@skillsoft/gamut-styles';
-import { css, states, variant, ZIndexType } from '@skillsoft/gamut-styles';
+import type { theme as GamutTheme, ZIndexType } from '@skillsoft/gamut-styles';
+import { css, states, variant } from '@skillsoft/gamut-styles';
 import type { StylesConfig } from 'react-select';
 
 import {

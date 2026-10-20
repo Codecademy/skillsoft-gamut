@@ -1,6 +1,7 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
 
-import { BodyPortal, BodyPortalProps } from '..';
+import type { BodyPortalProps } from '..';
+import { BodyPortal } from '..';
 
 const BodyPortalTest = (props?: Partial<BodyPortalProps>) => (
   <main>

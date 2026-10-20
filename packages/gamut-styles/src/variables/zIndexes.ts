@@ -1,4 +1,4 @@
-import { Globals } from 'csstype';
+import type { Globals } from 'csstype';
 
 /**
  * Semantic z-index scale. Every z-index in Gamut should reference a token here rather than a

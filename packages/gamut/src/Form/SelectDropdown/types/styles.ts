@@ -1,4 +1,4 @@
-import { ZIndexType } from '@skillsoft/gamut-styles';
+import type { ZIndexType } from '@skillsoft/gamut-styles';
 import type { StyleProps } from '@skillsoft/variance';
 
 import type { conditionalBorderStates } from '../core/styles';

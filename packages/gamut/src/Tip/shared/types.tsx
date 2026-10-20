@@ -1,4 +1,4 @@
-import { ZIndexType } from '@skillsoft/gamut-styles';
+import type { ZIndexType } from '@skillsoft/gamut-styles';
 import type { ComponentProps, ReactNode } from 'react';
 
 import type { Text } from '../../Typography';
