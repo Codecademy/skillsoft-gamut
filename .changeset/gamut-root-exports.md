@@ -12,4 +12,11 @@
 | `ListButton`                                                    | `MenuListButton`                    |
 | `IconOption` (the component)                                    | `IconOptionComponent`               |
 
-`MenuToolTipWrapper` is now exported from the root too. The `IconOption` type is unchanged. Coming from `@codecademy/gamut`, `npx @skillsoft/gamut-codemods scope-swap .` rewrites these imports for you.
+`MenuToolTipWrapper` is now exported from the root too. The `IconOption` type is unchanged.
+
+Also new at the root:
+
+- `formFieldStyles`, `formFieldPaddingStyles`, and `conditionalStyles`, for custom inputs that should look like `Input`, such as third-party hosted payment fields. The rest of `Form/styles` stays internal.
+- The `HTMLToReactNode` and `ButtonBaseProps` types.
+
+Coming from `@codecademy/gamut`, `npx @skillsoft/gamut-codemods scope-swap .` rewrites imports of all of these, including from their old `/dist/` paths.
