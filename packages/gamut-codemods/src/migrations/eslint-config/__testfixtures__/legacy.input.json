@@ -1,0 +1,9 @@
+{
+  "plugins": ["gamut"],
+  "extends": ["plugin:gamut/recommended"],
+  "rules": {
+    // keep these on
+    "gamut/no-css-standalone": "error",
+    "gamut/no-inline-style": "error"
+  }
+}

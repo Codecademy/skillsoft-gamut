@@ -104,6 +104,7 @@ describe('main: no-op paths', () => {
   it('lists presets and their migrations', async () => {
     expect(await main(['list'])).toBe(0);
     expect(output()).toMatch(/scope-swap/);
+    expect(output()).toMatch(/markdown-video-overrides/);
   });
 
   it('prints usage for --help and for a missing path', async () => {
@@ -173,6 +174,43 @@ describe('main: full run', () => {
     expect(out).toMatch(/Reinstall \(yarn\)/);
   });
 
+  it('moves Video, adds Markdown overrides, and flags tsconfig lib', async () => {
+    const dir = project({
+      'src/Post.tsx': POST,
+      'src/index.ts': "export * from '@codecademy/gamut';\n",
+      'docs/reexport.mdx': "export * from '@codecademy/gamut';\n",
+      'tsconfig.json': JSON.stringify({ compilerOptions: { lib: ['es2020'] } }),
+    });
+
+    expect(await main(['scope-swap', dir, '--force'])).toBe(0);
+
+    const post = read(dir, 'src/Post.tsx');
+    expect(post).toContain("from '@skillsoft/gamut/Video'");
+    expect(post).toContain('iframeOverride');
+
+    const out = output();
+    expect(out).toMatch(/Video needs two peer dependencies/);
+    expect(out).toMatch(/Some tsconfig files set "lib"/);
+    expect(out).toMatch(
+      /\[moved-exports\] .*src\/index\.ts:1 .*no longer re-exports Video/
+    );
+    expect(out).toMatch(
+      /\[moved-exports\] .*reexport\.mdx .*no longer re-exports Video/
+    );
+  });
+
+  it('flags esmExternals: false in next.config', async () => {
+    const dir = project({
+      'src/Post.tsx': POST,
+      'next.config.js':
+        'module.exports = { experimental: { esmExternals: false } };\n',
+    });
+    expect(await main(['scope-swap', dir, '--force'])).toBe(0);
+    expect(read(dir, 'next.config.js')).toContain('esmExternals: false');
+    expect(output()).toMatch(/\[next-config\] .*next\.config\.js/);
+    expect(output()).toMatch(/Some next\.config files set/);
+  });
+
   it('writes nothing under --dry and skips the checklist and leftovers', async () => {
     const pkg = JSON.stringify({
       dependencies: { '@codecademy/gamut': '^73.0.0' },
@@ -205,6 +243,15 @@ describe('main: full run', () => {
     ).toBe(0);
     expect(read(dir, 'src/Post.tsx')).toBe(POST);
     expect(read(dir, 'package.json')).toContain('"@skillsoft/gamut"');
+  });
+
+  it('reports a migration skipped by its skipReason', async () => {
+    const dir = project({
+      'eslint.config.js': 'export default [];\n',
+      'src/Post.tsx': POST,
+    });
+    expect(await main(['scope-swap', dir, '--force'])).toBe(0);
+    expect(output()).toMatch(/\[eslint-comments\] skipped: found flat ESLint/);
   });
 
   it('returns 1 when the source runner reports errors', async () => {

@@ -31,6 +31,12 @@ The first time you run `gamut plugin install` or `update`, it installs `@skillso
 
 Before large PRs, or when onboarding an existing codebase, run the `gamut-review` skill to audit for Gamut usage — dependencies, setup, import patterns, `styled()` wrapping that bypasses system props, hardcoded colors, bespoke component duplication, and test conventions.
 
+### Moving from `@codecademy/gamut`
+
+If your app still depends on `@codecademy/gamut*`, the `gamut-scope-swap` skill helps with the move to `@skillsoft/gamut*`. It works alongside the [`@skillsoft/gamut-codemods`](../gamut-codemods/README.md) `scope-swap` preset. The codemod does the mechanical rewrite. The skill reads what it reports, including warnings, leftovers, and next steps, and helps with the parts it can't rewrite: deep imports, `Video`, renamed Menu exports, tsconfig `dom`, jest mocks, ESLint plugin keys, Module Federation config, and preview builds. It doesn't run the codemod unless you ask it to.
+
+Install the plugin after the swap. The `gamut` CLI comes from `@skillsoft/gamut`, so that package has to be in the app first.
+
 ## The CLI lives here, not in `@skillsoft/gamut`
 
 `@skillsoft/gamut`'s `bin/gamut.mjs` is a thin bootstrap shim: it only knows how to check whether `@skillsoft/gamut-agent-tools` is installed, auto-install it if not (for `install`/`update`), and print help. Once that's resolved, it dynamically imports the actual `install`/`update`/`list`/`remove` command bodies from `cli/commands/plugin/` in *this* package and hands off execution to them.
