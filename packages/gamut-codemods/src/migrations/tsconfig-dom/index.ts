@@ -16,7 +16,7 @@ export const tsconfigDom: FileMigration = {
   kind: 'file',
   description:
     'Warn about tsconfig `lib` settings without "dom", which Video used to supply.',
-  match: (file) => /(^|\/)tsconfig[\w.-]*\.json$/.test(file),
+  appliesTo: (file) => /(^|\/)tsconfig[\w.-]*\.json$/.test(file),
   run({ source, warn, note }) {
     const lib = LIB.exec(source);
     if (lib && !/["']dom["']/i.test(lib[1])) {
