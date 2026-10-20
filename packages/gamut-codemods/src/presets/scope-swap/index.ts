@@ -1,4 +1,5 @@
 import type { Preset } from '../../lib/types';
+import { deepImports } from '../../migrations/deep-imports';
 import { mdxImports } from '../../migrations/mdx-imports';
 import { mfShared } from '../../migrations/mf-shared';
 import { packageJson } from '../../migrations/package-json';
@@ -11,6 +12,7 @@ export const scopeSwap: Preset = {
   description: 'Move from @codecademy/gamut* to @skillsoft/gamut*.',
   manifest,
   migrations: [
+    deepImports,
     mfShared,
     /* Last: everything above matches on @codecademy names. */
     scopeRename,
