@@ -88,7 +88,7 @@ const runFileMigrations = (
     const files = fs.statSync(root).isDirectory() ? walk(root) : [root];
     for (const file of files) {
       for (const migration of active) {
-        if (!migration.match(file)) continue;
+        if (!migration.appliesTo(file)) continue;
         const source = fs.readFileSync(file, 'utf8');
         const warn = (msg: string) =>
           console.log(`[${migration.name}] ${file} ${msg}`);
