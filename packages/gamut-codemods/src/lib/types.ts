@@ -66,7 +66,11 @@ export interface SpliceMigration extends MigrationBase {
 /* Gets raw text for non-source files (package.json, .eslintrc, .mdx). */
 export interface FileMigration extends MigrationBase {
   kind: 'file';
-  match(path: string): boolean;
+  /*
+    Not `match`: CodeQL reads `migration.match(file)` as
+    String.prototype.match on a CLI argument and flags it as regex injection.
+  */
+  appliesTo(path: string): boolean;
   run(ctx: {
     source: string;
     manifest: Manifest;
