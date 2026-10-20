@@ -90,7 +90,7 @@ Two rules hold it together:
 
 - **`splice`** (the default choice): uses the AST to find ranges, then edits the original text by offset. Use it for anything that swaps one string for another. recast never prints the file, so nothing else in it moves.
 - **`ast`**: mutates the AST, and recast prints the file. Only for structural rewrites like splitting an import. recast can reprint more than you changed: mutating one string literal in a semicolon-less file added semicolons and changed JSX text whitespace in neighbouring statements. Presets must list every `ast` migration before any `splice` one, and `validatePreset` enforces it.
-- **`file`**: gets raw text for files its `match()` accepts (package.json, .eslintrc).
+- **`file`**: gets raw text for files its `appliesTo()` accepts (package.json, .eslintrc).
 
 ### Changing a preset's manifest
 
