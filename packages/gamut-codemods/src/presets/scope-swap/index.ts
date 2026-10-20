@@ -1,4 +1,6 @@
 import type { Preset } from '../../lib/types';
+import { eslintComments } from '../../migrations/eslint-comments';
+import { eslintConfig } from '../../migrations/eslint-config';
 import { mdxImports } from '../../migrations/mdx-imports';
 import { mfShared } from '../../migrations/mf-shared';
 import { packageJson } from '../../migrations/package-json';
@@ -12,9 +14,11 @@ export const scopeSwap: Preset = {
   manifest,
   migrations: [
     mfShared,
+    eslintComments,
     /* Last: everything above matches on @codecademy names. */
     scopeRename,
     packageJson,
+    eslintConfig,
     mdxImports,
     yarnrc,
   ],
@@ -28,6 +32,8 @@ export const scopeSwap: Preset = {
       "gamut-kit is gone. Delete anything that reads it for versions, such as a sync-gamut-deps script. @skillsoft/gamut-styles has @emotion/cache and stylis peer dependencies, so add them if yarn warns that they aren't provided.",
     'newer-than-source':
       'Some @codecademy packages were on a newer release than @skillsoft has caught up to (see the package-json warnings). Expect type errors wherever the code uses what that release added, and check the upstream CHANGELOG for it.',
+    'skipped:eslint-comments':
+      "ESLint directive comments were left as is because the repo uses a flat config, where the rule prefix is the key the plugin is registered under (for example `plugins: { gamut }`). Keep that key, or rename it and every 'gamut/' rule and directive together.",
     'mf-shared':
       "Module Federation shared config changed. Gamut is now a real singleton: run the host and every remote together, and update the remotes' shared config to match.",
   },
