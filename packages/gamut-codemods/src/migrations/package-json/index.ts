@@ -36,7 +36,7 @@ export const packageJson: FileMigration = {
   name: 'package-json',
   kind: 'file',
   description: 'Rename dependencies in package.json.',
-  match: (file) => /(^|\/)package\.json$/.test(file),
+  appliesTo: (file) => /(^|\/)package\.json$/.test(file),
   run({ source, manifest, warn, note }) {
     const pkg = JSON.parse(source) as Record<string, unknown>;
     let changed = false;

@@ -23,7 +23,7 @@ export const mdxImports: FileMigration = {
   kind: 'file',
   description:
     'Run the source migrations over import/export statements in .mdx files.',
-  match: (file) => file.endsWith('.mdx'),
+  appliesTo: (file) => file.endsWith('.mdx'),
   run({ source, transformSource }) {
     const lines = source.split('\n');
     const out: string[] = [];
