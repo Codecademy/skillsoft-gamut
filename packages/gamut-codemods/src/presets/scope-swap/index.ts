@@ -44,8 +44,6 @@ export const scopeSwap: Preset = {
       'Video needs two peer dependencies that Gamut no longer installs for you: `@vidstack/react` and `react-player`. Gamut supports @vidstack/react 1.12.x only (its npm `latest` tag is 0.6.x). Install them: `yarn add @vidstack/react@~1.12.12 react-player@^3.4.0`.',
     'tsconfig-no-dom':
       'Some tsconfig files set "lib" without "dom" (see the tsconfig-dom warnings). Video no longer loads with the root import, and it was supplying the DOM types. Add "dom" to those files if type-checking fails on document, HTMLElement, ResizeObserver, and so on.',
-    'newer-than-source':
-      'Some @codecademy packages were on a newer release than @skillsoft has caught up to (see the package-json warnings). Expect type errors wherever the code uses what that release added, and check the upstream CHANGELOG for it.',
     'skipped:eslint-comments':
       "ESLint directive comments were left as is because the repo uses a flat config, where the rule prefix is the key the plugin is registered under (for example `plugins: { gamut }`). Keep that key, or rename it and every 'gamut/' rule and directive together.",
     'next-esm-externals':
