@@ -28,8 +28,6 @@ export const scopeSwap: Preset = {
   conditionalChecklist: {
     'removed:@codecademy/gamut-kit':
       "gamut-kit is gone. Delete anything that reads it for versions, such as a sync-gamut-deps script. @skillsoft/gamut-styles has @emotion/cache and stylis peer dependencies, so add them if yarn warns that they aren't provided.",
-    'newer-than-source':
-      'Some @codecademy packages were on a newer release than @skillsoft has caught up to (see the package-json warnings). Expect type errors wherever the code uses what that release added, and check the upstream CHANGELOG for it.',
     'next-esm-externals':
       'Some next.config files set `experimental.esmExternals: false` (see the next-config warnings). Remove it, and any @emotion/* resolve.alias or transpilePackages entries that were working around default-import interop, then rebuild: the failure only shows up when Next collects page data.',
     'mf-shared':
