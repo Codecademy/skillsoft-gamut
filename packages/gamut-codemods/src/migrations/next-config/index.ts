@@ -18,7 +18,7 @@ export const nextConfig: FileMigration = {
   kind: 'file',
   description:
     "Warn about `esmExternals: false` in next.config, which breaks default imports from gamut's .mjs files.",
-  match: (file) => /(^|\/)next\.config\.[cm]?[jt]s$/.test(file),
+  appliesTo: (file) => /(^|\/)next\.config\.[cm]?[jt]s$/.test(file),
   run({ source, warn, note }) {
     if (ESM_EXTERNALS_OFF.test(source)) {
       warn(
