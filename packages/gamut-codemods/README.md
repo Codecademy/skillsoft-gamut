@@ -61,11 +61,13 @@ Every skillsoft-gamut pull request publishes installable previews through pkg.pr
 | `package-json` | Renames dependencies and sets their versions. A new package that's already listed keeps its value (a preview URL, say), and a `*` peer range stays `*`. Replaces `@codecademy/gamut-kit` with the individual packages.                                                                                                                                                      |
 | `mdx-imports`  | Runs the migrations above over `import`/`export` statements in `.mdx` files. Fenced code blocks are left alone.                                                                                                                                                                                                                                                             |
 | `yarnrc`       | `.yarnrc.yml` list items, like `npmPreapprovedPackages`: renames old package names, or drops them if a glob like `'@skillsoft/*'` already covers the new one.                                                                                                                                                                                                               |
+| `next-config`  | Report only. Warns about `experimental.esmExternals: false` in `next.config.*`, which breaks default imports from Gamut's `.mjs` files when Next collects page data.                                                                                                                                                                                                        |
 
 ### Known limits
 
 - Every file is parsed with the `tsx` parser, so Flow-typed JS won't parse.
 - The leftovers report uses regex, not an AST, so expect some false positives.
+- The codemod doesn't change how Gamut loads at runtime. Next.js apps with `experimental.esmExternals: false` can fail at build or prerender on `@emotion/*` or `react-select` default imports, with errors like `Element type is invalid ... got: object` or `c(...) is not a function`. `next-config` warns about the flag; remove it, along with any `@emotion/*` aliases that were working around it.
 
 ## Contributing
 
