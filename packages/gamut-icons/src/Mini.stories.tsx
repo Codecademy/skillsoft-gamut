@@ -1,10 +1,10 @@
-import type { GamutIconProps } from '@skillsoft/gamut-icons';
-// eslint-disable-next-line @skillsoft/gamut/import-paths
-import * as miniIcons from '@skillsoft/gamut-icons/src/icons/mini';
 import type { Meta, StoryObj } from '@storybook/react';
 import type React from 'react';
 
-import { ImageGallery } from '~styleguide/blocks';
+import { ImageGallery } from '~storybook/blocks';
+
+import type { GamutIconProps } from '.';
+import * as miniIcons from './icons/mini';
 
 type MiniIconProps = GamutIconProps & {
   icon: typeof miniIcons.MiniStarIcon;
@@ -18,6 +18,7 @@ const MiniIconComponent: React.FC<MiniIconProps> = ({
 };
 
 const meta: Meta<typeof MiniIconComponent> = {
+  title: 'Media & Assets/Icons/Mini',
   component: MiniIconComponent,
   argTypes: {
     icon: {
@@ -38,11 +39,10 @@ export const Default: Story = {
   },
 };
 
+// Visual catalog of every mini icon — slow to render + axe, and redundant with
+// `Default`. `!test` removes the auto-applied `test` tag so addon-vitest skips
+// it; it still renders in Storybook.
 export const AllMiniIcons: Story = {
-  // Skip the render/a11y test on the full gallery — it's a visual catalog of
-  // every icon (slow to render + axe), and `Default` already covers the
-  // component's behavior. `!test` removes the auto-applied `test` tag so
-  // addon-vitest ignores this story (it still shows in Storybook).
   tags: ['!test'],
   render: () => {
     return <ImageGallery imageType="icon" images={miniIcons} />;
