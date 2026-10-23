@@ -1,7 +1,4 @@
-import styled from '@emotion/styled';
 import * as icons from '@skillsoft/gamut-icons';
-import { MiniStarIcon } from '@skillsoft/gamut-icons';
-import { css } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Box, FlexBox } from '../Box';
@@ -42,19 +39,21 @@ export const Tertiary: Story = {
   },
 };
 
-const AbsoluteBadge = styled(Badge)(
-  css({ position: 'absolute', top: 12, left: 12 })
-);
-
 export const TertiaryFill: Story = {
-  render: () => (
-    <Box bg="background-primary" height="30px" pt={16}>
-      <AbsoluteBadge icon={MiniStarIcon} variant="tertiaryFill">
-        Badge
-      </AbsoluteBadge>
-      <Box bg="text" height="100%" width="100%" />
-    </Box>
-  ),
+  args: {
+    icon: icons.MiniStarIcon,
+    variant: 'tertiaryFill',
+  },
+  decorators: [
+    (Story) => (
+      <Box bg="background-primary" height="30px" pt={16}>
+        <Box left={12} position="absolute" top={12}>
+          <Story />
+        </Box>
+        <Box bg="text" height="100%" width="100%" />
+      </Box>
+    ),
+  ],
 };
 
 export const Accent: Story = {
