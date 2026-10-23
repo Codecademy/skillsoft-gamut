@@ -24,7 +24,9 @@
     "**/*.stories.ts",
     "**/*.stories.tsx",
     "**/*.stories.js",
-    "**/*.stories.jsx"
+    "**/*.stories.jsx",
+    "**/testUtils.ts",
+    "**/testUtils.tsx"
   ],
   "include": [
     "src/**/*.ts",
