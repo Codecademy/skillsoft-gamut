@@ -101,9 +101,11 @@ const getTypeSummary = (config: SystemPropConfig, tokens: string[]) => {
   return { summary: `theme.${config.scale}`, detail: tokens.join(' | ') };
 };
 
-// Components can declare their own props with system prop names, like a numeric
-// `zIndex`. Docgen types real system props as `Scale<...>`, or, where two prop
-// groups both define a prop, as csstype's open-ended `(string & {})` union.
+/*
+ * Components can declare their own props with system prop names, like a numeric
+ * `zIndex`. Docgen types real system props as `Scale<...>`, or, where two prop
+ * groups both define a prop, as csstype's open-ended `(string & {})` union.
+ */
 const hasSystemPropType = ({ table }: StrictInputType) => {
   const docgenType = table?.type?.summary;
   return (
@@ -136,7 +138,9 @@ const enhanceSystemProp = (
  * they accept, and gives them select or text controls. Anything set in a
  * story's `argTypes` takes precedence. The table renders categories in
  * first-seen order, so entries are sorted to keep the sections in the same
- * order on every component.
+ * order on every component. Storybook moves props with story args to the front
+ * after this runs, so a story that sets a system prop arg shows that section
+ * first.
  */
 export const enhanceSystemProps: ArgTypesEnhancer = ({ argTypes }) =>
   Object.fromEntries(

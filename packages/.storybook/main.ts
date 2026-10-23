@@ -39,9 +39,11 @@ const config: StorybookConfig = {
   typescript: {
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
-      // Needs `strictFunctionTypes: false` (unlike the root tsconfig), or
-      // `variance.compose(...)` fails to type-check and composed system props
-      // drop out of the props tables.
+      /*
+       * Needs `strictFunctionTypes: false` (unlike the root tsconfig), or
+       * `variance.compose(...)` fails to type-check and composed system props
+       * drop out of the props tables.
+       */
       tsconfigPath: resolve(__dirname, '../gamut/tsconfig.json'),
       skipChildrenPropWithoutDoc: false,
       shouldRemoveUndefinedFromOptional: true,
