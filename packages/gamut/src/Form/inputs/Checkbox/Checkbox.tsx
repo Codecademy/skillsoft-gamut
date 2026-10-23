@@ -9,10 +9,12 @@ import type { StyleProps } from '@skillsoft/variance';
 import type { InputHTMLAttributes } from 'react';
 import { forwardRef, useEffect, useRef } from 'react';
 
-import { FlexBox } from '../../Box';
-import { InfoTip } from '../../Tip/InfoTip';
-import type { InfoTipSubComponentProps } from '../../Tip/InfoTip/type-utils';
-import { useInfotipProps } from '../../Tip/InfoTip/type-utils';
+import { FlexBox } from '../../../Box';
+import { InfoTip } from '../../../Tip/InfoTip';
+import type { InfoTipSubComponentProps } from '../../../Tip/InfoTip/type-utils';
+import { useInfotipProps } from '../../../Tip/InfoTip/type-utils';
+import { InputWrapper } from '../../styles';
+import type { BaseInputProps } from '../../types';
 import {
   checkboxElement,
   checkboxElementStates,
@@ -21,10 +23,8 @@ import {
   checkboxLabelStates,
   checkboxPadding,
   checkboxTextStates,
-  InputWrapper,
   polyline,
-} from '../styles';
-import type { BaseInputProps } from '../types';
+} from './styles';
 import type { CheckboxCheckedUnion, CheckboxLabelUnion } from './types';
 
 export type CheckboxTextProps = StyleProps<typeof checkboxTextStates>;

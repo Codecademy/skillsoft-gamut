@@ -5,18 +5,18 @@ import type { InputHTMLAttributes, ReactNode } from 'react';
 import type * as React from 'react';
 import { forwardRef } from 'react';
 
-import { FlexBox } from '../../Box';
-import { InfoTip } from '../../Tip/InfoTip';
-import type { InfoTipSubComponentProps } from '../../Tip/InfoTip/type-utils';
-import { useInfotipProps } from '../../Tip/InfoTip/type-utils';
+import { FlexBox } from '../../../Box';
+import { InfoTip } from '../../../Tip/InfoTip';
+import type { InfoTipSubComponentProps } from '../../../Tip/InfoTip/type-utils';
+import { useInfotipProps } from '../../../Tip/InfoTip/type-utils';
+import { InputWrapper } from '../../styles';
+import type { BaseInputProps } from '../../types';
 import {
   conditionalRadioInputStyles,
   conditionalRadioLabelStyles,
-  InputWrapper,
   radioInput,
   radioLabel,
-} from '../styles';
-import type { BaseInputProps } from '../types';
+} from './styles';
 
 export type RadioProps = InputHTMLAttributes<HTMLInputElement> &
   Omit<BaseInputProps, 'label'> & {

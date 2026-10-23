@@ -1,7 +1,7 @@
 import type { Ref, SelectHTMLAttributes } from 'react';
 import type { Options as OptionsType, Props as NamedProps } from 'react-select';
 
-import type { SelectComponentProps } from '../../inputs/Select';
+import type { SelectComponentProps } from '../../Select';
 import type {
   SelectDropdownTranslations,
   ValidationMessage,

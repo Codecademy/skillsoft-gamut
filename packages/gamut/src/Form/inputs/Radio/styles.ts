@@ -10,7 +10,7 @@ import {
   formBaseComponentStyles,
   formFieldBaseDisabledStyles,
   InputSelectors,
-} from '.';
+} from '../../styles';
 
 const consistentLabelStyles = {
   content: '""',

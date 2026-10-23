@@ -7,12 +7,12 @@ import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
 import { infotipNestedArgTypes } from '~storybook/argTypes';
 
-import { Anchor } from '../../Anchor';
-import { Box, FlexBox } from '../../Box';
-import { Column, LayoutGrid } from '../../Layout';
-import { Text } from '../../Typography';
+import { Anchor } from '../../../Anchor';
+import { Box, FlexBox } from '../../../Box';
+import { Column, LayoutGrid } from '../../../Layout';
+import { Text } from '../../../Typography';
+import type { CheckboxProps } from './Checkbox';
 import { Checkbox } from './Checkbox';
-import type { CheckboxProps } from './types';
 
 const meta: TypeWithDeepControls<Meta<typeof Checkbox>> = {
   title: 'Inputs & forms/Checkbox',

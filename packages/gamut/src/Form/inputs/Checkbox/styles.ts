@@ -1,6 +1,10 @@
 import { system, theme, transitionConcat } from '@skillsoft/gamut-styles';
 
-import { formBaseStyles, formFieldBaseDisabledStyles, InputSelectors } from '.';
+import {
+  formBaseStyles,
+  formFieldBaseDisabledStyles,
+  InputSelectors,
+} from '../../styles';
 
 export const checkboxLabel = system.css({
   display: 'flex',

@@ -2,7 +2,7 @@ import type { GamutIconProps } from '@skillsoft/gamut-icons';
 import type * as React from 'react';
 import type { GroupBase } from 'react-select';
 
-import type { SelectOptions } from '../../inputs/Select';
+import type { SelectOptions } from '../../Select';
 import type { SelectDropdownSizes } from './styles';
 
 /**

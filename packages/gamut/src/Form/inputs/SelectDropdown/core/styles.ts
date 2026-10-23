@@ -7,14 +7,14 @@ import {
   tagBaseStyles,
   tagLabelFontSize,
   tagLabelPadding,
-} from '../../../Tag/styles';
+} from '../../../../Tag/styles';
 import {
   formBaseComponentStyles,
   formBaseFieldStylesObject,
   formFieldDisabledStyles,
   formFieldPaddingStyles,
   InputSelectors,
-} from '../../styles';
+} from '../../../styles';
 import type { ControlState, OptionState } from '../types';
 import type { BaseSelectComponentProps } from '../types/styles';
 

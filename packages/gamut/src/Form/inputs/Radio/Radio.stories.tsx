@@ -6,9 +6,9 @@ import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
 import { infotipNestedArgTypes } from '~storybook/argTypes';
 
-import { FlexBox } from '../../Box';
-import { Text } from '../../Typography';
-import { FormGroup } from '../elements/FormGroup';
+import { FlexBox } from '../../../Box';
+import { Text } from '../../../Typography';
+import { FormGroup } from '../../elements/FormGroup';
 import { Radio } from './Radio';
 import { RadioGroup } from './RadioGroup';
 

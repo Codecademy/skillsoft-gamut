@@ -3,7 +3,7 @@ import type * as React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import type { ActionMeta, Options as OptionsType } from 'react-select';
 
-import type { SelectOptionBase } from '../../utils';
+import type { SelectOptionBase } from '../../../utils';
 import { ON_CHANGE_ACTION } from '../core/constants';
 import {
   filterValueFromOptions,

@@ -1,7 +1,7 @@
 import type * as React from 'react';
 import type { DropdownIndicatorProps, GroupBase } from 'react-select';
 
-import type { SelectOptionBase } from '../../utils';
+import type { SelectOptionBase } from '../../../utils';
 import type { SelectDropdownTranslations } from '../core/translations';
 import type { OptionStrict } from './options';
 import type { SelectDropdownSizes, SharedProps } from './styles';

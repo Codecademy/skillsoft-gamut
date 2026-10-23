@@ -1,7 +1,7 @@
 import type { ActionMeta, Options as OptionsType } from 'react-select';
 
-import { isDefined } from '../../../utils/nullish';
-import type { SelectOptionBase } from '../../utils';
+import { isDefined } from '../../../../utils/nullish';
+import type { SelectOptionBase } from '../../../utils';
 import type {
   BaseOnChangeProps,
   ExtendedOption,
