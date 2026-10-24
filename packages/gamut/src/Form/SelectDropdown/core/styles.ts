@@ -1,4 +1,4 @@
-import type { theme as GamutTheme } from '@skillsoft/gamut-styles';
+import type { theme as GamutTheme, ZIndexType } from '@skillsoft/gamut-styles';
 import { css, states, variant } from '@skillsoft/gamut-styles';
 import type { StylesConfig } from 'react-select';
 
@@ -21,7 +21,6 @@ import type { BaseSelectComponentProps } from '../types/styles';
 const selectDropdownStyles = css({
   ...formBaseFieldStylesObject,
   display: 'flex',
-  zIndex: 3,
 });
 
 const selectFocusStyles = {
@@ -57,7 +56,7 @@ const dropdownBorderStates = states({
   error: { borderColorTop: 'feedback-error' },
 });
 
-const dropdownBorderStyles = (zIndex = 2) =>
+const dropdownBorderStyles = (zIndex: ZIndexType = 'popover') =>
   css({
     ...formBaseComponentStyles,
     border: 1,
@@ -67,6 +66,15 @@ const dropdownBorderStyles = (zIndex = 2) =>
     borderRadius: 'none',
     zIndex,
   });
+
+// react-select needs a raw z-index value, so we're resolving the value to ensure the CSS is correct.
+const resolveZIndex = (
+  value: ZIndexType,
+  theme: typeof GamutTheme
+): string | number => {
+  const tokens = theme.zIndexes as unknown as Record<string, string>;
+  return typeof value === 'string' && value in tokens ? tokens[value] : value;
+};
 
 const getOptionBackground = (isSelected: boolean, isFocused: boolean) =>
   css({
@@ -87,7 +95,7 @@ const placeholderColor = css({
 
 export const getMemoizedStyles = (
   theme: typeof GamutTheme,
-  zIndex?: number
+  zIndex?: ZIndexType
 ): StylesConfig<any, false> => {
   return {
     clearIndicator: (provided) => ({
@@ -162,6 +170,12 @@ export const getMemoizedStyles = (
           : {}),
       };
     },
+    menuPortal: (provided) => ({
+      ...provided,
+      // The menu is portaled to the body, so it stacks at the page root as a popover —
+      // above sticky headers and modal content. A raw `zIndex` prop overrides as an escape hatch.
+      zIndex: resolveZIndex(zIndex ?? 'popover', theme),
+    }),
     menuList: (provided, state: BaseSelectComponentProps) => {
       const sizeInteger = state.selectProps.size === 'small' ? 2 : 3;
       const maxHeight = `${

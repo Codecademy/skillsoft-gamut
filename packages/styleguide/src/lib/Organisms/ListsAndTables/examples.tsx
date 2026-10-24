@@ -189,7 +189,7 @@ export const CustomEmptyState: React.FC = () => (
       height="inherit"
       position="absolute"
       width="inherit"
-      zIndex={1}
+      zIndex="foreground"
     >
       <FlexBox
         as="th"

@@ -275,7 +275,7 @@ Forcing `target="_blank"` needs a reason — readers can open a new tab themselv
 Stories follow Storybook's [Component Story Format](https://storybook.js.org/docs/8/api/csf) and its [TypeScript guidance](https://storybook.js.org/docs/writing-stories/typescript). One story per variation or behavior.
 
 ```tsx
-import { Badge } from '@codecademy/gamut';
+import { Badge } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Badge> = {

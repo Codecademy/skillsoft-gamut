@@ -100,12 +100,12 @@ const BackgroundExample = styled.div(system.background);
 
 ## Positioning
 
-Positioning props control how an element is placed within its parent and its stacking order — `position`, the individual edge props (or the `inset` shorthand for all four at once), and `zIndex`.
+Positioning props control how an element is placed within its parent and its stacking order — `position`, the individual edge props (or the `inset` shorthand for all four at once), `zIndex`, and `isolation`. `zIndex` resolves a token name (e.g. `"modal"`) from the semantic [z-index scale](/foundations/z-index/) to a CSS variable; `isolation="isolate"` scopes descendant `zIndex` values to a new stacking context. See [Z-index](/foundations/z-index/) for the full scale and guidance.
 
 ```tsx
 const PositioningExample = styled.div(system.positioning);
 
-<PositioningExample position="absolute" zIndex={2} top="0" left="0" />;
+<PositioningExample position="absolute" zIndex="modal" top="0" left="0" />;
 ```
 
 ## Shadow

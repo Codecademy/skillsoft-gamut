@@ -26,7 +26,7 @@ const focusVisibleStyles = {
     borderColor: 'primary',
     position: 'absolute',
     inset: 0,
-    zIndex: 0,
+    zIndex: 'base',
     borderRadiusTop: 'md',
     borderRadiusBottom: 'none',
   },
@@ -45,7 +45,7 @@ export const tabVariants = variant({
     color: 'text',
     font: 'inherit',
     cursor: 'pointer',
-    zIndex: 1,
+    zIndex: 'foreground',
     [TabSelectors.DISABLED]: {
       opacity: 0.25,
       cursor: 'not-allowed',
