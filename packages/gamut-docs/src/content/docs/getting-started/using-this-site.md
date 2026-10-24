@@ -29,6 +29,6 @@ Every component page follows the same section order, so once you know the patter
 
 Sections 2–4 are explanation and how-to material; section 5 is reference, and always lives in Storybook rather than being retyped here — the embed is the source of truth. If you're deciding whether to use the component at all, start at Usage; if you just need to see what a prop looks like, skip straight to the bottom.
 
-## This site is a work in progress
+## Contributing to documentation
 
-Gamut's documentation is migrating here from a Storybook-based styleguide. Pages that haven't been migrated yet are marked as such and link back to their current location. If you spot a gap, the [Contributing guide](/guides/contributing-to-gamut/) covers how to add or fix a page.
+If you spot a gap, the [Contributing guide](/guides/contributing-to-gamut/) covers how to add or fix a page.
