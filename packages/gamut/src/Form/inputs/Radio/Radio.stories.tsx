@@ -151,7 +151,8 @@ export const DisabledChecked: Story = {
   },
 };
 
-export const Error: Story = {
+export const ErrorState: Story = {
+  name: 'Error',
   args: {
     htmlFor: 'example-error',
     label: 'Error',
@@ -174,6 +175,7 @@ export const CustomLabel: Story = {
   play: async ({ canvas, userEvent }) => {
     const trigger = canvas.getByRole('button', { name: 'Option with infotip' });
 
+    await expect(screen.queryByText('This is an infotip')).toBeNull();
     await userEvent.click(trigger);
     await waitFor(() =>
       expect(screen.getByText('This is an infotip')).toBeVisible()
@@ -186,13 +188,13 @@ export const JsxLabel: Story = {
     <Radio
       data-testid="radio-passthrough"
       htmlFor="example-jsx"
-      label={<img alt="my cat" src="cat.jpg" />}
+      label={<img alt="Badge anatomy" src="./atoms/badge.png" />}
       name="example-jsx"
       value="jsx"
     />
   ),
   play: async ({ canvas }) => {
-    canvas.getByAltText('my cat');
+    canvas.getByAltText('Badge anatomy');
     await expect(canvas.getByRole('radio')).toHaveAttribute(
       'data-testid',
       'radio-passthrough'
@@ -239,9 +241,15 @@ export const InfoTipLabelling: Story = {
       </div>
     </FlexBox>
   ),
-  play: ({ canvas }) => {
+  play: async ({ canvas }) => {
     canvas.getByRole('button', { name: 'Auto Radio Label' });
     canvas.getByRole('button', { name: 'Custom radio aria label' });
+    await expect(
+      canvas.queryByRole('button', { name: 'With ariaLabel' })
+    ).toBeNull();
     canvas.getByRole('button', { name: 'External Radio Label' });
+    await expect(
+      canvas.queryByRole('button', { name: 'With ariaLabelledBy' })
+    ).toBeNull();
   },
 };

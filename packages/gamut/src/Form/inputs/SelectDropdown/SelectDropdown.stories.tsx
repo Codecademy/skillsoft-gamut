@@ -9,7 +9,7 @@ import {
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 import type { InputActionMeta } from 'react-select';
-import { expect, fn, screen, waitFor, within } from 'storybook/test';
+import { expect, fireEvent, fn, waitFor, within } from 'storybook/test';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
 import { Box, FlexBox } from '../../../Box';
@@ -20,6 +20,7 @@ import { FormGroup } from '../../elements/FormGroup';
 import { SelectDropdown } from '.';
 import type {
   MultiSelectDropdownProps,
+  SelectDropdownProps,
   SingleSelectDropdownProps,
 } from './types';
 
@@ -41,12 +42,13 @@ const meta: TypeWithDeepControls<Meta<typeof SelectDropdown>> = {
     value: {
       control: 'select',
       options: fruitOptions,
+      table: {
+        type: { summary: 'string | string[]' },
+      },
     },
-    // Deprecated top-level props — hidden in favor of their `translations` equivalents.
     placeholder: { table: { disable: true } },
     formatCreateLabel: { table: { disable: true } },
     validationMessage: { table: { disable: true } },
-    // Expose the nested `translations` keys as deep controls rather than the parent object.
     translations: { table: { disable: true } },
     'translations.placeholder': {
       control: 'text',
@@ -116,27 +118,28 @@ const pickOption = async (
   await userEvent.click(await canvas.findByRole('option', { name }));
 };
 
-// Gamut icons are aria-hidden with no title; their mask id is the only stable handle.
 const queryIcon = (root: HTMLElement, iconName: string) =>
   root.querySelector(`mask[id^="${iconName}-mask-"]`);
 
-// Longer than SelectDropdown's 400ms no-options announcement debounce.
+const queryHiddenInput = (root: HTMLElement, formField: string) =>
+  root.querySelector(`input[type="hidden"][data-form-field="${formField}"]`);
+
 const waitPastAnnouncementDebounce = () =>
   new Promise((resolve) => setTimeout(resolve, 500));
 
-// Shorter than the 400ms announcement debounce, so this only passes if the
-// live region is cleared immediately rather than after a debounce.
 const expectAnnouncementCleared = (status: HTMLElement) =>
   waitFor(() => expect(status).toBeEmptyDOMElement(), { timeout: 200 });
 
 const createKeepsSelections: NonNullable<Story['play']> = async (context) => {
-  // TODO: Stories that end with multi-select values still selected fail the
-  // post-play a11y scan (aria-hidden-focus) until the "Remove all" button is
-  // fixed. react-select passes `aria-hidden="true"` in the clear indicator's
-  // innerProps, and RemoveAllButton (elements/multi-value.tsx) spreads them onto
-  // a div that also has role="button" and tabIndex={0}, so it's focusable but
-  // hidden from screen readers. Fix by dropping the inherited aria-hidden in
-  // RemoveAllButton.
+  /*
+   * TODO: Stories that end with multi-select values still selected fail the
+   * post-play a11y scan (aria-hidden-focus) until the "Remove all" button is
+   * fixed. react-select passes `aria-hidden="true"` in the clear indicator's
+   * innerProps, and RemoveAllButton (elements/multi-value.tsx) spreads them onto
+   * a div that also has role="button" and tabIndex={0}, so it's focusable but
+   * hidden from screen readers. Fix by dropping the inherited aria-hidden in
+   * RemoveAllButton.
+   */
   const { args, canvas, userEvent } = context;
 
   await pickOption(context, 'Apple');
@@ -175,12 +178,14 @@ export const Base: Story = {
     </Box>
   ),
   play: async ({ canvas, canvasElement, userEvent }) => {
-    // TODO: Fails the post-play a11y scan (aria-required-children) until the
-    // empty menu is fixed. With no options to show, react-select renders the
-    // "No options" message inside the role="listbox" MenuList with no option
-    // children. Fix by rendering the message outside the listbox (e.g. a custom
-    // MenuList that drops role="listbox" when there are no options) — the
-    // message is already announced via SelectDropdown's own live region.
+    /*
+     * TODO: Fails the post-play a11y scan (aria-required-children) until the
+     * empty menu is fixed. With no options to show, react-select renders the
+     * "No options" message inside the role="listbox" MenuList with no option
+     * children. Fix by rendering the message outside the listbox (e.g. a custom
+     * MenuList that drops role="listbox" when there are no options) — the
+     * message is already announced via SelectDropdown's own live region.
+     */
     await expect(canvas.getByRole('combobox')).toHaveAttribute(
       'id',
       'base-dropdown'
@@ -238,16 +243,32 @@ export const OpenAndSelect: Story = {
     name: 'open-and-select',
     options: ['Apple', 'Banana', 'Cherry'],
     'aria-label': 'Select a fruit',
+    onChange: fn(),
   },
   render: (args) => (
     <Box height="15rem">
       <SelectDropdown {...args} />
     </Box>
   ),
-  play: async ({ canvas, userEvent }) => {
-    await userEvent.click(canvas.getByRole('combobox'));
-    await userEvent.click(await screen.findByText('Banana'));
-    await canvas.findByText('Banana');
+  play: async ({ args, canvas, userEvent }) => {
+    const combobox = canvas.getByRole('combobox');
+
+    await userEvent.click(combobox);
+    await expect(combobox).toHaveAttribute('aria-expanded', 'true');
+    await userEvent.click(
+      await canvas.findByRole('option', { name: 'Banana' })
+    );
+
+    await expect(combobox).toHaveAttribute('aria-expanded', 'false');
+    await expect(canvas.queryByRole('listbox')).toBeNull();
+    await expect(args.onChange).toHaveBeenCalledWith(
+      expect.objectContaining({ label: 'Banana', value: 'Banana' }),
+      expect.objectContaining({
+        action: 'select-option',
+        option: expect.objectContaining({ value: 'Banana' }),
+      })
+    );
+    canvas.getByText('Banana');
   },
 };
 
@@ -303,7 +324,6 @@ export const Searchable: Story = {
 
     await userEvent.type(combobox, 'zz');
     await within(status).findByText('No results for "zz"');
-    // VoiceOver/Safari only track a live region they found on first mount.
     await expect(canvas.getByRole('status')).toBe(status);
   },
 };
@@ -357,8 +377,6 @@ export const NoOptionsAnnouncement: Story = {
       'No fruits available'
     );
     await within(status).findByText('No fruits available');
-    // The menu and SelectDropdown's live region only; react-select's own live
-    // region stays silent when there are no options.
     await expect(canvas.getAllByText('No fruits available')).toHaveLength(2);
     await expect(canvas.queryByText('No options')).toBeNull();
 
@@ -366,14 +384,20 @@ export const NoOptionsAnnouncement: Story = {
     await expectAnnouncementCleared(status);
     await expect(args.onMenuClose).toHaveBeenCalledTimes(1);
 
-    await userEvent.click(
+    await userEvent.click(combobox);
+    await within(status).findByText('No fruits available');
+
+    await fireEvent.click(
       canvas.getByRole('button', { name: 'Use default message' })
     );
-    await userEvent.click(combobox);
     await within(status).findByText('No options');
+    await within(canvas.getByRole('listbox')).findByText('No options');
+    await expect(combobox).toHaveAttribute('aria-expanded', 'true');
+    await expect(canvas.queryByText('No fruits available')).toBeNull();
 
     await userEvent.keyboard('{Escape}');
     await expectAnnouncementCleared(status);
+    await expect(args.onMenuClose).toHaveBeenCalledTimes(2);
   },
 };
 
@@ -404,7 +428,10 @@ export const ObjectOptions: Story = {
     await canvas.findByText('Green');
     await expect(args.onChange).toHaveBeenCalledWith(
       { key: 'object-options-green', label: 'Green', value: 'green' },
-      expect.objectContaining({ action: 'select-option' })
+      expect.objectContaining({
+        action: 'select-option',
+        option: expect.objectContaining({ value: 'green' }),
+      })
     );
   },
 };
@@ -421,7 +448,8 @@ export const Disabled: Story = {
   },
 };
 
-export const Error: Story = {
+export const ErrorState: Story = {
+  name: 'Error',
   args: {
     name: 'error-dropdown-standalone',
     options: ['Small', 'Quite little'],
@@ -789,7 +817,20 @@ export const AbbreviatedMultiSelect: Story = {
     await canvas.findByText('USA');
     await canvas.findByText('UK');
     await expect(args.onChange).toHaveBeenCalledTimes(2);
-    await expect(args.onChange).toHaveBeenLastCalledWith(
+    await expect(args.onChange).toHaveBeenNthCalledWith(
+      1,
+      [
+        {
+          abbreviation: 'USA',
+          key: 'abbreviated-multi-us',
+          label: 'United States of America',
+          value: 'us',
+        },
+      ],
+      { action: 'select-option' }
+    );
+    await expect(args.onChange).toHaveBeenNthCalledWith(
+      2,
       [
         {
           abbreviation: 'USA',
@@ -1005,7 +1046,9 @@ export const GroupDividers: Story = {
       </FormGroup>
     </Box>
   ),
-  play: async ({ args, canvas, userEvent }) => {
+  play: async (context) => {
+    const { args, canvas, userEvent } = context;
+
     await userEvent.click(canvas.getByRole('combobox'));
     const listbox = await canvas.findByRole('listbox');
     await within(listbox).findByText('The King of Chess');
@@ -1022,9 +1065,25 @@ export const GroupDividers: Story = {
     );
     await expect(args.onChange).toHaveBeenCalledWith(
       expect.objectContaining({ label: 'pawn@chess.com', value: 'pawn' }),
-      expect.objectContaining({ action: 'select-option' })
+      expect.objectContaining({
+        action: 'select-option',
+        option: expect.objectContaining({ value: 'pawn' }),
+      })
     );
     await canvas.findByText('pawn@chess.com');
+
+    await pickOption(context, /^bishop@chess\.com/);
+    await expect(args.onChange).toHaveBeenLastCalledWith(
+      expect.objectContaining({ value: 'bishop', subtitle: 'Bishop Chess' }),
+      expect.objectContaining({
+        action: 'select-option',
+        option: expect.objectContaining({
+          value: 'bishop',
+          subtitle: 'Bishop Chess',
+        }),
+      })
+    );
+    await canvas.findByText('bishop@chess.com');
   },
 };
 
@@ -1096,6 +1155,13 @@ export const GroupLabels: Story = {
     const listbox = await canvas.findByRole('listbox');
     await within(listbox).findByText('Group 1');
     await within(listbox).findByText('Group 2');
+    [
+      /^king@chess\.com/,
+      /^queen@chess\.com/,
+      /^bishop@chess\.com/,
+      /^knight@chess\.com/,
+      /^pawn@chess\.com/,
+    ].forEach((name) => within(listbox).getByRole('option', { name }));
     await userEvent.keyboard('{Escape}');
 
     await pickOption(context, /^queen@chess\.com/);
@@ -1198,7 +1264,13 @@ export const GroupedIcons: Story = {
         value: 'data-transfer',
         icon: DataTransferVerticalIcon,
       }),
-      expect.objectContaining({ action: 'select-option' })
+      expect.objectContaining({
+        action: 'select-option',
+        option: expect.objectContaining({
+          value: 'data-transfer',
+          icon: DataTransferVerticalIcon,
+        }),
+      })
     );
     await canvas.findByText('Data transfer');
     await expect(
@@ -1571,7 +1643,6 @@ export const MultipleSelect: Story = {
     ).toBeNull();
     await canvas.findByRole('button', { name: 'Remove Multi Select' });
 
-    // react-select aria-hides the indicators container, so query by label.
     await userEvent.click(canvas.getByLabelText('Remove all selected'));
     await canvas.findByText('Select an option');
   },
@@ -1726,7 +1797,6 @@ export const Creatable: Story = {
     const combobox = canvas.getByRole('combobox');
 
     await userEvent.type(combobox, 'pur');
-    // Not userEvent.tab(): react-select's tabSelectsValue would create "pur".
     await userEvent.click(canvasElement);
     await expect(combobox).toHaveValue('');
     await expect(args.onInputChange).toHaveBeenCalledWith('', {
@@ -1744,6 +1814,7 @@ export const Creatable: Story = {
 
     await userEvent.clear(combobox);
     await userEvent.type(combobox, 'Apple');
+    await canvas.findByRole('option', { name: 'Apple' });
     await expect(
       canvas.queryByRole('option', { name: 'Add "Apple"' })
     ).toBeNull();
@@ -2013,9 +2084,6 @@ const handleInputChange = (
       const [error, setError] = useState<string | undefined>();
       const lastInputRef = useRef('');
 
-      // Three distinct validation reasons, each with its own message - only
-      // one can apply to a given inputValue, so validationMessage always
-      // shows the single most relevant reason instead of stacking them.
       const validate = (inputValue: string) => {
         const trimmed = inputValue.trim();
         if (trimmed.length < 3) return 'Enter at least 3 characters.';
@@ -2057,9 +2125,6 @@ const handleInputChange = (
               translations={{
                 placeholder: 'Type at least 3 letters to add…',
                 validationMessage: ({ inputValue }) =>
-                  // Falls back to "No matching fruit" once the input clears
-                  // both validation reasons above but still doesn't match an
-                  // option.
                   validate(inputValue) ?? 'No matching fruit',
               }}
               onChange={() => {
@@ -2137,13 +2202,15 @@ export const CustomInputProps: Story = {
     </Box>
   ),
   play: async ({ canvas, canvasElement }) => {
-    // TODO: Fails until SelectDropdown stops rendering duplicate ids. When `id`
-    // and `name` match, react-select's container div and the combobox input both
-    // get id="what". In non-searchable mode, CustomValueContainer
-    // (elements/containers.tsx) finds the input with document.getElementById,
-    // gets the container div first, and silently skips applying
-    // inputProps.combobox. Fix by looking the input up within the select's own
-    // DOM, or by not passing `id` to the container when it matches the input id.
+    /*
+     * TODO: Fails until SelectDropdown stops rendering duplicate ids. When `id`
+     * and `name` match, react-select's container div and the combobox input both
+     * get id="what". In non-searchable mode, CustomValueContainer
+     * (elements/containers.tsx) finds the input with document.getElementById,
+     * gets the container div first, and silently skips applying
+     * inputProps.combobox. Fix by looking the input up within the select's own
+     * DOM, or by not passing `id` to the container when it matches the input id.
+     */
     const combobox = canvas.getByRole('combobox');
     await expect(combobox).toHaveAttribute('data-testid', 'custom-select');
     await expect(combobox).toHaveAttribute('data-cy', 'custom-dropdown');
@@ -2157,11 +2224,132 @@ export const CustomInputProps: Story = {
     await expect(combobox).not.toHaveAttribute('data-form-field');
     await expect(combobox).not.toHaveAttribute('data-validation');
 
-    const hiddenInput = canvasElement.querySelector(
-      'input[type="hidden"][data-form-field="what"]'
-    );
+    const hiddenInput = queryHiddenInput(canvasElement, 'what');
     await expect(hiddenInput).toHaveAttribute('data-validation', 'required');
     await expect(hiddenInput).not.toHaveAttribute('data-cy');
+  },
+};
+
+export const CustomInputPropsDistinctIds: Story = {
+  args: {
+    id: 'custom-input-props-distinct',
+    name: 'custom-input-props-distinct-name',
+    options: ['inspect me to see my inputProps', 'yes I am!', ':)'],
+    inputProps: {
+      hidden: {
+        'data-form-field': 'test-field',
+        'data-hidden-attr': 'hidden-value',
+      },
+      combobox: {
+        'data-testid': 'non-searchable-combobox',
+        'data-custom-attr': 'custom-value',
+      },
+    },
+  },
+  render: (args) => (
+    <Box height="15rem">
+      <FormGroup
+        htmlFor="custom-input-props-distinct-name"
+        isSoloField
+        label="my id and name differ"
+      >
+        <SelectDropdown {...args} />
+      </FormGroup>
+    </Box>
+  ),
+  play: async ({ canvas, canvasElement }) => {
+    const combobox = canvas.getByRole('combobox');
+    await expect(combobox).toHaveAttribute(
+      'data-testid',
+      'non-searchable-combobox'
+    );
+    await expect(combobox).toHaveAttribute('data-custom-attr', 'custom-value');
+    await expect(combobox).not.toHaveAttribute('data-form-field');
+    await expect(combobox).not.toHaveAttribute('data-hidden-attr');
+
+    const hiddenInput = queryHiddenInput(canvasElement, 'test-field');
+    await expect(hiddenInput).toHaveAttribute(
+      'data-hidden-attr',
+      'hidden-value'
+    );
+    await expect(hiddenInput).toHaveAttribute(
+      'name',
+      'custom-input-props-distinct-name'
+    );
+    await expect(hiddenInput).not.toHaveAttribute('data-testid');
+    await expect(hiddenInput).not.toHaveAttribute('data-custom-attr');
+  },
+};
+
+type ComboboxInputProps = NonNullable<
+  SelectDropdownProps['inputProps']
+>['combobox'];
+
+const nonStringComboboxProps = {
+  'data-boolean-true': true,
+  'data-boolean-false': false,
+  'data-number': 42,
+  'data-zero': 0,
+} as unknown as ComboboxInputProps;
+
+const expectNonStringComboboxProps = async (combobox: HTMLElement) => {
+  await expect(combobox).toHaveAttribute('data-boolean-true', 'true');
+  await expect(combobox).toHaveAttribute('data-boolean-false', 'false');
+  await expect(combobox).toHaveAttribute('data-number', '42');
+  await expect(combobox).toHaveAttribute('data-zero', '0');
+};
+
+export const CustomInputPropsComboboxOnly: Story = {
+  args: {
+    id: 'custom-input-props-combobox-only',
+    name: 'custom-input-props-combobox-only-name',
+    options: ['inspect me to see my inputProps', 'yes I am!', ':)'],
+    inputProps: {
+      combobox: {
+        'data-testid': 'combobox-only',
+        'data-aria-label': 'Custom combobox label',
+        'data-cy': 'combobox-element',
+        'data-analytics': 'user-interaction',
+        'data-tracking': 'form-field',
+        'aria-describedby': 'combobox-only-help',
+        ...nonStringComboboxProps,
+      },
+    },
+  },
+  render: (args) => (
+    <Box height="15rem">
+      <FormGroup
+        htmlFor="custom-input-props-combobox-only-name"
+        isSoloField
+        label="i only have combobox inputProps"
+      >
+        <SelectDropdown {...args} />
+      </FormGroup>
+      <Text id="combobox-only-help">
+        I describe the combobox via inputProps
+      </Text>
+    </Box>
+  ),
+  play: async ({ canvas, canvasElement }) => {
+    const combobox = canvas.getByRole('combobox');
+    await expect(combobox).toHaveAttribute('data-testid', 'combobox-only');
+    await expect(combobox).toHaveAttribute(
+      'data-aria-label',
+      'Custom combobox label'
+    );
+    await expect(combobox).toHaveAttribute('data-cy', 'combobox-element');
+    await expect(combobox).toHaveAttribute(
+      'data-analytics',
+      'user-interaction'
+    );
+    await expect(combobox).toHaveAttribute('data-tracking', 'form-field');
+    await expect(combobox).toHaveAccessibleDescription(
+      'I describe the combobox via inputProps'
+    );
+    await expectNonStringComboboxProps(combobox);
+    await expect(
+      canvasElement.querySelector('input[type="hidden"][data-testid]')
+    ).toBeNull();
   },
 };
 
@@ -2172,9 +2360,14 @@ export const CustomInputPropsSearchable: Story = {
     isSearchable: true,
     options: ['inspect me to see my inputProps', 'yes I am!', ':)'],
     inputProps: {
+      hidden: {
+        'data-form-field': 'searchable-field',
+        'data-hidden-attr': 'searchable-hidden-value',
+      },
       combobox: {
         'data-testid': 'searchable-select',
         'data-cy': 'searchable-dropdown',
+        ...nonStringComboboxProps,
       },
     },
   },
@@ -2189,10 +2382,55 @@ export const CustomInputPropsSearchable: Story = {
       </FormGroup>
     </Box>
   ),
-  play: async ({ canvas }) => {
+  play: async ({ canvas, canvasElement }) => {
     const combobox = canvas.getByRole('combobox');
     await expect(combobox).toHaveAttribute('data-testid', 'searchable-select');
     await expect(combobox).toHaveAttribute('data-cy', 'searchable-dropdown');
+    await expectNonStringComboboxProps(combobox);
+    await expect(combobox).not.toHaveAttribute('data-form-field');
+    await expect(combobox).not.toHaveAttribute('data-hidden-attr');
+
+    const hiddenInput = queryHiddenInput(canvasElement, 'searchable-field');
+    await expect(hiddenInput).toHaveAttribute(
+      'data-hidden-attr',
+      'searchable-hidden-value'
+    );
+    await expect(hiddenInput).not.toHaveAttribute('data-testid');
+    await expect(hiddenInput).not.toHaveAttribute('data-cy');
+  },
+};
+
+export const CustomInputPropsHiddenOnly: Story = {
+  args: {
+    id: 'custom-input-props-hidden-only',
+    name: 'custom-input-props-hidden-only',
+    isSearchable: true,
+    options: ['inspect me to see my inputProps', 'yes I am!', ':)'],
+    inputProps: {
+      hidden: {
+        'data-form-field': 'hidden-only',
+        'data-validation': 'required',
+      },
+    },
+  },
+  render: (args) => (
+    <Box height="15rem">
+      <FormGroup
+        htmlFor="custom-input-props-hidden-only"
+        isSoloField
+        label="i only have hidden inputProps"
+      >
+        <SelectDropdown {...args} />
+      </FormGroup>
+    </Box>
+  ),
+  play: async ({ canvas, canvasElement }) => {
+    const combobox = canvas.getByRole('combobox');
+    await expect(combobox).not.toHaveAttribute('data-form-field');
+    await expect(combobox).not.toHaveAttribute('data-validation');
+
+    const hiddenInput = queryHiddenInput(canvasElement, 'hidden-only');
+    await expect(hiddenInput).toHaveAttribute('data-validation', 'required');
   },
 };
 
@@ -2269,6 +2507,68 @@ export const DeprecatedPropsPrecedence: Story = {
     await expect(
       canvas.queryByRole('option', { name: 'Translated "Kiwi"' })
     ).toBeNull();
+  },
+};
+
+export const DeprecatedValidationMessagePrecedence: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The deprecated top-level `validationMessage` prop still works as a string or a function, and takes precedence over `translations.validationMessage`.',
+      },
+    },
+  },
+  render: () => (
+    <FlexBox column gap={16} height="18rem">
+      <SelectDropdown
+        aria-label="String validation message"
+        id="deprecated-validation-message-string"
+        name="deprecated-validation-message-string"
+        options={[]}
+        translations={{ validationMessage: 'Translated no options' }}
+        validationMessage="Explicit no options"
+      />
+      <SelectDropdown
+        aria-label="Function validation message"
+        id="deprecated-validation-message-function"
+        isSearchable
+        name="deprecated-validation-message-function"
+        options={['Apple', 'Banana', 'Cherry']}
+        translations={{
+          validationMessage: ({ inputValue }) =>
+            `Translated no match for "${inputValue}"`,
+        }}
+        validationMessage={({ inputValue }) =>
+          `Explicit no match for "${inputValue}"`
+        }
+      />
+    </FlexBox>
+  ),
+  play: async ({ canvas, userEvent }) => {
+    const stringCombobox = canvas.getByRole('combobox', {
+      name: 'String validation message',
+    });
+    await userEvent.click(stringCombobox);
+    await within(await canvas.findByRole('listbox')).findByText(
+      'Explicit no options'
+    );
+    await expect(canvas.queryByText('Translated no options')).toBeNull();
+    await userEvent.keyboard('{Escape}');
+    await expect(canvas.queryByRole('listbox')).toBeNull();
+
+    const functionCombobox = canvas.getByRole('combobox', {
+      name: 'Function validation message',
+    });
+    await userEvent.type(functionCombobox, 'zzz');
+    await within(await canvas.findByRole('listbox')).findByText(
+      'Explicit no match for "zzz"'
+    );
+    await expect(
+      canvas.queryByText('Translated no match for "zzz"')
+    ).toBeNull();
+    await userEvent.keyboard('{Escape}');
+    await expect(canvas.queryByRole('listbox')).toBeNull();
   },
 };
 

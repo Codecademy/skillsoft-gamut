@@ -29,7 +29,7 @@ For typical product forms, prefer `GridForm` (declarative `fields`, `LayoutGrid`
 
 ## `Radio` and `RadioGroup`
 
-`packages/gamut/src/Form/inputs/Radio/Radio.tsx` · `packages/gamut/src/Form/inputs/Radio/RadioGroup.tsx` · reference: `packages/styleguide/src/lib/Atoms/FormInputs/Radio/Radio.mdx`
+`packages/gamut/src/Form/inputs/Radio/Radio.tsx` · `packages/gamut/src/Form/inputs/Radio/RadioGroup.tsx` · reference: `packages/gamut/src/Form/inputs/Radio/Radio.stories.tsx`
 
 ### No `variant`/`size` props — state is derived, not chosen
 

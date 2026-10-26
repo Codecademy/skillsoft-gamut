@@ -28,6 +28,9 @@ type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   args: {},
+  play: async ({ canvas }) => {
+    await expect(canvas.queryByRole('img', { hidden: true })).toBeNull();
+  },
 };
 
 export const Text: Story = {
@@ -40,6 +43,7 @@ export const Text: Story = {
   play: async ({ canvas }) => {
     const input = canvas.getByRole('textbox');
     await expect(input).toHaveValue('Text');
+    await expect(canvas.queryByRole('img', { hidden: true })).toBeNull();
   },
 };
 
@@ -63,6 +67,12 @@ export const File: Story = {
     value: '',
     onChange: () => {},
   },
+  play: async ({ canvasElement }) => {
+    await expect(canvasElement.querySelector('#example-file')).toHaveAttribute(
+      'type',
+      'file'
+    );
+  },
 };
 
 export const Error: Story = {
@@ -70,6 +80,13 @@ export const Error: Story = {
     id: 'example-error',
     defaultValue: 'Error',
     error: true,
+  },
+  play: async ({ canvas }) => {
+    const icon = canvas.getByRole('img', { hidden: true });
+    await expect(icon.querySelector('mask')).toHaveAttribute(
+      'id',
+      expect.stringMatching(/^AlertIcon-mask-/)
+    );
   },
 };
 
@@ -79,6 +96,13 @@ export const Validated: Story = {
     placeholder: 'Placeholder',
     defaultValue: 'Verified Text',
     valid: true,
+  },
+  play: async ({ canvas }) => {
+    const icon = canvas.getByRole('img', { hidden: true });
+    await expect(icon.querySelector('mask')).toHaveAttribute(
+      'id',
+      expect.stringMatching(/^CheckCircledIcon-mask-/)
+    );
   },
 };
 
@@ -104,6 +128,13 @@ export const CustomIcon: Story = {
     id: 'example-icon',
     defaultValue: 'Hello...',
     icon: icons.ViewIcon,
+  },
+  play: async ({ canvas }) => {
+    const icon = canvas.getByRole('img', { hidden: true });
+    await expect(icon.querySelector('mask')).toHaveAttribute(
+      'id',
+      expect.stringMatching(/^ViewIcon-mask-/)
+    );
   },
 };
 

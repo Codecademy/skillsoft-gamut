@@ -44,6 +44,7 @@ export const ObjectOptions: Story = {
   },
   play: async ({ canvas }) => {
     await expect(canvas.getAllByRole('option')).toHaveLength(3);
+    await expect(canvas.getAllByRole('option')[0]).toHaveTextContent('red');
     await expect(canvas.getByRole('option', { name: 'yellow' })).toHaveValue(
       'yellowKey'
     );

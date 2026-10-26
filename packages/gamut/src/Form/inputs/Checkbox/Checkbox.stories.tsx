@@ -43,6 +43,11 @@ export const Unchecked: Story = {
     label: 'unchecked',
     name: 'example-unchecked',
     checked: false,
+    indeterminate: false,
+  },
+  play: async ({ canvas }) => {
+    const checkbox = canvas.getByRole('checkbox', { checked: false });
+    await expect(checkbox).toHaveProperty('indeterminate', false);
   },
 };
 
@@ -123,9 +128,6 @@ export const Multiline: Story = {
 };
 
 export const SpacingTight: Story = {
-  args: {
-    spacing: 'tight',
-  },
   render: () => (
     <Box as="fieldset" m={0} p={0}>
       <legend>Tight Spacing</legend>
@@ -155,7 +157,7 @@ export const LabelsAsReactNodes: Story = {
   args: {},
   play: ({ canvas }) => {
     canvas.getByText('a string');
-    canvas.getByLabelText('a node');
+    canvas.getByRole('checkbox', { name: 'a node' });
     canvas.getByRole('link', { name: 'click' });
   },
   render: () => (
@@ -216,18 +218,15 @@ export const InfoTip: Story = {
     checked: false,
   },
   play: async ({ canvas, userEvent }) => {
+    const info =
+      'This is an infotip that provides additional information about the checkbox.';
     const trigger = canvas.getByRole('button', {
       name: 'Checkbox with InfoTip',
     });
 
+    await expect(screen.queryByText(info)).toBeNull();
     await userEvent.click(trigger);
-    await waitFor(() =>
-      expect(
-        screen.getByText(
-          'This is an infotip that provides additional information about the checkbox.'
-        )
-      ).toBeVisible()
-    );
+    await waitFor(() => expect(screen.getByText(info)).toBeVisible());
   },
 };
 
@@ -236,6 +235,7 @@ export const InfoTipLabelling: Story = {
     <FlexBox as="ul" column gap={32} listStyle="none" m={0} p={0}>
       <Box as="li">
         <Checkbox
+          aria-label="Auto Checkbox Label"
           htmlFor="checkbox-auto"
           infotip={{ info: 'Shared info', placement: 'floating' }}
           label={<span>Auto Checkbox Label</span>}
@@ -271,10 +271,16 @@ export const InfoTipLabelling: Story = {
       </Box>
     </FlexBox>
   ),
-  play: ({ canvas }) => {
+  play: async ({ canvas }) => {
     canvas.getByRole('button', { name: 'Auto Checkbox Label' });
     canvas.getByRole('button', { name: 'Custom checkbox aria label' });
+    await expect(
+      canvas.queryByRole('button', { name: 'With ariaLabel' })
+    ).toBeNull();
     canvas.getByRole('button', { name: 'External Checkbox Label' });
+    await expect(
+      canvas.queryByRole('button', { name: 'With ariaLabelledBy' })
+    ).toBeNull();
   },
 };
 

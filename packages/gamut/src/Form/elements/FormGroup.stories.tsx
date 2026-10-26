@@ -47,7 +47,8 @@ export const FormGroupDiv: Story = {
       <Input aria-labelledby="div-form-group" defaultValue="😔" />
     </FormGroup>
   ),
-  play: ({ canvas }) => {
+  play: async ({ canvas, canvasElement }) => {
+    await expect(canvasElement.querySelector('label')).toBeNull();
     canvas.getByText(/I look like a label, but I'm actually a div/);
   },
 };
@@ -65,7 +66,21 @@ export const DefaultState: Story = {
   },
 };
 
-export const Error: Story = {
+export const SoloField: Story = {
+  args: {
+    label: 'I am a solo field',
+    required: true,
+    isSoloField: true,
+    htmlFor: 'solo-field',
+    children: <Input id="solo-field" />,
+  },
+  play: ({ canvas }) => {
+    canvas.getByLabelText('I am a solo field');
+  },
+};
+
+export const ErrorState: Story = {
+  name: 'Error',
   args: {
     required: true,
     label: 'I am also required!!',
