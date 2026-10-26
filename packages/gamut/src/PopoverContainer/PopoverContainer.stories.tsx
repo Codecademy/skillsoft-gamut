@@ -1,0 +1,298 @@
+import { Background } from '@skillsoft/gamut-styles';
+import type { Meta, StoryObj } from '@storybook/react';
+import { useRef } from 'react';
+
+import { FlexBox } from '../Box';
+import { Text } from '../Typography';
+import { PopoverContainer } from '.';
+
+const SINGLE_DIRECTIONS = ['top', 'bottom', 'left', 'right'] as const;
+
+const MULTI_DIRECTIONS = [
+  'top-left',
+  'top-right',
+  'bottom-right',
+  'bottom-left',
+] as const;
+
+const meta: Meta<typeof PopoverContainer> = {
+  title: 'Overlays/PopoverContainer',
+  component: PopoverContainer,
+  args: {
+    alignment: 'top-left',
+    allowPageInteraction: true,
+    isOpen: true,
+    inline: true,
+    x: 0,
+    y: 0,
+    offset: 20,
+  },
+  argTypes: {
+    targetRef: {
+      control: {
+        disable: true,
+      },
+    },
+    className: {
+      table: {
+        disable: true,
+      },
+    },
+    alignment: {
+      control: 'select',
+      options: [...SINGLE_DIRECTIONS, ...MULTI_DIRECTIONS],
+    },
+  },
+  render: function PopoverDemo(args) {
+    const target = useRef<HTMLDivElement>(null);
+
+    return (
+      <FlexBox minHeight="480px" position="relative" width={1}>
+        <FlexBox center flex={1}>
+          <PopoverContainer
+            {...args}
+            focusOnProps={{ autoFocus: false }}
+            isOpen
+            targetRef={target}
+          >
+            <Background
+              alignItems="center"
+              bg="navy"
+              dimensions="100px"
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+            >
+              Pop Tart
+            </Background>
+          </PopoverContainer>
+          <FlexBox
+            alignItems="center"
+            border={1}
+            dimensions="200px"
+            justifyContent="center"
+            ref={target}
+          >
+            This balanced breakfast
+          </FlexBox>
+        </FlexBox>
+      </FlexBox>
+    );
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof PopoverContainer>;
+
+export const Default: Story = {
+  play: ({ canvas }) => {
+    canvas.getByText('Pop Tart');
+  },
+};
+
+export const Alignment: Story = {
+  render: function AlignmentDemo(args) {
+    const target = useRef<HTMLDivElement>(null);
+
+    return (
+      <FlexBox minHeight="480px" position="relative" width={1}>
+        <FlexBox center flex={1}>
+          {[...SINGLE_DIRECTIONS, ...MULTI_DIRECTIONS].map((alignment) => {
+            return (
+              <PopoverContainer
+                alignment={alignment}
+                focusOnProps={{ autoFocus: false }}
+                inline={args.inline}
+                isOpen
+                key={alignment}
+                offset={20}
+                targetRef={target}
+              >
+                <Background
+                  alignItems="center"
+                  bg="navy"
+                  dimensions="100px"
+                  display="flex"
+                  flexDirection="column"
+                  justifyContent="center"
+                >
+                  {alignment.split('-').map((val) => (
+                    <Text as="p" key={val} variant="p-small">
+                      {val}
+                    </Text>
+                  ))}
+                </Background>
+              </PopoverContainer>
+            );
+          })}
+          <FlexBox
+            alignItems="center"
+            border={1}
+            dimensions="200px"
+            justifyContent="center"
+            ref={target}
+          >
+            Transform Axis
+          </FlexBox>
+        </FlexBox>
+      </FlexBox>
+    );
+  },
+};
+
+export const InvertAxis: Story = {
+  render: function InvertAxisDemo(args) {
+    const target = useRef<HTMLDivElement>(null);
+
+    return (
+      <FlexBox minHeight="480px" position="relative" width={1}>
+        <FlexBox center flex={1}>
+          {(['x', 'y'] as const).map((axis) => {
+            return MULTI_DIRECTIONS.map((alignment) => {
+              return (
+                <PopoverContainer
+                  alignment={alignment}
+                  focusOnProps={{ autoFocus: false }}
+                  inline={args.inline}
+                  invertAxis={axis}
+                  isOpen
+                  key={`${alignment}-${axis}`}
+                  offset={20}
+                  targetRef={target}
+                >
+                  <Background
+                    alignItems="center"
+                    bg="navy"
+                    dimensions="100px"
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="center"
+                  >
+                    <Text as="p" variant="p-small">
+                      {alignment}
+                    </Text>
+                    <Text as="p" variant="p-small">
+                      {axis} - axis
+                    </Text>
+                  </Background>
+                </PopoverContainer>
+              );
+            });
+          })}
+          <FlexBox
+            alignItems="center"
+            border={1}
+            dimensions="200px"
+            justifyContent="center"
+            ref={target}
+          >
+            Transform Axis
+          </FlexBox>
+        </FlexBox>
+      </FlexBox>
+    );
+  },
+};
+
+export const Offset: Story = {
+  render: function OffsetDemo(args) {
+    const target = useRef<HTMLDivElement>(null);
+
+    return (
+      <FlexBox minHeight="480px" position="relative" width={1}>
+        <FlexBox center flex={1}>
+          {[...SINGLE_DIRECTIONS, ...MULTI_DIRECTIONS].map((alignment) => {
+            return (
+              <PopoverContainer
+                alignment={alignment}
+                focusOnProps={{ autoFocus: false }}
+                inline={args.inline}
+                isOpen
+                key={`${alignment}-20`}
+                offset={20}
+                targetRef={target}
+              >
+                <Background
+                  alignItems="center"
+                  bg="navy"
+                  dimensions="100px"
+                  display="flex"
+                  flexDirection="column"
+                  justifyContent="center"
+                >
+                  <Text as="p" variant="p-small">
+                    {alignment}
+                  </Text>
+                  <Text as="p" variant="p-small">
+                    20px
+                  </Text>
+                </Background>
+              </PopoverContainer>
+            );
+          })}
+          <FlexBox
+            alignItems="center"
+            border={1}
+            dimensions="200px"
+            justifyContent="center"
+            ref={target}
+          >
+            Transform Axis
+          </FlexBox>
+        </FlexBox>
+      </FlexBox>
+    );
+  },
+};
+
+export const XAndY: Story = {
+  render: function XAndYDemo(args) {
+    const target = useRef<HTMLDivElement>(null);
+
+    return (
+      <FlexBox minHeight="480px" position="relative" width={1}>
+        <FlexBox center flex={1}>
+          {[...SINGLE_DIRECTIONS, ...MULTI_DIRECTIONS].map((alignment) => {
+            return (
+              <PopoverContainer
+                alignment={alignment}
+                focusOnProps={{ autoFocus: false }}
+                inline={args.inline}
+                isOpen
+                key={`${alignment}-0-0`}
+                targetRef={target}
+                x={0}
+                y={0}
+              >
+                <Background
+                  alignItems="center"
+                  bg="navy"
+                  dimensions="100px"
+                  display="flex"
+                  flexDirection="column"
+                  justifyContent="center"
+                >
+                  <Text as="p" variant="p-small">
+                    {alignment}
+                  </Text>
+                  <Text as="p" variant="p-small">
+                    0px / 0px
+                  </Text>
+                </Background>
+              </PopoverContainer>
+            );
+          })}
+          <FlexBox
+            alignItems="center"
+            border={1}
+            dimensions="200px"
+            justifyContent="center"
+            ref={target}
+          >
+            Transform Axis
+          </FlexBox>
+        </FlexBox>
+      </FlexBox>
+    );
+  },
+};

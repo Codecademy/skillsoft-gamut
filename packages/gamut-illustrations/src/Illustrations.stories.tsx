@@ -1,0 +1,62 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
+import { ImageGallery } from '~storybook/blocks';
+
+import type { IllustrationProps } from '.';
+import * as illustrations from '.';
+
+type IllustrationComponentProps = IllustrationProps & {
+  illustration: React.ComponentType<IllustrationProps>;
+};
+
+const IllustrationComponent: React.FC<IllustrationComponentProps> = ({
+  illustration: Illustration,
+  ...rest
+}) => {
+  return <Illustration {...rest} />;
+};
+
+const meta: Meta<typeof IllustrationComponent> = {
+  title: 'Media & Assets/Illustrations',
+  component: IllustrationComponent,
+  argTypes: {
+    illustration: {
+      options: Object.keys(illustrations),
+      mapping: illustrations,
+      control: 'select',
+    },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof IllustrationComponent>;
+
+export const Default: Story = {
+  args: {
+    width: 256,
+    height: 256,
+    illustration: illustrations.NumberBlocks,
+  },
+};
+
+// Visual catalog of every illustration — slow to render + axe, and redundant
+// with `Default`. `!test` removes the auto-applied `test` tag so addon-vitest
+// skips it; it still renders in Storybook.
+export const AllIllustrations: Story = {
+  tags: ['!test'],
+  render: () => {
+    return (
+      <ImageGallery
+        controls={{
+          minColumns: 1,
+          columns: 4,
+          maxColumns: 5,
+          imageSize: 80,
+          maxImageSize: 500,
+        }}
+        imageType="illustration"
+        images={illustrations}
+      />
+    );
+  },
+};
