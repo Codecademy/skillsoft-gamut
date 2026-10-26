@@ -14,6 +14,11 @@ const preview: Preview = {
       disable: true,
     },
     deepControls: { enabled: true },
+    options: {
+      storySort: {
+        order: ['Actions', ['Buttons', ['Button Examples', '*']], '*'],
+      },
+    },
     docs: {
       container: DocsContainer,
       theme,
