@@ -7,7 +7,10 @@
     "outDir": "./dist",
     "strict": true,
     "strictFunctionTypes": false,
-    "types": []
+    "types": [],
+    "paths": {
+      "~storybook/blocks": ["../.storybook/components/"]
+    }
   },
   "include": [
     "../../typings/*.d.ts",
@@ -15,5 +18,5 @@
     "./src/**/*.tsx",
     "../../packages/gamut-styles/dist/typings/theme.d.ts"
   ],
-  "exclude": ["jest.config.ts"]
+  "exclude": ["jest.config.ts", "**/*.stories.tsx"]
 }
