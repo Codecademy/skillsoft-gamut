@@ -29,6 +29,10 @@ const fruitOptions = ['Apple', 'Banana', 'Cherry', 'Dragonfruit', 'Eggplant'];
 const meta: TypeWithDeepControls<Meta<typeof SelectDropdown>> = {
   title: 'Inputs & forms/SelectDropdown',
   component: SelectDropdown,
+  parameters: {
+    // This is to prevent the component description from being displayed in the docs
+    docs: { extractComponentDescription: () => null },
+  },
   args: {
     id: 'example-select',
     name: 'example-select',
@@ -198,38 +202,45 @@ export const Base: Story = {
   },
 };
 
-export const ValueWithoutOptions: Story = {
+export const ValueWithEmptyOptions: Story = {
   parameters: {
     docs: {
       description: {
         story:
-          'A `value` that matches no option falls back to the placeholder, whether `options` is empty or missing.',
+          'A `value` that matches no option falls back to the placeholder when `options` is empty.',
       },
     },
   },
   args: {
+    'aria-label': 'Empty options',
+    id: 'empty-options',
+    name: 'empty-options',
+    options: [],
     value: 'any',
   },
-  render: (args) => (
-    <FlexBox column gap={16}>
-      <SelectDropdown
-        {...args}
-        aria-label="Empty options"
-        id="empty-options"
-        name="empty-options"
-        options={[]}
-      />
-      <SelectDropdown
-        {...args}
-        aria-label="Missing options"
-        id="missing-options"
-        name="missing-options"
-        options={undefined}
-      />
-    </FlexBox>
-  ),
-  play: async ({ canvas }) => {
-    await expect(canvas.getAllByText('Select an option')).toHaveLength(2);
+  play: ({ canvas }) => {
+    canvas.getByText('Select an option');
+  },
+};
+
+export const ValueWithUndefinedOptions: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'A `value` that matches no option falls back to the placeholder when `options` is undefined.',
+      },
+    },
+  },
+  args: {
+    'aria-label': 'Undefined options',
+    id: 'undefined-options',
+    name: 'undefined-options',
+    options: undefined,
+    value: 'any',
+  },
+  play: ({ canvas }) => {
+    canvas.getByText('Select an option');
   },
 };
 
