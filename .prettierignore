@@ -10,3 +10,4 @@ packages/code-connect/**/*
 
 /.nx/cache
 /.nx/workspace-data
+packages/gamut-styles/src/tokens/generated

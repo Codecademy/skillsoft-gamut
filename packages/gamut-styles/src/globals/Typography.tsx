@@ -1,7 +1,7 @@
+import type { Theme } from '@emotion/react';
 import { css, Global } from '@emotion/react';
 import type * as React from 'react';
 
-import type { coreTheme } from '../themes';
 import type { FontConfig } from '../utilities/fontUtils';
 import { getFonts } from '../utilities/fontUtils';
 
@@ -23,7 +23,7 @@ import { getFonts } from '../utilities/fontUtils';
  * ```
  */
 
-export const Typography: React.FC<{ theme: typeof coreTheme }> = ({
+export const Typography: React.FC<{ theme: Theme }> = ({
   theme,
 }) => {
   try {

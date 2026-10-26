@@ -20,7 +20,6 @@ import {
   background,
   border,
   color,
-  css,
   flex,
   grid,
   layout,
@@ -34,6 +33,17 @@ export type ColorModeConfig = Theme['modes'];
 export type ColorModes = keyof ColorModeConfig;
 export type ColorModeShape = ColorModeConfig[ColorModes];
 export type ColorAlias = keyof ColorModeShape;
+
+/*
+ * Color-system spike: the new theme names roles differently from the other
+ * themes (`text-default` where they have `text`). Shared internals ask for the
+ * new name and fall back to the old one, so ColorMode works on every theme.
+ */
+export const roleOr = (
+  names: Record<string, string>,
+  role: string,
+  legacy: string
+): string => names[role] ?? names[legacy];
 
 export type ColorModeProps = {
   mode: ColorModes | 'system';
@@ -91,9 +101,9 @@ export function useColorModes(): [
     we could potentially alter the Merge type utility function from createTheme, but since 'background-current' is the only exception to the type-merging rule  and this is the only place we override, this seems to be a more straightforward + lower-risk solution.
     */
 
-    modesCopy[mode]['background-current'] = bgCurrent['background-current'] as
-      | 'white'
-      | 'navy-800';
+    modesCopy[mode]['background-current'] = bgCurrent[
+      'background-current'
+    ] as (typeof modesCopy)[typeof mode]['background-current'];
   }
 
   return [mode, modesCopy?.[mode], modes, getColorValue];
@@ -135,7 +145,17 @@ export const VariableProvider = styled(
     variables?: CSSObject;
     alwaysSetVariables?: boolean;
   }
->(({ variables }) => variables, css({ textColor: 'text' }), providerProps);
+>(
+  ({ variables }) => variables,
+  ({ theme }) => ({
+    color: roleOr(
+      theme.colors as Record<string, string>,
+      'text-default',
+      'text'
+    ),
+  }),
+  providerProps
+);
 
 export const ColorMode = forwardRef<
   HTMLDivElement,

@@ -9,6 +9,7 @@ import {
   percipioTheme,
   CoreTheme,
   platformTheme,
+  skillsoftTheme,
   ColorMode,
 } from '@skillsoft/gamut-styles';
 import {
@@ -31,6 +32,7 @@ const themeMap = {
   lxStudio: lxStudioTheme,
   percipio: percipioTheme,
   platform: platformTheme,
+  skillsoft: skillsoftTheme,
 } as const;
 
 const themeSpecificStories = {

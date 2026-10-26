@@ -9,7 +9,7 @@ import * as React from 'react';
 import { createEmotionCache } from './cache';
 import { Reboot, Typography } from './globals';
 import { Variables } from './globals/Variables';
-import { coreTheme } from './themes/core';
+import { skillsoftTheme } from './themes/skillsoft';
 
 export interface GamutProviderProps {
   children?: React.ReactNode;
@@ -51,7 +51,7 @@ export const useNonce = (): string | undefined =>
 export const GamutProvider: React.FC<GamutProviderProps> = ({
   children,
   cache,
-  theme = coreTheme,
+  theme = skillsoftTheme,
   variables,
   useGlobals = true,
   useCache = true,

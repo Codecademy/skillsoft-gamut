@@ -5,5 +5,5 @@ import { baseConfig } from '../../tsdown.base.ts';
 
 export default defineConfig({
   ...baseConfig,
-  entry: ['src/index.ts'],
+  entry: ['src/index.ts', 'src/tokens/index.ts'],
 });
