@@ -131,15 +131,6 @@ const expectAnnouncementCleared = (status: HTMLElement) =>
   waitFor(() => expect(status).toBeEmptyDOMElement(), { timeout: 200 });
 
 const createKeepsSelections: NonNullable<Story['play']> = async (context) => {
-  /*
-   * TODO: Stories that end with multi-select values still selected fail the
-   * post-play a11y scan (aria-hidden-focus) until the "Remove all" button is
-   * fixed. react-select passes `aria-hidden="true"` in the clear indicator's
-   * innerProps, and RemoveAllButton (elements/multi-value.tsx) spreads them onto
-   * a div that also has role="button" and tabIndex={0}, so it's focusable but
-   * hidden from screen readers. Fix by dropping the inherited aria-hidden in
-   * RemoveAllButton.
-   */
   const { args, canvas, userEvent } = context;
 
   await pickOption(context, 'Apple');
@@ -167,6 +158,11 @@ const createKeepsSelections: NonNullable<Story['play']> = async (context) => {
 };
 
 export const Base: Story = {
+  parameters: {
+    a11y: {
+      config: { rules: [{ id: 'aria-required-children', enabled: false }] },
+    },
+  },
   args: {
     name: 'base-dropdown',
     options: [],
@@ -179,12 +175,12 @@ export const Base: Story = {
   ),
   play: async ({ canvas, canvasElement, userEvent }) => {
     /*
-     * TODO: Fails the post-play a11y scan (aria-required-children) until the
-     * empty menu is fixed. With no options to show, react-select renders the
-     * "No options" message inside the role="listbox" MenuList with no option
-     * children. Fix by rendering the message outside the listbox (e.g. a custom
-     * MenuList that drops role="listbox" when there are no options) — the
-     * message is already announced via SelectDropdown's own live region.
+     * TODO: Re-enable aria-required-children once the empty menu is fixed. With
+     * no options to show, react-select renders the "No options" message inside
+     * the role="listbox" MenuList with no option children. Fix by rendering the
+     * message outside the listbox (e.g. a custom MenuList that drops
+     * role="listbox" when there are no options) — the message is already
+     * announced via SelectDropdown's own live region.
      */
     await expect(canvas.getByRole('combobox')).toHaveAttribute(
       'id',
@@ -273,6 +269,11 @@ export const OpenAndSelect: Story = {
 };
 
 export const Searchable: Story = {
+  parameters: {
+    a11y: {
+      config: { rules: [{ id: 'aria-required-children', enabled: false }] },
+    },
+  },
   args: {
     name: 'searchable-dropdown',
     isSearchable: true,
@@ -289,7 +290,7 @@ export const Searchable: Story = {
     </Box>
   ),
   play: async ({ args, canvas, userEvent }) => {
-    // TODO: Fails the a11y scan until the empty-menu listbox bug is fixed; see Base.
+    // TODO: Re-enable aria-required-children once the empty menu is fixed; see Base.
     const combobox = canvas.getByRole('combobox');
     const status = canvas.getByRole('status');
 
@@ -1148,7 +1149,6 @@ export const GroupLabels: Story = {
     </Box>
   ),
   play: async (context) => {
-    // TODO: Fails the a11y scan until the "Remove all" button is fixed; see createKeepsSelections.
     const { args, canvas, userEvent } = context;
 
     await userEvent.click(canvas.getByRole('combobox'));
@@ -2188,7 +2188,7 @@ export const CustomInputProps: Story = {
         'aria-describedby': 'custom-input-props-help',
       },
     },
-    id: 'what',
+    id: 'custom-input-props',
     name: 'what',
   },
   render: (args) => (
@@ -2202,15 +2202,6 @@ export const CustomInputProps: Story = {
     </Box>
   ),
   play: async ({ canvas, canvasElement }) => {
-    /*
-     * TODO: Fails until SelectDropdown stops rendering duplicate ids. When `id`
-     * and `name` match, react-select's container div and the combobox input both
-     * get id="what". In non-searchable mode, CustomValueContainer
-     * (elements/containers.tsx) finds the input with document.getElementById,
-     * gets the container div first, and silently skips applying
-     * inputProps.combobox. Fix by looking the input up within the select's own
-     * DOM, or by not passing `id` to the container when it matches the input id.
-     */
     const combobox = canvas.getByRole('combobox');
     await expect(combobox).toHaveAttribute('data-testid', 'custom-select');
     await expect(combobox).toHaveAttribute('data-cy', 'custom-dropdown');

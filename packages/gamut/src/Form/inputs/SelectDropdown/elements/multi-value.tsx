@@ -90,7 +90,8 @@ const CustomStyledRemoveAllDiv = styled('div')(
 export const RemoveAllButton = (props: SizedIndicatorProps) => {
   const {
     getStyles,
-    innerProps: { ...restInnerProps },
+    // react-select marks its clear indicator aria-hidden, but ours is focusable
+    innerProps: { 'aria-hidden': _ariaHidden, ...restInnerProps },
     selectProps: { size },
   } = props;
 
