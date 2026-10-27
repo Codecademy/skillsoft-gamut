@@ -1,7 +1,9 @@
+import { converter, differenceCiede2000, formatHex } from 'culori';
+
 import type { BrandInput, ResolvedBrand, Slot } from './brand';
-import { NEUTRAL_SLOTS, resolveBrand, SLOTS } from './brand';
-import type { Ramp } from './ramp';
-import { generateRamp, GRADES } from './ramp';
+import { NEUTRAL_SLOTS, resolveBrand, SLOTS, sourceHexes } from './brand';
+import type { Grade, Ramp } from './ramp';
+import { generateRamp, GRADES, oklchToHex } from './ramp';
 import type { Mode, Ref, Role, RoleValue } from './roles';
 import { MODES, ROLES } from './roles';
 
@@ -32,6 +34,9 @@ export interface ColorSystem {
   roles: Record<Mode, Record<string, ResolvedValue>>;
 }
 
+const deltaE2000 = differenceCiede2000();
+const toOklch = converter('oklch');
+
 export const BOUNDARY: Record<'white' | 'black', Color> = {
   white: { l: 1, c: 0, h: 0, hex: '#ffffff' },
   black: { l: 0, c: 0, h: 0, hex: '#000000' },
@@ -56,6 +61,57 @@ export const createColorSystem = (input: BrandInput): ColorSystem => {
     ])
   ) as Record<Slot, Ramp>;
 
+  /*
+   * Palette overrides, at the precision tokens.css prints (L and C to 4
+   * places, H to 2), so the emitted value is the measured one. C is rounded,
+   * not floored like a generated rung: the source is already in sRGB, and
+   * flooring nudges an edge-of-gamut color like #FFD300 off its hex. Guarded:
+   * the rounded value has to land back on the same hex.
+   */
+  const paletteOverrides = Object.entries(input.overrides?.palette ?? {});
+  for (const [key, value] of paletteOverrides) {
+    const [, slot, g] = /^(.+)-(\d+)$/.exec(key)!;
+    const grade = Number(g) as Grade;
+    if (!SLOTS.includes(slot as Slot) || !GRADES.includes(grade)) {
+      throw new Error(`${brand.name}: no palette rung ${key}`);
+    }
+    const hex = formatHex(value)!;
+    const exact = toOklch(hex)!;
+    const rung = {
+      grade,
+      l: Number(exact.l.toFixed(4)),
+      c: Number(exact.c.toFixed(4)),
+      h: Number((exact.h ?? brand.hues[slot as Slot]).toFixed(2)),
+      hex,
+    };
+    if (oklchToHex(rung.l, rung.c, rung.h) !== hex) {
+      throw new Error(
+        `${brand.name}: ${key} ${hex} doesn't survive 4-dp OKLCH`
+      );
+    }
+    ramps[slot as Slot][grade] = rung;
+  }
+  if (input.overrides) {
+    brand.overrides = {
+      ...input.overrides,
+      palette: Object.fromEntries(
+        paletteOverrides.map(([k, v]) => [k, formatHex(v)!])
+      ),
+    };
+  }
+
+  const sources = Object.entries(sourceHexes(input)) as [Slot, string][];
+  if (sources.length) {
+    brand.sources = Object.fromEntries(
+      sources.map(([slot, hex]) => {
+        const [nearest, deltaE] = GRADES.map(
+          (g) => [g, deltaE2000(hex, ramps[slot][g].hex)] as const
+        ).reduce((a, b) => (b[1] < a[1] ? b : a));
+        return [slot, { hex, nearest, deltaE: Number(deltaE.toFixed(2)) }];
+      })
+    );
+  }
+
   const palette: Record<string, Color> = { ...BOUNDARY };
   for (const slot of SLOTS) {
     for (const grade of GRADES) {
@@ -71,10 +127,28 @@ export const createColorSystem = (input: BrandInput): ColorSystem => {
       : { ...base, alpha: value.alpha, key: valueKey(value) };
   };
 
+  /* Role overrides repoint a role in one mode, keeping its alpha. */
+  const roleOverrides = input.overrides?.roles ?? {};
+  for (const [mode, tokens] of Object.entries(roleOverrides)) {
+    for (const token of Object.keys(tokens ?? {})) {
+      if (!ROLES.some((r) => r.token === token)) {
+        throw new Error(
+          `${brand.name}: no role ${token} to override (${mode})`
+        );
+      }
+    }
+  }
+  const valueFor = (r: Role, mode: Mode): RoleValue => {
+    const ref = roleOverrides[mode]?.[r.token];
+    return ref ? { ...r[mode], ref } : r[mode];
+  };
+
   const roles = Object.fromEntries(
     MODES.map((mode) => [
       mode,
-      Object.fromEntries(ROLES.map((r: Role) => [r.token, resolve(r[mode])])),
+      Object.fromEntries(
+        ROLES.map((r: Role) => [r.token, resolve(valueFor(r, mode))])
+      ),
     ])
   ) as ColorSystem['roles'];
 

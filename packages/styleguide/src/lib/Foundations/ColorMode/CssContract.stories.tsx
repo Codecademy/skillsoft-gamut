@@ -21,7 +21,7 @@ type Mode = keyof typeof roles;
 
 const panel: React.CSSProperties = {
   padding: 16,
-  border: '1px solid var(--color-border-default)',
+  border: '1px solid var(--colors-border-default)',
   borderRadius: 4,
 };
 
@@ -32,12 +32,12 @@ const Panel: React.FC<{ mode: Mode; children?: React.ReactNode }> = ({
 }) => (
   <div
     data-color-mode={mode}
-    style={{ ...panel, background: 'var(--color-surface-default)' }}
+    style={{ ...panel, background: 'var(--colors-surface-default)' }}
   >
     <p style={{ margin: '0 0 8px' }}>
       {mode} — text-default,{' '}
-      <span style={{ color: 'var(--color-text-subtle)' }}>text-subtle</span>,{' '}
-      <span style={{ color: 'var(--color-action-primary)' }}>
+      <span style={{ color: 'var(--colors-text-subtle)' }}>text-subtle</span>,{' '}
+      <span style={{ color: 'var(--colors-action-primary)' }}>
         action-primary
       </span>
     </p>
@@ -71,7 +71,7 @@ const CssSurface: React.FC<{
   const key = (
     color in roles[outer] ? roles[outer][color as RoleName].ref : color
   ) as PaletteKey;
-  const bg = `var(--color-${key})`;
+  const bg = `var(--colors-${key})`;
   return (
     <div
       data-color-mode={contentModes[key]}
@@ -79,12 +79,12 @@ const CssSurface: React.FC<{
         {
           ...panel,
           background: bg,
-          '--color-background-current': bg,
+          '--colors-background-current': bg,
         } as React.CSSProperties
       }
     >
       {color}
-      <span style={{ color: 'var(--color-text-subtle)' }}>
+      <span style={{ color: 'var(--colors-text-subtle)' }}>
         {' '}
         → {contentModes[key]} content
       </span>
@@ -92,13 +92,20 @@ const CssSurface: React.FC<{
   );
 };
 
-const SURFACES: (RoleName | PaletteKey)[] = [
+const SURFACE_ROLES: RoleName[] = [
   'surface-default',
   'surface-raised',
   'surface-sunken',
   'surface-success',
   'surface-warning',
   'surface-error',
+];
+
+/*
+ * Not roles: raw palette steps, the way `<Background bg="...">` can still be
+ * handed any color. These check that the flip works off the role layer too.
+ */
+const PALETTE_FILLS: PaletteKey[] = [
   'palette-primary-800',
   'palette-accent-700',
   'palette-neutral-dark-1000',
@@ -109,7 +116,14 @@ const SURFACES: (RoleName | PaletteKey)[] = [
 export const Surfaces: Story = {
   render: () => (
     <div style={{ display: 'grid', gap: 8 }}>
-      {SURFACES.map((color) => (
+      <Text as="h3">Surface roles</Text>
+      {SURFACE_ROLES.map((color) => (
+        <CssSurface color={color} key={color} outer="light" />
+      ))}
+      <Text as="h3" mt={16}>
+        Raw palette fills (not roles)
+      </Text>
+      {PALETTE_FILLS.map((color) => (
         <CssSurface color={color} key={color} outer="light" />
       ))}
     </div>
@@ -118,14 +132,14 @@ export const Surfaces: Story = {
 
 /*
  * gamut components inside a subtree themed only by CSS. Their colors are
- * `var(--color-*)` names, so they follow the attribute. What doesn't follow:
+ * `var(--colors-*)` names, so they follow the attribute. What doesn't follow:
  * anything that reads the mode from Emotion's theme in JS.
  */
 export const EmotionInsideCss: Story = {
   render: () => (
     <div
       data-color-mode="dark"
-      style={{ ...panel, background: 'var(--color-surface-default)' }}
+      style={{ ...panel, background: 'var(--colors-surface-default)' }}
     >
       <Text as="p" mb={16}>
         Text, <Anchor href="#">an Anchor</Anchor>, and buttons, under a plain{' '}

@@ -96,6 +96,25 @@ export const gradientCss = (system: ColorSystem, gradient: Gradient) =>
     })
     .join(', ');
 
+/*
+ * The same gradient against palette variables, for tokens.css. Each stop is
+ * the palette color at the stop's alpha (`color-mix` with transparent in
+ * oklab), so it follows whichever brand's palette is in scope and is emitted
+ * once for every brand.
+ */
+export const gradientCssVars = (gradient: Gradient) =>
+  gradient.circles
+    .map(({ ref, radius, at }) => {
+      const stops = FALLOFF.map(
+        ([pos, alpha]) =>
+          `color-mix(in oklab, var(--colors-${paletteKey(ref)}) ${Number(
+            (alpha * 100).toFixed(2)
+          )}%, transparent) ${pos}%`
+      ).join(', ');
+      return `radial-gradient(circle calc(${radius} * 100cqw) at ${at}, ${stops})`;
+    })
+    .join(', ');
+
 export const toDtcgPalette = (system: ColorSystem): DtcgGroup => {
   const group: DtcgGroup = {
     $description: `Generated from the "${system.brand.name}" brand (tier ${system.brand.tier}). Do not edit.`,
@@ -144,6 +163,7 @@ export const toDtcgMode = (system: ColorSystem, mode: Mode): DtcgGroup => {
               })),
               falloff: FALLOFF,
               css: gradientCss(system, gradient),
+              cssVars: gradientCssVars(gradient),
             },
           },
         },

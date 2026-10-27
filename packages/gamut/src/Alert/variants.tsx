@@ -10,13 +10,14 @@ import { breakpoints, variant } from '@skillsoft/gamut-styles';
 /*
  * Design's mapping (gamut-styles colorSystem/migration.ts, Alert): the fill
  * is a status tint or a surface, the icon carries the status, and the message
- * stays text-default. Feature paints the brand gradient over its flat
- * fallback.
+ * stays text-default. General and feature paint a brand gradient over their
+ * flat fallback.
  */
 export const alertVariants = {
   general: {
     order: 4,
-    bg: 'surface-sunken',
+    bg: 'surface-brand-subtle',
+    gradient: 'var(--gradient-surface-brand-subtle)',
     iconColor: 'action-primary',
     icon: MiniInfoCircleIcon,
   },
@@ -41,7 +42,7 @@ export const alertVariants = {
   feature: {
     order: 5,
     bg: 'surface-brand',
-    backgroundImage: 'var(--gradient-surface-brand)',
+    gradient: 'var(--gradient-surface-brand)',
     iconColor: 'action-primary',
     icon: MiniStarIcon,
   },

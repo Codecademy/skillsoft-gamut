@@ -9,8 +9,33 @@ import { FillButton } from '../Button';
 import type { AlertProps } from './Alert';
 import { placementVariants } from './variants';
 
-const StyledAlertBanner =
-  styled(Background)<Pick<AlertProps, 'type' | 'placement'>>(placementVariants);
+/*
+ * A brand gradient's circles are sized in `cqw` against the alert's width.
+ * An element can't be its own query container, so the alert becomes one and
+ * the gradient goes on a layer behind its content, over the flat `bg`
+ * fallback (the sandbox's GradientLayer). Without it `cqw` falls back to the
+ * viewport and the circles render page-sized.
+ */
+const gradientLayer = ({ gradient }: { gradient?: string }) =>
+  gradient
+    ? {
+        position: 'relative' as const,
+        isolation: 'isolate' as const,
+        containerType: 'inline-size' as const,
+        '&::before': {
+          content: '""',
+          position: 'absolute' as const,
+          inset: 0,
+          zIndex: -1,
+          borderRadius: 'inherit',
+          backgroundImage: gradient,
+        },
+      }
+    : {};
+
+const StyledAlertBanner = styled(Background)<
+  Pick<AlertProps, 'type' | 'placement'> & { gradient?: string }
+>(placementVariants, gradientLayer);
 
 export const AlertBanner = forwardRef<
   HTMLDivElement,
@@ -35,8 +60,9 @@ export const AlertBanner = forwardRef<
   )
 );
 
-const StyledAlertBox =
-  styled(Box)<Pick<AlertProps, 'type' | 'placement'>>(placementVariants);
+const StyledAlertBox = styled(Box)<
+  Pick<AlertProps, 'type' | 'placement'> & { gradient?: string }
+>(placementVariants, gradientLayer);
 
 export const AlertBox = forwardRef<
   HTMLDivElement,

@@ -266,7 +266,7 @@ describe('css', () => {
 
     expect(returnedFn({ theme })).toEqual({
       width: '100%',
-      boxShadow: '0px 0px 0px 0px var(--color-black)',
+      boxShadow: '0px 0px 0px 0px var(--colors-black)',
       XS: { width: '200%' },
       '&:hover': {
         width: '50%',

@@ -67,7 +67,7 @@ describe('createTheme', () => {
     };
     const cssVariableReferences = mapValues(
       staticColors,
-      (val) => `var(--color-${val})`
+      (val) => `var(--colors-${val})`
     );
     const builder = createTheme(base);
     it('creates color variables', () => {
@@ -89,12 +89,12 @@ describe('createTheme', () => {
         .build();
 
       expect(theme.colors).toEqual({
-        ...mapValues(staticColors, (val) => `var(--color-${val})`),
-        primary: 'var(--color-primary)',
+        ...mapValues(staticColors, (val) => `var(--colors-${val})`),
+        primary: 'var(--colors-primary)',
       });
 
       expect(theme._variables.mode).toEqual({
-        '--color-primary': 'var(--color-red)',
+        '--colors-primary': 'var(--colors-red)',
       });
     });
 
