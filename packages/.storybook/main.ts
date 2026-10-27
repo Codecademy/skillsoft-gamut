@@ -57,7 +57,7 @@ const config: StorybookConfig = {
         if (prop.parent && /node_modules/.test(prop.parent.fileName)) {
           return false;
         }
-        if (['mode', 'theme'].includes(prop.name)) {
+        if (['className', 'mode', 'theme'].includes(prop.name)) {
           return false;
         }
         return true;
