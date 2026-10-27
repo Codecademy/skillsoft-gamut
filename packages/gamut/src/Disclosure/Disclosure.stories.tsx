@@ -1,10 +1,15 @@
-import type { WithChildrenProp } from '@skillsoft/gamut';
-import { Disclosure, FlexBox, Text } from '@skillsoft/gamut';
 import type { BackgroundProps } from '@skillsoft/gamut-styles';
 import { Background } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect, fn, waitFor } from 'storybook/test';
+
+import { FlexBox } from '../Box';
+import { Text } from '../Typography';
+import type { WithChildrenProp } from '../utils';
+import { Disclosure } from '.';
 
 const meta: Meta<typeof Disclosure> = {
+  title: 'Containers/Disclosure',
   component: Disclosure,
   args: {},
 };
@@ -23,6 +28,9 @@ const BackgroundWithPadding = ({
   );
 };
 
+const loremBody =
+  'Lorem ipsum dolor sit amet consectetur. Ut consectetur adipiscing a donec sed volutpat. Tempor risus rhoncus quisque vel sit mattis. Accumsan vel posuere tortor sit mattis augue congue sit.';
+
 export const Default: Story = {
   args: {
     heading: 'All the options',
@@ -37,9 +45,22 @@ export const Default: Story = {
     overline: 'overline is text-secondary and fontFamily: accent',
     subheading: 'subheading is text-secondary',
     ctaText: 'Optional button - must include a callback!',
-    ctaCallback: () => {},
+    ctaCallback: fn(),
     hasPanelBg: true,
     initiallyExpanded: true,
+  },
+  play: async ({ args, canvas, userEvent }) => {
+    await expect(
+      canvas.getByRole('button', { name: /All the options/ })
+    ).toHaveAttribute('aria-expanded', 'true');
+    canvas.getByText(/Quis tempore voluptatum/);
+
+    await userEvent.click(
+      canvas.getByRole('button', {
+        name: 'Optional button - must include a callback!',
+      })
+    );
+    await expect(args.ctaCallback).toHaveBeenCalledTimes(1);
   },
 };
 
@@ -90,14 +111,27 @@ export const HasBorder: Story = {
 export const Normal: Story = {
   args: {
     heading: 'Normal',
-    body: 'Lorem ipsum dolor sit amet consectetur. Ut consectetur adipiscing a donec sed volutpat. Tempor risus rhoncus quisque vel sit mattis. Accumsan vel posuere tortor sit mattis augue congue sit.',
+    body: loremBody,
+  },
+  play: async ({ canvas, userEvent }) => {
+    const button = canvas.getByRole('button', { name: 'Normal' });
+    await expect(button).toHaveAttribute('aria-expanded', 'false');
+    await expect(canvas.queryByText(loremBody)).toBeNull();
+
+    await userEvent.click(button);
+    await expect(button).toHaveAttribute('aria-expanded', 'true');
+    canvas.getByText(loremBody);
+
+    await userEvent.click(button);
+    await expect(button).toHaveAttribute('aria-expanded', 'false');
+    await waitFor(() => expect(canvas.queryByText(loremBody)).toBeNull());
   },
 };
 
 export const Condensed: Story = {
   args: {
     heading: 'Condensed spacing',
-    body: 'Lorem ipsum dolor sit amet consectetur. Ut consectetur adipiscing a donec sed volutpat. Tempor risus rhoncus quisque vel sit mattis. Accumsan vel posuere tortor sit mattis augue congue sit.',
+    body: loremBody,
     spacing: 'condensed',
   },
 };
@@ -105,7 +139,7 @@ export const Condensed: Story = {
 export const Compact: Story = {
   args: {
     heading: 'Compact spacing',
-    body: 'Lorem ipsum dolor sit amet consectetur. Ut consectetur adipiscing a donec sed volutpat. Tempor risus rhoncus quisque vel sit mattis. Accumsan vel posuere tortor sit mattis augue congue sit.',
+    body: loremBody,
     spacing: 'compact',
   },
 };
