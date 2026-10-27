@@ -3,11 +3,7 @@ import path from 'node:path';
 
 import type { API, FileInfo } from 'jscodeshift';
 
-import {
-  activeSourceMigrations,
-  mentionsOldNames,
-  runSourceMigrations,
-} from './lib/run-source';
+import { activeSourceMigrations, runSourceMigrations } from './lib/run-source';
 import type { Locatable } from './lib/types';
 import { getPreset } from './presets';
 
@@ -41,7 +37,7 @@ export default function transform(
 ) {
   const preset = getPreset(options.preset ?? 'scope-swap');
   const { manifest } = preset;
-  if (!mentionsOldNames(manifest, file.source)) return undefined;
+  if (!preset.mentions(file.source)) return undefined;
 
   const note = (key: string) => {
     if (options.notesDir) {

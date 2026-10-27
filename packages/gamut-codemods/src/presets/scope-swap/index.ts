@@ -1,3 +1,6 @@
+import { findFlatEslintConfig } from '../../lib/eslint';
+import { findLeftovers } from '../../lib/leftovers';
+import { mentionsOldNames } from '../../lib/run-source';
 import type { Preset } from '../../lib/types';
 import { deepImports } from '../../migrations/deep-imports';
 import { eslintComments } from '../../migrations/eslint-comments';
@@ -17,6 +20,11 @@ export const scopeSwap: Preset = {
   name: 'scope-swap',
   description: 'Move from @codecademy/gamut* to @skillsoft/gamut*.',
   manifest,
+  mentions: (source) => mentionsOldNames(manifest, source),
+  leftovers: (roots) =>
+    findLeftovers(roots, manifest, {
+      eslintRuleKeys: !findFlatEslintConfig(roots),
+    }),
   migrations: [
     deepImports,
     movedExports,

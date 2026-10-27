@@ -1,5 +1,6 @@
 import type { Collection, JSCodeshift } from 'jscodeshift';
 
+import type { Leftover } from './leftovers';
 import type { Manifest } from './manifest';
 
 /* Anything with a source location, so warnings can point at a line. */
@@ -16,11 +17,15 @@ export type Warn = (node: Locatable, message: string) => void;
 */
 export type Note = (checklistKey: string) => void;
 
-export interface SourceContext {
+/*
+  `M` is the preset's manifest type. It defaults to scope-swap's Manifest, so
+  migrations written for that preset don't name it.
+*/
+export interface SourceContext<M = Manifest> {
   j: JSCodeshift;
   root: Collection;
   source: string;
-  manifest: Manifest;
+  manifest: M;
   warn: Warn;
   note: Note;
 }
@@ -31,7 +36,7 @@ export interface Edit {
   text: string;
 }
 
-interface MigrationBase {
+interface MigrationBase<M = Manifest> {
   name: string;
   description: string;
   /*
@@ -39,7 +44,7 @@ interface MigrationBase {
     skip this migration for the whole run (the CLI prints it and notes
     `skipped:<name>`), or null to run it.
   */
-  skipReason?(roots: string[], manifest: Manifest): string | null;
+  skipReason?(roots: string[], manifest: M): string | null;
 }
 
 /*
@@ -47,24 +52,24 @@ interface MigrationBase {
   whatever it thinks changed, and in semicolon-less files that has spread to
   neighbouring statements. Return true if anything changed.
 */
-export interface AstMigration extends MigrationBase {
+export interface AstMigration<M = Manifest> extends MigrationBase<M> {
   kind: 'ast';
-  run(ctx: SourceContext): boolean;
+  run(ctx: SourceContext<M>): boolean;
   /* Formatting fixes on the printed output that the AST can't express. */
-  postPrint?(source: string, ctx: { manifest: Manifest }): string;
+  postPrint?(source: string, ctx: { manifest: M }): string;
 }
 
 /*
   Uses the AST to find ranges, then edits the original text by offset. The
   default for anything that swaps one string for another.
 */
-export interface SpliceMigration extends MigrationBase {
+export interface SpliceMigration<M = Manifest> extends MigrationBase<M> {
   kind: 'splice';
-  edits(ctx: SourceContext): Edit[];
+  edits(ctx: SourceContext<M>): Edit[];
 }
 
 /* Gets raw text for non-source files (package.json, .eslintrc, .mdx). */
-export interface FileMigration extends MigrationBase {
+export interface FileMigration<M = Manifest> extends MigrationBase<M> {
   kind: 'file';
   /*
     Not `match`: CodeQL reads `migration.match(file)` as
@@ -73,7 +78,7 @@ export interface FileMigration extends MigrationBase {
   appliesTo(path: string): boolean;
   run(ctx: {
     source: string;
-    manifest: Manifest;
+    manifest: M;
     warn: (message: string) => void;
     note: Note;
     /*
@@ -84,15 +89,24 @@ export interface FileMigration extends MigrationBase {
   }): string | null;
 }
 
-export type SourceMigration = AstMigration | SpliceMigration;
-export type Migration = SourceMigration | FileMigration;
+export type SourceMigration<M = Manifest> =
+  | AstMigration<M>
+  | SpliceMigration<M>;
+export type Migration<M = Manifest> = SourceMigration<M> | FileMigration<M>;
 
-export interface Preset {
+export interface Preset<M = Manifest> {
   name: string;
   description: string;
-  manifest: Manifest;
+  manifest: M;
+  /*
+    The cheap pre-filter every caller uses, so big repos don't parse every
+    file: false means no migration in this preset could change `source`.
+  */
+  mentions(source: string): boolean;
+  /* After a write run, what's left for a person. Omit for no report. */
+  leftovers?(roots: string[]): Leftover[];
   /* Run in order. All `ast` migrations must come before any `splice` one. */
-  migrations: Migration[];
+  migrations: Migration<M>[];
   /* Printed at the end of every run. */
   checklist: string[];
   /* Printed only when a migration calls note(key). */

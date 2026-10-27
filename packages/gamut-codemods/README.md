@@ -6,9 +6,10 @@ Codemods for moving a repo onto `@skillsoft/gamut` and between its releases.
 
 Each preset is one upgrade. Run them in order if you're more than one behind.
 
-| Preset       | What it's for                                           |
-| ------------ | ------------------------------------------------------- |
-| `scope-swap` | Moving from `@codecademy/gamut*` to `@skillsoft/gamut*` |
+| Preset        | What it's for                                                    |
+| ------------- | ---------------------------------------------------------------- |
+| `scope-swap`  | Moving from `@codecademy/gamut*` to `@skillsoft/gamut*`          |
+| `color-roles` | Moving Gamut color names onto the generated color system's roles |
 
 `npx @skillsoft/gamut-codemods list` shows every preset and the migrations inside it.
 
@@ -89,6 +90,34 @@ Every skillsoft-gamut pull request publishes installable previews through pkg.pr
 - Flat ESLint configs (`eslint.config.*`) and `.eslintrc.js` aren't rewritten. In a flat config the rule prefix is whatever key you register the plugin under, so renaming rule keys blindly would break it. They show up in the leftovers.
 - The leftovers report uses regex, not an AST, so expect some false positives.
 - The codemod doesn't change how Gamut loads at runtime. Next.js apps with `experimental.esmExternals: false` can fail at build or prerender on `@emotion/*` or `react-select` default imports, with errors like `Element type is invalid ... got: object` or `c(...) is not a function`. `next-config` warns about the flag; remove it, along with any `@emotion/*` aliases that were working around it. If you can't yet, see [NEXT_EMOTION_INTEROP.md](../gamut-agent-tools/skills/gamut-scope-swap/NEXT_EMOTION_INTEROP.md) for the fallback.
+
+## Running color-roles
+
+```sh
+npx @skillsoft/gamut-codemods color-roles . --dry
+npx @skillsoft/gamut-codemods color-roles .
+```
+
+It maps today's color names (`text`, `primary`, `background-current`, …) onto the roles of the generated color system, using design's migration map (`aliases.ts`, generated from gamut-styles `colorSystem/migration.ts`).
+
+| Design's kind     | What the codemod does                                                                                                           |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Rename, merge     | Replaces the name: `bg="background-primary"` → `bg="surface-default"`, `theme.colors.text` → `theme.colors['text-default']`     |
+| Split             | Leaves the name and puts `/* color-roles: 'background' splits into surface-raised \| surface-default. <rule> */` in front of it |
+| Retire, pending   | The same, with design's rule for what to do instead                                                                             |
+| Old palette color | Warns. `navy`, `hyper-500` and the rest have no role of their own; design maps them per component                               |
+
+A name left in place is still an old name, so it fails the type check until someone picks its role. The leftovers report lists every `color-roles:` comment still in the code; delete each one once its name is resolved.
+
+It looks for color names where a color goes: the color props (`color`, `textColor`, `bg`, `borderColor`, `borderColor{X,Y,Left,Right,Top,Bottom}`) in JSX and in style objects, including ternaries, `&&`, and responsive objects and arrays; `theme.colors.x` and `theme.colors['x']`; and `themed('colors.x')`. `variant="primary"` and other strings that only look like color names are left alone.
+
+Limits:
+
+- A name held in a variable before it reaches a color prop (`const bg = 'background'`) isn't seen.
+- Names built at runtime (`` `${variant}-hover` ``) only warn.
+- MDX bodies aren't rewritten.
+
+On gamut's own source (branch `cass-color-brands`), a run changes 60 files and 273 lines, warns 171 times (about 120 splits, retirements and pending names, 50 old palette colors, 3 runtime names), and takes the type errors from 284 to 145. A second run changes nothing.
 
 ## Contributing
 
