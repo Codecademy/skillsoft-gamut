@@ -12,7 +12,7 @@ import { Toaster } from '.';
 const meta: Meta<typeof Toaster> = {
   title: 'Feedback/Toaster',
   component: Toaster,
-  subcomponents: { Toast: Toast as React.ComponentType<unknown> },
+  subcomponents: { Toast },
   args: {
     toasts: [
       {
