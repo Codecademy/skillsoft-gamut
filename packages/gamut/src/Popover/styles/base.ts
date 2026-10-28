@@ -1,6 +1,6 @@
 import { states, variant } from '@skillsoft/gamut-styles';
 
-import { toolTipBodyCss } from '../../Tip/shared/styles/styles';
+import { toolTipBodyCss } from '../../Tips/shared/styles/styles';
 
 export const borderStyles = { border: 1 } as const;
 export const popoverPrimaryBgColor = `background`;

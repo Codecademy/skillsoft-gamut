@@ -1,4 +1,4 @@
-import { getPopoverAlignmentAndPattern } from '../popoverAlignmentUtils';
+import { getPopoverAlignmentAndPattern } from './popoverAlignmentUtils';
 
 describe('getPopoverAlignmentAndPattern', () => {
   it('maps left-center to Popover center + align left', () => {

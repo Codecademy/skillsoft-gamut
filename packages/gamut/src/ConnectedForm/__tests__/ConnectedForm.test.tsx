@@ -4,7 +4,7 @@ import { fireEvent } from '@testing-library/dom';
 import type { RenderResult } from '@testing-library/react';
 import { act, waitFor } from '@testing-library/react';
 
-import type { InfoTipProps } from '../../Tip/InfoTip';
+import type { InfoTipProps } from '../../Tips/InfoTip';
 import { createPromise } from '../../utils';
 import {
   ConnectedForm,

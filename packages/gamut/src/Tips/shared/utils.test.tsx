@@ -1,4 +1,4 @@
-import { isElementVisible, isFloatingElementOpen } from '../utils';
+import { isElementVisible, isFloatingElementOpen } from './utils';
 
 /**
  * Helper to create a test element with mocked checkVisibility and automatic cleanup

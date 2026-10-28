@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { BodyPortal } from '../BodyPortal';
 import { Box, FlexBox } from '../Box';
-import { popoverToolTipBodyAlignments } from '../Tip/shared/styles/styles';
+import { popoverToolTipBodyAlignments } from '../Tips/shared/styles/styles';
 import type { WithChildrenProp } from '../utils';
 import type { popoverStates } from './styles/base';
 import { raisedDivVariants, transformValues } from './styles/base';
