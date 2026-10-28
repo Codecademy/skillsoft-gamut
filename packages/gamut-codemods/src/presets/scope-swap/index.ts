@@ -1,5 +1,7 @@
 import type { Preset } from '../../lib/types';
 import { deepImports } from '../../migrations/deep-imports';
+import { eslintComments } from '../../migrations/eslint-comments';
+import { eslintConfig } from '../../migrations/eslint-config';
 import { markdownVideoOverrides } from '../../migrations/markdown-video-overrides';
 import { mdxImports } from '../../migrations/mdx-imports';
 import { mfShared } from '../../migrations/mf-shared';
@@ -19,9 +21,11 @@ export const scopeSwap: Preset = {
     movedExports,
     markdownVideoOverrides,
     mfShared,
+    eslintComments,
     /* Last: everything above matches on @codecademy names. */
     scopeRename,
     packageJson,
+    eslintConfig,
     mdxImports,
     yarnrc,
     tsconfigDom,
@@ -38,6 +42,8 @@ export const scopeSwap: Preset = {
       'Video needs two peer dependencies that Gamut no longer installs for you: `@vidstack/react` and `react-player`. Gamut supports @vidstack/react 1.12.x only (its npm `latest` tag is 0.6.x). Install them: `yarn add @vidstack/react@~1.12.12 react-player@^3.4.0`.',
     'tsconfig-no-dom':
       'Some tsconfig files set "lib" without "dom" (see the tsconfig-dom warnings). Video no longer loads with the root import, and it was supplying the DOM types. Add "dom" to those files if type-checking fails on document, HTMLElement, ResizeObserver, and so on.',
+    'skipped:eslint-comments':
+      "ESLint directive comments were left as is because the repo uses a flat config, where the rule prefix is the key the plugin is registered under (for example `plugins: { gamut }`). Keep that key, or rename it and every 'gamut/' rule and directive together.",
     'mf-shared':
       "Module Federation shared config changed. Gamut is now a real singleton: run the host and every remote together, and update the remotes' shared config to match.",
   },

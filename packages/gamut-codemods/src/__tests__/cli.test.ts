@@ -232,6 +232,15 @@ describe('main: full run', () => {
     expect(read(dir, 'package.json')).toContain('"@skillsoft/gamut"');
   });
 
+  it('reports a migration skipped by its skipReason', async () => {
+    const dir = project({
+      'eslint.config.js': 'export default [];\n',
+      'src/Post.tsx': POST,
+    });
+    expect(await main(['scope-swap', dir, '--force'])).toBe(0);
+    expect(output()).toMatch(/\[eslint-comments\] skipped: found flat ESLint/);
+  });
+
   it('returns 1 when the source runner reports errors', async () => {
     mockRun.mockResolvedValueOnce({ error: 1 });
     const dir = project({ 'src/Post.tsx': POST });
