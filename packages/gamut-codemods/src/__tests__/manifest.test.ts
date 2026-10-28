@@ -199,4 +199,18 @@ describe('manifests', () => {
       }
     }
   });
+
+  it('keep source versions in step with each package changelog', () => {
+    /*
+      The top CHANGELOG heading is the upstream release the fork was synced
+      from. A stale sourceVersions hides the warning for consumers on newer
+      releases, so this fails until the manifest catches up.
+    */
+    for (const [oldName, version] of Object.entries(manifest.sourceVersions)) {
+      const dir = oldName.replace(/^@codecademy\//, '');
+      const changelog = path.join(REPO, 'packages', dir, 'CHANGELOG.md');
+      const top = /^## (\S+)/m.exec(fs.readFileSync(changelog, 'utf8'));
+      expect(top?.[1]).toBe(version);
+    }
+  });
 });
