@@ -1,11 +1,18 @@
-import { Coachmark, FillButton, FlexBox, Text } from '@skillsoft/gamut';
 import * as patterns from '@skillsoft/gamut-patterns';
 import type { Meta, StoryObj } from '@storybook/react';
-import type { ComponentProps } from 'react';
 import { useEffect, useState } from 'react';
+import { expect, screen, waitFor } from 'storybook/test';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
+import { FlexBox } from '../Box';
+import { FillButton } from '../Button';
+import { Text } from '../Typography';
+import { Coachmark } from '.';
+
+const popoverText = 'You should click the button.';
+
 const meta: TypeWithDeepControls<Meta<typeof Coachmark>> = {
+  title: 'Feedback/Coachmark',
   component: Coachmark,
   args: {
     popoverProps: {
@@ -91,72 +98,60 @@ const meta: TypeWithDeepControls<Meta<typeof Coachmark>> = {
       description: 'Whether to add width restrictions to Popover.',
     },
   },
+  render: function CoachmarkExample(args) {
+    const [shouldShow, setShouldShow] = useState(args.shouldShow);
+
+    useEffect(() => {
+      setShouldShow(args.shouldShow);
+    }, [args.shouldShow]);
+
+    return (
+      <FlexBox width="min-content">
+        <Coachmark
+          {...args}
+          renderPopover={() => (
+            <FlexBox alignItems="flex-start" flexDirection="column" p={16}>
+              <Text mb={8}>{popoverText}</Text>
+              <FillButton size="small" onClick={() => setShouldShow(false)}>
+                Got it
+              </FillButton>
+            </FlexBox>
+          )}
+          shouldShow={shouldShow}
+        >
+          <FillButton onClick={() => setShouldShow(true)}>A Button</FillButton>
+        </Coachmark>
+      </FlexBox>
+    );
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Coachmark>;
 
-export const Default: React.FC<ComponentProps<typeof Coachmark>> = (args) => {
-  const [shouldShow, setShouldShow] = useState(args.shouldShow);
+export const Default: Story = {
+  play: async ({ canvas, userEvent }) => {
+    await expect(screen.queryByText(popoverText)).toBeNull();
 
-  useEffect(() => {
-    setShouldShow(args.shouldShow);
-  }, [args.shouldShow]);
+    await userEvent.click(canvas.getByRole('button', { name: 'A Button' }));
+    await screen.findByText(popoverText);
+    canvas.getByRole('button', { name: 'A Button' });
 
-  return (
-    <FlexBox width="min-content">
-      <Coachmark
-        {...args}
-        renderPopover={() => (
-          <FlexBox alignItems="flex-start" flexDirection="column" p={16}>
-            <Text mb={8}>You should click the button.</Text>
-            <FillButton
-              size="small"
-              onClick={() => {
-                setShouldShow(false);
-              }}
-            >
-              Got it
-            </FillButton>
-          </FlexBox>
-        )}
-        shouldShow={shouldShow}
-      >
-        <FillButton onClick={() => setShouldShow(true)}>A Button</FillButton>
-      </Coachmark>
-    </FlexBox>
-  );
+    await userEvent.click(screen.getByRole('button', { name: 'Got it' }));
+    await waitFor(() => expect(screen.queryByText(popoverText)).toBeNull());
+  },
 };
 
-export const Delay: React.FC<ComponentProps<typeof Coachmark>> = (args) => {
-  const [shouldShow, setShouldShow] = useState(args.shouldShow);
+export const Delay: Story = {
+  args: {
+    delay: 1000,
+  },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole('button', { name: 'A Button' }));
+    await expect(screen.queryByText(popoverText)).toBeNull();
 
-  useEffect(() => {
-    setShouldShow(args.shouldShow);
-  }, [args.shouldShow]);
-
-  return (
-    <Coachmark
-      delay={3000}
-      {...args}
-      renderPopover={() => (
-        <FlexBox alignItems="flex-start" flexDirection="column" p={16}>
-          <Text mb={8}>You should click the button.</Text>
-          <FillButton
-            size="small"
-            onClick={() => {
-              setShouldShow(false);
-            }}
-          >
-            Got it
-          </FillButton>
-        </FlexBox>
-      )}
-      shouldShow={shouldShow}
-    >
-      <FillButton onClick={() => setShouldShow(true)}>A Button</FillButton>
-    </Coachmark>
-  );
+    await screen.findByText(popoverText, undefined, { timeout: 2000 });
+  },
 };
 
 export const Customized: Story = {
@@ -167,34 +162,5 @@ export const Customized: Story = {
       pattern: patterns.CheckerDense,
       position: 'above',
     },
-  },
-  render: function Customized(args) {
-    const [shouldShow, setShouldShow] = useState(args.shouldShow);
-
-    useEffect(() => {
-      setShouldShow(args.shouldShow);
-    }, [args.shouldShow]);
-
-    return (
-      <Coachmark
-        {...args}
-        renderPopover={() => (
-          <FlexBox alignItems="flex-start" flexDirection="column" p={16}>
-            <Text mb={8}>You should click the button.</Text>
-            <FillButton
-              size="small"
-              onClick={() => {
-                setShouldShow(false);
-              }}
-            >
-              Got it
-            </FillButton>
-          </FlexBox>
-        )}
-        shouldShow={shouldShow}
-      >
-        <FillButton onClick={() => setShouldShow(true)}>A Button</FillButton>
-      </Coachmark>
-    );
   },
 };
