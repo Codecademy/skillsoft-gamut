@@ -110,7 +110,6 @@ export const withEmotion = (Story: any, context: GlobalsContext) => {
       useLogicalProperties={useLogicalProperties}
       theme={currentTheme as unknown as Theme}
     >
-      {tokens}
       <Background alwaysSetVariables bg={bg} ref={storyRef}>
         {Story()}
       </Background>

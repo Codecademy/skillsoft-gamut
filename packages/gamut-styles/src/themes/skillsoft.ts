@@ -3,6 +3,7 @@ import mapValues from 'lodash/mapValues';
 import pickBy from 'lodash/pickBy';
 
 import { contentModes, palette, roles } from '../tokens';
+import { tokensCss } from '../tokens/generated/tokensCss';
 import {
   borderRadii,
   containerQueries,
@@ -70,17 +71,19 @@ const built = createTheme({
   .build();
 
 /*
- * tokens.css owns the color values: the theme doesn't inject the palette, so
- * the OKLCH in tokens.css is what renders, and the page needs
- * `@skillsoft/gamut-styles/tokens.css`. The theme keeps names (`var(--color-*)`),
- * the mode → palette mapping ColorMode still injects (identical to
- * tokens.css), and `contentModes`, which Background reads instead of
- * measuring contrast. `_getColorValue` still returns sRGB for the components
- * that run polished on it (BarChart).
+ * tokens.css owns the color values, and the theme carries it as `tokensCss`:
+ * GamutProvider injects it, so a React app gets the colors without loading
+ * the file. The theme doesn't also inject the palette as variables, so the
+ * OKLCH in tokens.css is what renders. The theme keeps names
+ * (`var(--color-*)`), the mode → palette mapping ColorMode still injects
+ * (identical to tokens.css), and `contentModes`, which Background reads
+ * instead of measuring contrast. `_getColorValue` still returns sRGB for the
+ * components that run polished on it (BarChart).
  */
 export const skillsoftTheme = {
   ...built,
   contentModes,
+  tokensCss,
   _variables: {
     ...built._variables,
     root: pickBy(

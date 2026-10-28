@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
+import { tokensCss } from '../../tokens/generated/tokensCss';
 import { skillsoftBrand } from '../brands/skillsoft';
 import { toTsModule } from '../emit';
 import { validateMigration } from '../migration';
@@ -25,6 +26,14 @@ describe('color system', () => {
       'utf8'
     );
     expect(generated).toBe(toTsModule(system));
+  });
+
+  it('tokensCss is tokens.css — run `yarn build:tokens`', () => {
+    const css = readFileSync(
+      join(__dirname, '../../tokens/generated/tokens.css'),
+      'utf8'
+    );
+    expect(tokensCss).toBe(css);
   });
 
   it('derives a tier 1 brand from one hue', () => {
