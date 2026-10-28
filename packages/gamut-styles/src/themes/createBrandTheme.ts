@@ -2,6 +2,7 @@ import { createTheme } from '@skillsoft/variance';
 import mapValues from 'lodash/mapValues';
 import pickBy from 'lodash/pickBy';
 
+import { tokensCss } from '../tokens/generated/tokensCss';
 import type * as defaults from '../tokens/generated/values';
 import {
   borderRadii,
@@ -83,9 +84,10 @@ export const createBrandTheme = (
     .build();
 
   /*
-   * tokens.css owns the color values: the theme doesn't inject the palette,
-   * so the OKLCH in tokens.css is what renders, and the page needs
-   * `@skillsoft/gamut-styles/tokens.css`. The theme keeps names
+   * tokens.css owns the color values, and the theme carries it as
+   * `tokensCss` for GamutProvider to inject. It holds every brand, keyed on
+   * `data-brand`. The theme doesn't also inject the palette as variables, so
+   * the OKLCH in tokens.css is what renders. The theme keeps names
    * (`var(--colors-*)`), `brand` (ColorMode sets it as `data-brand`), and
    * `contentModes`, which Background reads instead of measuring contrast.
    * `_getColorValue` still returns sRGB for the components that run polished
@@ -95,6 +97,7 @@ export const createBrandTheme = (
     ...built,
     brand: values.brand.name,
     contentModes: values.contentModes,
+    tokensCss,
     _variables: {
       ...built._variables,
       root: pickBy(

@@ -1,5 +1,5 @@
 import type { EmotionCache, Theme } from '@emotion/react';
-import { CacheProvider, ThemeProvider } from '@emotion/react';
+import { CacheProvider, Global, ThemeProvider } from '@emotion/react';
 import type { CSSObject } from '@skillsoft/variance';
 import { MotionConfig } from 'framer-motion';
 import { setNonce } from 'get-nonce';
@@ -14,6 +14,12 @@ import { skillsoftTheme } from './themes/skillsoft';
 export interface GamutProviderProps {
   children?: React.ReactNode;
   useGlobals?: boolean;
+  /*
+   * Whether to inject the theme's color tokens (themes on the generated color
+   * system carry tokens.css as `tokensCss`). Turn it off only if the page
+   * loads `@skillsoft/gamut-styles/tokens.css` itself.
+   */
+  useTokens?: boolean;
   useCache?: boolean;
   theme: Theme;
   variables?: Record<string, CSSObject>;
@@ -54,6 +60,7 @@ export const GamutProvider: React.FC<GamutProviderProps> = ({
   theme = skillsoftTheme,
   variables,
   useGlobals = true,
+  useTokens = true,
   useCache = true,
   nonce,
   useLogicalProperties = false,
@@ -89,6 +96,8 @@ export const GamutProvider: React.FC<GamutProviderProps> = ({
 
   const globals = shouldInsertGlobals && (
     <>
+      {/* First, so tokens.css's @layer order is declared before anything else. */}
+      {useTokens && 'tokensCss' in theme && <Global styles={theme.tokensCss} />}
       <Typography theme={themeWithLogicalProperties} />
       <Reboot theme={themeWithLogicalProperties} />
       <Variables variables={theme._variables} />
