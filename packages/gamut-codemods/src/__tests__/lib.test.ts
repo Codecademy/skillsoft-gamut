@@ -186,23 +186,6 @@ describe('findFlatEslintConfig', () => {
   });
 });
 
-describe('eslint-comments skipReason', () => {
-  it('runs for legacy .eslintrc repos', () => {
-    const dir = tmp();
-    fs.writeFileSync(path.join(dir, '.eslintrc.json'), '{}');
-    expect(eslintComments.skipReason?.([dir], manifest)).toBeNull();
-  });
-
-  it('skips when a flat config is inside the target', () => {
-    const dir = tmp();
-    fs.mkdirSync(path.join(dir, 'libs', 'a'), { recursive: true });
-    fs.writeFileSync(path.join(dir, 'libs', 'a', 'eslint.config.mjs'), '');
-    expect(eslintComments.skipReason?.([dir], manifest)).toMatch(
-      /flat ESLint config/
-    );
-  });
-});
-
 describe('isNewerThan', () => {
   it.each([
     ['74.0.0', '73.6.1', true],
@@ -273,6 +256,23 @@ describe('markdown-video-overrides skipReason', () => {
   it('runs when no version can be read', () => {
     const dir = repo([{ '@codecademy/gamut': '*' }]);
     expect(markdownVideoOverrides.skipReason?.([dir], manifest)).toBeNull();
+  });
+});
+
+describe('eslint-comments skipReason', () => {
+  it('runs for legacy .eslintrc repos', () => {
+    const dir = tmp();
+    fs.writeFileSync(path.join(dir, '.eslintrc.json'), '{}');
+    expect(eslintComments.skipReason?.([dir], manifest)).toBeNull();
+  });
+
+  it('skips when a flat config is inside the target', () => {
+    const dir = tmp();
+    fs.mkdirSync(path.join(dir, 'libs', 'a'), { recursive: true });
+    fs.writeFileSync(path.join(dir, 'libs', 'a', 'eslint.config.mjs'), '');
+    expect(eslintComments.skipReason?.([dir], manifest)).toMatch(
+      /flat ESLint config/
+    );
   });
 });
 
