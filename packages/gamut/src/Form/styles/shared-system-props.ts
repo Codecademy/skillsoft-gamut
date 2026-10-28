@@ -26,24 +26,25 @@ export enum InputSelectors {
 export const formBaseStyles = {
   fontWeight: 'base',
   fontSize: 16,
-  color: 'text',
+  color: 'text-default',
 } as const;
 
 export const formBaseComponentStyles = {
   width: 1,
   outline: 'none',
-  bg: 'background',
+  bg: 'surface-raised',
   minWidth: 'auto',
   ...formBaseStyles,
 } as const;
 
 export const formFieldFocusStyles = {
-  borderColor: 'primary',
-  boxShadow: `inset 0 0 0 1px ${theme.colors.primary}`,
+  borderColor: 'action-primary',
+  boxShadow: `inset 0 0 0 1px ${theme.colors['action-primary']}`,
 } as const;
 
+/* A disabled label is `action-disabled`, the same color as a disabled fill. */
 export const formFieldTextDisabledStyles = {
-  color: 'text-disabled',
+  color: 'action-disabled',
   cursor: 'not-allowed',
 } as const;
 
@@ -53,11 +54,17 @@ export const formFieldBaseDisabledStyles = {
   ...formFieldTextDisabledStyles,
 } as const;
 
+/*
+ * Inside a disabled field the value is `text-subtle`, the one place it stays,
+ * and the outline is `border-default`.
+ */
 export const formFieldDisabledStyles = {
   ...formFieldBaseDisabledStyles,
-  bg: 'background-disabled',
+  color: 'text-subtle',
+  borderColor: 'border-default',
+  bg: 'action-disabled',
   [InputSelectors.HOVER]: {
-    borderColor: 'currentColor',
+    borderColor: 'border-default',
   },
 } as const;
 
@@ -74,9 +81,11 @@ export const formBaseFieldStylesObject = {
     'ease-in-out'
   ),
   border: 1,
+  borderColor: 'border-default',
   borderRadius: 'md',
+  /* Hover darkens the outline; blue only ever means focus. */
   [InputSelectors.HOVER]: {
-    borderColor: 'primary',
+    borderColor: 'border-strong',
   },
   [InputSelectors.PLACEHOLDER]: {
     fontStyle: 'italic',
@@ -107,13 +116,13 @@ export const formFieldStyles = css({
 export const conditionalStyles = variant({
   variants: {
     error: {
-      borderColor: 'feedback-error',
+      borderColor: 'text-error',
       [InputSelectors.HOVER]: {
-        borderColor: 'feedback-error',
+        borderColor: 'text-error',
       },
       [InputSelectors.FOCUS]: {
-        borderColor: 'feedback-error',
-        boxShadow: `inset 0 0 0 1px ${theme.colors['feedback-error']}`,
+        borderColor: 'text-error',
+        boxShadow: `inset 0 0 0 1px ${theme.colors['text-error']}`,
       },
     },
     activated: { borderColor: 'currentColor' },

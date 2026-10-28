@@ -3,6 +3,7 @@ import { Background } from '@skillsoft/gamut-styles';
 import { motion } from 'framer-motion';
 
 import { Box } from '../Box';
+import { gradientLayer } from '../utils/gradientLayer';
 import { cardVariants, shadowVariants } from './styles';
 import type { CardWrapperProps } from './types';
 
@@ -14,7 +15,6 @@ export const DynamicCardWrapper = styled(MotionBox)<CardWrapperProps>(
 );
 
 const StaticCard = motion.create(Background);
-export const StaticCardWrapper = styled(StaticCard)<CardWrapperProps>(
-  cardVariants,
-  shadowVariants
-);
+export const StaticCardWrapper = styled(StaticCard)<
+  CardWrapperProps & { gradient?: string }
+>(cardVariants, shadowVariants, gradientLayer);

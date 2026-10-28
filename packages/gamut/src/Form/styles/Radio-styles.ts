@@ -32,8 +32,8 @@ export const radioLabel = css({
   position: 'relative',
   [InputSelectors.BEFORE_AND_AFTER]: consistentLabelStyles,
   [InputSelectors.BEFORE]: {
-    bg: 'background',
-    boxShadow: `0 0 0 1px ${theme.colors[`border-primary`]}`,
+    bg: 'surface-raised',
+    boxShadow: `0 0 0 1px ${theme.colors['border-default']}`,
     transition: timing.medium,
   },
   [InputSelectors.AFTER]: {
@@ -41,7 +41,7 @@ export const radioLabel = css({
     transition: transitionConcat(['transform'], 'medium', 'ease-in-out'),
     borderWidth: 5,
     borderStyle: 'solid',
-    borderColor: 'background',
+    borderColor: 'surface-raised',
     transform: 'scale(0)',
   },
   width: 'max-content',
@@ -49,34 +49,56 @@ export const radioLabel = css({
 
 export const radioInput = css({
   [InputSelectors.CHECKED_AFTER]: {
-    bg: 'primary',
+    bg: 'action-primary',
     borderWidth: 4,
     borderStyle: 'solid',
-    borderColor: 'background',
+    borderColor: 'surface-raised',
     transform: 'scale(1)',
   },
   [InputSelectors.CHECKED_BEFORE]: {
-    boxShadow: `0 0 0 1px ${theme.colors.primary}`,
+    boxShadow: `0 0 0 1px ${theme.colors['action-primary']}`,
   },
   [InputSelectors.HOVER_FOCUS_BEFORE]: {
-    boxShadow: `0 0 0 2px ${theme.colors.primary}`,
+    boxShadow: `0 0 0 2px ${theme.colors['action-primary']}`,
   },
 });
+
+/*
+ * Design's radio map: the unchecked ring is `border-default`, and a checked
+ * radio is `action-primary` (it used to take the label's text color). Error
+ * and disabled keep drawing in the label's color.
+ */
+const currentColorRing = {
+  [InputSelectors.BEFORE]: {
+    boxShadow: `0 0 0 1px currentColor`,
+  },
+} as const;
+
+const currentColorChecked = {
+  [InputSelectors.CHECKED_AFTER]: {
+    bg: 'currentColor',
+  },
+  [InputSelectors.CHECKED_BEFORE]: {
+    boxShadow: `0 0 0 1px currentColor`,
+  },
+} as const;
 
 export const conditionalRadioLabelStyles = variant({
   base: {
     [InputSelectors.BEFORE]: {
-      boxShadow: `0 0 0 1px currentColor`,
+      boxShadow: `0 0 0 1px ${theme.colors['border-default']}`,
     },
   },
   variants: {
     error: {
+      ...currentColorRing,
       [InputSelectors.BEFORE_AND_AFTER]: {
-        color: 'feedback-error',
+        color: 'text-error',
       },
     },
     disabled: {
       ...formFieldBaseDisabledStyles,
+      ...currentColorRing,
     },
   },
 });
@@ -84,20 +106,22 @@ export const conditionalRadioLabelStyles = variant({
 export const conditionalRadioInputStyles = variant({
   base: {
     [InputSelectors.CHECKED_AFTER]: {
-      bg: 'currentColor',
+      bg: 'action-primary',
     },
     [InputSelectors.CHECKED_BEFORE]: {
-      boxShadow: `0 0 0 1px currentColor`,
+      boxShadow: `0 0 0 1px ${theme.colors['action-primary']}`,
     },
   },
   variants: {
     error: {
+      ...currentColorChecked,
       [InputSelectors.HOVER_FOCUS_BEFORE]: {
         boxShadow: `0 0 0 2px currentColor`,
       },
     },
     disabled: {
       ...formFieldBaseDisabledStyles,
+      ...currentColorChecked,
       [InputSelectors.HOVER_FOCUS_BEFORE]: {
         boxShadow: `0 0 0 1px currentColor`,
       },

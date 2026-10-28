@@ -12,16 +12,16 @@ import {
 const shellFocusStyles = variant({
   variants: {
     error: {
-      borderColor: 'feedback-error',
+      borderColor: 'text-error',
       '&:hover': {
-        borderColor: 'feedback-error',
+        borderColor: 'text-error',
       },
       '&:focus': {
-        borderColor: 'feedback-error',
+        borderColor: 'text-error',
         boxShadow: `inset 0 0 0 1px feedback-error`,
       },
       '&:focus-within': {
-        borderColor: 'feedback-error',
+        borderColor: 'text-error',
         boxShadow: `inset 0 0 0 1px feedback-error`,
       },
     },

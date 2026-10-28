@@ -19,11 +19,11 @@ export interface BarChartContextProps {
 }
 
 export const defaultStyleConfig: Required<BarChartStyles> = {
-  textColor: 'text',
-  seriesOneBarColor: 'text',
-  seriesTwoBarColor: 'primary',
-  seriesOneLabel: 'text-secondary',
-  seriesTwoLabel: 'primary',
+  textColor: 'text-default',
+  seriesOneBarColor: 'text-default',
+  seriesTwoBarColor: 'action-primary',
+  seriesOneLabel: 'text-subtle',
+  seriesTwoLabel: 'action-primary',
 };
 
 export const BarChartContext = createContext<BarChartContextProps>({

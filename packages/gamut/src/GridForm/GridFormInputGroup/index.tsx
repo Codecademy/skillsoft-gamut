@@ -26,7 +26,7 @@ import { GridFormTextInput } from './GridFormTextInput';
 
 const ErrorAnchor = styled(Anchor)(
   css({
-    color: 'feedback-error',
+    color: 'text-error',
   })
 );
 

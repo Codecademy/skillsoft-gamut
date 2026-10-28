@@ -28,7 +28,7 @@ const ToggleTrackVariants = variant({
     border: 'none',
     cursor: 'inherit',
     transition: 'background-color 0.2s ease',
-    borderColor: 'primary',
+    borderColor: 'action-primary',
     borderRadius: 'full',
     position: 'relative',
     '&:after': {
@@ -46,7 +46,7 @@ const ToggleTrackVariants = variant({
       borderWidth: 2,
     },
     '&:focus, &:focus-within': {
-      outline: `3px solid ${theme.colors.primary}`,
+      outline: `3px solid ${theme.colors['action-primary']}`,
       outlineOffset: '2px',
     },
   },
@@ -71,7 +71,7 @@ export const Circle = styled(Box)(
 export const ToggleInput = styled.input(screenReaderOnly);
 
 const ToggleLabelStates = states({
-  disabled: { cursor: 'not-allowed', opacity: 0.5 },
+  disabled: { cursor: 'not-allowed', color: 'action-disabled' },
   labelRight: { flexDirection: 'row-reverse' },
 });
 

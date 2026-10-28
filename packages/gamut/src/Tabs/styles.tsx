@@ -12,15 +12,16 @@ export const tabContainerVariants = variant({
       '&:after': {
         content: '""',
         height: '1px',
-        bg: 'text',
+        bg: 'border-subtle',
         position: 'absolute',
         bottom: 0,
         zIndex: 0,
         width: '100%',
       },
     },
+    /* A sunken track with a raised selected tab, in the page's own mode. */
     block: {
-      bg: 'background-contrast',
+      bg: 'surface-sunken',
       mb: 16,
     },
   },

@@ -58,11 +58,12 @@ const StyledList = styled('ul', styledOptions<'ul'>())<ListProps>(
   }),
   system.states({
     root: {
-      bg: 'background',
+      bg: 'surface-raised',
       p: 0,
     },
     showBorder: {
       border: 1,
+      borderColor: 'border-default',
       borderRadius: 'sm',
     },
   }),
@@ -109,7 +110,7 @@ const interactiveVariants = system.variant({
       inset: 4,
       borderRadius: 'md',
       border: 2,
-      borderColor: 'primary',
+      borderColor: 'action-primary',
       opacity: 0,
       zIndex: -1,
     },
@@ -123,9 +124,10 @@ const interactiveVariants = system.variant({
         pointerEvents: 'none',
       },
       [Selectors.HOVER]: {
-        bg: 'background-hover',
+        bg: 'state-hover',
       },
     },
+    /* Items hover with a veil instead of turning blue. */
     link: {
       [Selectors.BEFORE]: {
         bg: 'inherit',
@@ -135,7 +137,7 @@ const interactiveVariants = system.variant({
         width: 6,
       },
       [Selectors.HOVER]: {
-        textColor: 'primary',
+        bg: 'state-hover',
       },
     },
   },
@@ -143,17 +145,17 @@ const interactiveVariants = system.variant({
 
 const activeStates = system.states({
   selected: {
-    bg: 'background-selected',
+    bg: 'state-selected',
   },
   active: {
     fontWeight: 'title',
   },
   'active-navlink': {
     fontWeight: 'title',
-    bg: 'background-selected',
+    bg: 'state-selected',
     [Selectors.BEFORE]: {
       content: "''",
-      bg: 'secondary',
+      bg: 'action-primary',
     },
   },
   // Is named isDisabled to avoid conflicts with the HTML `disabled` attribute
@@ -161,9 +163,9 @@ const activeStates = system.states({
     bg: 'inherit',
     cursor: 'not-allowed',
     fontWeight: 400,
-    textColor: 'text-disabled',
+    textColor: 'action-disabled',
     [Selectors.HOVER]: {
-      textColor: 'text-disabled',
+      textColor: 'action-disabled',
       textDecoration: 'none',
     },
     [Selectors.BEFORE]: {

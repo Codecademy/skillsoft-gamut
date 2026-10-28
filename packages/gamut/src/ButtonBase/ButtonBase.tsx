@@ -39,7 +39,7 @@ export const resetStyles = css({
   background: 'none',
   boxShadow: 'none',
   border: 'none',
-  textColor: 'text',
+  textColor: 'text-default',
   p: 0,
   fontSize: 'inherit',
   cursor: 'pointer',

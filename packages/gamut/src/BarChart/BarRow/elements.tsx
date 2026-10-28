@@ -46,7 +46,7 @@ const rowBaseStyles = css({
   },
   '&:focus-visible': {
     outline: '2px solid',
-    outlineColor: 'primary',
+    outlineColor: 'action-primary',
     outlineOffset: '2px',
   },
 });
@@ -54,7 +54,7 @@ const rowBaseStyles = css({
 const interactiveStyles = css({
   cursor: 'pointer',
   '&:hover, &:focus-visible': {
-    bg: 'background-hover',
+    bg: 'state-hover',
     textDecoration: 'none',
   },
 });
@@ -70,7 +70,7 @@ export const RowAnchor = styled('a', styledOptions<'a'>())(
   css({
     [`&:focus-visible ${CategoryLabel}, &:hover ${CategoryLabel}`]: {
       textDecoration: 'underline',
-      textDecorationColor: 'primary',
+      textDecorationColor: 'action-primary',
     },
   })
 );

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import type { PatternProps } from '@skillsoft/gamut-patterns';
-import { theme, variant } from '@skillsoft/gamut-styles';
+import { variant } from '@skillsoft/gamut-styles';
 import * as React from 'react';
 
 import { Box } from '../Box';
@@ -83,19 +83,16 @@ const progressBarSizeVariants = variant({
 
 const progressBarBackgroundVariants = variant({
   defaultVariant: 'default',
+  /* Design's progress map: every variant is the same sunken track. */
   base: {
     borderWidth: '1px',
     borderStyle: 'solid',
+    bg: 'surface-sunken',
+    borderColor: 'border-default',
   },
   variants: {
-    blue: {
-      bg: 'navy',
-      borderColor: 'border-primary',
-    },
-    yellow: {
-      bg: 'gray-100',
-      borderColor: 'border-primary',
-    },
+    blue: {},
+    yellow: {},
     default: {},
   },
 });
@@ -120,18 +117,19 @@ const progressBarForegroundVariants = variant({
     transition: 'width 0.5s',
     position: 'relative',
   },
+  /* Every bar is `text-default`, blue and yellow included. */
   variants: {
     blue: {
-      bg: 'blue',
-      textColor: 'white',
+      bg: 'text-default',
+      textColor: 'text-inverse',
     },
     yellow: {
-      bg: 'yellow',
-      textColor: 'navy',
+      bg: 'text-default',
+      textColor: 'text-inverse',
     },
     default: {
-      bg: 'text',
-      textColor: 'background',
+      bg: 'text-default',
+      textColor: 'text-inverse',
     },
   },
 });
@@ -169,7 +167,6 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   size = 'small',
   variant,
 }) => {
-  const showBarBorder = percent > 0 || minimumPercent > 0;
   const id = React.useId();
   return (
     <ProgressBarWrapper
@@ -186,9 +183,6 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
       <Bar
         borderRadiusBottomRight={flat ? 'none' : 'inherit'}
         borderRadiusTopRight={flat ? 'none' : 'inherit'}
-        boxShadow={
-          showBarBorder ? `0.5px 0 0 0.5px ${theme.colors.navy}` : 'none'
-        }
         data-testid="progress-bar-bar"
         variant={variant}
         width={`${Math.max(minimumPercent, percent)}%`}

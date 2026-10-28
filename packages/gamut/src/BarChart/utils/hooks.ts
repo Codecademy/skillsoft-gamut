@@ -167,18 +167,18 @@ export const useBarChart = ({
 
 /**
  * Hook that returns a function to get the highest contrast border color
- * (white or navy-900) for a given background color.
+ * (white or black) for a given background color.
  *
  * Similar to the Background component, this resolves color aliases and
  * compares contrast ratios to determine the best border color.
  *
- * @returns A function that takes a background color and returns either 'white' or 'navy-900'
+ * @returns A function that takes a background color and returns either 'white' or 'black'
  */
 export const useBarBorderColor = () => {
   const [, activeColors, , getColorValue] = useColorModes();
 
   const getBorderColor = useCallback(
-    (bg: Colors): 'white' | 'navy-900' => {
+    (bg: Colors): 'white' | 'black' => {
       /** If a color alias was used then look up the true color key from the active mode */
       const trueColor = isColorAlias(activeColors, bg) ? activeColors[bg] : bg;
 
@@ -187,12 +187,12 @@ export const useBarBorderColor = () => {
         getColorValue('white'),
         backgroundColor
       );
-      const navyContrast = getContrast(
-        getColorValue('navy-900'),
+      const blackContrast = getContrast(
+        getColorValue('black'),
         backgroundColor
       );
 
-      return whiteContrast > navyContrast ? 'white' : 'navy-900';
+      return whiteContrast > blackContrast ? 'white' : 'black';
     },
     [activeColors, getColorValue]
   );

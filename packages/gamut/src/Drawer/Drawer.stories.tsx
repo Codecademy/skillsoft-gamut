@@ -28,7 +28,7 @@ const meta: Meta<typeof Drawer> = {
     }, [args.expanded]);
 
     return (
-      <FlexBox bg="paleYellow" height="20rem">
+      <FlexBox bg="surface-sunken" height="20rem">
         <Drawer
           alignContentContainer={args.alignContentContainer}
           expanded={expanded}

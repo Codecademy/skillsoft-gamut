@@ -39,7 +39,7 @@ export interface FlyoutProps extends WithChildrenProp {
 }
 
 export const Flyout: React.FC<FlyoutProps> = ({
-  bg = 'background',
+  bg = 'surface-raised',
   children,
   closeLabel = 'Close',
   expanded,

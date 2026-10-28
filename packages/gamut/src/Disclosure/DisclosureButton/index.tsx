@@ -46,7 +46,7 @@ export const DisclosureButton: React.FC<DisclosureButtonProps> = ({
       >
         {overline && (
           <Text
-            color="text-secondary"
+            color="text-subtle"
             fontFamily="accent"
             textAlign="start"
             variant="p-small"
