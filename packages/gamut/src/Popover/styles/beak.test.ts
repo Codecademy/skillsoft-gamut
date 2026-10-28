@@ -1,4 +1,4 @@
-import { getBeakVariant } from '../styles/beak';
+import { getBeakVariant } from './beak';
 
 describe('getBeakVariant', () => {
   it("uses `beak` when `position` is not `center` (i.e. `below`) to set the location of the beak relative to the popover' container", () => {

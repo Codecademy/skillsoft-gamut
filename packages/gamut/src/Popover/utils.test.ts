@@ -1,4 +1,4 @@
-import { resolveHorizontalSideForRtl } from '../utils';
+import { resolveHorizontalSideForRtl } from './utils';
 
 describe('resolveHorizontalSideForRtl', () => {
   it.each([
