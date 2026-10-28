@@ -11,4 +11,4 @@ export * from './styles';
 export * from './globals';
 export * from './utilities';
 export * from './themes';
-export { coreTheme as theme } from './themes';
+export { skillsoftTheme as theme } from './themes';

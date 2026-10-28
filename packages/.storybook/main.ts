@@ -167,6 +167,19 @@ const config: StorybookConfig = {
             '../gamut-styles/src/variance/config'
           ),
         },
+        // Public subpaths of gamut-styles (see its `exports`), pointed at
+        // source like the bare specifier above.
+        {
+          find: /^@skillsoft\/gamut-styles\/tokens$/,
+          replacement: resolve(__dirname, '../gamut-styles/src/tokens'),
+        },
+        {
+          find: /^@skillsoft\/gamut-styles\/tokens\.css(\?.*)?$/,
+          replacement: `${resolve(
+            __dirname,
+            '../gamut-styles/src/tokens/generated/tokens.css'
+          )}$1`,
+        },
         ...normalizeAlias(config.resolve?.alias),
       ],
     };

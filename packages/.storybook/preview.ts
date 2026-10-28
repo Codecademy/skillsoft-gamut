@@ -99,6 +99,7 @@ export const globalTypes = {
         { value: 'lxStudio', title: 'LX Studio' },
         { value: 'percipio', title: 'Percipio' },
         { value: 'platform', title: 'Learning Platform' },
+        { value: 'skillsoft', title: 'Skillsoft (color spike)' },
       ],
       showName: true,
     },

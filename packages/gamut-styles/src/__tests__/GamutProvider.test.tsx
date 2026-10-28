@@ -5,7 +5,7 @@ import { setNonce } from 'get-nonce';
 
 import { createEmotionCache } from '../cache';
 import { GamutProvider, useNonce } from '../GamutProvider';
-import { coreTheme as theme } from '../themes';
+import { coreTheme as theme, skillsoftTheme } from '../themes';
 import { setupRtl } from './testUtils';
 
 jest.mock('../cache', () => {
@@ -18,6 +18,18 @@ jest.mock('get-nonce', () => ({
 }));
 
 const renderView = setupRtl(GamutProvider, { theme });
+
+/* Emotion may insert with insertRule, which leaves textContent empty. */
+const emotionCss = () =>
+  Array.from(document.querySelectorAll<HTMLStyleElement>('style[data-emotion]'))
+    .map(
+      (el) =>
+        (el.textContent ?? '') +
+        Array.from(el.sheet?.cssRules ?? [])
+          .map((rule) => rule.cssText)
+          .join('')
+    )
+    .join('');
 
 describe(GamutProvider, () => {
   beforeEach(() => {
@@ -133,5 +145,31 @@ describe(GamutProvider, () => {
     const blue = rootStyles.getPropertyValue('--cool');
 
     expect(blue).toBe('blue');
+  });
+
+  describe('color tokens', () => {
+    it('injects tokens.css for a theme on the generated color system', () => {
+      renderView({ theme: skillsoftTheme });
+
+      expect(emotionCss()).toContain('--color-palette-primary-800:');
+    });
+
+    it('does not inject tokens when configured not to', () => {
+      renderView({ theme: skillsoftTheme, useTokens: false });
+
+      expect(emotionCss()).not.toContain('--color-palette-primary-800:');
+    });
+
+    it('does not inject tokens without globals', () => {
+      renderView({ theme: skillsoftTheme, useGlobals: false });
+
+      expect(emotionCss()).not.toContain('--color-palette-primary-800:');
+    });
+
+    it('does not inject tokens for themes that do not carry them', () => {
+      renderView();
+
+      expect(emotionCss()).not.toContain('--color-palette-primary-800:');
+    });
   });
 });

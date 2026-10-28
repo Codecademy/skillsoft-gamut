@@ -12,3 +12,4 @@ packages/gamut-codemods/**/__testfixtures__
 
 /.nx/cache
 /.nx/workspace-data
+packages/gamut-styles/src/tokens/generated
