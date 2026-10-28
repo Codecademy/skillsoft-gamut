@@ -3,9 +3,14 @@ import path from 'node:path';
 
 import ts from 'typescript';
 
+import type { Manifest } from '../lib/manifest';
 import { renameSpecifier } from '../lib/manifest';
 import { presets } from '../presets';
 import { manifest } from '../presets/scope-swap/manifest';
+
+/* Manifests that promise exports: scope-swap's shape. Other presets have none. */
+const movesExports = (m: unknown): m is Manifest =>
+  typeof m === 'object' && m !== null && 'movedExports' in m;
 
 /*
   Guards against a manifest that promises something the packages don't
@@ -31,8 +36,9 @@ const importsToCheck = () => {
     names.forEach((name) => set.add(name));
     byModule.set(spec, set);
   };
-  for (const preset of Object.values(presets)) {
-    const m = preset.manifest;
+  for (const m of Object.values(presets)
+    .map((preset) => preset.manifest)
+    .filter(movesExports)) {
     for (const rule of m.movedExports) {
       add(renameSpecifier(m, rule.to), rule.names);
     }
