@@ -1,4 +1,5 @@
 import type { Preset } from '../../lib/types';
+import { deepImports } from '../../migrations/deep-imports';
 import { markdownVideoOverrides } from '../../migrations/markdown-video-overrides';
 import { mdxImports } from '../../migrations/mdx-imports';
 import { mfShared } from '../../migrations/mf-shared';
@@ -14,6 +15,7 @@ export const scopeSwap: Preset = {
   description: 'Move from @codecademy/gamut* to @skillsoft/gamut*.',
   manifest,
   migrations: [
+    deepImports,
     movedExports,
     markdownVideoOverrides,
     mfShared,
