@@ -92,6 +92,13 @@ export const Background = forwardRef<HTMLDivElement, BackgroundProps>(
       return highestContrastMode;
     }, [modes, active, getTextContrast]);
 
-    return <ColorMode {...rest} bg={bg} mode={accessibleMode} ref={ref} />;
+    /*
+     * Paint the palette color, not the alias. A palette color is the same in
+     * every mode; an alias would resolve in the mode this flips to, so
+     * `bg="primary"` on a light page painted the dark mode's primary.
+     */
+    return (
+      <ColorMode {...rest} bg={trueColor} mode={accessibleMode} ref={ref} />
+    );
   }
 );
