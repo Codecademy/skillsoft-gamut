@@ -47,7 +47,8 @@
   },
   "files": [
     "dist",
-    "bin"
+    "bin",
+    "Video"
   ],
   "license": "MIT",
   "main": "./dist/index.js",

@@ -173,6 +173,31 @@ describe('main: full run', () => {
     expect(out).toMatch(/Reinstall \(yarn\)/);
   });
 
+  it('moves Video, adds Markdown overrides, and flags tsconfig lib', async () => {
+    const dir = project({
+      'src/Post.tsx': POST,
+      'src/index.ts': "export * from '@codecademy/gamut';\n",
+      'docs/reexport.mdx': "export * from '@codecademy/gamut';\n",
+      'tsconfig.json': JSON.stringify({ compilerOptions: { lib: ['es2020'] } }),
+    });
+
+    expect(await main(['scope-swap', dir, '--force'])).toBe(0);
+
+    const post = read(dir, 'src/Post.tsx');
+    expect(post).toContain("from '@skillsoft/gamut/Video'");
+    expect(post).toContain('iframeOverride');
+
+    const out = output();
+    expect(out).toMatch(/Video needs two peer dependencies/);
+    expect(out).toMatch(/Some tsconfig files set "lib"/);
+    expect(out).toMatch(
+      /\[moved-exports\] .*src\/index\.ts:1 .*no longer re-exports Video/
+    );
+    expect(out).toMatch(
+      /\[moved-exports\] .*reexport\.mdx .*no longer re-exports Video/
+    );
+  });
+
   it('writes nothing under --dry and skips the checklist and leftovers', async () => {
     const pkg = JSON.stringify({
       dependencies: { '@codecademy/gamut': '^73.0.0' },
