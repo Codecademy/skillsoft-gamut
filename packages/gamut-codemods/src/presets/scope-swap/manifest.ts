@@ -89,7 +89,15 @@ export const manifest: Manifest = {
     'eslint-plugin-gamut': '3.1.0',
   },
 
-  movedExports: [],
+  movedExports: [
+    {
+      from: '@codecademy/gamut',
+      to: '@codecademy/gamut/Video',
+      names: ['Video', 'VideoProps'],
+      note: 'Video is no longer on the root barrel. See packages/gamut/src/index.tsx.',
+      checklist: 'video-peers',
+    },
+  ],
 
   /*
     From the GMT-1740 deep-import inventory. Rows are only added once the
