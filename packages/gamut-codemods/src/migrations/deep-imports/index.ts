@@ -6,6 +6,7 @@ import type {
   JSCodeshift,
 } from 'jscodeshift';
 
+import { renameSpecifier } from '../../lib/manifest';
 import { findModuleStrings, nameOf } from '../../lib/module-strings';
 import type { AstMigration } from '../../lib/types';
 
@@ -58,6 +59,22 @@ const renameSpecifiers = (
 /* Only plain `{ a, b as c }` imports can be merged; defaults and `* as` can't. */
 const namedOnly = (node: ImportDeclaration) =>
   (node.specifiers ?? []).every((spec) => spec.type === 'ImportSpecifier');
+
+/* Names the file already imports by name from `source`. */
+const importedNamesFrom = (root: Collection, j: JSCodeshift, source: string) =>
+  new Set(
+    root
+      .find(j.ImportDeclaration)
+      .nodes()
+      .filter((node) => node.source.value === source)
+      .flatMap((node) =>
+        (node.specifiers ?? [])
+          .filter(
+            (spec): spec is ImportSpecifier => spec.type === 'ImportSpecifier'
+          )
+          .map((spec) => nameOf(spec.imported))
+      )
+  );
 
 const mergeKey = (node: ImportDeclaration) =>
   `${String(node.source.value)}\0${node.importKind ?? 'value'}`;
@@ -172,6 +189,24 @@ export const deepImports: AstMigration = {
               ', '
             )} isn't exported from '${row.to}'. ${row.note ?? ''}`
           );
+          /* Usually a name the file already imports from the public entry. */
+          const alreadyImported = importedNamesFrom(root, j, row.to);
+          const duplicates = blocked.filter((name) =>
+            alreadyImported.has(name)
+          );
+          /* Warn with the names the run leaves behind, not the old scope. */
+          const after = (value: string) =>
+            renameSpecifier(manifest, value) ?? value;
+          if (duplicates.length > 0) {
+            warn(
+              node,
+              `${duplicates.join(', ')} is already imported from '${after(
+                row.to
+              )}' in this file, so this import duplicates it. Drop the '${after(
+                row.from
+              )}' import and use the '${after(row.to)}' one.`
+            );
+          }
           continue;
         }
       }
