@@ -5,7 +5,7 @@
   "author": "Skillsoft Engineering <dev@codecademy.com>",
   "bugs": "https://github.com/Codecademy/skillsoft-gamut/issues",
   "dependencies": {
-    "@skillsoft/gamut-styles": "0.0.1",
+    "@skillsoft/gamut-styles": "^0.0.1",
     "classnames": "^2.2.5"
   },
   "exports": {

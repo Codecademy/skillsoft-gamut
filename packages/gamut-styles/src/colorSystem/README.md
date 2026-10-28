@@ -31,8 +31,11 @@ Output is checked in at `src/tokens/generated/` and ships as:
 
 ## The CSS contract (branch `cass-color-css-contract`)
 
-`tokens.css` owns the color values. `skillsoftTheme` doesn't inject the
-palette, so a page using it must load `@skillsoft/gamut-styles/tokens.css`.
+`tokens.css` owns the color values. `skillsoftTheme` carries it as
+`tokensCss`, and `GamutProvider` injects it through Emotion, so a React app
+gets the colors without loading anything. The static file is for pages
+without React or Emotion; an app that loads it itself can pass
+`useTokens={false}`.
 
 - A mode switch is an attribute: `data-color-mode="light" | "dark"` on any
   element, nested as deep as you like. Mode blocks also set `color-scheme`,
