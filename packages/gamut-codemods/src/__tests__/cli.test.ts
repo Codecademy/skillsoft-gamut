@@ -173,6 +173,18 @@ describe('main: full run', () => {
     expect(out).toMatch(/Reinstall \(yarn\)/);
   });
 
+  it('flags esmExternals: false in next.config', async () => {
+    const dir = project({
+      'src/Post.tsx': POST,
+      'next.config.js':
+        'module.exports = { experimental: { esmExternals: false } };\n',
+    });
+    expect(await main(['scope-swap', dir, '--force'])).toBe(0);
+    expect(read(dir, 'next.config.js')).toContain('esmExternals: false');
+    expect(output()).toMatch(/\[next-config\] .*next\.config\.js/);
+    expect(output()).toMatch(/Some next\.config files set/);
+  });
+
   it('moves Video, adds Markdown overrides, and flags tsconfig lib', async () => {
     const dir = project({
       'src/Post.tsx': POST,
