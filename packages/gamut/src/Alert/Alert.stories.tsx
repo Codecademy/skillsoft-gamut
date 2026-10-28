@@ -10,6 +10,30 @@ import { FillButton } from '../Button';
 import { Text } from '../Typography';
 import { Alert } from './Alert';
 
+const meta: TypeWithDeepControls<Meta<typeof Alert>> = {
+  title: 'Feedback/Alert',
+  component: Alert,
+  args: {},
+  argTypes: {
+    ...closeButtonPropsArgTypes({
+      defaultTipText: 'Close alert',
+      defaultTipAlignment: 'bottom-center',
+    }),
+    'closeButtonProps.hidden': {
+      table: {
+        disable: true,
+      },
+    },
+    placement: {
+      control: 'radio',
+      options: ['floating', 'inline'],
+    },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof Alert>;
+
 const ALERTS = {
   general: {
     type: 'general',
@@ -50,30 +74,6 @@ const ALERTS = {
 
 const longMessage =
   'This alert has a long message that does not fit on a single line, so the floating alert truncates it and renders a button that expands the full message. Collapse it again to save space on the page.';
-
-const meta: TypeWithDeepControls<Meta<typeof Alert>> = {
-  title: 'Feedback/Alert',
-  component: Alert,
-  args: {},
-  argTypes: {
-    ...closeButtonPropsArgTypes({
-      defaultTipText: 'Close alert',
-      defaultTipAlignment: 'bottom-center',
-    }),
-    'closeButtonProps.hidden': {
-      table: {
-        disable: true,
-      },
-    },
-    placement: {
-      control: 'radio',
-      options: ['floating', 'inline'],
-    },
-  },
-};
-
-export default meta;
-type Story = StoryObj<typeof Alert>;
 
 export const Default: Story = {
   args: {

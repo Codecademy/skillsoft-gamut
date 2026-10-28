@@ -6,21 +6,6 @@ import { Box, FlexBox } from '../Box';
 import { StrokeButton } from '../Button';
 import { Flyout } from '.';
 
-const flyoutText = /Baharroth, "the Cry of the Wind,"/;
-
-type Story = StoryObj<typeof Flyout>;
-
-const openFlyout: NonNullable<Story['play']> = async ({
-  canvas,
-  userEvent,
-}) => {
-  await userEvent.click(canvas.getByRole('button', { name: 'Tell me more?!' }));
-  await screen.findByText(flyoutText);
-};
-
-const expectFlyoutClosed = () =>
-  waitFor(() => expect(screen.queryByText(flyoutText)).toBeNull());
-
 const meta: Meta<typeof Flyout> = {
   title: 'Overlays/Flyout',
   component: Flyout,
@@ -79,6 +64,21 @@ const meta: Meta<typeof Flyout> = {
 };
 
 export default meta;
+
+type Story = StoryObj<typeof Flyout>;
+
+const flyoutText = /Baharroth, "the Cry of the Wind,"/;
+
+const openFlyout: NonNullable<Story['play']> = async ({
+  canvas,
+  userEvent,
+}) => {
+  await userEvent.click(canvas.getByRole('button', { name: 'Tell me more?!' }));
+  await screen.findByText(flyoutText);
+};
+
+const expectFlyoutClosed = () =>
+  waitFor(() => expect(screen.queryByText(flyoutText)).toBeNull());
 
 export const Default: Story = {
   play: async (context) => {

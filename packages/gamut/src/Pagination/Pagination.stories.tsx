@@ -7,9 +7,6 @@ import { FormGroup, Input } from '../Form';
 import type { PaginationProps } from '.';
 import { Pagination } from '.';
 
-const backButtonName = /Navigate back to page \d+/;
-const forwardButtonName = /Navigate forward to page \d+/;
-
 const meta: Meta<typeof Pagination> = {
   title: 'Navigation/Pagination',
   component: Pagination,
@@ -20,6 +17,10 @@ const meta: Meta<typeof Pagination> = {
 
 export default meta;
 type Story = StoryObj<typeof Pagination>;
+
+const backButtonName = /Navigate back to page \d+/;
+
+const forwardButtonName = /Navigate forward to page \d+/;
 
 export const Default: Story = {
   args: {

@@ -8,19 +8,6 @@ import { FillButton } from '../Button';
 import { Text } from '../Typography';
 import { Overlay } from '.';
 
-type Story = StoryObj<typeof Overlay>;
-
-const openOverlay: NonNullable<Story['play']> = async ({
-  canvas,
-  userEvent,
-}) => {
-  await userEvent.click(canvas.getByRole('button', { name: 'Open Overlay' }));
-  await screen.findByText('Hooray!');
-};
-
-const expectOverlayClosed = () =>
-  waitFor(() => expect(screen.queryByText('Hooray!')).toBeNull());
-
 const meta: Meta<typeof Overlay> = {
   title: 'Overlays/Overlay',
   component: Overlay,
@@ -61,6 +48,19 @@ const meta: Meta<typeof Overlay> = {
 };
 
 export default meta;
+
+type Story = StoryObj<typeof Overlay>;
+
+const openOverlay: NonNullable<Story['play']> = async ({
+  canvas,
+  userEvent,
+}) => {
+  await userEvent.click(canvas.getByRole('button', { name: 'Open Overlay' }));
+  await screen.findByText('Hooray!');
+};
+
+const expectOverlayClosed = () =>
+  waitFor(() => expect(screen.queryByText('Hooray!')).toBeNull());
 
 export const Default: Story = {
   play: async (context) => {

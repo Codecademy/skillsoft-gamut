@@ -12,6 +12,46 @@ import { Checkbox } from '../Form';
 import { Text } from '../Typography';
 import { Modal } from './Modal';
 
+const meta: TypeWithDeepControls<Meta<typeof Modal>> = {
+  title: 'Overlays/Modal',
+  component: Modal,
+  args: {
+    title: 'Modal Modality',
+    size: 'small',
+    children: 'Close the Modal!',
+    onRequestClose: fn(),
+  },
+  argTypes: {
+    size: {
+      control: 'radio',
+      options: ['small', 'medium', 'large', 'fluid'],
+    },
+    ...closeButtonPropsArgTypes({
+      defaultTipText: 'Close modal',
+      defaultTipAlignment: 'top-center',
+    }),
+  },
+  render: function ModalWithTrigger(args) {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <>
+        <FillButton onClick={() => setIsOpen(true)}>Open modal</FillButton>
+        <Modal
+          {...args}
+          isOpen={isOpen}
+          onRequestClose={() => {
+            setIsOpen(false);
+            args.onRequestClose();
+          }}
+        />
+      </>
+    );
+  },
+};
+
+export default meta;
+
 type Story = StoryObj<typeof Modal>;
 
 const openModal: NonNullable<Story['play']> = async ({ canvas, userEvent }) => {
@@ -56,46 +96,6 @@ const onNext = fn();
 const onBack = fn();
 const onCancel = fn();
 const onConfirm = fn();
-
-const meta: TypeWithDeepControls<Meta<typeof Modal>> = {
-  title: 'Overlays/Modal',
-  component: Modal,
-  args: {
-    title: 'Modal Modality',
-    size: 'small',
-    children: 'Close the Modal!',
-    onRequestClose: fn(),
-  },
-  argTypes: {
-    size: {
-      control: 'radio',
-      options: ['small', 'medium', 'large', 'fluid'],
-    },
-    ...closeButtonPropsArgTypes({
-      defaultTipText: 'Close modal',
-      defaultTipAlignment: 'top-center',
-    }),
-  },
-  render: function ModalWithTrigger(args) {
-    const [isOpen, setIsOpen] = useState(false);
-
-    return (
-      <>
-        <FillButton onClick={() => setIsOpen(true)}>Open modal</FillButton>
-        <Modal
-          {...args}
-          isOpen={isOpen}
-          onRequestClose={() => {
-            setIsOpen(false);
-            args.onRequestClose();
-          }}
-        />
-      </>
-    );
-  },
-};
-
-export default meta;
 
 export const Default: Story = {
   play: async (context) => {
