@@ -1,0 +1,9 @@
+npmPreapprovedPackages:
+  - '@skillsoft/*'
+  - "@codecademy/gamut-kit"
+  - react
+
+packageExtensions:
+  '@codecademy/gamut@*':
+    peerDependencies:
+      react: '*'
