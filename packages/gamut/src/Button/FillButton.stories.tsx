@@ -2,7 +2,6 @@ import * as icons from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FillButton } from './FillButton';
-import { buttonVariants } from './shared';
 
 const meta: Meta<typeof FillButton> = {
   title: 'Actions/Buttons/FillButton',
@@ -19,20 +18,10 @@ const meta: Meta<typeof FillButton> = {
       type: 'string',
     },
     variant: {
-      control: 'radio',
-      options: buttonVariants,
-      table: {
-        type: { summary: buttonVariants.join(' | ') },
-        defaultValue: { summary: 'primary' },
-      },
+      table: { defaultValue: { summary: 'primary' } },
     },
     size: {
-      control: 'radio',
-      options: ['normal', 'small', 'large'],
-      table: {
-        type: { summary: 'small | normal | large' },
-        defaultValue: { summary: 'normal' },
-      },
+      table: { defaultValue: { summary: 'normal' } },
     },
     icon: {
       control: 'select',

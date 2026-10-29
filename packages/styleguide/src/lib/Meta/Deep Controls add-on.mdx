@@ -19,13 +19,13 @@ The Deep Controls add-on enables Storybook controls for nested component propert
 
 By default, Storybook's Controls panel displays object-type props as a single collapsible JSON editor. The Deep Controls add-on extends this functionality by exposing individual nested properties as separate, dedicated controls with their own type-specific inputs (radio buttons, checkboxes, text fields, etc.).
 
-<Callout text="Simply adding nested args to your stories will automatically create controls for them. You only need to define `argTypes` when you want to customize the controls, add descriptions, or restrict options." />
+<Callout text="Once a story file enables the add-on, nested args create controls automatically. You only need to define `argTypes` when you want to customize the controls, add descriptions, or restrict options." />
 
 ## Basic usage
 
 ### Minimal setup
 
-The simplest way to use deep controls is to just provide nested args. The add-on will automatically create controls for them:
+The add-on is off by default. When it's on, it gives every string arg a text control, which replaces the radio or select control Storybook would infer for a union prop like `variant`. Enable it only in the story files that have nested args, with `parameters.deepControls.enabled` in the meta, and the add-on creates controls for those nested args:
 
 ```typescript
 import type { Meta, StoryObj } from '@storybook/react';
@@ -34,6 +34,7 @@ import { MyComponent } from './MyComponent';
 
 const meta: TypeWithDeepControls<Meta<typeof MyComponent>> = {
   component: MyComponent,
+  parameters: { deepControls: { enabled: true } },
   args: {
     popoverProps: {
       beak: 'center',
@@ -64,6 +65,7 @@ To customize controls, use dot notation in `argTypes`:
 ```typescript
 const meta: TypeWithDeepControls<Meta<typeof MyComponent>> = {
   component: MyComponent,
+  parameters: { deepControls: { enabled: true } },
   args: {
     popoverProps: {
       beak: 'center',

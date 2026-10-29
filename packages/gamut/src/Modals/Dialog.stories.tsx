@@ -23,6 +23,7 @@ const openDialog: NonNullable<Story['play']> = async ({
 const meta: TypeWithDeepControls<Meta<typeof Dialog>> = {
   title: 'Overlays/Dialog',
   component: Dialog,
+  parameters: { deepControls: { enabled: true } },
   args: {
     title: 'Depeche Modal',
     children: 'All I ever wanted, all I ever needed is here in my',
@@ -31,10 +32,6 @@ const meta: TypeWithDeepControls<Meta<typeof Dialog>> = {
     cancelCta: { children: 'Heart?', onClick: fn() },
   },
   argTypes: {
-    variant: {
-      control: 'radio',
-      options: ['primary', 'danger'],
-    },
     ...closeButtonPropsArgTypes({
       defaultTipText: 'Close dialog',
       defaultTipAlignment: 'top-center',

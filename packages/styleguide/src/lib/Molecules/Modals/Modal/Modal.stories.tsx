@@ -18,6 +18,7 @@ import { closeButtonPropsArgTypes } from '~styleguide/argTypes';
 
 const meta: TypeWithDeepControls<Meta<typeof Modal>> = {
   component: Modal,
+  parameters: { deepControls: { enabled: true } },
   args: {
     title: 'Modal Modality',
     size: 'small',

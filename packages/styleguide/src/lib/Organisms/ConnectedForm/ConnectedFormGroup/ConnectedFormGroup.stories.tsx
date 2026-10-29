@@ -15,6 +15,7 @@ import { infotipNestedArgTypes } from '~styleguide/argTypes';
 
 const meta: TypeWithDeepControls<Meta<typeof ConnectedFormGroup>> = {
   component: ConnectedFormGroup,
+  parameters: { deepControls: { enabled: true } },
   args: {
     field: {
       component: ConnectedRadioGroupInput,

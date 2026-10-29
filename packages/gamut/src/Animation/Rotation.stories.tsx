@@ -11,26 +11,6 @@ const meta: Meta<typeof Rotation> = {
   args: {
     rotated: false,
   },
-  argTypes: {
-    degrees: {
-      table: {
-        type: { summary: 'number' },
-        defaultValue: { summary: '180' },
-      },
-    },
-    height: {
-      table: {
-        type: { summary: 'number' },
-        defaultValue: { summary: '16' },
-      },
-    },
-    width: {
-      table: {
-        type: { summary: 'number' },
-        defaultValue: { summary: '16' },
-      },
-    },
-  },
 };
 
 export default meta;
