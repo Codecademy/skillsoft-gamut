@@ -24,10 +24,6 @@ const meta: TypeWithDeepControls<Meta<typeof Alert>> = {
         disable: true,
       },
     },
-    placement: {
-      control: 'radio',
-      options: ['floating', 'inline'],
-    },
   },
 };
 
