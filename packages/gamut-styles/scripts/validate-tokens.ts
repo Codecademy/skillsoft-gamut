@@ -235,18 +235,26 @@ const TENANTS: BrandInput[] = [
  * Background picked a mode by running polished's getContrast on sRGB hex.
  * The table measures OKLCH floats instead, so it can only disagree on a color
  * sitting right at the crossover. Any disagreement is listed.
+ *
+ * polished rounds to two decimals, so on an exact tie its `>` falls back to
+ * light without having measured a difference. A tie isn't a disagreement;
+ * it's listed on its own, with the table's pick.
  */
 const backgroundParity = (system: ColorSystem) => {
   const table = contentModes(system);
   const text = (mode: 'light' | 'dark') =>
     system.roles[mode]['text-default'].hex;
+  const ties: string[] = [];
   const differ = Object.entries(system.palette).filter(([key, { hex }]) => {
-    const runtime =
-      getContrast(text('dark'), hex) > getContrast(text('light'), hex)
-        ? 'dark'
-        : 'light';
-    return runtime !== table[key];
+    const dark = getContrast(text('dark'), hex);
+    const light = getContrast(text('light'), hex);
+    if (dark === light) {
+      ties.push(`${key} (${dark}:1 both ways, table picks ${table[key]})`);
+      return false;
+    }
+    return (dark > light ? 'dark' : 'light') !== table[key];
   });
+  if (ties.length) console.log(`INFO  polished ties: ${ties.join(', ')}`);
   report(
     differ.length === 0,
     `${

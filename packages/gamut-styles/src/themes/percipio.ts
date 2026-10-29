@@ -1,71 +1,22 @@
-import { createTheme } from '@skillsoft/variance';
-
+import * as values from '../tokens/generated/brands/percipio.values';
 import {
   fontWeightMediumTitle,
   percipioElevation,
   percipioFontFamily,
-  percipioPalette,
 } from '../variables';
-import { coreTheme } from './core';
+import { createBrandTheme } from './createBrandTheme';
 
-export const percipioTheme = createTheme({
-  ...coreTheme,
+/*
+ * Percipio: old percipio rebuilt as a brand of the generated color system
+ * (colorSystem/brands/percipio.ts). Fonts, weights and elevation are old
+ * percipio's, unchanged.
+ */
+export const percipioTheme = createBrandTheme(values, {
+  name: 'percipio',
   fontFamily: percipioFontFamily,
   fontWeight: fontWeightMediumTitle,
-})
-  .addColors(percipioPalette)
-  .addColorModes('light', {
-    // these are just the overrides, the rest of the tokens are inherited from coreTheme
-    light: {
-      text: {
-        _: 'percipioTextPrimary',
-        accent: 'percipioTextAccent',
-        disabled: 'percipioTextDisabled',
-        secondary: 'percipioTextSecondary',
-      },
-      feedback: {
-        error: 'percipioDanger',
-        success: 'percipioFeedbackSuccess',
-        warning: 'percipioFeedbackWarning',
-      },
-      background: {
-        primary: 'percipioBgPrimary',
-        success: 'percipioBgSuccess',
-        warning: 'percipioBgWarning',
-        error: 'percipioBgError',
-      },
-      shadow: {
-        primary: 'navy-200',
-        secondary: 'navy-400',
-      },
-      primary: {
-        _: 'sapphire',
-        hover: 'percipioActionPrimaryHover',
-        inverse: 'white',
-      },
-      secondary: {
-        _: 'percipioActionSecondary',
-        hover: 'percipioActionSecondaryHover',
-      },
-      danger: {
-        _: 'percipioDanger',
-        hover: 'percipioActionDangerHover',
-      },
-      interface: {
-        _: 'sapphire',
-        hover: 'percipioActionPrimaryHover',
-      },
-      border: {
-        primary: 'navy-400',
-        secondary: 'navy-600',
-        tertiary: 'navy-800',
-        disabled: 'navy-300',
-      },
-    },
-  })
-  .addScale('elevation', percipioElevation)
-  .addName('percipio')
-  .build();
+  elevation: percipioElevation,
+});
 
 export type PercipioThemeShape = typeof percipioTheme;
 

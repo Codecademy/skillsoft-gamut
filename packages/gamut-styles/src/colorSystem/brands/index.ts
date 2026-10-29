@@ -1,4 +1,8 @@
+import { adminBrand } from './admin';
+import { lxStudioBrand } from './lxStudio';
 import { originalCodecademyBrand } from './originalCodecademy';
+import { percipioBrand } from './percipio';
+import { platformBrand } from './platform';
 import { skillsoftBrand } from './skillsoft';
 
 /*
@@ -9,4 +13,11 @@ import { skillsoftBrand } from './skillsoft';
  */
 export const DEFAULT_BRAND = skillsoftBrand;
 
-export const BRANDS = [skillsoftBrand, originalCodecademyBrand];
+export const BRANDS = [
+  skillsoftBrand,
+  originalCodecademyBrand,
+  adminBrand,
+  platformBrand,
+  percipioBrand,
+  lxStudioBrand,
+];
