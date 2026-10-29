@@ -18,10 +18,9 @@ export const brand = {
   "tier": 3,
   "overrides": {
     "palette": {
-      "neutral-light-100": "#f5fcff",
-      "neutral-dark-1100": "#10162f",
       "accent-300": "#ffd300",
-      "accent-400": "#cca900"
+      "accent-400": "#cca900",
+      "neutral-light-100": "#f5fcff"
     },
     "roles": {
       "dark": {
@@ -53,8 +52,8 @@ export const brand = {
     },
     "neutral-dark": {
       "hex": "#10162f",
-      "nearest": 1100,
-      "deltaE": 0
+      "nearest": 1000,
+      "deltaE": 6.56
     },
     "primary": {
       "hex": "#3a10e5",
@@ -178,8 +177,8 @@ export const palette = {
     "srgb": "#1d212f"
   },
   "palette-neutral-dark-1100": {
-    "oklch": "oklch(0.2095 0.0502 271.33)",
-    "srgb": "#10162f"
+    "oklch": "oklch(0.1925 0.0199 271.3)",
+    "srgb": "#11141d"
   },
   "palette-primary-100": {
     "oklch": "oklch(0.9862 0.0064 274.1)",
@@ -537,8 +536,8 @@ export const roles = {
     },
     "border-strong": {
       "ref": "palette-neutral-dark-1100",
-      "oklch": "oklch(0.2095 0.0502 271.33)",
-      "srgb": "#10162f"
+      "oklch": "oklch(0.1925 0.0199 271.3)",
+      "srgb": "#11141d"
     },
     "border-default": {
       "ref": "palette-neutral-dark-600",
@@ -587,8 +586,8 @@ export const roles = {
     },
     "action-neutral-hover": {
       "ref": "palette-neutral-dark-1100",
-      "oklch": "oklch(0.2095 0.0502 271.33)",
-      "srgb": "#10162f"
+      "oklch": "oklch(0.1925 0.0199 271.3)",
+      "srgb": "#11141d"
     },
     "action-neutral-pressed": {
       "ref": "black",
@@ -689,8 +688,8 @@ export const roles = {
     },
     "surface-default": {
       "ref": "palette-neutral-dark-1100",
-      "oklch": "oklch(0.2095 0.0502 271.33)",
-      "srgb": "#10162f"
+      "oklch": "oklch(0.1925 0.0199 271.3)",
+      "srgb": "#11141d"
     },
     "surface-raised": {
       "ref": "palette-neutral-dark-1000",
@@ -714,13 +713,13 @@ export const roles = {
     },
     "surface-brand": {
       "ref": "palette-neutral-dark-1100",
-      "oklch": "oklch(0.2095 0.0502 271.33)",
-      "srgb": "#10162f"
+      "oklch": "oklch(0.1925 0.0199 271.3)",
+      "srgb": "#11141d"
     },
     "surface-brand-subtle": {
       "ref": "palette-neutral-dark-1100",
-      "oklch": "oklch(0.2095 0.0502 271.33)",
-      "srgb": "#10162f"
+      "oklch": "oklch(0.1925 0.0199 271.3)",
+      "srgb": "#11141d"
     },
     "text-default": {
       "ref": "palette-neutral-light-200",
