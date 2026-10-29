@@ -82,6 +82,7 @@ export const Card: React.FC<CardProps> = ({
         borderRadius={trueBorderRadius}
         dimensions={1}
         gradient={gradient}
+        isInteractive={isInteractive}
         maxWidth="100%"
         p={16}
         position="relative"

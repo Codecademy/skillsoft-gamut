@@ -4,17 +4,18 @@ import { motion } from 'framer-motion';
 
 import { Box } from '../Box';
 import { gradientLayer } from '../utils/gradientLayer';
-import { cardVariants, shadowVariants } from './styles';
+import { cardVariants, interactiveStates, shadowVariants } from './styles';
 import type { CardWrapperProps } from './types';
 
 export const MotionBox = motion.create(Box);
 
 export const DynamicCardWrapper = styled(MotionBox)<CardWrapperProps>(
   cardVariants,
-  shadowVariants
+  shadowVariants,
+  interactiveStates
 );
 
 const StaticCard = motion.create(Background);
 export const StaticCardWrapper = styled(StaticCard)<
   CardWrapperProps & { gradient?: string }
->(cardVariants, shadowVariants, gradientLayer);
+>(cardVariants, shadowVariants, interactiveStates, gradientLayer);

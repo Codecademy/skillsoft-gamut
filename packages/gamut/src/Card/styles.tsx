@@ -1,7 +1,13 @@
 import type { Theme } from '@emotion/react';
 import { useTheme } from '@emotion/react';
 import type { ElevationState } from '@skillsoft/gamut-styles';
-import { theme, timingValues, variant } from '@skillsoft/gamut-styles';
+import {
+  states,
+  theme,
+  timingValues,
+  transitionConcat,
+  variant,
+} from '@skillsoft/gamut-styles';
 import type { StyleProps } from '@skillsoft/variance';
 
 /**
@@ -60,6 +66,36 @@ export const cardVariants = variant({
     beige: { bg: cardSurfaces.beige },
     navy: { bg: cardSurfaces.navy },
     hyper: { bg: cardSurfaces.hyper },
+  },
+});
+
+/*
+ * Design's card map, Interactive: hover is the `state-hover` veil over the
+ * card's own fill, with a `border-strong` edge. The veil is a layer behind the
+ * content, so it tints the fill (and a brand gradient, which sits on the layer
+ * below it) but not the text. It keys off the motion wrapper's hover, the same
+ * trigger as the lift. Design adds the elevation lift to the veil once
+ * elevation tokens exist; until then the theme's elevation hover stays.
+ */
+export const interactiveStates = states({
+  isInteractive: {
+    isolation: 'isolate',
+    transition: transitionConcat(['border-color'], 'fast', 'ease-in'),
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      inset: 0,
+      zIndex: -1,
+      borderRadius: 'inherit',
+      pointerEvents: 'none',
+      transition: transitionConcat(['background-color'], 'fast', 'ease-in'),
+    },
+    '*:hover > &': {
+      borderColor: 'border-strong',
+    },
+    '*:hover > &::after': {
+      bg: 'state-hover',
+    },
   },
 });
 
