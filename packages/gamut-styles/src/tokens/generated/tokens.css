@@ -102,7 +102,7 @@
   [data-brand="originalCodecademy"] {
     --colors-white: oklch(1.0000 0.0000 0.00);
     --colors-black: oklch(0.0000 0.0000 0.00);
-    --colors-palette-neutral-light-100: oklch(0.9640 0.0219 58.79);
+    --colors-palette-neutral-light-100: oklch(0.9862 0.0016 58.80);
     --colors-palette-neutral-light-200: oklch(0.9364 0.0031 58.80);
     --colors-palette-neutral-light-300: oklch(0.8497 0.0109 58.80);
     --colors-palette-neutral-light-400: oklch(0.7628 0.0237 58.80);
@@ -123,7 +123,7 @@
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);

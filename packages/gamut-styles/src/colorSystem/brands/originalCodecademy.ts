@@ -10,8 +10,11 @@ import type { BrandInput } from '../brand';
  * core has no second accent in use, so `accent-alt` stays on the gamut
  * default (sandbox D4), which makes this tier 3.
  *
- * Overrides keep the colors the generator wouldn't produce: navy and beige
- * exactly, and old core's yellow dark-mode primary. The two-color gradient
+ * Overrides keep the colors the generator wouldn't produce: old core's
+ * yellow exactly, and its yellow dark-mode primary. Navy and beige aren't
+ * pinned: pinned, they carry much more chroma than the generated surfaces
+ * beside them (sunken, raised, zebra rows, block tabs), so the generated
+ * steps at their hues are used as is (design, 2026-10-29). The two-color gradient
  * pairs primary with accent-alt instead of the yellow accent, so it reads
  * blue to violet rather than blue to yellow (design, Stacey, 2026-10-28).
  */
@@ -29,8 +32,6 @@ export const originalCodecademyBrand: BrandInput = {
   overrides: {
     /* Each at the grade whose fixed lightness is nearest. */
     palette: {
-      'neutral-light-100': '#FFF0E5', // beige
-      'neutral-dark-1100': '#10162F', // navy-800
       'accent-300': '#FFD300', // yellow-500
       'accent-400': '#CCA900', // yellow-400
     },
