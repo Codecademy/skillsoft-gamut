@@ -1,0 +1,1693 @@
+{
+  "$description": "Generated from the \"admin\" brand (tier 3). Do not edit.",
+  "white": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "oklch",
+      "components": [
+        1,
+        0,
+        0
+      ],
+      "alpha": 1,
+      "hex": "#ffffff"
+    },
+    "$extensions": {
+      "com.skillsoft.gamut": {
+        "contentMode": "light"
+      }
+    }
+  },
+  "black": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "oklch",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 1,
+      "hex": "#000000"
+    },
+    "$extensions": {
+      "com.skillsoft.gamut": {
+        "contentMode": "dark"
+      }
+    }
+  },
+  "palette": {
+    "neutral-light": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.964,
+            0.0219,
+            58.79
+          ],
+          "alpha": 1,
+          "hex": "#fff0e5"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.9364,
+            0.0031,
+            58.8
+          ],
+          "alpha": 1,
+          "hex": "#ece9e8"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.8497,
+            0.0109,
+            58.8
+          ],
+          "alpha": 1,
+          "hex": "#d3ccc7"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.7628,
+            0.0237,
+            58.8
+          ],
+          "alpha": 1,
+          "hex": "#beafa3"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.6707,
+            0.028,
+            58.8
+          ],
+          "alpha": 1,
+          "hex": "#a39285"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.5835,
+            0.0277,
+            58.8
+          ],
+          "alpha": 1,
+          "hex": "#88786b"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.4972,
+            0.0224,
+            58.8
+          ],
+          "alpha": 1,
+          "hex": "#6d6056"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.4115,
+            0.0175,
+            58.8
+          ],
+          "alpha": 1,
+          "hex": "#524942"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.3346,
+            0.0139,
+            58.8
+          ],
+          "alpha": 1,
+          "hex": "#3c3530"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "1000": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.2499,
+            0.0099,
+            58.8
+          ],
+          "alpha": 1,
+          "hex": "#25211d"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "1100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.1925,
+            0.0073,
+            58.8
+          ],
+          "alpha": 1,
+          "hex": "#171411"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      }
+    },
+    "neutral-dark": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.9862,
+            0.0012,
+            271.3
+          ],
+          "alpha": 1,
+          "hex": "#fafafb"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.9364,
+            0.0024,
+            271.3
+          ],
+          "alpha": 1,
+          "hex": "#e9eaeb"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.8497,
+            0.0081,
+            271.3
+          ],
+          "alpha": 1,
+          "hex": "#cbcdd3"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.7628,
+            0.0169,
+            271.3
+          ],
+          "alpha": 1,
+          "hex": "#aeb2bd"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.6707,
+            0.0306,
+            271.3
+          ],
+          "alpha": 1,
+          "hex": "#8e95a9"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.5835,
+            0.0454,
+            271.3
+          ],
+          "alpha": 1,
+          "hex": "#717a97"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.4972,
+            0.0538,
+            271.3
+          ],
+          "alpha": 1,
+          "hex": "#576182"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.4115,
+            0.0479,
+            271.3
+          ],
+          "alpha": 1,
+          "hex": "#414965"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.3346,
+            0.0381,
+            271.3
+          ],
+          "alpha": 1,
+          "hex": "#2f364b"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "1000": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.2499,
+            0.0272,
+            271.3
+          ],
+          "alpha": 1,
+          "hex": "#1d212f"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "1100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.2095,
+            0.0502,
+            271.33
+          ],
+          "alpha": 1,
+          "hex": "#10162f"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      }
+    },
+    "primary": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.9862,
+            0.0064,
+            263.6
+          ],
+          "alpha": 1,
+          "hex": "#f8fbff"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.9364,
+            0.012,
+            263.6
+          ],
+          "alpha": 1,
+          "hex": "#e6eaf2"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.8497,
+            0.0406,
+            263.6
+          ],
+          "alpha": 1,
+          "hex": "#c0cee9"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.7628,
+            0.0845,
+            263.6
+          ],
+          "alpha": 1,
+          "hex": "#96b2e8"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.6707,
+            0.1528,
+            263.6
+          ],
+          "alpha": 1,
+          "hex": "#6492f3"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.5835,
+            0.2271,
+            263.6
+          ],
+          "alpha": 1,
+          "hex": "#2f6dff"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.4972,
+            0.2553,
+            263.6
+          ],
+          "alpha": 1,
+          "hex": "#0748f0"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.4115,
+            0.2002,
+            263.6
+          ],
+          "alpha": 1,
+          "hex": "#0939b5"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.3346,
+            0.1591,
+            263.6
+          ],
+          "alpha": 1,
+          "hex": "#062a86"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "1000": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.2499,
+            0.1134,
+            263.6
+          ],
+          "alpha": 1,
+          "hex": "#041a57"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "1100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.1925,
+            0.0832,
+            263.6
+          ],
+          "alpha": 1,
+          "hex": "#020f39"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "600-a6": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.5835,
+            0.2271,
+            263.6
+          ],
+          "alpha": 0.06,
+          "hex": "#2f6dff"
+        }
+      },
+      "600-a9": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.5835,
+            0.2271,
+            263.6
+          ],
+          "alpha": 0.09,
+          "hex": "#2f6dff"
+        }
+      },
+      "600-a8": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.5835,
+            0.2271,
+            263.6
+          ],
+          "alpha": 0.08,
+          "hex": "#2f6dff"
+        }
+      }
+    },
+    "accent": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.9862,
+            0.0205,
+            93.6
+          ],
+          "alpha": 1,
+          "hex": "#fffbeb"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.9364,
+            0.0378,
+            93.6
+          ],
+          "alpha": 1,
+          "hex": "#f2eace"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.8789,
+            0.1801,
+            93.58
+          ],
+          "alpha": 1,
+          "hex": "#ffd300"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.7442,
+            0.1526,
+            93.94
+          ],
+          "alpha": 1,
+          "hex": "#cca900"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.6707,
+            0.1209,
+            93.6
+          ],
+          "alpha": 1,
+          "hex": "#ae932e"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.5835,
+            0.1195,
+            93.6
+          ],
+          "alpha": 1,
+          "hex": "#937900"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.4972,
+            0.0967,
+            93.6
+          ],
+          "alpha": 1,
+          "hex": "#75610e"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.4115,
+            0.0758,
+            93.6
+          ],
+          "alpha": 1,
+          "hex": "#594a10"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.3346,
+            0.0603,
+            93.6
+          ],
+          "alpha": 1,
+          "hex": "#41360b"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "1000": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.2499,
+            0.043,
+            93.6
+          ],
+          "alpha": 1,
+          "hex": "#282106"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "1100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.1925,
+            0.0315,
+            93.6
+          ],
+          "alpha": 1,
+          "hex": "#191404"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      }
+    },
+    "accent-alt": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.9862,
+            0.0067,
+            287.1
+          ],
+          "alpha": 1,
+          "hex": "#fafaff"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.9364,
+            0.0127,
+            287.1
+          ],
+          "alpha": 1,
+          "hex": "#e9e9f2"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.8497,
+            0.043,
+            287.1
+          ],
+          "alpha": 1,
+          "hex": "#cbcae9"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.7628,
+            0.0896,
+            287.1
+          ],
+          "alpha": 1,
+          "hex": "#aeaae9"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.6707,
+            0.1624,
+            287.1
+          ],
+          "alpha": 1,
+          "hex": "#9182f3"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.5835,
+            0.2416,
+            287.1
+          ],
+          "alpha": 1,
+          "hex": "#7a52ff"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.4972,
+            0.2722,
+            287.1
+          ],
+          "alpha": 1,
+          "hex": "#661af0"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.4115,
+            0.2134,
+            287.1
+          ],
+          "alpha": 1,
+          "hex": "#4d1cb5"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.3346,
+            0.1696,
+            287.1
+          ],
+          "alpha": 1,
+          "hex": "#381587"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "1000": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.2499,
+            0.1209,
+            287.1
+          ],
+          "alpha": 1,
+          "hex": "#220d57"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "1100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.1925,
+            0.0887,
+            287.1
+          ],
+          "alpha": 1,
+          "hex": "#150739"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      }
+    },
+    "danger": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.9862,
+            0.0066,
+            29.4
+          ],
+          "alpha": 1,
+          "hex": "#fff9f8"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.9364,
+            0.0128,
+            29.4
+          ],
+          "alpha": 1,
+          "hex": "#f2e7e5"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.8497,
+            0.0452,
+            29.4
+          ],
+          "alpha": 1,
+          "hex": "#eac3bd"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.7628,
+            0.099,
+            29.4
+          ],
+          "alpha": 1,
+          "hex": "#ea9a8d"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.6707,
+            0.191,
+            29.4
+          ],
+          "alpha": 1,
+          "hex": "#f45b4a"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.5835,
+            0.2382,
+            29.4
+          ],
+          "alpha": 1,
+          "hex": "#e70400"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.4972,
+            0.1928,
+            29.4
+          ],
+          "alpha": 1,
+          "hex": "#b7160d"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.4115,
+            0.1512,
+            29.4
+          ],
+          "alpha": 1,
+          "hex": "#8a170f"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.3346,
+            0.1202,
+            29.4
+          ],
+          "alpha": 1,
+          "hex": "#67110a"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "1000": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.2499,
+            0.0857,
+            29.4
+          ],
+          "alpha": 1,
+          "hex": "#420a06"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "1100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.1925,
+            0.0628,
+            29.4
+          ],
+          "alpha": 1,
+          "hex": "#2b0603"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      }
+    },
+    "warning": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.9862,
+            0.0082,
+            58.3
+          ],
+          "alpha": 1,
+          "hex": "#fff9f5"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.9364,
+            0.0156,
+            58.3
+          ],
+          "alpha": 1,
+          "hex": "#f2e8e0"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.8497,
+            0.0545,
+            58.3
+          ],
+          "alpha": 1,
+          "hex": "#eac6ab"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.7628,
+            0.1179,
+            58.3
+          ],
+          "alpha": 1,
+          "hex": "#ea9f63"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.6707,
+            0.1408,
+            58.3
+          ],
+          "alpha": 1,
+          "hex": "#d47d2d"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.5835,
+            0.1392,
+            58.3
+          ],
+          "alpha": 1,
+          "hex": "#b66200"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.4972,
+            0.1127,
+            58.3
+          ],
+          "alpha": 1,
+          "hex": "#914f0e"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.4115,
+            0.0883,
+            58.3
+          ],
+          "alpha": 1,
+          "hex": "#6d3d10"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.3346,
+            0.0702,
+            58.3
+          ],
+          "alpha": 1,
+          "hex": "#512c0b"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "1000": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.2499,
+            0.05,
+            58.3
+          ],
+          "alpha": 1,
+          "hex": "#331b06"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "1100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.1925,
+            0.0367,
+            58.3
+          ],
+          "alpha": 1,
+          "hex": "#201004"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      }
+    },
+    "success": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.9862,
+            0.0228,
+            145.5
+          ],
+          "alpha": 1,
+          "hex": "#f1fff1"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.9364,
+            0.0458,
+            145.5
+          ],
+          "alpha": 1,
+          "hex": "#d8f3d8"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.8497,
+            0.1448,
+            145.5
+          ],
+          "alpha": 1,
+          "hex": "#8de792"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.7628,
+            0.1654,
+            145.5
+          ],
+          "alpha": 1,
+          "hex": "#64cd6d"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.6707,
+            0.1829,
+            145.5
+          ],
+          "alpha": 1,
+          "hex": "#34b147"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.5835,
+            0.1808,
+            145.5
+          ],
+          "alpha": 1,
+          "hex": "#00952b"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "light"
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.4972,
+            0.1464,
+            145.5
+          ],
+          "alpha": 1,
+          "hex": "#117726"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.4115,
+            0.1147,
+            145.5
+          ],
+          "alpha": 1,
+          "hex": "#135a1f"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.3346,
+            0.0912,
+            145.5
+          ],
+          "alpha": 1,
+          "hex": "#0e4216"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "1000": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.2499,
+            0.065,
+            145.5
+          ],
+          "alpha": 1,
+          "hex": "#08290c"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      },
+      "1100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.1925,
+            0.0477,
+            145.5
+          ],
+          "alpha": 1,
+          "hex": "#041a06"
+        },
+        "$extensions": {
+          "com.skillsoft.gamut": {
+            "contentMode": "dark"
+          }
+        }
+      }
+    }
+  },
+  "black-a60": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "oklch",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.6,
+      "hex": "#000000"
+    }
+  }
+}

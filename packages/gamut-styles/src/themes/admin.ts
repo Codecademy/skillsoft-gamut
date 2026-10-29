@@ -1,23 +1,18 @@
-import { createTheme } from '@skillsoft/variance';
+import * as values from '../tokens/generated/brands/admin.values';
+import { coreElevation, fontFamily, fontWeight } from '../variables';
+import { createBrandTheme } from './createBrandTheme';
 
-import { coreTheme } from './core';
-
-export const adminTheme = createTheme(coreTheme)
-  .addColorModes('light', {
-    light: {
-      primary: {
-        _: 'blue-500',
-        hover: 'blue-400',
-      },
-    },
-    dark: {
-      feedback: {
-        success: 'green-400',
-      },
-    },
-  })
-  .addName('admin')
-  .build();
+/*
+ * Admin: old admin rebuilt as a brand of the generated color system
+ * (colorSystem/brands/admin.ts). Fonts, weights and elevation are old
+ * core's, which old admin used, unchanged.
+ */
+export const adminTheme = createBrandTheme(values, {
+  name: 'admin',
+  fontFamily,
+  fontWeight,
+  elevation: coreElevation,
+});
 
 export type AdminThemeShape = typeof adminTheme;
 
