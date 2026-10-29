@@ -72,8 +72,13 @@ export const tagUsageVariants = variant({
       borderRadiusRight: 'none',
       color: 'text-inverse',
     },
+    /*
+     * Navigation and suggestion tags have no fill of their own: they sit on
+     * whatever surface they're on (design, 2026-10-29). Hover and press are
+     * veils over it.
+     */
     navigation: {
-      bg: 'surface-raised',
+      bg: 'transparent',
       border: 1,
       borderColor: 'border-default',
       [InteractiveSelectors.ACTIVE]: {
@@ -81,7 +86,7 @@ export const tagUsageVariants = variant({
       },
     },
     suggestion: {
-      bg: 'surface-raised',
+      bg: 'transparent',
       border: 1,
       borderColor: 'action-primary',
       color: 'text-default',
@@ -125,10 +130,15 @@ export const tagWrapperStates = states({
     // Needed for suggestion's bordercolor since the text element won't have the correct style
     borderColor: 'border-default',
   },
-  /* A disabled label on a disabled fill is a knockout. */
+  /*
+   * A disabled tag has no fill (design, 2026-10-29), so there's nothing for
+   * a knockout label to sit on. The label takes the disabled ink instead,
+   * and the chip keeps an edge, inset so disabling it doesn't resize it.
+   */
   selectionDisabled: {
-    bg: 'action-disabled',
-    color: 'surface-raised',
+    bg: 'transparent',
+    color: 'action-disabled',
+    boxShadow: `inset 0 0 0 1px ${theme.colors['border-default']}`,
   },
 });
 
@@ -161,8 +171,8 @@ export const anchorVariants = variant({
     },
     [InteractiveSelectors.DISABLED]: {
       borderColor: 'border-default',
-      bg: 'action-disabled',
-      color: 'surface-raised',
+      bg: 'transparent',
+      color: 'action-disabled',
     },
   },
   variants: {
@@ -211,8 +221,8 @@ export const dismissButtonStyling = css({
     bg: 'text-default',
   },
   [InteractiveSelectors.DISABLED]: {
-    bg: 'action-disabled',
-    color: 'surface-raised',
+    bg: 'transparent',
+    color: 'action-disabled',
   },
   ...dismissSharedStyles,
   ...dismissButtonOverrides,
