@@ -49,10 +49,13 @@ export const originalCodecademyBrand: BrandInput = {
 
 When a brand has to keep an exact color the generator wouldn't produce, it can add overrides. An override pins a palette step to a hex value, points a role at a different palette color in one mode, or moves a gradient's colors to another slot. Original Codecademy uses overrides to keep its exact navy, beige and yellow, and to make dark mode's primary action yellow. Overrides go through the same checks as everything else.
 
-Two brands ship today:
+Six brands ship today:
 
 - `skillsoft`, the default. Its theme is `skillsoftTheme`.
 - `originalCodecademy`, the old Core theme rebuilt as a brand. Its theme is `originalCodecademyTheme`.
+- `admin`, `platform`, `percipio` and `lxStudio`, the other old themes rebuilt the same way. Their themes keep their old names: `adminTheme`, `platformTheme`, `percipioTheme` and `lxStudioTheme`.
+
+Each rebuilt brand takes its colors from what its old theme showed in each job, and keeps that theme's fonts, weights and elevation. `platformTheme` still starts in dark mode and keeps its `editor-*` code editor colors, which aren't part of the generated system.
 
 ### Palette
 
@@ -257,7 +260,7 @@ Pages without React load `@skillsoft/gamut-styles/tokens.css` and set the same t
 - Components still use names, not values. The old themes already handed components `var()` names, and the new ones do the same.
 - Color modes still work through CSS custom properties and still nest. An attribute drives them now instead of an injected class.
 - `GamutProvider`, `ColorMode` and `Background` keep the same props, and `GamutProvider` still delivers the colors.
-- The old look comes back as brands. Original Codecademy is old Core rebuilt with the same navy, beige, hyper and yellow, and the same fonts and elevation.
+- The old look comes back as brands. Original Codecademy is old Core rebuilt with the same navy, beige, hyper and yellow, and the same fonts and elevation. Admin, Platform, Percipio and LX Studio are rebuilt the same way, under their old theme names.
 
 ### What improves
 
@@ -276,7 +279,7 @@ Pages without React load `@skillsoft/gamut-styles/tokens.css` and set the same t
 
 - Every color name changes. `text` becomes `text-default` and `primary` becomes `action-primary`. Some old names split into several roles depending on where they're used: `background` becomes `surface-raised` on a card and `surface-default` on the page, so a person has to choose each time. The type check fails on every old name until it's moved.
 - Rebuilt themes aren't pixel-identical. Roles use the same grades on every brand, so some colors move noticeably even when the brand hues match the old theme. Overrides cover colors that have to stay exact.
-- Only Original Codecademy is rebuilt so far. The Admin, Platform, Percipio and LX Studio themes still use the old names and haven't been rebuilt as brands.
+- Colors that only one old theme had are gone, such as Percipio's `percipioTextPrimary`. Use the role for the job instead.
 - The browser floor goes up. `tokens.css` uses `oklch()`, [`color-mix()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix), `@layer` and [container query units](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries#container_query_length_units) with no hex fallback. Browsers older than about Chrome and Edge 111, Safari 16.2 or Firefox 113 get no color. Check [oklch support](https://caniuse.com/mdn-css_types_color_oklch) and [color-mix support](https://caniuse.com/mdn-css_types_color_color-mix) against your app's browser list.
 - Any unlayered CSS overrides a token. That's on purpose, but a stray global rule can now change a color.
 - Some pieces are missing. There is no shadow role yet. The chart colors use the order solved for Skillsoft's hues, so another brand gets that order without it being re-solved for its own hues.
