@@ -47,7 +47,7 @@ export const originalCodecademyBrand: BrandInput = {
 };
 ```
 
-When a brand has to keep an exact color the generator wouldn't produce, it can add overrides. An override pins a palette step to a hex value, points a role at a different palette color in one mode, or moves a gradient's colors to another slot. Original Codecademy uses overrides to keep its exact navy, beige and yellow, and to make dark mode's primary action yellow. Overrides go through the same checks as everything else.
+When a brand has to keep an exact color the generator wouldn't produce, it can add overrides. An override pins a palette step to a hex value, points a role at a different palette color in one mode, or moves a gradient's colors to another slot. Original Codecademy uses overrides to keep its exact yellow and to make dark mode's primary action yellow. Its navy and beige aren't pinned: exact, they carry far more chroma than the generated surfaces next to them, so the generated steps at their hues are used instead. Overrides go through the same checks as everything else.
 
 Six brands ship today:
 
@@ -205,7 +205,7 @@ A label on a filled action, such as `action-primary`, uses `text-inverse` in eit
 
 ### Pair a status tint with a status ink
 
-A status message is a tint behind and an ink on the icon. An error box uses `surface-error` for the background and `text-error` for the icon. The message itself stays `text-default`. Show warnings with an icon, not color alone.
+A status message is a tint behind and an ink on top. An error box uses `surface-error` for the background and `text-error` for the icon and the message; each status ink clears text contrast on its own tint. A floating `Alert` takes the same ink on its border. Show warnings with an icon, not color alone.
 
 ### Put colored sections inside `Background`
 
@@ -260,7 +260,7 @@ Pages without React load `@skillsoft/gamut-styles/tokens.css` and set the same t
 - Components still use names, not values. The old themes already handed components `var()` names, and the new ones do the same.
 - Color modes still work through CSS custom properties and still nest. An attribute drives them now instead of an injected class.
 - `GamutProvider`, `ColorMode` and `Background` keep the same props, and `GamutProvider` still delivers the colors.
-- The old look comes back as brands. Original Codecademy is old Core rebuilt with the same navy, beige, hyper and yellow, and the same fonts and elevation. Admin, Platform, Percipio and LX Studio are rebuilt the same way, under their old theme names.
+- The old look comes back as brands. Original Codecademy is old Core rebuilt from its navy, beige, hyper and yellow, with the same fonts and elevation. Admin, Platform, Percipio and LX Studio are rebuilt the same way, under their old theme names.
 
 ### What improves
 
