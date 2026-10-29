@@ -8,7 +8,7 @@ import { Anchor } from '../Anchor';
 import type { FormGroupProps } from '../Form';
 import { FormError, FormGroup, FormGroupLabel } from '../Form';
 import { Markdown } from '../Markdown';
-import type { InfoTipSubComponentProps } from '../Tip/InfoTip/type-utils';
+import type { InfoTipSubComponentProps } from '../Tips/InfoTip/type-utils';
 import { Text } from '../Typography';
 import type { ConnectedField, FieldProps, SubmitContextProps } from './types';
 import { getErrorMessage, useField } from './utils';

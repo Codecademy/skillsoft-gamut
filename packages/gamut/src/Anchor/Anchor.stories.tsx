@@ -17,37 +17,6 @@ const variants = [
   'standard-secondary',
 ] as const;
 
-const AnchorVariants = ({ useIcon }: { useIcon: boolean }) => (
-  <LayoutGrid>
-    {(['white', 'navy'] as const).map((bg) => (
-      <Column key={bg} size={6}>
-        <Background
-          bg={bg}
-          display="grid"
-          gridTemplateColumns="repeat(4, 1fr)"
-          p={32}
-        >
-          {variants.map((variant) => (
-            <Box key={`${variant}-${bg}`}>
-              <Text as="p" fontWeight="title">
-                {startCase(variant)}
-              </Text>
-              <Anchor
-                href={`#${variant}`}
-                icon={useIcon ? icons.MiniStarIcon : undefined}
-                mr={8}
-                variant={variant}
-              >
-                Click Me
-              </Anchor>
-            </Box>
-          ))}
-        </Background>
-      </Column>
-    ))}
-  </LayoutGrid>
-);
-
 const meta: Meta<typeof Anchor> = {
   title: 'Navigation/Anchor',
   component: Anchor,
@@ -88,6 +57,37 @@ const meta: Meta<typeof Anchor> = {
 };
 
 export default meta;
+
+const AnchorVariants = ({ useIcon }: { useIcon: boolean }) => (
+  <LayoutGrid>
+    {(['white', 'navy'] as const).map((bg) => (
+      <Column key={bg} size={6}>
+        <Background
+          bg={bg}
+          display="grid"
+          gridTemplateColumns="repeat(4, 1fr)"
+          p={32}
+        >
+          {variants.map((variant) => (
+            <Box key={`${variant}-${bg}`}>
+              <Text as="p" fontWeight="title">
+                {startCase(variant)}
+              </Text>
+              <Anchor
+                href={`#${variant}`}
+                icon={useIcon ? icons.MiniStarIcon : undefined}
+                mr={8}
+                variant={variant}
+              >
+                Click Me
+              </Anchor>
+            </Box>
+          ))}
+        </Background>
+      </Column>
+    ))}
+  </LayoutGrid>
+);
 
 type Story = StoryObj<typeof Anchor>;
 

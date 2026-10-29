@@ -28,7 +28,7 @@ export const Disclosure: React.FC<DisclosureProps> = ({
   subheading,
   variant,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(initiallyExpanded);
+  const [isExpanded, setIsExpanded] = useState(!!initiallyExpanded);
 
   return (
     <DisclosureWrapper

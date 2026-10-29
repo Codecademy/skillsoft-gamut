@@ -4,6 +4,24 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Column, type ColumnProps, LayoutGrid } from '.';
 
+const gapOptions = [8, 16, 24, 32, 48] as const;
+
+const meta: Meta<typeof LayoutGrid> = {
+  title: 'Containers/LayoutGrid',
+  component: LayoutGrid,
+  subcomponents: { Column },
+  args: { gap: 24 },
+  argTypes: {
+    gap: {
+      control: 'radio',
+      options: gapOptions,
+      table: { type: { summary: gapOptions.join(' | ') } },
+    },
+  },
+};
+
+export default meta;
+
 const Example = styled.div(
   css({
     minHeight: '3rem',
@@ -72,23 +90,6 @@ const renderColumnChildren = (
       </Example>
     </Column>
   ));
-
-const gapOptions = [8, 16, 24, 32, 48] as const;
-
-const meta: Meta<typeof LayoutGrid> = {
-  title: 'Containers/LayoutGrid',
-  component: LayoutGrid,
-  args: { gap: 24 },
-  argTypes: {
-    gap: {
-      control: 'radio',
-      options: gapOptions,
-      table: { type: { summary: gapOptions.join(' | ') } },
-    },
-  },
-};
-
-export default meta;
 
 type Story = StoryObj<typeof LayoutGrid>;
 
