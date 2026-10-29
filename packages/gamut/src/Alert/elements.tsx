@@ -1,3 +1,4 @@
+import type { Theme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Background, css } from '@skillsoft/gamut-styles';
 import { motion } from 'framer-motion';
@@ -10,9 +11,27 @@ import { gradientLayer } from '../utils/gradientLayer';
 import type { AlertProps } from './Alert';
 import { placementVariants } from './variants';
 
-const StyledAlertBanner = styled(Background)<
-  Pick<AlertProps, 'type' | 'placement'> & { gradient?: string }
->(placementVariants, gradientLayer);
+type InkProps = Pick<AlertProps, 'placement'> & {
+  ink?: string;
+  theme: Theme;
+};
+
+/*
+ * The variant's ink on the message, and on the edge of a floating Alert
+ * (design's preview at sandbox 15c2195; its shared "Floating border" slot
+ * still says border-default and is out of date).
+ */
+const alertInk = ({ ink, placement, theme }: InkProps) => {
+  const color = ink && (theme.colors as Record<string, string>)[ink];
+  if (!color) return {};
+  return placement === 'floating' ? { color, borderColor: color } : { color };
+};
+
+const notInk = { shouldForwardProp: (prop: string) => prop !== 'ink' };
+
+const StyledAlertBanner = styled(Background, notInk)<
+  Pick<AlertProps, 'type' | 'placement'> & { gradient?: string; ink?: string }
+>(placementVariants, gradientLayer, alertInk);
 
 export const AlertBanner = forwardRef<
   HTMLDivElement,
@@ -37,9 +56,9 @@ export const AlertBanner = forwardRef<
   )
 );
 
-const StyledAlertBox = styled(Box)<
-  Pick<AlertProps, 'type' | 'placement'> & { gradient?: string }
->(placementVariants, gradientLayer);
+const StyledAlertBox = styled(Box, notInk)<
+  Pick<AlertProps, 'type' | 'placement'> & { gradient?: string; ink?: string }
+>(placementVariants, gradientLayer, alertInk);
 
 export const AlertBox = forwardRef<
   HTMLDivElement,

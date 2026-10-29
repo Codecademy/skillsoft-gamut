@@ -423,12 +423,12 @@
         "$value": {
           "colorSpace": "oklch",
           "components": [
-            0.2095,
-            0.0502,
-            271.33
+            0.1925,
+            0.0199,
+            271.3
           ],
           "alpha": 1,
-          "hex": "#10162f"
+          "hex": "#11141d"
         },
         "$extensions": {
           "com.skillsoft.gamut": {

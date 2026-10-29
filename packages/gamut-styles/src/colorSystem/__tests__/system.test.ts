@@ -64,8 +64,10 @@ describe('color system', () => {
   it('applies palette and role overrides, and still measures them', () => {
     const ocd = createColorSystem(originalCodecademyBrand);
     expect(ocd.palette['palette-accent-300'].hex).toBe('#ffd300');
-    expect(ocd.palette['palette-neutral-dark-1100'].hex).toBe('#10162f');
-    expect(ocd.brand.sources!['neutral-dark']!.deltaE).toBe(0);
+    expect(ocd.brand.sources!.accent!.deltaE).toBe(0);
+    /* Navy and beige aren't pinned: their generated steps are used as is. */
+    expect(ocd.palette['palette-neutral-dark-1100'].hex).not.toBe('#10162f');
+    expect(ocd.brand.sources!['neutral-dark']!.deltaE).toBeGreaterThan(0);
     expect(ocd.roles.dark['action-primary'].key).toBe('palette-accent-300');
     /* Light mode isn't overridden. */
     expect(ocd.roles.light['action-primary'].key).toBe('palette-primary-800');
