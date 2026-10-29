@@ -100,6 +100,10 @@ export const globalTypes = {
         { value: 'percipio', title: 'Percipio' },
         { value: 'platform', title: 'Learning Platform' },
         { value: 'skillsoft', title: 'Skillsoft (color spike)' },
+        {
+          value: 'originalCodecademy',
+          title: 'Original Codecademy (color spike)',
+        },
       ],
       showName: true,
     },

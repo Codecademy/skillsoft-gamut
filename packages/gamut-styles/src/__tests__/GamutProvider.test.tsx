@@ -151,25 +151,25 @@ describe(GamutProvider, () => {
     it('injects tokens.css for a theme on the generated color system', () => {
       renderView({ theme: skillsoftTheme });
 
-      expect(emotionCss()).toContain('--color-palette-primary-800:');
+      expect(emotionCss()).toContain('--colors-palette-primary-800:');
     });
 
     it('does not inject tokens when configured not to', () => {
       renderView({ theme: skillsoftTheme, useTokens: false });
 
-      expect(emotionCss()).not.toContain('--color-palette-primary-800:');
+      expect(emotionCss()).not.toContain('--colors-palette-primary-800:');
     });
 
     it('does not inject tokens without globals', () => {
       renderView({ theme: skillsoftTheme, useGlobals: false });
 
-      expect(emotionCss()).not.toContain('--color-palette-primary-800:');
+      expect(emotionCss()).not.toContain('--colors-palette-primary-800:');
     });
 
     it('does not inject tokens for themes that do not carry them', () => {
       renderView();
 
-      expect(emotionCss()).not.toContain('--color-palette-primary-800:');
+      expect(emotionCss()).not.toContain('--colors-palette-primary-800:');
     });
   });
 });

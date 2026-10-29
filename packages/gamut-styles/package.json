@@ -25,7 +25,8 @@
       "require": "./dist/tokens/index.js"
     },
     "./tokens.css": "./dist/tokens/generated/tokens.css",
-    "./tokens/*.tokens.json": "./dist/tokens/generated/*.tokens.json"
+    "./tokens/*.tokens.json": "./dist/tokens/generated/*.tokens.json",
+    "./tokens/brands/*.tokens.json": "./dist/tokens/generated/brands/*.tokens.json"
   },
   "files": [
     "dist",

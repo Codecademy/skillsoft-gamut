@@ -1,7 +1,7 @@
 /*
  * The migration layer: how today's Gamut color aliases and component colors
  * land on the role layer. Ported from gamut-sandbox PR #34
- * (`src/colorSystem/migration.ts` at 4b73c2a), design's source of truth, shown
+ * (`src/colorSystem/migration.ts` at 15c2195), design's source of truth, shown
  * at #/migration. The data below is verbatim apart from `Slot` → `ComponentSlot`
  * (`Slot` here means a brand slot) and comment style. Re-syncing is a
  * deliberate step, like the rest of the port.
@@ -81,20 +81,23 @@ export type LegacyToken = (typeof LEGACY_TOKENS)[number];
  * - `split`: one alias becomes one of several roles depending on where it is
  *   used. Needs a person, and `rule` says how to choose.
  * - `retire`: no role replaces it; `rule` says what to do instead.
+ * - `pending`: decided, but its target belongs to a system that does not
+ *   exist yet; `rule` names what it will map to.
  */
-export type MapKind = 'rename' | 'merge' | 'split' | 'retire';
+export type MapKind = 'rename' | 'merge' | 'split' | 'retire' | 'pending';
 
 export const MAP_KIND_LABEL: Record<MapKind, string> = {
   rename: 'Rename',
   merge: 'Merge',
   split: 'Split',
   retire: 'Retire',
+  pending: 'Pending',
 };
 
 export interface TokenMapping {
   legacy: LegacyToken;
   kind: MapKind;
-  /* Role tokens, most common target first. Empty only for `retire`. */
+  /* Role tokens, most common target first. Empty only for `retire` and `pending`. */
   to: string[];
   /* How to apply it. For a split, how to choose between the targets. */
   rule: string;
@@ -139,7 +142,7 @@ export const TOKEN_MAP: TokenMapping[] = [
     legacy: 'text-disabled',
     kind: 'split',
     to: ['action-disabled', 'surface-raised', 'text-subtle'],
-    rule: 'A disabled label or icon drawn straight on a surface (text button, link, menu item, form label) is `action-disabled`, the same color as a disabled fill. On a disabled fill the label is a knockout: it takes the surface the control sits on, usually `surface-raised`. The value inside a disabled input is the one place `text-subtle` stays.',
+    rule: 'A disabled label or icon drawn straight on a surface (text button, link, menu item, form label) is `action-disabled`, the same color as a disabled fill. On a disabled fill the label is a knockout: it takes the surface the control sits on, usually `surface-raised`. The value inside a disabled input is the one place `text-subtle` stays. The proposal describes `action-disabled` as a fill only; its use as the disabled ink is an addition for the proposal’s next revision.',
   },
 
   // -------------------------------------------------------------- feedback
@@ -179,15 +182,13 @@ export const TOKEN_MAP: TokenMapping[] = [
     legacy: 'background-current',
     kind: 'split',
     to: ['surface-default', 'surface-raised', 'surface-sunken'],
-    rule: 'Whatever surface the element sits on. Name that surface directly.',
-    open: 'Keep a `surface-current` alias that `Background` sets, or have components name their surface? Masks and sticky headers are the main consumers.',
+    rule: 'Whatever surface the element sits on. Becomes a `surface-current` alias that every surface container (the page, raised, sunken, `Background`) sets to its own role, so it always resolves to one of these three. Masks and backdrops that must match their parent read it: sticky List headers, scroll and truncation fades, Drawer, DataList empty rows, the transparent Disclosure. Nothing sets it by hand.',
   },
   {
     legacy: 'background-contrast',
     kind: 'retire',
     to: ['surface-raised'],
-    rule: 'Use `surface-raised`. Maximum contrast against the page is what raised already provides in dark mode, and light mode has no surface lighter than it.',
-    open: 'Confirm nothing depends on this resolving to black in dark mode.',
+    rule: 'Use `surface-raised`. Maximum contrast against the page is what raised already provides in dark mode, and light mode has no surface lighter than it. In Gamut it backs ToolTip and InfoTip, block Tabs and the video player’s tooltip and slider value, all remapped; none needs it to be black.',
   },
   {
     legacy: 'background-selected',
@@ -229,17 +230,15 @@ export const TOKEN_MAP: TokenMapping[] = [
   // ---------------------------------------------------------------- shadow
   {
     legacy: 'shadow-primary',
-    kind: 'retire',
+    kind: 'pending',
     to: [],
-    rule: 'Elevation is the surface step plus a `border-subtle` hairline. There is no shadow color role.',
-    open: 'Percipio’s elevation scale uses this for card and menu shadows. Keep shadows (and give them a role), or drop them?',
+    rule: 'Becomes a `shadow` color role (a dark-ladder neutral at an alpha per mode) referenced by the coming elevation tokens, which hold only offset, blur and spread. Both arrive with the elevation system; until then, elevation is the surface step plus a `border-subtle` hairline.',
   },
   {
     legacy: 'shadow-secondary',
-    kind: 'retire',
+    kind: 'pending',
     to: [],
-    rule: 'Same as `shadow-primary`.',
-    open: 'Decided together with `shadow-primary`.',
+    rule: 'Same as `shadow-primary`: the `shadow` color at another elevation level.',
   },
 
   // ---------------------------------------------------------------- action
@@ -315,8 +314,7 @@ export const TOKEN_MAP: TokenMapping[] = [
     legacy: 'border-tertiary',
     kind: 'split',
     to: ['border-subtle', 'border-strong'],
-    rule: 'A divider or card hairline is `border-subtle`. Where it marks an active field or a selected row, it is `border-strong`.',
-    open: 'Core resolves this to a light navy and Percipio to a dark one, so usages need checking one by one to see which they meant.',
+    rule: 'A divider or card hairline is `border-subtle`. Where it marks an active field or a selected row, it is `border-strong`. Gamut’s own two usages, the FeatureShimmer edge and the List scroll shadow, are both `border-subtle`. Core resolves it to a light navy and Percipio to a dark one, so check each app usage for which it meant.',
   },
   {
     legacy: 'border-disabled',
@@ -442,10 +440,9 @@ const cap = (word: string): string => word[0].toUpperCase() + word.slice(1);
 
 /*
  * The Alert pattern, shared by its status variants: the tint carries the
- * surface, the status ink carries the icon, and the message stays
- * `text-default`. The status inks clear text contrast on their own tint, but
- * body copy is easier to read in the default ink, and the icon is what
- * signals the status.
+ * surface, and the status ink carries the icon and the message. The status
+ * inks clear text contrast on their own tint, so the message can carry the
+ * status too. A floating Alert's border takes the same ink.
  */
 const statusAlert = (
   name: string,
@@ -467,7 +464,7 @@ const statusAlert = (
       slot: 'Message',
       kind: 'text',
       legacy: 'auto (Background)',
-      role: 'text-default',
+      role: `text-${status}`,
     },
   ],
 });
@@ -477,7 +474,7 @@ export const COMPONENTS: ComponentMapping[] = [
     id: 'alert',
     name: 'Alert',
     summary:
-      'Status variants move from saturated fills with auto-contrast text to the status tints: `surface-*` behind, `text-*` on the icon, `text-default` for the message. The buttons inside follow the secondary button.',
+      'Status variants move from saturated fills with auto-contrast text to the status tints: `surface-*` behind, `text-*` on the icon and the message. A floating Alert takes its `text-*` ink on the border too. The buttons inside follow the secondary button.',
     variants: [
       statusAlert('Error', 'error', 'red-600'),
       statusAlert('Success', 'success', 'green'),
@@ -490,7 +487,7 @@ export const COMPONENTS: ComponentMapping[] = [
             slot: 'Fill',
             kind: 'fill',
             legacy: 'blue',
-            role: 'surface-sunken',
+            role: 'surface-brand-subtle',
           },
           {
             slot: 'Icon',
@@ -576,10 +573,6 @@ export const COMPONENTS: ComponentMapping[] = [
         note: 'Hover and press are `state-hover` / `state-pressed`.',
       },
     ],
-    open: [
-      'Info has no status tint of its own. Proposed: `surface-sunken` with an `action-primary` icon, which makes it look like Subtle except for the icon. Alternatively, add a `surface-info` role.',
-      'Feature on `surface-brand` puts the two-color gradient behind running text. It clears text contrast at the gradient’s worst point, but check it at banner width.',
-    ],
   },
 
   // ---------------------------------------------------------------- buttons
@@ -587,7 +580,7 @@ export const COMPONENTS: ComponentMapping[] = [
     id: 'fill-button',
     name: 'FillButton',
     summary:
-      'Each variant maps onto its action family, which now has a pressed step of its own. Labels are `text-inverse` on every fill, so a label never depends on the color mode a parent forces. Danger keeps its focus ring in its own color; disabled labels are a knockout.',
+      'Each variant maps onto its action family, which now has a pressed step of its own. Labels are `text-inverse` on every fill, so a label never depends on the color mode a parent forces. Every variant, danger included, takes the one `action-primary` focus ring; disabled labels are a knockout.',
     variants: (['primary', 'neutral', 'danger'] as const).map((family) => {
       const legacy = family === 'neutral' ? 'secondary' : family;
       return {
@@ -602,12 +595,7 @@ export const COMPONENTS: ComponentMapping[] = [
             `action-${family}-pressed`
           ),
           s('Label', 'text', 'background', 'text-inverse'),
-          s(
-            'Focus ring',
-            'border',
-            legacy,
-            family === 'danger' ? 'action-danger' : 'action-primary'
-          ),
+          s('Focus ring', 'border', legacy, 'action-primary'),
         ],
       };
     }),
@@ -617,9 +605,6 @@ export const COMPONENTS: ComponentMapping[] = [
       s('Interface variant', 'fill', 'interface', 'action-primary', {
         note: 'Merges into primary.',
       }),
-    ],
-    open: [
-      'Secondary’s focus ring is `action-primary`, while danger’s matches its fill. Today the ring follows the variant for both. Keep blue for secondary, or use `action-neutral`?',
     ],
   },
   {
@@ -642,21 +627,13 @@ export const COMPONENTS: ComponentMapping[] = [
             `${legacy} fill, background label`,
             'state-pressed'
           ),
-          s(
-            'Focus ring',
-            'border',
-            legacy,
-            family === 'danger' ? 'action-danger' : 'action-primary'
-          ),
+          s('Focus ring', 'border', legacy, 'action-primary'),
         ],
       };
     }),
     shared: [
       s('Disabled stroke', 'border', 'background-disabled', 'action-disabled'),
       s('Disabled label', 'text', 'text-disabled', 'action-disabled'),
-    ],
-    open: [
-      'Pressed is an inversion today (the stroke color fills the button). Proposed: the `state-pressed` veil, the same as every other unfilled control.',
     ],
   },
   {
@@ -686,7 +663,7 @@ export const COMPONENTS: ComponentMapping[] = [
         on: 'surface-raised',
         slots: [
           s('Label / icon', 'text', 'danger', 'action-danger'),
-          s('Focus ring', 'border', 'danger', 'action-danger'),
+          s('Focus ring', 'border', 'danger', 'action-primary'),
         ],
       },
       {
@@ -707,7 +684,8 @@ export const COMPONENTS: ComponentMapping[] = [
   {
     id: 'cta-button',
     name: 'CTAButton',
-    summary: 'Fills follow primary FillButton. The offset shadow has no role.',
+    summary:
+      'Fills follow primary FillButton. The offset shadow stays, and moves onto the elevation system once it exists.',
     variants: [
       {
         name: 'Primary',
@@ -724,11 +702,8 @@ export const COMPONENTS: ComponentMapping[] = [
       s('Disabled fill', 'fill', 'background-disabled', 'action-disabled'),
       knockout('text-disabled'),
       s('Offset shadow', 'border', 'text (as box-shadow)', 'action-neutral', {
-        note: 'Only if the shadow is kept.',
+        note: 'Kept. Once the elevation system exists it comes from an elevation token and the pending `shadow` color role; until then it stays `action-neutral`.',
       }),
-    ],
-    open: [
-      'The offset shadow is a Codecademy brand treatment. Keep it on `action-neutral`, or drop it for Skillsoft themes?',
     ],
   },
   {
@@ -770,20 +745,20 @@ export const COMPONENTS: ComponentMapping[] = [
     id: 'badge',
     name: 'Badge',
     summary:
-      'Today’s filled badges use text colors as fills. Proposed: the dark badge takes the neutral action pair, the rest move to surfaces.',
+      'Filled badges keep text colors as fills, now as roles: `text-default` and `text-subtle` behind a `text-inverse` label. Accent takes the Two Color brand gradient, `surface-brand`, with a `border-default` edge.',
     variants: [
       {
         name: 'Primary',
         slots: [
-          s('Fill', 'fill', 'text', 'action-neutral'),
+          s('Fill', 'fill', 'text', 'text-default'),
           s('Label', 'text', 'background', 'text-inverse'),
         ],
       },
       {
         name: 'Secondary',
         slots: [
-          s('Fill', 'fill', 'text-secondary', 'surface-sunken'),
-          s('Label', 'text', 'background', 'text-default'),
+          s('Fill', 'fill', 'text-secondary', 'text-subtle'),
+          s('Label', 'text', 'background', 'text-inverse'),
         ],
       },
       {
@@ -805,22 +780,20 @@ export const COMPONENTS: ComponentMapping[] = [
       {
         name: 'Accent',
         slots: [
-          s('Fill', 'fill', 'yellow', 'action-primary'),
-          s('Label', 'text', 'navy', 'text-inverse'),
+          s('Fill', 'fill', 'yellow', 'surface-brand'),
+          s('Label', 'text', 'navy', 'text-default'),
+          s('Border', 'border', 'none', 'border-default', {
+            note: 'Holds the edge in dark mode, where the gradient is nearly the surface color.',
+          }),
         ],
       },
-    ],
-    open: [
-      'Badges are not interactive, so `action-neutral` as a fill borrows an action role. The alternative is a `surface-inverse` role, which would also serve Tooltip if it ever goes dark.',
-      'Accent has no role. Proposed: `action-primary` (a blue badge). The alternative, `surface-warning`, would read as a caution.',
-      'Secondary moves from a dark gray fill to a light one, so it looks very different.',
     ],
   },
   {
     id: 'tag',
     name: 'Tag',
     summary:
-      'Tags sit on surfaces and take veils for their states. A picked selection tag is `state-selected`, not a dark fill.',
+      'Tags sit on surfaces and take veils for their states. A selection tag, a removable chip for an entered value, stays a dark chip: `text-subtle` behind a `text-inverse` label, like the Secondary badge.',
     variants: [
       {
         name: 'Read only',
@@ -832,12 +805,10 @@ export const COMPONENTS: ComponentMapping[] = [
       {
         name: 'Selection',
         slots: [
-          s('Fill', 'fill', 'text-secondary', 'surface-raised'),
-          s('Selected', 'veil', 'text-secondary', 'state-selected'),
-          s('Label', 'text', 'background', 'text-default'),
-          s('Border', 'border', 'none', 'border-default'),
-          s('Dismiss icon', 'icon', 'background', 'action-neutral'),
-          s('Dismiss hover', 'veil', 'secondary-hover', 'state-hover'),
+          s('Fill', 'fill', 'text-secondary', 'text-subtle'),
+          s('Label', 'text', 'background', 'text-inverse'),
+          s('Dismiss icon', 'icon', 'background', 'text-inverse'),
+          s('Dismiss hover', 'fill', 'secondary-hover', 'text-default'),
         ],
       },
       {
@@ -877,9 +848,6 @@ export const COMPONENTS: ComponentMapping[] = [
       knockout('text-disabled'),
       s('Disabled border', 'border', 'border-disabled', 'border-default'),
     ],
-    open: [
-      'Selection tags change from a dark chip to a light one with a selected tint. Confirm that still reads as “picked” next to unpicked suggestion tags.',
-    ],
   },
 
   // ------------------------------------------------------------------ forms
@@ -887,7 +855,7 @@ export const COMPONENTS: ComponentMapping[] = [
     id: 'field',
     name: 'Input / TextArea / Select',
     summary:
-      'Fields are `surface-raised` with a `border-default` outline. Hover strengthens the outline, focus turns it `action-primary`, and error is `text-error`.',
+      'Fields are `surface-raised` with a `border-default` outline. Hover darkens the 1px outline to `border-strong`; focus is a 2px `action-primary` outline, so blue only ever means focus. Error is a 2px `text-error` outline.',
     variants: [
       {
         name: 'Rest',
@@ -941,9 +909,6 @@ export const COMPONENTS: ComponentMapping[] = [
           ),
         ],
       },
-    ],
-    open: [
-      'Hover today turns the border blue, which reads as focus. Proposed: `border-strong` on hover so blue only ever means focus.',
     ],
   },
   {
@@ -1036,7 +1001,7 @@ export const COMPONENTS: ComponentMapping[] = [
     id: 'toggle',
     name: 'Toggle',
     summary:
-      'The checked track is `action-primary`. The unchecked track has to be visible at 3:1 against its surface, which no surface or disabled role is.',
+      'The checked track is `action-primary`. The unchecked track borrows `border-default` as a fill, the role guaranteed at 3:1 on every surface.',
     variants: [
       {
         name: 'On',
@@ -1056,9 +1021,6 @@ export const COMPONENTS: ComponentMapping[] = [
     shared: [
       s('Focus ring', 'border', 'primary', 'action-primary'),
       s('Disabled', 'fill', 'opacity 0.5', 'action-disabled'),
-    ],
-    open: [
-      'The off track borrows `border-default` as a fill, since it is the role guaranteed at 3:1 on every surface. Accept the borrow, or add a `control-track` role?',
     ],
   },
   {
@@ -1085,7 +1047,7 @@ export const COMPONENTS: ComponentMapping[] = [
     id: 'card',
     name: 'Card',
     summary:
-      'The default card is `surface-raised` with a `border-subtle` hairline. The palette variants and their auto-contrast go away; a dark card is a dark-mode scope.',
+      'The default card is `surface-raised` with a `border-subtle` hairline. The palette variants and their auto-contrast go away: yellow and hyper become a featured card on `surface-brand`, and a dark card is a dark-mode scope.',
     variants: [
       {
         name: 'Default',
@@ -1110,6 +1072,15 @@ export const COMPONENTS: ComponentMapping[] = [
         ],
       },
       {
+        name: 'Yellow, Hyper',
+        slots: [
+          s('Fill', 'fill', 'yellow / hyper', 'surface-brand', {
+            note: 'Both become a featured card on the brand gradient.',
+          }),
+          s('Text', 'text', 'auto (Background)', 'text-default'),
+        ],
+      },
+      {
         name: 'Navy',
         slots: [
           s('Fill', 'fill', 'navy', 'surface-raised', {
@@ -1122,14 +1093,12 @@ export const COMPONENTS: ComponentMapping[] = [
         name: 'Interactive',
         slots: [
           s('Fill', 'fill', 'background', 'surface-raised'),
-          s('Hover', 'veil', 'shadow-primary (offset shadow)', 'state-hover'),
+          s('Hover', 'veil', 'shadow-primary (offset shadow)', 'state-hover', {
+            note: 'The elevation lift joins the veil once elevation tokens exist.',
+          }),
           s('Hover border', 'border', 'border-primary', 'border-strong'),
         ],
       },
-    ],
-    open: [
-      'Yellow and hyper cards have no role. Proposed: retire them, or use `surface-brand` / `surface-brand-subtle` where they marked a featured card.',
-      'Interactive cards lift with an offset shadow today. Proposed: a `state-hover` veil plus `border-strong`. Depends on the shadow decision in the token map.',
     ],
   },
   {
@@ -1180,7 +1149,7 @@ export const COMPONENTS: ComponentMapping[] = [
     id: 'list',
     name: 'List / DataTable / DataList',
     summary:
-      'Rows sit on `surface-raised` with `border-subtle` rules. Hover and selection are veils, and selected rows get a tint they lack today.',
+      'Rows sit on `surface-raised` with `border-subtle` rules. Hover and selection are veils, and selected rows get a tint they lack today. Table stripes move to `surface-sunken`, so a stripe never reads as a selection.',
     variants: [
       {
         name: 'Row',
@@ -1225,9 +1194,6 @@ export const COMPONENTS: ComponentMapping[] = [
         'border-subtle'
       ),
       s('Expand chevron', 'icon', 'secondary', 'action-neutral'),
-    ],
-    open: [
-      'Striping uses the selection color today, so a striped row and a selected row look alike. Proposed: stripe with `surface-sunken` and keep `state-selected` for selection.',
     ],
   },
 
@@ -1306,7 +1272,7 @@ export const COMPONENTS: ComponentMapping[] = [
     id: 'tooltip',
     name: 'ToolTip / InfoTip / Popover',
     summary:
-      'Every floating surface is `surface-raised` with a `border-default` edge, beak included. `background-contrast` goes away.',
+      'Every floating surface is `surface-raised` with a `border-default` edge, beak included, except a floating Alert, whose edge takes its status ink. `background-contrast` goes away.',
     variants: [
       {
         name: 'Tip body',
@@ -1366,15 +1332,12 @@ export const COMPONENTS: ComponentMapping[] = [
         ],
       },
     ],
-    open: [
-      'Hover changes from blue text to a tint. Blue text on hover reads like a link, but this is a visible change to every menu.',
-    ],
   },
   {
     id: 'tabs',
     name: 'Tabs',
     summary:
-      'Standard tabs: unselected labels `text-subtle`, selected `text-default` with an `action-primary` indicator, hover a veil.',
+      'Standard tabs: unselected labels `text-subtle`, selected `text-default` with an `action-primary` indicator, hover a veil. Block tabs are a sunken track with a raised selected tab, in the page’s own mode.',
     variants: [
       {
         name: 'Standard',
@@ -1402,9 +1365,6 @@ export const COMPONENTS: ComponentMapping[] = [
       },
     ],
     shared: [s('Focus ring', 'border', 'primary', 'action-primary')],
-    open: [
-      'Block tabs force dark mode today through a navy `Background`. Proposed: a sunken track with a raised selected tab, in the page’s own mode.',
-    ],
   },
   {
     id: 'pagination',
@@ -1456,13 +1416,24 @@ export const COMPONENTS: ComponentMapping[] = [
     id: 'progress',
     name: 'ProgressBar / Loading',
     summary:
-      'The default bar is `action-primary` on a sunken track. The palette variants and the navy edge go away.',
+      'Every bar is `text-default` on a sunken track, blue and yellow included, and the navy edge goes away. The label is two-tone: `text-inverse` where it sits on the bar, `text-default` where it sits on the track.',
     variants: [
       {
         name: 'Bar',
         slots: [
-          s('Bar', 'fill', 'text', 'action-primary'),
-          s('Bar label', 'text', 'background', 'text-inverse'),
+          s('Bar', 'fill', 'text', 'text-default'),
+          s('Bar label', 'text', 'background', 'text-inverse', {
+            note: 'Clipped to the bar.',
+          }),
+        ],
+      },
+      {
+        name: 'Blue, Yellow',
+        slots: [
+          s('Bar', 'fill', 'blue / yellow', 'text-default', {
+            note: 'The same as the default bar.',
+          }),
+          s('Bar label', 'text', 'white / navy', 'text-inverse'),
         ],
       },
       {
@@ -1470,6 +1441,9 @@ export const COMPONENTS: ComponentMapping[] = [
         slots: [
           s('Track', 'fill', 'none (currentColor border)', 'surface-sunken'),
           s('Track border', 'border', 'currentColor', 'border-default'),
+          s('Track label', 'text', 'background', 'text-default', {
+            note: 'Clipped to the track, so a label crossing the bar edge clears on both sides.',
+          }),
         ],
       },
       {
@@ -1483,10 +1457,6 @@ export const COMPONENTS: ComponentMapping[] = [
     shared: [
       s('Bar edge', 'border', 'navy', INHERIT, { note: 'Dropped.' }),
       s('Spinner', 'icon', 'currentColor', INHERIT),
-    ],
-    open: [
-      'The blue and yellow ProgressBar variants have no role. Retire them, or map blue onto the default?',
-      'The bar label sits on both the bar and the track as the bar grows; `text-inverse` only clears on the bar side.',
     ],
   },
 ];
@@ -1515,8 +1485,9 @@ export const roleColor = (
   }
   const flat = system.roles[mode][token];
   const base: CuloriColor = { mode: 'oklch', l: flat.l, c: flat.c, h: flat.h };
-  if (!role.gradient) return base;
-  return [...role.gradient[mode].circles]
+  const gradient = system.gradients[mode][token];
+  if (!gradient) return base;
+  return [...gradient.circles]
     .reverse()
     .reduce<CuloriColor>(
       (acc, circle) =>
@@ -1593,7 +1564,7 @@ export const validateMigration = (system: ColorSystem): Check[] => {
 
   const badTargets = TOKEN_MAP.flatMap((m) => [
     ...m.to.filter((t) => !roleFor(t)).map((t) => `${m.legacy} → ${t}`),
-    ...(m.kind !== 'retire' && m.to.length === 0
+    ...(m.kind !== 'retire' && m.kind !== 'pending' && m.to.length === 0
       ? [`${m.legacy} has no target`]
       : []),
     ...(m.kind === 'split' && m.to.length < 2

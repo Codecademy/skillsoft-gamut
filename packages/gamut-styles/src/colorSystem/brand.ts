@@ -1,4 +1,7 @@
-import { converter } from 'culori';
+import { converter, formatHex } from 'culori';
+
+import type { Grade } from './ramp';
+import type { Mode, Ref } from './roles';
 
 /*
  * Brands, as data.
@@ -32,12 +35,43 @@ export const ACCENT_SLOTS: readonly Slot[] = ['accent', 'accent-alt'];
 /* A hue in degrees, or a hex to take the OKLCH hue from. */
 export type HueInput = number | string;
 
+/*
+ * Manual overrides, for a brand that has to keep a color the generator
+ * wouldn't produce (Original Codecademy's yellow). They depart from the
+ * sandbox, whose D1 keeps only a hex's hue, so they're explicit and few. Each
+ * one is still measured: the build refuses a brand whose overrides break a
+ * guarantee.
+ *
+ * - `palette`: an exact hex in place of a generated rung, keyed `slot-grade`.
+ *   Pick the grade whose fixed lightness is nearest, or the ladder bends.
+ * - `roles`: a role pointed at another palette color in one mode.
+ * - `gradients`: a gradient role's circles moved from one slot to another,
+ *   in both modes. Grades, sizes and positions stay design's.
+ */
+export interface BrandOverrides {
+  palette?: Partial<Record<`${Slot}-${Grade}`, string>>;
+  roles?: Partial<Record<Mode, Record<string, Ref>>>;
+  gradients?: Record<string, Partial<Record<Slot, Slot>>>;
+}
+
 export interface BrandInput {
   name: string;
   hues: { primary: HueInput } & Partial<Record<Slot, HueInput>>;
+  overrides?: BrandOverrides;
 }
 
 export type Tier = 1 | 2 | 3 | 4;
+
+/*
+ * How far a supplied hex lands from its family's nearest generated rung
+ * (sandbox D1: only the hue is kept, and the distance is reported rather than
+ * hidden). Filled in by createColorSystem, which has the ramps.
+ */
+export interface SourceDistance {
+  hex: string;
+  nearest: Grade;
+  deltaE: number;
+}
 
 export interface ResolvedBrand {
   name: string;
@@ -45,6 +79,9 @@ export interface ResolvedBrand {
   /* Slots the brand didn't supply, and where their hue came from. */
   derived: Partial<Record<Slot, string>>;
   tier: Tier;
+  /* Slots supplied as a hex, measured after overrides. */
+  sources?: Partial<Record<Slot, SourceDistance>>;
+  overrides?: BrandOverrides;
 }
 
 /*
@@ -120,3 +157,11 @@ export const resolveBrand = (input: BrandInput): ResolvedBrand => {
 
   return { name: input.name, hues, derived, tier: tierOf(supplied) };
 };
+
+/* The supplied hexes, normalized, by slot. Numbers carry no source color. */
+export const sourceHexes = (input: BrandInput): Partial<Record<Slot, string>> =>
+  Object.fromEntries(
+    Object.entries(input.hues)
+      .filter(([, v]) => typeof v === 'string')
+      .map(([slot, v]) => [slot, formatHex(v as string)!])
+  );

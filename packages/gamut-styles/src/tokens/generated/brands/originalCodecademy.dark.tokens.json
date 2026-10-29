@@ -1,0 +1,305 @@
+{
+  "$description": "dark mode roles for \"originalCodecademy\". Do not edit.",
+  "surface-sunken": {
+    "$type": "color",
+    "$value": "{black}",
+    "$description": "Wells, insets, code blocks — anything recessed into the page."
+  },
+  "surface-default": {
+    "$type": "color",
+    "$value": "{palette.neutral-dark.1100}",
+    "$description": "The page background — the base every other surface elevates from."
+  },
+  "surface-raised": {
+    "$type": "color",
+    "$value": "{palette.neutral-dark.1000}",
+    "$description": "Cards, panels, dialogs, menus. Higher elevation is lighter."
+  },
+  "surface-success": {
+    "$type": "color",
+    "$value": "{palette.success.1000}",
+    "$description": "The success tint behind an alert or inline confirmation."
+  },
+  "surface-warning": {
+    "$type": "color",
+    "$value": "{palette.warning.1000}",
+    "$description": "The warning tint behind an alert or inline caution."
+  },
+  "surface-error": {
+    "$type": "color",
+    "$value": "{palette.danger.1000}",
+    "$description": "The error tint behind an alert or inline validation message."
+  },
+  "surface-brand": {
+    "$type": "color",
+    "$value": "{palette.neutral-dark.1100}",
+    "$description": "The two-color brand gradient. The color is the flat fallback; the gradient ships as --gradient-surface-brand.",
+    "$extensions": {
+      "com.skillsoft.gamut": {
+        "gradient": {
+          "circles": [
+            {
+              "color": "{palette.accent-alt.900}",
+              "radius": 0.85,
+              "at": "100% -5%"
+            },
+            {
+              "color": "{palette.primary.900}",
+              "radius": 1.21,
+              "at": "5% 100%"
+            }
+          ],
+          "falloff": [
+            [
+              0,
+              0.45
+            ],
+            [
+              16,
+              0.43
+            ],
+            [
+              36,
+              0.24
+            ],
+            [
+              56,
+              0.11
+            ],
+            [
+              76,
+              0.04
+            ],
+            [
+              100,
+              0
+            ]
+          ],
+          "css": "radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, oklch(0.3346 0.1696 287.1 / 0.45) 0%, oklch(0.3346 0.1696 287.1 / 0.43) 16%, oklch(0.3346 0.1696 287.1 / 0.24) 36%, oklch(0.3346 0.1696 287.1 / 0.11) 56%, oklch(0.3346 0.1696 287.1 / 0.04) 76%, oklch(0.3346 0.1696 287.1 / 0) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, oklch(0.3346 0.1863 274.1 / 0.45) 0%, oklch(0.3346 0.1863 274.1 / 0.43) 16%, oklch(0.3346 0.1863 274.1 / 0.24) 36%, oklch(0.3346 0.1863 274.1 / 0.11) 56%, oklch(0.3346 0.1863 274.1 / 0.04) 76%, oklch(0.3346 0.1863 274.1 / 0) 100%)",
+          "cssVars": "radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-900) 0%, transparent) 100%)"
+        }
+      }
+    }
+  },
+  "surface-brand-subtle": {
+    "$type": "color",
+    "$value": "{palette.neutral-dark.1100}",
+    "$description": "The one-color brand gradient, for backgrounds behind real text. Ships as --gradient-surface-brand-subtle.",
+    "$extensions": {
+      "com.skillsoft.gamut": {
+        "gradient": {
+          "circles": [
+            {
+              "color": "{palette.primary.900}",
+              "radius": 0.78,
+              "at": "50% -10%"
+            }
+          ],
+          "falloff": [
+            [
+              0,
+              0.45
+            ],
+            [
+              16,
+              0.43
+            ],
+            [
+              36,
+              0.24
+            ],
+            [
+              56,
+              0.11
+            ],
+            [
+              76,
+              0.04
+            ],
+            [
+              100,
+              0
+            ]
+          ],
+          "css": "radial-gradient(circle calc(0.78 * 100cqw) at 50% -10%, oklch(0.3346 0.1863 274.1 / 0.45) 0%, oklch(0.3346 0.1863 274.1 / 0.43) 16%, oklch(0.3346 0.1863 274.1 / 0.24) 36%, oklch(0.3346 0.1863 274.1 / 0.11) 56%, oklch(0.3346 0.1863 274.1 / 0.04) 76%, oklch(0.3346 0.1863 274.1 / 0) 100%)",
+          "cssVars": "radial-gradient(circle calc(0.78 * 100cqw) at 50% -10%, color-mix(in oklab, var(--colors-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-900) 0%, transparent) 100%)"
+        }
+      }
+    }
+  },
+  "text-default": {
+    "$type": "color",
+    "$value": "{palette.neutral-light.200}",
+    "$description": "Body copy and headings."
+  },
+  "text-subtle": {
+    "$type": "color",
+    "$value": "{palette.neutral-light.400}",
+    "$description": "Secondary text — descriptions, metadata, helper copy."
+  },
+  "text-inverse": {
+    "$type": "color",
+    "$value": "{palette.neutral-dark.1000}",
+    "$description": "Labels on a filled control — action-primary, -neutral, -danger."
+  },
+  "text-success": {
+    "$type": "color",
+    "$value": "{palette.success.300}",
+    "$description": "Success text and icons."
+  },
+  "text-warning": {
+    "$type": "color",
+    "$value": "{palette.warning.300}",
+    "$description": "Warning text and icons. Always with an icon."
+  },
+  "text-error": {
+    "$type": "color",
+    "$value": "{palette.danger.300}",
+    "$description": "Error text and icons."
+  },
+  "border-strong": {
+    "$type": "color",
+    "$value": "{palette.neutral-light.100}",
+    "$description": "Emphasis — an active field, a selected row."
+  },
+  "border-default": {
+    "$type": "color",
+    "$value": "{palette.neutral-light.600}",
+    "$description": "Any border that carries meaning — control outlines, field borders."
+  },
+  "border-subtle": {
+    "$type": "color",
+    "$value": "{palette.neutral-light.900}",
+    "$description": "Decorative hairlines — table rules, dividers. Contrast-exempt."
+  },
+  "action-primary": {
+    "$type": "color",
+    "$value": "{palette.primary.400}",
+    "$description": "Primary interactive fills, strokes, links and focus rings."
+  },
+  "action-primary-hover": {
+    "$type": "color",
+    "$value": "{palette.primary.300}",
+    "$description": "Hover for action-primary."
+  },
+  "action-primary-pressed": {
+    "$type": "color",
+    "$value": "{palette.primary.200}",
+    "$description": "Pressed for action-primary."
+  },
+  "action-danger": {
+    "$type": "color",
+    "$value": "{palette.danger.400}",
+    "$description": "Destructive actions — delete, remove, revoke."
+  },
+  "action-danger-hover": {
+    "$type": "color",
+    "$value": "{palette.danger.300}",
+    "$description": "Hover for action-danger."
+  },
+  "action-danger-pressed": {
+    "$type": "color",
+    "$value": "{palette.danger.200}",
+    "$description": "Pressed for action-danger."
+  },
+  "action-neutral": {
+    "$type": "color",
+    "$value": "{palette.neutral-light.200}",
+    "$description": "The neutral action fill. Button variant=\"secondary\" resolves here."
+  },
+  "action-neutral-hover": {
+    "$type": "color",
+    "$value": "{palette.neutral-light.100}",
+    "$description": "Hover for action-neutral."
+  },
+  "action-neutral-pressed": {
+    "$type": "color",
+    "$value": "{white}",
+    "$description": "Pressed for action-neutral."
+  },
+  "action-disabled": {
+    "$type": "color",
+    "$value": "{palette.neutral-dark.800}",
+    "$description": "The disabled fill for every action variant. Contrast-exempt (inactive control)."
+  },
+  "state-hover": {
+    "$type": "color",
+    "$value": "{palette.primary.600-a6}",
+    "$description": "Rest → hover on rows, tabs, chips, menu items."
+  },
+  "state-pressed": {
+    "$type": "color",
+    "$value": "{palette.primary.600-a9}",
+    "$description": "Hover → pressed on the same elements."
+  },
+  "state-selected": {
+    "$type": "color",
+    "$value": "{palette.primary.600-a8}",
+    "$description": "The persistent \"this one is chosen\" tint."
+  },
+  "viz-1": {
+    "$type": "color",
+    "$value": "{palette.primary.500}",
+    "$description": "Categorical series 1."
+  },
+  "viz-2": {
+    "$type": "color",
+    "$value": "{palette.accent.500}",
+    "$description": "Categorical series 2."
+  },
+  "viz-3": {
+    "$type": "color",
+    "$value": "{palette.warning.400}",
+    "$description": "Categorical series 3."
+  },
+  "viz-4": {
+    "$type": "color",
+    "$value": "{palette.accent-alt.600}",
+    "$description": "Categorical series 4."
+  },
+  "viz-5": {
+    "$type": "color",
+    "$value": "{palette.success.300}",
+    "$description": "Categorical series 5."
+  },
+  "viz-6": {
+    "$type": "color",
+    "$value": "{palette.danger.600}",
+    "$description": "Categorical series 6."
+  },
+  "viz-7": {
+    "$type": "color",
+    "$value": "{palette.neutral-dark.500}",
+    "$description": "Categorical series 7."
+  },
+  "viz-8": {
+    "$type": "color",
+    "$value": "{palette.neutral-light.600}",
+    "$description": "Categorical series 8."
+  },
+  "viz-seq-1": {
+    "$type": "color",
+    "$value": "{palette.primary.600}",
+    "$description": "Sequential step 1, low to high."
+  },
+  "viz-seq-2": {
+    "$type": "color",
+    "$value": "{palette.primary.500}",
+    "$description": "Sequential step 2, low to high."
+  },
+  "viz-seq-3": {
+    "$type": "color",
+    "$value": "{palette.primary.400}",
+    "$description": "Sequential step 3, low to high."
+  },
+  "viz-seq-4": {
+    "$type": "color",
+    "$value": "{palette.primary.300}",
+    "$description": "Sequential step 4, low to high."
+  },
+  "backdrop": {
+    "$type": "color",
+    "$value": "{black-a60}",
+    "$description": "The scrim behind modals and dialogs. Mode-independent."
+  }
+}
