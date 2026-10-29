@@ -1486,8 +1486,9 @@ export const roleColor = (
   }
   const flat = system.roles[mode][token];
   const base: CuloriColor = { mode: 'oklch', l: flat.l, c: flat.c, h: flat.h };
-  if (!role.gradient) return base;
-  return [...role.gradient[mode].circles]
+  const gradient = system.gradients[mode][token];
+  if (!gradient) return base;
+  return [...gradient.circles]
     .reverse()
     .reduce<CuloriColor>(
       (acc, circle) =>

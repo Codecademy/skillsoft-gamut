@@ -16,6 +16,7 @@ import { fileHeader, formattedVariables } from 'style-dictionary/utils';
 import { BRANDS, DEFAULT_BRAND } from '../src/colorSystem/brands';
 import {
   EXTENSION,
+  gradientCssVars,
   toDtcgMode,
   toDtcgPalette,
   toTsModule,
@@ -120,17 +121,26 @@ const cssFor = async (
 
 /*
  * A brand's role overrides: the roles whose palette reference differs from
- * the default brand's in this mode, on the element that carries both
- * attributes (ColorMode sets them together). Empty when nothing differs.
+ * the default brand's in this mode, and the gradients whose circles do, on
+ * the element that carries both attributes (ColorMode sets them together).
+ * Empty when nothing differs.
  */
 const roleOverrideCss = (
   brand: ColorSystem,
   base: ColorSystem,
   mode: Mode
 ): string => {
-  const lines = Object.entries(brand.roles[mode])
-    .filter(([token, v]) => v.key !== base.roles[mode][token].key)
-    .map(([token, v]) => `  --colors-${token}: var(--colors-${v.key});`);
+  const lines = [
+    ...Object.entries(brand.roles[mode])
+      .filter(([token, v]) => v.key !== base.roles[mode][token].key)
+      .map(([token, v]) => `  --colors-${token}: var(--colors-${v.key});`),
+    ...Object.entries(brand.gradients[mode])
+      .map(([token, g]) => [token, gradientCssVars(g)] as const)
+      .filter(
+        ([token, css]) => css !== gradientCssVars(base.gradients[mode][token])
+      )
+      .map(([token, css]) => `  --gradient-${token}: ${css};`),
+  ];
   return lines.length
     ? `[data-brand="${
         brand.brand.name

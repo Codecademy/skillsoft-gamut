@@ -45,10 +45,13 @@ export type HueInput = number | string;
  * - `palette`: an exact hex in place of a generated rung, keyed `slot-grade`.
  *   Pick the grade whose fixed lightness is nearest, or the ladder bends.
  * - `roles`: a role pointed at another palette color in one mode.
+ * - `gradients`: a gradient role's circles moved from one slot to another,
+ *   in both modes. Grades, sizes and positions stay design's.
  */
 export interface BrandOverrides {
   palette?: Partial<Record<`${Slot}-${Grade}`, string>>;
   roles?: Partial<Record<Mode, Record<string, Ref>>>;
+  gradients?: Record<string, Partial<Record<Slot, Slot>>>;
 }
 
 export interface BrandInput {
