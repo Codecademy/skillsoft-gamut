@@ -42,7 +42,7 @@ const themeSpecificStories = {
   'foundations-theme-percipio-theme--docs': 'percipio',
   'foundations-theme-platform-theme--docs': 'platform',
   'foundations-theme-admin-theme--docs': 'admin',
-  'foundations-theme-core-theme--docs': 'core',
+  'foundations-theme-core-theme--docs': 'originalCodecademy',
 };
 export const DocsContainer: React.FC<{
   context: DocsContextProps;
@@ -55,7 +55,7 @@ export const DocsContainer: React.FC<{
     ?.storyId;
 
   const globalTheme =
-    (context as any).store.userGlobals?.globals?.theme || 'core';
+    (context as any).store.userGlobals?.globals?.theme || 'skillsoft';
   const globalLogicalProps = (context as any).store.userGlobals?.globals
     ?.logicalProps;
   const useLogicalProperties = globalLogicalProps !== 'false';
