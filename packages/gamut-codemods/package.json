@@ -1,0 +1,38 @@
+{
+  "name": "@skillsoft/gamut-codemods",
+  "description": "Codemods for upgrading to and between @skillsoft/gamut releases",
+  "version": "0.0.1",
+  "author": "Skillsoft Engineering <dev@codecademy.com>",
+  "bin": "./dist/bin.js",
+  "dependencies": {
+    "jscodeshift": "^17.3.0"
+  },
+  "devDependencies": {
+    "@skillsoft/gamut": "workspace:*",
+    "@types/jscodeshift": "^17.3.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "codemod",
+    "gamut",
+    "jscodeshift",
+    "migration"
+  ],
+  "license": "MIT",
+  "main": "./dist/cli.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "Codecademy/skillsoft-gamut.git",
+  "scripts": {
+    "build": "nx build gamut-codemods",
+    "verify": "tsc --noEmit -p tsconfig.lib.json && tsc --noEmit -p tsconfig.spec.json"
+  },
+  "types": "./dist/cli.d.ts",
+  "type": "commonjs"
+}

@@ -1,0 +1,46 @@
+{
+  "name": "gamut-codemods",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/gamut-codemods/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "packages/gamut-codemods",
+        "commands": [
+          "rm -rf ./dist",
+          "tsc -p tsconfig.lib.json",
+          "chmod +x ./dist/bin.js"
+        ],
+        "parallel": false
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "dependsOn": ["^build"],
+      "outputs": ["{workspaceRoot}/coverage/packages/gamut-codemods"],
+      "options": {
+        "jestConfig": "packages/gamut-codemods/jest.config.ts"
+      }
+    },
+    "verify-package": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "cwd": "{projectRoot}",
+        "commands": ["publint ."],
+        "parallel": false
+      }
+    },
+    "publish-build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "commands": [],
+        "parallel": false
+      }
+    }
+  }
+}
