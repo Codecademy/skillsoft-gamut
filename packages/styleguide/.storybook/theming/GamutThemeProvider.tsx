@@ -3,8 +3,7 @@ import {
   ColorMode,
   Colors,
   GamutProvider,
-  skillsoftTheme,
-  originalCodecademyTheme,
+  coreTheme,
   adminTheme,
   lxStudioTheme,
   percipioTheme,
@@ -19,10 +18,8 @@ const STORYBOOK_CSP_NONCE = 'storybook-csp-nonce';
  * See: https://github.com/storybookjs/storybook/issues/12255
  */
 
-/* Every theme is a brand of the generated color system. Original Codecademy is core rebuilt. */
 const themeMap = {
-  skillsoft: skillsoftTheme,
-  originalCodecademy: originalCodecademyTheme,
+  core: coreTheme,
   admin: adminTheme,
   lxStudio: lxStudioTheme,
   percipio: percipioTheme,
