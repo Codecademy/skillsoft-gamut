@@ -8,6 +8,10 @@ import type { BrandInput } from '../brand';
  * reads it) and core's dark mode, primary yellow included. Old lxStudio has
  * no second accent, so `accent-alt` stays on the gamut default (sandbox D4).
  *
+ * Navy isn't pinned, as for Original Codecademy: pinned, it carries much
+ * more chroma than the generated surfaces beside it (design, 2026-10-29).
+ * The near-white page is nearly achromatic, so it stays exact.
+ *
  * Not carried over: old lxStudio's `interface` on hyper-500 (there's no
  * interface role; interactive color is `action-primary`) and its primary
  * hover on navy-800 (hover grades are design's).
@@ -26,7 +30,6 @@ export const lxStudioBrand: BrandInput = {
   overrides: {
     palette: {
       'neutral-light-100': '#FAFBFC', // lxStudioBgPrimary
-      'neutral-dark-1100': '#10162F', // navy-800
       'accent-300': '#FFD300', // yellow-500
       'accent-400': '#CCA900', // yellow-400
     },

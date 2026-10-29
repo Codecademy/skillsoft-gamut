@@ -42,7 +42,7 @@ exports[`themes admin - theme shape 1`] = `
       "palette-danger-900": "#67110a",
       "palette-neutral-dark-100": "#fafafb",
       "palette-neutral-dark-1000": "#1d212f",
-      "palette-neutral-dark-1100": "#10162f",
+      "palette-neutral-dark-1100": "#11141d",
       "palette-neutral-dark-200": "#e9eaeb",
       "palette-neutral-dark-300": "#cbcdd3",
       "palette-neutral-dark-400": "#aeb2bd",
@@ -51,7 +51,7 @@ exports[`themes admin - theme shape 1`] = `
       "palette-neutral-dark-700": "#576182",
       "palette-neutral-dark-800": "#414965",
       "palette-neutral-dark-900": "#2f364b",
-      "palette-neutral-light-100": "#fff0e5",
+      "palette-neutral-light-100": "#fbfaf9",
       "palette-neutral-light-1000": "#25211d",
       "palette-neutral-light-1100": "#171411",
       "palette-neutral-light-200": "#ece9e8",
@@ -114,22 +114,22 @@ exports[`themes admin - theme shape 1`] = `
         "action-danger-pressed": "#f2e7e5",
         "action-disabled": "#414965",
         "action-neutral": "#ece9e8",
-        "action-neutral-hover": "#fff0e5",
+        "action-neutral-hover": "#fbfaf9",
         "action-neutral-pressed": "#ffffff",
         "action-primary": "#ffd300",
         "action-primary-hover": "#cca900",
         "action-primary-pressed": "#ae932e",
         "backdrop": "rgba(0, 0, 0, 0.6)",
-        "background-current": "#10162f",
+        "background-current": "#11141d",
         "border-default": "#88786b",
-        "border-strong": "#fff0e5",
+        "border-strong": "#fbfaf9",
         "border-subtle": "#3c3530",
         "state-hover": "rgba(47, 109, 255, 0.06)",
         "state-pressed": "rgba(47, 109, 255, 0.09)",
         "state-selected": "rgba(47, 109, 255, 0.08)",
-        "surface-brand": "#10162f",
-        "surface-brand-subtle": "#10162f",
-        "surface-default": "#10162f",
+        "surface-brand": "#11141d",
+        "surface-brand-subtle": "#11141d",
+        "surface-default": "#11141d",
         "surface-error": "#420a06",
         "surface-raised": "#1d212f",
         "surface-success": "#08290c",
@@ -160,22 +160,22 @@ exports[`themes admin - theme shape 1`] = `
         "action-danger-pressed": "#420a06",
         "action-disabled": "#beafa3",
         "action-neutral": "#1d212f",
-        "action-neutral-hover": "#10162f",
+        "action-neutral-hover": "#11141d",
         "action-neutral-pressed": "#000000",
         "action-primary": "#0939b5",
         "action-primary-hover": "#062a86",
         "action-primary-pressed": "#041a57",
         "backdrop": "rgba(0, 0, 0, 0.6)",
-        "background-current": "#fff0e5",
+        "background-current": "#fbfaf9",
         "border-default": "#717a97",
-        "border-strong": "#10162f",
+        "border-strong": "#11141d",
         "border-subtle": "#cbcdd3",
         "state-hover": "rgba(47, 109, 255, 0.06)",
         "state-pressed": "rgba(47, 109, 255, 0.09)",
         "state-selected": "rgba(47, 109, 255, 0.08)",
-        "surface-brand": "#fff0e5",
-        "surface-brand-subtle": "#fff0e5",
-        "surface-default": "#fff0e5",
+        "surface-brand": "#fbfaf9",
+        "surface-brand-subtle": "#fbfaf9",
+        "surface-default": "#fbfaf9",
         "surface-error": "#f2e7e5",
         "surface-raised": "#ffffff",
         "surface-success": "#d8f3d8",
@@ -774,7 +774,7 @@ monospace",
   [data-brand="originalCodecademy"] {
     --colors-white: oklch(1.0000 0.0000 0.00);
     --colors-black: oklch(0.0000 0.0000 0.00);
-    --colors-palette-neutral-light-100: oklch(0.9640 0.0219 58.79);
+    --colors-palette-neutral-light-100: oklch(0.9862 0.0016 58.80);
     --colors-palette-neutral-light-200: oklch(0.9364 0.0031 58.80);
     --colors-palette-neutral-light-300: oklch(0.8497 0.0109 58.80);
     --colors-palette-neutral-light-400: oklch(0.7628 0.0237 58.80);
@@ -795,7 +795,7 @@ monospace",
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);
@@ -871,7 +871,7 @@ monospace",
   [data-brand="admin"] {
     --colors-white: oklch(1.0000 0.0000 0.00);
     --colors-black: oklch(0.0000 0.0000 0.00);
-    --colors-palette-neutral-light-100: oklch(0.9640 0.0219 58.79);
+    --colors-palette-neutral-light-100: oklch(0.9862 0.0016 58.80);
     --colors-palette-neutral-light-200: oklch(0.9364 0.0031 58.80);
     --colors-palette-neutral-light-300: oklch(0.8497 0.0109 58.80);
     --colors-palette-neutral-light-400: oklch(0.7628 0.0237 58.80);
@@ -892,7 +892,7 @@ monospace",
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 263.60);
     --colors-palette-primary-200: oklch(0.9364 0.0120 263.60);
     --colors-palette-primary-300: oklch(0.8497 0.0406 263.60);
@@ -989,7 +989,7 @@ monospace",
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);
@@ -1183,7 +1183,7 @@ monospace",
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 262.40);
     --colors-palette-primary-200: oklch(0.9364 0.0121 262.40);
     --colors-palette-primary-300: oklch(0.8497 0.0407 262.40);
@@ -1983,7 +1983,7 @@ exports[`themes lxStudio - theme shape 1`] = `
       "palette-danger-900": "#67110a",
       "palette-neutral-dark-100": "#fafafb",
       "palette-neutral-dark-1000": "#1d212f",
-      "palette-neutral-dark-1100": "#10162f",
+      "palette-neutral-dark-1100": "#11141d",
       "palette-neutral-dark-200": "#e9eaeb",
       "palette-neutral-dark-300": "#cbcdd3",
       "palette-neutral-dark-400": "#aeb2bd",
@@ -2061,16 +2061,16 @@ exports[`themes lxStudio - theme shape 1`] = `
         "action-primary-hover": "#cca900",
         "action-primary-pressed": "#ae932e",
         "backdrop": "rgba(0, 0, 0, 0.6)",
-        "background-current": "#10162f",
+        "background-current": "#11141d",
         "border-default": "#6d7d8d",
         "border-strong": "#fafbfc",
         "border-subtle": "#30373e",
         "state-hover": "rgba(39, 110, 255, 0.06)",
         "state-pressed": "rgba(39, 110, 255, 0.09)",
         "state-selected": "rgba(39, 110, 255, 0.08)",
-        "surface-brand": "#10162f",
-        "surface-brand-subtle": "#10162f",
-        "surface-default": "#10162f",
+        "surface-brand": "#11141d",
+        "surface-brand-subtle": "#11141d",
+        "surface-default": "#11141d",
         "surface-error": "#420a06",
         "surface-raised": "#1d212f",
         "surface-success": "#082917",
@@ -2101,7 +2101,7 @@ exports[`themes lxStudio - theme shape 1`] = `
         "action-danger-pressed": "#420a06",
         "action-disabled": "#a9b3bd",
         "action-neutral": "#1d212f",
-        "action-neutral-hover": "#10162f",
+        "action-neutral-hover": "#11141d",
         "action-neutral-pressed": "#000000",
         "action-primary": "#0c3fa8",
         "action-primary-hover": "#082e7d",
@@ -2109,7 +2109,7 @@ exports[`themes lxStudio - theme shape 1`] = `
         "backdrop": "rgba(0, 0, 0, 0.6)",
         "background-current": "#fafbfc",
         "border-default": "#717a97",
-        "border-strong": "#10162f",
+        "border-strong": "#11141d",
         "border-subtle": "#cbcdd3",
         "state-hover": "rgba(39, 110, 255, 0.06)",
         "state-pressed": "rgba(39, 110, 255, 0.09)",
@@ -2717,7 +2717,7 @@ monospace",
   [data-brand="originalCodecademy"] {
     --colors-white: oklch(1.0000 0.0000 0.00);
     --colors-black: oklch(0.0000 0.0000 0.00);
-    --colors-palette-neutral-light-100: oklch(0.9640 0.0219 58.79);
+    --colors-palette-neutral-light-100: oklch(0.9862 0.0016 58.80);
     --colors-palette-neutral-light-200: oklch(0.9364 0.0031 58.80);
     --colors-palette-neutral-light-300: oklch(0.8497 0.0109 58.80);
     --colors-palette-neutral-light-400: oklch(0.7628 0.0237 58.80);
@@ -2738,7 +2738,7 @@ monospace",
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);
@@ -2814,7 +2814,7 @@ monospace",
   [data-brand="admin"] {
     --colors-white: oklch(1.0000 0.0000 0.00);
     --colors-black: oklch(0.0000 0.0000 0.00);
-    --colors-palette-neutral-light-100: oklch(0.9640 0.0219 58.79);
+    --colors-palette-neutral-light-100: oklch(0.9862 0.0016 58.80);
     --colors-palette-neutral-light-200: oklch(0.9364 0.0031 58.80);
     --colors-palette-neutral-light-300: oklch(0.8497 0.0109 58.80);
     --colors-palette-neutral-light-400: oklch(0.7628 0.0237 58.80);
@@ -2835,7 +2835,7 @@ monospace",
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 263.60);
     --colors-palette-primary-200: oklch(0.9364 0.0120 263.60);
     --colors-palette-primary-300: oklch(0.8497 0.0406 263.60);
@@ -2932,7 +2932,7 @@ monospace",
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);
@@ -3126,7 +3126,7 @@ monospace",
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 262.40);
     --colors-palette-primary-200: oklch(0.9364 0.0121 262.40);
     --colors-palette-primary-300: oklch(0.8497 0.0407 262.40);
@@ -4134,7 +4134,7 @@ sans-serif",
   [data-brand="originalCodecademy"] {
     --colors-white: oklch(1.0000 0.0000 0.00);
     --colors-black: oklch(0.0000 0.0000 0.00);
-    --colors-palette-neutral-light-100: oklch(0.9640 0.0219 58.79);
+    --colors-palette-neutral-light-100: oklch(0.9862 0.0016 58.80);
     --colors-palette-neutral-light-200: oklch(0.9364 0.0031 58.80);
     --colors-palette-neutral-light-300: oklch(0.8497 0.0109 58.80);
     --colors-palette-neutral-light-400: oklch(0.7628 0.0237 58.80);
@@ -4155,7 +4155,7 @@ sans-serif",
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);
@@ -4231,7 +4231,7 @@ sans-serif",
   [data-brand="admin"] {
     --colors-white: oklch(1.0000 0.0000 0.00);
     --colors-black: oklch(0.0000 0.0000 0.00);
-    --colors-palette-neutral-light-100: oklch(0.9640 0.0219 58.79);
+    --colors-palette-neutral-light-100: oklch(0.9862 0.0016 58.80);
     --colors-palette-neutral-light-200: oklch(0.9364 0.0031 58.80);
     --colors-palette-neutral-light-300: oklch(0.8497 0.0109 58.80);
     --colors-palette-neutral-light-400: oklch(0.7628 0.0237 58.80);
@@ -4252,7 +4252,7 @@ sans-serif",
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 263.60);
     --colors-palette-primary-200: oklch(0.9364 0.0120 263.60);
     --colors-palette-primary-300: oklch(0.8497 0.0406 263.60);
@@ -4349,7 +4349,7 @@ sans-serif",
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);
@@ -4543,7 +4543,7 @@ sans-serif",
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 262.40);
     --colors-palette-primary-200: oklch(0.9364 0.0121 262.40);
     --colors-palette-primary-300: oklch(0.8497 0.0407 262.40);
@@ -4819,7 +4819,7 @@ exports[`themes platform - theme shape 1`] = `
       "palette-danger-900": "#67110a",
       "palette-neutral-dark-100": "#fafafb",
       "palette-neutral-dark-1000": "#1d212f",
-      "palette-neutral-dark-1100": "#10162f",
+      "palette-neutral-dark-1100": "#11141d",
       "palette-neutral-dark-200": "#e9eaeb",
       "palette-neutral-dark-300": "#cbcdd3",
       "palette-neutral-dark-400": "#aeb2bd",
@@ -4897,16 +4897,16 @@ exports[`themes platform - theme shape 1`] = `
         "action-primary-hover": "#cca900",
         "action-primary-pressed": "#ae932e",
         "backdrop": "rgba(0, 0, 0, 0.6)",
-        "background-current": "#10162f",
+        "background-current": "#11141d",
         "border-default": "#6e7e85",
         "border-strong": "#f5fcff",
         "border-subtle": "#31383b",
         "state-hover": "rgba(89, 98, 255, 0.06)",
         "state-pressed": "rgba(89, 98, 255, 0.09)",
         "state-selected": "rgba(89, 98, 255, 0.08)",
-        "surface-brand": "#10162f",
-        "surface-brand-subtle": "#10162f",
-        "surface-default": "#10162f",
+        "surface-brand": "#11141d",
+        "surface-brand-subtle": "#11141d",
+        "surface-default": "#11141d",
         "surface-error": "#420a06",
         "surface-raised": "#1d212f",
         "surface-success": "#08290c",
@@ -4937,7 +4937,7 @@ exports[`themes platform - theme shape 1`] = `
         "action-danger-pressed": "#420a06",
         "action-disabled": "#a5b5bc",
         "action-neutral": "#1d212f",
-        "action-neutral-hover": "#10162f",
+        "action-neutral-hover": "#11141d",
         "action-neutral-pressed": "#000000",
         "action-primary": "#331fc6",
         "action-primary-hover": "#241793",
@@ -4945,7 +4945,7 @@ exports[`themes platform - theme shape 1`] = `
         "backdrop": "rgba(0, 0, 0, 0.6)",
         "background-current": "#f5fcff",
         "border-default": "#717a97",
-        "border-strong": "#10162f",
+        "border-strong": "#11141d",
         "border-subtle": "#cbcdd3",
         "state-hover": "rgba(89, 98, 255, 0.06)",
         "state-pressed": "rgba(89, 98, 255, 0.09)",
@@ -5577,7 +5577,7 @@ monospace",
   [data-brand="originalCodecademy"] {
     --colors-white: oklch(1.0000 0.0000 0.00);
     --colors-black: oklch(0.0000 0.0000 0.00);
-    --colors-palette-neutral-light-100: oklch(0.9640 0.0219 58.79);
+    --colors-palette-neutral-light-100: oklch(0.9862 0.0016 58.80);
     --colors-palette-neutral-light-200: oklch(0.9364 0.0031 58.80);
     --colors-palette-neutral-light-300: oklch(0.8497 0.0109 58.80);
     --colors-palette-neutral-light-400: oklch(0.7628 0.0237 58.80);
@@ -5598,7 +5598,7 @@ monospace",
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);
@@ -5674,7 +5674,7 @@ monospace",
   [data-brand="admin"] {
     --colors-white: oklch(1.0000 0.0000 0.00);
     --colors-black: oklch(0.0000 0.0000 0.00);
-    --colors-palette-neutral-light-100: oklch(0.9640 0.0219 58.79);
+    --colors-palette-neutral-light-100: oklch(0.9862 0.0016 58.80);
     --colors-palette-neutral-light-200: oklch(0.9364 0.0031 58.80);
     --colors-palette-neutral-light-300: oklch(0.8497 0.0109 58.80);
     --colors-palette-neutral-light-400: oklch(0.7628 0.0237 58.80);
@@ -5695,7 +5695,7 @@ monospace",
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 263.60);
     --colors-palette-primary-200: oklch(0.9364 0.0120 263.60);
     --colors-palette-primary-300: oklch(0.8497 0.0406 263.60);
@@ -5792,7 +5792,7 @@ monospace",
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);
@@ -5986,7 +5986,7 @@ monospace",
     --colors-palette-neutral-dark-800: oklch(0.4115 0.0479 271.30);
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
-    --colors-palette-neutral-dark-1100: oklch(0.2095 0.0502 271.33);
+    --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
     --colors-palette-primary-100: oklch(0.9862 0.0064 262.40);
     --colors-palette-primary-200: oklch(0.9364 0.0121 262.40);
     --colors-palette-primary-300: oklch(0.8497 0.0407 262.40);
