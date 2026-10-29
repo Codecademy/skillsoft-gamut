@@ -10,18 +10,18 @@ import type { OnSort, SortDirection, SortOrder } from '../types';
 
 const SortAnchor = styled(Anchor)(
   css({
-    color: 'text',
+    color: 'text-default',
     textAlign: 'left',
     width: '100%',
     alignItems: 'flex-end',
     '&:hover': {
-      color: 'text',
+      color: 'text-default',
     },
     '> div': {
-      color: 'text-disabled',
+      color: 'text-subtle',
     },
     '&:hover div': {
-      color: 'text-secondary',
+      color: 'text-subtle',
     },
   })
 );
@@ -32,7 +32,7 @@ const SortIcon = styled(ArrowChevronDownFilledIcon)(
       transform: 'rotate(180deg)',
     },
     active: {
-      color: 'text-accent',
+      color: 'text-default',
     },
   })
 );

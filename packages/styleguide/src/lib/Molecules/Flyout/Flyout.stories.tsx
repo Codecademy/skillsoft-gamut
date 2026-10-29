@@ -24,7 +24,7 @@ export const Default: React.FC<ComponentProps<typeof Flyout>> = (args) => {
   return (
     <Box height="20rem">
       <Flyout {...args} expanded={expanded} onClose={() => setExpanded(false)}>
-        <Box m={16} textColor="text">
+        <Box m={16} textColor="text-default">
           Baharroth, &quot;the Cry of the Wind,&quot; is the Winged Phoenix, the
           oldest of the Swooping Hawks and the first Exarch of those winged
           Aspect Warriors. Baharroth is the founder of the Eldar Warrior Path

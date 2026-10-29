@@ -79,10 +79,10 @@ export const MultiValueRemoveButton = (
 const CustomStyledRemoveAllDiv = styled('div')(
   css({
     '&:focus': {
-      outline: `2px solid ${theme.colors.primary}`,
+      outline: `2px solid ${theme.colors['action-primary']}`,
     },
     '&:focus-visible': {
-      outline: `2px solid ${theme.colors.primary}`,
+      outline: `2px solid ${theme.colors['action-primary']}`,
     },
   })
 );
@@ -128,7 +128,7 @@ export const RemoveAllButton = (props: SizedIndicatorProps) => {
       style={style}
       onKeyDown={onKeyPress}
     >
-      <IndicatorIcon {...iconProps} color="text" />
+      <IndicatorIcon {...iconProps} color="text-default" />
     </CustomStyledRemoveAllDiv>
   );
 };

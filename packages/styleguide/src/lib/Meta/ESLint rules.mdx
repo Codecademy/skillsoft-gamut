@@ -115,7 +115,7 @@ import { css } from '@skillsoft/gamut-styles';
 const StyledStrokeButton = styled(StrokeButton)(
   css({
     p: 32,
-    bg: 'primary',
+    bg: 'action-primary',
   })
 );
 
@@ -126,7 +126,7 @@ const buttonStyles = variant({
   variants: {
     primary: {
       p: 16,
-      bg: 'primary',
+      bg: 'action-primary',
     },
   },
 });
@@ -189,7 +189,7 @@ Suggests using the `themed()` utility from `gamut-styles` instead of directly ac
 
 ```tsx
 const StyledDiv = styled.div`
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors['action-primary']};
 `;
 ```
 
@@ -201,7 +201,7 @@ import { Box } from '@skillsoft/gamut';
 
 const StyledBox = styled(Box)(
   css({
-    color: themed('colors.primary'),
+    color: themed('colors.action-primary'),
   })
 );
 ```

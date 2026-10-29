@@ -6,7 +6,7 @@ export const BarsList = styled('ul')(
     p: 0,
     listStyle: 'none',
     '& li:nth-of-type(even)': {
-      bg: 'background-selected',
+      bg: 'state-selected',
     },
   })
 );

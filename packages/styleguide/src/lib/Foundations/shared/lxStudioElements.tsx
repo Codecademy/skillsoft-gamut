@@ -1,6 +1,6 @@
 import { Box } from '@skillsoft/gamut';
 import {
-  Background,
+  ColorMode,
   lxStudioColors,
   lxStudioTheme,
 } from '@skillsoft/gamut-styles';
@@ -98,15 +98,15 @@ export const lxStudioDarkMode = {
 };
 
 export const LXStudioLightModeTable = () => (
-  <Background bg="white">
+  <ColorMode bg="surface-default" mode="light">
     <TokenTable bg={false} {...(lxStudioLightMode as any)} />
-  </Background>
+  </ColorMode>
 );
 
 export const LXStudioDarkModeTable = () => (
-  <Background bg="navy">
+  <ColorMode bg="surface-default" mode="dark">
     <TokenTable bg={false} {...(lxStudioDarkMode as any)} />
-  </Background>
+  </ColorMode>
 );
 
 export const lxStudioFontFamily = {
@@ -164,7 +164,7 @@ export const lxStudioBorderRadii = {
       size: 'fill',
       render: ({ value }: any) => (
         <Box
-          bg="navy"
+          bg="text-default"
           borderRadius={value}
           display="inline-block"
           height="4em"

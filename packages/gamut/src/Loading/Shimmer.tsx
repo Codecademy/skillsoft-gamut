@@ -41,7 +41,7 @@ export const Shimmer: React.FC<BoxProps> = (props) => {
   return (
     <Box {...props}>
       <Box
-        bg="background-disabled"
+        bg="action-disabled"
         fit
         opacity={0.5}
         overflow="hidden"

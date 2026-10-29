@@ -33,7 +33,7 @@ import type * as React from 'react';
 import { useState } from 'react';
 
 const renderText = () => (
-  <Text as="p" color="text" mb={16}>
+  <Text as="p" color="text-default" mb={16}>
     Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et
     dolore <Anchor>magna aliqua</Anchor>. Ut <Anchor href="#cool">enim</Anchor>{' '}
     ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
@@ -157,7 +157,13 @@ const renderInputs = () => {
 const ColorModeExampleContents = () => {
   return (
     <>
-      <Text as="p" color="text" fontFamily="accent" fontSize={16} mb={16}>
+      <Text
+        as="p"
+        color="text-default"
+        fontFamily="accent"
+        fontSize={16}
+        mb={16}
+      >
         Cool Feature
       </Text>
       {renderText()}
@@ -187,14 +193,14 @@ export const ColorModeExampleWrapper: React.FC<React.PropsWithChildren> = ({
           onChange={() => setIsDark(!isDark)}
         />
       </FlexBox>
-      <Background bg={isDark ? 'navy' : 'white'}>
-        <Box bg="background" border={1} p={24}>
-          <Text as="h3" color="text" mb={24}>
+      <ColorMode bg="surface-default" mode={isDark ? 'dark' : 'light'}>
+        <Box bg="surface-raised" border={1} p={24}>
+          <Text as="h3" color="text-default" mb={24}>
             {isDark ? 'Dark' : 'Light'} Mode
           </Text>
           {children}
         </Box>
-      </Background>
+      </ColorMode>
     </Box>
   );
 };
@@ -225,19 +231,18 @@ export const BackgroundExample: React.FC<ComponentProps<typeof Background>> = ({
 export const SystemColorModeExample = () => {
   const prefersDarkMode = usePrefersDarkMode();
   const mode = prefersDarkMode ? 'dark' : 'light';
-  const bg = prefersDarkMode ? 'navy' : 'paleBlue';
 
   return (
     <ColorMode mode="system">
-      <Background bg={bg} p={24}>
+      <Box bg="surface-brand-subtle" p={24}>
         <Text mb={16} variant="title-md">
           system color mode:{' '}
-          <Text color="primary" fontFamily="monospace" ml={8}>
+          <Text color="action-primary" fontFamily="monospace" ml={8}>
             {mode} mode
           </Text>
         </Text>
         {renderText()}
-      </Background>
+      </Box>
     </ColorMode>
   );
 };
@@ -245,19 +250,18 @@ export const SystemColorModeExample = () => {
 export const PrefersDarkModeExample = () => {
   const prefersDarkMode = usePrefersDarkMode();
   const mode = prefersDarkMode ? 'dark' : 'light';
-  const bg = prefersDarkMode ? 'navy' : 'paleBlue';
 
   return (
     <ColorMode mode={mode}>
-      <Background bg={bg} p={24}>
+      <Box bg="surface-brand-subtle" p={24}>
         <Text mb={16} variant="title-md">
           user prefers dark mode:{' '}
-          <Text color="primary" fontFamily="monospace" ml={8}>
+          <Text color="action-primary" fontFamily="monospace" ml={8}>
             {prefersDarkMode.toString()}
           </Text>
         </Text>
         {renderText()}
-      </Background>
+      </Box>
     </ColorMode>
   );
 };

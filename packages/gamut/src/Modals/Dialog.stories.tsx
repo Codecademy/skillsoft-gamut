@@ -219,7 +219,7 @@ export const FocusManagement: Story = {
                 Focus Dialog Container
               </FillButton>
             </FlexBox>
-            <Text color="text-disabled" fontSize={14}>
+            <Text color="text-subtle" fontSize={14}>
               Try tabbing through the page - the dialog container will maintain
               focus when you click the &quot;Focus Dialog Container&quot;
               button.

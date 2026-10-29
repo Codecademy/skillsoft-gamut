@@ -174,7 +174,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
               ease: 'easeInOut',
             }}
           >
-            <Text fontSize={16} color="text-secondary">
+            <Text fontSize={16} color="text-subtle">
               No {imageType} found...
             </Text>
           </MotionBox>

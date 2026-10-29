@@ -326,7 +326,7 @@ describe('Modal', () => {
         name: 'Confirm',
       });
       expect(primaryButton).toHaveStyle(
-        `background-color: ${theme.colors.primary}`
+        `background-color: ${theme.colors['action-primary']}`
       );
     });
 
@@ -353,7 +353,7 @@ describe('Modal', () => {
         name: 'Confirm',
       });
       expect(primaryButton).toHaveStyle(
-        `background-color: ${theme.colors.primary}`
+        `background-color: ${theme.colors['action-primary']}`
       );
     });
 
@@ -385,7 +385,7 @@ describe('Modal', () => {
         name: 'Next',
       });
       expect(primaryButton).toHaveStyle(
-        `background-color: ${theme.colors.primary}`
+        `background-color: ${theme.colors['action-primary']}`
       );
     });
 
@@ -412,7 +412,7 @@ describe('Modal', () => {
         name: 'Confirm',
       });
       expect(primaryButton).toHaveStyle(
-        `background-color: ${theme.colors.danger}`
+        `background-color: ${theme.colors['action-danger']}`
       );
     });
 

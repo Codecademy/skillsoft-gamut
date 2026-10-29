@@ -23,7 +23,11 @@ import { system } from '@skillsoft/gamut-styles';
 
 const ColorExample = styled.div(system.color);
 
-<ColorExample bg="navy" textColor="gray-100" borderColor="blue" />;
+<ColorExample
+  bg="surface-raised"
+  textColor="text-default"
+  borderColor="border-default"
+/>;
 ```
 
 These color props support both physical and logical CSS properties and will render the appropriate properties based on `useLogicalProperties`'s value passed into the `<GamutProvider>` at the root of your application.

@@ -96,7 +96,7 @@ export const TargetContainer = styled(Box)(
       inset: -2,
       borderRadius: 'md',
       border: 2,
-      borderColor: 'primary',
+      borderColor: 'action-primary',
       opacity: 0,
       zIndex: 0,
     },

@@ -88,12 +88,12 @@ const interactiveState = states({
     cursor: 'pointer',
 
     '&:hover': {
-      bg: 'background-hover',
+      bg: 'state-hover',
     },
     '&:focus-visible, &:focus-within': {
-      outline: `1px solid ${theme.colors.primary}`,
-      boxShadow: `0 0 0 1px ${theme.colors.primary} inset`,
-      bg: 'background-selected',
+      outline: `1px solid ${theme.colors['action-primary']}`,
+      boxShadow: `0 0 0 1px ${theme.colors['action-primary']} inset`,
+      bg: 'state-selected',
     },
   },
 });
@@ -123,8 +123,9 @@ const rowVariants = variant({
   base: {},
   variants: {
     default: {
-      bg: 'background',
+      bg: 'surface-raised',
       border: 1,
+      borderColor: 'border-subtle',
       borderTop: 'none',
       '&:first-of-type': {
         borderTop: 1,
@@ -132,17 +133,19 @@ const rowVariants = variant({
     },
     table: {
       bg: 'transparent',
+      /* A stripe is a sunken surface, so it never reads as a selection. */
       '&:nth-of-type(2n)': {
-        bg: 'background-selected',
+        bg: 'surface-sunken',
       },
     },
     card: {
-      bg: 'background',
+      bg: 'surface-raised',
       border: 1,
+      borderColor: 'border-subtle',
       borderRadius: 'sm',
     },
     block: {
-      bg: 'background',
+      bg: 'surface-raised',
       border: 'none',
       borderRadius: 'sm',
     },
@@ -464,7 +467,11 @@ export const StickyHeaderColWrapper = styled.th(
     '&:before': {
       content: '""',
       position: 'absolute',
-      bg: { _: 'background', c_base: 'transparent', c_sm: 'background' },
+      bg: {
+        _: 'surface-raised',
+        c_base: 'transparent',
+        c_sm: 'surface-raised',
+      },
       width: '100%',
       height: '100%',
       top: 0,
@@ -526,14 +533,14 @@ export const AnimatedListWrapper = styled(motion.create(Box))(
 );
 
 export const hiddenVariant = {
-  background: `linear-gradient(90deg, transparent 0%, transparent 40%, ${theme.colors['background-selected']} 50%, ${theme.colors['border-tertiary']} 100%)`,
+  background: `linear-gradient(90deg, transparent 0%, transparent 40%, ${theme.colors['state-selected']} 50%, ${theme.colors['border-subtle']} 100%)`,
   backgroundSize: '0px 100%',
   backgroundPosition: 'right',
   backgroundRepeat: 'no-repeat',
 } as const;
 
 export const shadowVariant = {
-  background: `linear-gradient(90deg, transparent 0%, transparent 40%, ${theme.colors['background-selected']} 50%, ${theme.colors['border-tertiary']} 100%)`,
+  background: `linear-gradient(90deg, transparent 0%, transparent 40%, ${theme.colors['state-selected']} 50%, ${theme.colors['border-subtle']} 100%)`,
   backgroundSize: '124px 100%',
   backgroundPosition: 'right',
   backgroundRepeat: 'no-repeat',

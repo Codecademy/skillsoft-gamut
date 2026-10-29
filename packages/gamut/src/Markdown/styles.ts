@@ -101,8 +101,8 @@ const markdownStyle = (
     padding: 0 0.25rem;
     margin: 0 0.0625rem;
     border-radius: 0.125rem;
-    color: ${theme.colors['navy-900']};
-    background-color: ${theme.colors['gray-200']};
+    color: ${theme.colors['text-default']};
+    background-color: ${theme.colors['surface-sunken']};
     white-space: normal;
     vertical-align: baseline;
     font-family: ${theme.fontFamily.monospace};
@@ -141,7 +141,7 @@ const markdownStyle = (
     display: block;
     font-family: ${theme.fontFamily.base};
     padding-left: ${baseMargin};
-    border-left: calc(${baseMargin} / 2) solid ${theme.colors['gray-200']};
+    border-left: calc(${baseMargin} / 2) solid ${theme.colors['border-subtle']};
     margin: 0;
     margin-bottom: ${baseMargin};
     font-style: italic;

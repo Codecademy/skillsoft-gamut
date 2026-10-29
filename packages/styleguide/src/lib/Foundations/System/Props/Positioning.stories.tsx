@@ -11,10 +11,10 @@ type Story = StoryObj<typeof Box>;
 
 export const PositionExample: Story = {
   render: () => (
-    <Box bg="background-selected" height="250px" position="relative">
+    <Box bg="surface-sunken" height="250px" position="relative">
       <Box
-        bg="primary"
-        color="background-contrast"
+        bg="action-primary"
+        color="text-inverse"
         left={16}
         p={16}
         position="absolute"

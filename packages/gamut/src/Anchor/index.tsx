@@ -26,7 +26,7 @@ const outlineFocusVisible = {
     inset: -4,
     borderRadius: 'md',
     border: 2,
-    borderColor: 'primary',
+    borderColor: 'action-primary',
     opacity: 0,
     zIndex: 0,
   },
@@ -54,7 +54,7 @@ const anchorVariants = variant({
     p: 0,
     fontSize: 'inherit',
     position: 'relative',
-    color: 'primary',
+    color: 'action-primary',
     whiteSpace: 'nowrap',
     [InteractiveSelectors.HOVER]: {
       textDecoration: 'none',
@@ -63,12 +63,12 @@ const anchorVariants = variant({
     [InteractiveSelectors.DISABLED]: {
       cursor: 'not-allowed',
       textDecoration: 'none',
-      color: 'text-disabled',
+      color: 'action-disabled',
     },
   },
   variants: {
     standard: {
-      color: 'primary',
+      color: 'action-primary',
       fontWeight: 'bold',
       WebkitFontSmoothing: 'antialiased',
       MozOsxFontSmoothing: 'grayscale',
@@ -89,19 +89,19 @@ const anchorVariants = variant({
       ...underlineFocusVisible,
     },
     interface: {
-      color: 'text',
+      color: 'text-default',
       whiteSpace: 'initial',
       [InteractiveSelectors.HOVER]: {
-        color: 'primary',
+        color: 'action-primary',
       },
       [InteractiveSelectors.FOCUS_VISIBLE]: {
-        color: 'primary',
+        color: 'action-primary',
         outline: 'none',
       },
       ...outlineFocusVisible,
     },
     'standard-secondary': {
-      color: 'text',
+      color: 'text-default',
       textDecoration: 'underline',
       ...underlineFocusVisible,
     },

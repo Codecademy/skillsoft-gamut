@@ -12,8 +12,8 @@ const rowVariants = variant({
     inset: {
       border: 1,
       borderTop: 'none',
-      borderColor: 'gray-200',
-      bg: 'gray-100',
+      borderColor: 'border-subtle',
+      bg: 'surface-sunken',
       p: 32,
     },
   },

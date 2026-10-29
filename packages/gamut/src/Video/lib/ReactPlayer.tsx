@@ -17,7 +17,7 @@ export const ReactVideoPlayer = styled(ReactPlayer)(
     'video::-webkit-media-controls-panel': {
       backgroundImage: `linear-gradient(
           transparent 15%,
-          ${theme.colors['navy-900']} 55%
+          ${theme.colors.black} 55%
         )`,
     },
   })

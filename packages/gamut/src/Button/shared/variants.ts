@@ -9,107 +9,144 @@ const hoverBackgroundTransition = transitionConcat(
   'ease-in'
 );
 
+/*
+ * Design's button map (colorSystem/migration.ts, COMPONENTS): each variant
+ * takes an action family, and interface merges into primary. Every variant
+ * gets the one `action-primary` focus ring.
+ */
+const actionFamily = {
+  primary: 'action-primary',
+  secondary: 'action-neutral',
+  danger: 'action-danger',
+  interface: 'action-primary',
+} as const;
+
+const hover = {
+  primary: 'action-primary-hover',
+  secondary: 'action-neutral-hover',
+  danger: 'action-danger-hover',
+  interface: 'action-primary-hover',
+} as const;
+
+const pressed = {
+  primary: 'action-primary-pressed',
+  secondary: 'action-neutral-pressed',
+  danger: 'action-danger-pressed',
+  interface: 'action-primary-pressed',
+} as const;
+
+/*
+ * Labels on a fill are `text-inverse`. A disabled fill's label is a knockout:
+ * the surface the control sits on shows through.
+ */
 export const fillButtonVariants = templateVariants(
   buttonVariants,
   (variant) => ({
-    bg: variant,
-    color: 'background',
-    [InteractiveSelectors.OUTLINE]: { borderColor: variant },
+    bg: actionFamily[variant],
+    color: 'text-inverse',
+    [InteractiveSelectors.OUTLINE]: { borderColor: 'action-primary' },
     [InteractiveSelectors.HOVER]: {
-      bg: `${variant}-hover`,
-      color: 'background',
+      bg: hover[variant],
+      color: 'text-inverse',
       transition: hoverBackgroundTransition,
     },
     [InteractiveSelectors.ACTIVE]: {
-      borderColor: 'border-primary',
-      bg: variant,
-      color: 'background',
+      bg: pressed[variant],
+      color: 'text-inverse',
     },
     [InteractiveSelectors.DISABLED]: {
-      color: 'text-disabled',
-      bg: 'background-disabled',
+      color: 'surface-raised',
+      bg: 'action-disabled',
     },
   })
 );
 
+/*
+ * The label keeps its color; hover and press are veils over whatever the
+ * button sits on. Interface is `text-default`.
+ */
 export const textButtonVariants = templateVariants(
   buttonVariants,
-  (variant) => ({
-    borderColor: 'transparent',
-    color: variant === 'interface' ? 'text' : variant,
-    [InteractiveSelectors.HOVER]: {
-      color: variant,
-      bg: 'background-hover',
-      transition: hoverBackgroundTransition,
-    },
-    [InteractiveSelectors.FOCUS_VISIBLE]: {
-      color: variant,
-    },
-    [InteractiveSelectors.OUTLINE]: {
-      borderColor: variant,
-    },
-    [InteractiveSelectors.ACTIVE]: {
-      color: 'text',
-    },
-    [InteractiveSelectors.DISABLED]: {
-      color: 'text-disabled',
-      bg: 'transparent',
-    },
-  })
+  (variant) => {
+    const label =
+      variant === 'interface' ? 'text-default' : actionFamily[variant];
+    return {
+      borderColor: 'transparent',
+      color: label,
+      [InteractiveSelectors.HOVER]: {
+        bg: 'state-hover',
+        transition: hoverBackgroundTransition,
+      },
+      [InteractiveSelectors.OUTLINE]: {
+        borderColor: 'action-primary',
+      },
+      [InteractiveSelectors.ACTIVE]: {
+        bg: 'state-pressed',
+      },
+      [InteractiveSelectors.DISABLED]: {
+        color: 'action-disabled',
+        bg: 'transparent',
+      },
+    };
+  }
 );
 
+/* Stroke and label take the action color; hover and press are veils. */
 export const strokeButtonVariants = templateVariants(
   buttonVariants,
   (variant) => ({
-    borderColor: variant,
+    borderColor: actionFamily[variant],
     bg: 'transparent',
-    color: variant,
+    color: actionFamily[variant],
     [InteractiveSelectors.HOVER]: {
-      bg: 'background-hover',
+      bg: 'state-hover',
       transition: hoverBackgroundTransition,
     },
     [InteractiveSelectors.OUTLINE]: {
-      borderColor: variant,
+      borderColor: 'action-primary',
     },
     [InteractiveSelectors.ACTIVE]: {
-      bg: variant,
-      color: 'background',
+      bg: 'state-pressed',
     },
     [InteractiveSelectors.DISABLED]: {
-      borderColor: 'background-disabled',
-      color: 'text-disabled',
+      borderColor: 'action-disabled',
+      color: 'action-disabled',
       bg: 'transparent',
     },
   })
 );
 
+/*
+ * Fills follow primary FillButton. The offset shadow is `action-neutral`
+ * until the elevation system brings a shadow role.
+ */
 export const ctaButtonVariants = templateVariants(['primary'], (variant) => ({
   borderRadius: 'md',
   fontFamily: 'accent',
   fontWeight: 'title',
-  boxShadow: `-4px 4px 0 0 ${theme.colors.text}`,
-  color: 'background',
+  boxShadow: `-4px 4px 0 0 ${theme.colors['action-neutral']}`,
+  color: 'text-inverse',
   py: 12,
   px: 24,
-  bg: variant,
+  bg: actionFamily[variant],
   [InteractiveSelectors.OUTLINE]: {
-    borderColor: variant,
+    borderColor: 'action-primary',
     bottom: -9,
     left: -9,
   },
   [InteractiveSelectors.HOVER]: {
-    bg: `${variant}-hover`,
+    bg: hover[variant],
     transition: hoverBackgroundTransition,
-    boxShadow: `-8px 8px 0 0 ${theme.colors.text}`,
+    boxShadow: `-8px 8px 0 0 ${theme.colors['action-neutral']}`,
   },
   [InteractiveSelectors.ACTIVE]: {
     boxShadow: 'none',
-    bg: 'secondary',
+    bg: pressed[variant],
   },
   [InteractiveSelectors.DISABLED]: {
     boxShadow: 'none',
-    color: 'text-disabled',
-    bg: 'background-disabled',
+    color: 'surface-raised',
+    bg: 'action-disabled',
   },
 }));
 

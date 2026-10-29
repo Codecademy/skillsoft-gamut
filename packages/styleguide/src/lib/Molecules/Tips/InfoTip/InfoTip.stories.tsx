@@ -274,7 +274,7 @@ export const InfoTipInsideModal: Story = {
               <InfoTip {...args} ariaLabelledby="modal-infotip-text" />
             </FlexBox>
 
-            <Text color="text-disabled" fontSize={14}>
+            <Text color="text-subtle" fontSize={14}>
               The InfoTip inside this modal can be closed with Escape without
               closing the modal itself. Inline placement works correctly.
             </Text>
@@ -296,14 +296,14 @@ export const ZIndex: Story = {
   },
   render: (args) => (
     <FlexBox center flexDirection="column" m={24} py={64}>
-      <Box bg="background-primary" zIndex={3}>
+      <Box bg="surface-default" zIndex={3}>
         I will not be behind the infotip, sad + unreadable
       </Box>
       <InfoTip
         ariaLabel="z-index example without override"
         info="I am inline, cool"
       />
-      <Box bg="background-primary" zIndex={3}>
+      <Box bg="surface-default" zIndex={3}>
         I will be behind the infotip, nice + great
       </Box>
       <InfoTip {...args} ariaLabel="z-index example with override" />

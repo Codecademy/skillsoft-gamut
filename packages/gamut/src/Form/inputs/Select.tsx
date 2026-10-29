@@ -106,7 +106,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectWrapperProps>(
           alignItems="center"
           aria-hidden
           bottom="0"
-          color={error ? 'feedback-error' : disabled ? 'text-disabled' : 'text'}
+          color={error ? 'text-error' : 'text-subtle'}
           position="absolute"
           pr={12}
           right={sizeVariant === 'small' ? 4 : 0}

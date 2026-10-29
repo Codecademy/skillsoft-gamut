@@ -42,15 +42,15 @@ export type MaxScaleValue = ScaleAxisLayoutProps['maxScaleValue'];
 export type ScaleTickCount = ScaleAxisLayoutProps['tickCount'];
 
 export type BarChartStyles = {
-  /** Color for text labels. Defaults to 'text' */
+  /** Color for text labels. Defaults to 'text-default' */
   textColor?: ColorAlias;
-  /** Color for the series one bar (seriesOneValue: overlay in stacked charts, only bar in simple charts). Defaults to 'text' */
+  /** Color for the series one bar (seriesOneValue: overlay in stacked charts, only bar in simple charts). Defaults to 'text-default' */
   seriesOneBarColor?: ColorAlias;
-  /** Color for the series two bar (seriesTwoValue: full bar in stacked charts; unused in simple). Defaults to 'primary' */
+  /** Color for the series two bar (seriesTwoValue: full bar in stacked charts; unused in simple). Defaults to 'action-primary' */
   seriesTwoBarColor?: ColorAlias;
-  /** Color for the series one label (first total value label when stacked, or displayValue when not stacked). Defaults to 'text-secondary' */
+  /** Color for the series one label (first total value label when stacked, or displayValue when not stacked). Defaults to 'text-subtle' */
   seriesOneLabel?: ColorAlias;
-  /** Color for the series two label (displayValue when stacked). Defaults to 'primary' */
+  /** Color for the series two label (displayValue when stacked). Defaults to 'action-primary' */
   seriesTwoLabel?: ColorAlias;
 };
 

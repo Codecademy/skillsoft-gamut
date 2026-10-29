@@ -1,6 +1,6 @@
 import { Box } from '@skillsoft/gamut';
 import {
-  Background,
+  ColorMode,
   percipioColors,
   percipioTheme,
 } from '@skillsoft/gamut-styles';
@@ -71,9 +71,9 @@ export const percipioLightMode = {
 };
 
 export const PercipioLightModeTable = () => (
-  <Background bg="white">
+  <ColorMode bg="surface-default" mode="light">
     <TokenTable bg={false} {...(percipioLightMode as any)} />
-  </Background>
+  </ColorMode>
 );
 
 export const percipioFontFamily = {

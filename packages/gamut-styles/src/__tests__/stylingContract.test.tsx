@@ -66,7 +66,14 @@ const tokensCssVars = (mode: Mode, brand: string): Vars => {
   for (const [, selector, body] of tokensCss.matchAll(
     /([^{};]+)\{([^{}]*)\}/g
   )) {
-    const applies = selector.includes('data-color-mode')
+    /* A block keyed on another brand (its palette or role overrides) doesn't apply. */
+    const otherBrand =
+      selector.includes('data-brand') &&
+      !selector.includes(`[data-brand="${brand}"]`) &&
+      !selector.includes(':root');
+    const applies = otherBrand
+      ? false
+      : selector.includes('data-color-mode')
       ? selector.includes(`"${mode}"`)
       : selector.includes(':root') ||
         selector.includes(`[data-brand="${brand}"]`);

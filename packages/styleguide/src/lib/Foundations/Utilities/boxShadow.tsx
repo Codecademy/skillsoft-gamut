@@ -14,7 +14,7 @@ export const ShadowBox = styled.div<{ shadow?: SerializedStyles }>`
 export const ShadowExample = () => {
   return (
     <GridBox
-      bg="background"
+      bg="surface-raised"
       gap={16}
       gridTemplateColumns="repeat(5, 1fr)"
       p={16}

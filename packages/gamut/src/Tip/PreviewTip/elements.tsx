@@ -35,7 +35,7 @@ export const PreviewTipAnchor = styled(Anchor)(
       avatar: {
         borderRadius: 'sm',
         [InteractiveSelectors.HOVER]: {
-          bg: 'background-hover',
+          bg: 'state-hover',
         },
       },
     },
@@ -90,7 +90,7 @@ export const PreviewTipContents: React.FC<PreviewTipContentsProps> = ({
     ) : (
       <>
         {overline && (
-          <Text fontFamily="accent" fontSize={14} textColor="text-secondary">
+          <Text fontFamily="accent" fontSize={14} textColor="text-subtle">
             {overline}
           </Text>
         )}

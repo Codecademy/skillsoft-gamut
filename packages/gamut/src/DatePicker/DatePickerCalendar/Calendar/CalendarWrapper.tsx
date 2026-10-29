@@ -8,7 +8,7 @@ export const CalendarWrapper: React.FC<WithChildrenProp> = ({ children }) => (
   <Box position="relative" width="max-content">
     <CheckerDense left={8} position="absolute" top={8} />
     <Box
-      bg="background"
+      bg="surface-raised"
       border={1}
       borderRadius="sm"
       position="relative"

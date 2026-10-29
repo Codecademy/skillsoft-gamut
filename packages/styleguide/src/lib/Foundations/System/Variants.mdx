@@ -59,10 +59,10 @@ const Anchor = styled.a(
     defaultVariant: 'interface',
     variants: {
       interface: {
-        color: 'text',
+        color: 'text-default',
       },
       inline: {
-        color: 'primary',
+        color: 'action-primary',
       },
     },
   })
@@ -180,7 +180,7 @@ const Anchor = styled.a(
   variant({
     variants: {
       interface: {
-        color: 'navy',
+        color: 'text-default',
         '&:hover': {
           textDecoration: 'none',
           border: '2px solid currentColor',
@@ -188,7 +188,7 @@ const Anchor = styled.a(
         },
       },
       inline: {
-        color: 'hyper',
+        color: 'action-primary',
         transition: 'scale 150ms ease',
         '&:hover': {
           textDecoration: 'underline',

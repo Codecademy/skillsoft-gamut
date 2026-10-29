@@ -1,7 +1,13 @@
 import type { Theme } from '@emotion/react';
 import { useTheme } from '@emotion/react';
 import type { ElevationState } from '@skillsoft/gamut-styles';
-import { theme, timingValues, variant } from '@skillsoft/gamut-styles';
+import {
+  states,
+  theme,
+  timingValues,
+  transitionConcat,
+  variant,
+} from '@skillsoft/gamut-styles';
 import type { StyleProps } from '@skillsoft/variance';
 
 /**
@@ -32,29 +38,63 @@ const HOVER_TRANSITION = {
   ease: 'easeIn',
 } as const;
 
+/*
+ * Design's card map (colorSystem/migration.ts, COMPONENTS): the palette
+ * variants become surfaces. Yellow and hyper are a featured card on the brand
+ * gradient, and navy is `surface-raised` inside a dark-mode scope (Card sets
+ * the scope through Background). Every card keeps a `border-subtle` hairline.
+ */
+export const cardSurfaces = {
+  default: 'surface-raised',
+  white: 'surface-raised',
+  beige: 'surface-default',
+  yellow: 'surface-brand',
+  hyper: 'surface-brand',
+  navy: 'surface-raised',
+} as const;
+
 export const cardVariants = variant({
   defaultVariant: 'default',
   base: {
-    color: 'text',
+    color: 'text-default',
+    borderColor: 'border-subtle',
   },
   variants: {
-    default: {
-      bg: 'background',
+    default: { bg: cardSurfaces.default },
+    white: { bg: cardSurfaces.white },
+    yellow: { bg: cardSurfaces.yellow },
+    beige: { bg: cardSurfaces.beige },
+    navy: { bg: cardSurfaces.navy },
+    hyper: { bg: cardSurfaces.hyper },
+  },
+});
+
+/*
+ * Design's card map, Interactive: hover is the `state-hover` veil over the
+ * card's own fill, with a `border-strong` edge. The veil is a layer behind the
+ * content, so it tints the fill (and a brand gradient, which sits on the layer
+ * below it) but not the text. It keys off the motion wrapper's hover, the same
+ * trigger as the lift. Design adds the elevation lift to the veil once
+ * elevation tokens exist; until then the theme's elevation hover stays.
+ */
+export const interactiveStates = states({
+  isInteractive: {
+    isolation: 'isolate',
+    transition: transitionConcat(['border-color'], 'fast', 'ease-in'),
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      inset: 0,
+      zIndex: -1,
+      borderRadius: 'inherit',
+      pointerEvents: 'none',
+      transition: transitionConcat(['background-color'], 'fast', 'ease-in'),
     },
-    white: {
-      bg: 'white',
+    '*:hover > &': {
+      borderColor: 'border-strong',
     },
-    yellow: {
-      bg: 'yellow',
-    },
-    beige: {
-      bg: 'beige',
-    },
-    navy: {
-      bg: 'navy',
-    },
-    hyper: {
-      bg: 'hyper',
+    '*:hover > &::after': {
+      bg: 'state-hover',
     },
   },
 });
@@ -67,7 +107,7 @@ export const shadowVariants = variant({
     patternLeft: {},
     patternRight: {},
     outline: {
-      boxShadow: `-${SHADOW_OFFSET}px ${SHADOW_OFFSET}px ${theme.colors['background-current']}, -${SHADOW_OFFSET}px ${SHADOW_OFFSET}px 0 1px ${theme.colors['border-primary']}`,
+      boxShadow: `-${SHADOW_OFFSET}px ${SHADOW_OFFSET}px ${theme.colors['background-current']}, -${SHADOW_OFFSET}px ${SHADOW_OFFSET}px 0 1px ${theme.colors['border-subtle']}`,
     },
   },
 });
@@ -111,13 +151,18 @@ export const useCardElevation = (
     // Outline styles are specific to Codecademy and will not be included in a theme
     initialOutline: {
       ...getElevationStyles(elevation, 'rest'),
-      boxShadow: `-${SHADOW_OFFSET_INITIAL}px ${SHADOW_OFFSET_INITIAL}px 0 0px ${theme.colors['background-current']}, -${SHADOW_OFFSET_INITIAL}px ${SHADOW_OFFSET_INITIAL}px 0 1px ${theme.colors['border-primary']}`,
+      boxShadow: `-${SHADOW_OFFSET_INITIAL}px ${SHADOW_OFFSET_INITIAL}px 0 0px ${theme.colors['background-current']}, -${SHADOW_OFFSET_INITIAL}px ${SHADOW_OFFSET_INITIAL}px 0 1px ${theme.colors['border-subtle']}`,
       borderRadius,
       transition: REST_TRANSITION,
     },
+    /*
+     * `shadow-primary` waits on design's pending `shadow` role. Until then the
+     * offset shadow is `action-neutral`, the same holding color design gives
+     * CTAButton's offset shadow.
+     */
     animateOutline: {
       ...getElevationStyles(elevation, 'hover'),
-      boxShadow: `-${SHADOW_OFFSET}px ${SHADOW_OFFSET}px 0 0px ${theme.colors['shadow-primary']}, -${SHADOW_OFFSET}px ${SHADOW_OFFSET}px 0 1px ${theme.colors['shadow-primary']}`,
+      boxShadow: `-${SHADOW_OFFSET}px ${SHADOW_OFFSET}px 0 0px ${theme.colors['action-neutral']}, -${SHADOW_OFFSET}px ${SHADOW_OFFSET}px 0 1px ${theme.colors['action-neutral']}`,
       borderRadius,
       transition: HOVER_TRANSITION,
     },

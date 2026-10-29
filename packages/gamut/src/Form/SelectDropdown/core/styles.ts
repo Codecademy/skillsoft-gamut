@@ -25,7 +25,7 @@ const selectDropdownStyles = css({
 });
 
 const selectFocusStyles = {
-  color: 'primary',
+  color: 'action-primary',
   borderColor: 'currentColor',
   boxShadow: `inset 0 0 0 1px currentColor`,
 } as const;
@@ -34,7 +34,7 @@ export const conditionalBorderStates = states({
   isFocused: selectFocusStyles,
   activated: { borderColor: 'currentColor' },
   error: {
-    color: 'feedback-error',
+    color: 'text-error',
     borderColor: 'currentColor',
     [InputSelectors.HOVER]: {
       borderColor: 'currentColor',
@@ -54,7 +54,7 @@ const sizeVariants = variant({
 });
 
 const dropdownBorderStates = states({
-  error: { borderColorTop: 'feedback-error' },
+  error: { borderColorTop: 'text-error' },
 });
 
 const dropdownBorderStyles = (zIndex = 2) =>
@@ -71,18 +71,18 @@ const dropdownBorderStyles = (zIndex = 2) =>
 const getOptionBackground = (isSelected: boolean, isFocused: boolean) =>
   css({
     bg: isFocused
-      ? 'background-hover'
+      ? 'state-hover'
       : isSelected
-      ? 'background-selected'
+      ? 'state-selected'
       : 'transparent',
   });
 
 const textColor = css({
-  color: 'text',
+  color: 'text-default',
 });
 
 const placeholderColor = css({
-  color: 'text-secondary',
+  color: 'text-subtle',
 });
 
 export const getMemoizedStyles = (
@@ -131,7 +131,7 @@ export const getMemoizedStyles = (
     }),
     groupHeading: (provided) => ({
       ...provided,
-      color: theme.colors['text-disabled'],
+      color: theme.colors['text-subtle'],
     }),
     input: (provided) => ({
       ...provided,
@@ -176,18 +176,18 @@ export const getMemoizedStyles = (
       ...provided,
       ...tagBaseStyles,
       backgroundColor: 'transparent',
-      color: theme.colors.background,
+      color: theme.colors['text-inverse'],
       cursor: state.isDisabled ? 'not-allowed' : 'pointer',
       height: '24px',
     }),
     multiValueLabel: (provided) => ({
       ...provided,
-      backgroundColor: theme.colors['text-secondary'],
+      backgroundColor: theme.colors['text-subtle'],
       borderEndEndRadius: 0,
       borderEndStartRadius: theme.borderRadii.md,
       borderStartEndRadius: 0,
       borderStartStartRadius: theme.borderRadii.md,
-      color: theme.colors.background,
+      color: theme.colors['text-inverse'],
       fontSize: tagLabelFontSize,
       height: '100%',
       padding: `0 ${tagLabelPadding}px`,
@@ -197,7 +197,7 @@ export const getMemoizedStyles = (
     multiValueRemove: (provided, state) => ({
       ...provided,
       ...dismissSharedStyles,
-      backgroundColor: theme.colors['text-secondary'],
+      backgroundColor: theme.colors['text-subtle'],
       borderEndEndRadius: theme.borderRadii.md,
       borderEndStartRadius: 0,
       borderStartEndRadius: theme.borderRadii.md,
@@ -206,12 +206,12 @@ export const getMemoizedStyles = (
       padding: 0, // default remove has padding left and right that we don't need
       pointerEvents: state.isDisabled ? 'none' : 'visible',
       ':hover': {
-        backgroundColor: theme.colors['secondary-hover'],
+        backgroundColor: theme.colors['text-default'],
       },
     }),
     noOptionsMessage: (provided) => ({
       ...provided,
-      color: theme.colors['text-secondary'],
+      color: theme.colors['text-subtle'],
     }),
     option: (provided, state: OptionState) => {
       const isNew = state.data?.__isNew__;
@@ -220,16 +220,16 @@ export const getMemoizedStyles = (
         ...getOptionBackground(state.isSelected, state.isFocused)({ theme }),
         alignItems: 'center',
         color: state.isDisabled
-          ? theme.colors['text-disabled']
+          ? theme.colors['action-disabled']
           : isNew
-          ? theme.colors.primary
-          : theme.colors.text,
+          ? theme.colors['action-primary']
+          : theme.colors['text-default'],
         cursor: state.isDisabled ? 'not-allowed' : 'pointer',
         display: 'flex',
         padding: isSmall ? '3px 14px' : '11px 14px',
         ...(isNew && {
           // Gradient creates the 1px divider line at the top edge of the option background
-          backgroundImage: `linear-gradient(${theme.colors['text-disabled']} 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(${theme.colors['border-subtle']} 1px, transparent 1px)`,
           backgroundPosition: '0 0',
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100% 1px',

@@ -1,4 +1,4 @@
-import { Background } from '@skillsoft/gamut-styles';
+import { ColorMode } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Anchor } from '../Anchor';
@@ -61,7 +61,7 @@ export const Default: Story = {
 
 export const StaticLight: Story = {
   render: () => (
-    <Background bg="white">
+    <ColorMode bg="surface-default" mode="light">
       <FlexBox border={1} gap={16} p={16} row>
         <Box flexGrow={1}>
           <Card variant="white">White variant</Card>
@@ -73,7 +73,7 @@ export const StaticLight: Story = {
           <Card variant="beige">Beige variant</Card>
         </Box>
       </FlexBox>
-    </Background>
+    </ColorMode>
   ),
   play: ({ canvas }) => {
     canvas.getByText('White variant');
@@ -84,7 +84,7 @@ export const StaticLight: Story = {
 
 export const StaticDark: Story = {
   render: () => (
-    <Background bg="navy">
+    <ColorMode bg="surface-default" mode="dark">
       <FlexBox border={1} gap={16} p={16} row>
         <Box flexGrow={1}>
           <Card variant="navy">Navy variant</Card>
@@ -93,7 +93,7 @@ export const StaticDark: Story = {
           <Card variant="hyper">Hyper variant</Card>
         </Box>
       </FlexBox>
-    </Background>
+    </ColorMode>
   ),
 };
 
@@ -105,7 +105,7 @@ export const ShadowNone: Story = {
           <Card>Default variant</Card>
         </Box>
       </FlexBox>
-      <Background bg="white">
+      <ColorMode bg="surface-default" mode="light">
         <FlexBox border={1} gap={16} p={16} row>
           <Box flexGrow={1}>
             <Card variant="white">White variant</Card>
@@ -117,8 +117,8 @@ export const ShadowNone: Story = {
             <Card variant="beige">Beige variant</Card>
           </Box>
         </FlexBox>
-      </Background>
-      <Background bg="navy">
+      </ColorMode>
+      <ColorMode bg="surface-default" mode="dark">
         <FlexBox border={1} gap={16} p={16} row>
           <Box flexGrow={1}>
             <Card variant="navy">Navy variant</Card>
@@ -127,7 +127,7 @@ export const ShadowNone: Story = {
             <Card variant="hyper">Hyper variant</Card>
           </Box>
         </FlexBox>
-      </Background>
+      </ColorMode>
     </FlexBox>
   ),
 };
@@ -140,7 +140,7 @@ export const ShadowOutline: Story = {
           <Card shadow="outline">Default with outline</Card>
         </Box>
       </FlexBox>
-      <Background bg="white">
+      <ColorMode bg="surface-default" mode="light">
         <FlexBox border={1} gap={16} p={24} row>
           <Box flexGrow={1}>
             <Card shadow="outline" variant="white">
@@ -158,8 +158,8 @@ export const ShadowOutline: Story = {
             </Card>
           </Box>
         </FlexBox>
-      </Background>
-      <Background bg="navy">
+      </ColorMode>
+      <ColorMode bg="surface-default" mode="dark">
         <FlexBox border={1} gap={16} p={24} row>
           <Box flexGrow={1}>
             <Card shadow="outline" variant="navy">
@@ -172,7 +172,7 @@ export const ShadowOutline: Story = {
             </Card>
           </Box>
         </FlexBox>
-      </Background>
+      </ColorMode>
     </FlexBox>
   ),
 };
@@ -185,7 +185,7 @@ export const ShadowPatternLeft: Story = {
           <Card shadow="patternLeft">Default with patternLeft</Card>
         </Box>
       </FlexBox>
-      <Background bg="white">
+      <ColorMode bg="surface-default" mode="light">
         <FlexBox border={1} gap={16} p={24} row>
           <Box flexGrow={1}>
             <Card shadow="patternLeft" variant="white">
@@ -203,8 +203,8 @@ export const ShadowPatternLeft: Story = {
             </Card>
           </Box>
         </FlexBox>
-      </Background>
-      <Background bg="navy">
+      </ColorMode>
+      <ColorMode bg="surface-default" mode="dark">
         <FlexBox border={1} gap={16} p={24} row>
           <Box flexGrow={1}>
             <Card shadow="patternLeft" variant="navy">
@@ -217,7 +217,7 @@ export const ShadowPatternLeft: Story = {
             </Card>
           </Box>
         </FlexBox>
-      </Background>
+      </ColorMode>
     </FlexBox>
   ),
 };
@@ -230,7 +230,7 @@ export const ShadowPatternRight: Story = {
           <Card shadow="patternRight">Default with patternRight</Card>
         </Box>
       </FlexBox>
-      <Background bg="white">
+      <ColorMode bg="surface-default" mode="light">
         <FlexBox border={1} gap={16} p={24} row>
           <Box flexGrow={1}>
             <Card shadow="patternRight" variant="white">
@@ -248,8 +248,8 @@ export const ShadowPatternRight: Story = {
             </Card>
           </Box>
         </FlexBox>
-      </Background>
-      <Background bg="navy">
+      </ColorMode>
+      <ColorMode bg="surface-default" mode="dark">
         <FlexBox border={1} gap={16} p={24} row>
           <Box flexGrow={1}>
             <Card shadow="patternRight" variant="navy">
@@ -262,7 +262,7 @@ export const ShadowPatternRight: Story = {
             </Card>
           </Box>
         </FlexBox>
-      </Background>
+      </ColorMode>
     </FlexBox>
   ),
 };
@@ -279,7 +279,7 @@ export const IsInteractive: Story = {
           </Anchor>
         </Box>
       </FlexBox>
-      <Background bg="white">
+      <ColorMode bg="surface-default" mode="light">
         <FlexBox border={1} gap={16} p={24} row>
           <Box flexGrow={1}>
             <Anchor dimensions={1} href="" variant="interface">
@@ -303,8 +303,8 @@ export const IsInteractive: Story = {
             </Anchor>
           </Box>
         </FlexBox>
-      </Background>
-      <Background bg="navy">
+      </ColorMode>
+      <ColorMode bg="surface-default" mode="dark">
         <FlexBox border={1} gap={16} p={24} row>
           <Box flexGrow={1}>
             <Anchor dimensions={1} href="" variant="interface">
@@ -321,7 +321,7 @@ export const IsInteractive: Story = {
             </Anchor>
           </Box>
         </FlexBox>
-      </Background>
+      </ColorMode>
     </FlexBox>
   ),
   play: ({ canvas }) => {
@@ -333,12 +333,18 @@ export const IsInteractive: Story = {
 export const Dynamic: Story = {
   render: () => (
     <FlexBox row>
-      <Background bg="white" border={1} flexGrow={1} p={32}>
+      <ColorMode
+        bg="surface-default"
+        border={1}
+        flexGrow={1}
+        mode="light"
+        p={32}
+      >
         <Card>Lookie here, a default variant in light mode!</Card>
-      </Background>
-      <Background bg="navy" flexGrow={1} p={32}>
+      </ColorMode>
+      <ColorMode bg="surface-default" flexGrow={1} mode="dark" p={32}>
         <Card>Lookie here, a default variant in dark mode!</Card>
-      </Background>
+      </ColorMode>
     </FlexBox>
   ),
 };

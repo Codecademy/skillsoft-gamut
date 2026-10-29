@@ -4,7 +4,7 @@ import type { StyleProps } from '@skillsoft/variance';
 
 const segmentStyles = states({
   isEmpty: {
-    color: 'text-secondary',
+    color: 'text-subtle',
   },
   isYear: {
     minWidth: '4ch',
@@ -20,11 +20,11 @@ export const Segment = styled.span<SegmentStyleProps>(
     minWidth: '2ch',
     padding: 0,
     margin: 0,
-    color: 'text',
+    color: 'text-default',
     cursor: 'text',
     '&:focus': {
-      bg: 'primary',
-      color: 'background',
+      bg: 'action-primary',
+      color: 'text-inverse',
       borderRadius: 'md',
     },
     '&:focus-visible': {
@@ -36,7 +36,7 @@ export const Segment = styled.span<SegmentStyleProps>(
 
 export const SegmentLiteral = styled.span(
   css({
-    color: 'text-secondary',
+    color: 'text-subtle',
     userSelect: 'none',
     px: 4,
   })

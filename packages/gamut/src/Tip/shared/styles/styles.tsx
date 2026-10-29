@@ -1,6 +1,5 @@
 import { fontSmoothPixel, theme, variant } from '@skillsoft/gamut-styles';
 
-import type { popoverPrimaryBgColor } from '../../../Popover/styles/base';
 import { tipAlignmentArray } from '../types';
 import { createToolTipVariantFromAlignment } from './composeVariantsUtils';
 import { createVariantsFromAlignments } from './createVariantsUtils';
@@ -14,11 +13,12 @@ import { createVariantsFromAlignments } from './createVariantsUtils';
  *
  */
 
-export const tooltipBgColor = `background-contrast`;
+/* Every floating surface is `surface-raised` with a `border-default` edge. */
+export const tooltipBgColor = `surface-raised`;
 export const tooltipArrowHeight = `1rem`;
 export const tooltipArrowHeightPx = 14;
 const containerOffsetVertical = 12;
-const borderColor = 'border-primary';
+const borderColor = 'border-default';
 
 export const narrowWidth = 64;
 export const verticalCenterWidths = { minWidth: 64, maxWidth: 128 } as const;
@@ -75,7 +75,8 @@ export const horizontalCenterBeakRtlInline = (side: SideCenterBeakSide) => ({
 
 type GetBeakBackgroundType = {
   alignment: keyof typeof beakBackgroundRotation;
-  color: typeof tooltipBgColor | typeof popoverPrimaryBgColor;
+  /* Tooltips and popovers share the floating surface. */
+  color: typeof tooltipBgColor;
 };
 
 export const getBeakBgAndRotation = ({
@@ -309,8 +310,9 @@ export const toolTipWidthRestrictions = variant({
 
 export const toolTipBodyCss = {
   bg: tooltipBgColor,
-  color: 'text',
+  color: 'text-default',
   border: 1,
+  borderColor: 'border-default',
   boxShadow: 'none',
   borderRadius: 'sm',
   display: 'inline-block',

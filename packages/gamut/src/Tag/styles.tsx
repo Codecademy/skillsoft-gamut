@@ -33,7 +33,7 @@ export const outlineStyling = css({
   overflow: 'hidden',
   width: '100%',
   '&:focus-within': {
-    outline: `2px solid ${theme.colors.primary}`,
+    outline: `2px solid ${theme.colors['action-primary']}`,
     outlineOffset: '2px',
   },
   '&:active': {
@@ -63,28 +63,33 @@ export const tagUsageVariants = variant({
   },
   variants: {
     readOnly: {
-      bg: 'background-disabled',
+      bg: 'surface-sunken',
       borderRadius: 'none',
-      color: 'text',
+      color: 'text-default',
     },
     selection: {
-      bg: 'text-secondary',
+      bg: 'text-subtle',
       borderRadiusRight: 'none',
-      color: 'background',
+      color: 'text-inverse',
     },
+    /*
+     * Navigation and suggestion tags have no fill of their own: they sit on
+     * whatever surface they're on (design, 2026-10-29). Hover and press are
+     * veils over it.
+     */
     navigation: {
-      bg: 'background-current',
+      bg: 'transparent',
       border: 1,
-      borderColor: 'border-secondary',
+      borderColor: 'border-default',
       [InteractiveSelectors.ACTIVE]: {
-        bg: 'secondary',
+        bg: 'state-pressed',
       },
     },
     suggestion: {
-      bg: 'background-current',
+      bg: 'transparent',
       border: 1,
-      borderColor: 'primary',
-      color: 'text',
+      borderColor: 'action-primary',
+      color: 'text-default',
     },
   },
 });
@@ -123,11 +128,17 @@ export const tagWrapperStates = states({
   },
   disabled: {
     // Needed for suggestion's bordercolor since the text element won't have the correct style
-    borderColor: 'border-disabled',
+    borderColor: 'border-default',
   },
+  /*
+   * A disabled tag has no fill (design, 2026-10-29), so there's nothing for
+   * a knockout label to sit on. The label takes the disabled ink instead,
+   * and the chip keeps an edge, inset so disabling it doesn't resize it.
+   */
   selectionDisabled: {
-    bg: 'background-disabled',
-    color: 'text-disabled',
+    bg: 'transparent',
+    color: 'action-disabled',
+    boxShadow: `inset 0 0 0 1px ${theme.colors['border-default']}`,
   },
 });
 
@@ -147,7 +158,7 @@ export const anchorVariants = variant({
     ':before': {
       display: 'none',
     },
-    color: 'text',
+    color: 'text-default',
     [InteractiveSelectors.FOCUS_VISIBLE]: {
       outline: 'none',
       border: 'none',
@@ -156,25 +167,25 @@ export const anchorVariants = variant({
       textDecoration: 'none',
     },
     [InteractiveSelectors.HOVER]: {
-      bg: 'background-hover',
+      bg: 'state-hover',
     },
     [InteractiveSelectors.DISABLED]: {
-      borderColor: 'border-disabled',
-      bg: 'background-current',
+      borderColor: 'border-default',
+      bg: 'transparent',
+      color: 'action-disabled',
     },
   },
   variants: {
+    /* Hover and press are veils over the tag's surface. */
     navigation: {
       [InteractiveSelectors.ACTIVE]: {
-        color: 'background',
-        bg: 'secondary',
+        bg: 'state-pressed',
         textDecoration: 'none',
       },
     },
     suggestion: {
       [InteractiveSelectors.ACTIVE]: {
-        bg: 'primary',
-        color: 'background',
+        bg: 'state-pressed',
         textDecoration: 'none',
       },
     },
@@ -199,19 +210,19 @@ export const dismissButtonLargeStyling = states({
 });
 
 export const dismissButtonStyling = css({
-  bg: 'text-secondary',
+  bg: 'text-subtle',
   border: 'none',
   borderRadiusLeft: 'none',
   borderRadiusRight: 'md',
-  color: 'background',
+  color: 'text-inverse',
   width: '100%',
   [hoverAndFocus]: {
-    color: 'background',
-    bg: 'secondary-hover',
+    color: 'text-inverse',
+    bg: 'text-default',
   },
   [InteractiveSelectors.DISABLED]: {
-    bg: 'background-disabled',
-    color: 'text-disabled',
+    bg: 'transparent',
+    color: 'action-disabled',
   },
   ...dismissSharedStyles,
   ...dismissButtonOverrides,

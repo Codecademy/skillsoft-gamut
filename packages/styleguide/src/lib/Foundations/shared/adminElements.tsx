@@ -1,4 +1,4 @@
-import { adminTheme, Background } from '@skillsoft/gamut-styles';
+import { adminTheme, ColorMode } from '@skillsoft/gamut-styles';
 
 import { Code, ColorScale, TokenTable } from '~styleguide/blocks';
 
@@ -62,13 +62,13 @@ export const adminDarkMode = {
 };
 
 export const AdminLightModeTable = () => (
-  <Background bg="white">
+  <ColorMode bg="surface-default" mode="light">
     <TokenTable bg={false} {...(adminLightMode as any)} />
-  </Background>
+  </ColorMode>
 );
 
 export const AdminDarkModeTable = () => (
-  <Background bg="navy">
+  <ColorMode bg="surface-default" mode="dark">
     <TokenTable bg={false} {...(adminDarkMode as any)} />
-  </Background>
+  </ColorMode>
 );
