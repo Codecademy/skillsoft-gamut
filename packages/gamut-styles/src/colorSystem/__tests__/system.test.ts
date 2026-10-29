@@ -74,6 +74,28 @@ describe('color system', () => {
     ).toBe(true);
   });
 
+  it('moves a gradient to another slot for one brand only', () => {
+    const slots = (system: ReturnType<typeof createColorSystem>) =>
+      system.gradients.light['surface-brand'].circles.map((c) =>
+        typeof c.ref === 'string' ? c.ref : c.ref.slot
+      );
+    const ocd = createColorSystem(originalCodecademyBrand);
+    expect(slots(ocd)).toEqual(['accent-alt', 'primary']);
+    expect(
+      ocd.gradients.dark['surface-brand'].circles.map((c) => c.ref)
+    ).toEqual([
+      { slot: 'accent-alt', grade: 900 },
+      { slot: 'primary', grade: 900 },
+    ]);
+    expect(slots(createColorSystem(skillsoftBrand))).toEqual([
+      'accent',
+      'primary',
+    ]);
+    expect(tokensCss).toContain(
+      '[data-brand="originalCodecademy"][data-color-mode="light"] {\n    --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-alt-300)'
+    );
+  });
+
   it('refuses an override it cannot place', () => {
     const brand = (overrides: object) => () =>
       createColorSystem({ name: 'x', hues: { primary: 45 }, overrides });
@@ -85,5 +107,11 @@ describe('color system', () => {
     expect(brand({ palette: { 'primary-150': '#000000' } })).toThrow(
       'no palette rung primary-150'
     );
+    expect(
+      brand({ gradients: { 'text-default': { accent: 'primary' } } })
+    ).toThrow('no gradient role text-default');
+    expect(
+      brand({ gradients: { 'surface-brand': { accent: 'acent' } } })
+    ).toThrow('surface-brand moves accent to acent');
   });
 });

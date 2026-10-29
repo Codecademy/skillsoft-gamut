@@ -11,7 +11,9 @@ import type { BrandInput } from '../brand';
  * default (sandbox D4), which makes this tier 3.
  *
  * Overrides keep the colors the generator wouldn't produce: navy and beige
- * exactly, and old core's yellow dark-mode primary.
+ * exactly, and old core's yellow dark-mode primary. The two-color gradient
+ * pairs primary with accent-alt instead of the yellow accent, so it reads
+ * blue to violet rather than blue to yellow (design, Stacey, 2026-10-28).
  */
 export const originalCodecademyBrand: BrandInput = {
   name: 'originalCodecademy',
@@ -39,6 +41,9 @@ export const originalCodecademyBrand: BrandInput = {
         'action-primary-hover': { slot: 'accent', grade: 400 },
         'action-primary-pressed': { slot: 'accent', grade: 500 },
       },
+    },
+    gradients: {
+      'surface-brand': { accent: 'accent-alt' },
     },
   },
 };

@@ -39,7 +39,7 @@
         "gradient": {
           "circles": [
             {
-              "color": "{palette.accent.900}",
+              "color": "{palette.accent-alt.900}",
               "radius": 0.85,
               "at": "100% -5%"
             },
@@ -75,8 +75,8 @@
               0
             ]
           ],
-          "css": "radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, oklch(0.3346 0.0603 93.6 / 0.45) 0%, oklch(0.3346 0.0603 93.6 / 0.43) 16%, oklch(0.3346 0.0603 93.6 / 0.24) 36%, oklch(0.3346 0.0603 93.6 / 0.11) 56%, oklch(0.3346 0.0603 93.6 / 0.04) 76%, oklch(0.3346 0.0603 93.6 / 0) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, oklch(0.3346 0.1863 274.1 / 0.45) 0%, oklch(0.3346 0.1863 274.1 / 0.43) 16%, oklch(0.3346 0.1863 274.1 / 0.24) 36%, oklch(0.3346 0.1863 274.1 / 0.11) 56%, oklch(0.3346 0.1863 274.1 / 0.04) 76%, oklch(0.3346 0.1863 274.1 / 0) 100%)",
-          "cssVars": "radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-900) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-900) 0%, transparent) 100%)"
+          "css": "radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, oklch(0.3346 0.1696 287.1 / 0.45) 0%, oklch(0.3346 0.1696 287.1 / 0.43) 16%, oklch(0.3346 0.1696 287.1 / 0.24) 36%, oklch(0.3346 0.1696 287.1 / 0.11) 56%, oklch(0.3346 0.1696 287.1 / 0.04) 76%, oklch(0.3346 0.1696 287.1 / 0) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, oklch(0.3346 0.1863 274.1 / 0.45) 0%, oklch(0.3346 0.1863 274.1 / 0.43) 16%, oklch(0.3346 0.1863 274.1 / 0.24) 36%, oklch(0.3346 0.1863 274.1 / 0.11) 56%, oklch(0.3346 0.1863 274.1 / 0.04) 76%, oklch(0.3346 0.1863 274.1 / 0) 100%)",
+          "cssVars": "radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-900) 0%, transparent) 100%)"
         }
       }
     }

@@ -4,7 +4,7 @@ import type { BrandInput, ResolvedBrand, Slot } from './brand';
 import { NEUTRAL_SLOTS, resolveBrand, SLOTS, sourceHexes } from './brand';
 import type { Grade, Ramp } from './ramp';
 import { generateRamp, GRADES, oklchToHex } from './ramp';
-import type { Mode, Ref, Role, RoleValue } from './roles';
+import type { Gradient, Mode, Ref, Role, RoleValue } from './roles';
 import { MODES, ROLES } from './roles';
 
 /*
@@ -32,6 +32,8 @@ export interface ColorSystem {
   /* Every opaque primitive, keyed as the theme and CSS name it. */
   palette: Record<string, Color>;
   roles: Record<Mode, Record<string, ResolvedValue>>;
+  /* Each gradient role's circles, after the brand's gradient overrides. */
+  gradients: Record<Mode, Record<string, Gradient>>;
 }
 
 const deltaE2000 = differenceCiede2000();
@@ -152,5 +154,36 @@ export const createColorSystem = (input: BrandInput): ColorSystem => {
     ])
   ) as ColorSystem['roles'];
 
-  return { brand, ramps, palette, roles };
+  /* Gradient overrides move a gradient role's circles to another slot. */
+  const gradientOverrides = input.overrides?.gradients ?? {};
+  for (const [token, slots] of Object.entries(gradientOverrides)) {
+    if (!ROLES.some((r) => r.token === token && r.gradient)) {
+      throw new Error(`${brand.name}: no gradient role ${token} to override`);
+    }
+    for (const [from, to] of Object.entries(slots)) {
+      if (!SLOTS.includes(from as Slot) || !SLOTS.includes(to)) {
+        throw new Error(`${brand.name}: ${token} moves ${from} to ${to}`);
+      }
+    }
+  }
+  const gradients = Object.fromEntries(
+    MODES.map((mode) => [
+      mode,
+      Object.fromEntries(
+        ROLES.filter((r) => r.gradient).map((r) => {
+          const slots = gradientOverrides[r.token] ?? {};
+          const circles = r.gradient![mode].circles.map((c) => {
+            const to =
+              typeof c.ref === 'string' ? undefined : slots[c.ref.slot];
+            return to && typeof c.ref !== 'string'
+              ? { ...c, ref: { ...c.ref, slot: to } }
+              : c;
+          });
+          return [r.token, { circles }];
+        })
+      ),
+    ])
+  ) as ColorSystem['gradients'];
+
+  return { brand, ramps, palette, roles, gradients };
 };

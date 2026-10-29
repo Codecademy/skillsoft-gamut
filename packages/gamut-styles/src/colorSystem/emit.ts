@@ -147,7 +147,7 @@ export const toDtcgMode = (system: ColorSystem, mode: Mode): DtcgGroup => {
     $description: `${mode} mode roles for "${system.brand.name}". Do not edit.`,
   };
   for (const role of ROLES) {
-    const gradient = role.gradient?.[mode];
+    const gradient = system.gradients[mode][role.token];
     group[role.token] = {
       $type: 'color',
       $value: refString(role[mode]),
@@ -209,9 +209,9 @@ export const toTsModule = (system: ColorSystem): string => {
     MODES.map((mode) => [
       mode,
       Object.fromEntries(
-        ROLES.filter((r) => r.gradient).map((r) => [
-          r.token,
-          gradientCss(system, r.gradient![mode]),
+        Object.entries(system.gradients[mode]).map(([token, gradient]) => [
+          token,
+          gradientCss(system, gradient),
         ])
       ),
     ])
