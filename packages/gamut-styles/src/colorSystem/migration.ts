@@ -1,7 +1,7 @@
 /*
  * The migration layer: how today's Gamut color aliases and component colors
  * land on the role layer. Ported from gamut-sandbox PR #34
- * (`src/colorSystem/migration.ts` at c363244), design's source of truth, shown
+ * (`src/colorSystem/migration.ts` at 15c2195), design's source of truth, shown
  * at #/migration. The data below is verbatim apart from `Slot` → `ComponentSlot`
  * (`Slot` here means a brand slot) and comment style. Re-syncing is a
  * deliberate step, like the rest of the port.
@@ -440,10 +440,9 @@ const cap = (word: string): string => word[0].toUpperCase() + word.slice(1);
 
 /*
  * The Alert pattern, shared by its status variants: the tint carries the
- * surface, the status ink carries the icon, and the message stays
- * `text-default`. The status inks clear text contrast on their own tint, but
- * body copy is easier to read in the default ink, and the icon is what
- * signals the status.
+ * surface, and the status ink carries the icon and the message. The status
+ * inks clear text contrast on their own tint, so the message can carry the
+ * status too. A floating Alert's border takes the same ink.
  */
 const statusAlert = (
   name: string,
@@ -465,7 +464,7 @@ const statusAlert = (
       slot: 'Message',
       kind: 'text',
       legacy: 'auto (Background)',
-      role: 'text-default',
+      role: `text-${status}`,
     },
   ],
 });
@@ -475,7 +474,7 @@ export const COMPONENTS: ComponentMapping[] = [
     id: 'alert',
     name: 'Alert',
     summary:
-      'Status variants move from saturated fills with auto-contrast text to the status tints: `surface-*` behind, `text-*` on the icon, `text-default` for the message. The buttons inside follow the secondary button.',
+      'Status variants move from saturated fills with auto-contrast text to the status tints: `surface-*` behind, `text-*` on the icon and the message. A floating Alert takes its `text-*` ink on the border too. The buttons inside follow the secondary button.',
     variants: [
       statusAlert('Error', 'error', 'red-600'),
       statusAlert('Success', 'success', 'green'),
@@ -1273,7 +1272,7 @@ export const COMPONENTS: ComponentMapping[] = [
     id: 'tooltip',
     name: 'ToolTip / InfoTip / Popover',
     summary:
-      'Every floating surface is `surface-raised` with a `border-default` edge, beak included. `background-contrast` goes away.',
+      'Every floating surface is `surface-raised` with a `border-default` edge, beak included, except a floating Alert, whose edge takes its status ink. `background-contrast` goes away.',
     variants: [
       {
         name: 'Tip body',
