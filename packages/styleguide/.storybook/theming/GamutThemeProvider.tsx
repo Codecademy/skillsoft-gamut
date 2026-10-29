@@ -1,8 +1,7 @@
 import { useLayoutEffect, useRef } from 'react';
 import {
-  Background,
-  corePalette,
-  ColorModes,
+  ColorMode,
+  Colors,
   GamutProvider,
   coreTheme,
   adminTheme,
@@ -18,11 +17,6 @@ const STORYBOOK_CSP_NONCE = 'storybook-csp-nonce';
  * Story functions must be called as a regular function to avoid full-remounts
  * See: https://github.com/storybookjs/storybook/issues/12255
  */
-
-const themeBackground: Record<ColorModes, 'white' | 'navy'> = {
-  light: 'white',
-  dark: 'navy',
-};
 
 const themeMap = {
   core: coreTheme,
@@ -46,9 +40,11 @@ export const withEmotion = (Story: any, context: GlobalsContext) => {
   const selectedTheme = context.globals.theme;
   const useLogicalProperties = context.globals.logicalProps === 'true';
   const direction = context.globals.direction ?? 'ltr';
-  const background = corePalette[themeBackground[colorMode]];
   const storyRef = useRef<HTMLDivElement>(null);
   const currentTheme = themeMap[selectedTheme];
+  /* The page surface of the selected mode, as the palette color it resolves to. */
+  const pageBg = currentTheme.modes[colorMode]['background-current'];
+  const background = currentTheme._getColorValue(pageBg);
 
   useLayoutEffect(() => {
     const storyEl = storyRef.current?.closest(
@@ -72,13 +68,14 @@ export const withEmotion = (Story: any, context: GlobalsContext) => {
         useLogicalProperties={useLogicalProperties}
         theme={currentTheme as unknown as Theme}
       >
-        <Background
+        <ColorMode
           alwaysSetVariables
-          bg={themeBackground[colorMode]}
+          bg={pageBg as Colors}
+          mode={colorMode}
           ref={storyRef}
         >
           {Story()}
-        </Background>
+        </ColorMode>
       </GamutProvider>
     );
   }
@@ -89,13 +86,14 @@ export const withEmotion = (Story: any, context: GlobalsContext) => {
       useLogicalProperties={useLogicalProperties}
       theme={currentTheme as unknown as Theme}
     >
-      <Background
+      <ColorMode
         alwaysSetVariables
-        bg={themeBackground[colorMode]}
+        bg={pageBg as Colors}
+        mode={colorMode}
         ref={storyRef}
       >
         {Story()}
-      </Background>
+      </ColorMode>
     </GamutProvider>
   );
 };

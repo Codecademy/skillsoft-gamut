@@ -39,9 +39,9 @@ export const Code = styled.code`
   white-space: nowrap;
   border-radius: 3px;
   font-size: 0.8em;
-  border: 1px solid ${themed('colors.gray-200')};
-  color: ${themed('colors.navy-700')};
-  background-color: ${themed('colors.gray-100')};
+  border: 1px solid ${themed('colors.border-subtle')};
+  color: ${themed('colors.text-default')};
+  background-color: ${themed('colors.surface-sunken')};
   display: inline-block;
 
   ::-webkit-scrollbar {
@@ -50,7 +50,7 @@ export const Code = styled.code`
   }
 
   ::-webkit-scrollbar-thumb {
-    background: themed('colors.gray-200');
+    background: ${themed('colors.border-subtle')};
   }
 
   ::-webkit-scrollbar-track {

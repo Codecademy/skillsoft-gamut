@@ -12,7 +12,7 @@ import { Link } from './components/Elements/Markdown';
 const WrappedPre = styled(htmlComponents.pre)(
   // gives the source block a white background - pretty fragile but easy to change if needed
   css({
-    '.docblock-source, .css-5owncf': { backgroundColor: 'background' },
+    '.docblock-source, .css-5owncf': { backgroundColor: 'surface-raised' },
   })
 );
 

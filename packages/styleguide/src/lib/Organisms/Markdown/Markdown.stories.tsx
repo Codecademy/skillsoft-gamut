@@ -41,7 +41,7 @@ const elements = {
   CustomElement: {
     component: ({ title }: { title: string }) => {
       return (
-        <Text as="h3" color="primary" fontSize={26} m={24}>
+        <Text as="h3" color="action-primary" fontSize={26} m={24}>
           {title}
         </Text>
       );
@@ -76,7 +76,9 @@ export const LinkOverride: Story = {
     text: '[This was a link](https://codecademy.com), Now it is not.',
     overrides: {
       a: {
-        component: (props) => <Text {...props} as="span" color="blue-500" />,
+        component: (props) => (
+          <Text {...props} as="span" color="action-primary" />
+        ),
       },
     },
   },

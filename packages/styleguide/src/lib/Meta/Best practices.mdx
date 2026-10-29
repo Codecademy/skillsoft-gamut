@@ -19,7 +19,7 @@ For best practices for writing for specific components, like alerts, errors, or 
 
 The way we access design tokens is becoming increasingly important as we move away from a single theme and towards a system of themes. The best way to access design tokens is through our semantic colors, which are are tied intrinsically to ColorModes. This means that when you use a semantic color, you are guaranteed to get the right color for the right theme. Using variants and and its related utilities will also guarantee you have access to the right tokens, typings, and _state_ going forward. It is also [safer](https://gamut.codecademy.com/?path=/docs-foundations-system-compose--page)!
 
-Think of our semantic color names as a variable referencing _what the primary use of the color is within each color mode_. For example - an icon set to the `text` color will match _the primary color of text within that color mode._
+Think of our semantic color names as a variable referencing _what the primary use of the color is within each color mode_. For example - an icon set to the `text-default` color will match _the primary color of text within that color mode._
 
 For specific semantic name to color, please see the [ColorMode](https://gamut.codecademy.com/?path=/docs-foundations-colormode--page) documentation.
 
@@ -33,7 +33,7 @@ import styled from '@emotion/styled';
 const Box = styled.div(css({ p: 4 }));
 
 // Mutiple values
-const OtherCoolThing = styled.div(css({ color: 'primary', p: 4 }));
+const OtherCoolThing = styled.div(css({ color: 'action-primary', p: 4 }));
 
 // Need some variants?
 const Anchor = styled.a(
@@ -42,15 +42,15 @@ const Anchor = styled.a(
     defaultVariant: 'interface',
     variants: {
       interface: {
-        color: 'text',
+        color: 'text-default',
         '&:hover': {
-          color: 'text-accent',
+          color: 'action-primary',
         },
       },
       inline: {
-        color: 'primary',
+        color: 'action-primary',
         '&:hover': {
-          color: 'secondary',
+          color: 'action-primary-hover',
         },
       },
     },
@@ -62,8 +62,8 @@ const UtilityBox = styled.div(
   states({
     base: { mx: 4, my: 8, p: 16 },
     disabled: {
-      bg: 'background-disabled',
-      color: 'text-disabled',
+      bg: 'action-disabled',
+      color: 'surface-raised',
     },
     center: {
       alignItems: 'center',
@@ -85,7 +85,7 @@ import React from 'react';
 
 const someWrapperStates = states({
   absolute: { position: 'absolute', left: 'calc(50% - 85px)' },
-  danger: { color: 'text', bg: 'danger' },
+  danger: { color: 'text-inverse', bg: 'action-danger' },
 });
 
 const SomeWrapper = styled.div(someWrapperStates);

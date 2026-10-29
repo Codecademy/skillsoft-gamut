@@ -7,7 +7,6 @@ import {
   adminTheme,
   lxStudioTheme,
   percipioTheme,
-  CoreTheme,
   platformTheme,
   ColorMode,
 } from '@skillsoft/gamut-styles';
@@ -16,6 +15,7 @@ import {
   DocsContextProps,
   SourceContainer,
 } from '@storybook/addon-docs/blocks';
+import { Theme } from '@emotion/react';
 import { ThemeProvider } from 'storybook/theming';
 import { useMemo } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
@@ -87,8 +87,8 @@ export const DocsContainer: React.FC<{
     >
       <GamutProvider
         cache={createEmotionCache({ speedy: false })}
-        // This is typed to the CoreTheme in theme.d.ts
-        theme={currentTheme as unknown as CoreTheme}
+        // This is typed to the SkillsoftTheme in theme.d.ts
+        theme={currentTheme as unknown as Theme}
         useLogicalProperties={useLogicalProperties}
       >
         <ColorMode mode="light">

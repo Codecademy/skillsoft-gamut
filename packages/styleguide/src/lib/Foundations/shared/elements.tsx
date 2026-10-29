@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { Anchor, Box } from '@skillsoft/gamut';
 import type { ElevationState } from '@skillsoft/gamut-styles';
 import {
-  Background,
+  ColorMode,
   coreSwatches,
   css,
   lxStudioColors,
@@ -193,14 +193,15 @@ export const rgbaSwatch = {
         const firstHexes = { 100: first, 200: second, 300: third, 400: fourth };
 
         return (
-          <Background
-            bg={id === 'white' ? 'navy' : 'white'}
+          <ColorMode
+            bg="surface-default"
             borderRadius="md"
+            mode={id === 'white' ? 'dark' : 'light'}
             p={4}
           >
             <ColorScale colors={firstHexes} />
             <ColorScale colors={rest} />
-          </Background>
+          </ColorMode>
         );
       },
     },
@@ -281,7 +282,7 @@ export const FontFamilyTable = () => {
     () => ({
       rows: Object.entries(currentTheme.fontFamily).map(([id, value]) => ({
         id,
-        value: value as string,
+        value,
       })),
       columns: [
         PROP_COLUMN,
@@ -381,7 +382,12 @@ export const space = {
       name: 'Example',
       size: 'fill',
       render: ({ value }: any) => (
-        <Box bg="navy" display="inline-block" height={value} width={value} />
+        <Box
+          bg="text-default"
+          display="inline-block"
+          height={value}
+          width={value}
+        />
       ),
     },
   ],
@@ -429,7 +435,7 @@ export const borderRadii = {
       size: 'fill',
       render: ({ value }: any) => (
         <Box
-          bg="navy"
+          bg="text-default"
           borderRadius={value}
           display="inline-block"
           height="4em"
@@ -441,15 +447,15 @@ export const borderRadii = {
 };
 
 export const LightModeTable = () => (
-  <Background bg="white">
+  <ColorMode bg="surface-default" mode="light">
     <TokenTable bg={false} {...(lightMode as any)} />
-  </Background>
+  </ColorMode>
 );
 
 export const DarkModeTable = () => (
-  <Background bg="navy">
+  <ColorMode bg="surface-default" mode="dark">
     <TokenTable bg={false} {...(darkMode as any)} />
-  </Background>
+  </ColorMode>
 );
 /* eslint-disable @skillsoft/gamut/import-paths */
 
@@ -600,7 +606,7 @@ export const createElevationTable = (elevationScale: Theme['elevation']) => ({
       render: ({ shadow, transform }: any) => (
         <Box
           border={1}
-          borderColor="border-tertiary"
+          borderColor="border-subtle"
           borderStyle="dashed"
           display="inline-block"
           m={12}

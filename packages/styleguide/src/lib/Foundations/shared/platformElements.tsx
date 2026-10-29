@@ -1,5 +1,5 @@
 import {
-  Background,
+  ColorMode,
   platformEditorColors,
   platformSwatches,
   platformTheme,
@@ -142,13 +142,13 @@ export const platformDarkMode = {
 };
 
 export const PlatformLightModeTable = () => (
-  <Background bg="white">
+  <ColorMode bg="surface-default" mode="light">
     <TokenTable bg={false} {...(platformLightMode as any)} />
-  </Background>
+  </ColorMode>
 );
 
 export const PlatformDarkModeTable = () => (
-  <Background bg="navy">
+  <ColorMode bg="surface-default" mode="dark">
     <TokenTable bg={false} {...(platformDarkMode as any)} />
-  </Background>
+  </ColorMode>
 );

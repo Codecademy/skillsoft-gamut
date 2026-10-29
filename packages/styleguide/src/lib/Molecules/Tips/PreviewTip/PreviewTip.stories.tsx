@@ -34,8 +34,8 @@ const AvatarExample = () => {
       <PreviewTip
         aria-label="sanrio unmotivated gudetama"
         avatar={
-          <Box bg="navy" borderRadius="full" height="100%" width="100%">
-            <SmileyIndifferentIcon color="yellow" size="100%" />
+          <Box bg="text-default" borderRadius="full" height="100%" width="100%">
+            <SmileyIndifferentIcon color="text-inverse" size="100%" />
           </Box>
         }
         height={32}
