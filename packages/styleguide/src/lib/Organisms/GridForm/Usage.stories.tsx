@@ -5,6 +5,7 @@ import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
 const meta: TypeWithDeepControls<Meta<typeof GridForm>> = {
   component: GridForm,
+  parameters: { deepControls: { enabled: true } },
   args: {
     fields: [
       {

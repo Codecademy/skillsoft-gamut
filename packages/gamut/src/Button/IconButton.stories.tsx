@@ -6,11 +6,11 @@ import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
 import { FlexBox } from '../Box';
 import { IconButton } from './IconButton';
-import { buttonVariants } from './shared';
 
 const meta: TypeWithDeepControls<Meta<typeof IconButton>> = {
   title: 'Actions/Buttons/IconButton',
   component: IconButton,
+  parameters: { deepControls: { enabled: true } },
   args: {
     disabled: false,
     size: 'normal',
@@ -27,19 +27,10 @@ const meta: TypeWithDeepControls<Meta<typeof IconButton>> = {
     },
     variant: {
       control: 'radio',
-      options: buttonVariants,
-      table: {
-        type: { summary: buttonVariants.join(' | ') },
-        defaultValue: { summary: 'secondary' },
-      },
     },
     size: {
       control: 'radio',
-      options: ['normal', 'small', 'large'],
-      table: {
-        type: { summary: 'small | normal | large' },
-        defaultValue: { summary: 'normal' },
-      },
+      table: { defaultValue: { summary: 'normal' } },
     },
     icon: {
       control: 'select',

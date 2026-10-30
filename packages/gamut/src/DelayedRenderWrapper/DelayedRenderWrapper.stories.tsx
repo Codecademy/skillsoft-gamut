@@ -17,10 +17,7 @@ const meta: Meta<typeof DelayedRenderWrapper> = {
     delay: {
       control: { type: 'number', min: 0, step: 500 },
       description: 'Delay in milliseconds before rendering children',
-      table: {
-        type: { summary: 'number' },
-        defaultValue: { summary: '1000' },
-      },
+      table: { defaultValue: { summary: '1000' } },
     },
   },
 };

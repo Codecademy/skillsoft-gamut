@@ -12,15 +12,6 @@ const meta: Meta<typeof RadialProgress> = {
     size: 120,
     children: '',
   },
-  argTypes: {
-    strokeLinecap: {
-      control: 'radio',
-      options: ['round', 'butt', 'square'],
-      table: {
-        defaultValue: { summary: 'round' },
-      },
-    },
-  },
 };
 
 export default meta;

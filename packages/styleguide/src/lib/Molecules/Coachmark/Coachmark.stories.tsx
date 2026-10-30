@@ -7,6 +7,7 @@ import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
 const meta: TypeWithDeepControls<Meta<typeof Coachmark>> = {
   component: Coachmark,
+  parameters: { deepControls: { enabled: true } },
   args: {
     popoverProps: {
       beak: undefined,
