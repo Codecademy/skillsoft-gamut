@@ -36,6 +36,7 @@ const meta: TypeWithDeepControls<Meta<typeof Dialog>> = {
       defaultTipText: 'Close dialog',
       defaultTipAlignment: 'top-center',
     }),
+    variant: { control: 'radio' },
   },
   render: function DialogWithTrigger(args) {
     const [isOpen, setIsOpen] = useState(false);
