@@ -60,6 +60,10 @@ const themeScales = coreTheme as unknown as Record<
 const getScaleTokens = ({ scale }: SystemPropConfig) =>
   typeof scale === 'string' ? Object.keys(themeScales[scale] ?? {}) : [];
 
+// Object keys are strings, but stories set numeric scale args like `p: 8`.
+const toOptionValue = (token: string) =>
+  String(Number(token)) === token ? Number(token) : token;
+
 const toKebabCase = (name: string) =>
   name.replace(/[A-Z]/g, (char) => `-${char.toLowerCase()}`);
 
@@ -123,7 +127,8 @@ const enhanceSystemProp = (
     ...argType,
     description: argType.description || describeCssProperties(config),
     control: argType.control ?? { type: tokens.length > 0 ? 'select' : 'text' },
-    ...(tokens.length > 0 && !argType.options && { options: tokens }),
+    ...(tokens.length > 0 &&
+      !argType.options && { options: tokens.map(toOptionValue) }),
     table: {
       ...argType.table,
       category: argType.table?.category ?? category,
