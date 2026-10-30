@@ -75,16 +75,20 @@ const renderColumnChildren = (
 
 const gapOptions = [8, 16, 24, 32, 48] as const;
 
+const gapArgType = {
+  control: 'select',
+  options: gapOptions,
+  table: { type: { summary: gapOptions.join(' | ') } },
+} as const;
+
 const meta: Meta<typeof LayoutGrid> = {
   title: 'Containers/LayoutGrid',
   component: LayoutGrid,
   args: { gap: 24 },
   argTypes: {
-    gap: {
-      control: 'radio',
-      options: gapOptions,
-      table: { type: { summary: gapOptions.join(' | ') } },
-    },
+    gap: gapArgType,
+    rowGap: gapArgType,
+    columnGap: gapArgType,
   },
 };
 

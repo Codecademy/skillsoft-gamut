@@ -34,10 +34,7 @@ const meta: Meta<typeof Card> = {
       },
     },
     borderRadius: {
-      control: 'select',
-      options: ['none', 'sm', 'md', 'lg', 'xl', 'full'],
       table: {
-        type: { summary: "'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'" },
         defaultValue: { summary: "isInteractive ? 'md' : 'none'" },
       },
     },
