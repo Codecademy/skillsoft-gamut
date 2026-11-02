@@ -17,6 +17,7 @@ import { Checkbox } from './Checkbox';
 const meta: TypeWithDeepControls<Meta<typeof Checkbox>> = {
   title: 'Inputs & forms/Checkbox',
   component: Checkbox,
+  parameters: { deepControls: { enabled: true } },
   args: {
     htmlFor: 'example-checkbox',
     label: 'A Checkbox Label',

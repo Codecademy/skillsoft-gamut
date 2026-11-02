@@ -8,6 +8,7 @@ import { FormGroupLabel } from './FormGroupLabel';
 const meta: TypeWithDeepControls<Meta<typeof FormGroupLabel>> = {
   title: 'Inputs & forms/Form/FormGroupLabel',
   component: FormGroupLabel,
+  parameters: { deepControls: { enabled: true } },
   args: { children: 'I am a label' },
   argTypes: {
     ...infotipNestedArgTypes,
