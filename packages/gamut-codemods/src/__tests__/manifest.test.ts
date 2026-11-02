@@ -3,7 +3,7 @@ import path from 'node:path';
 
 import ts from 'typescript';
 
-import { renameSpecifier } from '../lib/manifest';
+import { type DeepImport, renameSpecifier } from '../lib/manifest';
 import { presets } from '../presets';
 import { manifest } from '../presets/scope-swap/manifest';
 
@@ -57,10 +57,16 @@ const importsToCheck = () => {
 };
 
 /* `@codecademy/gamut/dist/Form/styles` -> packages/gamut/src/Form/styles(.ts|/index.tsx|...) */
-const sourceModuleFor = (deepPath: string) => {
-  const match = /^@codecademy\/([\w-]+)\/dist\/(.+)$/.exec(deepPath);
+const sourceModuleFor = ({ from, sourcePath }: DeepImport) => {
+  const match = /^@codecademy\/([\w-]+)\/dist\/(.+)$/.exec(from);
   if (!match) return null;
-  const base = path.join(REPO, 'packages', match[1], 'src', match[2]);
+  const base = path.join(
+    REPO,
+    'packages',
+    match[1],
+    'src',
+    sourcePath ?? match[2]
+  );
   return (
     ['.ts', '.tsx', '/index.ts', '/index.tsx']
       .map((ext) => base + ext)
@@ -112,7 +118,7 @@ describe('manifests', () => {
   */
   it('only rewrite deep imports whose names all exist at the target', () => {
     const rows = manifest.deepImports.filter((row) => row.to && !row.onlyNames);
-    const sources = rows.map((row) => sourceModuleFor(row.from));
+    const sources = rows.map(sourceModuleFor);
     const targets = rows.map((row) => renameSpecifier(manifest, row.to!)!);
     const found = exportsOf([
       ...sources.map((s) => s ?? 'missing'),
