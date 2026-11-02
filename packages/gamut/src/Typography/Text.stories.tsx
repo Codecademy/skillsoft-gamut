@@ -17,25 +17,12 @@ const meta: Meta<typeof Text> = {
     children: 'Welcome to Gamut!',
   },
   argTypes: {
-    variant: {
-      control: 'select',
-      options: Object.keys(typographyStyleVariants),
-      table: {
-        type: { summary: Object.keys(typographyStyleVariants).join(' | ') },
-      },
-    },
     as: {
       control: 'select',
       options: Object.keys(typographyElementVariants),
       table: {
         type: { summary: Object.keys(typographyElementVariants).join(' | ') },
-        defaultValue: { summary: 'span' },
       },
-    },
-    truncate: {
-      control: 'radio',
-      options: typographyUtilities.truncation,
-      table: { type: { summary: typographyUtilities.truncation.join(' | ') } },
     },
     truncateLines: {
       control: 'select',

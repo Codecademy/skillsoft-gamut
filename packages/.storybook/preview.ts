@@ -6,9 +6,10 @@ import { DocsContainer } from './components/Elements/DocsContainer';
 import { DocsPage } from './components/Elements/DocsPage';
 import { breakpoints } from '@skillsoft/gamut-styles';
 import { enhanceSystemProps } from './systemProps';
+import { enhanceVariantProps } from './variantProps';
 
 const preview: Preview = {
-  argTypesEnhancers: [enhanceSystemProps],
+  argTypesEnhancers: [enhanceVariantProps, enhanceSystemProps],
   parameters: {
     a11y: {
       test: 'error',
@@ -16,7 +17,6 @@ const preview: Preview = {
     backgrounds: {
       disable: true,
     },
-    deepControls: { enabled: true },
     options: {
       storySort: {
         order: ['Actions', ['Buttons', ['Button Examples', '*']], '*'],

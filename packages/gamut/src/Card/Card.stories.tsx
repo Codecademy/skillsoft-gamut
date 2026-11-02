@@ -12,27 +12,6 @@ const meta: Meta<typeof Card> = {
     children: 'Hello world I am a Card',
   },
   argTypes: {
-    variant: {
-      control: 'select',
-      options: ['default', 'white', 'yellow', 'beige', 'navy', 'hyper'],
-      table: {
-        type: {
-          summary:
-            "'default' | 'white' | 'yellow' | 'beige' | 'navy' | 'hyper'",
-        },
-        defaultValue: { summary: 'default' },
-      },
-    },
-    shadow: {
-      control: 'radio',
-      options: ['none', 'patternLeft', 'patternRight', 'outline'],
-      table: {
-        type: {
-          summary: "'none' | 'patternLeft' | 'patternRight' | 'outline'",
-        },
-        defaultValue: { summary: 'none' },
-      },
-    },
     borderRadius: {
       table: {
         defaultValue: { summary: "isInteractive ? 'md' : 'none'" },
