@@ -33,6 +33,6 @@
     "build": "nx build gamut-codemods",
     "verify": "tsc --noEmit -p tsconfig.lib.json && tsc --noEmit -p tsconfig.spec.json"
   },
-  "types": "./dist/cli.d.ts",
-  "type": "commonjs"
+  "type": "commonjs",
+  "types": "./dist/cli.d.ts"
 }
