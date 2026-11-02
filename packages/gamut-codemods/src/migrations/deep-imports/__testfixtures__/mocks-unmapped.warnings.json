@@ -1,0 +1,4 @@
+[
+  "'@codecademy/gamut/dist/Nope/thing' in a mock or require() needs a manual rewrite",
+  "'@codecademy/gamut/dist/ButtonBase/ButtonBase' in a mock or require() needs a manual rewrite"
+]

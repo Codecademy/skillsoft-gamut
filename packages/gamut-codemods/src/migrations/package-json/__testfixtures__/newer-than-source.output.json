@@ -1,0 +1,7 @@
+{
+  "name": "app",
+  "dependencies": {
+    "@skillsoft/gamut": "^{{version}}",
+    "@skillsoft/gamut-styles": "^{{version}}"
+  }
+}

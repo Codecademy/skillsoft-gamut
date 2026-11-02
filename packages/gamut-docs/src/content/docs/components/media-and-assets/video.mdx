@@ -23,6 +23,12 @@ Use `Video` to play a direct video file or stream (MP4, HLS, DASH) or embed a Yo
 
 - **Markdown content that already links to a video** — [Markdown](/components/data-display/markdown/)'s own `<video>` and YouTube/Vimeo `<iframe>` overrides render into `Video` automatically; don't wrap it a second time.
 
+## Requirements
+
+`Video` imports a stylesheet (`vidstack-styles.css`) directly, so it needs a bundler that can handle CSS imports, such as webpack, Vite, or Next.js. It won't load with native ESM in Node or in a browser with no bundler, and fails with `Unknown file extension ".css"`.
+
+Video is imported from `@skillsoft/gamut/Video`, not the root package. Apps that don't use Video don't load the stylesheet.
+
 ## Usage examples
 
 ### Embedding YouTube or Vimeo

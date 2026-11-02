@@ -1,0 +1,124 @@
+/*
+  The shape of a preset's manifest: the data describing what changed. Most
+  contributions should only add rows to a preset's manifest.ts plus a
+  fixture; migrations read from here and never hardcode package or export
+  names.
+*/
+
+export interface PackageRename {
+  to: string;
+}
+
+export interface RemovedPackage {
+  /* Old package names to depend on instead, in package.json. */
+  expandTo: string[];
+  /* Old package names to share as singletons in Module Federation config. */
+  mfSharedAs: string[];
+  note: string;
+}
+
+export interface MovedExport {
+  from: string;
+  to: string;
+  names: string[];
+  note: string;
+  /* Checklist key (see the preset) to print when this rule moves anything. */
+  checklist?: string;
+}
+
+export interface DeepImport {
+  from: string;
+  /* null when there's no public replacement; the migration warns instead. */
+  to: string | null;
+  /* Old imported name -> new exported name. Local bindings are kept. */
+  renames?: Record<string, string>;
+  /*
+    When only some of the old module went public: the old names that work
+    from `to` (after `renames`). A declaration importing anything else is
+    left alone with a warning. manifest.test.ts fails if a row sends names
+    to `to` that it doesn't export, so partial rows must list these.
+  */
+  onlyNames?: string[];
+  note?: string;
+}
+
+export interface Manifest {
+  /* Old package -> new package. */
+  packages: Record<string, PackageRename>;
+  /* Packages with no replacement under the new name. */
+  removedPackages: Record<string, RemovedPackage>;
+  /* Version range written to package.json, keyed by NEW package name. */
+  targetVersions: Record<string, string>;
+  /*
+    Newest release of each OLD package the new one is known to match,
+    keyed by OLD name. A consumer already on something newer may use APIs
+    the new package doesn't have yet; package-json warns.
+  */
+  sourceVersions: Record<string, string>;
+  movedExports: MovedExport[];
+  deepImports: DeepImport[];
+  /* ESLint plugin prefix, for rule keys, `plugin:` extends, and comments. */
+  eslintPlugin: { from: string; to: string };
+}
+
+/*
+  Match a specifier against a package name, exact or with a subpath.
+  '@codecademy/gamut' matches '@codecademy/gamut/Video' but not
+  '@codecademy/gamut-styles'. Returns the subpath ('' or '/Video') or null.
+*/
+export const matchPackage = (specifier: string, pkg: string) => {
+  if (specifier === pkg) return '';
+  if (specifier.startsWith(`${pkg}/`)) return specifier.slice(pkg.length);
+  return null;
+};
+
+/*
+  The lowest x.y.z a package.json range allows, or null for anything that
+  isn't a plain version, `^`/`~`/`>=` range, or `npm:` alias (`*`, URLs,
+  `workspace:`). Prerelease tags are ignored.
+*/
+export const minVersion = (range: string) => {
+  const match =
+    /^(?:npm:(?:@[^/]+\/)?[^@]+@)?(?:\^|~|>=)?\s*v?(\d+)\.(\d+)\.(\d+)/.exec(
+      range.trim()
+    );
+  return match ? match.slice(1, 4).map(Number) : null;
+};
+
+const parseVersion = (version: string) => version.split('.').map(Number);
+
+/* True when `range` can't be satisfied by `version` or anything older. */
+export const isNewerThan = (range: string, version: string) => {
+  const min = minVersion(range);
+  if (!min) return false;
+  const max = parseVersion(version);
+  for (let i = 0; i < 3; i += 1) {
+    if (min[i] !== max[i]) return min[i] > max[i];
+  }
+  return false;
+};
+
+/* True when every version `range` allows is `version` or newer. */
+export const isAtLeast = (range: string, version: string) => {
+  const min = minVersion(range);
+  if (!min) return false;
+  const floor = parseVersion(version);
+  for (let i = 0; i < 3; i += 1) {
+    if (min[i] !== floor[i]) return min[i] > floor[i];
+  }
+  return true;
+};
+
+/* The new name for an old specifier, keeping any subpath. */
+export const renameSpecifier = (manifest: Manifest, value: string) => {
+  for (const [from, { to }] of Object.entries(manifest.packages)) {
+    const subpath = matchPackage(value, from);
+    if (subpath !== null) return to + subpath;
+  }
+  return null;
+};
+
+export const removedPackageFor = (manifest: Manifest, value: string) =>
+  Object.keys(manifest.removedPackages).find(
+    (pkg) => matchPackage(value, pkg) !== null
+  );

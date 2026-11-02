@@ -7,6 +7,8 @@ packages/gamut-patterns/src/patterns
 packages/gamut-styles/**/*.d.ts
 packages/styleguide/stories/Core/Atoms/Markdown/*.md
 packages/code-connect/**/*
+# Codemod fixtures are exact expected output, formatting included.
+packages/gamut-codemods/**/__testfixtures__
 
 /.nx/cache
 /.nx/workspace-data
