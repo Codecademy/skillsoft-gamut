@@ -18,7 +18,6 @@ import { infotipNestedArgTypes } from '~styleguide/argTypes';
 
 const meta: TypeWithDeepControls<Meta<typeof Checkbox>> = {
   component: Checkbox,
-  parameters: { deepControls: { enabled: true } },
   args: {
     htmlFor: 'example-checkbox',
     label: 'A Checkbox Label',

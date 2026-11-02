@@ -9,7 +9,6 @@ import { infotipNestedArgTypes } from '~styleguide/argTypes';
 
 const meta: TypeWithDeepControls<Meta<typeof Radio>> = {
   component: Radio,
-  parameters: { deepControls: { enabled: true } },
   args: {
     htmlFor: 'example-radio',
     label: 'Option 1',

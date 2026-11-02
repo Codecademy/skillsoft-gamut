@@ -6,7 +6,6 @@ import { infotipNestedArgTypes } from '~styleguide/argTypes';
 
 const meta: TypeWithDeepControls<Meta<typeof FormGroup>> = {
   component: FormGroup,
-  parameters: { deepControls: { enabled: true } },
   argTypes: { ...infotipNestedArgTypes },
 };
 

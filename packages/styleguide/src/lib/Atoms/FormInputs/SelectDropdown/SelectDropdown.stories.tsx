@@ -16,7 +16,6 @@ const fruitOptions = ['Apple', 'Banana', 'Cherry', 'Dragonfruit', 'Eggplant'];
 
 const meta: TypeWithDeepControls<Meta<typeof SelectDropdown>> = {
   component: SelectDropdown,
-  parameters: { deepControls: { enabled: true } },
   args: {
     id: 'example-select',
     name: 'example-select',

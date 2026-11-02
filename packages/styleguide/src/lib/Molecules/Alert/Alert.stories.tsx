@@ -9,7 +9,6 @@ import { ALERTS } from './constants';
 
 const meta: TypeWithDeepControls<Meta<typeof Alert>> = {
   component: Alert,
-  parameters: { deepControls: { enabled: true } },
   args: {},
   argTypes: {
     ...closeButtonPropsArgTypes({

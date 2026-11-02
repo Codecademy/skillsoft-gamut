@@ -6,7 +6,6 @@ import { infotipNestedArgTypes } from '~styleguide/argTypes';
 
 const meta: TypeWithDeepControls<Meta<typeof FormGroupLabel>> = {
   component: FormGroupLabel,
-  parameters: { deepControls: { enabled: true } },
   args: { children: 'I am a label' },
   argTypes: {
     ...infotipNestedArgTypes,
