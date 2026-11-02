@@ -51,6 +51,7 @@ const meta: TypeWithDeepControls<Meta<typeof SelectDropdown>> = {
         type: { summary: 'string | string[]' },
       },
     },
+    size: { control: 'radio' },
     placeholder: { table: { disable: true } },
     formatCreateLabel: { table: { disable: true } },
     validationMessage: { table: { disable: true } },
