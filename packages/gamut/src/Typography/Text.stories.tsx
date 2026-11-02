@@ -1,4 +1,3 @@
-import { theme } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Fragment } from 'react';
 
@@ -44,11 +43,6 @@ const meta: Meta<typeof Text> = {
       table: {
         type: { summary: typographyUtilities.truncateLines.join(' | ') },
       },
-    },
-    fontSize: {
-      control: 'select',
-      options: Object.keys(theme.fontSize).map(Number),
-      table: { type: { summary: Object.keys(theme.fontSize).join(' | ') } },
     },
   },
 };
