@@ -15,6 +15,7 @@ import { Modal } from './Modal';
 const meta: TypeWithDeepControls<Meta<typeof Modal>> = {
   title: 'Overlays/Modal',
   component: Modal,
+  parameters: { deepControls: { enabled: true } },
   args: {
     title: 'Modal Modality',
     size: 'small',

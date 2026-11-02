@@ -13,6 +13,7 @@ import { Alert } from './Alert';
 const meta: TypeWithDeepControls<Meta<typeof Alert>> = {
   title: 'Feedback/Alert',
   component: Alert,
+  parameters: { deepControls: { enabled: true } },
   args: {},
   argTypes: {
     ...closeButtonPropsArgTypes({
@@ -24,6 +25,8 @@ const meta: TypeWithDeepControls<Meta<typeof Alert>> = {
         disable: true,
       },
     },
+    type: { control: 'select' },
+    placement: { control: 'radio' },
   },
 };
 

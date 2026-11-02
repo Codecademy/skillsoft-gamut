@@ -14,6 +14,7 @@ const popoverText = 'You should click the button.';
 const meta: TypeWithDeepControls<Meta<typeof Coachmark>> = {
   title: 'Feedback/Coachmark',
   component: Coachmark,
+  parameters: { deepControls: { enabled: true } },
   args: {
     popoverProps: {
       beak: undefined,
