@@ -11,6 +11,7 @@ import { FormGroup } from './FormGroup';
 const meta: TypeWithDeepControls<Meta<typeof FormGroup>> = {
   title: 'Inputs & forms/Form/FormGroup',
   component: FormGroup,
+  parameters: { deepControls: { enabled: true } },
   argTypes: { ...infotipNestedArgTypes },
 };
 

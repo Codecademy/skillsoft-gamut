@@ -39,6 +39,12 @@ export interface DeepImport {
     to `to` that it doesn't export, so partial rows must list these.
   */
   onlyNames?: string[];
+  /*
+    Where `from` lives in this repo's src now, relative to the package's
+    src dir, when it moved after the upstream release `from` names.
+    manifest.test.ts reads it; `from` stays the path consumers import.
+  */
+  sourcePath?: string;
   note?: string;
 }
 

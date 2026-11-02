@@ -15,6 +15,7 @@ import { RadioGroup } from './RadioGroup';
 const meta: TypeWithDeepControls<Meta<typeof Radio>> = {
   title: 'Inputs & forms/Radio',
   component: Radio,
+  parameters: { deepControls: { enabled: true } },
   args: {
     htmlFor: 'example-radio',
     label: 'Option 1',

@@ -32,6 +32,7 @@ const meta: TypeWithDeepControls<Meta<typeof SelectDropdown>> = {
   parameters: {
     // This is to prevent the component description from being displayed in the docs
     docs: { extractComponentDescription: () => null },
+    deepControls: { enabled: true },
   },
   args: {
     id: 'example-select',
