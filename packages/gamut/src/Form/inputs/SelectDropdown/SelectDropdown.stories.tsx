@@ -51,6 +51,7 @@ const meta: TypeWithDeepControls<Meta<typeof SelectDropdown>> = {
         type: { summary: 'string | string[]' },
       },
     },
+    size: { control: 'radio' },
     placeholder: { table: { disable: true } },
     formatCreateLabel: { table: { disable: true } },
     validationMessage: { table: { disable: true } },
@@ -821,7 +822,6 @@ export const AbbreviatedMultiSelect: Story = {
     </Box>
   ),
   play: async (context) => {
-    // TODO: Fails the a11y scan until the "Remove all" aria-hidden bug is fixed; see createKeepsSelections.
     const { args, canvas } = context;
 
     await pickOption(context, 'United States of America');
@@ -1728,7 +1728,6 @@ export const MultipleSelectControlled: Story = {
     return <MultipleSelectControlledContent />;
   },
   play: async (context) => {
-    // TODO: Fails the a11y scan until the "Remove all" aria-hidden bug is fixed; see createKeepsSelections.
     const { canvas, userEvent } = context;
 
     await canvas.findByText('No languages selected yet.');
@@ -2457,7 +2456,6 @@ export const Translations: Story = {
     </Box>
   ),
   play: async (context) => {
-    // TODO: Fails the a11y scan until the "Remove all" aria-hidden bug is fixed; see createKeepsSelections.
     const { canvas, userEvent } = context;
 
     await canvas.findByText('Elige una opción');

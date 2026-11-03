@@ -12,6 +12,7 @@ const meta: TypeWithDeepControls<Meta<typeof FormGroupLabel>> = {
   args: { children: 'I am a label' },
   argTypes: {
     ...infotipNestedArgTypes,
+    size: { control: 'radio' },
   },
 };
 
