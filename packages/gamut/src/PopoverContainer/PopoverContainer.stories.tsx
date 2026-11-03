@@ -24,11 +24,6 @@ const meta: Meta<typeof PopoverContainer> = {
         disable: true,
       },
     },
-    className: {
-      table: {
-        disable: true,
-      },
-    },
   },
   render: function PopoverDemo(args) {
     const target = useRef<HTMLDivElement>(null);
