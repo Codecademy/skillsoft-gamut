@@ -6,15 +6,6 @@ import { FlexBox } from '../Box';
 import { Text } from '../Typography';
 import { PopoverContainer } from '.';
 
-const SINGLE_DIRECTIONS = ['top', 'bottom', 'left', 'right'] as const;
-
-const MULTI_DIRECTIONS = [
-  'top-left',
-  'top-right',
-  'bottom-right',
-  'bottom-left',
-] as const;
-
 const meta: Meta<typeof PopoverContainer> = {
   title: 'Overlays/PopoverContainer',
   component: PopoverContainer,
@@ -37,10 +28,6 @@ const meta: Meta<typeof PopoverContainer> = {
       table: {
         disable: true,
       },
-    },
-    alignment: {
-      control: 'select',
-      options: [...SINGLE_DIRECTIONS, ...MULTI_DIRECTIONS],
     },
   },
   render: function PopoverDemo(args) {
@@ -83,6 +70,15 @@ const meta: Meta<typeof PopoverContainer> = {
 
 export default meta;
 type Story = StoryObj<typeof PopoverContainer>;
+
+const SINGLE_DIRECTIONS = ['top', 'bottom', 'left', 'right'] as const;
+
+const MULTI_DIRECTIONS = [
+  'top-left',
+  'top-right',
+  'bottom-right',
+  'bottom-left',
+] as const;
 
 export const Default: Story = {
   play: ({ canvas }) => {

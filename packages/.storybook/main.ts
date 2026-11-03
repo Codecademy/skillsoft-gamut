@@ -59,6 +59,7 @@ const config: StorybookConfig = {
       tsconfigPath: resolve(__dirname, '../gamut/tsconfig.json'),
       skipChildrenPropWithoutDoc: false,
       shouldRemoveUndefinedFromOptional: true,
+      shouldExtractLiteralValuesFromEnum: true,
       propFilter: (prop) => {
         if (prop.parent && /node_modules/.test(prop.parent.fileName)) {
           return false;
