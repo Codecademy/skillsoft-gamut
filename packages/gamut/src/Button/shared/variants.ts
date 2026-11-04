@@ -1,5 +1,5 @@
-import type { Theme } from '@emotion/react';
 import { transitionConcat, variant } from '@skillsoft/gamut-styles';
+import type { CSSObject, ThemeProps } from '@skillsoft/variance';
 
 import { InteractiveSelectors } from '../../ButtonBase/ButtonBase';
 import { buttonVariants, templateVariants } from './styles';
@@ -124,10 +124,12 @@ export const strokeButtonVariants = templateVariants(
  * offset in the Codecademy theme. `ctaButtonElevation` runs before the
  * variants, so pressed and disabled still clear it.
  */
-export const ctaButtonElevation = ({ theme }: { theme: Theme }) => ({
-  boxShadow: theme.elevation['rest-shadow'],
+export const ctaButtonElevation = <T extends ThemeProps>({
+  theme,
+}: T): CSSObject => ({
+  boxShadow: theme?.elevation?.['rest-shadow'],
   [InteractiveSelectors.HOVER]: {
-    boxShadow: theme.elevation['hover-shadow'],
+    boxShadow: theme?.elevation?.['hover-shadow'],
   },
 });
 
