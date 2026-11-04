@@ -51,9 +51,9 @@ When a brand has to keep an exact color the generator wouldn't produce, it can a
 
 Five brands ship today:
 
-- `skillsoft`, the default. Its theme is `skillsoftTheme`.
+- `skillsoft`, the default, which replaces Percipio. Its theme is `skillsoftTheme`: Percipio's fonts, font weights and resting shadow, with colors generated from the Skillsoft brand's hues.
 - `originalCodecademy`, the old Core theme rebuilt as a brand. Its theme is `originalCodecademyTheme`.
-- `admin`, `platform` and `lxStudio`, the other old themes rebuilt the same way. Their themes keep their old names: `adminTheme`, `platformTheme` and `lxStudioTheme`. `percipioTheme` is removed.
+- `admin`, `platform` and `lxStudio`, the other old themes rebuilt the same way. Their themes keep their old names: `adminTheme`, `platformTheme` and `lxStudioTheme`. `percipioTheme` is removed; use `skillsoftTheme` instead.
 
 Each rebuilt brand takes its colors from what its old theme showed in each job, and keeps that theme's fonts and weights. Shadows are drawn in the shadow roles: Original Codecademy keeps old Core's hard offset, and every other brand uses a soft shadow. `platformTheme` still starts in dark mode and keeps its `editor-*` code editor colors, which aren't part of the generated system.
 
@@ -93,7 +93,7 @@ The build refuses to write any output if a check fails, for any brand, in either
 - every border, action and chart role that carries meaning reaches 3:1, the [non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html) minimum;
 - the translucent `state-*` roles still meet those minimums once they're laid over each surface;
 - `state-pressed` looks visibly different from `state-hover` on every surface;
-- 210 text and icon pairings inside 25 real components, such as an `Alert` icon on its tint, meet their minimum.
+- 204 text and icon pairings inside 25 real components, such as an `Alert` icon on its tint, meet their minimum.
 
 `border-subtle`, `action-disabled` and the `shadow-*` roles are exempt from contrast: the first is decorative, the second marks an inactive control, and a shadow isn't something to read. Separation of the three status colors for people with color-vision deficiencies is measured and reported, but doesn't fail the build.
 
@@ -278,7 +278,7 @@ Pages without React load `@skillsoft/gamut-styles/tokens.css` and set the same t
 | Where values live | Emotion theme objects, written onto the page at runtime | One generated stylesheet, `tokens.css`, injected once               |
 | Mode switch       | Every alias for the mode written into a new class       | One attribute                                                       |
 | `Background`      | Contrast math on every render                           | A table decided at build time                                       |
-| Accessibility     | Colors picked by hand and never checked                 | Every role pairing and 210 component pairings checked at build time |
+| Accessibility     | Colors picked by hand and never checked                 | Every role pairing and 204 component pairings checked at build time |
 | Names             | Ambiguous: `background` is both the page and a card     | One job each: `surface-default`, `surface-raised`                   |
 | New brand         | A hand-written theme and alias table                    | A few hues, checked automatically                                   |
 | Who can read it   | JavaScript only                                         | CSS, DTCG JSON and TypeScript from one source                       |
