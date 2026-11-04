@@ -1,4 +1,8 @@
+import { tokensCss } from '../../tokens/generated/tokensCss';
+import { adminTheme } from '../admin';
+import { lxStudioTheme } from '../lxStudio';
 import { originalCodecademyTheme } from '../originalCodecademy';
+import { platformTheme } from '../platform';
 import { skillsoftTheme } from '../skillsoft';
 
 /*
@@ -12,6 +16,9 @@ describe('brand elevation', () => {
   it.each([
     ['skillsoft', skillsoftTheme],
     ['originalCodecademy', originalCodecademyTheme],
+    ['admin', adminTheme],
+    ['platform', platformTheme],
+    ['lxStudio', lxStudioTheme],
   ])('%s composes shadow-key and shadow-ambient at every depth', (_, theme) => {
     const elevation = theme.elevation as Record<string, string>;
     for (const state of STATES) {
@@ -22,8 +29,13 @@ describe('brand elevation', () => {
     }
   });
 
-  it('gives Skillsoft the soft raised shadow', () => {
-    expect(skillsoftTheme.elevation).toMatchObject({
+  it.each([
+    ['skillsoft', skillsoftTheme],
+    ['admin', adminTheme],
+    ['platform', platformTheme],
+    ['lxStudio', lxStudioTheme],
+  ])('gives %s the soft raised shadow', (_, theme) => {
+    expect(theme.elevation).toMatchObject({
       'rest-shadow':
         '0 1px 4px 0 var(--colors-shadow-key), 0 2px 7px 0 var(--colors-shadow-ambient)',
       'hover-shadow':
@@ -39,5 +51,15 @@ describe('brand elevation', () => {
         '-8px 8px 0 0 var(--colors-shadow-key), 0 0 0 0 var(--colors-shadow-ambient)',
       'hover-transform': 'translate(4px, -4px)',
     });
+  });
+
+  /* Admin and platform share old core's pins, not its hard-offset shadow. */
+  it('makes shadow-ambient transparent for Original Codecademy only', () => {
+    const overridden = [
+      ...tokensCss.matchAll(
+        /\[data-brand="(\w+)"\]\[data-color-mode="\w+"\] \{[^}]*--colors-shadow-ambient:/g
+      ),
+    ].map((m) => m[1]);
+    expect([...new Set(overridden)]).toEqual(['originalCodecademy']);
   });
 });

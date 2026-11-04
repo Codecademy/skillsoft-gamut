@@ -190,7 +190,6 @@ export const globalTypes = {
         { value: 'core', title: 'Core' },
         { value: 'admin', title: 'Admin' },
         { value: 'lxStudio', title: 'LX Studio' },
-        { value: 'percipio', title: 'Percipio' },
         { value: 'platform', title: 'Learning Platform' },
       ],
       showName: true,

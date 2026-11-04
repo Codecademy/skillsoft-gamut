@@ -32,10 +32,6 @@ export const brand = {
         }
       },
       "dark": {
-        "shadow-ambient": {
-          "ref": "black",
-          "alpha": 0
-        },
         "action-primary": {
           "slot": "accent",
           "grade": 300
@@ -47,6 +43,10 @@ export const brand = {
         "action-primary-pressed": {
           "slot": "accent",
           "grade": 500
+        },
+        "shadow-ambient": {
+          "ref": "black",
+          "alpha": 0
         }
       }
     },

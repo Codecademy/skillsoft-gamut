@@ -1,4 +1,33 @@
-import type { BrandInput } from '../brand';
+import type { BrandInput, BrandOverrides } from '../brand';
+
+/*
+ * What every brand rebuilt from old core shares (Original Codecademy, admin,
+ * platform): the colors the generator wouldn't produce. Old core's yellow
+ * exactly, and its yellow dark-mode primary. Navy and beige aren't pinned:
+ * pinned, they carry much more chroma than the generated surfaces beside them
+ * (sunken, raised, zebra rows, block tabs), so the generated steps at their
+ * hues are used as is (design, 2026-10-29). The two-color gradient pairs
+ * primary with accent-alt instead of the yellow accent, so it reads blue to
+ * violet rather than blue to yellow (design, Stacey, 2026-10-28).
+ */
+export const coreFamilyOverrides: BrandOverrides = {
+  /* Each at the grade whose fixed lightness is nearest. */
+  palette: {
+    'accent-300': '#FFD300', // yellow-500
+    'accent-400': '#CCA900', // yellow-400
+  },
+  /* Old core's dark mode uses yellow for primary. */
+  roles: {
+    dark: {
+      'action-primary': { slot: 'accent', grade: 300 },
+      'action-primary-hover': { slot: 'accent', grade: 400 },
+      'action-primary-pressed': { slot: 'accent', grade: 500 },
+    },
+  },
+  gradients: {
+    'surface-brand': { accent: 'accent-alt' },
+  },
+};
 
 /*
  * Original Codecademy: old core rebuilt on the generated system, as close to
@@ -10,17 +39,11 @@ import type { BrandInput } from '../brand';
  * core has no second accent in use, so `accent-alt` stays on the gamut
  * default (sandbox D4), which makes this tier 3.
  *
- * Overrides keep the colors the generator wouldn't produce: old core's
- * yellow exactly, and its yellow dark-mode primary. Navy and beige aren't
- * pinned: pinned, they carry much more chroma than the generated surfaces
- * beside them (sunken, raised, zebra rows, block tabs), so the generated
- * steps at their hues are used as is (design, 2026-10-29). The two-color gradient
- * pairs primary with accent-alt instead of the yellow accent, so it reads
- * blue to violet rather than blue to yellow (design, Stacey, 2026-10-28).
- *
- * Its shadows are a hard offset with no soft falloff, so `shadow-ambient` is
- * transparent in both modes and the layer stays in every elevation, keeping
- * the layer count the same at every depth (design's sandbox, df33b47).
+ * On top of the core family's overrides: the Codecademy theme's shadows are a
+ * hard offset with no soft falloff, so `shadow-ambient` is transparent in both
+ * modes and the layer stays in every elevation, keeping the layer count the
+ * same at every depth (design's sandbox, df33b47). That's this theme only;
+ * admin and platform get the soft shadow.
  */
 export const originalCodecademyBrand: BrandInput = {
   name: 'originalCodecademy',
@@ -34,15 +57,7 @@ export const originalCodecademyBrand: BrandInput = {
     success: '#008A27', // green-700, feedback-success
   },
   overrides: {
-    /* Each at the grade whose fixed lightness is nearest. */
-    palette: {
-      'accent-300': '#FFD300', // yellow-500
-      'accent-400': '#CCA900', // yellow-400
-    },
-    /*
-     * Old core's dark mode uses yellow for primary. No soft shadow layer in
-     * either mode.
-     */
+    ...coreFamilyOverrides,
     roles: {
       light: {
         'shadow-ambient': {
@@ -51,14 +66,9 @@ export const originalCodecademyBrand: BrandInput = {
         },
       },
       dark: {
+        ...coreFamilyOverrides.roles?.dark,
         'shadow-ambient': { ref: 'black', alpha: 0 },
-        'action-primary': { slot: 'accent', grade: 300 },
-        'action-primary-hover': { slot: 'accent', grade: 400 },
-        'action-primary-pressed': { slot: 'accent', grade: 500 },
       },
-    },
-    gradients: {
-      'surface-brand': { accent: 'accent-alt' },
     },
   },
 };
