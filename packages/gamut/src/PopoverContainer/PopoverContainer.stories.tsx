@@ -33,6 +33,11 @@ const meta: Meta<typeof PopoverContainer> = {
         disable: true,
       },
     },
+    className: {
+      table: {
+        disable: true,
+      },
+    },
     alignment: {
       control: 'select',
       options: [...SINGLE_DIRECTIONS, ...MULTI_DIRECTIONS],

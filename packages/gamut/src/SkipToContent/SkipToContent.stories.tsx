@@ -11,6 +11,13 @@ const meta: Meta<typeof SkipToContent> = {
   args: {
     contentId: 'main-content',
   },
+  argTypes: {
+    className: {
+      table: {
+        disable: true,
+      },
+    },
+  },
   render: (args) => (
     <>
       <SkipToContent {...args} />
