@@ -5,6 +5,7 @@ import { walk } from '../../lib/leftovers';
 import type { Preset } from '../../lib/types';
 import { colorRoles } from '../../migrations/color-roles';
 import { colorRolesStylesheets } from '../../migrations/color-roles-stylesheets';
+import { colorRolesThemes } from '../../migrations/color-roles-themes';
 import type { ColorRolesManifest } from './manifest';
 import { manifest } from './manifest';
 
@@ -12,12 +13,14 @@ const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 /*
   A quoted old name, one read off `theme.colors`, an old `--color-*`
-  variable, or a Card (whose variants are renamed).
+  variable, a Card (whose variants are renamed), or an old theme name.
 */
 const OLD_NAMES = new RegExp(
   `['"\`](?:${[...Object.keys(manifest.aliases), ...manifest.oldPalette]
     .map(escape)
-    .join('|')})['"\`]|colors\\.[A-Za-z]|--color-[A-Za-z0-9]|<Card\\b`
+    .join(
+      '|'
+    )})['"\`]|colors\\.[A-Za-z]|--color-[A-Za-z0-9]|<Card\\b|\\b(?:percipio|core|Percipio|Core)Theme\\b`
 );
 
 /* Source files, and the stylesheets color-roles-stylesheets rewrites. */
@@ -47,7 +50,7 @@ export const colorRolesPreset: Preset<ColorRolesManifest> = {
     }
     return hits;
   },
-  migrations: [colorRoles, colorRolesStylesheets],
+  migrations: [colorRoles, colorRolesThemes, colorRolesStylesheets],
   checklist: [
     'Run your formatter (prettier --write). The `color-roles:` comments can make lines long.',
     'Type-check. Every name the codemod left in place is still an old name, so it fails until someone picks its role.',
@@ -58,6 +61,8 @@ export const colorRolesPreset: Preset<ColorRolesManifest> = {
       'Some names are splits, retirements or pending (see the warnings). Splits need the role for where the color is used; retired names have a rule instead of a role; pending names wait for a system that doesn’t exist yet. Shadows split onto `shadow-key` and `shadow-ambient`, the two layers every elevation shadow draws.',
     'color-roles:stylesheets':
       'Stylesheets used old `--color-*` variables. Renames are done; the type check can’t see stylesheets, so the leftovers report below is the only list of what’s left. Indented-syntax .sass files aren’t rewritten: search them for `--color-` by hand.',
+    'color-roles:themes':
+      'Old theme names moved: `percipioTheme` → `skillsoftTheme` (its replacement) and `coreTheme` → `originalCodecademyTheme` (its rebuild). A `CoreTheme` type, usually in a Theme augmentation, is left with a comment: brand themes share one shape, typed by `SkillsoftTheme`.',
     'color-roles:card-navy':
       'Some Cards used the `navy` variant. It becomes `default`, which renders light; wrap a card in `<ColorMode mode="dark">` where it should stay dark, then delete the comment.',
     'color-roles:palette':
