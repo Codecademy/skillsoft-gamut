@@ -18,7 +18,14 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
-    }
+    },
+    "./tokens": {
+      "types": "./dist/tokens/index.d.ts",
+      "import": "./dist/tokens/index.mjs",
+      "require": "./dist/tokens/index.js"
+    },
+    "./tokens.css": "./dist/tokens/generated/tokens.css",
+    "./tokens/*.tokens.json": "./dist/tokens/generated/*.tokens.json"
   },
   "files": [
     "dist",
@@ -39,8 +46,16 @@
   },
   "repository": "git@github.com:Codecademy/skillsoft-gamut.git",
   "scripts": {
-    "build": "nx build gamut-styles"
+    "build": "nx build gamut-styles",
+    "build:tokens": "jiti scripts/build-tokens.ts",
+    "validate:tokens": "jiti scripts/validate-tokens.ts"
   },
   "sideEffects": false,
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "@types/culori": "^4",
+    "culori": "^4.0.2",
+    "jiti": "2.4.2",
+    "style-dictionary": "5.7.0"
+  }
 }

@@ -180,7 +180,7 @@ describe('AssetProvider', () => {
   });
 
   describe('AssetProvider component', () => {
-    it('should render font links for core theme by default', () => {
+    it('should render font links for skillsoft theme by default', () => {
       mockGetFonts.mockReturnValue([
         {
           filePath: 'https://www.codecademy.com/gamut/apercu-regular-pro',
@@ -192,7 +192,7 @@ describe('AssetProvider', () => {
       const { view } = renderView();
       const links = getPreloadLinks(view.container);
 
-      expect(mockGetFonts).toHaveBeenCalledWith('core');
+      expect(mockGetFonts).toHaveBeenCalledWith('skillsoft');
       expect(links).toHaveLength(1);
       expect(links[0]).toHaveAttribute(
         'href',

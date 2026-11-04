@@ -7,34 +7,47 @@ import {
 } from '@skillsoft/gamut-icons';
 import { breakpoints, variant } from '@skillsoft/gamut-styles';
 
+/*
+ * Design's mapping (gamut-styles colorSystem/migration.ts, Alert): the fill
+ * is a status tint or a surface, the icon carries the status, and the message
+ * stays text-default. Feature paints the brand gradient over its flat
+ * fallback.
+ */
 export const alertVariants = {
   general: {
     order: 4,
-    bg: 'blue',
+    bg: 'surface-sunken',
+    iconColor: 'action-primary',
     icon: MiniInfoCircleIcon,
   },
   success: {
     order: 2,
-    bg: 'green',
+    bg: 'surface-success',
+    iconColor: 'text-success',
     icon: MiniCheckCircleIcon,
   },
   error: {
     order: 1,
-    bg: 'red-600',
+    bg: 'surface-error',
+    iconColor: 'text-error',
     icon: MiniRemoveCircleIcon,
   },
   notice: {
     order: 3,
-    bg: 'orange',
+    bg: 'surface-warning',
+    iconColor: 'text-warning',
     icon: MiniWarningTriangleIcon,
   },
   feature: {
     order: 5,
-    bg: 'blue-300',
+    bg: 'surface-brand',
+    backgroundImage: 'var(--gradient-surface-brand)',
+    iconColor: 'action-primary',
     icon: MiniStarIcon,
   },
   subtle: {
-    bg: 'background-hover',
+    bg: 'surface-sunken',
+    iconColor: 'text-subtle',
     icon: MiniInfoCircleIcon,
   },
 } as const;
@@ -56,7 +69,7 @@ export const placementVariants = variant({
       py: 8,
     },
     floating: {
-      borderColor: 'navy',
+      borderColor: 'border-default',
       borderStyle: 'solid',
       borderWidth: '2px',
       py: 4,

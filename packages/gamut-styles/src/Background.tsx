@@ -1,3 +1,5 @@
+import type { Theme } from '@emotion/react';
+import { useTheme } from '@emotion/react';
 import { getContrast } from 'polished';
 import type { ComponentProps } from 'react';
 import { forwardRef, useCallback, useMemo } from 'react';
@@ -8,7 +10,7 @@ import type {
   ColorModeShape,
   Colors,
 } from './ColorMode';
-import { ColorMode, useColorModes } from './ColorMode';
+import { ColorMode, roleOr, useColorModes } from './ColorMode';
 
 export interface BackgroundProps
   extends Omit<
@@ -33,9 +35,14 @@ export const isColorAlias = (
   return Object.keys(mode).includes(color);
 };
 
+const textOf = (mode: ColorModeShape) =>
+  roleOr(mode as Record<string, string>, 'text-default', 'text') as Colors;
+
 export const Background = forwardRef<HTMLDivElement, BackgroundProps>(
   ({ bg, ...rest }, ref) => {
     const [active, activeColors, modes, getColorValue] = useColorModes();
+    /* Generated themes ship the answer (colorSystem/contentModes.ts). */
+    const { contentModes } = useTheme() as Partial<Theme>;
 
     /** If a color alias was used then look up the true color key from the active mode */
     const trueColor = useMemo(() => {
@@ -63,6 +70,21 @@ export const Background = forwardRef<HTMLDivElement, BackgroundProps>(
      */
 
     const accessibleMode = useMemo(() => {
+      const listed = contentModes?.[trueColor as keyof typeof contentModes];
+      if (listed) return listed;
+
+      /*
+       * A bg the theme doesn't define (a core primitive on a theme without
+       * it) can't be measured; polished throws on it. Keep the active mode.
+       */
+      if (!getColorValue(trueColor)) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `Background: "${trueColor}" isn't a color in this theme; keeping the "${active}" color mode.`
+        );
+        return active;
+      }
+
       const { [active]: activeMode, ...otherModes } = modes;
       const possibleModes = Object.entries(otherModes);
 
@@ -77,20 +99,27 @@ export const Background = forwardRef<HTMLDivElement, BackgroundProps>(
       const [highestContrastMode] = possibleModes.reduce<[ColorModes, number]>(
         (
           [prevMode, prevContrast],
-          [mode, { text }]: [ColorModes, ColorModeShape]
+          [mode, shape]: [ColorModes, ColorModeShape]
         ) => {
-          const contrast = getTextContrast(text);
+          const contrast = getTextContrast(textOf(shape));
 
           // Keep the higher contrast mode.
           return contrast > prevContrast
             ? [mode, contrast]
             : [prevMode, prevContrast];
         },
-        [active, getTextContrast(activeMode.text)]
+        [active, getTextContrast(textOf(activeMode))]
       );
 
       return highestContrastMode;
-    }, [modes, active, getTextContrast]);
+    }, [
+      modes,
+      active,
+      getTextContrast,
+      getColorValue,
+      trueColor,
+      contentModes,
+    ]);
 
     return <ColorMode {...rest} bg={bg} mode={accessibleMode} ref={ref} />;
   }

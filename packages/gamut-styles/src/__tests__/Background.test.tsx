@@ -5,7 +5,7 @@ import overArgs from 'lodash/overArgs';
 import type * as React from 'react';
 
 import { Background } from '../Background';
-import { coreTheme as theme } from '../themes';
+import { skillsoftTheme as theme } from '../themes';
 
 expect.extend(matchers);
 
@@ -37,10 +37,10 @@ const ActiveMode = () => {
 
 describe('Background', () => {
   it('switches the default colormode when contrast standards are not met', () => {
-    const { view } = renderView({ bg: 'navy' });
+    const { view } = renderView({ bg: 'palette-neutral-dark-1000' });
     expect(view.getByTestId('content').parentElement).toHaveStyleRule(
       '--color-background-current',
-      theme.colors.navy
+      theme.colors['palette-neutral-dark-1000']
     );
 
     expect(view.getByTestId('content').parentElement).toHaveStyleRule(
@@ -51,10 +51,10 @@ describe('Background', () => {
 
   it('allows for changing the color mode while nested', () => {
     const { view } = renderView({
-      bg: 'navy',
+      bg: 'palette-neutral-dark-1000',
       children: (
         <div data-testid="content">
-          <Background bg="beige">
+          <Background bg="palette-neutral-light-200">
             <div data-testid="nested-content" />
           </Background>
         </div>
@@ -62,18 +62,18 @@ describe('Background', () => {
     });
     expect(view.getByTestId('content').parentElement).toHaveStyleRule(
       '--color-background-current',
-      theme.colors.navy
+      theme.colors['palette-neutral-dark-1000']
     );
 
     expect(view.getByTestId('nested-content').parentElement).toHaveStyleRule(
       '--color-background-current',
-      theme.colors.beige
+      theme.colors['palette-neutral-light-200']
     );
   });
 
   it('updates the theme context to the current mode', () => {
     const { view } = renderView({
-      bg: 'navy',
+      bg: 'palette-neutral-dark-1000',
       children: <ActiveMode />,
     });
 
@@ -90,18 +90,18 @@ describe('Background', () => {
   });
 
   it('it sets the current background color to the specified bg', () => {
-    const { view } = renderView({ bg: 'paleBlue' });
+    const { view } = renderView({ bg: 'palette-primary-200' });
     expect(view.getByTestId('content').parentElement).toHaveStyleRule(
       '--color-background-current',
-      theme.colors.paleBlue
+      theme.colors['palette-primary-200']
     );
   });
 
   it('it sets the current background color to the specified bg when switch modes', () => {
-    const { view } = renderView({ bg: 'navy' });
+    const { view } = renderView({ bg: 'palette-neutral-dark-1000' });
     expect(view.getByTestId('content').parentElement).toHaveStyleRule(
       '--color-background-current',
-      theme.colors.navy
+      theme.colors['palette-neutral-dark-1000']
     );
   });
 });
