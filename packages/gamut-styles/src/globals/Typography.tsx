@@ -23,9 +23,7 @@ import { getFonts } from '../utilities/fontUtils';
  * ```
  */
 
-export const Typography: React.FC<{ theme: Theme }> = ({
-  theme,
-}) => {
+export const Typography: React.FC<{ theme: Theme }> = ({ theme }) => {
   try {
     const fonts = getFonts(theme?.name);
 

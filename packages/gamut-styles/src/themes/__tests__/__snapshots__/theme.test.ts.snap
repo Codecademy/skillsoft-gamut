@@ -6,6 +6,8 @@ exports[`themes admin - theme shape 1`] = `
   "_tokens": {
     "colors": {
       "black": "#000000",
+      "black-a24": "rgba(0, 0, 0, 0.24)",
+      "black-a32": "rgba(0, 0, 0, 0.32)",
       "black-a60": "rgba(0, 0, 0, 0.6)",
       "palette-accent-100": "#fffbeb",
       "palette-accent-1000": "#282106",
@@ -43,6 +45,8 @@ exports[`themes admin - theme shape 1`] = `
       "palette-neutral-dark-100": "#fafafb",
       "palette-neutral-dark-1000": "#1d212f",
       "palette-neutral-dark-1100": "#11141d",
+      "palette-neutral-dark-1100-a12": "rgba(17, 20, 29, 0.12)",
+      "palette-neutral-dark-1100-a16": "rgba(17, 20, 29, 0.16)",
       "palette-neutral-dark-200": "#e9eaeb",
       "palette-neutral-dark-300": "#cbcdd3",
       "palette-neutral-dark-400": "#aeb2bd",
@@ -119,11 +123,13 @@ exports[`themes admin - theme shape 1`] = `
         "action-primary": "#ffd300",
         "action-primary-hover": "#cca900",
         "action-primary-pressed": "#ae932e",
-        "backdrop": "rgba(0, 0, 0, 0.6)",
         "background-current": "#11141d",
         "border-default": "#88786b",
         "border-strong": "#fbfaf9",
         "border-subtle": "#3c3530",
+        "shadow-ambient": "rgba(0, 0, 0, 0.24)",
+        "shadow-key": "rgba(0, 0, 0, 0.32)",
+        "shadow-scrim": "rgba(0, 0, 0, 0.6)",
         "state-hover": "rgba(47, 109, 255, 0.06)",
         "state-pressed": "rgba(47, 109, 255, 0.09)",
         "state-selected": "rgba(47, 109, 255, 0.08)",
@@ -165,11 +171,13 @@ exports[`themes admin - theme shape 1`] = `
         "action-primary": "#0939b5",
         "action-primary-hover": "#062a86",
         "action-primary-pressed": "#041a57",
-        "backdrop": "rgba(0, 0, 0, 0.6)",
         "background-current": "#fbfaf9",
         "border-default": "#717a97",
         "border-strong": "#11141d",
         "border-subtle": "#cbcdd3",
+        "shadow-ambient": "rgba(17, 20, 29, 0.12)",
+        "shadow-key": "rgba(17, 20, 29, 0.16)",
+        "shadow-scrim": "rgba(0, 0, 0, 0.6)",
         "state-hover": "rgba(47, 109, 255, 0.06)",
         "state-pressed": "rgba(47, 109, 255, 0.09)",
         "state-selected": "rgba(47, 109, 255, 0.08)",
@@ -214,11 +222,13 @@ exports[`themes admin - theme shape 1`] = `
       "--colors-action-primary": "var(--colors-palette-primary-800)",
       "--colors-action-primary-hover": "var(--colors-palette-primary-900)",
       "--colors-action-primary-pressed": "var(--colors-palette-primary-1000)",
-      "--colors-backdrop": "var(--colors-black-a60)",
       "--colors-background-current": "var(--colors-palette-neutral-light-100)",
       "--colors-border-default": "var(--colors-palette-neutral-dark-600)",
       "--colors-border-strong": "var(--colors-palette-neutral-dark-1100)",
       "--colors-border-subtle": "var(--colors-palette-neutral-dark-300)",
+      "--colors-shadow-ambient": "var(--colors-palette-neutral-dark-1100-a12)",
+      "--colors-shadow-key": "var(--colors-palette-neutral-dark-1100-a16)",
+      "--colors-shadow-scrim": "var(--colors-black-a60)",
       "--colors-state-hover": "var(--colors-palette-primary-600-a6)",
       "--colors-state-pressed": "var(--colors-palette-primary-600-a9)",
       "--colors-state-selected": "var(--colors-palette-primary-600-a8)",
@@ -294,9 +304,10 @@ exports[`themes admin - theme shape 1`] = `
     "action-primary": "var(--colors-action-primary)",
     "action-primary-hover": "var(--colors-action-primary-hover)",
     "action-primary-pressed": "var(--colors-action-primary-pressed)",
-    "backdrop": "var(--colors-backdrop)",
     "background-current": "var(--colors-background-current)",
     "black": "var(--colors-black)",
+    "black-a24": "var(--colors-black-a24)",
+    "black-a32": "var(--colors-black-a32)",
     "black-a60": "var(--colors-black-a60)",
     "border-default": "var(--colors-border-default)",
     "border-strong": "var(--colors-border-strong)",
@@ -337,6 +348,8 @@ exports[`themes admin - theme shape 1`] = `
     "palette-neutral-dark-100": "var(--colors-palette-neutral-dark-100)",
     "palette-neutral-dark-1000": "var(--colors-palette-neutral-dark-1000)",
     "palette-neutral-dark-1100": "var(--colors-palette-neutral-dark-1100)",
+    "palette-neutral-dark-1100-a12": "var(--colors-palette-neutral-dark-1100-a12)",
+    "palette-neutral-dark-1100-a16": "var(--colors-palette-neutral-dark-1100-a16)",
     "palette-neutral-dark-200": "var(--colors-palette-neutral-dark-200)",
     "palette-neutral-dark-300": "var(--colors-palette-neutral-dark-300)",
     "palette-neutral-dark-400": "var(--colors-palette-neutral-dark-400)",
@@ -392,6 +405,9 @@ exports[`themes admin - theme shape 1`] = `
     "palette-warning-700": "var(--colors-palette-warning-700)",
     "palette-warning-800": "var(--colors-palette-warning-800)",
     "palette-warning-900": "var(--colors-palette-warning-900)",
+    "shadow-ambient": "var(--colors-shadow-ambient)",
+    "shadow-key": "var(--colors-shadow-key)",
+    "shadow-scrim": "var(--colors-shadow-scrim)",
     "state-hover": "var(--colors-state-hover)",
     "state-pressed": "var(--colors-state-pressed)",
     "state-selected": "var(--colors-state-selected)",
@@ -520,11 +536,11 @@ exports[`themes admin - theme shape 1`] = `
     "headerZ": "var(--elements-headerZ)",
   },
   "elevation": {
-    "hover-shadow": "-8px 8px 0 0 undefined",
-    "hover-transform": "translate(4px, -4px)",
-    "hoverMirrored-shadow": "8px 8px 0 0 undefined",
-    "hoverMirrored-transform": "translate(-4px, -4px)",
-    "rest-shadow": "0 0 0 0 undefined",
+    "hover-shadow": "0 2px 6px 0 var(--colors-shadow-key), 0 6px 16px 0 var(--colors-shadow-ambient)",
+    "hover-transform": "none",
+    "hoverMirrored-shadow": "0 2px 6px 0 var(--colors-shadow-key), 0 6px 16px 0 var(--colors-shadow-ambient)",
+    "hoverMirrored-transform": "none",
+    "rest-shadow": "0 1px 4px 0 var(--colors-shadow-key), 0 2px 7px 0 var(--colors-shadow-ambient)",
     "rest-transform": "none",
   },
   "fontFamily": {
@@ -574,11 +590,13 @@ monospace",
       "action-primary": "palette-accent-300",
       "action-primary-hover": "palette-accent-400",
       "action-primary-pressed": "palette-accent-500",
-      "backdrop": "black-a60",
       "background-current": "palette-neutral-dark-1100",
       "border-default": "palette-neutral-light-600",
       "border-strong": "palette-neutral-light-100",
       "border-subtle": "palette-neutral-light-900",
+      "shadow-ambient": "black-a24",
+      "shadow-key": "black-a32",
+      "shadow-scrim": "black-a60",
       "state-hover": "palette-primary-600-a6",
       "state-pressed": "palette-primary-600-a9",
       "state-selected": "palette-primary-600-a8",
@@ -620,11 +638,13 @@ monospace",
       "action-primary": "palette-primary-800",
       "action-primary-hover": "palette-primary-900",
       "action-primary-pressed": "palette-primary-1000",
-      "backdrop": "black-a60",
       "background-current": "palette-neutral-light-100",
       "border-default": "palette-neutral-dark-600",
       "border-strong": "palette-neutral-dark-1100",
       "border-subtle": "palette-neutral-dark-300",
+      "shadow-ambient": "palette-neutral-dark-1100-a12",
+      "shadow-key": "palette-neutral-dark-1100-a16",
+      "shadow-scrim": "black-a60",
       "state-hover": "palette-primary-600-a6",
       "state-pressed": "palette-primary-600-a9",
       "state-selected": "palette-primary-600-a8",
@@ -699,6 +719,8 @@ monospace",
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0383 270.70);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0273 270.70);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0200 270.70);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0200 270.70 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0200 270.70 / 0.12);
     --colors-palette-primary-100: oklch(0.9862 0.0064 262.40);
     --colors-palette-primary-200: oklch(0.9364 0.0121 262.40);
     --colors-palette-primary-300: oklch(0.8497 0.0407 262.40);
@@ -768,6 +790,8 @@ monospace",
     --colors-palette-success-900: oklch(0.3346 0.0500 200.00);
     --colors-palette-success-1000: oklch(0.2499 0.0356 200.00);
     --colors-palette-success-1100: oklch(0.1925 0.0261 200.00);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
   }
 
@@ -796,6 +820,9 @@ monospace",
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0199 271.30 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0199 271.30 / 0.12);
+    --colors-palette-neutral-dark-1100-a0: oklch(0.1925 0.0199 271.30 / 0);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);
@@ -865,7 +892,10 @@ monospace",
     --colors-palette-success-900: oklch(0.3346 0.0912 145.50);
     --colors-palette-success-1000: oklch(0.2499 0.0650 145.50);
     --colors-palette-success-1100: oklch(0.1925 0.0477 145.50);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
+    --colors-black-a0: oklch(0.0000 0.0000 0.00 / 0);
   }
 
   [data-brand="admin"] {
@@ -893,6 +923,8 @@ monospace",
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0199 271.30 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0199 271.30 / 0.12);
     --colors-palette-primary-100: oklch(0.9862 0.0064 263.60);
     --colors-palette-primary-200: oklch(0.9364 0.0120 263.60);
     --colors-palette-primary-300: oklch(0.8497 0.0406 263.60);
@@ -962,6 +994,8 @@ monospace",
     --colors-palette-success-900: oklch(0.3346 0.0912 145.50);
     --colors-palette-success-1000: oklch(0.2499 0.0650 145.50);
     --colors-palette-success-1100: oklch(0.1925 0.0477 145.50);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
   }
 
@@ -990,6 +1024,8 @@ monospace",
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0199 271.30 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0199 271.30 / 0.12);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);
@@ -1059,6 +1095,8 @@ monospace",
     --colors-palette-success-900: oklch(0.3346 0.0912 145.50);
     --colors-palette-success-1000: oklch(0.2499 0.0650 145.50);
     --colors-palette-success-1100: oklch(0.1925 0.0477 145.50);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
   }
 
@@ -1087,6 +1125,8 @@ monospace",
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0199 271.30 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0199 271.30 / 0.12);
     --colors-palette-primary-100: oklch(0.9862 0.0064 262.40);
     --colors-palette-primary-200: oklch(0.9364 0.0121 262.40);
     --colors-palette-primary-300: oklch(0.8497 0.0407 262.40);
@@ -1156,6 +1196,8 @@ monospace",
     --colors-palette-success-900: oklch(0.3346 0.0704 156.70);
     --colors-palette-success-1000: oklch(0.2499 0.0502 156.70);
     --colors-palette-success-1100: oklch(0.1925 0.0368 156.70);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
   }
 
@@ -1165,7 +1207,7 @@ monospace",
     --colors-background-current: var(--colors-surface-default);
     --colors-surface-sunken: var(--colors-palette-neutral-light-200); /** Wells, insets, code blocks — anything recessed into the page. */
     --colors-surface-default: var(--colors-palette-neutral-light-100); /** The page background — the base every other surface elevates from. */
-    --colors-surface-raised: var(--colors-white); /** Cards, panels, dialogs, menus. Higher elevation is lighter. */
+    --colors-surface-raised: var(--colors-white); /** The lighter surface step, not a depth: cards, menus, dialogs, fields, and flat bordered sections. Shadow, not the fill, says how high something sits. */
     --colors-surface-success: var(--colors-palette-success-200); /** The success tint behind an alert or inline confirmation. */
     --colors-surface-warning: var(--colors-palette-warning-200); /** The warning tint behind an alert or inline caution. */
     --colors-surface-error: var(--colors-palette-danger-200); /** The error tint behind an alert or inline validation message. */
@@ -1205,7 +1247,9 @@ monospace",
     --colors-viz-seq-2: var(--colors-palette-primary-700); /** Sequential step 2, low to high. */
     --colors-viz-seq-3: var(--colors-palette-primary-800); /** Sequential step 3, low to high. */
     --colors-viz-seq-4: var(--colors-palette-primary-900); /** Sequential step 4, low to high. */
-    --colors-backdrop: var(--colors-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
+    --colors-shadow-key: var(--colors-palette-neutral-dark-1100-a16); /** The tight, darker layer of an elevation shadow. Box-shadow color only; the elevation supplies offset and blur. */
+    --colors-shadow-ambient: var(--colors-palette-neutral-dark-1100-a12); /** The wide, soft layer of an elevation shadow, always paired with shadow-key. Transparent where a brand has no soft falloff. */
+    --colors-shadow-scrim: var(--colors-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
     --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-300) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-300) 0%, transparent) 100%);
     --gradient-surface-brand-subtle: radial-gradient(circle calc(0.78 * 100cqw) at 50% -10%, color-mix(in oklab, var(--colors-palette-primary-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-300) 0%, transparent) 100%);
   }
@@ -1216,7 +1260,7 @@ monospace",
     --colors-background-current: var(--colors-surface-default);
     --colors-surface-sunken: var(--colors-black); /** Wells, insets, code blocks — anything recessed into the page. */
     --colors-surface-default: var(--colors-palette-neutral-dark-1100); /** The page background — the base every other surface elevates from. */
-    --colors-surface-raised: var(--colors-palette-neutral-dark-1000); /** Cards, panels, dialogs, menus. Higher elevation is lighter. */
+    --colors-surface-raised: var(--colors-palette-neutral-dark-1000); /** The lighter surface step, not a depth: cards, menus, dialogs, fields, and flat bordered sections. Shadow, not the fill, says how high something sits. */
     --colors-surface-success: var(--colors-palette-success-1000); /** The success tint behind an alert or inline confirmation. */
     --colors-surface-warning: var(--colors-palette-warning-1000); /** The warning tint behind an alert or inline caution. */
     --colors-surface-error: var(--colors-palette-danger-1000); /** The error tint behind an alert or inline validation message. */
@@ -1256,12 +1300,15 @@ monospace",
     --colors-viz-seq-2: var(--colors-palette-primary-500); /** Sequential step 2, low to high. */
     --colors-viz-seq-3: var(--colors-palette-primary-400); /** Sequential step 3, low to high. */
     --colors-viz-seq-4: var(--colors-palette-primary-300); /** Sequential step 4, low to high. */
-    --colors-backdrop: var(--colors-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
+    --colors-shadow-key: var(--colors-black-a32); /** The tight, darker layer of an elevation shadow. Box-shadow color only; the elevation supplies offset and blur. */
+    --colors-shadow-ambient: var(--colors-black-a24); /** The wide, soft layer of an elevation shadow, always paired with shadow-key. Transparent where a brand has no soft falloff. */
+    --colors-shadow-scrim: var(--colors-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
     --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-900) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-900) 0%, transparent) 100%);
     --gradient-surface-brand-subtle: radial-gradient(circle calc(0.78 * 100cqw) at 50% -10%, color-mix(in oklab, var(--colors-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-900) 0%, transparent) 100%);
   }
 
   [data-brand="originalCodecademy"][data-color-mode="light"] {
+    --colors-shadow-ambient: var(--colors-palette-neutral-dark-1100-a0);
     --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-300) 0%, transparent) 100%);
   }
 
@@ -1269,6 +1316,7 @@ monospace",
     --colors-action-primary: var(--colors-palette-accent-300);
     --colors-action-primary-hover: var(--colors-palette-accent-400);
     --colors-action-primary-pressed: var(--colors-palette-accent-500);
+    --colors-shadow-ambient: var(--colors-black-a0);
     --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-900) 0%, transparent) 100%);
   }
 
@@ -1836,6 +1884,8 @@ exports[`themes lxStudio - theme shape 1`] = `
   "_tokens": {
     "colors": {
       "black": "#000000",
+      "black-a24": "rgba(0, 0, 0, 0.24)",
+      "black-a32": "rgba(0, 0, 0, 0.32)",
       "black-a60": "rgba(0, 0, 0, 0.6)",
       "palette-accent-100": "#fffbeb",
       "palette-accent-1000": "#282106",
@@ -1873,6 +1923,8 @@ exports[`themes lxStudio - theme shape 1`] = `
       "palette-neutral-dark-100": "#fafafb",
       "palette-neutral-dark-1000": "#1d212f",
       "palette-neutral-dark-1100": "#11141d",
+      "palette-neutral-dark-1100-a12": "rgba(17, 20, 29, 0.12)",
+      "palette-neutral-dark-1100-a16": "rgba(17, 20, 29, 0.16)",
       "palette-neutral-dark-200": "#e9eaeb",
       "palette-neutral-dark-300": "#cbcdd3",
       "palette-neutral-dark-400": "#aeb2bd",
@@ -1949,11 +2001,13 @@ exports[`themes lxStudio - theme shape 1`] = `
         "action-primary": "#95b2e8",
         "action-primary-hover": "#c0cee9",
         "action-primary-pressed": "#e6eaf2",
-        "backdrop": "rgba(0, 0, 0, 0.6)",
         "background-current": "#11141d",
         "border-default": "#6d7d8d",
         "border-strong": "#fafbfc",
         "border-subtle": "#30373e",
+        "shadow-ambient": "rgba(0, 0, 0, 0.24)",
+        "shadow-key": "rgba(0, 0, 0, 0.32)",
+        "shadow-scrim": "rgba(0, 0, 0, 0.6)",
         "state-hover": "rgba(39, 110, 255, 0.06)",
         "state-pressed": "rgba(39, 110, 255, 0.09)",
         "state-selected": "rgba(39, 110, 255, 0.08)",
@@ -1995,11 +2049,13 @@ exports[`themes lxStudio - theme shape 1`] = `
         "action-primary": "#0c3fa8",
         "action-primary-hover": "#082e7d",
         "action-primary-pressed": "#051c50",
-        "backdrop": "rgba(0, 0, 0, 0.6)",
         "background-current": "#fafbfc",
         "border-default": "#717a97",
         "border-strong": "#11141d",
         "border-subtle": "#cbcdd3",
+        "shadow-ambient": "rgba(17, 20, 29, 0.12)",
+        "shadow-key": "rgba(17, 20, 29, 0.16)",
+        "shadow-scrim": "rgba(0, 0, 0, 0.6)",
         "state-hover": "rgba(39, 110, 255, 0.06)",
         "state-pressed": "rgba(39, 110, 255, 0.09)",
         "state-selected": "rgba(39, 110, 255, 0.08)",
@@ -2044,11 +2100,13 @@ exports[`themes lxStudio - theme shape 1`] = `
       "--colors-action-primary": "var(--colors-palette-primary-800)",
       "--colors-action-primary-hover": "var(--colors-palette-primary-900)",
       "--colors-action-primary-pressed": "var(--colors-palette-primary-1000)",
-      "--colors-backdrop": "var(--colors-black-a60)",
       "--colors-background-current": "var(--colors-palette-neutral-light-100)",
       "--colors-border-default": "var(--colors-palette-neutral-dark-600)",
       "--colors-border-strong": "var(--colors-palette-neutral-dark-1100)",
       "--colors-border-subtle": "var(--colors-palette-neutral-dark-300)",
+      "--colors-shadow-ambient": "var(--colors-palette-neutral-dark-1100-a12)",
+      "--colors-shadow-key": "var(--colors-palette-neutral-dark-1100-a16)",
+      "--colors-shadow-scrim": "var(--colors-black-a60)",
       "--colors-state-hover": "var(--colors-palette-primary-600-a6)",
       "--colors-state-pressed": "var(--colors-palette-primary-600-a9)",
       "--colors-state-selected": "var(--colors-palette-primary-600-a8)",
@@ -2124,9 +2182,10 @@ exports[`themes lxStudio - theme shape 1`] = `
     "action-primary": "var(--colors-action-primary)",
     "action-primary-hover": "var(--colors-action-primary-hover)",
     "action-primary-pressed": "var(--colors-action-primary-pressed)",
-    "backdrop": "var(--colors-backdrop)",
     "background-current": "var(--colors-background-current)",
     "black": "var(--colors-black)",
+    "black-a24": "var(--colors-black-a24)",
+    "black-a32": "var(--colors-black-a32)",
     "black-a60": "var(--colors-black-a60)",
     "border-default": "var(--colors-border-default)",
     "border-strong": "var(--colors-border-strong)",
@@ -2167,6 +2226,8 @@ exports[`themes lxStudio - theme shape 1`] = `
     "palette-neutral-dark-100": "var(--colors-palette-neutral-dark-100)",
     "palette-neutral-dark-1000": "var(--colors-palette-neutral-dark-1000)",
     "palette-neutral-dark-1100": "var(--colors-palette-neutral-dark-1100)",
+    "palette-neutral-dark-1100-a12": "var(--colors-palette-neutral-dark-1100-a12)",
+    "palette-neutral-dark-1100-a16": "var(--colors-palette-neutral-dark-1100-a16)",
     "palette-neutral-dark-200": "var(--colors-palette-neutral-dark-200)",
     "palette-neutral-dark-300": "var(--colors-palette-neutral-dark-300)",
     "palette-neutral-dark-400": "var(--colors-palette-neutral-dark-400)",
@@ -2222,6 +2283,9 @@ exports[`themes lxStudio - theme shape 1`] = `
     "palette-warning-700": "var(--colors-palette-warning-700)",
     "palette-warning-800": "var(--colors-palette-warning-800)",
     "palette-warning-900": "var(--colors-palette-warning-900)",
+    "shadow-ambient": "var(--colors-shadow-ambient)",
+    "shadow-key": "var(--colors-shadow-key)",
+    "shadow-scrim": "var(--colors-shadow-scrim)",
     "state-hover": "var(--colors-state-hover)",
     "state-pressed": "var(--colors-state-pressed)",
     "state-selected": "var(--colors-state-selected)",
@@ -2350,11 +2414,11 @@ exports[`themes lxStudio - theme shape 1`] = `
     "headerZ": "var(--elements-headerZ)",
   },
   "elevation": {
-    "hover-shadow": "-8px 8px 0 0 undefined",
-    "hover-transform": "translate(4px, -4px)",
-    "hoverMirrored-shadow": "8px 8px 0 0 undefined",
-    "hoverMirrored-transform": "translate(-4px, -4px)",
-    "rest-shadow": "0 0 0 0 undefined",
+    "hover-shadow": "0 2px 6px 0 var(--colors-shadow-key), 0 6px 16px 0 var(--colors-shadow-ambient)",
+    "hover-transform": "none",
+    "hoverMirrored-shadow": "0 2px 6px 0 var(--colors-shadow-key), 0 6px 16px 0 var(--colors-shadow-ambient)",
+    "hoverMirrored-transform": "none",
+    "rest-shadow": "0 1px 4px 0 var(--colors-shadow-key), 0 2px 7px 0 var(--colors-shadow-ambient)",
     "rest-transform": "none",
   },
   "fontFamily": {
@@ -2406,11 +2470,13 @@ monospace",
       "action-primary": "palette-primary-400",
       "action-primary-hover": "palette-primary-300",
       "action-primary-pressed": "palette-primary-200",
-      "backdrop": "black-a60",
       "background-current": "palette-neutral-dark-1100",
       "border-default": "palette-neutral-light-600",
       "border-strong": "palette-neutral-light-100",
       "border-subtle": "palette-neutral-light-900",
+      "shadow-ambient": "black-a24",
+      "shadow-key": "black-a32",
+      "shadow-scrim": "black-a60",
       "state-hover": "palette-primary-600-a6",
       "state-pressed": "palette-primary-600-a9",
       "state-selected": "palette-primary-600-a8",
@@ -2452,11 +2518,13 @@ monospace",
       "action-primary": "palette-primary-800",
       "action-primary-hover": "palette-primary-900",
       "action-primary-pressed": "palette-primary-1000",
-      "backdrop": "black-a60",
       "background-current": "palette-neutral-light-100",
       "border-default": "palette-neutral-dark-600",
       "border-strong": "palette-neutral-dark-1100",
       "border-subtle": "palette-neutral-dark-300",
+      "shadow-ambient": "palette-neutral-dark-1100-a12",
+      "shadow-key": "palette-neutral-dark-1100-a16",
+      "shadow-scrim": "black-a60",
       "state-hover": "palette-primary-600-a6",
       "state-pressed": "palette-primary-600-a9",
       "state-selected": "palette-primary-600-a8",
@@ -2531,6 +2599,8 @@ monospace",
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0383 270.70);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0273 270.70);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0200 270.70);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0200 270.70 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0200 270.70 / 0.12);
     --colors-palette-primary-100: oklch(0.9862 0.0064 262.40);
     --colors-palette-primary-200: oklch(0.9364 0.0121 262.40);
     --colors-palette-primary-300: oklch(0.8497 0.0407 262.40);
@@ -2600,6 +2670,8 @@ monospace",
     --colors-palette-success-900: oklch(0.3346 0.0500 200.00);
     --colors-palette-success-1000: oklch(0.2499 0.0356 200.00);
     --colors-palette-success-1100: oklch(0.1925 0.0261 200.00);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
   }
 
@@ -2628,6 +2700,9 @@ monospace",
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0199 271.30 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0199 271.30 / 0.12);
+    --colors-palette-neutral-dark-1100-a0: oklch(0.1925 0.0199 271.30 / 0);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);
@@ -2697,7 +2772,10 @@ monospace",
     --colors-palette-success-900: oklch(0.3346 0.0912 145.50);
     --colors-palette-success-1000: oklch(0.2499 0.0650 145.50);
     --colors-palette-success-1100: oklch(0.1925 0.0477 145.50);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
+    --colors-black-a0: oklch(0.0000 0.0000 0.00 / 0);
   }
 
   [data-brand="admin"] {
@@ -2725,6 +2803,8 @@ monospace",
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0199 271.30 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0199 271.30 / 0.12);
     --colors-palette-primary-100: oklch(0.9862 0.0064 263.60);
     --colors-palette-primary-200: oklch(0.9364 0.0120 263.60);
     --colors-palette-primary-300: oklch(0.8497 0.0406 263.60);
@@ -2794,6 +2874,8 @@ monospace",
     --colors-palette-success-900: oklch(0.3346 0.0912 145.50);
     --colors-palette-success-1000: oklch(0.2499 0.0650 145.50);
     --colors-palette-success-1100: oklch(0.1925 0.0477 145.50);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
   }
 
@@ -2822,6 +2904,8 @@ monospace",
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0199 271.30 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0199 271.30 / 0.12);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);
@@ -2891,6 +2975,8 @@ monospace",
     --colors-palette-success-900: oklch(0.3346 0.0912 145.50);
     --colors-palette-success-1000: oklch(0.2499 0.0650 145.50);
     --colors-palette-success-1100: oklch(0.1925 0.0477 145.50);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
   }
 
@@ -2919,6 +3005,8 @@ monospace",
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0199 271.30 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0199 271.30 / 0.12);
     --colors-palette-primary-100: oklch(0.9862 0.0064 262.40);
     --colors-palette-primary-200: oklch(0.9364 0.0121 262.40);
     --colors-palette-primary-300: oklch(0.8497 0.0407 262.40);
@@ -2988,6 +3076,8 @@ monospace",
     --colors-palette-success-900: oklch(0.3346 0.0704 156.70);
     --colors-palette-success-1000: oklch(0.2499 0.0502 156.70);
     --colors-palette-success-1100: oklch(0.1925 0.0368 156.70);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
   }
 
@@ -2997,7 +3087,7 @@ monospace",
     --colors-background-current: var(--colors-surface-default);
     --colors-surface-sunken: var(--colors-palette-neutral-light-200); /** Wells, insets, code blocks — anything recessed into the page. */
     --colors-surface-default: var(--colors-palette-neutral-light-100); /** The page background — the base every other surface elevates from. */
-    --colors-surface-raised: var(--colors-white); /** Cards, panels, dialogs, menus. Higher elevation is lighter. */
+    --colors-surface-raised: var(--colors-white); /** The lighter surface step, not a depth: cards, menus, dialogs, fields, and flat bordered sections. Shadow, not the fill, says how high something sits. */
     --colors-surface-success: var(--colors-palette-success-200); /** The success tint behind an alert or inline confirmation. */
     --colors-surface-warning: var(--colors-palette-warning-200); /** The warning tint behind an alert or inline caution. */
     --colors-surface-error: var(--colors-palette-danger-200); /** The error tint behind an alert or inline validation message. */
@@ -3037,7 +3127,9 @@ monospace",
     --colors-viz-seq-2: var(--colors-palette-primary-700); /** Sequential step 2, low to high. */
     --colors-viz-seq-3: var(--colors-palette-primary-800); /** Sequential step 3, low to high. */
     --colors-viz-seq-4: var(--colors-palette-primary-900); /** Sequential step 4, low to high. */
-    --colors-backdrop: var(--colors-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
+    --colors-shadow-key: var(--colors-palette-neutral-dark-1100-a16); /** The tight, darker layer of an elevation shadow. Box-shadow color only; the elevation supplies offset and blur. */
+    --colors-shadow-ambient: var(--colors-palette-neutral-dark-1100-a12); /** The wide, soft layer of an elevation shadow, always paired with shadow-key. Transparent where a brand has no soft falloff. */
+    --colors-shadow-scrim: var(--colors-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
     --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-300) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-300) 0%, transparent) 100%);
     --gradient-surface-brand-subtle: radial-gradient(circle calc(0.78 * 100cqw) at 50% -10%, color-mix(in oklab, var(--colors-palette-primary-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-300) 0%, transparent) 100%);
   }
@@ -3048,7 +3140,7 @@ monospace",
     --colors-background-current: var(--colors-surface-default);
     --colors-surface-sunken: var(--colors-black); /** Wells, insets, code blocks — anything recessed into the page. */
     --colors-surface-default: var(--colors-palette-neutral-dark-1100); /** The page background — the base every other surface elevates from. */
-    --colors-surface-raised: var(--colors-palette-neutral-dark-1000); /** Cards, panels, dialogs, menus. Higher elevation is lighter. */
+    --colors-surface-raised: var(--colors-palette-neutral-dark-1000); /** The lighter surface step, not a depth: cards, menus, dialogs, fields, and flat bordered sections. Shadow, not the fill, says how high something sits. */
     --colors-surface-success: var(--colors-palette-success-1000); /** The success tint behind an alert or inline confirmation. */
     --colors-surface-warning: var(--colors-palette-warning-1000); /** The warning tint behind an alert or inline caution. */
     --colors-surface-error: var(--colors-palette-danger-1000); /** The error tint behind an alert or inline validation message. */
@@ -3088,12 +3180,15 @@ monospace",
     --colors-viz-seq-2: var(--colors-palette-primary-500); /** Sequential step 2, low to high. */
     --colors-viz-seq-3: var(--colors-palette-primary-400); /** Sequential step 3, low to high. */
     --colors-viz-seq-4: var(--colors-palette-primary-300); /** Sequential step 4, low to high. */
-    --colors-backdrop: var(--colors-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
+    --colors-shadow-key: var(--colors-black-a32); /** The tight, darker layer of an elevation shadow. Box-shadow color only; the elevation supplies offset and blur. */
+    --colors-shadow-ambient: var(--colors-black-a24); /** The wide, soft layer of an elevation shadow, always paired with shadow-key. Transparent where a brand has no soft falloff. */
+    --colors-shadow-scrim: var(--colors-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
     --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-900) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-900) 0%, transparent) 100%);
     --gradient-surface-brand-subtle: radial-gradient(circle calc(0.78 * 100cqw) at 50% -10%, color-mix(in oklab, var(--colors-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-900) 0%, transparent) 100%);
   }
 
   [data-brand="originalCodecademy"][data-color-mode="light"] {
+    --colors-shadow-ambient: var(--colors-palette-neutral-dark-1100-a0);
     --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-300) 0%, transparent) 100%);
   }
 
@@ -3101,6 +3196,7 @@ monospace",
     --colors-action-primary: var(--colors-palette-accent-300);
     --colors-action-primary-hover: var(--colors-palette-accent-400);
     --colors-action-primary-pressed: var(--colors-palette-accent-500);
+    --colors-shadow-ambient: var(--colors-black-a0);
     --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-900) 0%, transparent) 100%);
   }
 
@@ -3144,6 +3240,8 @@ exports[`themes platform - theme shape 1`] = `
   "_tokens": {
     "colors": {
       "black": "#000000",
+      "black-a24": "rgba(0, 0, 0, 0.24)",
+      "black-a32": "rgba(0, 0, 0, 0.32)",
       "black-a60": "rgba(0, 0, 0, 0.6)",
       "palette-accent-100": "#fffbeb",
       "palette-accent-1000": "#282106",
@@ -3181,6 +3279,8 @@ exports[`themes platform - theme shape 1`] = `
       "palette-neutral-dark-100": "#fafafb",
       "palette-neutral-dark-1000": "#1d212f",
       "palette-neutral-dark-1100": "#11141d",
+      "palette-neutral-dark-1100-a12": "rgba(17, 20, 29, 0.12)",
+      "palette-neutral-dark-1100-a16": "rgba(17, 20, 29, 0.16)",
       "palette-neutral-dark-200": "#e9eaeb",
       "palette-neutral-dark-300": "#cbcdd3",
       "palette-neutral-dark-400": "#aeb2bd",
@@ -3257,11 +3357,13 @@ exports[`themes platform - theme shape 1`] = `
         "action-primary": "#ffd300",
         "action-primary-hover": "#cca900",
         "action-primary-pressed": "#ae932e",
-        "backdrop": "rgba(0, 0, 0, 0.6)",
         "background-current": "#11141d",
         "border-default": "#6e7e85",
         "border-strong": "#f5fcff",
         "border-subtle": "#31383b",
+        "shadow-ambient": "rgba(0, 0, 0, 0.24)",
+        "shadow-key": "rgba(0, 0, 0, 0.32)",
+        "shadow-scrim": "rgba(0, 0, 0, 0.6)",
         "state-hover": "rgba(89, 98, 255, 0.06)",
         "state-pressed": "rgba(89, 98, 255, 0.09)",
         "state-selected": "rgba(89, 98, 255, 0.08)",
@@ -3303,11 +3405,13 @@ exports[`themes platform - theme shape 1`] = `
         "action-primary": "#331fc6",
         "action-primary-hover": "#241793",
         "action-primary-pressed": "#140f5f",
-        "backdrop": "rgba(0, 0, 0, 0.6)",
         "background-current": "#f5fcff",
         "border-default": "#717a97",
         "border-strong": "#11141d",
         "border-subtle": "#cbcdd3",
+        "shadow-ambient": "rgba(17, 20, 29, 0.12)",
+        "shadow-key": "rgba(17, 20, 29, 0.16)",
+        "shadow-scrim": "rgba(0, 0, 0, 0.6)",
         "state-hover": "rgba(89, 98, 255, 0.06)",
         "state-pressed": "rgba(89, 98, 255, 0.09)",
         "state-selected": "rgba(89, 98, 255, 0.08)",
@@ -3352,11 +3456,13 @@ exports[`themes platform - theme shape 1`] = `
       "--colors-action-primary": "var(--colors-palette-accent-300)",
       "--colors-action-primary-hover": "var(--colors-palette-accent-400)",
       "--colors-action-primary-pressed": "var(--colors-palette-accent-500)",
-      "--colors-backdrop": "var(--colors-black-a60)",
       "--colors-background-current": "var(--colors-palette-neutral-dark-1100)",
       "--colors-border-default": "var(--colors-palette-neutral-light-600)",
       "--colors-border-strong": "var(--colors-palette-neutral-light-100)",
       "--colors-border-subtle": "var(--colors-palette-neutral-light-900)",
+      "--colors-shadow-ambient": "var(--colors-black-a24)",
+      "--colors-shadow-key": "var(--colors-black-a32)",
+      "--colors-shadow-scrim": "var(--colors-black-a60)",
       "--colors-state-hover": "var(--colors-palette-primary-600-a6)",
       "--colors-state-pressed": "var(--colors-palette-primary-600-a9)",
       "--colors-state-selected": "var(--colors-palette-primary-600-a8)",
@@ -3432,9 +3538,10 @@ exports[`themes platform - theme shape 1`] = `
     "action-primary": "var(--colors-action-primary)",
     "action-primary-hover": "var(--colors-action-primary-hover)",
     "action-primary-pressed": "var(--colors-action-primary-pressed)",
-    "backdrop": "var(--colors-backdrop)",
     "background-current": "var(--colors-background-current)",
     "black": "var(--colors-black)",
+    "black-a24": "var(--colors-black-a24)",
+    "black-a32": "var(--colors-black-a32)",
     "black-a60": "var(--colors-black-a60)",
     "border-default": "var(--colors-border-default)",
     "border-strong": "var(--colors-border-strong)",
@@ -3501,6 +3608,8 @@ exports[`themes platform - theme shape 1`] = `
     "palette-neutral-dark-100": "var(--colors-palette-neutral-dark-100)",
     "palette-neutral-dark-1000": "var(--colors-palette-neutral-dark-1000)",
     "palette-neutral-dark-1100": "var(--colors-palette-neutral-dark-1100)",
+    "palette-neutral-dark-1100-a12": "var(--colors-palette-neutral-dark-1100-a12)",
+    "palette-neutral-dark-1100-a16": "var(--colors-palette-neutral-dark-1100-a16)",
     "palette-neutral-dark-200": "var(--colors-palette-neutral-dark-200)",
     "palette-neutral-dark-300": "var(--colors-palette-neutral-dark-300)",
     "palette-neutral-dark-400": "var(--colors-palette-neutral-dark-400)",
@@ -3556,6 +3665,9 @@ exports[`themes platform - theme shape 1`] = `
     "palette-warning-700": "var(--colors-palette-warning-700)",
     "palette-warning-800": "var(--colors-palette-warning-800)",
     "palette-warning-900": "var(--colors-palette-warning-900)",
+    "shadow-ambient": "var(--colors-shadow-ambient)",
+    "shadow-key": "var(--colors-shadow-key)",
+    "shadow-scrim": "var(--colors-shadow-scrim)",
     "state-hover": "var(--colors-state-hover)",
     "state-pressed": "var(--colors-state-pressed)",
     "state-selected": "var(--colors-state-selected)",
@@ -3684,11 +3796,11 @@ exports[`themes platform - theme shape 1`] = `
     "headerZ": "var(--elements-headerZ)",
   },
   "elevation": {
-    "hover-shadow": "-8px 8px 0 0 undefined",
-    "hover-transform": "translate(4px, -4px)",
-    "hoverMirrored-shadow": "8px 8px 0 0 undefined",
-    "hoverMirrored-transform": "translate(-4px, -4px)",
-    "rest-shadow": "0 0 0 0 undefined",
+    "hover-shadow": "0 2px 6px 0 var(--colors-shadow-key), 0 6px 16px 0 var(--colors-shadow-ambient)",
+    "hover-transform": "none",
+    "hoverMirrored-shadow": "0 2px 6px 0 var(--colors-shadow-key), 0 6px 16px 0 var(--colors-shadow-ambient)",
+    "hoverMirrored-transform": "none",
+    "rest-shadow": "0 1px 4px 0 var(--colors-shadow-key), 0 2px 7px 0 var(--colors-shadow-ambient)",
     "rest-transform": "none",
   },
   "fontFamily": {
@@ -3738,11 +3850,13 @@ monospace",
       "action-primary": "palette-accent-300",
       "action-primary-hover": "palette-accent-400",
       "action-primary-pressed": "palette-accent-500",
-      "backdrop": "black-a60",
       "background-current": "palette-neutral-dark-1100",
       "border-default": "palette-neutral-light-600",
       "border-strong": "palette-neutral-light-100",
       "border-subtle": "palette-neutral-light-900",
+      "shadow-ambient": "black-a24",
+      "shadow-key": "black-a32",
+      "shadow-scrim": "black-a60",
       "state-hover": "palette-primary-600-a6",
       "state-pressed": "palette-primary-600-a9",
       "state-selected": "palette-primary-600-a8",
@@ -3784,11 +3898,13 @@ monospace",
       "action-primary": "palette-primary-800",
       "action-primary-hover": "palette-primary-900",
       "action-primary-pressed": "palette-primary-1000",
-      "backdrop": "black-a60",
       "background-current": "palette-neutral-light-100",
       "border-default": "palette-neutral-dark-600",
       "border-strong": "palette-neutral-dark-1100",
       "border-subtle": "palette-neutral-dark-300",
+      "shadow-ambient": "palette-neutral-dark-1100-a12",
+      "shadow-key": "palette-neutral-dark-1100-a16",
+      "shadow-scrim": "black-a60",
       "state-hover": "palette-primary-600-a6",
       "state-pressed": "palette-primary-600-a9",
       "state-selected": "palette-primary-600-a8",
@@ -3863,6 +3979,8 @@ monospace",
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0383 270.70);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0273 270.70);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0200 270.70);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0200 270.70 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0200 270.70 / 0.12);
     --colors-palette-primary-100: oklch(0.9862 0.0064 262.40);
     --colors-palette-primary-200: oklch(0.9364 0.0121 262.40);
     --colors-palette-primary-300: oklch(0.8497 0.0407 262.40);
@@ -3932,6 +4050,8 @@ monospace",
     --colors-palette-success-900: oklch(0.3346 0.0500 200.00);
     --colors-palette-success-1000: oklch(0.2499 0.0356 200.00);
     --colors-palette-success-1100: oklch(0.1925 0.0261 200.00);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
   }
 
@@ -3960,6 +4080,9 @@ monospace",
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0199 271.30 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0199 271.30 / 0.12);
+    --colors-palette-neutral-dark-1100-a0: oklch(0.1925 0.0199 271.30 / 0);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);
@@ -4029,7 +4152,10 @@ monospace",
     --colors-palette-success-900: oklch(0.3346 0.0912 145.50);
     --colors-palette-success-1000: oklch(0.2499 0.0650 145.50);
     --colors-palette-success-1100: oklch(0.1925 0.0477 145.50);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
+    --colors-black-a0: oklch(0.0000 0.0000 0.00 / 0);
   }
 
   [data-brand="admin"] {
@@ -4057,6 +4183,8 @@ monospace",
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0199 271.30 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0199 271.30 / 0.12);
     --colors-palette-primary-100: oklch(0.9862 0.0064 263.60);
     --colors-palette-primary-200: oklch(0.9364 0.0120 263.60);
     --colors-palette-primary-300: oklch(0.8497 0.0406 263.60);
@@ -4126,6 +4254,8 @@ monospace",
     --colors-palette-success-900: oklch(0.3346 0.0912 145.50);
     --colors-palette-success-1000: oklch(0.2499 0.0650 145.50);
     --colors-palette-success-1100: oklch(0.1925 0.0477 145.50);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
   }
 
@@ -4154,6 +4284,8 @@ monospace",
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0199 271.30 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0199 271.30 / 0.12);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);
@@ -4223,6 +4355,8 @@ monospace",
     --colors-palette-success-900: oklch(0.3346 0.0912 145.50);
     --colors-palette-success-1000: oklch(0.2499 0.0650 145.50);
     --colors-palette-success-1100: oklch(0.1925 0.0477 145.50);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
   }
 
@@ -4251,6 +4385,8 @@ monospace",
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0199 271.30 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0199 271.30 / 0.12);
     --colors-palette-primary-100: oklch(0.9862 0.0064 262.40);
     --colors-palette-primary-200: oklch(0.9364 0.0121 262.40);
     --colors-palette-primary-300: oklch(0.8497 0.0407 262.40);
@@ -4320,6 +4456,8 @@ monospace",
     --colors-palette-success-900: oklch(0.3346 0.0704 156.70);
     --colors-palette-success-1000: oklch(0.2499 0.0502 156.70);
     --colors-palette-success-1100: oklch(0.1925 0.0368 156.70);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
   }
 
@@ -4329,7 +4467,7 @@ monospace",
     --colors-background-current: var(--colors-surface-default);
     --colors-surface-sunken: var(--colors-palette-neutral-light-200); /** Wells, insets, code blocks — anything recessed into the page. */
     --colors-surface-default: var(--colors-palette-neutral-light-100); /** The page background — the base every other surface elevates from. */
-    --colors-surface-raised: var(--colors-white); /** Cards, panels, dialogs, menus. Higher elevation is lighter. */
+    --colors-surface-raised: var(--colors-white); /** The lighter surface step, not a depth: cards, menus, dialogs, fields, and flat bordered sections. Shadow, not the fill, says how high something sits. */
     --colors-surface-success: var(--colors-palette-success-200); /** The success tint behind an alert or inline confirmation. */
     --colors-surface-warning: var(--colors-palette-warning-200); /** The warning tint behind an alert or inline caution. */
     --colors-surface-error: var(--colors-palette-danger-200); /** The error tint behind an alert or inline validation message. */
@@ -4369,7 +4507,9 @@ monospace",
     --colors-viz-seq-2: var(--colors-palette-primary-700); /** Sequential step 2, low to high. */
     --colors-viz-seq-3: var(--colors-palette-primary-800); /** Sequential step 3, low to high. */
     --colors-viz-seq-4: var(--colors-palette-primary-900); /** Sequential step 4, low to high. */
-    --colors-backdrop: var(--colors-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
+    --colors-shadow-key: var(--colors-palette-neutral-dark-1100-a16); /** The tight, darker layer of an elevation shadow. Box-shadow color only; the elevation supplies offset and blur. */
+    --colors-shadow-ambient: var(--colors-palette-neutral-dark-1100-a12); /** The wide, soft layer of an elevation shadow, always paired with shadow-key. Transparent where a brand has no soft falloff. */
+    --colors-shadow-scrim: var(--colors-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
     --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-300) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-300) 0%, transparent) 100%);
     --gradient-surface-brand-subtle: radial-gradient(circle calc(0.78 * 100cqw) at 50% -10%, color-mix(in oklab, var(--colors-palette-primary-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-300) 0%, transparent) 100%);
   }
@@ -4380,7 +4520,7 @@ monospace",
     --colors-background-current: var(--colors-surface-default);
     --colors-surface-sunken: var(--colors-black); /** Wells, insets, code blocks — anything recessed into the page. */
     --colors-surface-default: var(--colors-palette-neutral-dark-1100); /** The page background — the base every other surface elevates from. */
-    --colors-surface-raised: var(--colors-palette-neutral-dark-1000); /** Cards, panels, dialogs, menus. Higher elevation is lighter. */
+    --colors-surface-raised: var(--colors-palette-neutral-dark-1000); /** The lighter surface step, not a depth: cards, menus, dialogs, fields, and flat bordered sections. Shadow, not the fill, says how high something sits. */
     --colors-surface-success: var(--colors-palette-success-1000); /** The success tint behind an alert or inline confirmation. */
     --colors-surface-warning: var(--colors-palette-warning-1000); /** The warning tint behind an alert or inline caution. */
     --colors-surface-error: var(--colors-palette-danger-1000); /** The error tint behind an alert or inline validation message. */
@@ -4420,12 +4560,15 @@ monospace",
     --colors-viz-seq-2: var(--colors-palette-primary-500); /** Sequential step 2, low to high. */
     --colors-viz-seq-3: var(--colors-palette-primary-400); /** Sequential step 3, low to high. */
     --colors-viz-seq-4: var(--colors-palette-primary-300); /** Sequential step 4, low to high. */
-    --colors-backdrop: var(--colors-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
+    --colors-shadow-key: var(--colors-black-a32); /** The tight, darker layer of an elevation shadow. Box-shadow color only; the elevation supplies offset and blur. */
+    --colors-shadow-ambient: var(--colors-black-a24); /** The wide, soft layer of an elevation shadow, always paired with shadow-key. Transparent where a brand has no soft falloff. */
+    --colors-shadow-scrim: var(--colors-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
     --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-900) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-900) 0%, transparent) 100%);
     --gradient-surface-brand-subtle: radial-gradient(circle calc(0.78 * 100cqw) at 50% -10%, color-mix(in oklab, var(--colors-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-900) 0%, transparent) 100%);
   }
 
   [data-brand="originalCodecademy"][data-color-mode="light"] {
+    --colors-shadow-ambient: var(--colors-palette-neutral-dark-1100-a0);
     --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-300) 0%, transparent) 100%);
   }
 
@@ -4433,6 +4576,7 @@ monospace",
     --colors-action-primary: var(--colors-palette-accent-300);
     --colors-action-primary-hover: var(--colors-palette-accent-400);
     --colors-action-primary-pressed: var(--colors-palette-accent-500);
+    --colors-shadow-ambient: var(--colors-black-a0);
     --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-900) 0%, transparent) 100%);
   }
 

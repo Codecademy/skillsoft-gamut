@@ -22,6 +22,15 @@ export const brand = {
       "accent-400": "#cca900"
     },
     "roles": {
+      "light": {
+        "shadow-ambient": {
+          "ref": {
+            "slot": "neutral-dark",
+            "grade": 1100
+          },
+          "alpha": 0
+        }
+      },
       "dark": {
         "action-primary": {
           "slot": "accent",
@@ -34,6 +43,10 @@ export const brand = {
         "action-primary-pressed": {
           "slot": "accent",
           "grade": 500
+        },
+        "shadow-ambient": {
+          "ref": "black",
+          "alpha": 0
         }
       }
     },
@@ -455,9 +468,33 @@ export const palette = {
     "oklch": "oklch(0.5835 0.2285 274.1 / 0.08)",
     "srgb": "rgba(89, 98, 255, 0.08)"
   },
+  "palette-neutral-dark-1100-a16": {
+    "oklch": "oklch(0.1925 0.0199 271.3 / 0.16)",
+    "srgb": "rgba(17, 20, 29, 0.16)"
+  },
+  "black-a32": {
+    "oklch": "oklch(0 0 0 / 0.32)",
+    "srgb": "rgba(0, 0, 0, 0.32)"
+  },
+  "palette-neutral-dark-1100-a12": {
+    "oklch": "oklch(0.1925 0.0199 271.3 / 0.12)",
+    "srgb": "rgba(17, 20, 29, 0.12)"
+  },
+  "black-a24": {
+    "oklch": "oklch(0 0 0 / 0.24)",
+    "srgb": "rgba(0, 0, 0, 0.24)"
+  },
   "black-a60": {
     "oklch": "oklch(0 0 0 / 0.6)",
     "srgb": "rgba(0, 0, 0, 0.6)"
+  },
+  "palette-neutral-dark-1100-a0": {
+    "oklch": "oklch(0.1925 0.0199 271.3 / 0)",
+    "srgb": "rgba(17, 20, 29, 0)"
+  },
+  "black-a0": {
+    "oklch": "oklch(0 0 0 / 0)",
+    "srgb": "rgba(0, 0, 0, 0)"
   }
 } as const;
 
@@ -673,7 +710,17 @@ export const roles = {
       "oklch": "oklch(0.3346 0.1863 274.1)",
       "srgb": "#241793"
     },
-    "backdrop": {
+    "shadow-key": {
+      "ref": "palette-neutral-dark-1100-a16",
+      "oklch": "oklch(0.1925 0.0199 271.3 / 0.16)",
+      "srgb": "rgba(17, 20, 29, 0.16)"
+    },
+    "shadow-ambient": {
+      "ref": "palette-neutral-dark-1100-a0",
+      "oklch": "oklch(0.1925 0.0199 271.3 / 0)",
+      "srgb": "rgba(17, 20, 29, 0)"
+    },
+    "shadow-scrim": {
       "ref": "black-a60",
       "oklch": "oklch(0 0 0 / 0.6)",
       "srgb": "rgba(0, 0, 0, 0.6)"
@@ -890,7 +937,17 @@ export const roles = {
       "oklch": "oklch(0.8497 0.0408 274.1)",
       "srgb": "#c5cce9"
     },
-    "backdrop": {
+    "shadow-key": {
+      "ref": "black-a32",
+      "oklch": "oklch(0 0 0 / 0.32)",
+      "srgb": "rgba(0, 0, 0, 0.32)"
+    },
+    "shadow-ambient": {
+      "ref": "black-a0",
+      "oklch": "oklch(0 0 0 / 0)",
+      "srgb": "rgba(0, 0, 0, 0)"
+    },
+    "shadow-scrim": {
       "ref": "black-a60",
       "oklch": "oklch(0 0 0 / 0.6)",
       "srgb": "rgba(0, 0, 0, 0.6)"

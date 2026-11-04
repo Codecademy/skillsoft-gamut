@@ -27,6 +27,8 @@
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0383 270.70);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0273 270.70);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0200 270.70);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0200 270.70 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0200 270.70 / 0.12);
     --colors-palette-primary-100: oklch(0.9862 0.0064 262.40);
     --colors-palette-primary-200: oklch(0.9364 0.0121 262.40);
     --colors-palette-primary-300: oklch(0.8497 0.0407 262.40);
@@ -96,6 +98,8 @@
     --colors-palette-success-900: oklch(0.3346 0.0500 200.00);
     --colors-palette-success-1000: oklch(0.2499 0.0356 200.00);
     --colors-palette-success-1100: oklch(0.1925 0.0261 200.00);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
   }
 
@@ -124,6 +128,9 @@
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0199 271.30 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0199 271.30 / 0.12);
+    --colors-palette-neutral-dark-1100-a0: oklch(0.1925 0.0199 271.30 / 0);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);
@@ -193,7 +200,10 @@
     --colors-palette-success-900: oklch(0.3346 0.0912 145.50);
     --colors-palette-success-1000: oklch(0.2499 0.0650 145.50);
     --colors-palette-success-1100: oklch(0.1925 0.0477 145.50);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
+    --colors-black-a0: oklch(0.0000 0.0000 0.00 / 0);
   }
 
   [data-brand="admin"] {
@@ -221,6 +231,8 @@
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0199 271.30 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0199 271.30 / 0.12);
     --colors-palette-primary-100: oklch(0.9862 0.0064 263.60);
     --colors-palette-primary-200: oklch(0.9364 0.0120 263.60);
     --colors-palette-primary-300: oklch(0.8497 0.0406 263.60);
@@ -290,6 +302,8 @@
     --colors-palette-success-900: oklch(0.3346 0.0912 145.50);
     --colors-palette-success-1000: oklch(0.2499 0.0650 145.50);
     --colors-palette-success-1100: oklch(0.1925 0.0477 145.50);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
   }
 
@@ -318,6 +332,8 @@
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0199 271.30 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0199 271.30 / 0.12);
     --colors-palette-primary-100: oklch(0.9862 0.0064 274.10);
     --colors-palette-primary-200: oklch(0.9364 0.0121 274.10);
     --colors-palette-primary-300: oklch(0.8497 0.0408 274.10);
@@ -387,6 +403,8 @@
     --colors-palette-success-900: oklch(0.3346 0.0912 145.50);
     --colors-palette-success-1000: oklch(0.2499 0.0650 145.50);
     --colors-palette-success-1100: oklch(0.1925 0.0477 145.50);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
   }
 
@@ -415,6 +433,8 @@
     --colors-palette-neutral-dark-900: oklch(0.3346 0.0381 271.30);
     --colors-palette-neutral-dark-1000: oklch(0.2499 0.0272 271.30);
     --colors-palette-neutral-dark-1100: oklch(0.1925 0.0199 271.30);
+    --colors-palette-neutral-dark-1100-a16: oklch(0.1925 0.0199 271.30 / 0.16);
+    --colors-palette-neutral-dark-1100-a12: oklch(0.1925 0.0199 271.30 / 0.12);
     --colors-palette-primary-100: oklch(0.9862 0.0064 262.40);
     --colors-palette-primary-200: oklch(0.9364 0.0121 262.40);
     --colors-palette-primary-300: oklch(0.8497 0.0407 262.40);
@@ -484,6 +504,8 @@
     --colors-palette-success-900: oklch(0.3346 0.0704 156.70);
     --colors-palette-success-1000: oklch(0.2499 0.0502 156.70);
     --colors-palette-success-1100: oklch(0.1925 0.0368 156.70);
+    --colors-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --colors-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
     --colors-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
   }
 
@@ -493,7 +515,7 @@
     --colors-background-current: var(--colors-surface-default);
     --colors-surface-sunken: var(--colors-palette-neutral-light-200); /** Wells, insets, code blocks — anything recessed into the page. */
     --colors-surface-default: var(--colors-palette-neutral-light-100); /** The page background — the base every other surface elevates from. */
-    --colors-surface-raised: var(--colors-white); /** Cards, panels, dialogs, menus. Higher elevation is lighter. */
+    --colors-surface-raised: var(--colors-white); /** The lighter surface step, not a depth: cards, menus, dialogs, fields, and flat bordered sections. Shadow, not the fill, says how high something sits. */
     --colors-surface-success: var(--colors-palette-success-200); /** The success tint behind an alert or inline confirmation. */
     --colors-surface-warning: var(--colors-palette-warning-200); /** The warning tint behind an alert or inline caution. */
     --colors-surface-error: var(--colors-palette-danger-200); /** The error tint behind an alert or inline validation message. */
@@ -533,7 +555,9 @@
     --colors-viz-seq-2: var(--colors-palette-primary-700); /** Sequential step 2, low to high. */
     --colors-viz-seq-3: var(--colors-palette-primary-800); /** Sequential step 3, low to high. */
     --colors-viz-seq-4: var(--colors-palette-primary-900); /** Sequential step 4, low to high. */
-    --colors-backdrop: var(--colors-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
+    --colors-shadow-key: var(--colors-palette-neutral-dark-1100-a16); /** The tight, darker layer of an elevation shadow. Box-shadow color only; the elevation supplies offset and blur. */
+    --colors-shadow-ambient: var(--colors-palette-neutral-dark-1100-a12); /** The wide, soft layer of an elevation shadow, always paired with shadow-key. Transparent where a brand has no soft falloff. */
+    --colors-shadow-scrim: var(--colors-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
     --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-300) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-300) 0%, transparent) 100%);
     --gradient-surface-brand-subtle: radial-gradient(circle calc(0.78 * 100cqw) at 50% -10%, color-mix(in oklab, var(--colors-palette-primary-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-300) 0%, transparent) 100%);
   }
@@ -544,7 +568,7 @@
     --colors-background-current: var(--colors-surface-default);
     --colors-surface-sunken: var(--colors-black); /** Wells, insets, code blocks — anything recessed into the page. */
     --colors-surface-default: var(--colors-palette-neutral-dark-1100); /** The page background — the base every other surface elevates from. */
-    --colors-surface-raised: var(--colors-palette-neutral-dark-1000); /** Cards, panels, dialogs, menus. Higher elevation is lighter. */
+    --colors-surface-raised: var(--colors-palette-neutral-dark-1000); /** The lighter surface step, not a depth: cards, menus, dialogs, fields, and flat bordered sections. Shadow, not the fill, says how high something sits. */
     --colors-surface-success: var(--colors-palette-success-1000); /** The success tint behind an alert or inline confirmation. */
     --colors-surface-warning: var(--colors-palette-warning-1000); /** The warning tint behind an alert or inline caution. */
     --colors-surface-error: var(--colors-palette-danger-1000); /** The error tint behind an alert or inline validation message. */
@@ -584,12 +608,15 @@
     --colors-viz-seq-2: var(--colors-palette-primary-500); /** Sequential step 2, low to high. */
     --colors-viz-seq-3: var(--colors-palette-primary-400); /** Sequential step 3, low to high. */
     --colors-viz-seq-4: var(--colors-palette-primary-300); /** Sequential step 4, low to high. */
-    --colors-backdrop: var(--colors-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
+    --colors-shadow-key: var(--colors-black-a32); /** The tight, darker layer of an elevation shadow. Box-shadow color only; the elevation supplies offset and blur. */
+    --colors-shadow-ambient: var(--colors-black-a24); /** The wide, soft layer of an elevation shadow, always paired with shadow-key. Transparent where a brand has no soft falloff. */
+    --colors-shadow-scrim: var(--colors-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
     --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-900) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-900) 0%, transparent) 100%);
     --gradient-surface-brand-subtle: radial-gradient(circle calc(0.78 * 100cqw) at 50% -10%, color-mix(in oklab, var(--colors-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-900) 0%, transparent) 100%);
   }
 
   [data-brand="originalCodecademy"][data-color-mode="light"] {
+    --colors-shadow-ambient: var(--colors-palette-neutral-dark-1100-a0);
     --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-alt-300) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-300) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-300) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-300) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-300) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-300) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-300) 0%, transparent) 100%);
   }
 
@@ -597,6 +624,7 @@
     --colors-action-primary: var(--colors-palette-accent-300);
     --colors-action-primary-hover: var(--colors-palette-accent-400);
     --colors-action-primary-pressed: var(--colors-palette-accent-500);
+    --colors-shadow-ambient: var(--colors-black-a0);
     --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-accent-alt-900) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--colors-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--colors-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--colors-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--colors-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--colors-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--colors-palette-primary-900) 0%, transparent) 100%);
   }
 

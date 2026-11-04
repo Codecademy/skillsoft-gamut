@@ -435,6 +435,32 @@
             "contentMode": "dark"
           }
         }
+      },
+      "1100-a16": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.1925,
+            0.0199,
+            271.3
+          ],
+          "alpha": 0.16,
+          "hex": "#11141d"
+        }
+      },
+      "1100-a12": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.1925,
+            0.0199,
+            271.3
+          ],
+          "alpha": 0.12,
+          "hex": "#11141d"
+        }
       }
     },
     "primary": {
@@ -1675,6 +1701,32 @@
           }
         }
       }
+    }
+  },
+  "black-a32": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "oklch",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.32,
+      "hex": "#000000"
+    }
+  },
+  "black-a24": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "oklch",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.24,
+      "hex": "#000000"
     }
   },
   "black-a60": {

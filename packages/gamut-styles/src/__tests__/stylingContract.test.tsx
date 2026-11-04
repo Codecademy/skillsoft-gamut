@@ -57,24 +57,18 @@ const tokensCss = readFileSync(
 /*
  * Custom properties tokens.css declares for a brand and mode, in cascade
  * order: the default palette on :root, the brand's palette over it, then the
- * mode's roles. Innermost blocks only, so the @layer wrapper is skipped.
+ * mode's roles, then this brand's own role overrides for the mode. Innermost blocks only, so the @layer wrapper is skipped.
  */
 const tokensCssVars = (mode: Mode, brand: string): Vars => {
   const vars: Vars = {};
   for (const [, selector, body] of tokensCss.matchAll(
     /([^{};]+)\{([^{}]*)\}/g
   )) {
-    /* A block keyed on another brand (its palette or role overrides) doesn't apply. */
-    const otherBrand =
-      selector.includes('data-brand') &&
-      !selector.includes(`[data-brand="${brand}"]`) &&
-      !selector.includes(':root');
-    const applies = otherBrand
-      ? false
-      : selector.includes('data-color-mode')
-      ? selector.includes(`"${mode}"`)
-      : selector.includes(':root') ||
-        selector.includes(`[data-brand="${brand}"]`);
+    const ownBrand = selector.includes(`[data-brand="${brand}"]`);
+    const applies = selector.includes('data-color-mode')
+      ? selector.includes(`"${mode}"`) &&
+        (!selector.includes('data-brand') || ownBrand)
+      : selector.includes(':root') || ownBrand;
     if (!applies) continue;
     for (const [, name, value] of body.matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)) {
       vars[name] = value.trim();
