@@ -39,7 +39,7 @@ describe('Background', () => {
   it('switches the default colormode when contrast standards are not met', () => {
     const { view } = renderView({ bg: 'palette-neutral-dark-1000' });
     expect(view.getByTestId('content').parentElement).toHaveStyleRule(
-      '--color-background-current',
+      '--colors-background-current',
       theme.colors['palette-neutral-dark-1000']
     );
 
@@ -61,12 +61,12 @@ describe('Background', () => {
       ),
     });
     expect(view.getByTestId('content').parentElement).toHaveStyleRule(
-      '--color-background-current',
+      '--colors-background-current',
       theme.colors['palette-neutral-dark-1000']
     );
 
     expect(view.getByTestId('nested-content').parentElement).toHaveStyleRule(
-      '--color-background-current',
+      '--colors-background-current',
       theme.colors['palette-neutral-light-200']
     );
   });
@@ -92,7 +92,7 @@ describe('Background', () => {
   it('it sets the current background color to the specified bg', () => {
     const { view } = renderView({ bg: 'palette-primary-200' });
     expect(view.getByTestId('content').parentElement).toHaveStyleRule(
-      '--color-background-current',
+      '--colors-background-current',
       theme.colors['palette-primary-200']
     );
   });
@@ -100,7 +100,7 @@ describe('Background', () => {
   it('it sets the current background color to the specified bg when switch modes', () => {
     const { view } = renderView({ bg: 'palette-neutral-dark-1000' });
     expect(view.getByTestId('content').parentElement).toHaveStyleRule(
-      '--color-background-current',
+      '--colors-background-current',
       theme.colors['palette-neutral-dark-1000']
     );
   });

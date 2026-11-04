@@ -1,5 +1,5 @@
 import { MiniChevronDownIcon, MiniDeleteIcon } from '@skillsoft/gamut-icons';
-import { breakpoints, useCurrentMode } from '@skillsoft/gamut-styles';
+import { breakpoints } from '@skillsoft/gamut-styles';
 import { Children, isValidElement, useId, useMemo, useState } from 'react';
 import TruncateMarkup from 'react-truncate-markup';
 import { useMeasure } from 'react-use';
@@ -79,14 +79,12 @@ export const Alert: React.FC<AlertProps> = ({
   }, [width]);
 
   const activeAlert = alertVariants?.[type] ?? alertVariants.general;
-  const { icon: Icon, bg, iconColor } = activeAlert;
-  const backgroundImage =
-    'backgroundImage' in activeAlert ? activeAlert.backgroundImage : undefined;
+  const { icon: Icon, bg, iconColor, ink } = activeAlert;
+  const gradient = 'gradient' in activeAlert ? activeAlert.gradient : undefined;
 
   const tipId = useId();
   const collapsibleContentId = useId();
 
-  const currentColorMode = useCurrentMode();
   const isSubtleVariant = type === 'subtle';
 
   const [expanded, setExpanded] = useState(false);
@@ -177,8 +175,11 @@ export const Alert: React.FC<AlertProps> = ({
     </Box>
   );
 
-  const buttonColorMode = isSubtleVariant ? currentColorMode : 'dark';
-
+  /*
+   * The tints follow the color mode, so the CTA does too: it inherits the
+   * mode the Alert's Background sets instead of being forced dark, which
+   * only made sense on the old saturated fills.
+   */
   const ctaButton = ctaExists && (
     <Box
       gridColumn={gridButtonOrder}
@@ -187,7 +188,6 @@ export const Alert: React.FC<AlertProps> = ({
     >
       <CleanFillButton
         {...cta}
-        mode={buttonColorMode}
         size="small"
         tabIndex={tabIndex}
         variant="secondary"
@@ -200,9 +200,10 @@ export const Alert: React.FC<AlertProps> = ({
   const AlertWrapper = isSubtleVariant ? AlertBox : AlertBanner;
   return (
     <AlertWrapper
-      backgroundImage={backgroundImage}
       bg={bg}
+      gradient={gradient}
       gridTemplateColumns={gridTemplateColumns}
+      ink={ink}
       placement={placement}
       pr={alertRightPadding}
       ref={ref}

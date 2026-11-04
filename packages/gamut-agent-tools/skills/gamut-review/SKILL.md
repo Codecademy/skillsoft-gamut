@@ -393,7 +393,7 @@ After the hex scan, grep `.scss`, `.css`, and `.less` files for `var(--` occurre
 
 _Gamut-issued variables_ — skip these:
 
-- `--color-*` (ColorMode semantic aliases)
+- `--colors-*` (ColorMode semantic aliases)
 - `--space*` (spacing scale)
 - `--font*` (font-size scale)
 - `--lineHeight*` (line-height scale)
@@ -406,7 +406,7 @@ Any other name — especially camel-cased semantic names like `--darkNeutralColo
 
 Severity: ✗ error for color-semantic variables (invisible in tests/Storybook without the host stylesheet); ⚠ warning for spacing/sizing variables that duplicate Gamut scale tokens.
 
-Reporting: count unique non-Gamut variable names and list the top offenders with frequency. Do not enumerate every call-site — just the variable names and usage counts. Suggest the nearest Gamut semantic alias where obvious (e.g. `--darkNeutralColor` → `--color-text`, `--whiteColor` → `--color-background`).
+Reporting: count unique non-Gamut variable names and list the top offenders with frequency. Do not enumerate every call-site — just the variable names and usage counts. Suggest the nearest Gamut semantic alias where obvious (e.g. `--darkNeutralColor` → `--colors-text`, `--whiteColor` → `--colors-background`).
 
 ---
 
@@ -530,7 +530,7 @@ Hardcoded colors                                                         [→ ga
   ✗  src/Card.tsx:22   '#10162F'  →  semantic: text | palette: navy-800 | note: Core light body copy
   ⚠  src/Hero.tsx:14   '#1557FF'  →  semantic: primary (if link/CTA) | palette: blue-500 | note: no exact semantic; confirm theme
   ⚠  src/Nav.tsx:8     '#BADA55'  →  semantic: (n/a) | palette: — | note: no Gamut token
-  ✗  Non-Gamut CSS vars   --darkNeutralColor (8 uses), --whiteColor (5 uses)  →  --color-text, --color-background
+  ✗  Non-Gamut CSS vars   --darkNeutralColor (8 uses), --whiteColor (5 uses)  →  --colors-text, --colors-background
 
 Test setup                                                               [→ gamut-testing]
   ✓  @skillsoft/gamut-tests   used in 12 test files

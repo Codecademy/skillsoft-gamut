@@ -69,7 +69,7 @@ export const modeColorProps = ({
   const { colors } = theme;
   return serializeTokens(
     mapValues(theme?.modes[mode], (color) => colors[color]),
-    'color',
+    'colors',
     theme
   ).variables;
 };
@@ -180,12 +180,33 @@ export const ColorMode = forwardRef<
         : modes[active]['background-current']
       : bg;
 
+  /*
+   * Generated themes (they carry `contentModes`) take every color value from
+   * tokens.css, keyed on the `data-color-mode` attribute, so a mode switch is
+   * the attribute. `data-brand` goes with it: roles resolve their palette
+   * where they're declared, so each mode switch re-declares them against
+   * this brand's palette. The only variable left to set is a
+   * background-current from `bg`. Other themes still serialize the whole mode.
+   */
+  const fromTokensCss = Boolean(theme.contentModes);
+  const modeAttrs = fromTokensCss
+    ? { 'data-color-mode': mode, 'data-brand': theme.brand }
+    : {};
+
   /** Serialize color variables for the current mode
    * 1. If all variables are required add all mode variables to the current context
    * 2. If the user has specified a background color - set that color to the current-bg
    * 3. If not
    */
   const { variables } = useMemo(() => {
+    if (fromTokensCss) {
+      return {
+        variables:
+          bg === undefined
+            ? {}
+            : { '--colors-background-current': colors[bg] as string },
+      };
+    }
     return serializeTokens(
       mapValues(modes[mode], (color, key) => {
         if (key === 'background-current' && typeof bg !== 'undefined') {
@@ -193,21 +214,27 @@ export const ColorMode = forwardRef<
         }
         return colors[color];
       }),
-      'color',
+      'colors',
       theme
     );
-  }, [colors, mode, modes, theme, bg]);
+  }, [colors, mode, modes, theme, bg, fromTokensCss]);
 
   if (active === mode) {
     const vars = alwaysSetVariables
       ? variables
-      : pick(variables, ['--color-background-current']);
+      : pick(variables, ['--colors-background-current']);
 
     return (
       <BackgroundCurrentContext.Provider
         value={{ 'background-current': bgCurrent }}
       >
-        <VariableProvider {...rest} bg={contextBg} ref={ref} variables={vars} />
+        <VariableProvider
+          {...modeAttrs}
+          {...rest}
+          bg={contextBg}
+          ref={ref}
+          variables={vars}
+        />
       </BackgroundCurrentContext.Provider>
     );
   }
@@ -215,6 +242,7 @@ export const ColorMode = forwardRef<
   return (
     <ThemeProvider theme={{ mode }}>
       <VariableProvider
+        {...modeAttrs}
         {...rest}
         bg={contextBg}
         ref={ref}

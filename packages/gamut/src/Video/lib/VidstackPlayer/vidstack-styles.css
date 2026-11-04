@@ -29,10 +29,10 @@ iframe.vds-youtube[data-no-controls] {
 
 /* Small layout volume / time slider */
 :where(.vds-video-layout[data-sm] .vds-volume-slider .vds-slider-track) {
-  background-color: var(--color-gray-600);
+  background-color: var(--colors-gray-600);
 }
 :where(.vds-video-layout[data-sm] .vds-volume-slider .vds-slider-track-fill) {
-  background-color: var(--color-secondary);
+  background-color: var(--colors-secondary);
 }
 .vds-video-layout .vds-time-slider .vds-slider-value {
   border: unset;
@@ -59,7 +59,7 @@ iframe.vds-youtube[data-no-controls] {
   left: calc(50% - 0.5rem);
   background-image: linear-gradient(
     to top left,
-    var(--color-background-contrast) 55%,
+    var(--colors-background-contrast) 55%,
     rgba(0, 0, 0, 0) 20%
   );
 }
@@ -70,7 +70,7 @@ iframe.vds-youtube[data-no-controls] {
   left: calc(50% - 0.5rem);
   background-image: linear-gradient(
     to bottom right,
-    var(--color-background-contrast) 55%,
+    var(--colors-background-contrast) 55%,
     rgba(0, 0, 0, 0) 20%
   );
 }

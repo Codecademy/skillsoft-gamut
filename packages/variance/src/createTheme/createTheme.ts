@@ -53,7 +53,7 @@ class ThemeBuilder<T extends AbstractTheme> {
 
   /**
    *
-   * @param colors A map of color tokens to add to the theme. These tokens are immediately converted to CSS Variables `--color-${key}`.
+   * @param colors A map of color tokens to add to the theme. These tokens are immediately converted to CSS Variables `--colors-${key}`.
    * @example .addColors({ navy: 'navy', hyper: 'purple' })
    */
   addColors<
@@ -64,14 +64,14 @@ class ThemeBuilder<T extends AbstractTheme> {
   ): ThemeBuilder<
     MergeTheme<
       T & PrivateThemeKeys,
-      Record<'colors', KeyAsVariable<NextColors, 'color'>>
+      Record<'colors', KeyAsVariable<NextColors, 'colors'>>
     >
   > {
     const flatColors = flattenScale(colors);
     const { variables, tokens } = serializeTokens(
       // TS 5.9+ no longer resolves LiteralPaths<> as assignable to SerializedTokensInput; flattened scales are plain token maps at runtime.
       flatColors as Record<string, string | number | CSSObject>,
-      'color',
+      'colors',
       this.#theme
     );
     this.#theme = merge({}, this.#theme, {
@@ -123,7 +123,7 @@ class ThemeBuilder<T extends AbstractTheme> {
         merge({}, this.#theme.modes?.[initialMode], modes[initialMode]),
         (color) => this.#theme.colors[color]
       ),
-      'color',
+      'colors',
       this.#theme
     );
 

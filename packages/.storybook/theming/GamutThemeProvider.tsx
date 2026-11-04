@@ -10,6 +10,7 @@ import {
   percipioTheme,
   platformTheme,
   skillsoftTheme,
+  originalCodecademyTheme,
 } from '@skillsoft/gamut-styles';
 import { Theme } from '@emotion/react';
 import tokensCss from '@skillsoft/gamut-styles/tokens.css?inline';
@@ -26,15 +27,6 @@ const themeBackground: Record<ColorModes, 'white' | 'navy'> = {
   dark: 'navy',
 };
 
-/*
- * The skillsoft theme (color-system spike) has none of core's primitives, so
- * `navy` doesn't exist there; it gets its own surface-default values.
- */
-const skillsoftBackground: Record<ColorModes, string> = {
-  light: 'palette-neutral-light-100',
-  dark: 'palette-neutral-dark-1100',
-};
-
 const themeMap = {
   core: coreTheme,
   admin: adminTheme,
@@ -42,6 +34,7 @@ const themeMap = {
   percipio: percipioTheme,
   platform: platformTheme,
   skillsoft: skillsoftTheme,
+  originalCodecademy: originalCodecademyTheme,
 } as const;
 
 type GlobalsContext = {
@@ -58,21 +51,25 @@ export const withEmotion = (Story: any, context: GlobalsContext) => {
   const selectedTheme = context.globals.theme;
   const useLogicalProperties = context.globals.logicalProps === 'true';
   const direction = context.globals.direction ?? 'ltr';
-  const isSkillsoft = selectedTheme === 'skillsoft';
+  const currentTheme = themeMap[selectedTheme];
   /*
-   * The color-system theme takes its values from tokens.css, not Emotion.
-   * Injected only for that theme: tokens.css also sets white, black and
-   * background-current on :root, which would leak into the other themes.
+   * Generated themes (color-system spike; they carry contentModes) take their
+   * values from tokens.css, not Emotion. Injected only for those: tokens.css
+   * also sets white, black and background-current on :root, which would leak
+   * into the other themes. They have none of core's primitives, so `navy`
+   * doesn't exist there; the story sits on their own surface-default.
    */
-  const tokens = isSkillsoft && <style>{tokensCss}</style>;
+  const generated = 'contentModes' in currentTheme ? currentTheme : undefined;
+  const tokens = generated && <style>{tokensCss}</style>;
   const bg = (
-    isSkillsoft ? skillsoftBackground[colorMode] : themeBackground[colorMode]
+    generated
+      ? generated.modes[colorMode]['surface-default']
+      : themeBackground[colorMode]
   ) as 'white';
-  const background = isSkillsoft
-    ? (skillsoftTheme._tokens.colors as Record<string, string>)[bg]
+  const background = generated
+    ? (generated._tokens.colors as Record<string, string>)[bg]
     : corePalette[themeBackground[colorMode]];
   const storyRef = useRef<HTMLDivElement>(null);
-  const currentTheme = themeMap[selectedTheme];
 
   useLayoutEffect(() => {
     const storyEl = storyRef.current?.closest(

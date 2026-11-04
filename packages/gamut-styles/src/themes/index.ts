@@ -4,3 +4,4 @@ export * from './admin';
 export * from './lxStudio';
 export * from './percipio';
 export * from './skillsoft';
+export * from './originalCodecademy';
