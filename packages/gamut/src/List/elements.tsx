@@ -87,13 +87,13 @@ const interactiveState = states({
   interactive: {
     cursor: 'pointer',
 
+    /* Hover is a veil over the row's own fill; focus is the ring alone. */
     '&:hover': {
-      bg: 'state-hover',
+      backgroundImage: `linear-gradient(${theme.colors['state-hover']}, ${theme.colors['state-hover']})`,
     },
     '&:focus-visible, &:focus-within': {
       outline: `1px solid ${theme.colors['action-primary']}`,
       boxShadow: `0 0 0 1px ${theme.colors['action-primary']} inset`,
-      bg: 'state-selected',
     },
   },
 });
@@ -129,6 +129,7 @@ const rowVariants = variant({
       borderTop: 'none',
       '&:first-of-type': {
         borderTop: 1,
+        borderColorTop: 'border-subtle',
       },
     },
     table: {
@@ -204,6 +205,7 @@ const headerVariants = variant({
     block: {},
     table: {
       borderBottom: 2,
+      borderColorBottom: 'border-default',
     },
     plain: {},
   },
@@ -533,14 +535,14 @@ export const AnimatedListWrapper = styled(motion.create(Box))(
 );
 
 export const hiddenVariant = {
-  background: `linear-gradient(90deg, transparent 0%, transparent 40%, ${theme.colors['state-selected']} 50%, ${theme.colors['border-subtle']} 100%)`,
+  background: `linear-gradient(90deg, transparent 0%, transparent 40%, ${theme.colors['border-subtle']} 100%)`,
   backgroundSize: '0px 100%',
   backgroundPosition: 'right',
   backgroundRepeat: 'no-repeat',
 } as const;
 
 export const shadowVariant = {
-  background: `linear-gradient(90deg, transparent 0%, transparent 40%, ${theme.colors['state-selected']} 50%, ${theme.colors['border-subtle']} 100%)`,
+  background: `linear-gradient(90deg, transparent 0%, transparent 40%, ${theme.colors['border-subtle']} 100%)`,
   backgroundSize: '124px 100%',
   backgroundPosition: 'right',
   backgroundRepeat: 'no-repeat',

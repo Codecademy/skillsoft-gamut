@@ -118,6 +118,6 @@ export const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, s
 
 Elevation describes how a surface (such as `Card`) renders shadow and lift. The scale has three states — `rest`, `hover`, and `hoverMirrored` — each providing a `shadow` and a `transform` token, accessible with a dashcase key `elevation['${state}-${property}']`. The `hoverMirrored` state is used when a surface casts its shadow to the right instead of the left (e.g. `Card`'s `patternRight` shadow).
 
-Shadow colors reference the `shadow-primary` color mode alias, so they respond to light and dark mode automatically, and themes can provide their own scale via `addScale('elevation', ...)` — Skillsoft, for example, replaces the hard offset shadow with a soft blurred one and no lift.
+This theme's shadows reference the `shadow-primary` color mode alias, so they respond to light and dark mode automatically. Brand themes draw every shadow in two color roles, `shadow-key` (the tight contact layer) and `shadow-ambient` (the soft falloff); Skillsoft, for example, uses a soft blurred shadow with no lift, and Original Codecademy keeps the hard offset.
 
 <TokenTable {...TABLES.elevation} />

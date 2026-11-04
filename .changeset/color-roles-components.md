@@ -13,3 +13,6 @@ Components use the color system's roles, following design's component map.
 - Modal and Flyout's scrim is `shadow-scrim`, and Flyout's panel has a `border-subtle` inner edge.
 - ProgressBar's blue and yellow bars are `text-default` on a sunken track. Block Tabs follow the page's mode instead of forcing dark.
 - `Tag`: navigation and suggestion tags have no fill of their own, so they sit on the surface they're on. Disabled tags drop the `action-disabled` fill and take the disabled ink, keeping their edge.
+- Every input-like control fills with `surface-raised`, an unchecked Checkbox included. Placeholders are `text-subtle`, an error is a 2px `text-error` outline at rest, and an edited field keeps its `border-default` outline. A disabled DatePicker field now looks disabled, and its error ring draws. FormGroup descriptions are `text-subtle`.
+- The checker pattern behind Modal, Toast, PreviewTip and the DatePicker calendar is drawn only on Original Codecademy, in `border-subtle`. Themes from before the color system keep it.
+- Smaller fixes from design's map: link hover is `action-primary-hover`, link focus rings are `action-primary`, the Breadcrumbs separator is `text-subtle`, List row hover is a veil over the row's fill, focus is a ring without a fill, and Shimmer is a `surface-sunken` base with a `surface-raised` sweep.

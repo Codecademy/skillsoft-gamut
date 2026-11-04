@@ -1,4 +1,5 @@
 import type { Theme } from '@emotion/react';
+import { useTheme } from '@emotion/react';
 
 /*
  * The theme's raised shadow, for floating surfaces (menus, popovers, tips,
@@ -10,3 +11,17 @@ import type { Theme } from '@emotion/react';
 export const raisedShadow = ({ theme }: { theme: Theme }) => ({
   boxShadow: theme?.elevation?.['rest-shadow'],
 });
+
+/*
+ * The checker pattern behind Modal, Toast, PreviewTip and the DatePicker
+ * calendar is Original Codecademy's alone (design's map), drawn in
+ * `border-subtle`. Skillsoft and the other brands separate those surfaces
+ * with their edge and shadow instead (design's elevation proposal, sandbox
+ * #50). Themes from before the color system keep the pattern.
+ */
+export const useCheckerPattern = (): boolean => {
+  const { brand } = useTheme() as { brand?: string };
+  return brand === undefined || brand === 'originalCodecademy';
+};
+
+export const checkerPatternColor = 'border-subtle' as const;

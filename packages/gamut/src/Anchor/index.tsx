@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { styledOptions, system, variant } from '@skillsoft/gamut-styles';
+import { styledOptions, system, theme, variant } from '@skillsoft/gamut-styles';
 import type { StyleProps } from '@skillsoft/variance';
 import { variance } from '@skillsoft/variance';
 import type { ComponentProps, ComponentType, HTMLProps, Ref } from 'react';
@@ -36,9 +36,10 @@ const outlineFocusVisible = {
   },
 } as const;
 
+/* Every link's focus ring is `action-primary`, whatever its text color. */
 const underlineFocusVisible = {
   [InteractiveSelectors.FOCUS_VISIBLE]: {
-    outline: 'currentColor solid 2px',
+    outline: `${theme.colors['action-primary']} solid 2px`,
     borderRadius: 'sm',
     outlineOffset: '1.5px',
     textDecoration: 'underline',
@@ -73,7 +74,11 @@ const anchorVariants = variant({
       WebkitFontSmoothing: 'antialiased',
       MozOsxFontSmoothing: 'grayscale',
       [InteractiveSelectors.HOVER]: {
+        color: 'action-primary-hover',
         textDecoration: 'underline',
+      },
+      [InteractiveSelectors.DISABLED]: {
+        color: 'action-disabled',
       },
       [InteractiveSelectors.FOCUS_VISIBLE]: {
         WebkitFontSmoothing: 'antialiased',
@@ -86,6 +91,12 @@ const anchorVariants = variant({
       display: 'inline',
       whiteSpace: 'initial',
       textDecoration: 'underline',
+      [InteractiveSelectors.HOVER]: {
+        color: 'action-primary-hover',
+      },
+      [InteractiveSelectors.DISABLED]: {
+        color: 'action-disabled',
+      },
       ...underlineFocusVisible,
     },
     interface: {

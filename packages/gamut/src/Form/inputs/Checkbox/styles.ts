@@ -41,6 +41,8 @@ export const checkboxElement = system.css({
   minWidth: 22,
   width: 22,
   height: 22,
+  /* An unchecked box is a field: `surface-raised`, whatever it sits on. */
+  bg: 'surface-raised',
   borderColor: 'border-default',
   borderRadius: '4px' as keyof typeof theme.borderRadii, // hardcoded so that it is not impacted by the theme's border-radius token
   borderStyle: 'solid',
@@ -79,6 +81,10 @@ export const checkboxElementStates = system.states({
     color: 'action-disabled',
     [InputSelectors.HOVER]: {
       outline: 'none',
+    },
+    /* On the disabled fill the mark is a knockout, like a disabled button label. */
+    '& polyline, & line': {
+      color: 'surface-raised',
     },
   },
   hasBg: {

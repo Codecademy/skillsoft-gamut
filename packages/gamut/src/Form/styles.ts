@@ -11,7 +11,7 @@ export type conditionalStyleProps = {
 export enum InputSelectors {
   HOVER = '&:hover',
   ACTIVE = '&:active',
-  PLACEHOLDER = '&:placeholder',
+  PLACEHOLDER = '&::placeholder',
   FOCUS = '&:focus',
   FOCUS_LABEL_DIV_CHILD = '&:focus + label > div',
   DISABLED = "&:disabled, &[aria-disabled='true']",
@@ -88,6 +88,7 @@ export const formBaseFieldStylesObject = {
     borderColor: 'border-strong',
   },
   [InputSelectors.PLACEHOLDER]: {
+    color: 'text-subtle',
     fontStyle: 'italic',
   },
   [InputSelectors.DISABLED]: {
@@ -115,8 +116,10 @@ export const formFieldStyles = css({
 
 export const conditionalStyles = variant({
   variants: {
+    /* Error is a 2px `text-error` outline at rest, not only on focus. */
     error: {
       borderColor: 'text-error',
+      boxShadow: `inset 0 0 0 1px ${theme.colors['text-error']}`,
       [InputSelectors.HOVER]: {
         borderColor: 'text-error',
       },
@@ -125,7 +128,8 @@ export const conditionalStyles = variant({
         boxShadow: `inset 0 0 0 1px ${theme.colors['text-error']}`,
       },
     },
-    activated: { borderColor: 'currentColor' },
+    /* An edited field keeps its `border-default` outline. */
+    activated: { borderColor: 'border-default' },
   },
 });
 
