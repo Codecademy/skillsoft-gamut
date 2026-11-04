@@ -11,8 +11,8 @@ import {
   Text,
   TextButton,
   ToolTip,
-} from '@codecademy/gamut';
-import { GamutProvider, percipioTheme } from '@codecademy/gamut-styles';
+} from '@skillsoft/gamut';
+import { GamutProvider, percipioTheme } from '@skillsoft/gamut-styles';
 import {
   ArrowChevronRightIcon,
   BookLibraryIcon,
@@ -21,7 +21,7 @@ import {
   MiniChevronDownIcon,
   PinIcon,
   SearchIcon,
-} from '@codecademy/gamut-icons';
+} from '@skillsoft/gamut-icons';
 import { useRef, useState } from 'react';
 
 import './PercipioHome.css';
