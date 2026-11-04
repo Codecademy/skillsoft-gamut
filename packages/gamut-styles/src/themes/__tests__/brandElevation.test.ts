@@ -45,6 +45,8 @@ describe('brand elevation', () => {
 
   it("gives Original Codecademy old core's hard offset", () => {
     expect(originalCodecademyTheme.elevation).toMatchObject({
+      'rest-shadow':
+        '-4px 4px 0 0 var(--colors-shadow-key), 0 0 0 0 var(--colors-shadow-ambient)',
       'hover-shadow':
         '-8px 8px 0 0 var(--colors-shadow-key), 0 0 0 0 var(--colors-shadow-ambient)',
       'hover-transform': 'translate(4px, -4px)',

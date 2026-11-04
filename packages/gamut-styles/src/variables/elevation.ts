@@ -75,22 +75,29 @@ export const softElevation: ElevationScaleFactory = ({ colors }) => {
 };
 
 /*
- * The hard offset, for the Codecademy theme only: old core's geometry, drawn
- * in `shadow-key`. The brand makes `shadow-ambient` transparent, and the
- * ambient layer stays at zero size.
+ * The hard offset, for the Codecademy theme only, drawn in `shadow-key`. The
+ * brand makes `shadow-ambient` transparent, and the ambient layer stays at
+ * zero size. Design gives this theme "the hard offset" at raised depth
+ * (sandbox df33b47, CTAButton) without its geometry, so raised is old core's
+ * CTAButton offset at rest (-4px) and raised-hover its hover offset (-8px,
+ * with old core's Card lift).
  */
 export const offsetElevation: ElevationScaleFactory = ({ colors }) => {
-  const offset = 8;
+  const raised = 4;
+  const hover = 8;
   const lift = 4;
   const none = '0 0 0 0';
   return {
-    rest: { shadow: layers(colors, none, none), transform: 'none' },
+    rest: {
+      shadow: layers(colors, `-${raised}px ${raised}px 0 0`, none),
+      transform: 'none',
+    },
     hover: {
-      shadow: layers(colors, `-${offset}px ${offset}px 0 0`, none),
+      shadow: layers(colors, `-${hover}px ${hover}px 0 0`, none),
       transform: `translate(${lift}px, -${lift}px)`,
     },
     hoverMirrored: {
-      shadow: layers(colors, `${offset}px ${offset}px 0 0`, none),
+      shadow: layers(colors, `${hover}px ${hover}px 0 0`, none),
       transform: `translate(-${lift}px, -${lift}px)`,
     },
   };
