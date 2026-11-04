@@ -6,7 +6,7 @@ import {
   platformPalette,
   adminTheme,
   lxStudioTheme,
-  percipioTheme,
+  CoreTheme,
   platformTheme,
   ColorMode,
 } from '@skillsoft/gamut-styles';
@@ -29,13 +29,11 @@ const themeMap = {
   core: coreTheme,
   admin: adminTheme,
   lxStudio: lxStudioTheme,
-  percipio: percipioTheme,
   platform: platformTheme,
 } as const;
 
 const themeSpecificStories = {
   'foundations-theme-lx-studio-theme--docs': 'lxStudio',
-  'foundations-theme-percipio-theme--docs': 'percipio',
   'foundations-theme-platform-theme--docs': 'platform',
   'foundations-theme-admin-theme--docs': 'admin',
   'foundations-theme-core-theme--docs': 'core',

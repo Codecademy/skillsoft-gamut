@@ -72,14 +72,22 @@ const setPath = (group: DtcgGroup, path: string[], token: DtcgToken) => {
   node[path[path.length - 1]] = token;
 };
 
-/* Every translucent value a role uses gets its own palette entry. */
-const translucentValues = (): RoleValue[] => {
+/*
+ * Every translucent value a role uses gets its own palette entry, including
+ * the ones a brand's role overrides introduce (Original Codecademy's
+ * transparent `shadow-ambient`).
+ */
+const translucentValues = (system: ColorSystem): RoleValue[] => {
   const seen = new Map<string, RoleValue>();
+  const add = (value: RoleValue) => {
+    if (value.alpha !== undefined) seen.set(valueKey(value), value);
+  };
   for (const role of ROLES) {
-    for (const mode of MODES) {
-      if (role[mode].alpha !== undefined) {
-        seen.set(valueKey(role[mode]), role[mode]);
-      }
+    for (const mode of MODES) add(role[mode]);
+  }
+  for (const tokens of Object.values(system.brand.overrides?.roles ?? {})) {
+    for (const o of Object.values(tokens ?? {})) {
+      if (typeof o === 'object' && 'alpha' in o) add(o);
     }
   }
   return [...seen.values()];
@@ -132,7 +140,7 @@ export const toDtcgPalette = (system: ColorSystem): DtcgGroup => {
       $extensions: { [EXTENSION]: { contentMode: modes[key] } },
     });
   }
-  for (const value of translucentValues()) {
+  for (const value of translucentValues(system)) {
     const color = system.palette[paletteKey(value.ref)];
     setPath(group, refPath(value.ref, value.alpha), {
       $type: 'color',
@@ -185,7 +193,7 @@ export const toTsModule = (system: ColorSystem): string => {
   for (const [key, color] of Object.entries(system.palette)) {
     palette[key] = entry(color);
   }
-  for (const value of translucentValues()) {
+  for (const value of translucentValues(system)) {
     palette[valueKey(value)] = entry(
       system.palette[paletteKey(value.ref)],
       value.alpha

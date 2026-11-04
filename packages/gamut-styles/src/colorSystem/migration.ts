@@ -1,7 +1,7 @@
 /*
  * The migration layer: how today's Gamut color aliases and component colors
  * land on the role layer. Ported from gamut-sandbox PR #34
- * (`src/colorSystem/migration.ts` at 15c2195), design's source of truth, shown
+ * (`src/colorSystem/migration.ts` at df33b47), design's source of truth, shown
  * at #/migration. The data below is verbatim apart from `Slot` → `ComponentSlot`
  * (`Slot` here means a brand slot) and comment style. Re-syncing is a
  * deliberate step, like the rest of the port.
@@ -230,15 +230,15 @@ export const TOKEN_MAP: TokenMapping[] = [
   // ---------------------------------------------------------------- shadow
   {
     legacy: 'shadow-primary',
-    kind: 'pending',
-    to: [],
-    rule: 'Becomes a `shadow` color role (a dark-ladder neutral at an alpha per mode) referenced by the coming elevation tokens, which hold only offset, blur and spread. Both arrive with the elevation system; until then, elevation is the surface step plus a `border-subtle` hairline.',
+    kind: 'split',
+    to: ['shadow-key', 'shadow-ambient'],
+    rule: 'Every elevation shadow composes both: `shadow-key` for the tight contact layer, `shadow-ambient` for the soft falloff. The elevation tokens hold only offset, blur and spread; see the elevation system for which depth uses which geometry.',
   },
   {
     legacy: 'shadow-secondary',
-    kind: 'pending',
-    to: [],
-    rule: 'Same as `shadow-primary`: the `shadow` color at another elevation level.',
+    kind: 'split',
+    to: ['shadow-key', 'shadow-ambient'],
+    rule: 'Same as `shadow-primary`. Depth comes from geometry, not from a second color, so both legacy tokens land on the same pair.',
   },
 
   // ---------------------------------------------------------------- action
@@ -302,7 +302,7 @@ export const TOKEN_MAP: TokenMapping[] = [
     legacy: 'border-primary',
     kind: 'split',
     to: ['border-default', 'border-subtle'],
-    rule: 'A border that carries meaning (field outline, control stroke, a container that needs an edge to be seen) is `border-default`. A border that only decorates (card hairline, table rule, the edge of a dialog over `backdrop`) is `border-subtle`.',
+    rule: 'A border that carries meaning (field outline, control stroke, a container that needs an edge to be seen) is `border-default`. A border that only decorates or backs up a shadow (card hairline, table rule, the edge of a menu, popover, toast or dialog) is `border-subtle`.',
   },
   {
     legacy: 'border-secondary',
@@ -337,7 +337,7 @@ export const mappingFor = (legacy: string): TokenMapping | undefined =>
 // ---------------------------------------------------------------- surfaces
 
 /*
- * The elevation rule, in the order a reader applies it: start from the page
+ * The surface rule, in the order a reader applies it: start from the page
  * and ask what the element is placed on.
  */
 export const SURFACE_RULES: { role: string; when: string; examples: string }[] =
@@ -366,7 +366,7 @@ export const SURFACE_RULES: { role: string; when: string; examples: string }[] =
  * because it is the case the three-level stack does not answer on its own.
  */
 export const NESTING_RULE =
-  'There is no level above `surface-raised`. A panel inside a card stays `surface-raised` and takes a `border-subtle` hairline; a recessed area inside a card is `surface-sunken`. Overlays (menus, popovers, dialogs) are `surface-raised` wherever they open, and a dialog adds `backdrop` behind it.';
+  'There is no level above `surface-raised`. A panel inside a card stays `surface-raised` and takes a `border-subtle` hairline; a recessed area inside a card is `surface-sunken`. Overlays (menus, popovers, dialogs) are `surface-raised` wherever they open, and a dialog adds `shadow-scrim` behind it.';
 
 // -------------------------------------------------------------- components
 
@@ -685,7 +685,7 @@ export const COMPONENTS: ComponentMapping[] = [
     id: 'cta-button',
     name: 'CTAButton',
     summary:
-      'Fills follow primary FillButton. The offset shadow stays, and moves onto the elevation system once it exists.',
+      'Fills follow primary FillButton. The shadow comes from the elevation system: the soft raised shadow in core, the hard offset in the codecademy theme only.',
     variants: [
       {
         name: 'Primary',
@@ -701,8 +701,11 @@ export const COMPONENTS: ComponentMapping[] = [
       s('Focus ring', 'border', 'primary', 'action-primary'),
       s('Disabled fill', 'fill', 'background-disabled', 'action-disabled'),
       knockout('text-disabled'),
-      s('Offset shadow', 'border', 'text (as box-shadow)', 'action-neutral', {
-        note: 'Kept. Once the elevation system exists it comes from an elevation token and the pending `shadow` color role; until then it stays `action-neutral`.',
+      s('Shadow (key)', 'veil', 'text (as box-shadow)', 'shadow-key', {
+        note: 'Raised depth. Core: soft shadow. Codecademy theme: the hard offset, drawn in shadow-key.',
+      }),
+      s('Shadow (ambient)', 'veil', 'text (as box-shadow)', 'shadow-ambient', {
+        note: 'Transparent in the codecademy theme.',
       }),
     ],
   },
@@ -921,7 +924,7 @@ export const COMPONENTS: ComponentMapping[] = [
         name: 'Menu',
         slots: [
           s('Fill', 'fill', 'background', 'surface-raised'),
-          s('Border', 'border', 'currentColor (text)', 'border-default'),
+          s('Border', 'border', 'currentColor (text)', 'border-subtle'),
           s('Option', 'text', 'text', 'text-default'),
           s('Option subtitle', 'text', 'text-disabled', 'text-subtle'),
           s('Group heading', 'text', 'text-disabled', 'text-subtle'),
@@ -1047,44 +1050,22 @@ export const COMPONENTS: ComponentMapping[] = [
     id: 'card',
     name: 'Card',
     summary:
-      'The default card is `surface-raised` with a `border-subtle` hairline. The palette variants and their auto-contrast go away: yellow and hyper become a featured card on `surface-brand`, and a dark card is a dark-mode scope.',
+      'Two variants replace the literal color names: `default` and `brand`. Default is `surface-raised` (white in light mode); default, white, beige and navy all become it. Brand is the featured card on the `surface-brand` gradient; yellow and hyper become it. Every card has a `border-subtle` hairline. An interactive card adds the raised shadow at rest and the state veil with the raised-hover shadow on hover; the border stays the same. Auto-contrast goes away with the palette variants.',
     variants: [
       {
         name: 'Default',
+        legacyName: 'default, white, beige, navy',
         slots: [
-          s('Fill', 'fill', 'background', 'surface-raised'),
-          s('Text', 'text', 'text', 'text-default'),
-          s('Border', 'border', 'border-primary', 'border-subtle'),
+          s('Fill', 'fill', 'background / palette', 'surface-raised'),
+          s('Text', 'text', 'text / auto (Background)', 'text-default'),
         ],
       },
       {
-        name: 'White',
-        slots: [
-          s('Fill', 'fill', 'white', 'surface-raised'),
-          s('Text', 'text', 'auto (Background)', 'text-default'),
-        ],
-      },
-      {
-        name: 'Beige',
-        slots: [
-          s('Fill', 'fill', 'beige', 'surface-default'),
-          s('Text', 'text', 'auto (Background)', 'text-default'),
-        ],
-      },
-      {
-        name: 'Yellow, Hyper',
+        name: 'Brand',
+        legacyName: 'yellow, hyper',
         slots: [
           s('Fill', 'fill', 'yellow / hyper', 'surface-brand', {
-            note: 'Both become a featured card on the brand gradient.',
-          }),
-          s('Text', 'text', 'auto (Background)', 'text-default'),
-        ],
-      },
-      {
-        name: 'Navy',
-        slots: [
-          s('Fill', 'fill', 'navy', 'surface-raised', {
-            note: 'Inside a dark-mode scope.',
+            note: 'The featured card, on the brand gradient.',
           }),
           s('Text', 'text', 'auto (Background)', 'text-default'),
         ],
@@ -1092,14 +1073,20 @@ export const COMPONENTS: ComponentMapping[] = [
       {
         name: 'Interactive',
         slots: [
-          s('Fill', 'fill', 'background', 'surface-raised'),
-          s('Hover', 'veil', 'shadow-primary (offset shadow)', 'state-hover', {
-            note: 'The elevation lift joins the veil once elevation tokens exist.',
+          s('Fill', 'fill', 'background', 'surface-raised', {
+            note: 'Either variant can be interactive; a brand card keeps its `surface-brand` fill.',
           }),
-          s('Hover border', 'border', 'border-primary', 'border-strong'),
+          s('Hover', 'veil', 'shadow-primary (offset shadow)', 'state-hover', {
+            note: 'Hover composes the veil and the raised-hover shadow. The shadow and veil show the card is interactive, so the border does not change.',
+          }),
+          s('Shadow (key)', 'veil', 'shadow-primary', 'shadow-key', {
+            note: 'Raised depth at rest, raised-hover on hover.',
+          }),
+          s('Shadow (ambient)', 'veil', 'shadow-primary', 'shadow-ambient'),
         ],
       },
     ],
+    shared: [s('Border', 'border', 'border-primary', 'border-subtle')],
   },
   {
     id: 'disclosure',
@@ -1202,7 +1189,7 @@ export const COMPONENTS: ComponentMapping[] = [
     id: 'modal',
     name: 'Modal / Dialog',
     summary:
-      'The scrim becomes `backdrop`; the panel is `surface-raised` with a hairline. Buttons follow their own mappings.',
+      'The scrim becomes `shadow-scrim`; the panel is `surface-raised` with a hairline. Buttons follow their own mappings.',
     variants: [
       {
         name: 'Panel',
@@ -1215,17 +1202,18 @@ export const COMPONENTS: ComponentMapping[] = [
       },
     ],
     shared: [
-      s('Scrim', 'veil', 'navy-600', 'backdrop'),
+      s('Scrim', 'veil', 'navy-600', 'shadow-scrim'),
       s('Focus ring', 'border', 'primary', 'action-primary'),
       s('Pattern', 'icon', 'currentColor (text)', 'border-subtle', {
-        note: 'If the checker pattern is kept.',
+        note: 'Codecademy theme only.',
       }),
     ],
   },
   {
     id: 'flyout',
     name: 'Flyout / Drawer',
-    summary: 'Same as Modal: `backdrop` behind, `surface-raised` panel.',
+    summary:
+      'Same as Modal: `shadow-scrim` behind, `surface-raised` panel with a `border-subtle` inner edge.',
     variants: [
       {
         name: 'Panel',
@@ -1237,12 +1225,13 @@ export const COMPONENTS: ComponentMapping[] = [
             'surface-raised'
           ),
           s('Text', 'text', 'auto (Background)', 'text-default'),
+          s('Inner edge', 'border', 'none', 'border-subtle'),
           s('Close icon', 'icon', 'secondary', 'action-neutral'),
         ],
       },
     ],
     shared: [
-      s('Scrim', 'veil', 'navy-600', 'backdrop'),
+      s('Scrim', 'veil', 'navy-600', 'shadow-scrim'),
       s('Focus ring', 'border', 'primary', 'action-primary'),
     ],
   },
@@ -1250,21 +1239,21 @@ export const COMPONENTS: ComponentMapping[] = [
     id: 'toast',
     name: 'Toast',
     summary:
-      'A raised panel with a meaningful border, since it floats over unknown content.',
+      'A raised panel with a hairline edge; its shadow separates it from whatever it floats over.',
     variants: [
       {
         name: 'Panel',
         slots: [
           s('Fill', 'fill', 'background', 'surface-raised'),
           s('Text', 'text', 'text', 'text-default'),
-          s('Border', 'border', 'border-primary', 'border-default'),
+          s('Border', 'border', 'border-primary', 'border-subtle'),
           s('Close icon', 'icon', 'secondary', 'action-neutral'),
         ],
       },
     ],
     shared: [
       s('Offset pattern', 'icon', 'currentColor (text)', 'border-subtle', {
-        note: 'If the checker pattern is kept.',
+        note: 'Codecademy theme only.',
       }),
     ],
   },
@@ -1272,7 +1261,7 @@ export const COMPONENTS: ComponentMapping[] = [
     id: 'tooltip',
     name: 'ToolTip / InfoTip / Popover',
     summary:
-      'Every floating surface is `surface-raised` with a `border-default` edge, beak included, except a floating Alert, whose edge takes its status ink. `background-contrast` goes away.',
+      'Every floating surface is `surface-raised` with a `border-subtle` edge, beak included, and its shadow does the separating. A floating Alert is the exception: its edge takes its status ink. `background-contrast` goes away.',
     variants: [
       {
         name: 'Tip body',
@@ -1280,7 +1269,7 @@ export const COMPONENTS: ComponentMapping[] = [
         slots: [
           s('Fill', 'fill', 'background-contrast', 'surface-raised'),
           s('Text', 'text', 'text', 'text-default'),
-          s('Border + beak', 'border', 'border-primary', 'border-default'),
+          s('Border + beak', 'border', 'border-primary', 'border-subtle'),
         ],
       },
       {
@@ -1289,7 +1278,7 @@ export const COMPONENTS: ComponentMapping[] = [
         slots: [
           s('Fill', 'fill', 'background', 'surface-raised'),
           s('Text', 'text', 'text', 'text-default'),
-          s('Border + beak', 'border', 'border-primary', 'border-default'),
+          s('Border + beak', 'border', 'border-primary', 'border-subtle'),
         ],
       },
       {
@@ -1316,7 +1305,7 @@ export const COMPONENTS: ComponentMapping[] = [
         slots: [
           s('Fill', 'fill', 'background', 'surface-raised'),
           s('Item', 'text', 'text', 'text-default'),
-          s('Border', 'border', 'border-primary', 'border-default'),
+          s('Border', 'border', 'border-primary', 'border-subtle'),
           s('Separator', 'border', 'text-disabled', 'border-subtle'),
           s('Disabled item', 'text', 'text-disabled', 'action-disabled'),
         ],
@@ -1470,7 +1459,7 @@ const PEAK_ALPHA = FALLOFF[0][1];
 
 /*
  * The color a role puts on screen in a mode, for contrast purposes. Veils and
- * the backdrop have no color of their own and aren't measured. A gradient is
+ * shadows have no color of their own and aren't measured. A gradient is
  * measured at the sandbox's conservative bound: every circle at peak alpha,
  * stacked bottom-to-top over the flat base (circles are authored top-first).
  */
@@ -1480,7 +1469,7 @@ export const roleColor = (
   mode: Mode
 ): CuloriColor | undefined => {
   const role = roleFor(token);
-  if (!role || role.group === 'state' || role.token === 'backdrop') {
+  if (!role || role.group === 'state' || role.group === 'shadow') {
     return undefined;
   }
   const flat = system.roles[mode][token];

@@ -1,8 +1,8 @@
 import * as values from '../tokens/generated/values';
 import {
   fontWeightMediumTitle,
-  percipioElevation,
   percipioFontFamily,
+  softElevation,
 } from '../variables';
 import { createBrandTheme } from './createBrandTheme';
 
@@ -15,7 +15,7 @@ export const skillsoftTheme = createBrandTheme(values, {
   name: 'skillsoft',
   fontFamily: percipioFontFamily,
   fontWeight: fontWeightMediumTitle,
-  elevation: percipioElevation,
+  elevation: softElevation,
 });
 
 export type SkillsoftThemeShape = typeof skillsoftTheme;

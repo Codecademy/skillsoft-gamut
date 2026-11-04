@@ -98,7 +98,6 @@ export const globalTypes = {
         { value: 'originalCodecademy', title: 'Original Codecademy' },
         { value: 'admin', title: 'Admin' },
         { value: 'lxStudio', title: 'LX Studio' },
-        { value: 'percipio', title: 'Percipio' },
         { value: 'platform', title: 'Learning Platform' },
       ],
       showName: true,

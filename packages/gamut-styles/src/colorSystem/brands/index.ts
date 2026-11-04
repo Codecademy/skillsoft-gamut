@@ -1,7 +1,6 @@
 import { adminBrand } from './admin';
 import { lxStudioBrand } from './lxStudio';
 import { originalCodecademyBrand } from './originalCodecademy';
-import { percipioBrand } from './percipio';
 import { platformBrand } from './platform';
 import { skillsoftBrand } from './skillsoft';
 
@@ -18,6 +17,5 @@ export const BRANDS = [
   originalCodecademyBrand,
   adminBrand,
   platformBrand,
-  percipioBrand,
   lxStudioBrand,
 ];

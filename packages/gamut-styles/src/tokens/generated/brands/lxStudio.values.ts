@@ -18,25 +18,7 @@ export const brand = {
   "tier": 3,
   "overrides": {
     "palette": {
-      "neutral-light-100": "#fafbfc",
-      "accent-300": "#ffd300",
-      "accent-400": "#cca900"
-    },
-    "roles": {
-      "dark": {
-        "action-primary": {
-          "slot": "accent",
-          "grade": 300
-        },
-        "action-primary-hover": {
-          "slot": "accent",
-          "grade": 400
-        },
-        "action-primary-pressed": {
-          "slot": "accent",
-          "grade": 500
-        }
-      }
+      "neutral-light-100": "#fafbfc"
     },
     "gradients": {
       "surface-brand": {
@@ -63,7 +45,7 @@ export const brand = {
     "accent": {
       "hex": "#ffd300",
       "nearest": 300,
-      "deltaE": 0
+      "deltaE": 12.83
     },
     "danger": {
       "hex": "#e91c11",
@@ -233,12 +215,12 @@ export const palette = {
     "srgb": "#f2eace"
   },
   "palette-accent-300": {
-    "oklch": "oklch(0.8789 0.1801 93.58)",
-    "srgb": "#ffd300"
+    "oklch": "oklch(0.8497 0.0957 93.6)",
+    "srgb": "#e2cd84"
   },
   "palette-accent-400": {
-    "oklch": "oklch(0.7442 0.1526 93.94)",
-    "srgb": "#cca900"
+    "oklch": "oklch(0.7628 0.1094 93.6)",
+    "srgb": "#c9b15b"
   },
   "palette-accent-500": {
     "oklch": "oklch(0.6707 0.1209 93.6)",
@@ -455,6 +437,22 @@ export const palette = {
   "palette-primary-600-a8": {
     "oklch": "oklch(0.5835 0.2274 262.4 / 0.08)",
     "srgb": "rgba(39, 110, 255, 0.08)"
+  },
+  "palette-neutral-dark-1100-a16": {
+    "oklch": "oklch(0.1925 0.0199 271.3 / 0.16)",
+    "srgb": "rgba(17, 20, 29, 0.16)"
+  },
+  "black-a32": {
+    "oklch": "oklch(0 0 0 / 0.32)",
+    "srgb": "rgba(0, 0, 0, 0.32)"
+  },
+  "palette-neutral-dark-1100-a12": {
+    "oklch": "oklch(0.1925 0.0199 271.3 / 0.12)",
+    "srgb": "rgba(17, 20, 29, 0.12)"
+  },
+  "black-a24": {
+    "oklch": "oklch(0 0 0 / 0.24)",
+    "srgb": "rgba(0, 0, 0, 0.24)"
   },
   "black-a60": {
     "oklch": "oklch(0 0 0 / 0.6)",
@@ -674,7 +672,17 @@ export const roles = {
       "oklch": "oklch(0.3346 0.1405 262.4)",
       "srgb": "#082e7d"
     },
-    "backdrop": {
+    "shadow-key": {
+      "ref": "palette-neutral-dark-1100-a16",
+      "oklch": "oklch(0.1925 0.0199 271.3 / 0.16)",
+      "srgb": "rgba(17, 20, 29, 0.16)"
+    },
+    "shadow-ambient": {
+      "ref": "palette-neutral-dark-1100-a12",
+      "oklch": "oklch(0.1925 0.0199 271.3 / 0.12)",
+      "srgb": "rgba(17, 20, 29, 0.12)"
+    },
+    "shadow-scrim": {
       "ref": "black-a60",
       "oklch": "oklch(0 0 0 / 0.6)",
       "srgb": "rgba(0, 0, 0, 0.6)"
@@ -767,19 +775,19 @@ export const roles = {
       "srgb": "#30373e"
     },
     "action-primary": {
-      "ref": "palette-accent-300",
-      "oklch": "oklch(0.8789 0.1801 93.58)",
-      "srgb": "#ffd300"
+      "ref": "palette-primary-400",
+      "oklch": "oklch(0.7628 0.0846 262.4)",
+      "srgb": "#95b2e8"
     },
     "action-primary-hover": {
-      "ref": "palette-accent-400",
-      "oklch": "oklch(0.7442 0.1526 93.94)",
-      "srgb": "#cca900"
+      "ref": "palette-primary-300",
+      "oklch": "oklch(0.8497 0.0407 262.4)",
+      "srgb": "#c0cee9"
     },
     "action-primary-pressed": {
-      "ref": "palette-accent-500",
-      "oklch": "oklch(0.6707 0.1209 93.6)",
-      "srgb": "#ae932e"
+      "ref": "palette-primary-200",
+      "oklch": "oklch(0.9364 0.0121 262.4)",
+      "srgb": "#e6eaf2"
     },
     "action-danger": {
       "ref": "palette-danger-400",
@@ -891,7 +899,17 @@ export const roles = {
       "oklch": "oklch(0.8497 0.0407 262.4)",
       "srgb": "#c0cee9"
     },
-    "backdrop": {
+    "shadow-key": {
+      "ref": "black-a32",
+      "oklch": "oklch(0 0 0 / 0.32)",
+      "srgb": "rgba(0, 0, 0, 0.32)"
+    },
+    "shadow-ambient": {
+      "ref": "black-a24",
+      "oklch": "oklch(0 0 0 / 0.24)",
+      "srgb": "rgba(0, 0, 0, 0.24)"
+    },
+    "shadow-scrim": {
       "ref": "black-a60",
       "oklch": "oklch(0 0 0 / 0.6)",
       "srgb": "rgba(0, 0, 0, 0.6)"

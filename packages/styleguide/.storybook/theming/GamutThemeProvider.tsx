@@ -6,7 +6,6 @@ import {
   coreTheme,
   adminTheme,
   lxStudioTheme,
-  percipioTheme,
   platformTheme,
 } from '@skillsoft/gamut-styles';
 import { Theme } from '@emotion/react';
@@ -22,7 +21,6 @@ const themeMap = {
   core: coreTheme,
   admin: adminTheme,
   lxStudio: lxStudioTheme,
-  percipio: percipioTheme,
   platform: platformTheme,
 } as const;
 

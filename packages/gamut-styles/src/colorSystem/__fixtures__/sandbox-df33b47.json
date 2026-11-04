@@ -1,5 +1,5 @@
 {
-  "source": "gamut-sandbox PR #34 (stacey/color-tokens-v2) at dffd84b — dumped from src/colorSystem palette.ts / roles.ts",
+  "source": "gamut-sandbox PR #34 (stacey/color-tokens-v2) at df33b47 — dumped from src/colorSystem palette.ts / roles.ts",
   "families": {
     "neutral-light": {
       "hue": 93.7,
@@ -954,7 +954,29 @@
       }
     },
     {
-      "token": "backdrop",
+      "token": "shadow-key",
+      "light": {
+        "primitive": "neutral-dark-1100 @ .16",
+        "hex": "#11141d"
+      },
+      "dark": {
+        "primitive": "black @ .32",
+        "hex": "#000000"
+      }
+    },
+    {
+      "token": "shadow-ambient",
+      "light": {
+        "primitive": "neutral-dark-1100 @ .12",
+        "hex": "#11141d"
+      },
+      "dark": {
+        "primitive": "black @ .24",
+        "hex": "#000000"
+      }
+    },
+    {
+      "token": "shadow-scrim",
       "light": {
         "primitive": "black @ .6",
         "hex": "#000000"
