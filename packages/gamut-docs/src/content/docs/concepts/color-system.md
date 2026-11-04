@@ -55,7 +55,7 @@ Five brands ship today:
 - `originalCodecademy`, the old Core theme rebuilt as a brand. Its theme is `originalCodecademyTheme`.
 - `admin`, `platform` and `lxStudio`, the other old themes rebuilt the same way. Their themes keep their old names: `adminTheme`, `platformTheme` and `lxStudioTheme`. `percipioTheme` is removed.
 
-Each rebuilt brand takes its colors from what its old theme showed in each job, and keeps that theme's fonts, weights and elevation. `platformTheme` still starts in dark mode and keeps its `editor-*` code editor colors, which aren't part of the generated system.
+Each rebuilt brand takes its colors from what its old theme showed in each job, and keeps that theme's fonts and weights. Shadows are drawn in the shadow roles: Original Codecademy keeps old Core's hard offset, and every other brand uses a soft shadow. `platformTheme` still starts in dark mode and keeps its `editor-*` code editor colors, which aren't part of the generated system.
 
 ### Palette
 
@@ -67,7 +67,7 @@ Palette colors are [CSS custom properties](https://developer.mozilla.org/en-US/d
 
 ### Roles
 
-A role names a job and points at a palette color in each mode. There are 43 roles:
+A role names a job and points at a palette color in each mode. There are 45 roles:
 
 | Family      | Roles                                                                                 | Used for                                                         |
 | ----------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -77,11 +77,13 @@ A role names a job and points at a palette color in each mode. There are 43 role
 | `action-*`  | `primary`, `danger` and `neutral`, each with `-hover` and `-pressed`; `disabled`      | Interactive fills and inks: buttons, links, toggles              |
 | `state-*`   | `hover`, `pressed`, `selected`                                                        | Translucent layers over elements that have no fill of their own  |
 | `viz-*`     | `1` to `8` (categorical), `seq-1` to `seq-4` (sequential)                             | Charts                                                           |
-| `backdrop`  |                                                                                       | The dimmed layer behind a modal                                  |
+| `shadow-*`  | `key`, `ambient`, `scrim`                                                             | Shadow colors and the dimmed layer behind a modal                |
 
-Each role has one meaning. `surface-raised` is for cards, panels, dialogs and menus, and nothing else. The mapping is the same for every brand: `text-subtle` is `neutral-dark-800` in light mode and `neutral-light-400` in dark mode on every brand. Only the palette under it changes.
+Each role has one job. `surface-raised` is the lighter surface step: cards, menus, dialogs and form fields, and flat sections with a border. How high something sits comes from its shadow, not its fill. The mapping is the same for every brand: `text-subtle` is `neutral-dark-800` in light mode and `neutral-light-400` in dark mode on every brand. Only the palette under it changes.
 
 Roles are custom properties named `--colors-<role>`, for example `--colors-action-primary`. The two brand surfaces also have a gradient. `--colors-surface-brand` is the flat fallback color, and `--gradient-surface-brand` is the gradient to paint over it. The same goes for `surface-brand-subtle`.
+
+The shadow roles hold only color. Every elevation shadow has two layers, `shadow-key` for the tight edge and `shadow-ambient` for the soft falloff, and the elevation supplies the offset and blur. Raised and hover differ in geometry, not color. `shadow-scrim` is the dimmed layer behind a modal. The shadow alphas are design's current values and may still be tuned.
 
 ### Checks
 
@@ -93,7 +95,7 @@ The build refuses to write any output if a check fails, for any brand, in either
 - `state-pressed` looks visibly different from `state-hover` on every surface;
 - 210 text and icon pairings inside 25 real components, such as an `Alert` icon on its tint, meet their minimum.
 
-`border-subtle` and `action-disabled` are exempt from contrast, because one is decorative and the other marks an inactive control. Separation of the three status colors for people with color-vision deficiencies is measured and reported, but doesn't fail the build.
+`border-subtle`, `action-disabled` and the `shadow-*` roles are exempt from contrast: the first is decorative, the second marks an inactive control, and a shadow isn't something to read. Separation of the three status colors for people with color-vision deficiencies is measured and reported, but doesn't fail the build.
 
 To see the full report, run:
 
@@ -153,11 +155,11 @@ If your app loads `tokens.css` itself, pass `useTokens={false}` to `GamutProvide
 
 ### Modes and brands at runtime
 
-A mode switch is an HTML attribute. `data-color-mode="dark"` on any element points every role inside it at its dark-mode color, through plain CSS, and it nests as deep as you need. Each mode block also sets [`color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme), so scrollbars and native form controls follow the mode. The `ColorMode` component sets two attributes on its element, `data-color-mode` and `data-brand`.
+A mode switch is an HTML attribute. The `ColorMode` component sets two attributes on its element, `data-color-mode` and `data-brand`, and every role inside it points at its color for that mode, through plain CSS. It nests as deep as you need. Each mode block also sets [`color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme), so scrollbars and native form controls follow the mode.
 
-A brand switch is an attribute too. `data-brand="originalCodecademy"` swaps the palette, and the roles on top stay the same.
+`data-brand` picks the palette. A brand's own role overrides, like Original Codecademy's yellow primary in dark mode, apply only where both attributes sit on the same element. Use `ColorMode`, or `Background` for a colored section; if you set the attributes by hand, set both on the same element.
 
-The `Background` component decides its content mode at build time. For each of the 90 palette colors, the generator records whether light-mode or dark-mode content reads better on it. `Background` looks the answer up in that table instead of measuring contrast in the browser on every render.
+The `Background` component decides its content mode at build time. For each of the 90 opaque palette colors (the 88 ramp steps, white and black), the generator records whether light-mode or dark-mode content reads better on it. `Background` looks the answer up in that table instead of measuring contrast in the browser on every render.
 
 ## Intended use
 
@@ -165,16 +167,17 @@ The `Background` component decides its content mode at build time. For each of t
 
 | Job                                         | Role                                             |
 | ------------------------------------------- | ------------------------------------------------ |
-| The page or a section's background          | `surface-default`                                |
-| A card, popover, menu or modal panel        | `surface-raised`                                 |
+| The page, a nav or a header                 | `surface-default`                                |
+| A card, popover, menu, modal panel or field | `surface-raised`                                 |
 | An inset well or code block                 | `surface-sunken`                                 |
 | Body text and headings                      | `text-default`                                   |
 | Descriptions, metadata and helper text      | `text-subtle`                                    |
 | Anything clickable                          | `action-*`                                       |
 | Hover and press on something with no fill   | `state-hover`, `state-pressed`, `state-selected` |
 | A border that carries meaning, like a field | `border-default`                                 |
-| A decorative divider                        | `border-subtle`                                  |
-| The dimmed layer behind a modal             | `backdrop`                                       |
+| A divider, or the edge of a floating panel  | `border-subtle`                                  |
+| A shadow's two layers                       | `shadow-key`, `shadow-ambient`                   |
+| The dimmed layer behind a modal             | `shadow-scrim`                                   |
 
 ```tsx
 import { Box, Text } from '@skillsoft/gamut';
@@ -192,6 +195,12 @@ const Card = () => (
   </Box>
 );
 ```
+
+### Give raised surfaces a hairline
+
+In light mode `surface-raised` is too close to the page to see on its own, so anything on it takes a `border-subtle` hairline. Floating surfaces, such as menus, popovers, tooltips and toasts, add a shadow that separates them from whatever is underneath. Field outlines and control strokes carry meaning, so they stay `border-default`.
+
+`Card` has two variants: `default` on `surface-raised`, and `brand`, the featured card on the brand gradient. Every card has the hairline. An interactive card adds the raised shadow at rest and, on hover, the `state-hover` layer and a deeper shadow; its border doesn't change.
 
 ### Use `text-inverse` on filled controls
 
@@ -260,7 +269,7 @@ Pages without React load `@skillsoft/gamut-styles/tokens.css` and set the same t
 - Components still use names, not values. The old themes already handed components `var()` names, and the new ones do the same.
 - Color modes still work through CSS custom properties and still nest. An attribute drives them now instead of an injected class.
 - `GamutProvider`, `ColorMode` and `Background` keep the same props, and `GamutProvider` still delivers the colors.
-- The old look comes back as brands. Original Codecademy is old Core rebuilt from its navy, beige, hyper and yellow, with the same fonts and elevation. Admin, Platform and LX Studio are rebuilt the same way, under their old theme names.
+- The old look comes back as brands. Original Codecademy is old Core rebuilt from its navy, beige, hyper and yellow, with the same fonts and old Core's hard offset shadow. Admin, Platform and LX Studio are rebuilt the same way, under their old theme names.
 
 ### What improves
 
@@ -282,5 +291,5 @@ Pages without React load `@skillsoft/gamut-styles/tokens.css` and set the same t
 - Colors that only one old theme had are gone, such as LX Studio's `lxStudioBgPrimary`. Use the role for the job instead.
 - The browser floor goes up. `tokens.css` uses `oklch()`, [`color-mix()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix), `@layer` and [container query units](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries#container_query_length_units) with no hex fallback. Browsers older than about Chrome and Edge 111, Safari 16.2 or Firefox 113 get no color. Check [oklch support](https://caniuse.com/mdn-css_types_color_oklch) and [color-mix support](https://caniuse.com/mdn-css_types_color_color-mix) against your app's browser list.
 - Any unlayered CSS overrides a token. That's on purpose, but a stray global rule can now change a color.
-- Some pieces are missing. There is no shadow role yet. The chart colors use the order solved for Skillsoft's hues, so another brand gets that order without it being re-solved for its own hues.
+- Some pieces are missing. Shadow geometry lives in each brand's theme for now, and floating surfaces borrow the raised shadow until there's an overlay depth. The chart colors use the order solved for Skillsoft's hues, so another brand gets that order without it being re-solved for its own hues.
 - The Emotion theme carries sRGB copies of each color, because the [polished](https://polished.js.org/) library can't read OKLCH. Code that reads a color from the theme in JavaScript gets a very slightly different value from what's on screen.
