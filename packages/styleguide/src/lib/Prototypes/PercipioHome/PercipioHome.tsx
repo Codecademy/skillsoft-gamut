@@ -19,7 +19,6 @@ import {
   CloseIcon,
   MenuIcon,
   MiniChevronDownIcon,
-  PinIcon,
   SearchIcon,
 } from '@skillsoft/gamut-icons';
 import { useRef, useState } from 'react';
@@ -43,8 +42,7 @@ import {
 const AREA_CARD_VARIANTS = ['white', 'beige', 'navy', 'yellow'] as const;
 
 const NavButton = ({ item, active }: { item: NavItem; active?: boolean }) => (
-  <Box
-    as="button"
+  <button
     type="button"
     className={`navItem${active ? ' active' : ''}`}
     data-marker={item.id}
@@ -61,9 +59,9 @@ const NavButton = ({ item, active }: { item: NavItem; active?: boolean }) => (
       {item.label}
     </Text>
     {item.badgeCount === undefined ? null : (
-      <ArrowChevronRightIcon size={16} aria-hidden="true" />
+      <ArrowChevronRightIcon size={16} aria-hidden />
     )}
-  </Box>
+  </button>
 );
 
 /** Top nav: logo, search, and the header controls. */
@@ -88,22 +86,21 @@ const TopNav = () => {
           </Box>
 
           <Box className="componentContainer">
-            <SearchIcon size={20} aria-hidden="true" />
+            <SearchIcon size={20} aria-hidden />
             <Text as="span" fontSize={14} color="text-subtle">
               {SEARCH_PLACEHOLDER}
             </Text>
           </Box>
 
           <FlexBox alignItems="center" gap={8}>
-            <ToolTip label="Notifications">
+            <ToolTip info="Notifications">
               <TextButton variant="primary" size="small">
                 Notifications
               </TextButton>
             </ToolTip>
 
             <Box className="nineDotMenuContainer" data-marker="nineDotMenu">
-              <Box
-                as="button"
+              <button
                 type="button"
                 ref={menuTargetRef}
                 className="nineDotMenuButton"
@@ -115,7 +112,7 @@ const TopNav = () => {
               >
                 <span className="notificationDot" />
                 <MenuIcon size={24} />
-              </Box>
+              </button>
               {menuOpen && menuTargetRef.current && (
                 <PopoverContainer
                   isOpen={menuOpen}
@@ -127,12 +124,12 @@ const TopNav = () => {
                 >
                   <Box role="menu" aria-orientation="vertical" className="nineDotMenuContent">
                     <FlexBox flexDirection="column">
-                      <Box as="a" href="#" role="menuitem" tabIndex={0} className="menuItem">
+                      <a href="#" role="menuitem" tabIndex={0} className="menuItem">
                         My Learning
-                      </Box>
-                      <Box as="a" href="#" role="menuitem" tabIndex={0} className="menuItem">
+                      </a>
+                      <a href="#" role="menuitem" tabIndex={0} className="menuItem">
                         Log out
-                      </Box>
+                      </a>
                     </FlexBox>
                   </Box>
                 </PopoverContainer>
@@ -169,7 +166,7 @@ const Banner = () => (
   <Box
     as="section"
     bg="state-selected"
-    /* color-roles: 'border-primary' splits into border-default | border-subtle. A border that carries meaning (field outline, control stroke, a container that needs an edge to be seen) is `border-default`. A border that only decorates or backs up a shadow (card hairline, table rule, the edge of a menu, popover, toast or dialog) is `border-subtle`. */ borderColor="border-primary"
+    borderColor="border-subtle"
     className="banner"
     data-marker="banner"
   >
@@ -177,7 +174,7 @@ const Banner = () => (
       <Text as="span" fontSize={14} color="text-subtle">
         {BANNER.eyebrow}
       </Text>
-      <Text as="h2" fontSize={32} fontWeight="bold" color="text-default">
+      <Text as="h2" fontSize={34} fontWeight="bold" color="text-default">
         {BANNER.title}
       </Text>
       <Text as="p" fontSize={16} color="text-subtle">
@@ -197,19 +194,20 @@ const SearchToolbar = () => (
     flexWrap="wrap"
     data-marker="searchToolbar"
   >
-    <Tag variant="primary" size="small">
+    <Tag variant="readOnly">
       {TOOLBAR_LABELS.relevantToMe}
     </Tag>
     <FlexBox alignItems="center" gap={8}>
-      <Box
-        as="input"
+      <input
         type="search"
         aria-label={TOOLBAR_LABELS.search}
         placeholder={TOOLBAR_LABELS.search}
-        /* color-roles: 'border-primary' splits into border-default | border-subtle. A border that carries meaning (field outline, control stroke, a container that needs an edge to be seen) is `border-default`. A border that only decorates or backs up a shadow (card hairline, table rule, the edge of a menu, popover, toast or dialog) is `border-subtle`. */ borderColor="border-primary"
-        /* color-roles: 'background' splits into surface-raised | surface-default. Anything that sits on the page (card, input, menu, popover, dialog) takes `surface-raised`. Where `background` fills the page itself, it is `surface-default`. */ bg="background"
-        color="text-primary"
-        p={8}
+        style={{
+          border: '1px solid var(--colors-border-default)',
+          background: 'var(--colors-surface-raised)',
+          color: 'var(--colors-text-default)',
+          padding: 8,
+        }}
       />
       <TextButton variant="primary" size="small" icon={CloseIcon} iconPosition="right">
         {TOOLBAR_LABELS.clear}
@@ -225,7 +223,7 @@ const AreaCardItem = ({ area, index }: { area: AreaItem; index: number }) => {
   const secondaryText = theme.colors['text-subtle'];
 
   return (
-    <Card variant={variant} data-marker="areaCard" p={16}>
+    <Card variant={variant === 'navy' || variant === 'yellow' ? 'brand' : 'default'} data-marker="areaCard" p={16}>
       <FlexBox alignItems="center" gap={8}>
         <BookLibraryIcon size={24} aria-hidden />
         <Text as="h3" fontSize={18} fontWeight="bold">
@@ -235,9 +233,9 @@ const AreaCardItem = ({ area, index }: { area: AreaItem; index: number }) => {
       <Text as="p" fontSize={14} style={{ color: secondaryText }}>
         {area.subjects.length} subjects
       </Text>
-      <FlexBox flexDirection="column" gap={4} /* color-roles: 'border-primary' splits into border-default | border-subtle. A border that carries meaning (field outline, control stroke, a container that needs an edge to be seen) is `border-default`. A border that only decorates or backs up a shadow (card hairline, table rule, the edge of a menu, popover, toast or dialog) is `border-subtle`. */ borderColor="border-primary">
+      <FlexBox flexDirection="column" gap={4} borderColor="border-subtle">
         {area.subjects.map((subject) => (
-          <Anchor key={subject.id} href="#" color="action-primary">
+          <Anchor key={subject.id} href="#">
             {subject.title}
           </Anchor>
         ))}
@@ -278,7 +276,7 @@ export const PercipioHome = () => (
   <GamutProvider theme={skillsoftTheme}>
     <Box className="lxTheme" data-marker="percipioHome">
       <TopNav />
-      <FlexBox className="pageBody" pt="70px">
+      <FlexBox className="pageBody" style={{ paddingTop: '70px' }}>
         <LeftNav />
         <Box as="main" flex="1" p={24}>
           <Text as="p" fontSize={18} color="text-default" mb={16}>
