@@ -122,6 +122,7 @@ export const manifest: Manifest = {
     {
       from: '@codecademy/gamut/dist/Tip/shared/types',
       to: '@codecademy/gamut',
+      sourcePath: 'Tips/shared/types',
     },
     {
       from: '@codecademy/gamut/dist/Button/shared',
