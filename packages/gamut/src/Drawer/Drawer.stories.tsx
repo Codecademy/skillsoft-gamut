@@ -13,14 +13,6 @@ const meta: Meta<typeof Drawer> = {
     expanded: true,
     alignContentContainer: 'left',
   },
-  argTypes: {
-    alignContentContainer: {
-      control: {
-        type: 'radio',
-        options: ['left', 'right'],
-      },
-    },
-  },
   render: function DrawerDemo(args) {
     const [expanded, setExpanded] = useState(args.expanded);
     useEffect(() => {

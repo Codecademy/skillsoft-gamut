@@ -6,9 +6,10 @@ Codemods for moving a repo onto `@skillsoft/gamut` and between its releases.
 
 Each preset is one upgrade. Run them in order if you're more than one behind.
 
-| Preset       | What it's for                                           |
-| ------------ | ------------------------------------------------------- |
-| `scope-swap` | Moving from `@codecademy/gamut*` to `@skillsoft/gamut*` |
+| Preset        | What it's for                                                    |
+| ------------- | ---------------------------------------------------------------- |
+| `scope-swap`  | Moving from `@codecademy/gamut*` to `@skillsoft/gamut*`          |
+| `color-roles` | Moving Gamut color names onto the generated color system's roles |
 
 `npx @skillsoft/gamut-codemods list` shows every preset and the migrations inside it.
 
@@ -60,14 +61,14 @@ Every skillsoft-gamut pull request publishes installable previews through pkg.pr
 | `moved-exports`            | Moves `Video` and `VideoProps` off the root import onto `/Video`. Warns on namespace imports, `export *`, and mocks that stub `Video`.                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `markdown-video-overrides` | Markdown no longer renders `<iframe>` and `<video>` through `Video` by default. Adds `iframeOverride` / `videoOverride` to each `<Markdown>` that didn't skip them, importing `Iframe` and `MarkdownVideo` from `/Video`. Drops the removed `skipDefaultOverrides.iframe` / `.video` keys, writing `iframeOverride={undefined}` where they were `true`. Warns on a `skipDefaultOverrides` it can't read. Skipped when every `@codecademy/gamut` range in the repo is already 74.0.0 or newer, since that release made the change upstream. |
 | `mf-shared`                | Replaces `@codecademy/gamut-kit` in Module Federation `shared` config with the packages it bundled. Gamut becomes a real singleton, so test the host and remotes together.                                                                                                                                                                                                                                                                                                                                                                 |
-| `eslint-comments`          | `// eslint-disable-next-line gamut/x` → `@skillsoft/gamut/x`. |
+| `eslint-comments`          | `// eslint-disable-next-line gamut/x` → `@skillsoft/gamut/x`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `scope-rename`             | Every `@codecademy/gamut*` module string becomes `@skillsoft/gamut*`: imports, exports, `require`, `import()`, `jest.mock`/`vi.mock`, `declare module`, and `import('x').T`. Also exact package-name strings elsewhere, like `transpilePackages`, with one warning per file, and package names in comments (`/dist` paths and removed packages are left for the leftovers).                                                                                                                                                                |
 | `package-json`             | Renames dependencies and sets their versions. A new package that's already listed keeps its value (a preview URL, say), and a `*` peer range stays `*`. Replaces `@codecademy/gamut-kit` with the individual packages.                                                                                                                                                                                                                                                                                                                     |
-| `eslint-config`            | `.eslintrc` / `.eslintrc.json`: plugin name, `plugin:` extends, and rule keys. |
+| `eslint-config`            | `.eslintrc` / `.eslintrc.json`: plugin name, `plugin:` extends, and rule keys.                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | `mdx-imports`              | Runs the migrations above over `import`/`export` statements in `.mdx` files. Fenced code blocks are left alone.                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `yarnrc`                   | `.yarnrc.yml` list items, like `npmPreapprovedPackages`: renames old package names, or drops them if a glob like `'@skillsoft/*'` already covers the new one.                                                                                                                                                                                                                                                                                                                                                                              |
 | `tsconfig-dom`             | Report only. Warns about `tsconfig` files whose `lib` has no `"dom"`, since Video used to supply the DOM types through the root import.                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `next-config`              | Report only. Warns about `experimental.esmExternals: false` in `next.config.*`, which breaks default imports from Gamut's `.mjs` files when Next collects page data. |
+| `next-config`              | Report only. Warns about `experimental.esmExternals: false` in `next.config.*`, which breaks default imports from Gamut's `.mjs` files when Next collects page data.                                                                                                                                                                                                                                                                                                                                                                       |
 
 ### Known limits
 
@@ -75,6 +76,34 @@ Every skillsoft-gamut pull request publishes installable previews through pkg.pr
 - Flat ESLint configs (`eslint.config.*`) and `.eslintrc.js` aren't rewritten. In a flat config the rule prefix is whatever key you register the plugin under, so renaming rule keys blindly would break it. They show up in the leftovers.
 - Every file is parsed with the `tsx` parser, so Flow-typed JS won't parse.
 - The leftovers report uses regex, not an AST, so expect some false positives.
+
+## Running color-roles
+
+```sh
+npx @skillsoft/gamut-codemods color-roles . --dry
+npx @skillsoft/gamut-codemods color-roles .
+```
+
+It maps today's color names (`text`, `primary`, `background-current`, …) onto the roles of the generated color system, using design's migration map (`aliases.ts`, generated from gamut-styles `colorSystem/migration.ts`).
+
+| Design's kind     | What the codemod does                                                                                                           |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Rename, merge     | Replaces the name: `bg="background-primary"` → `bg="surface-default"`, `theme.colors.text` → `theme.colors['text-default']`     |
+| Split             | Leaves the name and puts `/* color-roles: 'background' splits into surface-raised \| surface-default. <rule> */` in front of it |
+| Retire, pending   | The same, with design's rule for what to do instead                                                                             |
+| Old palette color | Warns. `navy`, `hyper-500` and the rest have no role of their own; design maps them per component                               |
+
+A name left in place is still an old name, so it fails the type check until someone picks its role. The leftovers report lists every `color-roles:` comment still in the code; delete each one once its name is resolved.
+
+It looks for color names where a color goes: the color props (`color`, `textColor`, `bg`, `borderColor`, `borderColor{X,Y,Left,Right,Top,Bottom}`) in JSX and in style objects, including ternaries, `&&`, and responsive objects and arrays; `theme.colors.x` and `theme.colors['x']`; and `themed('colors.x')`. `variant="primary"` and other strings that only look like color names are left alone.
+
+Limits:
+
+- A name held in a variable before it reaches a color prop (`const bg = 'background'`) isn't seen.
+- Names built at runtime (`` `${variant}-hover` ``) only warn.
+- MDX bodies aren't rewritten.
+
+On gamut's own source (branch `cass-color-brands`), a run changes 60 files and 273 lines, warns 171 times (about 120 splits, retirements and pending names, 50 old palette colors, 3 runtime names), and takes the type errors from 284 to 145. A second run changes nothing.
 
 ## Contributing
 

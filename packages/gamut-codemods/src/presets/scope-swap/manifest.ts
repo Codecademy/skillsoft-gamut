@@ -111,6 +111,7 @@ export const manifest: Manifest = {
     {
       from: '@codecademy/gamut/dist/Form/SelectDropdown/types',
       to: '@codecademy/gamut',
+      sourcePath: 'Form/inputs/SelectDropdown/types',
     },
     { from: '@codecademy/gamut/dist/Form/types', to: '@codecademy/gamut' },
     {

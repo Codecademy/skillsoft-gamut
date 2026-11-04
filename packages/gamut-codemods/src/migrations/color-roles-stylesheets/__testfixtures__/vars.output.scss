@@ -1,0 +1,16 @@
+.panel {
+  color: var(--colors-text-default);
+  border-color: var(--colors-border-default);
+  background: /* color-roles: 'background' splits into surface-raised | surface-default. Anything that sits on the page (card, input, menu, popover, dialog) takes `surface-raised`. Where `background` fills the page itself, it is `surface-default`. */ var(--color-background);
+  box-shadow: 0 1px 4px /* color-roles: 'shadow-primary' splits into shadow-key | shadow-ambient. Every elevation shadow composes both: `shadow-key` for the tight contact layer, `shadow-ambient` for the soft falloff. The elevation tokens hold only offset, blur and spread; see the elevation system for which depth uses which geometry. */ var(--color-shadow-primary);
+}
+
+.legacy {
+  fill: var(--color-navy-800);
+  outline-color: var(--colors-action-primary, var(--colors-text-subtle));
+}
+
+/* Already on the new names: untouched. */
+.done {
+  color: var(--colors-text-default);
+}
