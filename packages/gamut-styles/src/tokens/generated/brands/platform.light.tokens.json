@@ -13,7 +13,7 @@
   "surface-raised": {
     "$type": "color",
     "$value": "{white}",
-    "$description": "Cards, panels, dialogs, menus. Higher elevation is lighter."
+    "$description": "The lighter surface step, not a depth: cards, menus, dialogs, fields, and flat bordered sections. Shadow, not the fill, says how high something sits."
   },
   "surface-success": {
     "$type": "color",
@@ -297,7 +297,17 @@
     "$value": "{palette.primary.900}",
     "$description": "Sequential step 4, low to high."
   },
-  "backdrop": {
+  "shadow-key": {
+    "$type": "color",
+    "$value": "{palette.neutral-dark.1100-a16}",
+    "$description": "The tight, darker layer of an elevation shadow. Box-shadow color only; the elevation supplies offset and blur."
+  },
+  "shadow-ambient": {
+    "$type": "color",
+    "$value": "{palette.neutral-dark.1100-a12}",
+    "$description": "The wide, soft layer of an elevation shadow, always paired with shadow-key. Transparent where a brand has no soft falloff."
+  },
+  "shadow-scrim": {
     "$type": "color",
     "$value": "{black-a60}",
     "$description": "The scrim behind modals and dialogs. Mode-independent."

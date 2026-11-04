@@ -2,19 +2,20 @@ import mapValues from 'lodash/mapValues';
 
 import * as values from '../tokens/generated/brands/platform.values';
 import {
-  coreElevation,
   corePalette,
   fontFamily,
   fontWeight,
   platformPalette,
+  softElevation,
 } from '../variables';
 import { createBrandTheme } from './createBrandTheme';
 
 /*
  * Platform (the learning environment): old platform rebuilt as a brand of
- * the generated color system (colorSystem/brands/platform.ts). Fonts, weights
- * and elevation are old core's, which old platform used, unchanged. It
- * starts in dark mode, as old platform did.
+ * the generated color system (colorSystem/brands/platform.ts). Fonts and
+ * weights are old core's, which old platform used, unchanged. Elevation is
+ * the soft shadow every brand but the Codecademy theme uses (design's
+ * sandbox, df33b47). It starts in dark mode, as old platform did.
  *
  * The code editor's syntax and chrome colors aren't part of the color
  * system: no role covers them, and they aren't generated or checked. They
@@ -90,7 +91,7 @@ const base = createBrandTheme(values, {
   name: 'platform',
   fontFamily,
   fontWeight,
-  elevation: coreElevation,
+  elevation: softElevation,
   initialMode: 'dark',
 });
 

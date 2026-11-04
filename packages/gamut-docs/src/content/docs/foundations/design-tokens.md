@@ -34,7 +34,7 @@ See [Color modes](/concepts/color-modes/) for the semantic aliases (`text`, `bac
 
 ## Elevation
 
-- `elevation` — how a surface like Card renders shadow and lift. Three states — `rest`, `hover`, `hoverMirrored` — each with a `shadow` and a `transform` token, accessed as `elevation['<state>-<property>']`. `hoverMirrored` is for a surface that casts its shadow to the right instead of the left. Shadow colors reference the `shadow-primary` alias, so they follow color mode automatically; a theme can supply its own elevation scale — Percipio, for example, swaps the hard offset shadow for a soft, blurred one with no lift.
+- `elevation` — how a surface like Card renders shadow and lift. Three states — `rest`, `hover`, `hoverMirrored` — each with a `shadow` and a `transform` token, accessed as `elevation['<state>-<property>']`. `hoverMirrored` is for a surface that casts its shadow to the right instead of the left. Shadow colors reference the `shadow-primary` alias, so they follow color mode automatically; a theme can supply its own elevation scale — Skillsoft, for example, swaps the hard offset shadow for a soft, blurred one with no lift.
 
 ## Accessing tokens directly
 

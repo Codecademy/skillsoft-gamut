@@ -1,5 +1,8 @@
 import type { BrandInput } from '../brand';
-import { originalCodecademyBrand } from './originalCodecademy';
+import {
+  coreFamilyOverrides,
+  originalCodecademyBrand,
+} from './originalCodecademy';
 
 /*
  * Admin: old admin rebuilt on the generated system. Old admin was old core
@@ -15,4 +18,6 @@ export const adminBrand: BrandInput = {
     ...originalCodecademyBrand.hues,
     primary: '#1557FF', // blue-500, admin's primary
   },
+  /* The core family's pins; not the Codecademy theme's hard-offset shadow. */
+  overrides: coreFamilyOverrides,
 };

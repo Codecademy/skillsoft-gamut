@@ -455,6 +455,22 @@ export const palette = {
     "oklch": "oklch(0.5835 0.2271 263.6 / 0.08)",
     "srgb": "rgba(47, 109, 255, 0.08)"
   },
+  "palette-neutral-dark-1100-a16": {
+    "oklch": "oklch(0.1925 0.0199 271.3 / 0.16)",
+    "srgb": "rgba(17, 20, 29, 0.16)"
+  },
+  "black-a32": {
+    "oklch": "oklch(0 0 0 / 0.32)",
+    "srgb": "rgba(0, 0, 0, 0.32)"
+  },
+  "palette-neutral-dark-1100-a12": {
+    "oklch": "oklch(0.1925 0.0199 271.3 / 0.12)",
+    "srgb": "rgba(17, 20, 29, 0.12)"
+  },
+  "black-a24": {
+    "oklch": "oklch(0 0 0 / 0.24)",
+    "srgb": "rgba(0, 0, 0, 0.24)"
+  },
   "black-a60": {
     "oklch": "oklch(0 0 0 / 0.6)",
     "srgb": "rgba(0, 0, 0, 0.6)"
@@ -673,7 +689,17 @@ export const roles = {
       "oklch": "oklch(0.3346 0.1591 263.6)",
       "srgb": "#062a86"
     },
-    "backdrop": {
+    "shadow-key": {
+      "ref": "palette-neutral-dark-1100-a16",
+      "oklch": "oklch(0.1925 0.0199 271.3 / 0.16)",
+      "srgb": "rgba(17, 20, 29, 0.16)"
+    },
+    "shadow-ambient": {
+      "ref": "palette-neutral-dark-1100-a12",
+      "oklch": "oklch(0.1925 0.0199 271.3 / 0.12)",
+      "srgb": "rgba(17, 20, 29, 0.12)"
+    },
+    "shadow-scrim": {
       "ref": "black-a60",
       "oklch": "oklch(0 0 0 / 0.6)",
       "srgb": "rgba(0, 0, 0, 0.6)"
@@ -890,7 +916,17 @@ export const roles = {
       "oklch": "oklch(0.8497 0.0406 263.6)",
       "srgb": "#c0cee9"
     },
-    "backdrop": {
+    "shadow-key": {
+      "ref": "black-a32",
+      "oklch": "oklch(0 0 0 / 0.32)",
+      "srgb": "rgba(0, 0, 0, 0.32)"
+    },
+    "shadow-ambient": {
+      "ref": "black-a24",
+      "oklch": "oklch(0 0 0 / 0.24)",
+      "srgb": "rgba(0, 0, 0, 0.24)"
+    },
+    "shadow-scrim": {
       "ref": "black-a60",
       "oklch": "oklch(0 0 0 / 0.6)",
       "srgb": "rgba(0, 0, 0, 0.6)"

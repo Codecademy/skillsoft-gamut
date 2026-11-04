@@ -1,5 +1,8 @@
 import type { BrandInput } from '../brand';
-import { originalCodecademyBrand } from './originalCodecademy';
+import {
+  coreFamilyOverrides,
+  originalCodecademyBrand,
+} from './originalCodecademy';
 
 /*
  * Platform (the learning environment): old platform rebuilt on the generated
@@ -16,10 +19,11 @@ export const platformBrand: BrandInput = {
     ...originalCodecademyBrand.hues,
     'neutral-light': '#F5FCFF', // blue-0, background-primary
   },
+  /* The core family's pins; not the Codecademy theme's hard-offset shadow. */
   overrides: {
-    ...originalCodecademyBrand.overrides,
+    ...coreFamilyOverrides,
     palette: {
-      ...originalCodecademyBrand.overrides?.palette,
+      ...coreFamilyOverrides.palette,
       'neutral-light-100': '#F5FCFF', // blue-0
     },
   },

@@ -1,17 +1,18 @@
 import * as values from '../tokens/generated/brands/lxStudio.values';
 import {
-  coreElevation,
   fontMonospace,
   fontSystem,
   fontWeightMediumTitle,
   percipioFontFamily,
+  softElevation,
 } from '../variables';
 import { createBrandTheme } from './createBrandTheme';
 
 /*
  * LX Studio: old lxStudio rebuilt as a brand of the generated color system
- * (colorSystem/brands/lxStudio.ts). Fonts, weights, radii and elevation are
- * old lxStudio's, unchanged.
+ * (colorSystem/brands/lxStudio.ts). Fonts, weights and radii are old
+ * lxStudio's, unchanged. Elevation is the soft shadow every brand but the
+ * Codecademy theme uses (design's sandbox, df33b47).
  */
 
 const lxStudioFontFamily = {
@@ -34,7 +35,7 @@ export const lxStudioTheme = createBrandTheme(values, {
   name: 'lxStudio',
   fontFamily: lxStudioFontFamily,
   fontWeight: fontWeightMediumTitle,
-  elevation: coreElevation,
+  elevation: softElevation,
   borderRadii: lxStudioBorderRadii,
 });
 

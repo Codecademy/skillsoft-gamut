@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 
 import { AssetProvider, createFontLinks } from '../AssetProvider';
-import { coreTheme, percipioTheme } from '../themes';
+import { coreTheme, lxStudioTheme } from '../themes';
 import { getFontsMock } from './fontUtilsMock';
 import { setupRtl } from './testUtils';
 
@@ -209,7 +209,7 @@ describe('AssetProvider', () => {
         },
       ]);
 
-      const { view } = renderView({ theme: percipioTheme as any });
+      const { view } = renderView({ theme: lxStudioTheme as any });
       const links = getPreloadLinks(view.container);
 
       expect(links).toHaveLength(1);
@@ -217,7 +217,7 @@ describe('AssetProvider', () => {
         'href',
         'https://www.codecademy.com/gamut/roboto-regular.woff2'
       );
-      expect(mockGetFonts).toHaveBeenCalledWith('percipio');
+      expect(mockGetFonts).toHaveBeenCalledWith('lxStudio');
     });
 
     it('should handle theme without name property', () => {
