@@ -1,7 +1,6 @@
 import * as icons from '@skillsoft/gamut-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { buttonVariants } from './shared';
 import { StrokeButton } from './StrokeButton';
 
 const meta: Meta<typeof StrokeButton> = {
@@ -19,20 +18,10 @@ const meta: Meta<typeof StrokeButton> = {
       type: 'string',
     },
     variant: {
-      control: 'radio',
-      options: buttonVariants,
-      table: {
-        type: { summary: buttonVariants.join(' | ') },
-        defaultValue: { summary: 'primary' },
-      },
+      table: { defaultValue: { summary: 'primary' } },
     },
     size: {
-      control: 'radio',
-      options: ['normal', 'small', 'large'],
-      table: {
-        type: { summary: 'small | normal | large' },
-        defaultValue: { summary: 'normal' },
-      },
+      table: { defaultValue: { summary: 'normal' } },
     },
     icon: {
       control: 'select',
