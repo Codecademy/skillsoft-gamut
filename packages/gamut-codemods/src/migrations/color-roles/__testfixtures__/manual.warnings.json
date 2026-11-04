@@ -2,6 +2,6 @@
   "'background' splits into surface-raised | surface-default",
   "'border-primary' splits into border-default | border-subtle",
   "'text-disabled' splits into action-disabled | surface-raised | text-subtle",
-  "'shadow-primary' is pending",
+  "'shadow-primary' splits into shadow-key | shadow-ambient",
   "'background-contrast' is retired (closest: surface-raised)"
 ]

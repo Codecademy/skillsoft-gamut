@@ -1,9 +1,15 @@
 import type { Edit, SpliceMigration } from '../../lib/types';
-import type {
-  ColorAlias,
-  ColorRolesManifest,
-} from '../../presets/color-roles/manifest';
+import type { ColorRolesManifest } from '../../presets/color-roles/manifest';
 import { isAutomatic } from '../../presets/color-roles/manifest';
+import {
+  commentText,
+  describe,
+  findOldVars,
+  MARK,
+  markedBefore,
+  mentionsOldVar,
+  paletteMessage,
+} from './cssVars';
 
 /*
   Today's Gamut color names → roles, wherever a color name sits:
@@ -12,7 +18,11 @@ import { isAutomatic } from '../../presets/color-roles/manifest';
     (`css`, `variant`, `states`, plain objects), including the branches of a
     ternary or `&&`, and responsive objects and arrays;
   - `theme.colors.text` / `theme.colors['text-disabled']`;
-  - `themed('colors.primary')`.
+  - `themed('colors.primary')`;
+  - `var(--color-text)` inside a string or template literal, which becomes
+    `var(--colors-text-default)` (stylesheets are the
+    color-roles-stylesheets migration);
+  - Card's `variant`, onto design's `default` and `brand`.
 
   Rename and merge rows are applied. Split, retire and pending rows need a
   person: the name stays (so it still fails the type check) and a
@@ -22,7 +32,21 @@ import { isAutomatic } from '../../presets/color-roles/manifest';
   name in a const that's passed to `bg` later, isn't seen.
 */
 
-const MARK = 'color-roles:';
+/*
+  Card's variants are design's two (sandbox df33b47): white, beige and navy
+  become `default`; yellow and hyper become `brand`.
+*/
+const CARD_VARIANTS: Record<string, string> = {
+  white: 'default',
+  beige: 'default',
+  navy: 'default',
+  yellow: 'brand',
+  hyper: 'brand',
+};
+
+const NAVY_CARD = `/* ${MARK} Card's 'navy' variant becomes 'default' (surface-raised), which renders light. If this card should stay dark, wrap it in <ColorMode mode="dark">. */ `;
+
+const GAMUT = /(^|\/)gamut$/;
 
 /* Babel AST nodes, loosely: positions plus whatever the type carries. */
 interface Node {
@@ -57,22 +81,6 @@ const isThemeColors = (n: Node | null | undefined) =>
       !n.object.computed &&
       n.object.property?.name === 'theme'));
 
-/* "'background' splits into surface-raised | surface-default. <rule>" */
-const describe = (name: string, { kind, to, rule }: ColorAlias) => {
-  const roles = to.join(' | ');
-  const what =
-    kind === 'split'
-      ? `splits into ${roles}`
-      : kind === 'retire'
-      ? `is retired${roles ? ` (closest: ${roles})` : ''}`
-      : 'is pending';
-  return `'${name}' ${what}. ${rule}`;
-};
-
-/* The same, safe inside a block comment. */
-const commentText = (name: string, alias: ColorAlias) =>
-  `/* ${MARK} ${describe(name, alias).replace(/\*\//g, '* /')} */ `;
-
 export const colorRoles: SpliceMigration<ColorRolesManifest> = {
   name: 'color-roles',
   kind: 'splice',
@@ -84,13 +92,7 @@ export const colorRoles: SpliceMigration<ColorRolesManifest> = {
     const edits: Edit[] = [];
     const seen = new Set<number>();
 
-    /* Already marked by an earlier run: a color-roles comment right before `at`. */
-    const marked = (at: number) => {
-      const before = source.slice(0, at).trimEnd();
-      if (!before.endsWith('*/')) return false;
-      const open = before.lastIndexOf('/*');
-      return open !== -1 && before.slice(open).includes(MARK);
-    };
+    const marked = (at: number) => markedBefore(source, at);
 
     const mark = (at: number, name: string) => {
       const alias = manifest.aliases[name];
@@ -266,6 +268,100 @@ export const colorRoles: SpliceMigration<ColorRolesManifest> = {
         );
       }
     });
+
+    /*
+      `var(--color-…)` in a string or template literal. A rename is applied
+      in place; a name for a person gets its comment in front of the
+      literal, outside the string.
+    */
+    root.find(j.Node).forEach((p) => {
+      const node = p.node as unknown as Node;
+      const literal = isString(node) || node.type === 'TemplateLiteral';
+      if (!literal) return;
+      const raw = source.slice(node.start, node.end);
+      if (!mentionsOldVar(raw)) return;
+      for (const hit of findOldVars(raw, manifest)) {
+        const at = node.start + hit.at;
+        if (hit.role) {
+          edits.push({
+            start: at,
+            end: at + `--color-${hit.name}`.length,
+            text: `--colors-${hit.role}`,
+          });
+        } else if (hit.alias) {
+          if (!marked(node.start) && !seen.has(node.start)) {
+            seen.add(node.start);
+            edits.push({
+              start: node.start,
+              end: node.start,
+              text: commentText(hit.name, hit.alias),
+            });
+          }
+          warn(node, describe(hit.name, hit.alias));
+          note('color-roles:manual');
+        } else if (hit.palette) {
+          warn(node, paletteMessage(hit.name));
+          note('color-roles:palette');
+        }
+      }
+    });
+
+    /* Card's variant, when Card comes from gamut. */
+    const cardNames = new Set<string>();
+    root.find(j.ImportDeclaration).forEach((p) => {
+      const decl = p.node as unknown as Node;
+      if (!GAMUT.test(decl.source.value)) return;
+      for (const spec of decl.specifiers ?? []) {
+        if (spec.type === 'ImportSpecifier' && spec.imported?.name === 'Card') {
+          cardNames.add(spec.local?.name ?? 'Card');
+        }
+      }
+    });
+    if (cardNames.size > 0) {
+      root.find(j.JSXOpeningElement).forEach((p) => {
+        const el = p.node as unknown as Node;
+        if (el.name?.type !== 'JSXIdentifier' || !cardNames.has(el.name.name)) {
+          return;
+        }
+        for (const attr of el.attributes ?? []) {
+          if (attr.type !== 'JSXAttribute' || attr.name?.name !== 'variant') {
+            continue;
+          }
+          const lits: Node[] = [];
+          const gather = (e: Node | null | undefined) => {
+            if (!e) return;
+            if (isString(e)) lits.push(e);
+            else if (e.type === 'ConditionalExpression') {
+              gather(e.consequent);
+              gather(e.alternate);
+            } else if (e.type === 'LogicalExpression') gather(e.right);
+          };
+          if (isString(attr.value)) gather(attr.value);
+          else if (attr.value?.type === 'JSXExpressionContainer') {
+            gather(attr.value.expression);
+          }
+          for (const lit of lits) {
+            const to = CARD_VARIANTS[lit.value];
+            if (!to) continue;
+            edits.push({ start: lit.start + 1, end: lit.end - 1, text: to });
+            if (lit.value === 'navy') {
+              if (!marked(attr.start)) {
+                edits.push({
+                  start: attr.start,
+                  end: attr.start,
+                  text: NAVY_CARD,
+                });
+              }
+              warn(
+                lit,
+                "Card's 'navy' variant becomes 'default', which renders light. Wrap the card in <ColorMode mode=\"dark\"> if it should stay dark."
+              );
+              note('color-roles:card-navy');
+            }
+          }
+        }
+      });
+    }
 
     return edits;
   },

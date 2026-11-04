@@ -3,7 +3,7 @@ import type { ColorAlias, ColorRolesManifest } from './manifest';
 /*
   Generated from design's migration map: gamut-styles
   src/colorSystem/migration.ts (TOKEN_MAP), ported from gamut-sandbox
-  stacey/color-tokens-v2 at c363244. Regenerate when design's map changes
+  stacey/color-tokens-v2 at df33b47. Regenerate when design's map changes
   (~/z_team/everest/color-tokens/codemod/gen-manifest.ts); don't edit rows by
   hand.
 */
@@ -94,14 +94,14 @@ export const aliases: Record<string, ColorAlias> = {
     rule: 'The error tint behind an alert or inline validation message.',
   },
   'shadow-primary': {
-    kind: 'pending',
-    to: [],
-    rule: 'Becomes a `shadow` color role (a dark-ladder neutral at an alpha per mode) referenced by the coming elevation tokens, which hold only offset, blur and spread. Both arrive with the elevation system; until then, elevation is the surface step plus a `border-subtle` hairline.',
+    kind: 'split',
+    to: ['shadow-key', 'shadow-ambient'],
+    rule: 'Every elevation shadow composes both: `shadow-key` for the tight contact layer, `shadow-ambient` for the soft falloff. The elevation tokens hold only offset, blur and spread; see the elevation system for which depth uses which geometry.',
   },
   'shadow-secondary': {
-    kind: 'pending',
-    to: [],
-    rule: 'Same as `shadow-primary`: the `shadow` color at another elevation level.',
+    kind: 'split',
+    to: ['shadow-key', 'shadow-ambient'],
+    rule: 'Same as `shadow-primary`. Depth comes from geometry, not from a second color, so both legacy tokens land on the same pair.',
   },
   primary: {
     kind: 'rename',
@@ -151,7 +151,7 @@ export const aliases: Record<string, ColorAlias> = {
   'border-primary': {
     kind: 'split',
     to: ['border-default', 'border-subtle'],
-    rule: 'A border that carries meaning (field outline, control stroke, a container that needs an edge to be seen) is `border-default`. A border that only decorates (card hairline, table rule, the edge of a dialog over `backdrop`) is `border-subtle`.',
+    rule: 'A border that carries meaning (field outline, control stroke, a container that needs an edge to be seen) is `border-default`. A border that only decorates or backs up a shadow (card hairline, table rule, the edge of a menu, popover, toast or dialog) is `border-subtle`.',
   },
   'border-secondary': {
     kind: 'merge',
@@ -214,7 +214,9 @@ export const roles: ColorRolesManifest['roles'] = [
   'viz-seq-2',
   'viz-seq-3',
   'viz-seq-4',
-  'backdrop',
+  'shadow-key',
+  'shadow-ambient',
+  'shadow-scrim',
 ];
 
 /*

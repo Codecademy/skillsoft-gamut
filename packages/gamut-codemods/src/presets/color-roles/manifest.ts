@@ -11,7 +11,7 @@ import { aliases, oldPalette, roles } from './aliases';
   - split: one of several roles, depending on where it's used.
   - retire: no role replaces it; `rule` says what to do instead.
   - pending: decided, but its role arrives with a system that doesn't exist
-    yet (shadows, with elevation).
+    yet. No row is pending at sandbox df33b47; shadows became a split.
   The last three need a person; the codemod leaves the name and a comment.
 */
 export type ColorKind = 'rename' | 'merge' | 'split' | 'retire' | 'pending';
