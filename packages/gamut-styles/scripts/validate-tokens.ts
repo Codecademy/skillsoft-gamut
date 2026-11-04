@@ -281,7 +281,7 @@ const main = async () => {
     console.log('\n— guarantees, source system');
     printChecks(validate(system));
 
-    console.log('\n— migration map (sandbox c363244)');
+    console.log('\n— migration map (sandbox df33b47)');
     printChecks(validateMigration(system));
 
     console.log('\n— guarantees, re-measured on tokens.css');
