@@ -61,7 +61,15 @@ const config: StorybookConfig = {
       shouldRemoveUndefinedFromOptional: true,
       shouldExtractLiteralValuesFromEnum: true,
       propFilter: (prop) => {
-        if (prop.parent && /node_modules/.test(prop.parent.fileName)) {
+        // Keep native props (e.g. `onClick`) that a Gamut type redeclares.
+        const isRedeclared = prop.declarations?.some(
+          ({ fileName }) => !/node_modules/.test(fileName)
+        );
+        if (
+          prop.parent &&
+          /node_modules/.test(prop.parent.fileName) &&
+          !isRedeclared
+        ) {
           return false;
         }
         if (['className', 'mode', 'theme'].includes(prop.name)) {
