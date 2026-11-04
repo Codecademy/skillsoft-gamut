@@ -1,5 +1,10 @@
 import type { theme as GamutTheme } from '@skillsoft/gamut-styles';
-import { css, states, variant } from '@skillsoft/gamut-styles';
+import {
+  css,
+  states,
+  theme as gamutTheme,
+  variant,
+} from '@skillsoft/gamut-styles';
 import type { StylesConfig } from 'react-select';
 
 import {
@@ -31,12 +36,16 @@ const selectFocusStyles = {
   boxShadow: `inset 0 0 0 1px currentColor`,
 } as const;
 
+/* Later states win, so `activated` comes before focus and error. */
 export const conditionalBorderStates = states({
+  /* An edited field keeps its `border-default` outline. */
+  activated: { borderColor: 'border-default' },
   isFocused: selectFocusStyles,
-  activated: { borderColor: 'currentColor' },
+  /* Error is a 2px `text-error` outline at rest, like the field. */
   error: {
     color: 'text-error',
     borderColor: 'currentColor',
+    boxShadow: `inset 0 0 0 1px currentColor`,
     [InputSelectors.HOVER]: {
       borderColor: 'currentColor',
     },
@@ -69,13 +78,22 @@ const dropdownBorderStyles = (zIndex = 2) =>
     zIndex,
   });
 
+/*
+ * Options take veils. A focused selected option keeps its selected veil with
+ * the hover veil over it, drawn as an inset shadow so the create option's
+ * divider (a background image) still works.
+ */
 const getOptionBackground = (isSelected: boolean, isFocused: boolean) =>
   css({
-    bg: isFocused
-      ? 'state-hover'
-      : isSelected
+    bg: isSelected
       ? 'state-selected'
+      : isFocused
+      ? 'state-hover'
       : 'transparent',
+    ...(isSelected &&
+      isFocused && {
+        boxShadow: `inset 0 0 0 100vmax ${gamutTheme.colors['state-hover']}`,
+      }),
   });
 
 const textColor = css({

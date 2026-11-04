@@ -46,7 +46,8 @@ export const DisclosureButton: React.FC<DisclosureButtonProps> = ({
       >
         {overline && (
           <Text
-            color="text-subtle"
+            /* On the disabled header's fill the overline is a knockout. */
+            color={disabled ? 'surface-raised' : 'text-subtle'}
             fontFamily="accent"
             textAlign="start"
             variant="p-small"

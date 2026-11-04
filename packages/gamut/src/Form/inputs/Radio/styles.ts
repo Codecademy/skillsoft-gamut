@@ -66,7 +66,9 @@ export const radioInput = css({
 /*
  * Design's radio map: the unchecked ring is `border-default`, and a checked
  * radio is `action-primary` (it used to take the label's text color). Error
- * and disabled keep drawing in the label's color.
+ * draws in the label's color; a disabled radio keeps the `border-default`
+ * ring and draws its dot in the label's color. Hover and focus are always
+ * the `action-primary` ring.
  */
 const currentColorRing = {
   [InputSelectors.BEFORE]: {
@@ -98,7 +100,9 @@ export const conditionalRadioLabelStyles = variant({
     },
     disabled: {
       ...formFieldBaseDisabledStyles,
-      ...currentColorRing,
+      [InputSelectors.BEFORE]: {
+        boxShadow: `0 0 0 1px ${theme.colors['border-default']}`,
+      },
     },
   },
 });
@@ -116,7 +120,7 @@ export const conditionalRadioInputStyles = variant({
     error: {
       ...currentColorChecked,
       [InputSelectors.HOVER_FOCUS_BEFORE]: {
-        boxShadow: `0 0 0 2px currentColor`,
+        boxShadow: `0 0 0 2px ${theme.colors['action-primary']}`,
       },
     },
     disabled: {
