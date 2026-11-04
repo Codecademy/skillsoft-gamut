@@ -49,6 +49,7 @@
   "scripts": {
     "build": "nx build gamut-styles",
     "build:tokens": "jiti scripts/build-tokens.ts",
+    "dump:sandbox": "jiti scripts/dump-sandbox.ts",
     "validate:tokens": "jiti scripts/validate-tokens.ts"
   },
   "sideEffects": false,

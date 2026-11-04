@@ -1,9 +1,9 @@
-# Color system (spike)
+# Color system
 
-**Spike, not shipped API.** Branch `cass-color-spike`. Validates the generated
-OKLCH color system from gamut-sandbox PR #34 (`stacey/color-tokens-v2`, pinned
-at `dffd84b`; generator unchanged, roles and migration map at `df33b47`) as a tokens-only output of gamut-styles. Research, decisions and
-findings live in Base Camp: `gamut/color-tokens/`.
+The generated OKLCH color system, ported from design's gamut-sandbox (PR #34,
+`stacey/color-tokens-v2`). `__fixtures__/sandbox.json` records the sandbox commit the
+port matches, and `__tests__/sandboxParity.test.ts` holds the generator to it. To take a
+sandbox update, run `dump:sandbox` (below) and port until the tests pass.
 
 ## The pipeline
 
@@ -53,8 +53,9 @@ without React or Emotion; an app that loads it itself can pass
 
 ```sh
 yarn workspace @skillsoft/gamut-styles build:tokens     # regenerate src/tokens/generated
-yarn workspace @skillsoft/gamut-styles validate:tokens  # full report (sandbox parity, CSS round-trip, tenant probes)
-npx nx test gamut-styles                                # guarantees + generated-files-current, in CI
+yarn workspace @skillsoft/gamut-styles validate:tokens  # full report (CSS round-trip, tenant probes)
+yarn workspace @skillsoft/gamut-styles dump:sandbox <sandbox checkout>  # refresh the sandbox fixture
+npx nx test gamut-styles                                # guarantees, sandbox parity, generated files current; in CI
 ```
 
 ## Naming

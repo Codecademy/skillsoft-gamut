@@ -1,5 +1,10 @@
 {
-  "source": "gamut-sandbox PR #34 (stacey/color-tokens-v2) at df33b47 — dumped from src/colorSystem palette.ts / roles.ts",
+  "source": {
+    "repo": "skillsoft-common/gamut-sandbox",
+    "branch": "stacey/color-tokens-v2",
+    "commit": "df33b47",
+    "dumped": "2026-11-03"
+  },
   "families": {
     "neutral-light": {
       "hue": 93.7,
@@ -986,6 +991,5 @@
         "hex": "#000000"
       }
     }
-  ],
-  "statusSeparation": 1.867409891063702
+  ]
 }

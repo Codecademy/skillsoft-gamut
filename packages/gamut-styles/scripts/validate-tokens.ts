@@ -4,13 +4,14 @@
  *
  *   yarn workspace @skillsoft/gamut-styles validate:tokens
  *
- * 1. The ported generator reproduces gamut-sandbox at df33b47 exactly (generator unchanged since dffd84b).
- * 2. The guarantees hold on the source system.
- * 3. The guarantees hold again on values parsed back out of tokens.css —
+ * 1. The guarantees hold on the source system.
+ * 2. The guarantees hold again on values parsed back out of tokens.css —
  *    so nothing Style Dictionary did (rounding, references) broke them.
- * 4. The generated files are up to date with the generator.
- * 5. The content-mode table picks what Background's runtime math picked.
- * 6. Sample tenants, run through the probe.
+ * 3. The generated files are up to date with the generator.
+ * 4. The content-mode table picks what Background's runtime math picked.
+ * 5. Sample tenants, run through the probe.
+ *
+ * Parity with design's sandbox is a test: `__tests__/sandboxParity.test.ts`.
  */
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -24,7 +25,7 @@ import { contentModes } from '../src/colorSystem/contentModes';
 import { toTsModule } from '../src/colorSystem/emit';
 import { validateMigration } from '../src/colorSystem/migration';
 import { probeTenant } from '../src/colorSystem/probe';
-import type { Grade, Ramp } from '../src/colorSystem/ramp';
+import type { Ramp } from '../src/colorSystem/ramp';
 import { GRADES } from '../src/colorSystem/ramp';
 import { MODES, ROLES } from '../src/colorSystem/roles';
 import type { ColorSystem, ResolvedValue } from '../src/colorSystem/system';
@@ -34,17 +35,6 @@ import { validate } from '../src/colorSystem/validate';
 
 const ROOT = join(__dirname, '..');
 const GENERATED = join(ROOT, 'src/tokens/generated');
-
-const FAMILY_TO_SLOT: Record<string, Slot> = {
-  'neutral-light': 'neutral-light',
-  'neutral-dark': 'neutral-dark',
-  blue: 'primary',
-  magenta: 'accent',
-  violet: 'accent-alt',
-  red: 'danger',
-  amber: 'warning',
-  teal: 'success',
-};
 
 let failures = 0;
 const report = (ok: boolean, line: string) => {
@@ -57,57 +47,6 @@ const printChecks = (checks: Check[]) => {
     if (c.reported) console.log(`INFO  ${line}`);
     else report(c.pass, line);
   }
-};
-
-const sandboxParity = async (system: ColorSystem) => {
-  const fixture = JSON.parse(
-    await readFile(
-      join(ROOT, 'src/colorSystem/__fixtures__/sandbox-df33b47.json'),
-      'utf8'
-    )
-  );
-  let rungs = 0;
-  const rungMisses: string[] = [];
-  for (const [family, f] of Object.entries<any>(fixture.families)) {
-    for (const [grade, r] of Object.entries<any>(f.rungs)) {
-      rungs += 1;
-      const mine = system.ramps[FAMILY_TO_SLOT[family]][Number(grade) as Grade];
-      if (mine.l !== r.l || mine.c !== r.c || mine.hex !== r.hex) {
-        rungMisses.push(`${family}-${grade}`);
-      }
-    }
-  }
-  report(
-    rungMisses.length === 0,
-    `${rungs} rungs match sandbox (l, c to 4 dp; hex exact)${
-      rungMisses.length ? `: ${rungMisses.join(', ')}` : ''
-    }`
-  );
-
-  const toKey = (primitive: string) => {
-    const base = primitive.split(' @ ')[0];
-    if (base === 'white' || base === 'black') return base;
-    const i = base.lastIndexOf('-');
-    return `palette-${FAMILY_TO_SLOT[base.slice(0, i)]}-${base.slice(i + 1)}`;
-  };
-  const roleMisses: string[] = [];
-  for (const r of fixture.roles) {
-    for (const mode of MODES) {
-      const mine = system.roles[mode][r.token];
-      const gradient = r[mode].primitive.includes(' on ');
-      const sameRef =
-        gradient || mine.key.replace(/-a\d+$/, '') === toKey(r[mode].primitive);
-      if (!mine || !sameRef || mine.hex !== r[mode].hex) {
-        roleMisses.push(`${r.token} (${mode})`);
-      }
-    }
-  }
-  report(
-    roleMisses.length === 0,
-    `${fixture.roles.length} roles × 2 modes match sandbox (primitive + hex)${
-      roleMisses.length ? `: ${roleMisses.join(', ')}` : ''
-    }`
-  );
 };
 
 /*
@@ -273,15 +212,10 @@ const main = async () => {
     const isDefault = brand.name === DEFAULT_BRAND.name;
     console.log(`\n══ ${brand.name}${isDefault ? ' (default)' : ''}`);
 
-    if (isDefault) {
-      console.log('\n— sandbox parity (df33b47)');
-      await sandboxParity(system);
-    }
-
     console.log('\n— guarantees, source system');
     printChecks(validate(system));
 
-    console.log('\n— migration map (sandbox df33b47)');
+    console.log('\n— migration map');
     printChecks(validateMigration(system));
 
     console.log('\n— guarantees, re-measured on tokens.css');
