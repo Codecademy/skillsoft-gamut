@@ -57,7 +57,7 @@ interface Node {
   [key: string]: any;
 }
 
-const isString = (n: Node | null | undefined): n is Node =>
+const isString = (n: Node | null | undefined): n is Node & { value: string } =>
   !!n &&
   (n.type === 'StringLiteral' ||
     (n.type === 'Literal' && typeof n.value === 'string'));
