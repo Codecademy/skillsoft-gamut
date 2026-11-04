@@ -1,8 +1,11 @@
+import { matchers } from '@emotion/jest';
 import { MockGamutProvider } from '@skillsoft/gamut-tests';
 import { render, screen } from '@testing-library/react';
 
 import { ProgressBar } from '.';
 import type { ProgressBarProps } from './types';
+
+expect.extend(matchers);
 
 describe('ProgressBar', () => {
   describe.each([
@@ -40,4 +43,36 @@ describe('ProgressBar', () => {
       });
     }
   );
+});
+
+describe('ProgressBar label', () => {
+  const renderBar = (props: Partial<ProgressBarProps> = {}) =>
+    render(
+      <MockGamutProvider>
+        <ProgressBar percent={10} variant="default" {...props} />
+      </MockGamutProvider>
+    );
+
+  /* Design's two-tone label: text-inverse on the bar, text-default on the track. */
+  it('draws the label on the bar and on the track at large sizes', () => {
+    renderBar({ size: 'large' });
+
+    const labels = screen.getAllByText('10%');
+    expect(labels).toHaveLength(2);
+    expect(screen.getByTestId('progress-bar-bar')).toContainElement(labels[1]);
+    expect(labels[0].parentElement).toHaveStyleRule(
+      'color',
+      'var(--colors-text-default)'
+    );
+    expect(screen.getByTestId('progress-bar-bar')).toHaveStyleRule(
+      'overflow',
+      'hidden'
+    );
+  });
+
+  it('draws no label at small sizes', () => {
+    renderBar({ size: 'small' });
+
+    expect(screen.queryByText('10%')).toBeNull();
+  });
 });

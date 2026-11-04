@@ -59,6 +59,10 @@ export const ListEl = styled('ul', styledOptions<'ul'>())<ListProps>(
   space
 );
 
+/* A veil as a background layer, so it sits over the row's own fill. */
+const veil = (role: 'state-hover' | 'state-selected') =>
+  `linear-gradient(${theme.colors[role]}, ${theme.colors[role]})`;
+
 const rowStates = states({
   isOl: {
     '&::before': {
@@ -81,6 +85,16 @@ const rowStates = states({
   transparentBg: {
     bg: 'transparent',
   },
+  /*
+   * A selected row takes the `state-selected` veil over its own fill
+   * (design's list map). Hovering it stacks the hover veil on top.
+   */
+  isSelected: {
+    backgroundImage: veil('state-selected'),
+    '&:hover': {
+      backgroundImage: `${veil('state-hover')}, ${veil('state-selected')}`,
+    },
+  },
 });
 
 const interactiveState = states({
@@ -89,7 +103,7 @@ const interactiveState = states({
 
     /* Hover is a veil over the row's own fill; focus is the ring alone. */
     '&:hover': {
-      backgroundImage: `linear-gradient(${theme.colors['state-hover']}, ${theme.colors['state-hover']})`,
+      backgroundImage: veil('state-hover'),
     },
     '&:focus-visible, &:focus-within': {
       outline: `1px solid ${theme.colors['action-primary']}`,
@@ -132,9 +146,9 @@ const rowVariants = variant({
         borderColorTop: 'border-subtle',
       },
     },
+    /* Rows are `surface-raised`; a stripe is sunken, so it never reads as a selection. */
     table: {
-      bg: 'transparent',
-      /* A stripe is a sunken surface, so it never reads as a selection. */
+      bg: 'surface-raised',
       '&:nth-of-type(2n)': {
         bg: 'surface-sunken',
       },
