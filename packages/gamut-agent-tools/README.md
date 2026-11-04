@@ -8,14 +8,14 @@ You won't normally install this yourself — see [Using this in an app repo](#us
 
 ## What's here
 
-| Path                            | Purpose                                                                                                                                                             |
-| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `DESIGN.*.md`                     | Product-specific design context — tokens, semantic roles, patterns — matched to the Gamut theme an app uses. See `DESIGN.md` for which file goes with which theme. |
-| `skills/`                         | Task playbooks invoked by name for focused work (theming, ColorMode, buttons, layout, forms, auditing, …).                                                          |
-| `rules/`                          | Always-on guardrails applied to all Gamut code (e.g. accessibility).                                                                                                |
-| `agents/`                         | Reserved for future agent definitions; currently empty.                                                                                                             |
-| `.claude-plugin/`, `.cursor-plugin/` | Plugin manifests consumed by Claude Code and Cursor respectively.                                                                                                |
-| `cli/`                            | Command implementations for the `gamut plugin` CLI (see [The CLI lives here, not in @skillsoft/gamut](#the-cli-lives-here-not-in-skillsoftgamut) below).           |
+| Path                                 | Purpose                                                                                                                                                            |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `DESIGN.*.md`                        | Product-specific design context — tokens, semantic roles, patterns — matched to the Gamut theme an app uses. See `DESIGN.md` for which file goes with which theme. |
+| `skills/`                            | Task playbooks invoked by name for focused work (theming, ColorMode, buttons, layout, forms, auditing, …).                                                         |
+| `rules/`                             | Always-on guardrails applied to all Gamut code (e.g. accessibility).                                                                                               |
+| `agents/`                            | Reserved for future agent definitions; currently empty.                                                                                                            |
+| `.claude-plugin/`, `.cursor-plugin/` | Plugin manifests consumed by Claude Code and Cursor respectively.                                                                                                  |
+| `cli/`                               | Command implementations for the `gamut plugin` CLI (see [The CLI lives here, not in @skillsoft/gamut](#the-cli-lives-here-not-in-skillsoftgamut) below).           |
 
 ## Using this in an app repo
 
@@ -39,7 +39,7 @@ Install the plugin after the swap. The `gamut` CLI comes from `@skillsoft/gamut`
 
 ## The CLI lives here, not in `@skillsoft/gamut`
 
-`@skillsoft/gamut`'s `bin/gamut.mjs` is a thin bootstrap shim: it only knows how to check whether `@skillsoft/gamut-agent-tools` is installed, auto-install it if not (for `install`/`update`), and print help. Once that's resolved, it dynamically imports the actual `install`/`update`/`list`/`remove` command bodies from `cli/commands/plugin/` in *this* package and hands off execution to them.
+`@skillsoft/gamut`'s `bin/gamut.mjs` is a thin bootstrap shim: it only knows how to check whether `@skillsoft/gamut-agent-tools` is installed, auto-install it if not (for `install`/`update`), and print help. Once that's resolved, it dynamically imports the actual `install`/`update`/`list`/`remove` command bodies from `cli/commands/plugin/` in _this_ package and hands off execution to them.
 
 The tooling that manages this content lives with the content it manages, rather than being bundled into `@skillsoft/gamut` itself. `cli/` isn't a standalone executable — it has no `bin` entry of its own — it's only ever invoked via the `gamut plugin ...` command.
 
