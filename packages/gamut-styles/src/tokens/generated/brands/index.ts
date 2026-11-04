@@ -3,5 +3,4 @@
 export * as originalCodecademy from './originalCodecademy.values';
 export * as admin from './admin.values';
 export * as platform from './platform.values';
-export * as percipio from './percipio.values';
 export * as lxStudio from './lxStudio.values';

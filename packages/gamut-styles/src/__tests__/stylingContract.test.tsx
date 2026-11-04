@@ -18,7 +18,6 @@ import {
   coreTheme,
   lxStudioTheme,
   originalCodecademyTheme,
-  percipioTheme,
   platformTheme,
   skillsoftTheme,
 } from '../themes';
@@ -41,7 +40,6 @@ const THEMES = {
   core: coreTheme,
   admin: adminTheme,
   platform: platformTheme,
-  percipio: percipioTheme,
   lxStudio: lxStudioTheme,
   skillsoft: skillsoftTheme,
   originalCodecademy: originalCodecademyTheme,

@@ -4,9 +4,13 @@ import type { BrandInput } from '../brand';
  * LX Studio: old lxStudio rebuilt on the generated system. Old lxStudio was
  * old core with a sapphire primary, a near-white page (lxStudioBgPrimary)
  * and its own success green in light mode. Everything else is core's: navy
- * text, yellow accent, red danger, orange warning (as Original Codecademy
- * reads it) and core's dark mode, primary yellow included. Old lxStudio has
- * no second accent, so `accent-alt` stays on the gamut default (sandbox D4).
+ * text, yellow accent, red danger and orange warning (as Original Codecademy
+ * reads it). Old lxStudio has no second accent, so `accent-alt` stays on the
+ * gamut default (sandbox D4).
+ *
+ * The yellow accent is generated like any other slot, not pinned to core's
+ * grades, and dark mode keeps the generated sapphire primary rather than
+ * core's yellow one (2026-10-29).
  *
  * Navy isn't pinned, as for Original Codecademy: pinned, it carries much
  * more chroma than the generated surfaces beside it (design, 2026-10-29).
@@ -30,16 +34,6 @@ export const lxStudioBrand: BrandInput = {
   overrides: {
     palette: {
       'neutral-light-100': '#FAFBFC', // lxStudioBgPrimary
-      'accent-300': '#FFD300', // yellow-500
-      'accent-400': '#CCA900', // yellow-400
-    },
-    /* Core's dark mode, which old lxStudio inherits, uses yellow for primary. */
-    roles: {
-      dark: {
-        'action-primary': { slot: 'accent', grade: 300 },
-        'action-primary-hover': { slot: 'accent', grade: 400 },
-        'action-primary-pressed': { slot: 'accent', grade: 500 },
-      },
     },
     /* As for Original Codecademy: primary + accent-alt, not blue to yellow. */
     gradients: {

@@ -718,12 +718,12 @@
         "$value": {
           "colorSpace": "oklch",
           "components": [
-            0.8789,
-            0.1801,
-            93.58
+            0.8497,
+            0.0957,
+            93.6
           ],
           "alpha": 1,
-          "hex": "#ffd300"
+          "hex": "#e2cd84"
         },
         "$extensions": {
           "com.skillsoft.gamut": {
@@ -736,12 +736,12 @@
         "$value": {
           "colorSpace": "oklch",
           "components": [
-            0.7442,
-            0.1526,
-            93.94
+            0.7628,
+            0.1094,
+            93.6
           ],
           "alpha": 1,
-          "hex": "#cca900"
+          "hex": "#c9b15b"
         },
         "$extensions": {
           "com.skillsoft.gamut": {

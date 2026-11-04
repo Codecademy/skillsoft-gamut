@@ -18,25 +18,7 @@ export const brand = {
   "tier": 3,
   "overrides": {
     "palette": {
-      "neutral-light-100": "#fafbfc",
-      "accent-300": "#ffd300",
-      "accent-400": "#cca900"
-    },
-    "roles": {
-      "dark": {
-        "action-primary": {
-          "slot": "accent",
-          "grade": 300
-        },
-        "action-primary-hover": {
-          "slot": "accent",
-          "grade": 400
-        },
-        "action-primary-pressed": {
-          "slot": "accent",
-          "grade": 500
-        }
-      }
+      "neutral-light-100": "#fafbfc"
     },
     "gradients": {
       "surface-brand": {
@@ -63,7 +45,7 @@ export const brand = {
     "accent": {
       "hex": "#ffd300",
       "nearest": 300,
-      "deltaE": 0
+      "deltaE": 12.83
     },
     "danger": {
       "hex": "#e91c11",
@@ -233,12 +215,12 @@ export const palette = {
     "srgb": "#f2eace"
   },
   "palette-accent-300": {
-    "oklch": "oklch(0.8789 0.1801 93.58)",
-    "srgb": "#ffd300"
+    "oklch": "oklch(0.8497 0.0957 93.6)",
+    "srgb": "#e2cd84"
   },
   "palette-accent-400": {
-    "oklch": "oklch(0.7442 0.1526 93.94)",
-    "srgb": "#cca900"
+    "oklch": "oklch(0.7628 0.1094 93.6)",
+    "srgb": "#c9b15b"
   },
   "palette-accent-500": {
     "oklch": "oklch(0.6707 0.1209 93.6)",
@@ -767,19 +749,19 @@ export const roles = {
       "srgb": "#30373e"
     },
     "action-primary": {
-      "ref": "palette-accent-300",
-      "oklch": "oklch(0.8789 0.1801 93.58)",
-      "srgb": "#ffd300"
+      "ref": "palette-primary-400",
+      "oklch": "oklch(0.7628 0.0846 262.4)",
+      "srgb": "#95b2e8"
     },
     "action-primary-hover": {
-      "ref": "palette-accent-400",
-      "oklch": "oklch(0.7442 0.1526 93.94)",
-      "srgb": "#cca900"
+      "ref": "palette-primary-300",
+      "oklch": "oklch(0.8497 0.0407 262.4)",
+      "srgb": "#c0cee9"
     },
     "action-primary-pressed": {
-      "ref": "palette-accent-500",
-      "oklch": "oklch(0.6707 0.1209 93.6)",
-      "srgb": "#ae932e"
+      "ref": "palette-primary-200",
+      "oklch": "oklch(0.9364 0.0121 262.4)",
+      "srgb": "#e6eaf2"
     },
     "action-danger": {
       "ref": "palette-danger-400",
