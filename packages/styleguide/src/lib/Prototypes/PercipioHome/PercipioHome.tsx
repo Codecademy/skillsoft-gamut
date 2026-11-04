@@ -1,387 +1,300 @@
+import { useTheme } from '@emotion/react';
 import {
-  Anchor,
   Box,
   Card,
   FillButton,
   FlexBox,
   GridBox,
-  IconButton,
-  Menu,
-  MenuItem,
+  Anchor,
   PopoverContainer,
-  ProgressBar,
-  StrokeButton,
-  Tab,
-  TabList,
-  TabPanel,
-  Tabs,
   Tag,
   Text,
   TextButton,
-  Toggle,
-} from '@skillsoft/gamut';
-import { GamutProvider, skillsoftTheme } from '@skillsoft/gamut-styles';
+  ToolTip,
+} from '@codecademy/gamut';
+import { GamutProvider, percipioTheme } from '@codecademy/gamut-styles';
 import {
-  BellIcon,
+  ArrowChevronRightIcon,
   BookLibraryIcon,
   CloseIcon,
   MenuIcon,
-  MiniChevronRightIcon,
+  MiniChevronDownIcon,
+  PinIcon,
   SearchIcon,
-  TrophyIcon,
-} from '@skillsoft/gamut-icons';
+} from '@codecademy/gamut-icons';
 import { useRef, useState } from 'react';
 
+import './PercipioHome.css';
 import {
   AREAS,
-  AreaItem,
   BANNER,
-  CAISY_CARDS,
-  ContentCard,
   GREETING,
-  GREETING_SUB,
-  HOME_TABS,
-  INTEREST_CARDS,
-  INTEREST_TABS,
-  LEARNING_OF_WEEK,
-  NavItem,
   PRIMARY_NAV_ITEMS,
-  ROLE_ADVISOR,
   SECONDARY_NAV_ITEMS,
   SEARCH_PLACEHOLDER,
+  SKILL_AREAS_HEADING,
+  SKILL_AREAS_SUBTITLE,
   TOOLBAR_LABELS,
-  TOP_PICKS_CARDS,
-  TOP_PICKS_TABS,
+  type AreaItem,
+  type NavItem,
 } from './data';
 
-const TOPBAR_HEIGHT = 72;
-const SIDEBAR_WIDTH = 256;
+/* Old Card variants (white, beige, navy, yellow), cycled over the area cards. */
+const AREA_CARD_VARIANTS = ['white', 'beige', 'navy', 'yellow'] as const;
 
-/* ---------- Top bar ---------- */
+const NavButton = ({ item, active }: { item: NavItem; active?: boolean }) => (
+  <Box
+    as="button"
+    type="button"
+    className={`navItem${active ? ' active' : ''}`}
+    data-marker={item.id}
+  >
+    <span className="iconWrapper" aria-hidden="true">
+      <MenuIcon size={20} />
+      {item.badgeCount ? (
+        <span className="badge" aria-label={`${item.badgeCount} unread`}>
+          {item.badgeCount}
+        </span>
+      ) : null}
+    </span>
+    <Text as="span" fontSize={14} className="navItemLabel">
+      {item.label}
+    </Text>
+    {item.badgeCount === undefined ? null : (
+      <ArrowChevronRightIcon size={16} aria-hidden="true" />
+    )}
+  </Box>
+);
 
-const TopBar = ({ onToggleNav }: { onToggleNav: () => void }) => {
+/** Top nav: logo, search, and the header controls. */
+const TopNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const avatarRef = useRef<HTMLDivElement>(null);
+  const menuTargetRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <Box
-      as="header"
-      position="fixed"
-      top={0}
-      left={0}
-      right={0}
-      zIndex={12}
-      height={`${TOPBAR_HEIGHT}px`}
-      bg="surface-raised"
-      boxShadow="shadow-ambient"
-    >
-      <FlexBox alignItems="center" justifyContent="space-between" height="100%" px={{ xs: 16, md: 24 }} gap={16}>
-        <FlexBox alignItems="center" gap={16}>
-          <IconButton icon={MenuIcon} tip="Main menu" aria-label="Main menu" onClick={onToggleNav} />
-          <Text as="span" fontSize={22} fontWeight="bold" color="text-default">
-            Percipio
-          </Text>
-        </FlexBox>
+    <Box className="root" data-marker="topNav">
+      <Box as="header" className="header">
+        <FlexBox
+          as="nav"
+          className="primaryNav"
+          alignItems="center"
+          justifyContent="space-between"
+          gap={16}
+        >
+          <Box className="homeItem" role="link" tabIndex={0} aria-label="Home">
+            <Text as="span" fontSize={20} fontWeight="bold">
+              Percipio
+            </Text>
+          </Box>
 
-        <Box flex="1" maxWidth="560px" display={{ xs: 'none', md: 'block' }}>
-          <FlexBox alignItems="center" gap={8} px={16} height="44px" borderRadius="full" bg="surface-sunken" color="text-subtle">
-            <SearchIcon size={20} aria-hidden />
-            <Text as="span" fontSize={16} color="text-subtle">
+          <Box className="componentContainer">
+            <SearchIcon size={20} aria-hidden="true" />
+            <Text as="span" fontSize={14} color="text-secondary">
               {SEARCH_PLACEHOLDER}
             </Text>
-          </FlexBox>
-        </Box>
-
-        <FlexBox alignItems="center" gap={8}>
-          <Tag variant="readOnly" icon={TrophyIcon}>1465 XP</Tag>
-          <IconButton icon={BellIcon} tip="Notifications" aria-label="Notifications" />
-          <Box ref={avatarRef} position="relative">
-            <IconButton
-              icon={MenuIcon}
-              tip="My profile"
-              aria-label="My profile"
-              aria-expanded={menuOpen}
-              aria-haspopup="menu"
-              onClick={() => setMenuOpen((open) => !open)}
-            />
-            {menuOpen && avatarRef.current && (
-              <PopoverContainer
-                isOpen={menuOpen}
-                targetRef={avatarRef}
-                onRequestClose={() => setMenuOpen(false)}
-                alignment="bottom-right"
-                inline
-              >
-                <Menu>
-                  <MenuItem>My Learning</MenuItem>
-                  <MenuItem>My Settings</MenuItem>
-                  <MenuItem>Log Out</MenuItem>
-                </Menu>
-              </PopoverContainer>
-            )}
           </Box>
+
+          <FlexBox alignItems="center" gap={8}>
+            <ToolTip label="Notifications">
+              <TextButton variant="primary" size="small">
+                Notifications
+              </TextButton>
+            </ToolTip>
+
+            <Box className="nineDotMenuContainer" data-marker="nineDotMenu">
+              <Box
+                as="button"
+                type="button"
+                ref={menuTargetRef}
+                className="nineDotMenuButton"
+                data-active={menuOpen}
+                aria-expanded={menuOpen}
+                aria-haspopup="true"
+                aria-label="Apps"
+                onClick={() => setMenuOpen((open) => !open)}
+              >
+                <span className="notificationDot" />
+                <MenuIcon size={24} />
+              </Box>
+              {menuOpen && menuTargetRef.current && (
+                <PopoverContainer
+                  isOpen={menuOpen}
+                  targetRef={{ current: menuTargetRef.current }}
+                  onRequestClose={() => setMenuOpen(false)}
+                  alignment="bottom-right"
+                  inline={true}
+                  x={-40}
+                >
+                  <Box role="menu" aria-orientation="vertical" className="nineDotMenuContent">
+                    <FlexBox flexDirection="column">
+                      <Box as="a" href="#" role="menuitem" tabIndex={0} className="menuItem">
+                        My Learning
+                      </Box>
+                      <Box as="a" href="#" role="menuitem" tabIndex={0} className="menuItem">
+                        Log out
+                      </Box>
+                    </FlexBox>
+                  </Box>
+                </PopoverContainer>
+              )}
+            </Box>
+          </FlexBox>
         </FlexBox>
-      </FlexBox>
+      </Box>
     </Box>
   );
 };
 
-/* ---------- Sidebar ---------- */
-
-const SidebarItem = ({ item, active }: { item: NavItem; active?: boolean }) => {
-  const Icon = item.icon;
-  return (
-    <FlexBox
-      as="button"
-      alignItems="center"
-      gap={12}
-      width="100%"
-      px={16}
-      py={8}
-      pl={item.nested ? 40 : 16}
-      borderRadius="md"
-      bg={active ? 'surface-brand-subtle' : 'transparent'}
-      color={active ? 'text-default' : 'text-subtle'}
-      aria-current={active ? 'page' : undefined}
-      data-marker={item.id}
-    >
-      <Icon size={20} aria-hidden />
-      <Text as="span" fontSize={16} fontWeight={active ? "bold" : undefined}>
-        {item.label}
-      </Text>
-      {item.badgeCount ? <Tag variant="readOnly">{item.badgeCount}</Tag> : null}
-    </FlexBox>
-  );
-};
-
-const Sidebar = ({ open }: { open: boolean }) => (
-  <Box
-    as="nav"
-    aria-label="Main"
-    position="sticky"
-    top={`${TOPBAR_HEIGHT}px`}
-    height={`calc(100vh - ${TOPBAR_HEIGHT}px)`}
-    width={open ? `${SIDEBAR_WIDTH}px` : '0px'}
-    bg="surface-default"
-  >
-    <FlexBox flexDirection="column" justifyContent="space-between" height="100%" p={12} gap={16} minWidth={`${SIDEBAR_WIDTH}px`}>
-      <FlexBox flexDirection="column" gap={4}>
+/** Left nav: primary links, then the pinned secondary links. */
+const LeftNav = () => (
+  <Box as="nav" className="leftNavRoot" aria-label="Main">
+    <Box as="div" className="navBody">
+      <Box as="div" className="navSection">
         {PRIMARY_NAV_ITEMS.map((item) => (
-          <SidebarItem key={item.id} item={item} active={item.id === 'home'} />
+          <NavButton key={item.id} item={item} active={item.id === 'home'} />
         ))}
-      </FlexBox>
-      <FlexBox flexDirection="column" gap={4}>
+      </Box>
+      <Box as="div" className="footerSection">
+        <div className="divider" />
         {SECONDARY_NAV_ITEMS.map((item) => (
-          <SidebarItem key={item.id} item={item} />
+          <NavButton key={item.id} item={item} />
         ))}
-      </FlexBox>
-    </FlexBox>
+      </Box>
+    </Box>
   </Box>
 );
 
-/* ---------- Content ---------- */
-
-/** Featured banner: a brand surface with the copy and a call to action. */
-const FeaturedBanner = () => (
-  <Card variant="brand" p={32} borderRadius="lg" data-marker="banner">
-    <FlexBox flexDirection="column" gap={12} maxWidth="640px">
-      <Tag variant="readOnly">{BANNER.eyebrow}</Tag>
-      <Text as="h2" fontSize={34} fontWeight="bold" color="text-inverse">
+/** Featured banner: headline, body copy, and a call to action. */
+const Banner = () => (
+  <Box
+    as="section"
+    bg="background-selected"
+    borderColor="border-primary"
+    className="banner"
+    data-marker="banner"
+  >
+    <FlexBox flexDirection="column" gap={8} p={24}>
+      <Text as="span" fontSize={14} color="text-secondary">
+        {BANNER.eyebrow}
+      </Text>
+      <Text as="h2" fontSize={32} fontWeight="bold" color="text-accent">
         {BANNER.title}
       </Text>
-      <Text as="p" fontSize={18} color="text-inverse">
+      <Text as="p" fontSize={16} color="text-secondary">
         {BANNER.body}
       </Text>
-      <FlexBox gap={12} mt={8} flexWrap="wrap">
-        <FillButton size="normal">{BANNER.cta}</FillButton>
-        <StrokeButton size="normal">Browse Copilot</StrokeButton>
-      </FlexBox>
+      <FillButton size="small">Learn more</FillButton>
     </FlexBox>
-  </Card>
-);
-
-/** Role advisor and the learning-of-the-week highlight, side by side. */
-const RoleAndHighlight = () => (
-  <GridBox gridTemplateColumns={{ xs: '1fr', md: '1.4fr 1fr' }} gap={16}>
-    <Card p={24} borderRadius="lg">
-      <FlexBox flexDirection="column" gap={12}>
-        <Text as="h3" fontSize={22} fontWeight="bold">
-          {ROLE_ADVISOR.title}
-        </Text>
-        <Text as="p" fontSize={16} color="text-subtle">
-          {ROLE_ADVISOR.body}
-        </Text>
-        <TextButton size="normal" iconPosition="right" icon={MiniChevronRightIcon}>
-          {ROLE_ADVISOR.cta}
-        </TextButton>
-      </FlexBox>
-    </Card>
-    <Card p={24} borderRadius="lg">
-      <FlexBox flexDirection="column" gap={12}>
-        <Text as="span" fontSize={14} color="text-subtle">
-          {LEARNING_OF_WEEK.label}
-        </Text>
-        <Text as="h3" fontSize={20} fontWeight="bold">
-          {LEARNING_OF_WEEK.title}
-        </Text>
-        <ProgressBar percent={LEARNING_OF_WEEK.progress} variant="blue" />
-        <FillButton size="small">Start now</FillButton>
-      </FlexBox>
-    </Card>
-  </GridBox>
-);
-
-/** A card in a carousel row. */
-const ContentCardItem = ({ item }: { item: ContentCard }) => (
-  <Card p={0} borderRadius="lg" data-marker="contentCard">
-    <Box height="120px" bg="surface-brand-subtle" aria-hidden />
-    <FlexBox flexDirection="column" gap={8} p={16}>
-      <Tag variant="readOnly">{item.kind}</Tag>
-      <Text as="h4" fontSize={16} fontWeight="bold">
-        {item.title}
-      </Text>
-      {item.progress !== undefined ? <ProgressBar percent={item.progress} variant="blue" /> : null}
-    </FlexBox>
-  </Card>
-);
-
-/** A titled row of cards with tabs above it. */
-const CardRow = ({
-  title,
-  tabs,
-  cards,
-  action,
-}: {
-  title: string;
-  tabs: string[];
-  cards: ContentCard[];
-  action?: string;
-}) => (
-  <Box as="section">
-    <FlexBox alignItems="center" justifyContent="space-between" mb={12} gap={12}>
-      <Text as="h2" fontSize={22} fontWeight="bold">
-        {title}
-      </Text>
-      {action ? <TextButton size="small">{action}</TextButton> : null}
-    </FlexBox>
-    <Tabs>
-      <TabList>
-        {tabs.map((tab) => (
-          <Tab key={tab} id={tab}>
-            {tab}
-          </Tab>
-        ))}
-      </TabList>
-      {tabs.map((tab) => (
-        <TabPanel key={tab} id={tab} />
-      ))}
-    </Tabs>
-    <GridBox gridTemplateColumns={{ xs: '1fr', sm: '1fr 1fr', lg: '1fr 1fr 1fr 1fr' }} gap={16} mt={16}>
-      {cards.map((card) => (
-        <ContentCardItem key={card.title} item={card} />
-      ))}
-    </GridBox>
   </Box>
 );
 
-/** Skill areas: a card per area, subjects listed inside. */
-const SkillAreas = () => (
-  <Box as="section" aria-labelledby="skill-areas-heading" data-marker="skillAreas">
-    <Text as="h2" id="skill-areas-heading" fontSize={22} fontWeight="bold" mb={4}>
-      Skill areas
-    </Text>
-    <Text as="p" fontSize={16} color="text-subtle" mb={16}>
-      Browse the skill areas in your library.
-    </Text>
-    <GridBox gridTemplateColumns={{ xs: '1fr', sm: '1fr 1fr', lg: '1fr 1fr 1fr 1fr' }} gap={16}>
-      {AREAS.map((area: AreaItem) => (
-        <Card key={area.id} p={24} borderRadius="lg" data-marker="areaCard">
-          <FlexBox flexDirection="column" gap={12}>
-            <FlexBox alignItems="center" gap={8}>
-              <BookLibraryIcon size={24} aria-hidden />
-              <Text as="h3" fontSize={18} fontWeight="bold">
-                {area.title}
-              </Text>
-            </FlexBox>
-            <Text as="p" fontSize={14} color="text-subtle">
-              {area.subjects.length} subjects
-            </Text>
-            <FlexBox flexDirection="column" gap={8}>
-              {area.subjects.map((subject) => (
-                <Anchor key={subject} href="#" fontSize={16}>
-                  {subject}
-                </Anchor>
-              ))}
-            </FlexBox>
-          </FlexBox>
-        </Card>
-      ))}
-    </GridBox>
-  </Box>
-);
-
-/** Search toolbar above the skill areas: relevance toggle, clear action. */
-const SearchToolbar = () => {
-  const [relevant, setRelevant] = useState(false);
-  return (
-    <FlexBox alignItems="center" justifyContent="space-between" gap={16} flexWrap="wrap" mb={24}>
-      <Toggle
-        label={TOOLBAR_LABELS.relevantToMe}
-        checked={relevant}
-        onChange={() => setRelevant((on) => !on)}
+/** Search toolbar: relevant-to-me toggle, search field, and a clear action. */
+const SearchToolbar = () => (
+  <FlexBox
+    alignItems="center"
+    justifyContent="space-between"
+    gap={16}
+    flexWrap="wrap"
+    data-marker="searchToolbar"
+  >
+    <Tag variant="primary" size="small">
+      {TOOLBAR_LABELS.relevantToMe}
+    </Tag>
+    <FlexBox alignItems="center" gap={8}>
+      <Box
+        as="input"
+        type="search"
+        aria-label={TOOLBAR_LABELS.search}
+        placeholder={TOOLBAR_LABELS.search}
+        borderColor="border-primary"
+        bg="background"
+        color="text-primary"
+        p={8}
       />
-      <TextButton size="small" icon={CloseIcon} iconPosition="right">
+      <TextButton variant="primary" size="small" icon={CloseIcon} iconPosition="right">
         {TOOLBAR_LABELS.clear}
       </TextButton>
     </FlexBox>
-  );
-};
+  </FlexBox>
+);
 
-/* ---------- Page ---------- */
-
-export const PercipioHome = () => {
-  const [navOpen, setNavOpen] = useState(true);
+/** One area card. Hover reveals its subjects, using the old Card variants. */
+const AreaCardItem = ({ area, index }: { area: AreaItem; index: number }) => {
+  const variant = AREA_CARD_VARIANTS[index % AREA_CARD_VARIANTS.length];
+  const theme = useTheme();
+  const secondaryText = theme.colors['text-secondary'];
 
   return (
-    <GamutProvider theme={skillsoftTheme}>
-      <Box bg="surface-default" minHeight="100vh" color="text-default">
-        <TopBar onToggleNav={() => setNavOpen((open) => !open)} />
-        <Box height={`${TOPBAR_HEIGHT}px`} aria-hidden />
-        <FlexBox alignItems="flex-start">
-          <Sidebar open={navOpen} />
-          <Box as="main" flex="1" minWidth="0" px={{ xs: 16, md: 32 }} py={24} pb={64}>
-            <Box maxWidth="1200px" mx="auto">
-              <Box mb={24}>
-                <Text as="h1" fontSize={34} fontWeight="bold">
-                  {GREETING}
-                </Text>
-                <Text as="p" fontSize={18} color="text-subtle">
-                  {GREETING_SUB}
-                </Text>
-              </Box>
-
-              <FlexBox flexDirection="column" gap={32}>
-                <FeaturedBanner />
-                <RoleAndHighlight />
-                <CardRow title="Top picks for you" tabs={TOP_PICKS_TABS} cards={TOP_PICKS_CARDS} />
-                <CardRow
-                  title="Based on your skill interests"
-                  tabs={INTEREST_TABS}
-                  cards={INTEREST_CARDS}
-                  action="Edit interests"
-                />
-                <CardRow title="Practice with CAISY AI Simulator" tabs={HOME_TABS.slice(0, 4)} cards={CAISY_CARDS} />
-                <Box>
-                  <SearchToolbar />
-                  <SkillAreas />
-                </Box>
-              </FlexBox>
-            </Box>
-          </Box>
-        </FlexBox>
-      </Box>
-    </GamutProvider>
+    <Card variant={variant} data-marker="areaCard" p={16}>
+      <FlexBox alignItems="center" gap={8}>
+        <BookLibraryIcon size={24} aria-hidden />
+        <Text as="h3" fontSize={18} fontWeight="bold">
+          {area.title}
+        </Text>
+      </FlexBox>
+      <Text as="p" fontSize={14} style={{ color: secondaryText }}>
+        {area.subjects.length} subjects
+      </Text>
+      <FlexBox flexDirection="column" gap={4} borderColor="border-primary">
+        {area.subjects.map((subject) => (
+          <Anchor key={subject.id} href="#" color="primary">
+            {subject.title}
+          </Anchor>
+        ))}
+      </FlexBox>
+      <TextButton size="small" icon={MiniChevronDownIcon} iconPosition="right">
+        Show all
+      </TextButton>
+    </Card>
   );
 };
+
+/** Skill areas: heading, subtitle, and a row of area cards. */
+const SkillAreas = () => (
+  <Box as="section" aria-labelledby="skill-areas-heading" data-marker="skillAreas">
+    <FlexBox flexDirection="column" gap={8} mb={16}>
+      <Text as="h2" id="skill-areas-heading" fontSize={22} fontWeight="bold">
+        {SKILL_AREAS_HEADING}
+      </Text>
+      <Text as="p" fontSize={16} color="text-secondary">
+        {SKILL_AREAS_SUBTITLE}
+      </Text>
+    </FlexBox>
+    <GridBox
+      as="ul"
+      gridTemplateColumns={['1fr', '1fr 1fr', '1fr 1fr 1fr 1fr']}
+      gap={16}
+      className="areasGrid"
+    >
+      {AREAS.map((area, index) => (
+        <AreaCardItem key={area.id} area={area} index={index} />
+      ))}
+    </GridBox>
+  </Box>
+);
+
+/** The Percipio home page, static. Old gamut names and old color names on purpose. */
+export const PercipioHome = () => (
+  <GamutProvider theme={percipioTheme}>
+    <Box className="lxTheme" data-marker="percipioHome">
+      <TopNav />
+      <FlexBox className="pageBody" pt="70px">
+        <LeftNav />
+        <Box as="main" flex="1" p={24}>
+          <Text as="p" fontSize={18} color="text-accent" mb={16}>
+            {GREETING}
+          </Text>
+          <Banner />
+          <Box mt={24}>
+            <SearchToolbar />
+          </Box>
+          <Box mt={24}>
+            <SkillAreas />
+          </Box>
+        </Box>
+      </FlexBox>
+    </Box>
+  </GamutProvider>
+);
 
 export default PercipioHome;
