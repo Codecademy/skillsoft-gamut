@@ -17,11 +17,7 @@ const meta: Meta<typeof ProgressBar> = {
       mapping: patterns,
     },
     variant: {
-      control: 'radio',
-      options: ['default', 'blue', 'yellow'],
-      table: {
-        defaultValue: { summary: 'default' },
-      },
+      table: { defaultValue: { summary: 'default' } },
     },
   },
 };
