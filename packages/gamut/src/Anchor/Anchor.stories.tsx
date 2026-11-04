@@ -65,22 +65,6 @@ const meta: Meta<typeof Anchor> = {
       options: Object.keys(icons),
       mapping: icons,
     },
-    iconPosition: {
-      control: 'radio',
-      options: ['left', 'right'],
-      table: {
-        type: { summary: 'left | right' },
-        defaultValue: { summary: 'left' },
-      },
-    },
-    variant: {
-      control: 'select',
-      options: variants,
-      table: {
-        type: { summary: variants.join(' | ') },
-        defaultValue: { summary: 'inline' },
-      },
-    },
     target: {
       table: { disable: true },
     },
