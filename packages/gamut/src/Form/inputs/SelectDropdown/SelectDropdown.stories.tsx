@@ -816,7 +816,7 @@ export const AbbreviatedMultiSelect: Story = {
       >
         <SelectDropdown {...args} />
       </FormGroup>
-      <Box color="text-secondary" mt={4}>
+      <Box color="text-subtle" mt={4}>
         Selected tags show abbreviations; the dropdown shows full labels
       </Box>
     </Box>
