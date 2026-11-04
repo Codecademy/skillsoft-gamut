@@ -1,3 +1,4 @@
+import type { Theme } from '@emotion/react';
 import styled from '@emotion/styled';
 import {
   styledOptions,
@@ -14,6 +15,7 @@ import { sharedStates } from '../Box/props';
 import { resetStyles, Selectors } from '../ButtonBase/ButtonBase';
 import type { ToolTipProps } from '../Tip/ToolTip';
 import { ToolTip } from '../Tip/ToolTip';
+import { raisedShadow } from '../utils/elevation';
 import type { MenuItem } from './MenuItem';
 
 enum MenuItemSelectors {
@@ -63,10 +65,13 @@ const StyledList = styled('ul', styledOptions<'ul'>())<MenuListProps>(
     },
     showBorder: {
       border: 1,
-      borderColor: 'border-default',
+      borderColor: 'border-subtle',
       borderRadius: 'sm',
     },
   }),
+  /* A floating menu's hairline is backed by the raised shadow. */
+  ({ showBorder, theme }: { showBorder?: boolean; theme: Theme }) =>
+    showBorder ? raisedShadow({ theme }) : {},
   sharedStates,
   listProps
 );

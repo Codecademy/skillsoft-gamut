@@ -13,12 +13,15 @@ import { createVariantsFromAlignments } from './createVariantsUtils';
  *
  */
 
-/* Every floating surface is `surface-raised` with a `border-default` edge. */
+/*
+ * Every floating surface is `surface-raised` with a `border-subtle` edge,
+ * beak included, and its shadow does the separating (sandbox df33b47).
+ */
 export const tooltipBgColor = `surface-raised`;
 export const tooltipArrowHeight = `1rem`;
 export const tooltipArrowHeightPx = 14;
 const containerOffsetVertical = 12;
-const borderColor = 'border-default';
+const borderColor = 'border-subtle';
 
 export const narrowWidth = 64;
 export const verticalCenterWidths = { minWidth: 64, maxWidth: 128 } as const;
@@ -312,8 +315,7 @@ export const toolTipBodyCss = {
   bg: tooltipBgColor,
   color: 'text-default',
   border: 1,
-  borderColor: 'border-default',
-  boxShadow: 'none',
+  borderColor: 'border-subtle',
   borderRadius: 'sm',
   display: 'inline-block',
   fontSize: 14,

@@ -39,18 +39,15 @@ const HOVER_TRANSITION = {
 } as const;
 
 /*
- * Design's card map (colorSystem/migration.ts, COMPONENTS): the palette
- * variants become surfaces. Yellow and hyper are a featured card on the brand
- * gradient, and navy is `surface-raised` inside a dark-mode scope (Card sets
- * the scope through Background). Every card keeps a `border-subtle` hairline.
+ * Design's card map (colorSystem/migration.ts, COMPONENTS; sandbox df33b47):
+ * two variants replace the old color names. `default` is `surface-raised`
+ * (old default, white, beige and navy); `brand` is the featured card on the
+ * `surface-brand` gradient (old yellow and hyper). Every card has a
+ * `border-subtle` hairline.
  */
 export const cardSurfaces = {
   default: 'surface-raised',
-  white: 'surface-raised',
-  beige: 'surface-default',
-  yellow: 'surface-brand',
-  hyper: 'surface-brand',
-  navy: 'surface-raised',
+  brand: 'surface-brand',
 } as const;
 
 export const cardVariants = variant({
@@ -61,26 +58,21 @@ export const cardVariants = variant({
   },
   variants: {
     default: { bg: cardSurfaces.default },
-    white: { bg: cardSurfaces.white },
-    yellow: { bg: cardSurfaces.yellow },
-    beige: { bg: cardSurfaces.beige },
-    navy: { bg: cardSurfaces.navy },
-    hyper: { bg: cardSurfaces.hyper },
+    brand: { bg: cardSurfaces.brand },
   },
 });
 
 /*
- * Design's card map, Interactive: hover is the `state-hover` veil over the
- * card's own fill, with a `border-strong` edge. The veil is a layer behind the
- * content, so it tints the fill (and a brand gradient, which sits on the layer
- * below it) but not the text. It keys off the motion wrapper's hover, the same
- * trigger as the lift. Design adds the elevation lift to the veil once
- * elevation tokens exist; until then the theme's elevation hover stays.
+ * Design's card map, Interactive: on hover, the `state-hover` veil over the
+ * card's own fill, with the raised-hover shadow (useCardElevation). The shadow
+ * and veil show the card is interactive, so the border doesn't change. The
+ * veil is a layer behind the content, so it tints the fill (and a brand
+ * gradient, which sits on the layer below it) but not the text. It keys off
+ * the motion wrapper's hover, the same trigger as the shadow.
  */
 export const interactiveStates = states({
   isInteractive: {
     isolation: 'isolate',
-    transition: transitionConcat(['border-color'], 'fast', 'ease-in'),
     '&::after': {
       content: '""',
       position: 'absolute',
@@ -89,9 +81,6 @@ export const interactiveStates = states({
       borderRadius: 'inherit',
       pointerEvents: 'none',
       transition: transitionConcat(['background-color'], 'fast', 'ease-in'),
-    },
-    '*:hover > &': {
-      borderColor: 'border-strong',
     },
     '*:hover > &::after': {
       bg: 'state-hover',
@@ -129,17 +118,26 @@ export const patternFadeInOut = {
   },
 };
 
+/*
+ * An interactive card sits at the theme's raised shadow and moves to its
+ * raised-hover shadow on hover. A card that isn't interactive has no shadow
+ * (design's card map, sandbox df33b47).
+ */
 export const useCardElevation = (
   shadow: StyleProps<typeof shadowVariants>['shadow'],
-  borderRadius?: string
+  borderRadius?: string,
+  isInteractive = true
 ) => {
   const { elevation } = useTheme();
   const hoverState: ElevationState =
     shadow === 'patternRight' ? 'hoverMirrored' : 'hover';
+  const rest = isInteractive
+    ? getElevationStyles(elevation, 'rest')
+    : { boxShadow: 'none', transform: elevation['rest-transform'] };
 
   return {
     initial: {
-      ...getElevationStyles(elevation, 'rest'),
+      ...rest,
       borderRadius,
       transition: REST_TRANSITION,
     },
@@ -150,19 +148,15 @@ export const useCardElevation = (
     },
     // Outline styles are specific to Codecademy and will not be included in a theme
     initialOutline: {
-      ...getElevationStyles(elevation, 'rest'),
+      ...rest,
       boxShadow: `-${SHADOW_OFFSET_INITIAL}px ${SHADOW_OFFSET_INITIAL}px 0 0px ${theme.colors['background-current']}, -${SHADOW_OFFSET_INITIAL}px ${SHADOW_OFFSET_INITIAL}px 0 1px ${theme.colors['border-subtle']}`,
       borderRadius,
       transition: REST_TRANSITION,
     },
-    /*
-     * `shadow-primary` waits on design's pending `shadow` role. Until then the
-     * offset shadow is `action-neutral`, the same holding color design gives
-     * CTAButton's offset shadow.
-     */
+    /* The hard offset, drawn in `shadow-key` like the elevation's. */
     animateOutline: {
       ...getElevationStyles(elevation, 'hover'),
-      boxShadow: `-${SHADOW_OFFSET}px ${SHADOW_OFFSET}px 0 0px ${theme.colors['action-neutral']}, -${SHADOW_OFFSET}px ${SHADOW_OFFSET}px 0 1px ${theme.colors['action-neutral']}`,
+      boxShadow: `-${SHADOW_OFFSET}px ${SHADOW_OFFSET}px 0 0px ${theme.colors['shadow-key']}, -${SHADOW_OFFSET}px ${SHADOW_OFFSET}px 0 1px ${theme.colors['shadow-key']}`,
       borderRadius,
       transition: HOVER_TRANSITION,
     },

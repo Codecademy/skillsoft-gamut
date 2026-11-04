@@ -18,7 +18,7 @@ const PatternBackdropBody = styled('div', styledOptions)<
     zIndex: 1,
     bg: 'surface-raised',
     border: 1,
-    borderColor: 'border-default',
+    borderColor: 'border-subtle',
     maxWidth: 1,
   }),
   backdropBodyProps

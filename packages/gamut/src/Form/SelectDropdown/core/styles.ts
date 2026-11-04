@@ -8,6 +8,7 @@ import {
   tagLabelFontSize,
   tagLabelPadding,
 } from '../../../Tag/styles';
+import { raisedShadow } from '../../../utils/elevation';
 import {
   formBaseComponentStyles,
   formBaseFieldStylesObject,
@@ -146,8 +147,12 @@ export const getMemoizedStyles = (
         ...provided,
         ...dropdownBorderStyles(zIndex)({ theme }),
         ...dropdownBorderStates({ error: state.selectProps.error, theme }),
-        // Drop react-select's default menu drop shadow; the border above defines the edge.
-        boxShadow: 'none',
+        /*
+         * A floating menu: a `border-subtle` hairline backed by the raised
+         * shadow (sandbox df33b47).
+         */
+        borderColor: theme.colors['border-subtle'],
+        ...raisedShadow({ theme }),
         ...(dropdownWidth
           ? {
               minWidth: dropdownWidth,

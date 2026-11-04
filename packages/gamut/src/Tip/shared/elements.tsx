@@ -5,6 +5,7 @@ import type { StyleProps } from '@skillsoft/variance';
 import { Box, FlexBox } from '../../Box';
 import { Selectors } from '../../ButtonBase/ButtonBase';
 import { Popover } from '../../Popover';
+import { raisedShadow } from '../../utils/elevation';
 import {
   inlineToolTipBodyAlignments,
   narrowWidth,
@@ -113,7 +114,12 @@ const inlineTipBodyStates = states({
 export const TipBody = styled(Box)<
   StyleProps<typeof inlineToolTipBodyAlignments> &
     StyleProps<typeof inlineTipBodyStates>
->(css({ ...toolTipBodyCss }), inlineToolTipBodyAlignments, inlineTipBodyStates);
+>(
+  css({ ...toolTipBodyCss }),
+  raisedShadow,
+  inlineToolTipBodyAlignments,
+  inlineTipBodyStates
+);
 
 export const FloatingTipBody = styled(Popover)<
   StyleProps<typeof toolTipWidthRestrictions>

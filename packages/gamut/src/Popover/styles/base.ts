@@ -4,7 +4,7 @@ import { toolTipBodyCss } from '../../Tip/shared/styles/styles';
 
 export const borderStyles = {
   border: 1,
-  borderColor: 'border-default',
+  borderColor: 'border-subtle',
 } as const;
 export const popoverPrimaryBgColor = `surface-raised`;
 
@@ -36,7 +36,6 @@ export const raisedDivVariants = variant({
   base: {
     zIndex: 1,
     ...borderStyles,
-    boxShadow: 'none',
   },
   defaultVariant: 'primary',
   variants: {

@@ -1,4 +1,5 @@
-import { theme, transitionConcat, variant } from '@skillsoft/gamut-styles';
+import type { Theme } from '@emotion/react';
+import { transitionConcat, variant } from '@skillsoft/gamut-styles';
 
 import { InteractiveSelectors } from '../../ButtonBase/ButtonBase';
 import { buttonVariants, templateVariants } from './styles';
@@ -117,14 +118,23 @@ export const strokeButtonVariants = templateVariants(
 );
 
 /*
- * Fills follow primary FillButton. The offset shadow is `action-neutral`
- * until the elevation system brings a shadow role.
+ * Design's CTAButton map (sandbox df33b47): fills follow primary FillButton,
+ * and the shadow comes from the theme's elevation, raised at rest and
+ * raised-hover on hover. That's the soft shadow on most brands and the hard
+ * offset in the Codecademy theme. `ctaButtonElevation` runs before the
+ * variants, so pressed and disabled still clear it.
  */
+export const ctaButtonElevation = ({ theme }: { theme: Theme }) => ({
+  boxShadow: theme.elevation['rest-shadow'],
+  [InteractiveSelectors.HOVER]: {
+    boxShadow: theme.elevation['hover-shadow'],
+  },
+});
+
 export const ctaButtonVariants = templateVariants(['primary'], (variant) => ({
   borderRadius: 'md',
   fontFamily: 'accent',
   fontWeight: 'title',
-  boxShadow: `-4px 4px 0 0 ${theme.colors['action-neutral']}`,
   color: 'text-inverse',
   py: 12,
   px: 24,
@@ -137,7 +147,6 @@ export const ctaButtonVariants = templateVariants(['primary'], (variant) => ({
   [InteractiveSelectors.HOVER]: {
     bg: hover[variant],
     transition: hoverBackgroundTransition,
-    boxShadow: `-8px 8px 0 0 ${theme.colors['action-neutral']}`,
   },
   [InteractiveSelectors.ACTIVE]: {
     boxShadow: 'none',

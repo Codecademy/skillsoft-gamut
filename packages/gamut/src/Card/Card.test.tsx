@@ -54,27 +54,39 @@ describe('useCardElevation', () => {
       expect(variant.borderRadius).toBe('8px');
     });
   });
+
+  /* Design's card map (sandbox df33b47): only an interactive card has a shadow. */
+  it('gives a card that is not interactive no shadow at rest', () => {
+    const { initial } = renderElevation('none', undefined, false);
+
+    expect(initial.boxShadow).toBe('none');
+  });
 });
 
 describe('Card', () => {
   const cardEl = (view: ReturnType<typeof renderCard>['view']) =>
     view.getByText('Card content');
 
-  /* Design's card map, Interactive: a `state-hover` veil and a `border-strong` edge. */
-  it.each(['default', 'yellow', 'navy'] as const)(
-    'veils an interactive %s card on hover',
+  /*
+   * Design's card map, Interactive (sandbox df33b47): a `state-hover` veil and
+   * the raised-hover shadow; the border stays `border-subtle`.
+   */
+  it.each(['default', 'brand'] as const)(
+    'veils an interactive %s card on hover without changing its border',
     (variant) => {
       const { view } = renderCard({ isInteractive: true, variant });
 
       expect(cardEl(view)).toHaveStyleRule(
-        'border-color',
-        theme.colors['border-strong'],
-        { target: ':hover>' }
-      );
-      expect(cardEl(view)).toHaveStyleRule(
         'background-color',
         theme.colors['state-hover'],
         { target: /:hover>.+::after$/ }
+      );
+      expect(cardEl(view)).not.toHaveStyleRule('border-color', /.*/, {
+        target: ':hover>',
+      });
+      expect(cardEl(view)).toHaveStyleRule(
+        'border-color',
+        theme.colors['border-subtle']
       );
     }
   );
@@ -83,9 +95,9 @@ describe('Card', () => {
     const { view } = renderCard();
 
     expect(cardEl(view)).not.toHaveStyleRule(
-      'border-color',
-      theme.colors['border-strong'],
-      { target: ':hover>' }
+      'background-color',
+      theme.colors['state-hover'],
+      { target: /:hover>.+::after$/ }
     );
   });
 });

@@ -1,6 +1,6 @@
 import { CheckerDense } from '@skillsoft/gamut-patterns';
 import type { Colors } from '@skillsoft/gamut-styles';
-import { borderRadii, useColorModes } from '@skillsoft/gamut-styles';
+import { borderRadii } from '@skillsoft/gamut-styles';
 import type * as React from 'react';
 
 import { DynamicCardWrapper, MotionBox, StaticCardWrapper } from './elements';
@@ -31,19 +31,16 @@ export const Card: React.FC<CardProps> = ({
   const hasPattern = shadow === 'patternLeft' || shadow === 'patternRight';
   const isOutline = shadow === 'outline';
 
-  const setHoverShadow = useCardElevation(shadow, resolvedBorderRadius);
-  const [, , modes] = useColorModes();
+  const setHoverShadow = useCardElevation(
+    shadow,
+    resolvedBorderRadius,
+    isInteractive
+  );
 
-  /*
-   * Background picks the content mode from the color it's given. Navy is a
-   * dark-mode scope, so it gets dark mode's `surface-raised` palette color.
-   */
-  const surface =
-    variant === 'navy'
-      ? (modes.dark['surface-raised'] as Colors)
-      : cardSurfaces[variant as keyof typeof cardSurfaces];
+  /* A brand card goes through Background, which picks its content mode. */
+  const surface = cardSurfaces[variant as keyof typeof cardSurfaces];
   const gradient =
-    surface === 'surface-brand' ? 'var(--gradient-surface-brand)' : undefined;
+    variant === 'brand' ? 'var(--gradient-surface-brand)' : undefined;
 
   const initialVariant = isOutline ? 'initialOutline' : 'initial';
   const animateVariant = isOutline ? 'animateOutline' : 'animate';
