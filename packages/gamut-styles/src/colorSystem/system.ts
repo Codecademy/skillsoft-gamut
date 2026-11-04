@@ -129,7 +129,10 @@ export const createColorSystem = (input: BrandInput): ColorSystem => {
       : { ...base, alpha: value.alpha, key: valueKey(value) };
   };
 
-  /* Role overrides repoint a role in one mode, keeping its alpha. */
+  /*
+   * Role overrides repoint a role in one mode. A bare ref keeps the role's
+   * alpha; `{ ref, alpha }` replaces it.
+   */
   const roleOverrides = input.overrides?.roles ?? {};
   for (const [mode, tokens] of Object.entries(roleOverrides)) {
     for (const token of Object.keys(tokens ?? {})) {
@@ -141,8 +144,11 @@ export const createColorSystem = (input: BrandInput): ColorSystem => {
     }
   }
   const valueFor = (r: Role, mode: Mode): RoleValue => {
-    const ref = roleOverrides[mode]?.[r.token];
-    return ref ? { ...r[mode], ref } : r[mode];
+    const o = roleOverrides[mode]?.[r.token];
+    if (!o) return r[mode];
+    return typeof o === 'object' && 'alpha' in o
+      ? { ref: o.ref, alpha: o.alpha }
+      : { ...r[mode], ref: o };
   };
 
   const roles = Object.fromEntries(

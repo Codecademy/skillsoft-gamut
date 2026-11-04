@@ -2,7 +2,7 @@
 
 **Spike, not shipped API.** Branch `cass-color-spike`. Validates the generated
 OKLCH color system from gamut-sandbox PR #34 (`stacey/color-tokens-v2`, pinned
-at `dffd84b`; generator and roles unchanged through `c363244`) as a tokens-only output of gamut-styles. Research, decisions and
+at `dffd84b`; generator unchanged, roles and migration map at `df33b47`) as a tokens-only output of gamut-styles. Research, decisions and
 findings live in Base Camp: `gamut/color-tokens/`.
 
 ## The pipeline
@@ -15,7 +15,7 @@ brands/skillsoft.ts         one hue per slot (or just `primary`)
   → system.ts               resolved system
   → contentModes.ts         which mode's content goes on each color (build time)
   → validate.ts / probe.ts  contrast guarantees, veil floors, status trio
-  → migration.ts            design's old → new map and component slots (sandbox c363244), checked per brand
+  → migration.ts            design's old → new map and component slots (sandbox df33b47), checked per brand
   → emit.ts                 DTCG 2025.10 JSON + TS constants
   → scripts/build-tokens.ts Style Dictionary → tokens.css
 ```

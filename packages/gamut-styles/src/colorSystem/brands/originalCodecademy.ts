@@ -17,6 +17,10 @@ import type { BrandInput } from '../brand';
  * steps at their hues are used as is (design, 2026-10-29). The two-color gradient
  * pairs primary with accent-alt instead of the yellow accent, so it reads
  * blue to violet rather than blue to yellow (design, Stacey, 2026-10-28).
+ *
+ * Its shadows are a hard offset with no soft falloff, so `shadow-ambient` is
+ * transparent in both modes and the layer stays in every elevation, keeping
+ * the layer count the same at every depth (design's sandbox, df33b47).
  */
 export const originalCodecademyBrand: BrandInput = {
   name: 'originalCodecademy',
@@ -35,9 +39,19 @@ export const originalCodecademyBrand: BrandInput = {
       'accent-300': '#FFD300', // yellow-500
       'accent-400': '#CCA900', // yellow-400
     },
-    /* Old core's dark mode uses yellow for primary. */
+    /*
+     * Old core's dark mode uses yellow for primary. No soft shadow layer in
+     * either mode.
+     */
     roles: {
+      light: {
+        'shadow-ambient': {
+          ref: { slot: 'neutral-dark', grade: 1100 },
+          alpha: 0,
+        },
+      },
       dark: {
+        'shadow-ambient': { ref: 'black', alpha: 0 },
         'action-primary': { slot: 'accent', grade: 300 },
         'action-primary-hover': { slot: 'accent', grade: 400 },
         'action-primary-pressed': { slot: 'accent', grade: 500 },

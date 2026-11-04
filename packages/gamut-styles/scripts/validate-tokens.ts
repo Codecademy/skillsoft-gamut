@@ -4,7 +4,7 @@
  *
  *   yarn workspace @skillsoft/gamut-styles validate:tokens
  *
- * 1. The ported generator reproduces gamut-sandbox at dffd84b exactly.
+ * 1. The ported generator reproduces gamut-sandbox at df33b47 exactly (generator unchanged since dffd84b).
  * 2. The guarantees hold on the source system.
  * 3. The guarantees hold again on values parsed back out of tokens.css —
  *    so nothing Style Dictionary did (rounding, references) broke them.
@@ -62,7 +62,7 @@ const printChecks = (checks: Check[]) => {
 const sandboxParity = async (system: ColorSystem) => {
   const fixture = JSON.parse(
     await readFile(
-      join(ROOT, 'src/colorSystem/__fixtures__/sandbox-dffd84b.json'),
+      join(ROOT, 'src/colorSystem/__fixtures__/sandbox-df33b47.json'),
       'utf8'
     )
   );
@@ -266,7 +266,7 @@ const main = async () => {
     console.log(`\n══ ${brand.name}${isDefault ? ' (default)' : ''}`);
 
     if (isDefault) {
-      console.log('\n— sandbox parity (dffd84b)');
+      console.log('\n— sandbox parity (df33b47)');
       await sandboxParity(system);
     }
 
