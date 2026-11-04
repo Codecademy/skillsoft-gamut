@@ -7,24 +7,24 @@
  */
 
 .lxTheme {
-  --home-topNav-background: var(--color-background-primary);
+  --home-topNav-background: var(--colors-surface-default);
   --home-topNav-divider: var(--color-navy-800);
-  --home-topNav-text: var(--color-text);
+  --home-topNav-text: var(--colors-text-default);
   --home-topNav-accentText: var(--color-text-primary);
-  --home-topNav-focusOutline: var(--color-primary);
-  --home-topNav-hoverBg: var(--color-background-hover);
-  --home-topNav-activeBg: var(--color-background-selected);
-  --home-topNav-notification: var(--color-danger, var(--dangerColor));
+  --home-topNav-focusOutline: var(--colors-action-primary);
+  --home-topNav-hoverBg: /* color-roles: 'background-hover' splits into state-hover | surface-sunken. As a hover, it is the `state-hover` veil. Used as a resting fill (the subtle Alert, a tinted panel), it is `surface-sunken`. */ var(--color-background-hover);
+  --home-topNav-activeBg: var(--colors-state-selected);
+  --home-topNav-notification: var(--colors-action-danger, var(--dangerColor));
 
-  --home-leftNav-shellBg: var(--color-background-primary);
-  --home-leftNav-surfaceBg: var(--color-background-primary);
-  --home-leftNav-textStrong: var(--color-text);
-  --home-leftNav-textMuted: var(--color-text-secondary);
-  --home-leftNav-hoverBg: var(--color-background-hover);
-  --home-leftNav-hoverText: var(--color-text);
-  --home-leftNav-activeBg: var(--color-background-selected);
-  --home-leftNav-activeText: var(--color-primary);
-  --home-leftNav-divider: var(--color-border-secondary);
+  --home-leftNav-shellBg: var(--colors-surface-default);
+  --home-leftNav-surfaceBg: var(--colors-surface-default);
+  --home-leftNav-textStrong: var(--colors-text-default);
+  --home-leftNav-textMuted: var(--colors-text-subtle);
+  --home-leftNav-hoverBg: /* color-roles: 'background-hover' splits into state-hover | surface-sunken. As a hover, it is the `state-hover` veil. Used as a resting fill (the subtle Alert, a tinted panel), it is `surface-sunken`. */ var(--color-background-hover);
+  --home-leftNav-hoverText: var(--colors-text-default);
+  --home-leftNav-activeBg: var(--colors-state-selected);
+  --home-leftNav-activeText: var(--colors-action-primary);
+  --home-leftNav-divider: var(--colors-border-default);
 }
 
 /* ---- Top nav bar (NavBar.scss) ---- */
@@ -297,7 +297,7 @@
 .submenuTitle {
   flex: 1;
   margin: 0;
-  color: var(--color-text-secondary);
+  color: var(--colors-text-subtle);
 }
 
 .submenuItem {

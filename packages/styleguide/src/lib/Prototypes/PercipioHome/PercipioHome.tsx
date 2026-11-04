@@ -12,7 +12,7 @@ import {
   TextButton,
   ToolTip,
 } from '@skillsoft/gamut';
-import { GamutProvider, percipioTheme } from '@skillsoft/gamut-styles';
+import { GamutProvider, skillsoftTheme } from '@skillsoft/gamut-styles';
 import {
   ArrowChevronRightIcon,
   BookLibraryIcon,
@@ -89,7 +89,7 @@ const TopNav = () => {
 
           <Box className="componentContainer">
             <SearchIcon size={20} aria-hidden="true" />
-            <Text as="span" fontSize={14} color="text-secondary">
+            <Text as="span" fontSize={14} color="text-subtle">
               {SEARCH_PLACEHOLDER}
             </Text>
           </Box>
@@ -168,19 +168,19 @@ const LeftNav = () => (
 const Banner = () => (
   <Box
     as="section"
-    bg="background-selected"
-    borderColor="border-primary"
+    bg="state-selected"
+    /* color-roles: 'border-primary' splits into border-default | border-subtle. A border that carries meaning (field outline, control stroke, a container that needs an edge to be seen) is `border-default`. A border that only decorates or backs up a shadow (card hairline, table rule, the edge of a menu, popover, toast or dialog) is `border-subtle`. */ borderColor="border-primary"
     className="banner"
     data-marker="banner"
   >
     <FlexBox flexDirection="column" gap={8} p={24}>
-      <Text as="span" fontSize={14} color="text-secondary">
+      <Text as="span" fontSize={14} color="text-subtle">
         {BANNER.eyebrow}
       </Text>
-      <Text as="h2" fontSize={32} fontWeight="bold" color="text-accent">
+      <Text as="h2" fontSize={32} fontWeight="bold" color="text-default">
         {BANNER.title}
       </Text>
-      <Text as="p" fontSize={16} color="text-secondary">
+      <Text as="p" fontSize={16} color="text-subtle">
         {BANNER.body}
       </Text>
       <FillButton size="small">Learn more</FillButton>
@@ -206,8 +206,8 @@ const SearchToolbar = () => (
         type="search"
         aria-label={TOOLBAR_LABELS.search}
         placeholder={TOOLBAR_LABELS.search}
-        borderColor="border-primary"
-        bg="background"
+        /* color-roles: 'border-primary' splits into border-default | border-subtle. A border that carries meaning (field outline, control stroke, a container that needs an edge to be seen) is `border-default`. A border that only decorates or backs up a shadow (card hairline, table rule, the edge of a menu, popover, toast or dialog) is `border-subtle`. */ borderColor="border-primary"
+        /* color-roles: 'background' splits into surface-raised | surface-default. Anything that sits on the page (card, input, menu, popover, dialog) takes `surface-raised`. Where `background` fills the page itself, it is `surface-default`. */ bg="background"
         color="text-primary"
         p={8}
       />
@@ -222,7 +222,7 @@ const SearchToolbar = () => (
 const AreaCardItem = ({ area, index }: { area: AreaItem; index: number }) => {
   const variant = AREA_CARD_VARIANTS[index % AREA_CARD_VARIANTS.length];
   const theme = useTheme();
-  const secondaryText = theme.colors['text-secondary'];
+  const secondaryText = theme.colors['text-subtle'];
 
   return (
     <Card variant={variant} data-marker="areaCard" p={16}>
@@ -235,9 +235,9 @@ const AreaCardItem = ({ area, index }: { area: AreaItem; index: number }) => {
       <Text as="p" fontSize={14} style={{ color: secondaryText }}>
         {area.subjects.length} subjects
       </Text>
-      <FlexBox flexDirection="column" gap={4} borderColor="border-primary">
+      <FlexBox flexDirection="column" gap={4} /* color-roles: 'border-primary' splits into border-default | border-subtle. A border that carries meaning (field outline, control stroke, a container that needs an edge to be seen) is `border-default`. A border that only decorates or backs up a shadow (card hairline, table rule, the edge of a menu, popover, toast or dialog) is `border-subtle`. */ borderColor="border-primary">
         {area.subjects.map((subject) => (
-          <Anchor key={subject.id} href="#" color="primary">
+          <Anchor key={subject.id} href="#" color="action-primary">
             {subject.title}
           </Anchor>
         ))}
@@ -256,7 +256,7 @@ const SkillAreas = () => (
       <Text as="h2" id="skill-areas-heading" fontSize={22} fontWeight="bold">
         {SKILL_AREAS_HEADING}
       </Text>
-      <Text as="p" fontSize={16} color="text-secondary">
+      <Text as="p" fontSize={16} color="text-subtle">
         {SKILL_AREAS_SUBTITLE}
       </Text>
     </FlexBox>
@@ -275,13 +275,13 @@ const SkillAreas = () => (
 
 /** The Percipio home page, static. Old gamut names and old color names on purpose. */
 export const PercipioHome = () => (
-  <GamutProvider theme={percipioTheme}>
+  <GamutProvider theme={skillsoftTheme}>
     <Box className="lxTheme" data-marker="percipioHome">
       <TopNav />
       <FlexBox className="pageBody" pt="70px">
         <LeftNav />
         <Box as="main" flex="1" p={24}>
-          <Text as="p" fontSize={18} color="text-accent" mb={16}>
+          <Text as="p" fontSize={18} color="text-default" mb={16}>
             {GREETING}
           </Text>
           <Banner />
