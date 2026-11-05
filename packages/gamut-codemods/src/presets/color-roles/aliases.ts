@@ -2,8 +2,7 @@ import type { ColorAlias, ColorRolesManifest } from './manifest';
 
 /*
   Generated from design's migration map: @skillsoft/gamut-brand
-  src/migration.ts (TOKEN_MAP), ported from gamut-sandbox
-  stacey/color-tokens-v2 at df33b47. Regenerate when design's map changes
+  src/migration.ts (TOKEN_MAP). Regenerate when design's map changes
   (~/z_team/everest/color-tokens/codemod/gen-manifest.ts); don't edit rows by
   hand.
 */

@@ -33,7 +33,7 @@ import {
 */
 
 /*
-  Card's variants are design's two (sandbox df33b47): white, beige and navy
+  Card's variants are design's two: white, beige and navy
   become `default`; yellow and hyper become `brand`.
 */
 const CARD_VARIANTS: Record<string, string> = {
