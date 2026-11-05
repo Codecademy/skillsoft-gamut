@@ -84,7 +84,7 @@ npx @skillsoft/gamut-codemods color-roles . --dry
 npx @skillsoft/gamut-codemods color-roles .
 ```
 
-It maps today's color names (`text`, `primary`, `background-current`, …) onto the roles of the generated color system, using design's migration map (`aliases.ts`, generated from gamut-styles `colorSystem/migration.ts`).
+It maps today's color names (`text`, `primary`, `background-current`, …) onto the roles of the generated color system, using design's migration map (`aliases.ts`, generated from `src/migration.ts` in `@skillsoft/gamut-brand`).
 
 | Design's kind     | What the codemod does                                                                                                           |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------- |

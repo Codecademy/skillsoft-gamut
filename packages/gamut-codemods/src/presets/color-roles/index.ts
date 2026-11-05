@@ -66,7 +66,7 @@ export const colorRolesPreset: Preset<ColorRolesManifest> = {
     'color-roles:card-navy':
       'Some Cards used the `navy` variant. It becomes `default`, which renders light; wrap a card in `<ColorMode mode="dark">` where it should stay dark, then delete the comment.',
     'color-roles:palette':
-      'Some code uses old palette colors (navy, hyper-500, …) directly. No role replaces them by name. Pick each one from design’s component map, in @skillsoft/gamut-styles colorSystem/migration.ts (COMPONENTS).',
+      'Some code uses old palette colors (navy, hyper-500, …) directly. No role replaces them by name. Pick each one from design’s component map, in @skillsoft/gamut-brand src/migration.ts (COMPONENTS).',
     'color-roles:runtime':
       'Some color names are built at runtime, like `${variant}-hover`. The codemod can’t see their values; check each name the template can produce.',
   },

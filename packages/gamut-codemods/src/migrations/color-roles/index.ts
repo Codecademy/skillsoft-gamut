@@ -129,7 +129,7 @@ export const colorRoles: SpliceMigration<ColorRolesManifest> = {
       } else if (palette.has(name)) {
         warn(
           node,
-          `'${name}' is an old palette color with no role of its own. Pick the role from design's component map (gamut-styles colorSystem/migration.ts, COMPONENTS).`
+          `'${name}' is an old palette color with no role of its own. Pick the role from design's component map (@skillsoft/gamut-brand src/migration.ts, COMPONENTS).`
         );
         note('color-roles:palette');
       }

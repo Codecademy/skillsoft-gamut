@@ -1,8 +1,8 @@
 import type { ColorAlias, ColorRolesManifest } from './manifest';
 
 /*
-  Generated from design's migration map: gamut-styles
-  src/colorSystem/migration.ts (TOKEN_MAP), ported from gamut-sandbox
+  Generated from design's migration map: @skillsoft/gamut-brand
+  src/migration.ts (TOKEN_MAP), ported from gamut-sandbox
   stacey/color-tokens-v2 at df33b47. Regenerate when design's map changes
   (~/z_team/everest/color-tokens/codemod/gen-manifest.ts); don't edit rows by
   hand.
@@ -170,7 +170,7 @@ export const aliases: Record<string, ColorAlias> = {
   },
 };
 
-/* Every role the generated system has (colorSystem/roles.ts), so the manifest test can check targets. */
+/* Every role the generated system has (gamut-brand src/roles.ts), so the manifest test can check targets. */
 export const roles: ColorRolesManifest['roles'] = [
   'surface-sunken',
   'surface-default',
