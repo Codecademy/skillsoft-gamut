@@ -3,7 +3,7 @@ title: Color system
 description: How Gamut generates its colors from a few brand hues, checks them, and ships them as roles for light and dark mode.
 ---
 
-Gamut's colors come from a generator in `@skillsoft/gamut-styles`. A brand supplies a few hues. The generator turns them into a palette, maps the palette onto named roles for light and dark mode, checks every pairing for contrast, and writes the result as CSS, JSON and TypeScript. Components and app code use the role names.
+Gamut's colors come from a generator in `@skillsoft/gamut-brand`. A brand supplies a few hues. The generator turns them into a palette, maps the palette onto named roles for light and dark mode, checks every pairing for contrast, and writes the result as CSS, JSON and TypeScript. Components and app code use the role names. `@skillsoft/gamut-styles` ships the result for Gamut's own brands, so an app on one of them never runs the generator. A team that wants its own colors runs it at build time; see [Build your own brand](#build-your-own-brand).
 
 This page covers the generated system. The [Color modes](/concepts/color-modes/) page still describes the older alias names (`text`, `background`, `primary`).
 
@@ -15,11 +15,11 @@ Each step feeds the next one:
 2. The generator builds a palette of 11 grades per slot.
 3. Roles point at palette colors, once per mode.
 4. The build checks contrast and stops if anything fails.
-5. The build writes `tokens.css`, DTCG JSON and TypeScript constants.
-6. `GamutProvider` puts `tokens.css` on the page.
-7. HTML attributes pick the mode and the brand.
+5. The build writes each brand's `tokens.css`, DTCG JSON and TypeScript constants.
+6. `GamutProvider` puts the theme's brand's `tokens.css` on the page.
+7. HTML attributes switch the mode inside the page.
 
-The generator lives in `packages/gamut-styles/src/colorSystem/`, and its output is checked in at `packages/gamut-styles/src/tokens/generated/`.
+The generator lives in `packages/gamut-brand/src/`, and the output for Gamut's brands is checked in at `packages/gamut-styles/src/tokens/generated/<brand>/`.
 
 ### Brand inputs
 
@@ -33,6 +33,8 @@ A brand is a `BrandInput` object with a name and a hue for each of eight slots. 
 Only `primary` is required. A brand that leaves out its neutrals gets neutrals derived from the primary hue. A brand that leaves out a status or accent slot gets Gamut's default hue for it, so red still means error.
 
 The generator keeps only the hue of each input. `#3A10E5` means "this blue-violet hue", and the generator decides how light and how colorful each step is.
+
+A brand can also set `initialMode`, `'light'` or `'dark'`, the mode a page starts in. It defaults to `'light'`.
 
 ```ts
 export const originalCodecademyBrand: BrandInput = {
@@ -55,7 +57,7 @@ Five brands ship today:
 - `originalCodecademy`, the old Core theme rebuilt as a brand. Its theme is `originalCodecademyTheme`.
 - `admin`, `platform` and `lxStudio`, the other old themes rebuilt the same way. Their themes keep their old names: `adminTheme`, `platformTheme` and `lxStudioTheme`. `percipioTheme` is removed; use `skillsoftTheme` instead.
 
-Each rebuilt brand takes its colors from what its old theme showed in each job, and keeps that theme's fonts and weights. Shadows are drawn in the shadow roles: Original Codecademy keeps old Core's hard offset, and every other brand uses a soft shadow. `platformTheme` still starts in dark mode and keeps its `editor-*` code editor colors, which aren't part of the generated system.
+Each rebuilt brand takes its colors from what its old theme showed in each job, and keeps that theme's fonts and weights. Shadows are drawn in the shadow roles: Original Codecademy keeps old Core's hard offset, and every other brand uses a soft shadow. The `platform` brand starts in dark mode, and `platformTheme` keeps its `editor-*` code editor colors, which aren't part of the generated system.
 
 ### Palette
 
@@ -87,7 +89,7 @@ The shadow roles hold only color. Every elevation shadow has two layers, `shadow
 
 ### Checks
 
-The build refuses to write any output if a check fails, for any brand, in either mode. It checks that:
+The generator refuses to write a brand's files if a check fails, in either mode. It checks that:
 
 - every text role reaches a 4.5:1 [contrast ratio](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) on the surfaces it's meant for;
 - every border, action and chart role that carries meaning reaches 3:1, the [non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html) minimum;
@@ -97,35 +99,35 @@ The build refuses to write any output if a check fails, for any brand, in either
 
 `border-subtle`, `action-disabled` and the `shadow-*` roles are exempt from contrast: the first is decorative, the second marks an inactive control, and a shadow isn't something to read. Separation of the three status colors for people with color-vision deficiencies is measured and reported, but doesn't fail the build.
 
-To see the full report, run:
+The generator runs every check a second time on the values read back out of the brand's own `tokens.css`, so what ships is what was checked. To see the full report for Gamut's brands, run:
 
 ```sh
 yarn workspace @skillsoft/gamut-styles validate:tokens
 ```
 
-The report runs every check a second time on the values read back out of `tokens.css`, so what ships is what was checked.
-
 ### Outputs
 
-One source produces three outputs:
+Each brand gets its own set of three outputs. No file holds more than one brand:
 
-| Output       | Import                                         | For                                                             |
-| ------------ | ---------------------------------------------- | --------------------------------------------------------------- |
-| `tokens.css` | `@skillsoft/gamut-styles/tokens.css`           | Every color as a custom property                                |
-| DTCG JSON    | `@skillsoft/gamut-styles/tokens/*.tokens.json` | Tools outside JavaScript, such as Figma plugins and native apps |
-| TS constants | `@skillsoft/gamut-styles/tokens`               | Code that needs the values or the role table itself             |
+| Output       | Import                                                                    | For                                                             |
+| ------------ | ------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| `tokens.css` | `@skillsoft/gamut-styles/tokens/<brand>.css`                              | The brand's colors as custom properties                         |
+| DTCG JSON    | `@skillsoft/gamut-styles/tokens/<brand>/{palette,light,dark}.tokens.json` | Tools outside JavaScript, such as Figma plugins and native apps |
+| TS constants | `@skillsoft/gamut-styles/tokens`                                          | Code that needs the values or the role table itself             |
 
-The JSON follows the [Design Tokens Community Group](https://www.designtokens.org/) (DTCG) format, a shared JSON format for design tokens. There is one file each for the palette, light roles and dark roles, and each color is OKLCH with its hex value alongside. Other brands' files are under `@skillsoft/gamut-styles/tokens/brands/`. The TypeScript entry exports `palette`, `roles`, `gradients` and `contentModes`, and doesn't depend on React or Emotion.
+`@skillsoft/gamut-styles/tokens.css` is the default brand's file, `skillsoft`.
 
-`tokens.css` puts every value inside a [cascade layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) called `tokens`:
+The JSON follows the [Design Tokens Community Group](https://www.designtokens.org/) (DTCG) format, a shared JSON format for design tokens. There is one file each for the palette, light roles and dark roles, and each color is OKLCH with its hex value alongside. The TypeScript entry exports the default brand's `palette`, `roles`, `gradients`, `contentModes` and `tokensCss`, plus every brand under `brands`, such as `brands.originalCodecademy.palette`. It doesn't depend on React or Emotion.
+
+A brand's `tokens.css` puts every value inside a [cascade layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) called `tokens`, with the brand's palette and its initial mode on `:root`:
 
 ```css
 @layer reset, base, tokens, recipes, utilities;
 
 @layer tokens {
   :root,
-  [data-brand='skillsoft'] {
-    --colors-palette-primary-800: oklch(0.4115 0.1767 262.4);
+  [data-brand='originalCodecademy'] {
+    --colors-palette-primary-800: oklch(0.4115 0.2344 274.1);
     /* ... */
   }
   :root,
@@ -134,30 +136,29 @@ The JSON follows the [Design Tokens Community Group](https://www.designtokens.or
     /* ... */
   }
   [data-color-mode='dark'] {
-    --colors-text-default: var(--colors-palette-neutral-light-200);
+    --colors-action-primary: var(--colors-palette-accent-300);
     /* ... */
-  }
-  [data-brand='originalCodecademy'] {
-    /* this brand's palette */
   }
 }
 ```
+
+A brand's overrides sit in its mode blocks, like Original Codecademy's yellow `action-primary` in dark mode in the previous example.
 
 Styles inside a layer lose to styles outside any layer, whatever the selector. Emotion's styles and your own unlayered CSS override a token value without needing a more specific selector.
 
 ### How the colors reach the page
 
-A theme built on the color system carries `tokens.css` as a string, and `GamutProvider` injects it as an Emotion global style, the same way it injects its reset and typography styles. A React app gets every color without loading a file, and the colors are in the server-rendered HTML too.
+A theme built on the color system carries its brand's `tokens.css` as a string, and `GamutProvider` injects it as an Emotion global style, the same way it injects its reset and typography styles. A React app gets its brand's colors without loading a file, starts in the brand's initial mode with no attributes on `<html>`, and the colors are in the server-rendered HTML too.
 
 The theme's own colors are `var()` names like `var(--colors-surface-raised)`, so `css()`, `variant()`, `states()` and system props keep working as they did before.
 
-If your app loads `tokens.css` itself, pass `useTokens={false}` to `GamutProvider` to skip the injected copy. Loading both does no harm, because the rules are identical. Pages without React or Emotion, such as plain HTML or email, can link `tokens.css` directly.
+If your app loads the brand's `tokens.css` itself, pass `useTokens={false}` to `GamutProvider` to skip the injected copy. Loading both does no harm, because the rules are identical. Pages without React or Emotion, such as plain HTML or email, can link the brand's `tokens.css` directly.
 
 ### Modes and brands at runtime
 
 A mode switch is an HTML attribute. The `ColorMode` component sets two attributes on its element, `data-color-mode` and `data-brand`, and every role inside it points at its color for that mode, through plain CSS. It nests as deep as you need. Each mode block also sets [`color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme), so scrollbars and native form controls follow the mode.
 
-`data-brand` picks the palette. A brand's own role overrides, like Original Codecademy's yellow primary in dark mode, apply only where both attributes sit on the same element. Use `ColorMode`, or `Background` for a colored section; if you set the attributes by hand, set both on the same element.
+`data-brand` names the palette. A page carries one brand's CSS, the theme's, so every `ColorMode` inside it is in that brand, overrides included. Use `ColorMode`, or `Background` for a colored section; if you set the attributes by hand, set both on the same element.
 
 The `Background` component decides its content mode at build time. For each of the 90 opaque palette colors (the 88 ramp steps, white and black), the generator records whether light-mode or dark-mode content reads better on it. `Background` looks the answer up in that table instead of measuring contrast in the browser on every render.
 
@@ -253,13 +254,61 @@ export const App = ({ children }) => (
 );
 ```
 
-Then put `data-brand` and `data-color-mode` on the `<html>` element. Without them, everything outside a `ColorMode`, `<body>` included, gets the default brand (`skillsoft`) in light mode.
+The page starts in that brand and its initial mode, `<body>` included, with nothing to set on `<html>`.
 
-```html
-<html data-brand="originalCodecademy" data-color-mode="light"></html>
+Pages without React load the brand's file, such as `@skillsoft/gamut-styles/tokens/originalCodecademy.css`.
+
+## Build your own brand
+
+A team that needs its own colors builds a brand with `@skillsoft/gamut-brand`, the same tool that builds Gamut's. It runs at build time only, so install it as a dev dependency:
+
+```sh
+yarn add -D @skillsoft/gamut-brand
 ```
 
-Pages without React load `@skillsoft/gamut-styles/tokens.css` and set the same two attributes.
+Write the brand. Only `name` and `hues.primary` are required:
+
+```ts
+// src/theme/acme.brand.ts
+import { defineBrand } from '@skillsoft/gamut-brand';
+
+export default defineBrand({
+  name: 'acme',
+  hues: { primary: '#0A5CFF', accent: '#FFB000' },
+});
+```
+
+Generate it, and check in the `src/theme/acme/` folder it writes:
+
+```sh
+gamut-brand build src/theme/acme.brand.ts
+```
+
+Build the theme from the generated values, and pass it to `GamutProvider` like any other theme:
+
+```ts
+import {
+  createBrandTheme,
+  fontWeightMediumTitle,
+  percipioFontFamily,
+  softElevation,
+} from '@skillsoft/gamut-styles';
+
+import * as values from './acme/values';
+
+export const acmeTheme = createBrandTheme(values, {
+  name: 'acme',
+  fontFamily: percipioFontFamily,
+  fontWeight: fontWeightMediumTitle,
+  elevation: softElevation,
+});
+```
+
+Every brand has the same palette keys and the same 45 roles, so `acmeTheme` has the same type as Gamut's themes. System props, `css()`, `variant()` and `states()` stay typed, and `bg="surface-raisd"` fails to compile. `defineBrand` is typed too, so a misspelled slot or role fails.
+
+A brand that fails a check isn't written, and the error names the check, its worst value and where. Pick another hue, or pin the color with an override, and run the build again.
+
+To keep the files current, run `gamut-brand build src/theme/acme.brand.ts --watch` next to your dev server, and the same command with `--check` in CI. `--check` writes nothing and fails when the files are out of date, including after an upgrade of `@skillsoft/gamut-brand`. Keep `@skillsoft/gamut-brand` on the same version as `@skillsoft/gamut-styles`.
 
 ## Compared with the old color system
 
@@ -275,12 +324,12 @@ Pages without React load `@skillsoft/gamut-styles/tokens.css` and set the same t
 
 |                   | Old                                                     | New                                                                 |
 | ----------------- | ------------------------------------------------------- | ------------------------------------------------------------------- |
-| Where values live | Emotion theme objects, written onto the page at runtime | One generated stylesheet, `tokens.css`, injected once               |
+| Where values live | Emotion theme objects, written onto the page at runtime | One generated stylesheet per brand, injected once                   |
 | Mode switch       | Every alias for the mode written into a new class       | One attribute                                                       |
 | `Background`      | Contrast math on every render                           | A table decided at build time                                       |
 | Accessibility     | Colors picked by hand and never checked                 | Every role pairing and 204 component pairings checked at build time |
 | Names             | Ambiguous: `background` is both the page and a card     | One job each: `surface-default`, `surface-raised`                   |
-| New brand         | A hand-written theme and alias table                    | A few hues, checked automatically                                   |
+| New brand         | A hand-written theme and alias table                    | A few hues and `gamut-brand build`, checked automatically           |
 | Who can read it   | JavaScript only                                         | CSS, DTCG JSON and TypeScript from one source                       |
 | Color space       | Hex, tuned by hand per step                             | OKLCH with fixed lightness per grade, hex alongside in the JSON     |
 
