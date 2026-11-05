@@ -1,6 +1,6 @@
 import mapValues from 'lodash/mapValues';
 
-import * as values from '../tokens/generated/brands/platform.values';
+import * as values from '../tokens/generated/platform/values';
 import {
   corePalette,
   fontFamily,
@@ -12,16 +12,17 @@ import { createBrandTheme } from './createBrandTheme';
 
 /*
  * Platform (the learning environment): old platform rebuilt as a brand of
- * the generated color system (colorSystem/brands/platform.ts). Fonts and
+ * the generated color system (@skillsoft/gamut-brand brands/platform.ts). Fonts and
  * weights are old core's, which old platform used, unchanged. Elevation is
- * the soft shadow every brand but the Codecademy theme uses (design's
- * sandbox, df33b47). It starts in dark mode, as old platform did.
+ * the soft shadow every brand but the Codecademy theme uses. It starts in
+ * dark mode, as old platform did (the brand's `initialMode`).
  *
  * The code editor's syntax and chrome colors aren't part of the color
  * system: no role covers them, and they aren't generated or checked. They
  * keep old platform's names and exact values, resolved from the same
  * palettes as before, and only this theme's GamutProvider declares them,
- * as `--colors-editor-*` in tokens.css's layer and mode selectors.
+ * as `--colors-editor-*` in tokens.css's layer and mode selectors, the
+ * brand's initial mode on :root.
  */
 const OLD_PALETTE: Record<string, string> = {
   ...corePalette,
@@ -92,10 +93,11 @@ const base = createBrandTheme(values, {
   fontFamily,
   fontWeight,
   elevation: softElevation,
-  initialMode: 'dark',
 });
 
 type EditorAlias = keyof typeof editor.light;
+
+const otherMode = values.brand.initialMode === 'dark' ? 'light' : 'dark';
 
 const editorValues = (mode: 'light' | 'dark') =>
   mapValues(editor[mode], (key) => OLD_PALETTE[key]);
@@ -115,9 +117,9 @@ export const platformTheme = {
     ) as Record<EditorAlias, string>),
   },
   tokensCss: `${base.tokensCss}\n@layer tokens{${editorBlock(
-    ':root,[data-color-mode="light"]',
-    'light'
-  )}${editorBlock('[data-color-mode="dark"]', 'dark')}}`,
+    `:root,[data-color-mode="${values.brand.initialMode}"]`,
+    values.brand.initialMode
+  )}${editorBlock(`[data-color-mode="${otherMode}"]`, otherMode)}}`,
 };
 
 export type PlatformThemeShape = typeof platformTheme;

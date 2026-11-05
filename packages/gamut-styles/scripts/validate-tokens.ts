@@ -4,37 +4,39 @@
  *
  *   yarn workspace @skillsoft/gamut-styles validate:tokens
  *
+ * For each of gamut's brands:
  * 1. The guarantees hold on the source system.
- * 2. The guarantees hold again on values parsed back out of tokens.css —
- *    so nothing Style Dictionary did (rounding, references) broke them.
- * 3. The generated files are up to date with the generator.
+ * 2. The guarantees hold again on values parsed back out of the brand's
+ *    tokens.css, so nothing Style Dictionary did (rounding, references) broke
+ *    them. gamut-brand refuses to generate a brand that fails this; the
+ *    report shows the numbers.
+ * 3. The brand's generated files are up to date with the generator.
  * 4. The content-mode table picks what Background's runtime math picked.
- * 5. Sample tenants, run through the probe.
- *
- * Parity with design's sandbox is a test: `__tests__/sandboxParity.test.ts`.
+ * Then sample tenants, run through the probe.
  */
 import { readFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { join, relative } from 'node:path';
 
 import { getContrast } from 'polished';
 
-import type { BrandInput, Slot } from '../src/colorSystem/brand';
-import { SLOTS } from '../src/colorSystem/brand';
-import { BRANDS, DEFAULT_BRAND } from '../src/colorSystem/brands';
-import { contentModes } from '../src/colorSystem/contentModes';
-import { toTsModule } from '../src/colorSystem/emit';
-import { validateMigration } from '../src/colorSystem/migration';
-import { probeTenant } from '../src/colorSystem/probe';
-import type { Ramp } from '../src/colorSystem/ramp';
-import { GRADES } from '../src/colorSystem/ramp';
-import { MODES, ROLES } from '../src/colorSystem/roles';
-import type { ColorSystem, ResolvedValue } from '../src/colorSystem/system';
-import { createColorSystem } from '../src/colorSystem/system';
-import type { Check } from '../src/colorSystem/validate';
-import { validate } from '../src/colorSystem/validate';
+import type { BrandInput, Check } from '../../gamut-brand/src';
+import {
+  BRANDS,
+  createColorSystem,
+  DEFAULT_BRAND,
+  probeTenant,
+  staleFiles,
+  validate,
+  validateMigration,
+} from '../../gamut-brand/src';
+import { contentModes } from '../../gamut-brand/src/contentModes';
+import {
+  parseTokensCss,
+  roundTripMisses,
+} from '../../gamut-brand/src/roundTrip';
+import type { ColorSystem } from '../../gamut-brand/src/system';
 
-const ROOT = join(__dirname, '..');
-const GENERATED = join(ROOT, 'src/tokens/generated');
+const GENERATED = join(__dirname, '../src/tokens/generated');
 
 let failures = 0;
 const report = (ok: boolean, line: string) => {
@@ -47,108 +49,6 @@ const printChecks = (checks: Check[]) => {
     if (c.reported) console.log(`INFO  ${line}`);
     else report(c.pass, line);
   }
-};
-
-/*
- * Read tokens.css back into a ColorSystem-shaped object for one brand:
- * palette values from the :root block with the brand's `[data-brand]` block
- * over it, each role's var() resolved inside its mode block.
- */
-const parseCss = (css: string, source: ColorSystem): ColorSystem => {
-  const blocks = [...css.matchAll(/([^{};]+)\{([^{}]*)\}/g)].map((m) => ({
-    selector: m[1].trim().split('\n').pop()!.trim(),
-    decls: Object.fromEntries(
-      [...m[2].matchAll(/(--[\w-]+):\s*([^;]+);/g)].map((d) => [d[1], d[2]])
-    ),
-  }));
-  const brandBlock = (selector: string) =>
-    blocks.find((b) => b.selector.split(', ').includes(selector))?.decls;
-  const root = {
-    ...brandBlock(':root')!,
-    ...brandBlock(`[data-brand="${source.brand.name}"]`)!,
-  };
-  const oklch = (value: string) => {
-    const m = value.match(
-      /^oklch\(([\d.]+) ([\d.]+) ([\d.]+)(?: \/ ([\d.]+))?\)$/
-    );
-    if (!m) throw new Error(`not an oklch() value: ${value}`);
-    return {
-      l: Number(m[1]),
-      c: Number(m[2]),
-      h: Number(m[3]),
-      alpha: m[4] === undefined ? undefined : Number(m[4]),
-    };
-  };
-
-  const ramps = Object.fromEntries(
-    SLOTS.map((slot) => [
-      slot,
-      Object.fromEntries(
-        GRADES.map((grade) => {
-          const p = oklch(root[`--colors-palette-${slot}-${grade}`]);
-          return [grade, { grade, l: p.l, c: p.c, h: p.h, hex: '' }];
-        })
-      ),
-    ])
-  ) as Record<Slot, Ramp>;
-
-  const roles = Object.fromEntries(
-    MODES.map((mode) => {
-      /* The shared mode block, with this brand's role overrides over it. */
-      const block = {
-        ...blocks.find((b) =>
-          b.selector.split(', ').includes(`[data-color-mode="${mode}"]`)
-        )!.decls,
-        ...blocks.find(
-          (b) =>
-            b.selector ===
-            `[data-brand="${source.brand.name}"][data-color-mode="${mode}"]`
-        )?.decls,
-      };
-      return [
-        mode,
-        Object.fromEntries(
-          ROLES.map((r) => {
-            const ref =
-              block[`--colors-${r.token}`].match(/^var\((--[\w-]+)\)$/);
-            if (!ref) throw new Error(`${r.token} (${mode}) is not a var()`);
-            const p = oklch(root[ref[1]]);
-            const value: ResolvedValue = {
-              ...p,
-              hex: '',
-              key: ref[1].replace(/^--colors-/, ''),
-            };
-            return [r.token, value];
-          })
-        ),
-      ];
-    })
-  ) as ColorSystem['roles'];
-
-  return { ...source, ramps, roles };
-};
-
-const emittedMatchesSource = (parsed: ColorSystem, source: ColorSystem) => {
-  const misses: string[] = [];
-  for (const mode of MODES) {
-    for (const r of ROLES) {
-      const a = parsed.roles[mode][r.token];
-      const b = source.roles[mode][r.token];
-      const same =
-        a.key === b.key &&
-        a.l === b.l &&
-        a.c === b.c &&
-        a.h === b.h &&
-        a.alpha === b.alpha;
-      if (!same) misses.push(`${r.token} (${mode})`);
-    }
-  }
-  report(
-    misses.length === 0,
-    `tokens.css round-trips every role to the source value and reference${
-      misses.length ? `: ${misses.join(', ')}` : ''
-    }`
-  );
 };
 
 const TENANTS: BrandInput[] = [
@@ -205,10 +105,9 @@ const backgroundParity = (system: ColorSystem) => {
 };
 
 const main = async () => {
-  const css = await readFile(join(GENERATED, 'tokens.css'), 'utf8');
-
   for (const brand of BRANDS) {
     const system = createColorSystem(brand);
+    const dir = join(GENERATED, brand.name);
     const isDefault = brand.name === DEFAULT_BRAND.name;
     console.log(`\n══ ${brand.name}${isDefault ? ' (default)' : ''}`);
 
@@ -218,15 +117,28 @@ const main = async () => {
     console.log('\n— migration map');
     printChecks(validateMigration(system));
 
-    console.log('\n— guarantees, re-measured on tokens.css');
-    const parsed = parseCss(css, system);
-    emittedMatchesSource(parsed, system);
+    console.log(`\n— guarantees, re-measured on ${brand.name}/tokens.css`);
+    const css = await readFile(join(dir, 'tokens.css'), 'utf8');
+    const parsed = parseTokensCss(css, system);
+    const misses = roundTripMisses(parsed, system);
+    report(
+      misses.length === 0,
+      `tokens.css round-trips every role to the source value and reference${
+        misses.length ? `: ${misses.join(', ')}` : ''
+      }`
+    );
     printChecks([...validate(parsed), ...validateMigration(parsed)]);
 
     console.log('\n— generated files are current');
-    const file = isDefault ? 'values.ts' : `brands/${brand.name}.values.ts`;
-    const ts = await readFile(join(GENERATED, file), 'utf8');
-    report(ts === toTsModule(system), `${file} matches the generator`);
+    const stale = await staleFiles(brand, dir);
+    report(
+      stale.length === 0,
+      `${brand.name}/ matches the generator${
+        stale.length
+          ? `; stale: ${stale.map((p) => relative(GENERATED, p)).join(', ')}`
+          : ''
+      }`
+    );
 
     console.log('\n— content-mode table vs runtime Background');
     backgroundParity(system);

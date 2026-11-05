@@ -183,8 +183,15 @@ const config: StorybookConfig = {
           find: /^@skillsoft\/gamut-styles\/tokens\.css(\?.*)?$/,
           replacement: `${resolve(
             __dirname,
-            '../gamut-styles/src/tokens/generated/tokens.css'
+            '../gamut-styles/src/tokens/generated/skillsoft/tokens.css'
           )}$1`,
+        },
+        {
+          find: /^@skillsoft\/gamut-styles\/tokens\/(\w+)\.css(\?.*)?$/,
+          replacement: `${resolve(
+            __dirname,
+            '../gamut-styles/src/tokens/generated'
+          )}/$1/tokens.css$2`,
         },
         ...normalizeAlias(config.resolve?.alias),
       ],
