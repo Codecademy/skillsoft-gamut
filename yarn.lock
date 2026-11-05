@@ -7951,6 +7951,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@skillsoft/gamut-codemods@https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-codemods@60":
+  version: 0.0.1
+  resolution: "@skillsoft/gamut-codemods@https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-codemods@60"
+  dependencies:
+    jscodeshift: "npm:^17.3.0"
+  bin:
+    gamut-codemods: ./dist/bin.js
+  checksum: 10c0/24d4fdf1abf8d9bdf2d7a8a7df910d271d32887ebd954e67338bfc46e0e7b427e4d24169c844bc6262bf351210d03444f7940aa605483095620c6e7c401cdd92
+  languageName: node
+  linkType: hard
+
 "@skillsoft/gamut-codemods@workspace:packages/gamut-codemods":
   version: 0.0.0-use.local
   resolution: "@skillsoft/gamut-codemods@workspace:packages/gamut-codemods"
@@ -7985,6 +7996,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@skillsoft/gamut-icons@https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-icons@d83a8856f2c74613c5dc60b890f67673c4ac5436":
+  version: 0.0.1
+  resolution: "@skillsoft/gamut-icons@https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-icons@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+  dependencies:
+    "@skillsoft/gamut-styles": "https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-styles@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+    "@skillsoft/variance": "https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/variance@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+  peerDependencies:
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    react: ^17.0.2 || ^18.3.0 || ^19.0.0
+  checksum: 10c0/d281e82866b3109983515c337ab2f21a4bcdbd016edfe8fe22adfa47cbd661766d20c773eece1da3b13017d611408cb4f80691d8d4c574afb4f014a7d9d20402
+  languageName: node
+  linkType: hard
+
 "@skillsoft/gamut-icons@npm:^0.0.1, @skillsoft/gamut-icons@workspace:*, @skillsoft/gamut-icons@workspace:packages/gamut-icons":
   version: 0.0.0-use.local
   resolution: "@skillsoft/gamut-icons@workspace:packages/gamut-icons"
@@ -7997,6 +8022,21 @@ __metadata:
     react: ^17.0.2 || ^18.3.0 || ^19.0.0
   languageName: unknown
   linkType: soft
+
+"@skillsoft/gamut-illustrations@https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-illustrations@d83a8856f2c74613c5dc60b890f67673c4ac5436":
+  version: 0.0.1
+  resolution: "@skillsoft/gamut-illustrations@https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-illustrations@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+  dependencies:
+    "@skillsoft/gamut-styles": "https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-styles@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+    classnames: "npm:^2.2.5"
+  peerDependencies:
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    react: ^17.0.2 || ^18.3.0 || ^19.0.0
+    react-dom: ^17.0.2 || ^18.3.0 || ^19.0.0
+  checksum: 10c0/791bd4da64ffd0cbddbf55ae6d7a6266b293ef9eb3766abab0017dec8fa6b7377e507f1ae414a1e463e41d78373f6347882c0ae3605f04456e8a5200643257b9
+  languageName: node
+  linkType: hard
 
 "@skillsoft/gamut-illustrations@npm:^0.0.1, @skillsoft/gamut-illustrations@workspace:packages/gamut-illustrations":
   version: 0.0.0-use.local
@@ -8012,6 +8052,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@skillsoft/gamut-patterns@https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-patterns@d83a8856f2c74613c5dc60b890f67673c4ac5436":
+  version: 0.0.1
+  resolution: "@skillsoft/gamut-patterns@https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-patterns@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+  dependencies:
+    "@skillsoft/gamut-styles": "https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-styles@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+    "@skillsoft/variance": "https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/variance@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+    classnames: "npm:^2.2.5"
+  peerDependencies:
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    react: ^17.0.2 || ^18.3.0 || ^19.0.0
+    react-dom: ^17.0.2 || ^18.3.0 || ^19.0.0
+  checksum: 10c0/14bc6d11571b77c667746a63e1627f128e3c9509bce3377d5041f967f8e7eb0c988ea2a4ce634f8bb525d93b695187af0fcfaf70b48a168eb091da8c6ef56b88
+  languageName: node
+  linkType: hard
+
 "@skillsoft/gamut-patterns@npm:^0.0.1, @skillsoft/gamut-patterns@workspace:packages/gamut-patterns":
   version: 0.0.0-use.local
   resolution: "@skillsoft/gamut-patterns@workspace:packages/gamut-patterns"
@@ -8026,6 +8082,48 @@ __metadata:
     react-dom: ^17.0.2 || ^18.3.0 || ^19.0.0
   languageName: unknown
   linkType: soft
+
+"@skillsoft/gamut-styles@https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-styles@60":
+  version: 0.0.1
+  resolution: "@skillsoft/gamut-styles@https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-styles@60"
+  dependencies:
+    "@emotion/is-prop-valid": "npm:^1.1.0"
+    "@skillsoft/variance": "https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/variance@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+    csstype: "npm:^3.0.7"
+    framer-motion: "npm:^12.0.0"
+    get-nonce: "npm:^1.0.0"
+    lodash: "npm:^4.17.23"
+    polished: "npm:^4.1.2"
+  peerDependencies:
+    "@emotion/cache": ^11.4.0
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    react: ^17.0.2 || ^18.3.0 || ^19.0.0
+    stylis: ^4.0.7
+  checksum: 10c0/5b03f22d5aef1a9580f1fc322e09448aea01bc4572876a81f6e41ff0bf59f0fc0a514eb8c477626bde28eba64723fed4283555fd82a2eb29e33a25aceecc9e0e
+  languageName: node
+  linkType: hard
+
+"@skillsoft/gamut-styles@https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-styles@d83a8856f2c74613c5dc60b890f67673c4ac5436":
+  version: 0.0.1
+  resolution: "@skillsoft/gamut-styles@https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-styles@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+  dependencies:
+    "@emotion/is-prop-valid": "npm:^1.1.0"
+    "@skillsoft/variance": "https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/variance@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+    csstype: "npm:^3.0.7"
+    framer-motion: "npm:^12.0.0"
+    get-nonce: "npm:^1.0.0"
+    lodash: "npm:^4.17.23"
+    polished: "npm:^4.1.2"
+  peerDependencies:
+    "@emotion/cache": ^11.4.0
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    react: ^17.0.2 || ^18.3.0 || ^19.0.0
+    stylis: ^4.0.7
+  checksum: 10c0/5b03f22d5aef1a9580f1fc322e09448aea01bc4572876a81f6e41ff0bf59f0fc0a514eb8c477626bde28eba64723fed4283555fd82a2eb29e33a25aceecc9e0e
+  languageName: node
+  linkType: hard
 
 "@skillsoft/gamut-styles@npm:^0.0.1, @skillsoft/gamut-styles@workspace:*, @skillsoft/gamut-styles@workspace:packages/gamut-styles":
   version: 0.0.0-use.local
@@ -8062,6 +8160,49 @@ __metadata:
     react: ^17.0.2 || ^18.3.0 || ^19.0.0
   languageName: unknown
   linkType: soft
+
+"@skillsoft/gamut@https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut@60":
+  version: 0.0.1
+  resolution: "@skillsoft/gamut@https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut@60"
+  dependencies:
+    "@formatjs/intl-locale": "npm:5.3.1"
+    "@react-aria/interactions": "npm:3.25.0"
+    "@skillsoft/gamut-icons": "https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-icons@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+    "@skillsoft/gamut-illustrations": "https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-illustrations@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+    "@skillsoft/gamut-patterns": "https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-patterns@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+    "@skillsoft/gamut-styles": "https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-styles@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+    "@skillsoft/variance": "https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/variance@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+    "@types/marked": "npm:^4.0.8"
+    classnames: "npm:^2.2.5"
+    framer-motion: "npm:^12.0.0"
+    html-to-react: "npm:^1.6.0"
+    invariant: "npm:^2.2.4"
+    lodash: "npm:^4.17.23"
+    marked: "npm:^4.3.0"
+    polished: "npm:^4.1.2"
+    react-aria-components: "npm:1.7.1"
+    react-focus-on: "npm:3.10.0"
+    react-hook-form: "npm:^7.71.2"
+    react-select: "npm:^5.2.2"
+    react-truncate-markup: "npm:^5.1.2"
+    react-use: "npm:^17.6.1"
+    sanitize-markdown: "npm:^2.6.7"
+  peerDependencies:
+    "@emotion/react": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    "@vidstack/react": ~1.12.12
+    css-loader: ">=4.0.0"
+    react: ^17.0.2 || ^18.3.0 || ^19.0.0
+    react-dom: ^17.0.2 || ^18.3.0 || ^19.0.0
+    react-player: ^3.4.0
+  peerDependenciesMeta:
+    css-loader:
+      optional: true
+  bin:
+    gamut: ./bin/gamut.mjs
+  checksum: 10c0/5070716e53e9298143683dfb0a94640271c4679a0a7056fadcf84502e78356b4e5a6d4194f7902664cfa9e8092aef4c9eb0f82b903f02eb750273c54ccbad477
+  languageName: node
+  linkType: hard
 
 "@skillsoft/gamut@workspace:*, @skillsoft/gamut@workspace:packages/gamut":
   version: 0.0.0-use.local
@@ -8120,6 +8261,22 @@ __metadata:
   resolution: "@skillsoft/styleguide@workspace:packages/styleguide"
   languageName: unknown
   linkType: soft
+
+"@skillsoft/variance@https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/variance@d83a8856f2c74613c5dc60b890f67673c4ac5436":
+  version: 0.0.1
+  resolution: "@skillsoft/variance@https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/variance@d83a8856f2c74613c5dc60b890f67673c4ac5436"
+  dependencies:
+    csstype: "npm:^3.0.7"
+    lodash: "npm:^4.17.23"
+  peerDependencies:
+    "@emotion/react": "*"
+    typescript: ">=4.3.5"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10c0/ce339cdcc9f5af39fd751db72f6e1347365f6eb245f2726c00fac38ed92a3a9681a34395ce3b816930ed47a21b34cdb5f21359fb6e92b213ba9fe4a6d764c2fd
+  languageName: node
+  linkType: hard
 
 "@skillsoft/variance@npm:^0.0.1, @skillsoft/variance@workspace:packages/variance":
   version: 0.0.0-use.local
@@ -23199,7 +23356,9 @@ __metadata:
     "@nx/storybook": "npm:22.6.0"
     "@nx/web": "npm:22.6.0"
     "@skillsoft/eslint-plugin-gamut": "workspace:*"
-    "@skillsoft/gamut": "workspace:*"
+    "@skillsoft/gamut": "https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut@60"
+    "@skillsoft/gamut-codemods": "https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-codemods@60"
+    "@skillsoft/gamut-styles": "https://pkg.pr.new/Codecademy/skillsoft-gamut/@skillsoft/gamut-styles@60"
     "@storybook/addon-a11y": "npm:^10.3.1"
     "@storybook/addon-designs": "npm:^11.1.2"
     "@storybook/addon-docs": "npm:^10.3.1"
