@@ -1,0 +1,46 @@
+{
+  "name": "@skillsoft/gamut-brand",
+  "description": "Build a gamut color brand from a few hues: checked palette, roles, tokens.css and typed values for createBrandTheme",
+  "version": "0.0.1",
+  "author": "Skillsoft Engineering <dev@codecademy.com>",
+  "bin": "./dist/cli.mjs",
+  "dependencies": {
+    "culori": "^4.0.2",
+    "jiti": "2.4.2",
+    "style-dictionary": "5.7.0"
+  },
+  "devDependencies": {
+    "@types/culori": "^4"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "design-tokens",
+    "gamut",
+    "theming",
+    "white-label"
+  ],
+  "license": "MIT",
+  "module": "./dist/index.mjs",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "git@github.com:Codecademy/skillsoft-gamut.git",
+  "scripts": {
+    "build": "nx build gamut-brand",
+    "dump:sandbox": "jiti scripts/dump-sandbox.ts"
+  },
+  "sideEffects": false,
+  "types": "./dist/index.d.ts"
+}
