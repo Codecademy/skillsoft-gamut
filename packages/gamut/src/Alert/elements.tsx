@@ -18,8 +18,8 @@ type InkProps = Pick<AlertProps, 'placement'> & {
 
 /*
  * The variant's ink on the message, and on the edge of a floating Alert
- * (design's preview at sandbox 15c2195; its shared "Floating border" slot
- * still says border-default and is out of date).
+ * (design's preview; the component map's "Floating border" slot still says
+ * border-default and is out of date).
  */
 const alertInk = ({ ink, placement, theme }: InkProps) => {
   const color = ink && (theme.colors as Record<string, string>)[ink];

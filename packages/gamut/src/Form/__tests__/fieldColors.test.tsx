@@ -20,7 +20,7 @@ const renderIn = (ui: React.ReactElement) =>
 
 const role = (name: string) => `var(--colors-${name})`;
 
-/* Design's field map (sandbox df33b47), and design's "inputs use surface-raised". */
+/* Design's field map, and design's "inputs use surface-raised". */
 describe('field colors', () => {
   it.each([
     ['Input', <Input htmlFor="a" key="a" name="a" />, 'input'],

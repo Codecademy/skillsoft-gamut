@@ -55,7 +55,7 @@ describe('useCardElevation', () => {
     });
   });
 
-  /* Design's card map (sandbox df33b47): only an interactive card has a shadow. */
+  /* Design's card map: only an interactive card has a shadow. */
   it('gives a card that is not interactive no shadow at rest', () => {
     const { initial } = renderElevation('none', undefined, false);
 
@@ -68,7 +68,7 @@ describe('Card', () => {
     view.getByText('Card content');
 
   /*
-   * Design's card map, Interactive (sandbox df33b47): a `state-hover` veil and
+   * Design's card map, Interactive: a `state-hover` veil and
    * the raised-hover shadow; the border stays `border-subtle`.
    */
   it.each(['default', 'brand'] as const)(

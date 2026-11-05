@@ -167,7 +167,7 @@ export const getMemoizedStyles = (
         ...dropdownBorderStates({ error: state.selectProps.error, theme }),
         /*
          * A floating menu: a `border-subtle` hairline backed by the raised
-         * shadow (sandbox df33b47).
+         * shadow.
          */
         borderColor: theme.colors['border-subtle'],
         ...raisedShadow({ theme }),

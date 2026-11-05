@@ -52,7 +52,7 @@ export const percipioElevation: ElevationScaleFactory = ({ colors }) => {
 };
 
 /*
- * Brand elevations, drawn in the shadow roles (sandbox df33b47). Every depth
+ * Brand elevations, drawn in the shadow roles. Every depth
  * composes `shadow-key` (the tight contact layer) and `shadow-ambient` (the
  * soft falloff), so the layer count is the same at every level and shadows
  * animate cleanly between them. Geometry lives here until elevation becomes
@@ -78,7 +78,7 @@ export const softElevation: ElevationScaleFactory = ({ colors }) => {
  * The hard offset, for the Codecademy theme only, drawn in `shadow-key`. The
  * brand makes `shadow-ambient` transparent, and the ambient layer stays at
  * zero size. Design gives this theme "the hard offset" at raised depth
- * (sandbox df33b47, CTAButton) without its geometry, so raised is old core's
+ * (on CTAButton) without its geometry, so raised is old core's
  * CTAButton offset at rest (-4px) and raised-hover its hover offset (-8px,
  * with old core's Card lift).
  */

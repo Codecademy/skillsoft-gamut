@@ -36,7 +36,7 @@ describe('color system', () => {
     ).toBe(true);
   });
 
-  /* Sandbox D1: only a hex's hue is kept; its distance is reported. */
+  /* Only a hex's hue is kept; its distance is reported. */
   it('keeps the hue of a supplied hex and reports how far it lands', () => {
     const tenant = createColorSystem({
       name: 'tenant',
@@ -66,7 +66,7 @@ describe('color system', () => {
     ).toBe(true);
   });
 
-  /* Design's shadow roles (sandbox df33b47): key and ambient, per mode. */
+  /* Design's shadow roles: key and ambient, per mode. */
   it('draws shadows in the dark neutral in light mode and black in dark', () => {
     expect(system.roles.light['shadow-key'].key).toBe(
       'palette-neutral-dark-1100-a16'
