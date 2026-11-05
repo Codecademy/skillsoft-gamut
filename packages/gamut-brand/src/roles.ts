@@ -2,13 +2,9 @@ import type { Slot } from './brand';
 import type { Grade } from './ramp';
 
 /*
- * The role layer, as data. Ported from gamut-sandbox `roles.ts` at dffd84b,
- * roles updated to df33b47 (the shadow-* group), with every hue family swapped for its slot (blue → primary, magenta →
- * accent, violet → accent-alt, red → danger, amber → warning, teal → success).
- *
- * The sandbox's prose ("why this grade") stays in the sandbox; this file
- * keeps only what code needs: the values, the contrast floor a role is held
- * to, and what it's held against.
+ * The role layer, as data: each role's palette color in both modes, the
+ * contrast floor it's held to, and what it's held against. Roles name slots
+ * (primary, accent, danger), never hues, so one mapping fits every brand.
  */
 
 export type Mode = 'light' | 'dark';
@@ -68,7 +64,7 @@ const veil = (slot: Slot, grade: Grade, alpha: number): RoleValue => ({
 
 /*
  * Veil strengths. The binding constraint is `border-default` against the
- * veiled fill it encloses, at 3:1 (see the sandbox's STATE_ALPHA notes).
+ * veiled fill it encloses, at 3:1.
  */
 export const STATE_ALPHA = {
   'state-hover': 0.06,
@@ -77,8 +73,8 @@ export const STATE_ALPHA = {
 } as const;
 
 /*
- * Shadow strengths per mode (sandbox `SHADOW_ALPHA` at df33b47, still marked
- * draft there). Light ambient matches Percipio's shipped resting shadow; key
+ * Shadow strengths per mode (still draft in design's spec). Light ambient
+ * matches Percipio's shipped resting shadow; key
  * sits a step above it. Dark is twice light, as a dark surface has less light
  * to remove. The scrim is mode-independent.
  */
@@ -376,9 +372,9 @@ export const ROLES: Role[] = [
   ),
 
   /*
-   * Categorical viz. The slot order is the sandbox's categorical solve
-   * (`categorical.ts`) for Skillsoft's hues, taken as fixed input: porting the
-   * solver is deferred, so a tenant gets these slots and grades unsolved.
+   * Categorical viz. The slot order was solved for Skillsoft's hues and is
+   * fixed: there's no categorical solver here yet, so another brand gets these
+   * slots and grades unsolved.
    */
   ...(
     [

@@ -1,9 +1,9 @@
 import type { BrandInput } from '../brand';
 
 /*
- * Skillsoft is tier 4: every slot supplied. Hues come from the brand deck via
- * OKLCH (gamut-sandbox `palette.ts` at dffd84b); only the hue survives, so no
- * brand hex appears verbatim in the ramps.
+ * Skillsoft is tier 4: every slot supplied. Hues are the OKLCH hues of the
+ * brand deck's colors; only the hue survives, so no brand hex appears verbatim
+ * in the ramps.
  */
 export const skillsoftBrand: BrandInput = {
   name: 'skillsoft',

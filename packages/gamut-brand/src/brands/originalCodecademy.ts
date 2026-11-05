@@ -37,12 +37,12 @@ export const coreFamilyOverrides: BrandOverrides = {
  * primary), so it fills `accent`, and warning moves to the orange of old
  * core's notice Alert to keep the accent and warning chart colors apart. Old
  * core has no second accent in use, so `accent-alt` stays on the gamut
- * default (sandbox D4), which makes this tier 3.
+ * default, which makes this tier 3.
  *
  * On top of the core family's overrides: the Codecademy theme's shadows are a
  * hard offset with no soft falloff, so `shadow-ambient` is transparent in both
  * modes and the layer stays in every elevation, keeping the layer count the
- * same at every depth (design's sandbox, df33b47). That's this theme only;
+ * same at every depth (design's call). That's this theme only;
  * admin and platform get the soft shadow.
  */
 export const originalCodecademyBrand: BrandInput = {

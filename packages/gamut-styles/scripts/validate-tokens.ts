@@ -13,9 +13,6 @@
  * 3. The brand's generated files are up to date with the generator.
  * 4. The content-mode table picks what Background's runtime math picked.
  * Then sample tenants, run through the probe.
- *
- * Parity with design's sandbox is a test in @skillsoft/gamut-brand
- * (`src/__tests__/sandboxParity.test.ts`).
  */
 import { readFile } from 'node:fs/promises';
 import { join, relative } from 'node:path';
