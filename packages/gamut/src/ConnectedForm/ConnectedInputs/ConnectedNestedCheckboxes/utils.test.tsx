@@ -7,7 +7,7 @@ import {
   getAllDescendants,
   handleCheckboxChange,
   renderCheckbox,
-} from '../utils';
+} from './utils';
 
 describe('ConnectedNestedCheckboxes utils', () => {
   describe('flattenOptions', () => {
