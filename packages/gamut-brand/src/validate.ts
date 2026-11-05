@@ -10,9 +10,7 @@ import type { Color, ColorSystem } from './system';
 
 /*
  * The guarantees, as a function of any color system — ours or a tenant's.
- * Ported from the checks in gamut-sandbox `scripts/validate-colors.ts` that
- * the token output depends on. Every number is measured on OKLCH floats, not
- * on rounded hex.
+ * Every number is measured on OKLCH floats, not on rounded hex.
  */
 
 export interface Check {
@@ -122,9 +120,9 @@ const VEIL_STACKS: [string, string[]][] = [
 ];
 
 /*
- * The sandbox leaves border-default on a selected stack out of scope: "no
- * component pairs a bare border with a selected state". Measured and
- * reported here, not asserted, so the carve-out stays visible.
+ * border-default on a selected stack is out of scope: no component pairs a
+ * bare border with a selected state. Measured and reported, not asserted, so
+ * the carve-out stays visible.
  */
 const isCarvedOut = (token: string, stack: string[]) =>
   token === 'border-default' && stack.includes('state-selected');
@@ -137,7 +135,7 @@ const veilFloors = (system: ColorSystem): Check[] => {
   const asserted = new Tracker();
   const carvedOut = new Tracker();
   for (const role of ROLES) {
-    /* Viz marks don't sit on interactive fills; the sandbox doesn't pair them either. */
+    /* Viz marks don't sit on interactive fills, so they aren't paired with veils. */
     if (role.floor === undefined || role.group === 'viz') continue;
     const surfaces = (role.against ?? []).filter((s) => ELEVATION.includes(s));
     for (const mode of MODES) {
