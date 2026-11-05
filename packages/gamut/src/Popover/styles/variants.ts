@@ -46,7 +46,7 @@ export const beakSize = variant({
       width: tooltipArrowHeight,
     },
     lrg: {
-      bg: 'background',
+      bg: 'surface-raised',
       height: '20px',
       width: '20px',
     },

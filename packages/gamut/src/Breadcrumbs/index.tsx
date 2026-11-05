@@ -86,7 +86,7 @@ export const Breadcrumbs = <T extends string | object>({
             </Text>
           )}
           {index !== crumbs.length - 1 && (
-            <Text aria-hidden mx={4}>
+            <Text aria-hidden color="text-subtle" mx={4}>
               /
             </Text>
           )}

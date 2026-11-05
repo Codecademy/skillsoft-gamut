@@ -72,7 +72,7 @@ export const Formatted: Story = {
         },
       },
     ],
-    requiredTextProps: { color: 'danger', variant: 'title-xs' },
+    requiredTextProps: { color: 'text-error', variant: 'title-xs' },
   },
 };
 
@@ -204,7 +204,7 @@ export const Sections: Story = {
         layout: 'left',
         variant: 'title-xs',
         titleWrapperProps: {
-          color: 'danger',
+          color: 'text-error',
         },
         fields: [
           {
@@ -279,6 +279,6 @@ export const Sections: Story = {
         ],
       },
     ],
-    requiredTextProps: { color: 'primary', fontStyle: 'italic' },
+    requiredTextProps: { color: 'action-primary', fontStyle: 'italic' },
   },
 };

@@ -130,7 +130,7 @@ export const FilterControl: React.FC<FilterProps> = ({
       >
         <FlexBox center dimensions={16} mb={4} mr={4}>
           <FilterIcon
-            color={filters.length > 0 ? 'primary' : 'text'}
+            color={filters.length > 0 ? 'action-primary' : 'text-default'}
             size={14}
           />
         </FlexBox>

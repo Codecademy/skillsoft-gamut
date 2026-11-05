@@ -182,7 +182,7 @@ export const Scrollable: Story = {
 export const BackgroundColors: Story = {
   args: {},
   render: (args) => (
-    <Background bg="paleBlue" p={8}>
+    <Background bg="surface-brand-subtle" p={8}>
       <DataTable {...args} />
     </Background>
   ),

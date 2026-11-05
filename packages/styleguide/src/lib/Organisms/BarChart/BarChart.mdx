@@ -238,11 +238,11 @@ Custom sort functions can access additional properties on `BarProps` for domain-
 
 The `styleConfig` prop accepts an object with the following optional properties:
 
-- **`textColor`**: Color for each bar row's `categoryLabel`. Defaults to `'text'`
-- **`seriesOneBarColor`**: Color for the bar that represents `seriesOneValue` (the only bar in simple charts; the overlay segment in stacked charts). Defaults to `'text'`
-- **`seriesTwoBarColor`**: Color for the bar that represents `seriesTwoValue` (the full-length bar behind the overlay in stacked charts; unused when only `seriesOneValue` is set). Defaults to `'primary'`
-- **`seriesOneLabel`**: Color for the numeric label for `seriesOneValue` (when stacked: the value before the arrow). In simple charts, color for the value label beside the bar (`seriesOneValue`). Defaults to `'text-secondary'`
-- **`seriesTwoLabel`**: Color for the numeric label for `seriesTwoValue` (stacked charts only—the total at the end of the bar). Defaults to `'primary'`
+- **`textColor`**: Color for each bar row's `categoryLabel`. Defaults to `'text-default'`
+- **`seriesOneBarColor`**: Color for the bar that represents `seriesOneValue` (the only bar in simple charts; the overlay segment in stacked charts). Defaults to `'text-default'`
+- **`seriesTwoBarColor`**: Color for the bar that represents `seriesTwoValue` (the full-length bar behind the overlay in stacked charts; unused when only `seriesOneValue` is set). Defaults to `'action-primary'`
+- **`seriesOneLabel`**: Color for the numeric label for `seriesOneValue` (when stacked: the value before the arrow). In simple charts, color for the value label beside the bar (`seriesOneValue`). Defaults to `'text-subtle'`
+- **`seriesTwoLabel`**: Color for the numeric label for `seriesTwoValue` (stacked charts only—the total at the end of the bar). Defaults to `'action-primary'`
 
 All color values should be valid color tokens from the Gamut design system. When customizing colors, ensure they maintain at least a 3:1 contrast ratio with the background for accessibility.
 

@@ -24,9 +24,9 @@
       "import": "./dist/tokens/index.mjs",
       "require": "./dist/tokens/index.js"
     },
-    "./tokens.css": "./dist/tokens/generated/tokens.css",
-    "./tokens/*.tokens.json": "./dist/tokens/generated/*.tokens.json",
-    "./tokens/brands/*.tokens.json": "./dist/tokens/generated/brands/*.tokens.json"
+    "./tokens.css": "./dist/tokens/generated/skillsoft/tokens.css",
+    "./tokens/*.css": "./dist/tokens/generated/*/tokens.css",
+    "./tokens/*.tokens.json": "./dist/tokens/generated/*.tokens.json"
   },
   "files": [
     "dist",
@@ -49,15 +49,14 @@
   "scripts": {
     "build": "nx build gamut-styles",
     "build:tokens": "jiti scripts/build-tokens.ts",
-    "dump:sandbox": "jiti scripts/dump-sandbox.ts",
     "validate:tokens": "jiti scripts/validate-tokens.ts"
   },
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "devDependencies": {
+    "@skillsoft/gamut-brand": "workspace:*",
     "@types/culori": "^4",
     "culori": "^4.0.2",
-    "jiti": "2.4.2",
-    "style-dictionary": "5.7.0"
+    "jiti": "2.4.2"
   }
 }

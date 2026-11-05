@@ -643,7 +643,7 @@ describe('BarChart', () => {
     it('applies custom textColor to labels', () => {
       const { view } = renderView({
         styleConfig: {
-          textColor: 'primary',
+          textColor: 'action-primary',
         },
       });
 
@@ -654,8 +654,8 @@ describe('BarChart', () => {
     it('applies custom seriesOneBarColor and seriesTwoBarColor', () => {
       const { view } = renderView({
         styleConfig: {
-          seriesOneBarColor: 'primary',
-          seriesTwoBarColor: 'text',
+          seriesOneBarColor: 'action-primary',
+          seriesTwoBarColor: 'text-default',
         },
       });
 
@@ -672,8 +672,8 @@ describe('BarChart', () => {
       const { view } = renderView({
         barValues: stackedBarValues,
         styleConfig: {
-          seriesOneLabel: 'feedback-error',
-          seriesTwoLabel: 'feedback-success',
+          seriesOneLabel: 'text-error',
+          seriesTwoLabel: 'text-success',
         },
       });
 

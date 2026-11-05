@@ -1,4 +1,4 @@
-import * as values from '../tokens/generated/values';
+import * as values from '../tokens/generated/skillsoft/values';
 import {
   fontWeightMediumTitle,
   percipioFontFamily,

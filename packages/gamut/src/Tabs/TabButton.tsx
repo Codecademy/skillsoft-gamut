@@ -12,18 +12,19 @@ export interface TabButtonProps
     TabElementStyleProps {}
 
 const tabSelectedStyles = {
+  color: 'text-default',
   fontWeight: 'title',
   pt: 12,
   pb: 8,
   borderBottomWidth: 4,
-  borderColor: 'primary',
+  borderColor: 'action-primary',
 } as const;
 
 const focusVisibleStyles = {
   [TabSelectors.FOCUS_VISIBLE + TabSelectors.BEFORE]: {
     content: '""',
     border: 2,
-    borderColor: 'primary',
+    borderColor: 'action-primary',
     position: 'absolute',
     inset: 0,
     zIndex: 0,
@@ -42,7 +43,7 @@ export const tabVariants = variant({
     borderRadius: 'none',
     px: 24,
     textOverflow: 'ellipsis',
-    color: 'text',
+    color: 'text-default',
     font: 'inherit',
     cursor: 'pointer',
     zIndex: 1,
@@ -53,9 +54,11 @@ export const tabVariants = variant({
     ...focusVisibleStyles,
   },
   variants: {
+    /* Unselected labels are `text-subtle`; hover is a veil. */
     standard: {
       background: 'none',
-      borderColor: 'border-primary',
+      color: 'text-subtle',
+      borderColor: 'border-subtle',
       borderLeft: 'none',
       borderRight: 'none',
       borderTop: 'none',
@@ -66,7 +69,7 @@ export const tabVariants = variant({
       pt: 12,
       pb: 11 as 12, // border + padding = 12px
       [TabSelectors.HOVER]: {
-        bg: 'background-selected',
+        bg: 'state-hover',
       },
       [TabSelectors.SELECTED]: {
         ...tabSelectedStyles,
@@ -78,7 +81,7 @@ export const tabVariants = variant({
       fontSize: 14,
       py: 12,
       [TabSelectors.SELECTED]: {
-        bg: 'background',
+        bg: 'surface-raised',
         fontWeight: 'bold',
       },
     },

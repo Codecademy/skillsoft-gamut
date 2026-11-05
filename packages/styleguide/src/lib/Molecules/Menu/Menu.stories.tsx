@@ -15,7 +15,7 @@ import {
   PeopleIcon,
   RatingStarCircleIcon,
 } from '@skillsoft/gamut-icons';
-import { Background } from '@skillsoft/gamut-styles';
+import { ColorMode } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 
@@ -287,7 +287,7 @@ export const IconMenu: Story = {
           icon={RatingStarCircleIcon}
           label={{
             alignment: 'right-center',
-            info: <Text color="hyper">I am bold and different</Text>,
+            info: <Text color="action-primary">I am bold and different</Text>,
             narrow: true,
           }}
         />
@@ -326,10 +326,16 @@ export const FloatingMenuExample: React.FC = () => {
   return (
     <FlexBox m={48} minHeight="30px" position="relative">
       <FlexBox flex={1}>
-        <Background bg="black" borderRadius="lg" height="100%" pl={48}>
+        <ColorMode
+          bg="surface-default"
+          borderRadius="lg"
+          height="100%"
+          mode="dark"
+          pl={48}
+        >
           <FlexBox
             alignItems="center"
-            bg="navy"
+            bg="surface-raised"
             dimensions="200px"
             height="100%"
             justifyContent="right"
@@ -368,7 +374,7 @@ export const FloatingMenuExample: React.FC = () => {
             x={-21}
             y={currentTarget}
           >
-            <Background bg="white" borderRadius="lg">
+            <ColorMode bg="surface-raised" borderRadius="lg" mode="light">
               <Menu role="menu" variant="popover">
                 {activeIndex % 2 === 0 ? (
                   <>
@@ -383,9 +389,9 @@ export const FloatingMenuExample: React.FC = () => {
                   </>
                 )}
               </Menu>
-            </Background>
+            </ColorMode>
           </PopoverContainer>
-        </Background>
+        </ColorMode>
       </FlexBox>
     </FlexBox>
   );

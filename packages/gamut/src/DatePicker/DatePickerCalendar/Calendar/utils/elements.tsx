@@ -14,7 +14,8 @@ export const TableHeader = styled.th(
   css({
     fontSize: 14,
     fontWeight: 'base',
-    color: 'text-disabled',
+    /* Like a List header's sort icon: secondary text, not a disabled one. */
+    color: 'text-subtle',
     textAlign: 'center',
   })
 );
@@ -31,18 +32,20 @@ const datecellStates = states({
       width: 4,
       height: 4,
       borderRadius: 'full',
-      bg: 'hyper',
+      /* An indicator, like the Tabs indicator. */
+      bg: 'action-primary',
     },
   },
+  /* A dark chip, like the selection Tag: `text-inverse` on the fill. */
   isSelected: {
-    bg: 'text',
-    color: 'background',
+    bg: 'text-default',
+    color: 'text-inverse',
     '&:hover, &:focus': {
-      bg: 'secondary-hover',
-      color: 'background',
+      bg: 'action-neutral-hover',
+      color: 'text-inverse',
     },
     '&::after': {
-      bg: 'background',
+      bg: 'text-inverse',
     },
   },
   isRangeStart: {
@@ -51,26 +54,24 @@ const datecellStates = states({
   isRangeEnd: {
     borderRadiusLeft: 'none',
   },
+  /* Days inside a range are selected rows: the `state-selected` veil. */
   isInRange: {
-    bg: 'text-disabled',
-    color: 'background',
+    bg: 'state-selected',
+    color: 'text-default',
     borderRadius: 'none',
     '&:hover, &:focus': {
-      bg: 'secondary-hover',
-      color: 'background',
-    },
-    '&::after': {
-      bg: 'background',
+      bg: 'action-neutral-hover',
+      color: 'text-inverse',
     },
   },
   isDisabled: {
-    color: 'text-disabled',
+    color: 'action-disabled',
     bg: 'transparent',
     cursor: 'not-allowed',
     userSelect: 'none',
     textDecoration: 'line-through',
     '&:hover, &:focus': {
-      color: 'text-disabled',
+      color: 'action-disabled',
       bg: 'transparent',
       textDecoration: 'line-through',
       cursor: 'not-allowed',
@@ -96,8 +97,8 @@ export const DateCell = styled.td<DateCellProps>(
       'ease-in'
     ),
     '&:hover': {
-      color: 'secondary',
-      bg: 'background-hover',
+      color: 'action-neutral',
+      bg: 'state-hover',
       transition: transitionConcat(
         ['background-color', 'box-shadow'],
         'fast',
@@ -106,11 +107,11 @@ export const DateCell = styled.td<DateCellProps>(
       cursor: 'pointer',
     },
     '&:focus-visible': {
-      color: 'secondary',
+      color: 'action-neutral',
       outline: 'none',
     },
     '&:active': {
-      color: 'text',
+      color: 'text-default',
     },
     '&::before': {
       content: '""',
@@ -118,6 +119,7 @@ export const DateCell = styled.td<DateCellProps>(
       inset: -3,
       borderRadius: 'lg',
       border: 2,
+      borderColor: 'action-primary',
       opacity: 0,
       zIndex: 0,
     },

@@ -775,7 +775,7 @@ export const AbbreviatedInput: Story = {
       >
         <SelectDropdown {...args} />
       </FormGroup>
-      <Box color="text-secondary" mt={4}>
+      <Box color="text-subtle" mt={4}>
         Input shows &quot;USA&quot; but dropdown shows &quot;United States of
         America&quot;
       </Box>
@@ -816,7 +816,7 @@ export const AbbreviatedMultiSelect: Story = {
       >
         <SelectDropdown {...args} />
       </FormGroup>
-      <Box color="text-secondary" mt={4}>
+      <Box color="text-subtle" mt={4}>
         Selected tags show abbreviations; the dropdown shows full labels
       </Box>
     </Box>
@@ -994,7 +994,7 @@ export const ComplexAbbreviatedOptions: Story = {
       >
         <SelectDropdown {...args} />
       </FormGroup>
-      <Box color="text-secondary" mt={4}>
+      <Box color="text-subtle" mt={4}>
         Shows abbreviated text in input, full details in dropdown
       </Box>
     </Box>
@@ -1405,7 +1405,7 @@ export const IndependentWidths: Story = {
       >
         <SelectDropdown {...args} />
       </FormGroup>
-      <Box color="text-secondary" mt={4}>
+      <Box color="text-subtle" mt={4}>
         Input is 150px wide, dropdown is 350px wide
       </Box>
     </Box>
@@ -1457,7 +1457,7 @@ export const SmallWithAbbreviations: Story = {
       >
         <SelectDropdown {...args} />
       </FormGroup>
-      <Box color="text-secondary" mt={4}>
+      <Box color="text-subtle" mt={4}>
         Small size, input shows &quot;JS&quot; but dropdown shows
         &quot;JavaScript&quot;
       </Box>
@@ -1509,7 +1509,7 @@ export const MenuAlignmentRight: Story = {
       >
         <SelectDropdown {...args} />
       </FormGroup>
-      <Box color="text-secondary" mt={4}>
+      <Box color="text-subtle" mt={4}>
         Dropdown aligns to the right edge of the input
       </Box>
     </FlexBox>
@@ -1686,7 +1686,7 @@ export const MultipleSelectControlled: Story = {
       onChange={(opts) => setSelected(opts.map((o) => o.value))}
     />
   </FormGroup>
-  <Box color="text-secondary" mt={8}>
+  <Box color="text-subtle" mt={8}>
     {selected.length === 0
       ? 'No languages selected yet.'
       : \`Selected: \${selected.join(', ')}\`}
@@ -1716,7 +1716,7 @@ export const MultipleSelectControlled: Story = {
               onChange={(opts) => setSelected(opts.map((o) => o.value))}
             />
           </FormGroup>
-          <Box color="text-secondary" mt={8}>
+          <Box color="text-subtle" mt={8}>
             {selected.length === 0
               ? 'No languages selected yet.'
               : `Selected: ${selected.join(', ')}`}

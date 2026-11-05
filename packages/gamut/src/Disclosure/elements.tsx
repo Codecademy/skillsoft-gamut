@@ -15,13 +15,13 @@ const disclosureWrapperVariants = variant({
   },
   variants: {
     default: {
-      bg: 'background',
+      bg: 'surface-raised',
     },
     subtle: {
-      bg: 'background-selected',
+      bg: 'surface-sunken',
     },
     transparent: {
-      bg: 'background-current',
+      bg: 'inherit',
     },
   },
 });
@@ -29,6 +29,7 @@ const disclosureWrapperVariants = variant({
 const disclosureWrapperStates = states({
   hasBorder: {
     border: 1,
+    borderColor: 'border-default',
   },
 });
 
@@ -55,16 +56,19 @@ export const DisclosureButtonWrapper = styled(Anchor)(
       default: {
         bg: 'inherit',
         '&:hover': {
-          color: 'text',
-          bg: 'background-hover',
+          color: 'text-default',
+          bg: 'state-hover',
         },
+        /* Focus is a ring, not a fill. */
         '&:focus': {
-          color: 'text',
-          bg: 'background-selected',
+          color: 'text-default',
+          outline: '2px solid',
+          outlineColor: 'action-primary',
+          outlineOffset: '-2px',
         },
         '&:disabled': {
-          color: 'text-disabled',
-          bg: 'background-disabled',
+          color: 'surface-raised',
+          bg: 'action-disabled',
         },
       },
     },
@@ -105,7 +109,7 @@ export const StyledFillButton = styled(FillButton)(
 
 const disclosureBodyWrapperStates = states({
   hasPanelBg: {
-    bg: 'background-selected',
+    bg: 'surface-sunken',
     p: 8,
   },
 });

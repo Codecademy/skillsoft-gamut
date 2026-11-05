@@ -14,8 +14,8 @@ export type SkipToContentProps = {
 const animateFunction = `cubic-bezier(0.075, 0.82, 0.165, 1)`;
 
 const SkipToContentLink = styled.a`
-  color: ${themed('colors.navy')};
-  background-color: ${themed('colors.white')};
+  color: ${themed('colors.text-default')};
+  background-color: ${themed('colors.surface-raised')};
   cursor: pointer;
   display: flex;
   font-weight: ${themed('fontWeight.title')};
@@ -38,7 +38,7 @@ const SkipToContentLink = styled.a`
   }
 
   &:focus {
-    outline-color: ${themed('colors.hyper')};
+    outline-color: ${themed('colors.action-primary')};
     opacity: 1;
     transform: translate(-50%, 1rem);
   }

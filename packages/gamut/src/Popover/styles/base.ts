@@ -2,8 +2,11 @@ import { states, variant } from '@skillsoft/gamut-styles';
 
 import { toolTipBodyCss } from '../../Tip/shared/styles/styles';
 
-export const borderStyles = { border: 1 } as const;
-export const popoverPrimaryBgColor = `background`;
+export const borderStyles = {
+  border: 1,
+  borderColor: 'border-subtle',
+} as const;
+export const popoverPrimaryBgColor = `surface-raised`;
 
 /**
  * For the Popover + Tooltip style files:
@@ -33,7 +36,6 @@ export const raisedDivVariants = variant({
   base: {
     zIndex: 1,
     ...borderStyles,
-    boxShadow: 'none',
   },
   defaultVariant: 'primary',
   variants: {

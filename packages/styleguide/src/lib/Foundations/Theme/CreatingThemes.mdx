@@ -548,7 +548,6 @@ If you'd like to test your theme with components locally, you can add it the Sto
       core: coreTheme,
       admin: adminTheme,
       lxStudio: lxStudioTheme,
-      percipio: percipioTheme,
       your-theme-here: yourCustomTheme,
     } as const;
 ```
@@ -558,14 +557,13 @@ If you'd like to test your theme with components locally, you can add it the Sto
   theme: {
     name: 'Theme',
     description: 'Global theme for components',
-    defaultValue: 'percipio',
+    defaultValue: 'core',
     toolbar: {
       icon: 'paintbrush',
       items: [
         { value: 'core', title: 'Core' },
         { value: 'admin', title: 'Admin' },
         { value: 'lxStudio', title: 'LX Studio' },
-        { value: 'percipio', title: 'Percipio' },
         { value: 'your-theme-here', title: 'Custom Theme' },
       ],
       showName: true,
