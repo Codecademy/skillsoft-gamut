@@ -12,7 +12,6 @@ import {
   originalCodecademyTheme,
 } from '@skillsoft/gamut-styles';
 import { Theme } from '@emotion/react';
-import tokensCss from '@skillsoft/gamut-styles/tokens.css?inline';
 
 const STORYBOOK_CSP_NONCE = 'storybook-csp-nonce';
 
@@ -51,14 +50,16 @@ export const withEmotion = (Story: any, context: GlobalsContext) => {
   const direction = context.globals.direction ?? 'ltr';
   const currentTheme = themeMap[selectedTheme];
   /*
-   * Generated themes (color-system spike; they carry contentModes) take their
-   * values from tokens.css, not Emotion. Injected only for those: tokens.css
-   * also sets white, black and background-current on :root, which would leak
-   * into the other themes. They have none of core's primitives, so `navy`
-   * doesn't exist there; the story sits on their own surface-default.
+   * Generated themes (they carry contentModes) take their values from their
+   * brand's tokens.css, not Emotion. GamutProvider injects it; the test
+   * provider below runs without globals, so it injects the theme's own copy.
+   * Only for those: tokens.css also sets white, black and background-current
+   * on :root, which would leak into the other themes. They have none of
+   * core's primitives, so `navy` doesn't exist there; the story sits on their
+   * own surface-default.
    */
   const generated = 'contentModes' in currentTheme ? currentTheme : undefined;
-  const tokens = generated && <style>{tokensCss}</style>;
+  const tokens = generated && <style>{generated.tokensCss}</style>;
   const bg = (
     generated
       ? generated.modes[colorMode]['surface-default']

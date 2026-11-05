@@ -8,4 +8,4 @@ Rebuild `adminTheme`, `platformTheme` and `lxStudioTheme` as brands of the gener
 - Fonts, weights and lxStudio's radii are unchanged. Elevation is the soft shadow drawn in the shadow roles (design's sandbox, `df33b47`); only Original Codecademy keeps the hard offset. `platformTheme` still starts in dark mode and keeps its `editor-*` code editor colors with their old values.
 - The two-color brand gradient pairs primary with accent-alt for every brand with a yellow accent.
 - **Visual change:** the rebuilt themes aren't pixel-identical to the old ones; role grades come from design's system. Old color names that only these themes had are gone.
-- **Breaking:** `percipioTheme` and the `PercipioTheme` type are removed. The Percipio fonts and elevation stay, since `skillsoftTheme` and `lxStudioTheme` use them.
+- **Breaking:** `percipioTheme` and the `PercipioTheme` type are removed. `skillsoftTheme`, the new default, replaces it: it keeps Percipio's fonts, font weights and resting shadow, with colors generated from the Skillsoft brand's hues. Use `skillsoftTheme` wherever an app used `percipioTheme`.
