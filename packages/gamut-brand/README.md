@@ -150,8 +150,6 @@ The CLI is a thin layer over these, for build scripts that generate several bran
 
 ## How the generator works
 
-The generated OKLCH color system is ported from design's gamut-sandbox (PR #34, `stacey/color-tokens-v2`). `src/__fixtures__/sandbox.json` records the sandbox commit the port matches, and `src/__tests__/sandboxParity.test.ts` holds the generator to it.
-
 ```
 brands/skillsoft.ts         one hue per slot (or just `primary`)
   → brand.ts                fills missing slots, reports the white-label tier
@@ -165,16 +163,15 @@ brands/skillsoft.ts         one hue per slot (or just `primary`)
   → generate.ts             Style Dictionary → tokens.css, read back and checked again
 ```
 
-To take a sandbox update:
+`src/__tests__/generator.test.ts` holds the rules: every grade's lightness, chroma inside sRGB, the separation guarantee at every hue, one role mapping for every brand, and every check passing for gamut's brands and for a primary at every 5° of hue.
+
+After changing the generator, regenerate gamut's brands and review the diff:
 
 ```sh
-yarn workspace @skillsoft/gamut-brand dump:sandbox <sandbox checkout>   # refresh the fixture
-npx nx test gamut-brand                                                # what still differs
-yarn workspace @skillsoft/gamut-styles build:tokens                    # regenerate gamut's brands
-yarn workspace @skillsoft/gamut-styles validate:tokens                 # full report for gamut's brands
+npx nx test gamut-brand
+yarn workspace @skillsoft/gamut-styles build:tokens      # rewrites src/tokens/generated
+yarn workspace @skillsoft/gamut-styles validate:tokens   # full report for gamut's brands
 ```
-
-The sandbox checkout needs its dependencies installed (`yarn` there).
 
 ## Naming
 
@@ -187,7 +184,6 @@ The `--colors-` prefix on primitives is there because variance's `addColors` alw
 
 ## Known gaps
 
-- The categorical solver isn't ported. `viz-1` to `viz-8` use the slot and grade order the sandbox solved for Skillsoft's hues; another brand gets that order unsolved.
+- There's no categorical solver. `viz-1` to `viz-8` use a slot and grade order solved for Skillsoft's hues; another brand gets that order unsolved, and categorical separation isn't checked.
 - The theme carries sRGB copies of the values, because `BarChart` runs polished on them and polished can't parse `oklch()`.
 - `tokens.css` needs `oklch()` and `color-mix()`. The hex fallback for older browsers isn't built yet.
-- The sandbox measures component pairings on rounded hex; this port measures OKLCH floats. Same pairings, ratios within 0.074, same pass and fail.

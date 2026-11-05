@@ -17,9 +17,8 @@ import { validate } from './validate';
  *
  * Contrast is inherited by construction — the probe re-runs `validate` to
  * prove it, not to discover it. What isn't inherited is anything about hues
- * relative to each other. The status trio is ported here; the categorical
- * separation from gamut-sandbox `probeTenant` is not, because it needs the
- * categorical solver, which is deferred.
+ * relative to each other. The status trio is checked here; categorical
+ * separation isn't yet, because it needs a categorical solver.
  */
 
 /* Below this, the status trio can't be told apart even with an icon. */

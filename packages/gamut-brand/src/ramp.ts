@@ -7,9 +7,7 @@ import {
 } from 'culori';
 
 /*
- * The ramp generator, ported from gamut-sandbox PR #34 (`generate.ts` at dffd84b).
- *
- * One input per family: its hue. Lightness is fixed per grade and shared by
+ * The ramp generator. One input per family: its hue. Lightness is fixed per grade and shared by
  * every family, so two colors at the same grade read as equally light. Chroma
  * is a percentage of the most sRGB can show at that lightness and hue, so the
  * same curve works for any hue a tenant hands us. Hex falls out last and is

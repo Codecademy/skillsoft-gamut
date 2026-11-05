@@ -11,8 +11,8 @@ import type { Mode, Ref, RoleToken } from './roles';
  * `BrandInput`, not a new theme.
  *
  * A brand only has to supply `primary`. Anything it leaves out is filled in by
- * the derivation rules below (gamut-sandbox `whiteLabel.ts`, D1–D4), and the
- * resolved brand reports which tier that puts it on.
+ * the derivation rules below, and the resolved brand reports which tier that
+ * puts it on.
  */
 
 export const SLOTS = [
@@ -37,10 +37,9 @@ export type HueInput = number | string;
 
 /*
  * Manual overrides, for a brand that has to keep a color the generator
- * wouldn't produce (Original Codecademy's yellow). They depart from the
- * sandbox, whose D1 keeps only a hex's hue, so they're explicit and few. Each
- * one is still measured: the build refuses a brand whose overrides break a
- * guarantee.
+ * wouldn't produce (Original Codecademy's yellow). Everywhere else only a
+ * color's hue is kept, so overrides are explicit and few. Each one is still
+ * measured: the build refuses a brand whose overrides break a guarantee.
  *
  * - `palette`: an exact hex in place of a generated rung, keyed `slot-grade`.
  *   Pick the grade whose fixed lightness is nearest, or the ladder bends.
@@ -77,9 +76,9 @@ export interface BrandInput {
 export type Tier = 1 | 2 | 3 | 4;
 
 /*
- * How far a supplied hex lands from its family's nearest generated rung
- * (sandbox D1: only the hue is kept, and the distance is reported rather than
- * hidden). Filled in by createColorSystem, which has the ramps.
+ * How far a supplied hex lands from its family's nearest generated rung. Only
+ * the hue is kept, so the distance is reported rather than hidden. Filled in
+ * by createColorSystem, which has the ramps.
  */
 export interface SourceDistance {
   hex: string;
