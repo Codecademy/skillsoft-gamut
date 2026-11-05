@@ -65,7 +65,7 @@ export const Flyout: React.FC<FlyoutProps> = ({
           position="fixed"
           top={0}
           {...{ [openFrom]: 0 }}
-          /* Design's map (sandbox df33b47): a `border-subtle` inner edge. */
+          /* Design's map: a `border-subtle` inner edge. */
           {...{
             [openFrom === 'left'
               ? 'borderRight'

@@ -1,10 +1,7 @@
 /*
  * The migration layer: how today's Gamut color aliases and component colors
- * land on the role layer. Ported from gamut-sandbox PR #34
- * (`src/colorSystem/migration.ts` at df33b47), design's source of truth, shown
- * at #/migration. The data below is verbatim apart from `Slot` → `ComponentSlot`
- * (`Slot` here means a brand slot) and comment style. Re-syncing is a
- * deliberate step, like the rest of the port.
+ * land on the role layer: design's map, every old alias to a role and every
+ * component slot by slot.
  *
  * Every target is a role token, never a primitive or a hex. `validateMigration`
  * holds the file to that for any color system, not just Skillsoft's: each
@@ -1460,7 +1457,7 @@ const PEAK_ALPHA = FALLOFF[0][1];
 /*
  * The color a role puts on screen in a mode, for contrast purposes. Veils and
  * shadows have no color of their own and aren't measured. A gradient is
- * measured at the sandbox's conservative bound: every circle at peak alpha,
+ * measured at its conservative bound: every circle at peak alpha,
  * stacked bottom-to-top over the flat base (circles are authored top-first).
  */
 export const roleColor = (
@@ -1544,7 +1541,7 @@ export const componentChecks = (
 export const isExempt = (check: SlotCheck): boolean =>
   check.bg === 'action-disabled' || check.fg === 'action-disabled';
 
-/* The sandbox's `validate:colors` migration checks, for any color system. */
+/* The migration map's checks, for any color system. */
 export const validateMigration = (system: ColorSystem): Check[] => {
   const legacy: string[] = [...LEGACY_TOKENS];
   const mapped = TOKEN_MAP.map((m) => m.legacy as string);

@@ -5,7 +5,7 @@ import { platformTheme } from '../platform';
 import { skillsoftTheme } from '../skillsoft';
 
 /*
- * Brand elevations draw every depth in the shadow roles (sandbox df33b47), so
+ * Brand elevations draw every depth in the shadow roles, so
  * no shadow names a color the brand theme doesn't have. The theme flattens
  * the scale to `<state>-shadow` and `<state>-transform`.
  */

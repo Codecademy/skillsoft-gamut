@@ -39,7 +39,7 @@ const HOVER_TRANSITION = {
 } as const;
 
 /*
- * Design's card map (gamut-brand src/migration.ts, COMPONENTS; sandbox df33b47):
+ * Design's card map (gamut-brand src/migration.ts, COMPONENTS):
  * two variants replace the old color names. `default` is `surface-raised`
  * (old default, white, beige and navy); `brand` is the featured card on the
  * `surface-brand` gradient (old yellow and hyper). Every card has a
@@ -121,7 +121,7 @@ export const patternFadeInOut = {
 /*
  * An interactive card sits at the theme's raised shadow and moves to its
  * raised-hover shadow on hover. A card that isn't interactive has no shadow
- * (design's card map, sandbox df33b47).
+ * (design's card map).
  */
 export const useCardElevation = (
   shadow: StyleProps<typeof shadowVariants>['shadow'],

@@ -38,8 +38,7 @@
   },
   "repository": "git@github.com:Codecademy/skillsoft-gamut.git",
   "scripts": {
-    "build": "nx build gamut-brand",
-    "dump:sandbox": "jiti scripts/dump-sandbox.ts"
+    "build": "nx build gamut-brand"
   },
   "sideEffects": false,
   "types": "./dist/index.d.ts"

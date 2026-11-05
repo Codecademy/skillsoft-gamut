@@ -118,7 +118,7 @@ export const strokeButtonVariants = templateVariants(
 );
 
 /*
- * Design's CTAButton map (sandbox df33b47): fills follow primary FillButton,
+ * Design's CTAButton map: fills follow primary FillButton,
  * and the shadow comes from the theme's elevation, raised at rest and
  * raised-hover on hover. That's the soft shadow on most brands and the hard
  * offset in the Codecademy theme. `ctaButtonElevation` runs before the

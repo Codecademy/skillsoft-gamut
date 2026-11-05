@@ -6,7 +6,7 @@ import type { BrandInput } from '../brand';
  * and its own success green in light mode. Everything else is core's: navy
  * text, yellow accent, red danger and orange warning (as Original Codecademy
  * reads it). Old lxStudio has no second accent, so `accent-alt` stays on the
- * gamut default (sandbox D4).
+ * gamut default.
  *
  * The yellow accent is generated like any other slot, not pinned to core's
  * grades, and dark mode keeps the generated sapphire primary rather than

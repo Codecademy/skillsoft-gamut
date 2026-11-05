@@ -15,7 +15,7 @@ import { createVariantsFromAlignments } from './createVariantsUtils';
 
 /*
  * Every floating surface is `surface-raised` with a `border-subtle` edge,
- * beak included, and its shadow does the separating (sandbox df33b47).
+ * beak included, and its shadow does the separating.
  */
 export const tooltipBgColor = `surface-raised`;
 export const tooltipArrowHeight = `1rem`;
