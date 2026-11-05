@@ -75,4 +75,4 @@ export const findOldVars = (
 };
 
 export const paletteMessage = (name: string) =>
-  `'--color-${name}' is an old palette color with no role of its own. Pick the role from design's component map (gamut-styles colorSystem/migration.ts, COMPONENTS).`;
+  `'--color-${name}' is an old palette color with no role of its own. Pick the role from design's component map (@skillsoft/gamut-brand src/migration.ts, COMPONENTS).`;
