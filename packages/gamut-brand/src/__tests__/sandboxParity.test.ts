@@ -12,7 +12,7 @@ import { createColorSystem } from '../system';
   only brand).
 
   The fixture records which sandbox commit it came from. When design changes
-  the sandbox, re-dump it with `yarn workspace @skillsoft/gamut-styles
+  the sandbox, re-dump it with `yarn workspace @skillsoft/gamut-brand
   dump:sandbox <sandbox checkout>`, port the change, and this test says what
   still differs. A failure without a sandbox change means the generator
   drifted.
