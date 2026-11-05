@@ -42,12 +42,16 @@ const TextExample = styled.p(system.typography);
 
 ## Color
 
-Color props control foreground, background, and border colors, restricted to the theme's color palette. `bg` is a shorthand for background color.
+Color props control foreground, background, and border colors, restricted to the theme's colors. Use [color roles](/concepts/color-system/#pick-a-role-by-its-job), which follow the color mode. `bg` is a shorthand for background color.
 
 ```tsx
 const ColorExample = styled.div(system.color);
 
-<ColorExample bg="navy" textColor="gray-100" borderColor="blue" />;
+<ColorExample
+  bg="surface-raised"
+  textColor="text-default"
+  borderColor="border-subtle"
+/>;
 ```
 
 ## Border

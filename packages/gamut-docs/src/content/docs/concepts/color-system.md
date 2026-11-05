@@ -5,8 +5,6 @@ description: How Gamut generates its colors from a few brand hues, checks them, 
 
 Gamut's colors come from a generator in `@skillsoft/gamut-brand`. A brand supplies a few hues. The generator turns them into a palette, maps the palette onto named roles for light and dark mode, checks every pairing for contrast, and writes the result as CSS, JSON and TypeScript. Components and app code use the role names. `@skillsoft/gamut-styles` ships the result for Gamut's own brands, so an app on one of them never runs the generator. A team that wants its own colors runs it at build time; see [Build your own brand](#build-your-own-brand).
 
-This page covers the generated system. The [Color modes](/concepts/color-modes/) page still describes the older alias names (`text`, `background`, `primary`).
-
 ## How it works
 
 Each step feeds the next one:
