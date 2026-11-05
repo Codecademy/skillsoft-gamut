@@ -163,6 +163,27 @@ describe('<Markdown />', () => {
     expect(document.querySelectorAll('video').length).toEqual(1);
     expect(screen.queryByTitle(mockTitle)).not.toBeInTheDocument();
   });
+
+  it('Does not wrap a single-line video override in a paragraph', () => {
+    renderView({
+      text: `<video src="https://example.com/clip.mp4" controls></video>`,
+      videoOverride: { component: MarkdownVideo },
+    });
+    expect(document.querySelector('p div')).toBeNull();
+  });
+
+  it('Passes undefined width and height to Video when the video has none', () => {
+    // React only warns about NaN styles once per value, so check the props directly
+    const element = MarkdownVideo({
+      src: 'https://example.com/clip.mp4',
+    } as Parameters<typeof MarkdownVideo>[0]) as React.ReactElement<{
+      width?: number;
+      height?: number;
+    }>;
+    expect(element.props.width).toBeUndefined();
+    expect(element.props.height).toBeUndefined();
+  });
+
   it('Wraps the markdown in a div by default (block)', () => {
     renderView({ text: basicMarkdown });
     expect(

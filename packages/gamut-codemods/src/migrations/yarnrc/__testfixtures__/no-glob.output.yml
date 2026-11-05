@@ -1,0 +1,2 @@
+npmPreapprovedPackages:
+  - '@skillsoft/eslint-plugin-gamut' # lint rules

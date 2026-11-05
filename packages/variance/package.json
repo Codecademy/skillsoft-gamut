@@ -32,6 +32,11 @@
     "@emotion/react": "*",
     "typescript": ">=4.3.5"
   },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
   "publishConfig": {
     "access": "public"
   },

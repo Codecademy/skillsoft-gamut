@@ -1,0 +1,7 @@
+{
+  "name": "app",
+  "dependencies": {
+    "@codecademy/gamut": "74.0.0",
+    "@codecademy/gamut-styles": "^21.2.0"
+  }
+}
