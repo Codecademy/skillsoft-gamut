@@ -2,8 +2,6 @@ import { matchers } from '@emotion/jest';
 import type { Theme } from '@emotion/react';
 import { render } from '@testing-library/react';
 import { parse } from 'culori';
-import { readFileSync } from 'fs';
-import { resolve } from 'path';
 
 import { Background } from '../Background';
 import {
@@ -49,26 +47,20 @@ type Mode = 'light' | 'dark';
 const MODES: Mode[] = ['light', 'dark'];
 type Vars = Record<string, string>;
 
-const tokensCss = readFileSync(
-  resolve(__dirname, '../tokens/generated/tokens.css'),
-  'utf8'
-).replace(/\/\*[\s\S]*?\*\//g, '');
-
 /*
- * Custom properties tokens.css declares for a brand and mode, in cascade
- * order: the default palette on :root, the brand's palette over it, then the
- * mode's roles, then this brand's own role overrides for the mode. Innermost blocks only, so the @layer wrapper is skipped.
+ * Custom properties a theme's injected tokens.css declares for a mode, in
+ * cascade order: the brand's palette, then the mode's roles (the brand's
+ * overrides are already in them). Innermost blocks only, so the @layer
+ * wrapper is skipped. It's the theme's own string, so platform's editor
+ * colors are in it too.
  */
-const tokensCssVars = (mode: Mode, brand: string): Vars => {
+const tokensCssVars = (mode: Mode, tokensCss: string): Vars => {
   const vars: Vars = {};
-  for (const [, selector, body] of tokensCss.matchAll(
-    /([^{};]+)\{([^{}]*)\}/g
-  )) {
-    const ownBrand = selector.includes(`[data-brand="${brand}"]`);
-    const applies = selector.includes('data-color-mode')
-      ? selector.includes(`"${mode}"`) &&
-        (!selector.includes('data-brand') || ownBrand)
-      : selector.includes(':root') || ownBrand;
+  for (const [, selector, body] of tokensCss
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .matchAll(/([^{};]+)\{([^{}]*)\}/g)) {
+    const applies =
+      !selector.includes('data-color-mode') || selector.includes(`"${mode}"`);
     if (!applies) continue;
     for (const [, name, value] of body.matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)) {
       vars[name] = value.trim();
@@ -83,7 +75,7 @@ const hasStaticValues = (theme: Theme) =>
 /* The variables in scope inside a `mode` subtree of `theme`. */
 const varsFor = (theme: Theme, mode: Mode): Vars =>
   hasStaticValues(theme)
-    ? tokensCssVars(mode, theme.brand)
+    ? tokensCssVars(mode, (theme as unknown as { tokensCss: string }).tokensCss)
     : ({
         ...theme._variables.root,
         ...modeColorProps({

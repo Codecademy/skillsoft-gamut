@@ -39,7 +39,7 @@ const HOVER_TRANSITION = {
 } as const;
 
 /*
- * Design's card map (colorSystem/migration.ts, COMPONENTS; sandbox df33b47):
+ * Design's card map (gamut-brand src/migration.ts, COMPONENTS; sandbox df33b47):
  * two variants replace the old color names. `default` is `surface-raised`
  * (old default, white, beige and navy); `brand` is the featured card on the
  * `surface-brand` gradient (old yellow and hyper). Every card has a

@@ -11,7 +11,7 @@ const hoverBackgroundTransition = transitionConcat(
 );
 
 /*
- * Design's button map (colorSystem/migration.ts, COMPONENTS): each variant
+ * Design's button map (gamut-brand src/migration.ts, COMPONENTS): each variant
  * takes an action family, and interface merges into primary. Every variant
  * gets the one `action-primary` focus ring.
  */
