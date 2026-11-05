@@ -1,10 +1,10 @@
-import { DEFAULT_DATE_PICKER_TRANSLATIONS } from '../../../utils/translations';
-import type { SegmentValues } from '../../Segment/utils';
+import { DEFAULT_DATE_PICKER_TRANSLATIONS } from '../../utils/translations';
+import type { SegmentValues } from '../Segment/utils';
 import {
   generateErrorMessage,
   validateDateRange,
   validateSegments,
-} from '../validation';
+} from './validation';
 
 const translations = DEFAULT_DATE_PICKER_TRANSLATIONS;
 

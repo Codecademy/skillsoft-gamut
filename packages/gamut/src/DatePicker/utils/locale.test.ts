@@ -3,7 +3,7 @@ import {
   getIsoFirstDayFromLocale,
   resolveLocale,
   stringifyLocale,
-} from '../locale';
+} from './locale';
 
 describe('getDefaultLocaleTag', () => {
   it('returns a non-empty BCP 47 tag from the runtime', () => {

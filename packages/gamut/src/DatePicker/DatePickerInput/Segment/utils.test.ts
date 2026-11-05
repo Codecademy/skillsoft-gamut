@@ -1,4 +1,4 @@
-import type { DateFormatLayoutItem } from '../../utils';
+import type { DateFormatLayoutItem } from '../utils';
 import {
   appendSegmentDigit,
   buildCombinedFromSegments,
@@ -12,7 +12,7 @@ import {
   parseSegmentNumericString,
   parseSegmentsToDate,
   spinSegment,
-} from '../utils';
+} from './utils';
 
 describe('getDateSegmentsFromDate', () => {
   it('returns empty strings for null', () => {

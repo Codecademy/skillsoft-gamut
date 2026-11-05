@@ -1,10 +1,10 @@
-import { matchDisabledDates } from '../../Calendar/utils/dateGrid';
+import { matchDisabledDates } from '../Calendar/utils/dateGrid';
 import {
   applyRangeOrNewStart,
   handleDateSelectRange,
   handleDateSelectSingle,
   rangeContainsDisabled,
-} from '../dateSelect';
+} from './dateSelect';
 
 const createDate = (y: number, month: number, day: number) =>
   new Date(y, month, day);

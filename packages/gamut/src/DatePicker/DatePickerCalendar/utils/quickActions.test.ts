@@ -1,4 +1,4 @@
-import { computeQuickAction } from '../quickActions';
+import { computeQuickAction } from './quickActions';
 
 describe('computeQuickAction', () => {
   const fixed = new Date(2026, 4, 15); // May 15, 2026 local (“today” anchor)

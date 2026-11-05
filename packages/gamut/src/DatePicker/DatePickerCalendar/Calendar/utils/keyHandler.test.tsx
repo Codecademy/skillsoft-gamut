@@ -1,8 +1,8 @@
 import type { KeyboardEvent } from 'react';
 
-import { getDatesWithRow, getMonthGrid, matchDisabledDates } from '../dateGrid';
-import type { KeyHandlerParams } from '../keyHandler';
-import { keyHandler } from '../keyHandler';
+import { getDatesWithRow, getMonthGrid, matchDisabledDates } from './dateGrid';
+import type { KeyHandlerParams } from './keyHandler';
+import { keyHandler } from './keyHandler';
 
 const makeEvent = (
   key: string,

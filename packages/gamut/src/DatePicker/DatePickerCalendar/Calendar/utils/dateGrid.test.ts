@@ -7,7 +7,7 @@ import {
   isDateWithinVisibleMonths,
   isSameDay,
   matchDisabledDates,
-} from '../dateGrid';
+} from './dateGrid';
 
 describe('getWeekdayOffsetInGrid', () => {
   it('returns 0 when the 1st matches the grid first weekday (Monday)', () => {

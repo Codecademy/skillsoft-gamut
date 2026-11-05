@@ -5,7 +5,7 @@ import {
   getRelativeMonthLabels,
   getRelativeTodayLabel,
   getWeekdayNames,
-} from '../format';
+} from './format';
 
 const enUS = new Intl.Locale('en-US');
 const frFR = new Intl.Locale('fr-FR');
