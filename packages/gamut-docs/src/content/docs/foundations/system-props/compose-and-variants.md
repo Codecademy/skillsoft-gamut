@@ -66,7 +66,7 @@ const Anchor = styled.a(
   variant({
     variants: {
       interface: {
-        color: 'navy',
+        color: 'text-default',
         '&:hover': { textDecoration: 'none', border: '2px solid currentColor' },
       },
     },
