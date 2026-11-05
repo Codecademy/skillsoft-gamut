@@ -1,4 +1,3 @@
-import { tokensCss } from '../../tokens/generated/tokensCss';
 import { adminTheme } from '../admin';
 import { lxStudioTheme } from '../lxStudio';
 import { originalCodecademyTheme } from '../originalCodecademy';
@@ -55,11 +54,19 @@ describe('brand elevation', () => {
 
   /* Admin and platform share old core's pins, not its hard-offset shadow. */
   it('makes shadow-ambient transparent for Original Codecademy only', () => {
-    const overridden = [
-      ...tokensCss.matchAll(
-        /\[data-brand="(\w+)"\]\[data-color-mode="\w+"\] \{[^}]*--colors-shadow-ambient:/g
-      ),
-    ].map((m) => m[1]);
-    expect([...new Set(overridden)]).toEqual(['originalCodecademy']);
+    const transparent = Object.entries({
+      skillsoft: skillsoftTheme,
+      originalCodecademy: originalCodecademyTheme,
+      admin: adminTheme,
+      platform: platformTheme,
+      lxStudio: lxStudioTheme,
+    })
+      .filter(([, theme]) =>
+        /--colors-shadow-ambient: var\(--colors-[\w-]+-a0\);/.test(
+          theme.tokensCss
+        )
+      )
+      .map(([name]) => name);
+    expect(transparent).toEqual(['originalCodecademy']);
   });
 });
