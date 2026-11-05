@@ -103,7 +103,7 @@ export const Controlled = () => {
 
   return (
     <>
-      <Background bg="yellow" mb={24} p={12}>
+      <Background bg="surface-brand" mb={24} p={12}>
         <FormGroup htmlFor="active-tab" label="Active Tab">
           <Input
             htmlFor="active-tab"

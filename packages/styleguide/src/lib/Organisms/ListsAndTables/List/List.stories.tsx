@@ -174,7 +174,7 @@ export const Card: Story = {
             <ListCol size="xl">
               <FlexBox
                 alignItems="center"
-                bg="palePink"
+                bg="surface-sunken"
                 flexDirection="column"
                 height="8rem"
                 justifyContent="center"
@@ -244,7 +244,7 @@ export const NormalSpacingGuide: Story = {
             <ListCol size="lg" type="header">
               <FlexBox column>
                 <Text
-                  color="text-disabled"
+                  color="text-subtle"
                   textTransform="uppercase"
                   variant="p-small"
                 >
@@ -256,7 +256,7 @@ export const NormalSpacingGuide: Story = {
             <ListCol fill size="md">
               <FlexBox column>
                 <Text
-                  color="text-disabled"
+                  color="text-subtle"
                   textTransform="uppercase"
                   variant="p-small"
                 >
@@ -267,7 +267,7 @@ export const NormalSpacingGuide: Story = {
             </ListCol>
             <ListCol fill size="sm">
               <Text
-                color="text-disabled"
+                color="text-subtle"
                 lineHeight="title"
                 mt={4}
                 variant="p-small"
@@ -278,7 +278,7 @@ export const NormalSpacingGuide: Story = {
             </ListCol>
             <ListCol fill size="sm">
               <Text
-                color="text-disabled"
+                color="text-subtle"
                 lineHeight="title"
                 mt={4}
                 variant="p-small"
@@ -289,7 +289,7 @@ export const NormalSpacingGuide: Story = {
             </ListCol>
             <ListCol fill size="sm">
               <Text
-                color="text-disabled"
+                color="text-subtle"
                 lineHeight="title"
                 mt={4}
                 variant="p-small"
@@ -323,7 +323,7 @@ export const CondensedSpacingGuide: Story = {
             </ListCol>
             <ListCol size="lg">
               <Text
-                color="text-disabled"
+                color="text-subtle"
                 truncate="ellipsis"
                 truncateLines={1}
                 variant="p-small"
@@ -333,7 +333,7 @@ export const CondensedSpacingGuide: Story = {
             </ListCol>
             <ListCol fill size="lg">
               <Text
-                color="text-disabled"
+                color="text-subtle"
                 truncate="ellipsis"
                 truncateLines={1}
                 variant="p-small"
@@ -342,19 +342,19 @@ export const CondensedSpacingGuide: Story = {
               </Text>
             </ListCol>
             <ListCol size="sm">
-              <Text color="text-disabled" lineHeight="title" variant="p-small">
+              <Text color="text-subtle" lineHeight="title" variant="p-small">
                 <StreakIcon mr={8} verticalAlign="bottom" />
                 87%
               </Text>
             </ListCol>
             <ListCol size="sm">
-              <Text color="text-disabled" lineHeight="title" variant="p-small">
+              <Text color="text-subtle" lineHeight="title" variant="p-small">
                 <TrophyIcon mr={8} verticalAlign="bottom" />
                 48%
               </Text>
             </ListCol>
             <ListCol size="sm">
-              <Text color="text-disabled" lineHeight="title" variant="p-small">
+              <Text color="text-subtle" lineHeight="title" variant="p-small">
                 <StarIcon mr={8} verticalAlign="bottom" />
                 66%
               </Text>
@@ -397,7 +397,7 @@ export const CondensedTableGuide: Story = {
             </ListCol>
             <ListCol size="lg">
               <Text
-                color="text-disabled"
+                color="text-subtle"
                 truncate="ellipsis"
                 truncateLines={1}
                 variant="p-small"
@@ -407,7 +407,7 @@ export const CondensedTableGuide: Story = {
             </ListCol>
             <ListCol fill size="lg">
               <Text
-                color="text-disabled"
+                color="text-subtle"
                 truncate="ellipsis"
                 truncateLines={1}
                 variant="p-small"
@@ -416,19 +416,19 @@ export const CondensedTableGuide: Story = {
               </Text>
             </ListCol>
             <ListCol size="sm">
-              <Text color="text-disabled" lineHeight="title" variant="p-small">
+              <Text color="text-subtle" lineHeight="title" variant="p-small">
                 <StreakIcon mr={8} verticalAlign="bottom" />
                 87%
               </Text>
             </ListCol>
             <ListCol size="sm">
-              <Text color="text-disabled" lineHeight="title" variant="p-small">
+              <Text color="text-subtle" lineHeight="title" variant="p-small">
                 <TrophyIcon mr={8} verticalAlign="bottom" />
                 48%
               </Text>
             </ListCol>
             <ListCol size="sm">
-              <Text color="text-disabled" lineHeight="title" variant="p-small">
+              <Text color="text-subtle" lineHeight="title" variant="p-small">
                 <StarIcon mr={8} verticalAlign="bottom" />
                 66%
               </Text>
@@ -463,7 +463,7 @@ export const SpaceSystemProps: Story = {
   },
   render: (args) => {
     return (
-      <Background bg="beige">
+      <Background bg="surface-default">
         <List {...args}>
           {rows.map(({ name, ship }) => (
             <ListRow key={name}>

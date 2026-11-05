@@ -82,8 +82,12 @@ const textStates = states({
     // the text is more legible against the background color with text smoothing
     MozOsxFontSmoothing: 'grayscale',
     WebkitFontSmoothing: 'antialiased',
+    /*
+     * `primary-inverse` is retired; design's closest role is `action-primary`.
+     * Needs design's eye: a highlight sits under text, not in a dark scope.
+     */
     '&:after': {
-      bg: 'primary-inverse',
+      bg: 'action-primary',
       content: '""',
       display: 'block',
       height: '32.5%',

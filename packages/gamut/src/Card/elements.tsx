@@ -5,7 +5,8 @@ import { motion } from 'framer-motion';
 import type { ComponentProps, ComponentType } from 'react';
 
 import { Box } from '../Box';
-import { cardVariants, shadowVariants } from './styles';
+import { gradientLayer } from '../utils/gradientLayer';
+import { cardVariants, interactiveStates, shadowVariants } from './styles';
 import type { CardWrapperProps } from './types';
 
 /*
@@ -20,11 +21,11 @@ export const MotionBox = motion.create(Box) as ComponentType<MotionBoxProps>;
 
 export const DynamicCardWrapper = styled(MotionBox)<CardWrapperProps>(
   cardVariants,
-  shadowVariants
+  shadowVariants,
+  interactiveStates
 );
 
 const StaticCard = motion.create(Background);
-export const StaticCardWrapper = styled(StaticCard)<CardWrapperProps>(
-  cardVariants,
-  shadowVariants
-);
+export const StaticCardWrapper = styled(StaticCard)<
+  CardWrapperProps & { gradient?: string }
+>(cardVariants, shadowVariants, interactiveStates, gradientLayer);

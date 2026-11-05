@@ -99,7 +99,7 @@ export const BarChart = <
     (title && !hideTitle) || selectProps ? (
       <Box
         borderBottom={1}
-        borderColor="background-disabled"
+        borderColor="action-disabled"
         mb={24}
         pb={8}
         width="100%"
@@ -152,7 +152,7 @@ export const BarChart = <
         </Box>
         <Text
           as="figcaption"
-          color="text-secondary"
+          color="text-subtle"
           hidden={hideDescription}
           mt={8}
           variant="p-small"

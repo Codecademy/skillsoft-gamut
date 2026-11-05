@@ -4,20 +4,20 @@ import { templateVariants } from '../Button/shared/styles';
 import { InteractiveSelectors } from '../ButtonBase/ButtonBase';
 
 const paginationBaseStyles = {
-  color: 'text',
+  color: 'text-default',
   fontSize: 16,
   height: 40,
   mx: 4,
   width: 40,
   [InteractiveSelectors.ACTIVE]: {
     fontWeight: 'title',
-    color: 'text',
+    color: 'text-default',
   },
   [InteractiveSelectors.DISABLED]: {
-    color: 'text-disabled',
+    color: 'action-disabled',
     bg: 'transparent',
   },
-  [InteractiveSelectors.OUTLINE]: { borderColor: 'border-primary' },
+  [InteractiveSelectors.OUTLINE]: { borderColor: 'action-primary' },
   [InteractiveSelectors.SHADOW_ACTIVE]: { opacity: 0 },
   [InteractiveSelectors.SHADOW_HOVER]: { opacity: 0 },
 } as const;
@@ -27,8 +27,8 @@ export const paginationTextVariant = templateVariants(['secondary'], () => ({
   borderColor: 'transparent',
   [InteractiveSelectors.ACTIVE]: {
     fontWeight: 'title',
-    color: 'text',
-    bg: 'background-selected',
+    color: 'text-default',
+    bg: 'state-selected',
   },
   [InteractiveSelectors.SHADOW]: {
     transition: transitionConcat(['opacity'], 'fast', 'ease-in'),
@@ -41,15 +41,15 @@ export const paginationTextVariant = templateVariants(['secondary'], () => ({
     ),
 
     fontWeight: 'title',
-    bg: 'background-selected',
+    bg: 'state-hover',
   },
 }));
 
 export const paginationTextButtonStates = states({
   selected: {
     fontWeight: 'title',
-    color: 'text',
-    bg: 'background-selected',
+    color: 'text-default',
+    bg: 'state-selected',
   },
 });
 
@@ -69,15 +69,16 @@ export const paginationStrokeVariant = templateVariants(['secondary'], () => ({
     transition: transitionConcat(['color', 'font-weight'], 'fast', 'ease-in'),
     fontWeight: 'title',
     // some styles in Reboot.tsx override this for the navigation variant. tl;dr - don't do this <3 web-plat
-    color: `${theme.colors.primary} !important`,
+    color: `${theme.colors['action-primary']} !important`,
   },
 }));
 
 export const paginationStrokeButtonStates = states({
   selected: {
     fontWeight: 'title',
-    color: 'text',
-    borderColor: 'currentColor',
+    color: 'text-default',
+    bg: 'state-selected',
+    borderColor: 'border-strong',
   },
   ellipsis: {
     fontWeight: 'title',

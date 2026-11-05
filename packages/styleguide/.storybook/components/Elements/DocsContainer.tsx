@@ -6,7 +6,6 @@ import {
   platformPalette,
   adminTheme,
   lxStudioTheme,
-  percipioTheme,
   CoreTheme,
   platformTheme,
   ColorMode,
@@ -16,6 +15,7 @@ import {
   DocsContextProps,
   SourceContainer,
 } from '@storybook/addon-docs/blocks';
+import { Theme } from '@emotion/react';
 import { ThemeProvider } from 'storybook/theming';
 import { useMemo } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
@@ -29,13 +29,11 @@ const themeMap = {
   core: coreTheme,
   admin: adminTheme,
   lxStudio: lxStudioTheme,
-  percipio: percipioTheme,
   platform: platformTheme,
 } as const;
 
 const themeSpecificStories = {
   'foundations-theme-lx-studio-theme--docs': 'lxStudio',
-  'foundations-theme-percipio-theme--docs': 'percipio',
   'foundations-theme-platform-theme--docs': 'platform',
   'foundations-theme-admin-theme--docs': 'admin',
   'foundations-theme-core-theme--docs': 'core',
@@ -87,8 +85,8 @@ export const DocsContainer: React.FC<{
     >
       <GamutProvider
         cache={createEmotionCache({ speedy: false })}
-        // This is typed to the CoreTheme in theme.d.ts
-        theme={currentTheme as unknown as CoreTheme}
+        // This is typed to the SkillsoftTheme in theme.d.ts
+        theme={currentTheme as unknown as Theme}
         useLogicalProperties={useLogicalProperties}
       >
         <ColorMode mode="light">

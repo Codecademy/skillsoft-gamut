@@ -4,7 +4,7 @@ import { borderRadii } from '@skillsoft/gamut-styles';
 import type * as React from 'react';
 
 import { DynamicCardWrapper, MotionBox, StaticCardWrapper } from './elements';
-import { patternFadeInOut, useCardElevation } from './styles';
+import { cardSurfaces, patternFadeInOut, useCardElevation } from './styles';
 import type { CardProps } from './types';
 
 type BorderRadiusToken = keyof typeof borderRadii;
@@ -31,7 +31,16 @@ export const Card: React.FC<CardProps> = ({
   const hasPattern = shadow === 'patternLeft' || shadow === 'patternRight';
   const isOutline = shadow === 'outline';
 
-  const setHoverShadow = useCardElevation(shadow, resolvedBorderRadius);
+  const setHoverShadow = useCardElevation(
+    shadow,
+    resolvedBorderRadius,
+    isInteractive
+  );
+
+  /* A brand card goes through Background, which picks its content mode. */
+  const surface = cardSurfaces[variant as keyof typeof cardSurfaces];
+  const gradient =
+    variant === 'brand' ? 'var(--gradient-surface-brand)' : undefined;
 
   const initialVariant = isOutline ? 'initialOutline' : 'initial';
   const animateVariant = isOutline ? 'animateOutline' : 'animate';
@@ -48,7 +57,7 @@ export const Card: React.FC<CardProps> = ({
       {hasPattern && (
         <MotionBox
           borderRadius={trueBorderRadius}
-          color="text"
+          color="text-default"
           variants={patternFadeInOut}
         >
           <Pattern
@@ -65,10 +74,12 @@ export const Card: React.FC<CardProps> = ({
       <SelectedWrapper
         // setting bg here since Background requires a bg prop
         // the falsy value of '' will not get set since the variant's bg would override it
-        bg={variant !== 'default' ? (variant as Colors) : ('' as Colors)}
+        bg={variant !== 'default' ? surface : ('' as Colors)}
         border={1}
         borderRadius={trueBorderRadius}
         dimensions={1}
+        gradient={gradient}
+        isInteractive={isInteractive}
         maxWidth="100%"
         p={16}
         position="relative"

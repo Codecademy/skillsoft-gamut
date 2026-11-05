@@ -8,7 +8,7 @@ const errorSpanVariants = variant({
   base: {
     left: 0,
     top: `calc(100% - ${theme.spacing[8]})`,
-    color: 'feedback-error',
+    color: 'text-error',
     display: 'inline-block',
     fontSize: 'small',
   },

@@ -13,7 +13,7 @@ export const DirectionalBorderExample: Story = {
   render: () => (
     <FlexBox gap={16} row>
       <Box
-        bg="background-selected"
+        bg="surface-sunken"
         borderX={2}
         borderY={1}
         p={16}
@@ -24,7 +24,7 @@ export const DirectionalBorderExample: Story = {
         properties mode.
       </Box>
       <Box
-        bg="background-selected"
+        bg="surface-sunken"
         borderLeft={2}
         borderRight={1}
         p={16}
@@ -42,7 +42,7 @@ export const BorderWidthExample: Story = {
   render: () => (
     <FlexBox gap={16} row>
       <Box
-        bg="background-selected"
+        bg="surface-sunken"
         border={1}
         borderWidthX="4px"
         borderWidthY="10px"
@@ -55,7 +55,7 @@ export const BorderWidthExample: Story = {
         logical properties mode.
       </Box>
       <Box
-        bg="background-selected"
+        bg="surface-sunken"
         border={1}
         borderWidthRight="10px"
         borderWidthTop="4px"
@@ -75,7 +75,7 @@ export const BorderRadiusExample: Story = {
   render: () => (
     <FlexBox gap={16} row>
       <Box
-        bg="background-selected"
+        bg="surface-sunken"
         border={1}
         borderRadiusLeft="lg"
         borderRadiusRight="none"
@@ -88,7 +88,7 @@ export const BorderRadiusExample: Story = {
         logical properties mode.
       </Box>
       <Box
-        bg="background-selected"
+        bg="surface-sunken"
         border={1}
         borderRadiusBottomLeft="xl"
         borderRadiusTopRight="xl"
@@ -108,7 +108,7 @@ export const BorderStyleExample: Story = {
   render: () => (
     <FlexBox gap={16} row>
       <Box
-        bg="background-selected"
+        bg="surface-sunken"
         border={1}
         borderStyleX="dashed"
         borderStyleY="dotted"
@@ -121,7 +121,7 @@ export const BorderStyleExample: Story = {
         logical properties mode.
       </Box>
       <Box
-        bg="background-selected"
+        bg="surface-sunken"
         border={1}
         borderStyleBottom="dotted"
         borderStyleLeft="dashed"

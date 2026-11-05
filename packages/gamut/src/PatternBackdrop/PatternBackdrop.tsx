@@ -7,6 +7,7 @@ import type { ComponentProps } from 'react';
 import { forwardRef } from 'react';
 
 import { Box } from '../Box';
+import { checkerPatternColor, useCheckerPattern } from '../utils/elevation';
 
 const backdropBodyProps = variance.compose(system.layout, system.padding);
 
@@ -16,8 +17,10 @@ const PatternBackdropBody = styled('div', styledOptions)<
   system.css({
     position: 'relative',
     zIndex: 1,
-    bg: 'background',
+    bg: 'surface-raised',
+    color: 'text-default',
     border: 1,
+    borderColor: 'border-subtle',
     maxWidth: 1,
   }),
   backdropBodyProps
@@ -30,17 +33,28 @@ type PatternBackdropProps = ComponentProps<typeof PatternBackdropBody>;
  * Composed via `styled(PatternBackdrop)` by Toast and Modal; not exported — use those or `Card`.
  */
 export const PatternBackdrop = forwardRef<HTMLDivElement, PatternBackdropProps>(
-  ({ children, ...rest }, ref) => (
-    <Box display="inline-block" maxWidth="100%" position="relative" zIndex={1}>
-      <CheckerDense
-        dimensions={1}
-        left="-0.5rem"
-        position="absolute"
-        top="0.5rem"
-      />
-      <PatternBackdropBody {...rest} ref={ref}>
-        {children}
-      </PatternBackdropBody>
-    </Box>
-  )
+  ({ children, ...rest }, ref) => {
+    const showPattern = useCheckerPattern();
+    return (
+      <Box
+        color={checkerPatternColor}
+        display="inline-block"
+        maxWidth="100%"
+        position="relative"
+        zIndex={1}
+      >
+        {showPattern && (
+          <CheckerDense
+            dimensions={1}
+            left="-0.5rem"
+            position="absolute"
+            top="0.5rem"
+          />
+        )}
+        <PatternBackdropBody {...rest} ref={ref}>
+          {children}
+        </PatternBackdropBody>
+      </Box>
+    );
+  }
 );

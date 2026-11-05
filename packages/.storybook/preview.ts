@@ -94,14 +94,14 @@ export const globalTypes = {
   theme: {
     name: 'Theme',
     description: 'Global theme for components',
-    defaultValue: 'core',
+    defaultValue: 'skillsoft',
     toolbar: {
       icon: 'paintbrush',
       items: [
-        { value: 'core', title: 'Core' },
+        { value: 'skillsoft', title: 'Skillsoft' },
+        { value: 'originalCodecademy', title: 'Original Codecademy' },
         { value: 'admin', title: 'Admin' },
         { value: 'lxStudio', title: 'LX Studio' },
-        { value: 'percipio', title: 'Percipio' },
         { value: 'platform', title: 'Learning Platform' },
       ],
       showName: true,

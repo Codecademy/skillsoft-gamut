@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import type { PatternProps } from '@skillsoft/gamut-patterns';
-import { theme, variant } from '@skillsoft/gamut-styles';
+import { css, variant } from '@skillsoft/gamut-styles';
 import * as React from 'react';
 
 import { Box } from '../Box';
@@ -83,19 +83,16 @@ const progressBarSizeVariants = variant({
 
 const progressBarBackgroundVariants = variant({
   defaultVariant: 'default',
+  /* Design's progress map: every variant is the same sunken track. */
   base: {
     borderWidth: '1px',
     borderStyle: 'solid',
+    bg: 'surface-sunken',
+    borderColor: 'border-default',
   },
   variants: {
-    blue: {
-      bg: 'navy',
-      borderColor: 'border-primary',
-    },
-    yellow: {
-      bg: 'gray-100',
-      borderColor: 'border-primary',
-    },
+    blue: {},
+    yellow: {},
     default: {},
   },
 });
@@ -119,19 +116,22 @@ const progressBarForegroundVariants = variant({
     display: 'flex',
     transition: 'width 0.5s',
     position: 'relative',
+    /* Clips the bar's copy of the label to the bar. */
+    overflow: 'hidden',
   },
+  /* Every bar is `text-default`, blue and yellow included. */
   variants: {
     blue: {
-      bg: 'blue',
-      textColor: 'white',
+      bg: 'text-default',
+      textColor: 'text-inverse',
     },
     yellow: {
-      bg: 'yellow',
-      textColor: 'navy',
+      bg: 'text-default',
+      textColor: 'text-inverse',
     },
     default: {
-      bg: 'text',
-      textColor: 'background',
+      bg: 'text-default',
+      textColor: 'text-inverse',
     },
   },
 });
@@ -158,8 +158,27 @@ const DisplayedPercent = styled.span`
   font-weight: bold;
   padding: 0.5rem;
   text-align: right;
+  white-space: nowrap;
   width: 100%;
 `;
+
+/*
+ * Design's two-tone label: `text-inverse` where it sits on the bar,
+ * `text-default` where it runs onto the track. The track's copy sits at the
+ * same place under the bar, so the bar covers it and the wrapper clips it.
+ */
+const TrackLabel = styled(Box)(
+  css({
+    alignItems: 'center',
+    color: 'text-default',
+    display: 'flex',
+    height: '100%',
+    left: 0,
+    position: 'absolute',
+    top: 0,
+    transition: 'width 0.5s',
+  })
+);
 
 export const ProgressBar: React.FC<ProgressBarProps> = ({
   flat,
@@ -169,8 +188,9 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   size = 'small',
   variant,
 }) => {
-  const showBarBorder = percent > 0 || minimumPercent > 0;
   const id = React.useId();
+  const width = `${Math.max(minimumPercent, percent)}%`;
+  const showLabel = ['large', 'xl'].includes(size);
   return (
     <ProgressBarWrapper
       aria-labelledby={id}
@@ -183,17 +203,19 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
     >
       <Text as="label" id={id} screenreader>{`Progress: ${percent}%`}</Text>
       {Pattern && <Pattern position="absolute" width="100%" zIndex={0} />}
+      {showLabel && (
+        <TrackLabel aria-hidden width={width}>
+          <DisplayedPercent>{percent}%</DisplayedPercent>
+        </TrackLabel>
+      )}
       <Bar
         borderRadiusBottomRight={flat ? 'none' : 'inherit'}
         borderRadiusTopRight={flat ? 'none' : 'inherit'}
-        boxShadow={
-          showBarBorder ? `0.5px 0 0 0.5px ${theme.colors.navy}` : 'none'
-        }
         data-testid="progress-bar-bar"
         variant={variant}
-        width={`${Math.max(minimumPercent, percent)}%`}
+        width={width}
       >
-        {['large', 'xl'].includes(size) && (
+        {showLabel && (
           <DisplayedPercent aria-hidden>{percent}%</DisplayedPercent>
         )}
       </Bar>

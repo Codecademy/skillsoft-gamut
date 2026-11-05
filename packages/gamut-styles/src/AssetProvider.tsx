@@ -2,7 +2,7 @@ import type { Theme } from '@emotion/react';
 import type * as React from 'react';
 
 import { webFonts } from './remoteAssets/fonts';
-import { coreTheme } from './themes';
+import { skillsoftTheme } from './themes';
 import type { FontConfig } from './utilities/fontUtils';
 import { getFonts } from './utilities/fontUtils';
 
@@ -39,7 +39,7 @@ export const createFontLinks = (fonts?: readonly FontConfig[]) => {
 
 export const AssetProvider: React.FC<{ theme?: Theme }> = ({ theme }) => {
   try {
-    const defaultTheme = theme ?? coreTheme;
+    const defaultTheme = theme ?? skillsoftTheme;
     const themeName = defaultTheme?.name || 'core';
     const fonts = getFonts(themeName);
 

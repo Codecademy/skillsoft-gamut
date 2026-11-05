@@ -12,10 +12,20 @@ import { selectedIconSize } from './constants';
 
 const { SingleValue } = SelectDropdownElements;
 
+/*
+ * A disabled option is `action-disabled`. The value inside a disabled
+ * control is the one place `text-subtle` stays, like a disabled field.
+ */
 const OptionWrapper: React.FC<
-  Pick<ExtendedOption, 'disabled'> & React.PropsWithChildren
-> = ({ children, disabled }) => {
-  const textColor = disabled ? 'text-disabled' : 'inherit';
+  Pick<ExtendedOption, 'disabled'> & {
+    inField?: boolean;
+  } & React.PropsWithChildren
+> = ({ children, disabled, inField }) => {
+  const textColor = disabled
+    ? inField
+      ? 'text-subtle'
+      : 'action-disabled'
+    : 'inherit';
 
   return (
     <FlexBox color={textColor} justifyContent="space-between" width="100%">
@@ -31,7 +41,7 @@ const IconOptionLabel: React.FC<
     <FlexBox flexDirection="row">
       {Icon && (
         <FlexBox center>
-          <Icon color="text" ml={4} size={size === 'small' ? 16 : 24} />
+          <Icon color="text-default" ml={4} size={size === 'small' ? 16 : 24} />
         </FlexBox>
       )}
       <Box as="span" color="currentColor" pl={Icon ? 16 : 0}>
@@ -82,7 +92,7 @@ export const AbbreviatedSingleValue = (
 
   return (
     <SingleValue {...props}>
-      <OptionWrapper disabled={isDisabled}>
+      <OptionWrapper disabled={isDisabled} inField>
         <IconOptionLabel icon={icon} label={displayText} size={size} />
       </OptionWrapper>
     </SingleValue>
@@ -109,7 +119,7 @@ export const formatOptionLabel = ({
       <FlexBox flexDirection="column">
         <IconOptionLabel icon={Icon} label={label} size={size} />
         {subtitle && (
-          <Box as="span" color="text-disabled" fontSize={14}>
+          <Box as="span" color="text-subtle" fontSize={14}>
             {subtitle}
           </Box>
         )}
@@ -142,7 +152,7 @@ export const formatGroupLabel = ({ label, divider }: SelectDropdownGroup) => {
     return (
       <Box display="flex" justify-content="center">
         <Box
-          bg="text-disabled"
+          bg="border-subtle"
           borderRadius="md"
           fit
           height="1px"

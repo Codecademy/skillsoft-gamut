@@ -7,8 +7,8 @@ import { Column, type ColumnProps, LayoutGrid } from '.';
 const Example = styled.div(
   css({
     minHeight: '3rem',
-    bg: 'navy',
-    color: 'white',
+    bg: 'text-default',
+    color: 'text-inverse',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

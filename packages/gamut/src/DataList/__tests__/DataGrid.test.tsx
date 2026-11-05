@@ -97,6 +97,28 @@ describe('DataGrid', () => {
       });
     });
 
+    it('tints a selected row with the state-selected veil', () => {
+      renderView({ selected: ['1'] });
+
+      const rows = screen.getAllByRole('row');
+      const selectedRow = screen
+        .getByRole('checkbox', { name: 'Select 1' })
+        .closest('tr')!;
+      const otherRow = screen
+        .getByRole('checkbox', { name: 'Select 2' })
+        .closest('tr')!;
+
+      expect(rows).toContain(selectedRow);
+      expect(selectedRow).toHaveStyleRule(
+        'background-image',
+        expect.stringContaining('var(--colors-state-selected)')
+      );
+      expect(otherRow).not.toHaveStyleRule(
+        'background-image',
+        expect.stringContaining('var(--colors-state-selected)')
+      );
+    });
+
     it("clicking the row's checkbox deselects the row when the row is already selected", () => {
       renderView({ selected: ['1'] });
 

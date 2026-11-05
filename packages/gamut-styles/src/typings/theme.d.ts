@@ -1,8 +1,8 @@
 import '@emotion/react';
-import { CoreTheme } from '../themes';
+import { SkillsoftTheme } from '../themes';
 
 declare module '@emotion/react' {
-  export interface Theme extends CoreTheme {
+  export interface Theme extends SkillsoftTheme {
     useLogicalProperties?: boolean;
   }
 }
