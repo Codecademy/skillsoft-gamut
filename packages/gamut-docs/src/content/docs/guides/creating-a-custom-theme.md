@@ -1,163 +1,195 @@
 ---
 title: Creating a custom theme
-description: Build a custom theme with gamut-styles' createTheme builder.
+description: Build your own brand with @skillsoft/gamut-brand and turn it into a theme with createBrandTheme.
 ---
 
 ## When to reach for this
 
-Most apps should [choose an existing theme](/guides/theming-your-app/) rather than build a new one — reach for a custom theme only for a genuinely new product surface that doesn't fit Core, Admin, LX Studio or Platform.
+Most apps should [choose an existing theme](/guides/theming-your-app/). Build your own only when a product needs its own colors, for example to white-label Gamut for a customer.
 
-## The `createTheme` builder
+A custom theme has two parts:
 
-Themes are built with `createTheme` from `@skillsoft/variance`, giving you type-safe autocomplete, automatic CSS variable generation, built-in light/dark color mode support, and full compatibility with existing Gamut components:
+- **A brand**: a few hues, which `@skillsoft/gamut-brand` turns into a palette, light and dark roles, and the CSS for them, all checked for contrast.
+- **A theme**: the brand's generated values plus fonts, font weights and shadows, put together by `createBrandTheme` from `@skillsoft/gamut-styles`.
 
-```tsx
-import { createTheme } from '@skillsoft/variance';
+The result has the same type as Gamut's own themes, so every component, system prop and `css()` call works and stays type-checked. See [Color system](/concepts/color-system/) for how the generator works.
 
-const myTheme = createTheme({
-  ...baseTheme,
-  fontFamily: customFontFamily,
-})
-  .addColors(colorPalette)
-  .addColorModes('light', colorModeConfig)
-  .addScale('customProperty', scaleFunction) // only for new scales
-  .addName('my-theme')
-  .build();
+## 1. Install the generator
+
+`@skillsoft/gamut-brand` runs at build time only, so install it as a dev dependency, on the same version as `@skillsoft/gamut-styles`:
+
+```sh
+yarn add -D @skillsoft/gamut-brand
 ```
 
-## 1. Start from `coreTheme`
+## 2. Write the brand
 
-Extend `coreTheme` unless you're certain you have a full replacement for every token — see [Themes](/foundations/themes/) for what Core already provides:
+Only `name` and `hues.primary` are required:
 
-```tsx
-import { createTheme } from '@skillsoft/variance';
-import { coreTheme } from '@skillsoft/gamut-styles';
+```ts
+// src/theme/acme.brand.ts
+import { defineBrand } from '@skillsoft/gamut-brand';
 
-const myCustomTheme = createTheme({
-  ...coreTheme,
-  // your overrides here
+export default defineBrand({
+  name: 'acme',
+  hues: { primary: '#0A5CFF', accent: '#FFB000' },
 });
 ```
 
-## 2. Define a color palette
+`name` becomes the brand's `data-brand` attribute and its output folder: letters, digits and `_`, starting with a letter.
 
-Build an object of your brand's raw colors — usually a `brand` object, plus a numbered `50`–`900` scale per hue:
+`hues` takes a hue in degrees, or a color to take the hue from, for each of eight slots: `primary`, `neutral-light`, `neutral-dark`, `accent`, `accent-alt`, `danger`, `warning` and `success`. Slots you leave out are filled in: neutrals from the primary's hue, and status and accent slots from Gamut's defaults, so red still means error.
 
-```tsx
-const myColorPalette = {
-  brand: {
-    primary: '#004C54',
-    secondary: '#000000',
-    black: '#000000',
-    white: '#FFFFFF',
-  },
-  kelly: {
-    50: '#E6FFF7',
-    500: '#00B388',
-    900: '#004D3D',
-    // ...the rest of the scale
-  },
-  success: '#10B981',
-  warning: '#F59E0B',
-  error: '#DC2626',
-};
+Only a color's hue is kept. `#0A5CFF` means "this blue's hue", and the generator sets how light and how colorful each grade is, which is what keeps contrast the same for every brand. To start from one of Gamut's brands, spread it:
 
-const myTheme = createTheme({ ...coreTheme }).addColors(myColorPalette);
+```ts
+import { defineBrand, skillsoftBrand } from '@skillsoft/gamut-brand';
+
+export default defineBrand({
+  ...skillsoftBrand,
+  name: 'acme',
+  hues: { ...skillsoftBrand.hues, primary: '#0A5CFF' },
+});
 ```
 
-## 3. Map colors to semantic tokens per color mode
+### Optional settings
 
-`.addColorModes` maps your palette onto the same semantic aliases Gamut components already read from — `text`, `background`, `primary`, `secondary`, `border`, and the rest — once per color mode. See [Color modes](/concepts/color-modes/) for what each alias means:
+- `initialMode: 'dark'` starts pages in dark mode. The default is `'light'`.
+- `overrides` keeps colors the generator wouldn't produce. Use them sparingly; each one still goes through every check.
 
-```tsx
-const myTheme = createTheme({ ...coreTheme })
-  .addColors(myColorPalette)
-  .addColorModes('light', {
-    light: {
-      text: { _: 'brand-black', secondary: 'silver-700' },
-      background: { _: 'brand-white', primary: 'kelly-50' },
-      primary: { _: 'brand-primary', hover: 'kelly-700' },
-      border: { primary: 'kelly-500', secondary: 'kelly-200' },
-      // ...
-    },
-    dark: {
-      text: { _: 'brand-white', secondary: 'silver-400' },
-      background: { _: 'brand-black', primary: 'midnight-800' },
-      primary: { _: 'brand-accent', hover: 'silver-400' },
-      border: { primary: 'midnight-600', secondary: 'midnight-700' },
-      // ...
-    },
-  });
+```ts
+overrides: {
+  // An exact color for one palette step. Pick the grade nearest its lightness.
+  palette: { 'accent-300': '#FFB000' },
+  // A role pointed at another palette color in one mode.
+  roles: { dark: { 'action-primary': { slot: 'accent', grade: 300 } } },
+  // A gradient's circles moved to another slot.
+  gradients: { 'surface-brand': { accent: 'accent-alt' } },
+},
 ```
 
-## 4. Override or add scales
+`defineBrand` is typed, so a misspelled slot, role or palette step fails to compile.
 
-Override an existing scale — `spacing`, `fontFamily`, `fontWeight`, and the rest — directly in the initial `createTheme()` object. Reach for `.addScale()` only for a genuinely new scale that doesn't already exist on `coreTheme`:
+## 3. Generate the files
 
-```tsx
-const myTheme = createTheme({
-  ...coreTheme,
-  fontFamily: { ...coreTheme.fontFamily, base: '"Roboto", sans-serif' },
-  spacing: { ...coreTheme.spacing, xs: 4, sm: 8, md: 16 },
-})
-  .addColors(myColorPalette)
-  .addColorModes('light', colorModeConfig)
-  .addScale('shadows', ({ colors }) => ({
-    sm: `0 1px 2px ${colors['shadow-primary']}`,
-    md: `0 4px 6px ${colors['shadow-secondary']}`,
-  }));
+```sh
+gamut-brand build src/theme/acme.brand.ts
 ```
 
-## 5. Convert scales to CSS variables
+This writes `src/theme/acme/`:
 
-`.createScaleVariables` turns a scale into real CSS custom properties, for better runtime performance:
+| File                                                           | What it is                                                                        |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `values.ts`                                                    | The palette, roles and the brand's CSS as typed constants, for `createBrandTheme` |
+| `tokens.css`                                                   | The brand's `--colors-*` and `--gradient-*` custom properties, and nothing else   |
+| `palette.tokens.json`, `light.tokens.json`, `dark.tokens.json` | DTCG JSON for Figma and other design tools                                        |
 
-```tsx
-const myTheme = createTheme({ ...coreTheme })
-  .addColors(myColorPalette)
-  .addColorModes('light', colorModeConfig)
-  .addScale('shadows', shadowConfig)
-  .createScaleVariables('shadows') // creates --shadow-sm, --shadow-md, ...
-  .addName('my-custom-theme')
-  .build();
+Check the folder in, like any generated source.
+
+A brand that fails a contrast check isn't written. The error names the check, its worst value and where:
+
+```
+refusing to generate "acme"; failed checks:
+  text-inverse ≥ 4.5:1: 1.04 at light: action-primary
+  action-primary ≥ 3:1: 1.04 at light: surface-sunken
 ```
 
-## Using your theme
+Pick another hue, or change the override that caused it, and build again.
 
-Follow [Installation](/getting-started/installation/) to wire up `GamutProvider` with your new theme, the same way you would with any existing one.
+## 4. Keep the files current
 
-To preview it against real components in Storybook before shipping, register it in the theme switcher:
+Add the build to your scripts:
+
+```json title="package.json"
+{
+  "scripts": {
+    "brand": "gamut-brand build src/theme/acme.brand.ts",
+    "brand:watch": "gamut-brand build src/theme/acme.brand.ts --watch",
+    "brand:check": "gamut-brand build src/theme/acme.brand.ts --check"
+  }
+}
+```
+
+Run `--watch` next to your dev server. It regenerates when the brand file, or a file next to it, changes, and only rewrites files whose contents changed. Run `--check` in CI: it writes nothing, and fails when the files are out of date, including after an upgrade of `@skillsoft/gamut-brand`. `--out <dir>` writes somewhere other than a folder named after the brand.
+
+## 5. Build the theme
+
+`createBrandTheme` takes the generated values and everything about the brand that isn't color:
+
+```ts
+// src/theme/index.ts
+import {
+  createBrandTheme,
+  fontWeightMediumTitle,
+  percipioFontFamily,
+  softElevation,
+} from '@skillsoft/gamut-styles';
+
+import * as values from './acme/values';
+
+export const acmeTheme = createBrandTheme(values, {
+  name: 'acme',
+  fontFamily: percipioFontFamily,
+  fontWeight: fontWeightMediumTitle,
+  elevation: softElevation,
+});
+```
+
+| Option        | What it sets                                                                                                      |
+| ------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `name`        | The theme's name                                                                                                  |
+| `fontFamily`  | Every font family key Gamut uses. `percipioFontFamily` is Skillsoft's                                             |
+| `fontWeight`  | Every font weight key, including `title`. `fontWeightMediumTitle` sets titles to 500                              |
+| `elevation`   | How shadows are drawn. `softElevation` is the soft shadow; `offsetElevation` is Original Codecademy's hard offset |
+| `borderRadii` | Optional. Defaults to Gamut's radii                                                                               |
+
+Shadow colors come from the brand's `shadow-key` and `shadow-ambient` roles, so an elevation works with any brand.
+
+## 6. Use it
+
+Pass the theme to `GamutProvider`. It puts the brand's CSS on the page, so the app loads nothing else:
 
 ```tsx
-// packages/styleguide/.storybook/theming/GamutThemeProvider.tsx
+<GamutProvider theme={acmeTheme}>
+  <App />
+</GamutProvider>
+```
+
+Declare the Emotion theme type once, as for any Gamut app. Every brand theme shares the `SkillsoftTheme` type:
+
+```ts title="emotion.d.ts"
+import '@emotion/react';
+import type { SkillsoftTheme } from '@skillsoft/gamut-styles';
+
+declare module '@emotion/react' {
+  export interface Theme extends SkillsoftTheme {}
+}
+```
+
+`<Box bg="surface-raised" />` then compiles, and `<Box bg="surface-raisd" />` doesn't.
+
+A page without React loads the generated `acme/tokens.css` instead.
+
+## Previewing in Gamut's Storybook
+
+To preview a brand against real components in Gamut's own Storybook, add its theme to the theme switcher:
+
+```tsx
+// packages/.storybook/theming/GamutThemeProvider.tsx
 const themeMap = {
-  core: coreTheme,
-  admin: adminTheme,
-  lxStudio: lxStudioTheme,
-  'your-theme-here': yourCustomTheme,
+  // ...Gamut's themes
+  acme: acmeTheme,
 } as const;
 ```
 
-```tsx
-// .storybook/preview.ts
-theme: {
-  name: 'Theme',
-  defaultValue: 'core',
-  toolbar: {
-    icon: 'paintbrush',
-    items: [
-      { value: 'core', title: 'Core' },
-      { value: 'your-theme-here', title: 'Custom Theme' },
-    ],
-  },
-},
+```ts
+// packages/.storybook/preview.ts, under globalTypes.theme.toolbar.items
+{ value: 'acme', title: 'Acme' },
 ```
 
 ## Best practices
 
-- Replace every token, or extend from `coreTheme` — a partial theme breaks compatibility with existing components.
-- Override an existing scale in `createTheme()`'s initial object; reach for `.addScale()` only for scales that don't already exist.
-- Map your palette to semantic color names (`primary`, `secondary`, and the rest), not just raw brand colors.
-- Provide both light and dark color modes.
-- Convert frequently-used scales to CSS variables for performance.
-- Test the theme against real Gamut components before shipping it.
+- Supply as few hues as you need. Every hue you supply is one more you have to keep in step with your brand.
+- Prefer a hue over an override. Overrides are for a color that has to be exact, such as a logo color.
+- Use roles in your own code too, never palette colors. A palette color doesn't change with the mode.
+- Check both modes in Storybook before shipping.

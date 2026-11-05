@@ -1,20 +1,31 @@
 ---
 title: Themes
-description: The theme palettes available (Core, Admin, LX Studio and Platform) and their values.
+description: The themes Gamut ships (Skillsoft, Original Codecademy, Admin, Platform and LX Studio) and how they relate to brands.
 ---
 
-Every Emotion component in Gamut has typed access to the current theme's tokens, without any extra imports — most commonly through [system props](/foundations/system-props/) or the `theme` prop.
+Every Emotion component in Gamut has typed access to the current theme's tokens, without any extra imports, most commonly through [system props](/foundations/system-props/) or the `theme` prop.
 
 ## Available themes
 
-- **Core** — Codecademy's own public-facing theme.
-- **Admin** — the internal admin/back-office theme.
-- **LX Studio** — the theme for LX Studio.
-- **Platform** — the shared learning-platform theme.
+Each theme is one brand of the [color system](/concepts/color-system/), plus that brand's fonts, font weights and shadows:
+
+| Theme                     | Brand                | For                                                             |
+| ------------------------- | -------------------- | --------------------------------------------------------------- |
+| `skillsoftTheme`          | `skillsoft`          | The default. Replaces `percipioTheme`                           |
+| `originalCodecademyTheme` | `originalCodecademy` | Codecademy's public-facing product, rebuilt from the Core theme |
+| `adminTheme`              | `admin`              | Internal admin and back-office tools                            |
+| `platformTheme`           | `platform`           | The learning environment. Starts in dark mode                   |
+| `lxStudioTheme`           | `lxStudio`           | LX Studio                                                       |
+
+`GamutProvider` uses `skillsoftTheme` when you don't pass one. Every theme has the same palette keys and the same roles, so they all share one type, `SkillsoftTheme`, and a component that type-checks against one works on all of them.
+
+`coreTheme` is still exported, on the old color names, until the move to roles is finished. Use `originalCodecademyTheme` for new work.
+
+A team that needs its own colors can build its own brand and theme; see [Creating a custom theme](/guides/creating-a-custom-theme/).
 
 ## Comparing themes live
 
-Use Storybook's Theme Switcher (paintbrush icon in the toolbar) to preview any component across every theme, paired with the Color Mode selector to check both light and dark variants of each. This is the fastest way to see a token's actual resolved value — exact hex codes and scale values are theme-specific and aren't reproduced statically here.
+Use Storybook's Theme Switcher (paintbrush icon in the toolbar) to preview any component in every theme, and the Color Mode selector to check light and dark for each. Exact color values are theme-specific and aren't reproduced here.
 
 ## Choosing a theme
 
