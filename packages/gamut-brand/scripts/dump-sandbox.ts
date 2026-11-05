@@ -1,9 +1,9 @@
 /* eslint-disable no-console -- CLI script; the console is its output. */
 /*
- * Refreshes `src/colorSystem/__fixtures__/sandbox.json`, the copy of design's
+ * Refreshes `src/__fixtures__/sandbox.json`, the copy of design's
  * sandbox output that `sandboxParity.test.ts` holds the generator to.
  *
- *   yarn workspace @skillsoft/gamut-styles dump:sandbox <sandbox checkout>
+ *   yarn workspace @skillsoft/gamut-brand dump:sandbox <sandbox checkout>
  *
  * The checkout is a clone of skillsoft-common/gamut-sandbox with its
  * dependencies installed (`yarn` there), on whatever commit you're porting.
@@ -21,7 +21,7 @@ if (!checkout) {
   process.exit(1);
 }
 const SANDBOX = resolve(checkout);
-const OUT = join(__dirname, '../src/colorSystem/__fixtures__/sandbox.json');
+const OUT = join(__dirname, '../src/__fixtures__/sandbox.json');
 
 const git = (...args: string[]) =>
   execFileSync('git', ['-C', SANDBOX, ...args], { encoding: 'utf8' }).trim();
