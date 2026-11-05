@@ -104,7 +104,14 @@ describe.each(Object.values(presets))('preset $name', (preset) => {
     });
   }
 
-  const endToEnd = readCases(path.join(__dirname, '__testfixtures__'));
+  /* scope-swap's end-to-end cases sit at the top; other presets' in a folder named for them. */
+  const endToEnd = readCases(
+    path.join(
+      __dirname,
+      '__testfixtures__',
+      preset.name === 'scope-swap' ? '' : preset.name
+    )
+  );
   if (endToEnd.length > 0) {
     it.each(endToEnd)('every migration: $name', (c) => {
       expect(runSource(preset.name, c.input).out.trim()).toBe(c.output.trim());
