@@ -7951,6 +7951,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@skillsoft/gamut-brand@workspace:*, @skillsoft/gamut-brand@workspace:packages/gamut-brand":
+  version: 0.0.0-use.local
+  resolution: "@skillsoft/gamut-brand@workspace:packages/gamut-brand"
+  dependencies:
+    "@types/culori": "npm:^4"
+    culori: "npm:^4.0.2"
+    jiti: "npm:2.4.2"
+    style-dictionary: "npm:5.7.0"
+  bin:
+    gamut-brand: ./dist/cli.mjs
+  languageName: unknown
+  linkType: soft
+
 "@skillsoft/gamut-codemods@workspace:packages/gamut-codemods":
   version: 0.0.0-use.local
   resolution: "@skillsoft/gamut-codemods@workspace:packages/gamut-codemods"
@@ -8032,6 +8045,7 @@ __metadata:
   resolution: "@skillsoft/gamut-styles@workspace:packages/gamut-styles"
   dependencies:
     "@emotion/is-prop-valid": "npm:^1.1.0"
+    "@skillsoft/gamut-brand": "workspace:*"
     "@skillsoft/variance": "npm:^0.0.1"
     "@types/culori": "npm:^4"
     csstype: "npm:^3.0.7"
@@ -8041,7 +8055,6 @@ __metadata:
     jiti: "npm:2.4.2"
     lodash: "npm:^4.17.23"
     polished: "npm:^4.1.2"
-    style-dictionary: "npm:5.7.0"
   peerDependencies:
     "@emotion/cache": ^11.4.0
     "@emotion/react": ^11.4.0
