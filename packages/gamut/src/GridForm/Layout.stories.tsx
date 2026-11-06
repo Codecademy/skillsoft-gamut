@@ -1,15 +1,17 @@
-import { GridForm, Markdown } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from 'storybook/actions';
+import { expect, fn } from 'storybook/test';
+
+import { Markdown } from '../Markdown';
+import { GridForm } from '.';
+
+const onSubmit = fn();
 
 const meta: Meta<typeof GridForm> = {
+  title: 'Inputs & forms/GridForm/Layout',
   component: GridForm,
+  parameters: { docs: { propsTable: false } },
   args: {
-    onSubmit: (values) => {
-      action('Form Submitted')(values);
-      // eslint-disable-next-line no-console
-      console.log('Form Submitted', values);
-    },
+    onSubmit,
     submit: {
       contents: 'Submit',
       size: 4,
@@ -74,6 +76,11 @@ export const Formatted: Story = {
     ],
     requiredTextProps: { color: 'danger', variant: 'title-xs' },
   },
+  play: ({ canvas }) => {
+    canvas.getByText('* Required');
+    canvas.getByLabelText('Simple select (required)*');
+    canvas.getByLabelText('Simple text (optional)');
+  },
 };
 
 export const HideRequiredText: Story = {
@@ -96,6 +103,9 @@ export const HideRequiredText: Story = {
     ],
     hideRequiredText: true,
   },
+  play: async ({ canvas }) => {
+    await expect(canvas.queryByText('* Required')).toBeNull();
+  },
 };
 
 export const SoloField: Story = {
@@ -112,6 +122,10 @@ export const SoloField: Story = {
         },
       },
     ],
+  },
+  play: async ({ canvas }) => {
+    await expect(canvas.queryByText('* Required')).toBeNull();
+    canvas.getByLabelText('A field');
   },
 };
 
@@ -193,6 +207,11 @@ export const InfoTip: Story = {
         },
       },
     ],
+  },
+  play: async ({ canvas }) => {
+    await expect(
+      canvas.getByRole('textbox', { name: /Write a paragraph about infotips/ })
+    ).toHaveAttribute('rows', '6');
   },
 };
 
@@ -280,5 +299,66 @@ export const Sections: Story = {
       },
     ],
     requiredTextProps: { color: 'primary', fontStyle: 'italic' },
+  },
+  play: async ({ canvas }) => {
+    canvas.getByRole('heading', { level: 2, name: 'first section' });
+    canvas.getByRole('heading', { level: 3, name: 'hi there... again' });
+    await expect(canvas.getAllByTestId('form-section-break')).toHaveLength(1);
+    await expect(canvas.getAllByText('* Required')).toHaveLength(1);
+  },
+};
+
+export const SingleSection: Story = {
+  args: {
+    fields: [
+      {
+        title: 'only section',
+        fields: [
+          {
+            label: 'First',
+            name: 'first',
+            size: 6,
+            type: 'text',
+          },
+          {
+            label: 'Second',
+            name: 'second',
+            size: 6,
+            type: 'text',
+          },
+        ],
+      },
+    ],
+  },
+  play: async ({ canvas }) => {
+    canvas.getByRole('heading', { level: 2, name: 'only section' });
+    await expect(canvas.queryByTestId('form-section-break')).toBeNull();
+  },
+};
+
+export const HasSoloField: Story = {
+  args: {
+    hasSoloField: true,
+    fields: [
+      {
+        label: 'Email',
+        name: 'email',
+        size: 12,
+        type: 'email',
+        validation: { required: 'Please enter your email' },
+      },
+      {
+        render: ({ register }) => (
+          <input type="hidden" {...register('source')} value="footer" />
+        ),
+        name: 'source',
+        size: 12,
+        type: 'custom-group',
+      },
+    ],
+  },
+  play: async ({ canvas }) => {
+    await expect(canvas.queryByText('* Required')).toBeNull();
+    canvas.getByLabelText('Email');
   },
 };

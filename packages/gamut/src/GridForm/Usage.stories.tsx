@@ -1,10 +1,15 @@
-import { GridForm } from '@skillsoft/gamut';
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from 'storybook/actions';
+import { expect, fn, waitFor } from 'storybook/test';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
+import { GridForm } from '.';
+
+const onSubmit = fn();
+
 const meta: TypeWithDeepControls<Meta<typeof GridForm>> = {
+  title: 'Inputs & forms/GridForm/Usage',
   component: GridForm,
+  parameters: { deepControls: { enabled: true } },
   args: {
     fields: [
       {
@@ -154,11 +159,7 @@ const meta: TypeWithDeepControls<Meta<typeof GridForm>> = {
       loading: false,
       type: 'fill',
     },
-    onSubmit: (values) => {
-      action('Form Submitted')(values);
-      // eslint-disable-next-line no-console
-      console.log('Form Submitted', values);
-    },
+    onSubmit,
     validation: 'onSubmit',
     resetOnSubmit: true,
   },
@@ -227,3 +228,74 @@ export default meta;
 type Story = StoryObj<typeof GridForm>;
 
 export const Default: Story = {};
+
+export const SubmitsFieldValues: Story = {
+  args: {
+    fields: [
+      {
+        description: 'Check me!',
+        label: 'Stub Checkbox',
+        name: 'stub-checkbox',
+        size: 6,
+        type: 'checkbox',
+      },
+      {
+        label: 'Stub Select',
+        name: 'stub-select',
+        options: ['aaa', 'bbb'],
+        size: 6,
+        type: 'select',
+      },
+      { label: 'Stub Text', name: 'stub-text', size: 6, type: 'text' },
+    ],
+    submit: { contents: 'Submit', size: 6 },
+    resetOnSubmit: false,
+  },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole('checkbox', { name: 'Check me!' }));
+    await userEvent.selectOptions(
+      canvas.getByRole('combobox', { name: /Stub Select/ }),
+      'bbb'
+    );
+    await userEvent.type(
+      canvas.getByRole('textbox', { name: /Stub Text/ }),
+      'Hooray!'
+    );
+    await userEvent.click(canvas.getByRole('button', { name: 'Submit' }));
+
+    await waitFor(() =>
+      expect(onSubmit).toHaveBeenCalledWith(
+        { 'stub-checkbox': true, 'stub-select': 'bbb', 'stub-text': 'Hooray!' },
+        expect.anything()
+      )
+    );
+  },
+};
+
+export const SubmitsOnEnter: Story = {
+  args: {
+    fields: [
+      { label: 'First name', name: 'first', size: 6, type: 'text' },
+      { label: 'Last name', name: 'last', size: 6, type: 'text' },
+    ],
+    submit: { contents: 'Submit', size: 6 },
+    resetOnSubmit: false,
+  },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.type(
+      canvas.getByRole('textbox', { name: /First name/ }),
+      'Ada'
+    );
+    await userEvent.type(
+      canvas.getByRole('textbox', { name: /Last name/ }),
+      'Lovelace{Enter}'
+    );
+
+    await waitFor(() =>
+      expect(onSubmit).toHaveBeenCalledWith(
+        { first: 'Ada', last: 'Lovelace' },
+        expect.anything()
+      )
+    );
+  },
+};
