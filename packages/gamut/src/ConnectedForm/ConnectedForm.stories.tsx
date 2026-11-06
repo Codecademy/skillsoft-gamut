@@ -19,15 +19,16 @@ import {
   useConnectedForm,
 } from '.';
 
+const onSubmit = fn();
+
 const meta: Meta<typeof ConnectedForm> = {
   title: 'Inputs & forms/ConnectedForm/ConnectedForm',
   component: ConnectedForm,
+  args: { onSubmit },
 };
 
 export default meta;
 type Story = StoryObj<typeof ConnectedForm>;
-
-const onSubmit = fn();
 const onError = fn();
 
 type Canvas = Parameters<NonNullable<Story['play']>>[0]['canvas'];
@@ -120,7 +121,8 @@ const submitButton = (canvas: Canvas) =>
   canvas.getByRole('button', { name: /submit/i });
 
 export const Default: Story = {
-  render: function ConnectedFormStory() {
+  parameters: { docs: { source: { type: 'code' } } },
+  render: function ConnectedFormStory(args) {
     const { ConnectedFormGroup, ConnectedForm, connectedFormProps } =
       useConnectedForm({
         defaultValues: {
@@ -154,7 +156,7 @@ export const Default: Story = {
         flexDirection="column"
         justifyContent="space-between"
         minHeight="50rem"
-        onSubmit={onSubmit}
+        {...args}
         {...connectedFormProps}
       >
         <SubmitButton m={8}>submit this form</SubmitButton>

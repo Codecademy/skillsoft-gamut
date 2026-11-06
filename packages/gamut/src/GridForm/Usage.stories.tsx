@@ -164,6 +164,7 @@ const meta: TypeWithDeepControls<Meta<typeof GridForm>> = {
     resetOnSubmit: true,
   },
   argTypes: {
+    validation: { control: 'radio' },
     'submit.type': {
       control: 'radio',
       options: ['fill', 'cta'],
