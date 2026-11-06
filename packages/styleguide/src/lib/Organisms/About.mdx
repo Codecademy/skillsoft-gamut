@@ -7,7 +7,6 @@ import {
 } from '~styleguide/blocks';
 
 import { parameters as listsTablesParameters } from './ListsAndTables/About.mdx';
-import { parameters as markdownParameters } from './Markdown/Markdown.mdx';
 
 export const parameters = {
   id: 'Organisms',
@@ -25,8 +24,5 @@ export const parameters = {
 > [- Brad Frost, author of "Atomic Design"](https://bradfrost.com/blog/post/atomic-web-design/#organisms)
 
 <TableOfContents
-  links={addParentPath(parameters.id, [
-    listsTablesParameters,
-    markdownParameters,
-  ])}
+  links={addParentPath(parameters.id, [listsTablesParameters])}
 />
