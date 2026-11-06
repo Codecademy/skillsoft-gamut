@@ -3,7 +3,7 @@ import {
   calculatePercent,
   calculatePositionPercent,
   getLabel,
-} from '../index';
+} from '.';
 
 describe('BarChart Utils', () => {
   describe('calculatePercent', () => {
