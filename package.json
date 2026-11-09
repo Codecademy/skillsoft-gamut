@@ -61,7 +61,6 @@
     "@types/stylis": "^4.2.0",
     "@typescript-eslint/eslint-plugin": "^8.57.0",
     "@typescript-eslint/parser": "^8.57.0",
-    "@vitejs/plugin-react": "^5.0.0",
     "@vitejs/plugin-react-swc": "4.3.0",
     "@vitest/browser": "^3.2.4",
     "babel-jest": "30.4.1",
