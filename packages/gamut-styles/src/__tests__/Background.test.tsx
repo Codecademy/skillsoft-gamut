@@ -114,11 +114,12 @@ describe('Background', () => {
 });
 
 /*
- * An alias resolves differently in each mode, and Background flips the mode on
- * the same element it paints. It has to paint the palette color the alias has
- * in the outer mode, or `bg="primary"` on core light paints dark mode's yellow.
+ * A semantic color resolves differently in each mode, and Background flips the
+ * mode on the same element it paints. It has to paint the palette color the
+ * semantic color has in the outer mode, or `bg="primary"` on core light paints
+ * dark mode's yellow.
  */
-describe('Background with an alias bg', () => {
+describe('Background with a semantic color bg', () => {
   const themes = {
     core: theme,
     admin: adminTheme,
@@ -128,19 +129,25 @@ describe('Background with an alias bg', () => {
   };
 
   const cases = Object.entries(themes).flatMap(([name, t]) =>
-    Object.entries(t.modes).flatMap(([mode, aliases]) =>
-      Object.entries(aliases)
+    Object.entries(t.modes).flatMap(([mode, semanticColors]) =>
+      Object.entries(semanticColors)
         .filter(([, color]) => color in t.colors)
-        .map(([alias, color]) => ({ name, t, mode, alias, color }))
+        .map(([semanticColor, color]) => ({
+          name,
+          t,
+          mode,
+          semanticColor,
+          color,
+        }))
     )
   );
 
-  it.each(cases.map((c) => [c.name, c.mode, c.alias, c]))(
+  it.each(cases.map((c) => [c.name, c.mode, c.semanticColor, c]))(
     '%s %s: bg="%s" paints its outer-mode color',
-    (_name, _mode, _alias, { t, mode, alias, color }) => {
+    (_name, _mode, _semanticColor, { t, mode, semanticColor, color }) => {
       const { getByTestId } = render(
         <ThemeProvider theme={{ ...t, mode } as typeof theme}>
-          <Background bg={alias as any}>
+          <Background bg={semanticColor as any}>
             <div data-testid="content" />
           </Background>
         </ThemeProvider>
