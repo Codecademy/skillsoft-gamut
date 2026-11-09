@@ -102,7 +102,7 @@ const SURFACES: (RoleName | PaletteKey)[] = [
   'palette-primary-800',
   'palette-accent-700',
   'palette-neutral-dark-1000',
-  /* Mid-ramp: neither mode's text reaches 4.5:1 here (validate:tokens reports it). */
+  /* Mid-ramp: neither mode's text reaches 4.5:1 here (validate:tokens in cass-gmt-1825-color-spike reports it). */
   'palette-primary-600',
 ];
 

@@ -41,7 +41,7 @@ const textOf = (mode: ColorModeShape) =>
 export const Background = forwardRef<HTMLDivElement, BackgroundProps>(
   ({ bg, ...rest }, ref) => {
     const [active, activeColors, modes, getColorValue] = useColorModes();
-    /* Generated themes ship the answer (colorSystem/contentModes.ts). */
+    /* Generated themes ship the answer (contentModes, decided at build time in the color spike). */
     const { contentModes } = useTheme() as Partial<Theme>;
 
     /** If a color alias was used then look up the true color key from the active mode */

@@ -8,7 +8,7 @@ import {
 import { breakpoints, variant } from '@skillsoft/gamut-styles';
 
 /*
- * Design's mapping (gamut-styles colorSystem/migration.ts, Alert): the fill
+ * Design's mapping (the migration map in cass-gmt-1825-color-spike, Alert): the fill
  * is a status tint or a surface, the icon carries the status, and the message
  * stays text-default. Feature paints the brand gradient over its flat
  * fallback.

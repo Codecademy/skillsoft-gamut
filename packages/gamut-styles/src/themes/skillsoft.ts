@@ -19,7 +19,7 @@ import {
 
 /*
  * The first brand on the generated color system (spike, see
- * colorSystem/README.md), and the theme gamut is typed against. It replaces
+ * cass-gmt-1825-color-spike), and the theme gamut is typed against. It replaces
  * core and the other themes rather than extending them, so none of core's
  * primitives (navy-*, hyper-*, gray-*, …) or semantic names (text,
  * background, primary, …) come along; only `white` and `black` survive, as
