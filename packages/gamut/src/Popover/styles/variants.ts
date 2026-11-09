@@ -1,7 +1,7 @@
 import { states, variant } from '@skillsoft/gamut-styles';
 
-import { createVariantsFromAlignments } from '../../Tip/shared/styles/createVariantsUtils';
-import { tooltipArrowHeight } from '../../Tip/shared/styles/styles';
+import { createVariantsFromAlignments } from '../../Tips/shared/styles/createVariantsUtils';
+import { tooltipArrowHeight } from '../../Tips/shared/styles/styles';
 import { borderStyles } from './base';
 import {
   beakBoxX,
