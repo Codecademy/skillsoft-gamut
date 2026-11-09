@@ -9,7 +9,7 @@ import { Box } from '../Box';
 import type { FillButton } from '../Button';
 import { IconButton, TextButton } from '../Button';
 import type { CloseButtonProps } from '../Modals/types';
-import { ToolTip } from '../Tip/ToolTip';
+import { ToolTip } from '../Tips/ToolTip';
 import type { WithChildrenProp } from '../utils';
 import {
   AlertBanner,
