@@ -5,6 +5,7 @@ export * from './GamutProvider';
 export * from './ColorMode';
 export * from './Background';
 export * from './variance';
+export * from './static';
 export * from './cache';
 export * from './variables';
 export * from './styles';
