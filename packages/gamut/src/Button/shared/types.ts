@@ -13,6 +13,8 @@ import type { buttonProps, buttonVariants } from './styles';
 
 export interface ButtonBaseProps extends StyleProps<typeof buttonProps> {
   onClick?: HTMLProps<HTMLButtonElement>['onClick'];
+  /** If defined, component will use an anchor tag */
+  href?: HTMLProps<HTMLAnchorElement>['href'];
   variant?: (typeof buttonVariants)[number];
   size?: 'normal' | 'small' | 'large';
   as?: never;
