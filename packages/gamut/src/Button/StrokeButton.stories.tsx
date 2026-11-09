@@ -13,10 +13,6 @@ const meta: Meta<typeof StrokeButton> = {
     variant: 'primary',
   },
   argTypes: {
-    href: {
-      description: 'If defined, component will use an anchor tag',
-      type: 'string',
-    },
     variant: {
       table: { defaultValue: { summary: 'primary' } },
     },

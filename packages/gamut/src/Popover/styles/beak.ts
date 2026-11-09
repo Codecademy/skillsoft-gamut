@@ -7,7 +7,7 @@ import {
   getBeakBgAndRotation,
   horizontalCenterBeakRtlPopover,
   tooltipBgColor,
-} from '../../Tip/shared/styles/styles';
+} from '../../Tips/shared/styles/styles';
 import type { PopoverProps } from '../types';
 import { popoverPrimaryBgColor } from './base';
 
