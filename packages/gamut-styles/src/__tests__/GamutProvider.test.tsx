@@ -5,7 +5,10 @@ import { setNonce } from 'get-nonce';
 
 import { createEmotionCache } from '../cache';
 import { GamutProvider, useNonce } from '../GamutProvider';
-import { coreTheme as theme, skillsoftTheme } from '../themes';
+import { skillsoftTheme, skillsoftTheme as theme } from '../themes';
+
+const withoutTokens = ({ tokensCss, ...rest }: typeof theme) =>
+  rest as typeof theme;
 import { setupRtl } from './testUtils';
 
 jest.mock('../cache', () => {
@@ -66,15 +69,23 @@ describe(GamutProvider, () => {
   });
 
   it('wraps all elements in a ThemeProvider', () => {
+    // tokensCss is multi-line; check the context value directly instead of matching its text.
+    const themeWithoutTokens = withoutTokens(theme);
+    let seen: { name?: string; useLogicalProperties?: boolean } | undefined;
     renderView({
+      theme: themeWithoutTokens,
       children: (
         <ThemeContext.Consumer>
-          {(value) => <div>{JSON.stringify(value)}</div>}
+          {(value) => {
+            seen = value as typeof seen;
+            return null;
+          }}
         </ThemeContext.Consumer>
       ),
     });
 
-    screen.getByText(JSON.stringify({ ...theme, useLogicalProperties: false }));
+    expect(seen?.name).toBe(themeWithoutTokens.name);
+    expect(seen?.useLogicalProperties).toBe(false);
   });
   it('it can have another GamutProvider as a child with creating multiple caches or globals', () => {
     renderView({
@@ -167,7 +178,7 @@ describe(GamutProvider, () => {
     });
 
     it('does not inject tokens for themes that do not carry them', () => {
-      renderView();
+      renderView({ theme: withoutTokens(theme) });
 
       expect(emotionCss()).not.toContain('--color-palette-primary-800:');
     });
