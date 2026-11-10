@@ -2,7 +2,7 @@ import type { ComponentProps, Ref } from 'react';
 import type * as React from 'react';
 
 import type { OverlayProps } from '../Overlay';
-import type { TipCenterAlignment } from '../Tip/shared/types';
+import type { TipCenterAlignment } from '../Tips/shared/types';
 import type { ModalContainer } from './elements';
 
 export interface ModalOverlayProps

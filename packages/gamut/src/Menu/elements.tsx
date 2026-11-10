@@ -13,8 +13,8 @@ import { forwardRef } from 'react';
 
 import { sharedStates } from '../Box/props';
 import { resetStyles, Selectors } from '../ButtonBase/ButtonBase';
-import type { ToolTipProps } from '../Tip/ToolTip';
-import { ToolTip } from '../Tip/ToolTip';
+import type { ToolTipProps } from '../Tips/ToolTip';
+import { ToolTip } from '../Tips/ToolTip';
 import { raisedShadow } from '../utils/elevation';
 import type { MenuItem } from './MenuItem';
 
