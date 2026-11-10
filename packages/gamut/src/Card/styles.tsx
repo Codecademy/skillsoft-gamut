@@ -4,6 +4,8 @@ import type { ElevationState } from '@skillsoft/gamut-styles';
 import { theme, timingValues, variant } from '@skillsoft/gamut-styles';
 import type { StyleProps } from '@skillsoft/variance';
 
+import type { CardWrapperProps } from './types';
+
 /**
  * The theme's elevation scale is flattened to dashcase tokens (`rest-shadow`,
  * `hoverMirrored-transform`, ...), so per-state groups don't exist on the
@@ -91,34 +93,41 @@ export const patternFadeInOut = {
 
 export const useCardElevation = (
   shadow: StyleProps<typeof shadowVariants>['shadow'],
-  borderRadius?: string
+  borderRadius: CardWrapperProps['borderRadius']
 ) => {
-  const { elevation } = useTheme();
+  const { borderRadii, elevation } = useTheme();
   const hoverState: ElevationState =
     shadow === 'patternRight' ? 'hoverMirrored' : 'hover';
+
+  // framer-motion can only animate a concrete value, so responsive or
+  // function-valued radii are not resolved
+  const resolvedBorderRadius =
+    typeof borderRadius === 'string'
+      ? borderRadii[borderRadius as keyof Theme['borderRadii']] ?? borderRadius
+      : undefined;
 
   return {
     initial: {
       ...getElevationStyles(elevation, 'rest'),
-      borderRadius,
+      borderRadius: resolvedBorderRadius,
       transition: REST_TRANSITION,
     },
     animate: {
       ...getElevationStyles(elevation, hoverState),
-      borderRadius,
+      borderRadius: resolvedBorderRadius,
       transition: HOVER_TRANSITION,
     },
     // Outline styles are specific to Codecademy and will not be included in a theme
     initialOutline: {
       ...getElevationStyles(elevation, 'rest'),
       boxShadow: `-${SHADOW_OFFSET_INITIAL}px ${SHADOW_OFFSET_INITIAL}px 0 0px ${theme.colors['background-current']}, -${SHADOW_OFFSET_INITIAL}px ${SHADOW_OFFSET_INITIAL}px 0 1px ${theme.colors['border-primary']}`,
-      borderRadius,
+      borderRadius: resolvedBorderRadius,
       transition: REST_TRANSITION,
     },
     animateOutline: {
       ...getElevationStyles(elevation, 'hover'),
       boxShadow: `-${SHADOW_OFFSET}px ${SHADOW_OFFSET}px 0 0px ${theme.colors['shadow-primary']}, -${SHADOW_OFFSET}px ${SHADOW_OFFSET}px 0 1px ${theme.colors['shadow-primary']}`,
-      borderRadius,
+      borderRadius: resolvedBorderRadius,
       transition: HOVER_TRANSITION,
     },
   };
