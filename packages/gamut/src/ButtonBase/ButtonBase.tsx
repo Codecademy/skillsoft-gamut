@@ -1,17 +1,10 @@
 import styled from '@emotion/styled';
 import { css, styledOptions } from '@skillsoft/gamut-styles';
-import type { ComponentProps, HTMLProps, Ref } from 'react';
+import type { ComponentProps, Ref } from 'react';
 import { forwardRef } from 'react';
 
 export type ButtonBaseElements = HTMLAnchorElement | HTMLButtonElement;
 export type ButtonBaseRef = Ref<ButtonBaseElements | null>;
-
-export type ButtonBaseElementProps = HTMLProps<
-  HTMLAnchorElement | HTMLButtonElement
-> & {
-  as?: never;
-  ref?: ButtonBaseRef;
-};
 
 export enum InteractiveSelectors {
   HOVER = '&:hover',

@@ -1,4 +1,3 @@
-import type { Theme } from '@emotion/react';
 import type * as React from 'react';
 
 import { webFonts } from '../remoteAssets/fonts';
@@ -17,7 +16,6 @@ const isThemeName = (name: string): name is ThemeName => {
   return name in webFonts;
 };
 
-export type NamedTheme = Theme & { name?: ThemeName };
 /**
  * Retrieves font configurations based on the provided theme name.
  *

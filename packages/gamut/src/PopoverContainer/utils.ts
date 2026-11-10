@@ -169,13 +169,6 @@ export const isOutOfView = (
   return isRectOutOfBounds(rect, windowRect);
 };
 
-export const ALIGN = {
-  top: 'bottom',
-  right: 'left',
-  bottom: 'top',
-  left: 'right',
-} as const;
-
 const AXIS = {
   x: {
     top: 0,

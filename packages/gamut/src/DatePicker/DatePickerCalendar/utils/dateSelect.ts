@@ -3,17 +3,12 @@ import type {
   DatePickerSingleContextValue,
 } from '../../DatePickerContext/types';
 import type { DatePickerSharedProps } from '../../sharedTypes';
-import type { DatePickerProps, DatePickerRangeProps } from '../../types';
 import {
   getOrderedCalendarEndpoints,
   isDateDisabled,
   isDateInRange,
   isSameDay,
 } from '../Calendar/utils/dateGrid';
-
-export const isRangeProps = (
-  props: DatePickerProps
-): props is DatePickerRangeProps => props.mode === 'range';
 
 type RangeContainsDisabledParams = {
   startDate: Date;
