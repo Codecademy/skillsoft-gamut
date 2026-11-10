@@ -4,7 +4,7 @@ import {
   corePalette,
   ColorModes,
   GamutProvider,
-  coreTheme,
+  skillsoftTheme,
   adminTheme,
   lxStudioTheme,
   platformTheme,
@@ -26,7 +26,6 @@ const themeBackground: Record<ColorModes, 'white' | 'navy'> = {
 };
 
 const themeMap = {
-  core: coreTheme,
   admin: adminTheme,
   lxStudio: lxStudioTheme,
   platform: platformTheme,
