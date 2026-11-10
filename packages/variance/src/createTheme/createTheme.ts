@@ -107,7 +107,7 @@ class ThemeBuilder<T extends AbstractTheme> {
       {
         colors: KeyAsVariable<
           LiteralPaths<Config[keyof Config], '-', '_'>,
-          'colors'
+          'color'
         > &
           T['colors'];
         modes: Merge<T['modes'], ColorAliases>;
