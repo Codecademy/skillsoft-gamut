@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 
 import { AssetProvider, createFontLinks } from '../AssetProvider';
-import { coreTheme, lxStudioTheme } from '../themes';
+import { skillsoftTheme, lxStudioTheme } from '../themes';
 import { getFontsMock } from './fontUtilsMock';
 import { setupRtl } from './testUtils';
 
@@ -221,15 +221,15 @@ describe('AssetProvider', () => {
     });
 
     it('should handle theme without name property', () => {
-      const themeWithoutName = { ...coreTheme, name: undefined };
+      const themeWithoutName = { ...skillsoftTheme, name: undefined };
       mockGetFonts.mockReturnValue([]);
 
       renderView({ theme: themeWithoutName });
-      expect(mockGetFonts).toHaveBeenCalledWith('core');
+      expect(mockGetFonts).toHaveBeenCalledWith('skillsoft');
     });
 
     it('should handle theme with invalid name', () => {
-      const themeWithInvalidName = { ...coreTheme, name: 'invalid-theme' };
+      const themeWithInvalidName = { ...skillsoftTheme, name: 'invalid-theme' };
       mockGetFonts.mockReturnValue([]);
 
       renderView({ theme: themeWithInvalidName });

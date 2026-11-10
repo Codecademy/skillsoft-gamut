@@ -1,5 +1,6 @@
 import { matchers } from '@emotion/jest';
 import { ThemeProvider, useTheme } from '@emotion/react';
+import { render } from '@testing-library/react';
 import { setupRtl as setupRtlBase } from 'component-test-setup';
 import overArgs from 'lodash/overArgs';
 import type * as React from 'react';
@@ -104,4 +105,45 @@ describe('Background', () => {
       theme.colors['palette-neutral-dark-1000']
     );
   });
+});
+
+/*
+ * A semantic color resolves differently in each mode, and Background flips the
+ * mode on the same element it paints. It has to paint the palette color the
+ * semantic color has in the outer mode, or `bg="primary"` on a light page paints
+ * dark mode's primary.
+ */
+describe('Background with a semantic color bg', () => {
+  const themes = { skillsoft: theme };
+
+  const cases = Object.entries(themes).flatMap(([name, t]) =>
+    Object.entries(t.modes).flatMap(([mode, semanticColors]) =>
+      Object.entries(semanticColors)
+        .filter(([, color]) => color in t.colors)
+        .map(([semanticColor, color]) => ({
+          name,
+          t,
+          mode,
+          semanticColor,
+          color,
+        }))
+    )
+  );
+
+  it.each(cases.map((c) => [c.name, c.mode, c.semanticColor, c]))(
+    '%s %s: bg="%s" paints its outer-mode color',
+    (_name, _mode, _semanticColor, { t, mode, semanticColor, color }) => {
+      const { getByTestId } = render(
+        <ThemeProvider theme={{ ...t, mode } as typeof theme}>
+          <Background bg={semanticColor as any}>
+            <div data-testid="content" />
+          </Background>
+        </ThemeProvider>
+      );
+      expect(getByTestId('content').parentElement).toHaveStyleRule(
+        '--color-background-current',
+        t.colors[color as keyof typeof t.colors]
+      );
+    }
+  );
 });

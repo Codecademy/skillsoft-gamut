@@ -3,7 +3,7 @@ import overArgs from 'lodash/overArgs';
 import type * as React from 'react';
 
 import { GamutProvider } from '../GamutProvider';
-import { coreTheme as theme } from '../themes';
+import { skillsoftTheme as theme } from '../themes';
 
 /**
  * This is effectively a duplicate of the `MockGamutProvider` in `gamut-tests`.
