@@ -1,14 +1,8 @@
 import { useLayoutEffect, useRef } from 'react';
 import {
   Background,
-  corePalette,
   ColorModes,
   GamutProvider,
-  coreTheme,
-  adminTheme,
-  lxStudioTheme,
-  percipioTheme,
-  platformTheme,
   skillsoftTheme,
 } from '@skillsoft/gamut-styles';
 import { Theme } from '@emotion/react';
@@ -21,26 +15,13 @@ const STORYBOOK_CSP_NONCE = 'storybook-csp-nonce';
  * See: https://github.com/storybookjs/storybook/issues/12255
  */
 
-const themeBackground: Record<ColorModes, 'white' | 'navy'> = {
-  light: 'white',
-  dark: 'navy',
-};
-
-/*
- * The skillsoft theme (color-system spike) has none of core's primitives, so
- * `navy` doesn't exist there; it gets its own surface-default values.
- */
+/* The skillsoft theme's surface-default values, as palette colors. */
 const skillsoftBackground: Record<ColorModes, string> = {
   light: 'palette-neutral-light-100',
   dark: 'palette-neutral-dark-1100',
 };
 
 const themeMap = {
-  core: coreTheme,
-  admin: adminTheme,
-  lxStudio: lxStudioTheme,
-  percipio: percipioTheme,
-  platform: platformTheme,
   skillsoft: skillsoftTheme,
 } as const;
 
@@ -58,19 +39,12 @@ export const withEmotion = (Story: any, context: GlobalsContext) => {
   const selectedTheme = context.globals.theme;
   const useLogicalProperties = context.globals.logicalProps === 'true';
   const direction = context.globals.direction ?? 'ltr';
-  const isSkillsoft = selectedTheme === 'skillsoft';
-  /*
-   * The color-system theme takes its values from tokens.css, not Emotion.
-   * Injected only for that theme: tokens.css also sets white, black and
-   * background-current on :root, which would leak into the other themes.
-   */
-  const tokens = isSkillsoft && <style>{tokensCss}</style>;
-  const bg = (
-    isSkillsoft ? skillsoftBackground[colorMode] : themeBackground[colorMode]
-  ) as 'white';
-  const background = isSkillsoft
-    ? (skillsoftTheme._tokens.colors as Record<string, string>)[bg]
-    : corePalette[themeBackground[colorMode]];
+  /* The theme takes its values from tokens.css, not Emotion. */
+  const tokens = <style>{tokensCss}</style>;
+  const bg = skillsoftBackground[colorMode];
+  const background = (skillsoftTheme._tokens.colors as Record<string, string>)[
+    bg
+  ];
   const storyRef = useRef<HTMLDivElement>(null);
   const currentTheme = themeMap[selectedTheme];
 

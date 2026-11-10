@@ -63,9 +63,10 @@ color key, so the Emotion and CSS routes use one naming scheme.
   `oklch()`.
 - Components that use older core primitives directly (`navy-900`, `gray-100`,
   `yellow`, and similar) don't map to this theme. Use roles instead.
-- `skillsoftTheme` has no legacy color names. `ColorMode` still works on the
-  other exported themes, because `roleOr` falls back to the old names, but
-  components are checked against `skillsoftTheme` only.
+- `skillsoftTheme` is the only theme in this package. It has no legacy color
+  names, so components are checked against it alone. `ColorMode` and
+  `Background` still fall back to old names through `roleOr`, which the
+  brand themes that follow will use.
 - The categorical chart palette (`viz-1` to `viz-8`) uses the slot and grade
   order chosen for Skillsoft's hues. A custom brand gets that order without
   re-solving the chart colors.
