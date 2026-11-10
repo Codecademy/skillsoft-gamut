@@ -20,6 +20,9 @@ export default meta;
 type Story = StoryObj<typeof Markdown>;
 
 const youtubeIframe = `<iframe src="https://www.youtube.com/embed/zhDwjnYZiCo" title="Ghibli Coffee Shop"></iframe>`;
+const videoSrc =
+  'https://static-assets.codecademy.com/skillshorts/introduction-to-quantum-computing/01-Introduction-to-Quantum-Computing.mp4';
+const captionsSrc = 'https://files.vidstack.io/sprite-fight/subs/english.vtt';
 
 export const Default: Story = {
   args: {
@@ -385,17 +388,17 @@ export const VimeoOverride: Story = {
 
 export const VideoTagOverride: Story = {
   args: {
-    text: `<video src="https://example.com/clip.mp4" title="Clip" controls></video>`,
+    text: `<video src="${videoSrc}" title="Clip" controls></video>`,
     videoOverride: { component: MarkdownVideo },
   },
   play: async ({ canvas, canvasElement }) => {
     const player = await canvas.findByRole('region', {
       name: 'Video Player - Clip',
     });
-    await expect(player.querySelector('video')).toHaveAttribute(
-      'src',
-      'https://example.com/clip.mp4'
+    await waitFor(() =>
+      expect(player.querySelector('video')).toHaveAttribute('src', videoSrc)
     );
+    await waitFor(() => expect(player).toHaveAttribute('data-can-play'));
     await expect(
       canvasElement.querySelector('p [data-media-player]')
     ).toBeNull();
@@ -406,8 +409,7 @@ export const VideoSourceOverride: Story = {
   args: {
     text: `
 <video controls>
-  <source src="https://example.com/movie.mp4" type="video/mp4">
-  <source src="https://example.com/movie.ogg" type="video/ogg">
+  <source src="${videoSrc}" type="video/mp4">
 </video>
 `,
     videoOverride: { component: MarkdownVideo },
@@ -415,22 +417,20 @@ export const VideoSourceOverride: Story = {
   play: async ({ canvas }) => {
     const player = await canvas.findByRole('region', { name: 'Video Player' });
     await waitFor(() =>
-      expect(player.querySelector('source')).toHaveAttribute(
-        'src',
-        'https://example.com/movie.mp4'
-      )
+      expect(player.querySelector('source')).toHaveAttribute('src', videoSrc)
     );
+    await waitFor(() => expect(player).toHaveAttribute('data-can-play'));
   },
 };
 
 export const WithoutVideoTagOverride: Story = {
   args: {
-    text: `<video src="https://example.com/clip.mp4" controls></video>`,
+    text: `<video src="${videoSrc}" controls></video>`,
   },
   play: async ({ canvas, canvasElement }) => {
     await expect(canvasElement.querySelector('video')).toHaveAttribute(
       'src',
-      'https://example.com/clip.mp4'
+      videoSrc
     );
     await expect(canvas.queryByRole('region')).toBeNull();
   },
@@ -632,8 +632,29 @@ export const WithoutPlayerEmbed: Story = {
     iframeOverride: { component: Iframe },
     text: `<iframe src="https://www.youtube.com/embed/zhDwjnYZiCo" showPlayerEmbed="false" title="No embed"></iframe>`,
   },
+  tags: ['!test'],
   play: async ({ canvas, canvasElement }) => {
+    // TODO: Unmounting a vidstack YouTube player before it loads throws unhandled "provider destroyed" rejections, so this story is excluded from test runs
     await canvas.findByRole('region', { name: 'Video Player - No embed' });
+    await expect(canvasElement.querySelector('youtube-video')).toBeNull();
+  },
+};
+
+export const YoutubeVideoWithCaptions: Story = {
+  args: {
+    text: `
+<video src="https://www.youtube.com/embed/zhDwjnYZiCo" title="Captioned YouTube">
+  <track src="${captionsSrc}" kind="captions" srclang="en" label="English" default>
+</video>
+`,
+    videoOverride: { component: MarkdownVideo },
+  },
+  tags: ['!test'],
+  play: async ({ canvas, canvasElement }) => {
+    // TODO: Unmounting a vidstack YouTube player before it loads throws unhandled "provider destroyed" rejections, so this story is excluded from test runs
+    await canvas.findByRole('region', {
+      name: 'Video Player - Captioned YouTube',
+    });
     await expect(canvasElement.querySelector('youtube-video')).toBeNull();
   },
 };
@@ -641,8 +662,8 @@ export const WithoutPlayerEmbed: Story = {
 export const VideoWithCaptions: Story = {
   args: {
     text: `
-<video src="https://example.com/clip.mp4" title="Captioned">
-  <track src="https://example.com/captions.vtt" kind="captions" srclang="en" label="English" default>
+<video src="${videoSrc}" title="Captioned">
+  <track src="${captionsSrc}" kind="captions" srclang="en" label="English" default>
 </video>
 `,
     videoOverride: { component: MarkdownVideo },
@@ -652,15 +673,13 @@ export const VideoWithCaptions: Story = {
       name: 'Video Player - Captioned',
     });
     await waitFor(() =>
-      expect(player.querySelector('track')).toHaveAttribute(
-        'src',
-        'https://example.com/captions.vtt'
-      )
+      expect(player.querySelector('track')).toHaveAttribute('src', captionsSrc)
     );
     const track = player.querySelector('track')!;
     await expect(track).toHaveAttribute('kind', 'captions');
     await expect(track).toHaveAttribute('srclang', 'en');
     await expect(track).toHaveAttribute('label', 'English');
+    await waitFor(() => expect(player).toHaveAttribute('data-can-play'));
   },
 };
 
