@@ -19,13 +19,13 @@ describe('platformTheme', () => {
 
   it("keeps the code editor's colors, declared in both modes", () => {
     expect(platformTheme.colors['editor-keyword']).toBe(
-      'var(--colors-editor-keyword)'
+      'var(--color-editor-keyword)'
     );
     expect(platformTheme.tokensCss).toContain(
-      ':root,[data-color-mode="light"]{--colors-editor-attribute:#008A27;'
+      ':root,[data-color-mode="light"]{--color-editor-attribute:#008A27;'
     );
     expect(platformTheme.tokensCss).toContain(
-      '--colors-editor-keyword:#B3CCFF;'
+      '--color-editor-keyword:#B3CCFF;'
     );
   });
 });

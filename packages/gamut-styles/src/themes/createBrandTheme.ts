@@ -99,7 +99,7 @@ export const createBrandTheme = (
    * `tokensCss` for GamutProvider to inject. It holds every brand, keyed on
    * `data-brand`. The theme doesn't also inject the palette as variables, so
    * the OKLCH in tokens.css is what renders. The theme keeps names
-   * (`var(--colors-*)`), `brand` (ColorMode sets it as `data-brand`), and
+   * (`var(--color-*)`), `brand` (ColorMode sets it as `data-brand`), and
    * `contentModes`, which Background reads instead of measuring contrast.
    * `_getColorValue` still returns sRGB for the components that run polished
    * on it (BarChart).
@@ -113,7 +113,7 @@ export const createBrandTheme = (
       ...built._variables,
       root: pickBy(
         built._variables.root,
-        (_, key) => !key.startsWith('--colors-')
+        (_, key) => !key.startsWith('--color-')
       ),
     },
   };

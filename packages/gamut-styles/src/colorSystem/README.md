@@ -22,12 +22,12 @@ brands/skillsoft.ts         one hue per slot (or just `primary`)
 
 Output is checked in at `src/tokens/generated/` and ships as:
 
-| Import                                                            | What                                                                                                                                            |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@skillsoft/gamut-styles/tokens`                                  | TS constants: `palette`, `roles`, `gradients`, `contentModes` (OKLCH + sRGB per token)                                                          |
-| `@skillsoft/gamut-styles/tokens.css`                              | `--colors-*` / `--gradient-*` custom properties. Palette on `:root`; roles on `:root, [data-color-mode="light"]` and `[data-color-mode="dark"]` |
-| `@skillsoft/gamut-styles/tokens/{palette,light,dark}.tokens.json` | DTCG 2025.10. Colors are `{ colorSpace: "oklch", components, alpha, hex }`                                                                      |
-| `skillsoftTheme` (main entry)                                     | Emotion theme on the new roles; the default theme and what gamut is typed against                                                               |
+| Import                                                            | What                                                                                                                                           |
+| ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@skillsoft/gamut-styles/tokens`                                  | TS constants: `palette`, `roles`, `gradients`, `contentModes` (OKLCH + sRGB per token)                                                         |
+| `@skillsoft/gamut-styles/tokens.css`                              | `--color-*` / `--gradient-*` custom properties. Palette on `:root`; roles on `:root, [data-color-mode="light"]` and `[data-color-mode="dark"]` |
+| `@skillsoft/gamut-styles/tokens/{palette,light,dark}.tokens.json` | DTCG 2025.10. Colors are `{ colorSpace: "oklch", components, alpha, hex }`                                                                     |
+| `skillsoftTheme` (main entry)                                     | Emotion theme on the new roles; the default theme and what gamut is typed against                                                              |
 
 ## The CSS contract (branch `cass-color-css-contract`)
 
@@ -39,10 +39,10 @@ without React or Emotion; an app that loads it itself can pass
 
 - A mode switch is an attribute: `data-color-mode="light" | "dark"` on any
   element, nested as deep as you like. Mode blocks also set `color-scheme`,
-  `color: var(--colors-text-default)` and a default
-  `--colors-background-current`.
+  `color: var(--color-text-default)` and a default
+  `--color-background-current`.
 - A surface without Emotion: resolve the role to its palette color in the
-  outer mode (`roles[mode][role].ref`), paint `var(--colors-<palette>)`, and
+  outer mode (`roles[mode][role].ref`), paint `var(--color-<palette>)`, and
   set `data-color-mode` to `contentModes[palette]`. The palette color is the
   same in every mode, so the flip can't change the background under it.
 - `Background` reads `theme.contentModes` when the theme has it, and only
@@ -60,15 +60,15 @@ npx nx test gamut-styles                                # guarantees, sandbox pa
 
 ## Naming
 
-- Primitives: `--colors-palette-<slot>-<grade>`, e.g. `--colors-palette-primary-800`.
+- Primitives: `--color-palette-<slot>-<grade>`, e.g. `--color-palette-primary-800`.
   Slots: `neutral-light`, `neutral-dark`, `primary`, `accent`, `accent-alt`,
   `danger`, `warning`, `success`. Not for components; use roles.
-- Translucent primitives: `--colors-palette-primary-600-a6` (6% alpha), `--colors-black-a60`.
-- Roles: `--colors-<role>`, e.g. `--colors-action-primary`.
+- Translucent primitives: `--color-palette-primary-600-a6` (6% alpha), `--color-black-a60`.
+- Roles: `--color-<role>`, e.g. `--color-action-primary`.
 - `white` / `black` keep their bare names (boundary tokens).
 
-The `--colors-` prefix on primitives is there because variance's `addColors`
-always emits `--colors-<key>`; keeping one name for both the Emotion and CSS
+The `--color-` prefix on primitives is there because variance's `addColors`
+always emits `--color-<key>`; keeping one name for both the Emotion and CSS
 routes beat the shorter `--palette-*`.
 
 ## Known gaps
