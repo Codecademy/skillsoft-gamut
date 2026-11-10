@@ -1,4 +1,4 @@
-import { coreTheme, system } from '@skillsoft/gamut-styles';
+import { skillsoftTheme, system } from '@skillsoft/gamut-styles';
 import type {
   ArgTypesEnhancer,
   StrictInputType,
@@ -51,12 +51,12 @@ const categoryRank = (category: string | undefined) =>
 export const isSystemPropCategory = (category: string | undefined) =>
   categoryRank(category) >= 0;
 
-const themeScales = coreTheme as unknown as Record<
+const themeScales = skillsoftTheme as unknown as Record<
   string,
   Record<string, unknown> | undefined
 >;
 
-// Token names come from the Core theme; other themes may define more or fewer.
+// Token names come from the skillsoft theme.
 const getScaleTokens = ({ scale }: SystemPropConfig) =>
   typeof scale === 'string' ? Object.keys(themeScales[scale] ?? {}) : [];
 
