@@ -21,7 +21,7 @@ type Mode = keyof typeof roles;
 
 const panel: React.CSSProperties = {
   padding: 16,
-  border: '1px solid var(--colors-border-default)',
+  border: '1px solid var(--color-border-default)',
   borderRadius: 4,
 };
 
@@ -32,12 +32,12 @@ const Panel: React.FC<{ mode: Mode; children?: React.ReactNode }> = ({
 }) => (
   <div
     data-color-mode={mode}
-    style={{ ...panel, background: 'var(--colors-surface-default)' }}
+    style={{ ...panel, background: 'var(--color-surface-default)' }}
   >
     <p style={{ margin: '0 0 8px' }}>
       {mode} — text-default,{' '}
-      <span style={{ color: 'var(--colors-text-subtle)' }}>text-subtle</span>,{' '}
-      <span style={{ color: 'var(--colors-action-primary)' }}>
+      <span style={{ color: 'var(--color-text-subtle)' }}>text-subtle</span>,{' '}
+      <span style={{ color: 'var(--color-action-primary)' }}>
         action-primary
       </span>
     </p>
@@ -71,7 +71,7 @@ const CssSurface: React.FC<{
   const key = (
     color in roles[outer] ? roles[outer][color as RoleName].ref : color
   ) as PaletteKey;
-  const bg = `var(--colors-${key})`;
+  const bg = `var(--color-${key})`;
   return (
     <div
       data-color-mode={contentModes[key]}
@@ -79,12 +79,12 @@ const CssSurface: React.FC<{
         {
           ...panel,
           background: bg,
-          '--colors-background-current': bg,
+          '--color-background-current': bg,
         } as React.CSSProperties
       }
     >
       {color}
-      <span style={{ color: 'var(--colors-text-subtle)' }}>
+      <span style={{ color: 'var(--color-text-subtle)' }}>
         {' '}
         → {contentModes[key]} content
       </span>
@@ -132,14 +132,14 @@ export const Surfaces: Story = {
 
 /*
  * gamut components inside a subtree themed only by CSS. Their colors are
- * `var(--colors-*)` names, so they follow the attribute. What doesn't follow:
+ * `var(--color-*)` names, so they follow the attribute. What doesn't follow:
  * anything that reads the mode from Emotion's theme in JS.
  */
 export const EmotionInsideCss: Story = {
   render: () => (
     <div
       data-color-mode="dark"
-      style={{ ...panel, background: 'var(--colors-surface-default)' }}
+      style={{ ...panel, background: 'var(--color-surface-default)' }}
     >
       <Text as="p" mb={16}>
         Text, <Anchor href="#">an Anchor</Anchor>, and buttons, under a plain{' '}

@@ -16,7 +16,7 @@ as static CSS, so the colors don't depend on Emotion.
 | Import                                                            | What                                                                                                                                              |
 | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `@skillsoft/gamut-styles/tokens`                                  | TS constants: `palette`, `roles`, `gradients`, `contentModes`, `brand` (OKLCH + sRGB per token)                                                   |
-| `@skillsoft/gamut-styles/tokens.css`                              | `--colors-*` and `--gradient-*` custom properties. Palette on `:root`; roles on `:root, [data-color-mode="light"]` and `[data-color-mode="dark"]` |
+| `@skillsoft/gamut-styles/tokens.css`                              | `--color-*` and `--gradient-*` custom properties. Palette on `:root`; roles on `:root, [data-color-mode="light"]` and `[data-color-mode="dark"]` |
 | `@skillsoft/gamut-styles/tokens/{palette,light,dark}.tokens.json` | Color tokens in the DTCG shape: `{ colorSpace: "oklch", components, alpha, hex }`                                                                 |
 | `skillsoftTheme` (main entry)                                     | The default Emotion theme, built on the roles. Gamut components are typed against it                                                              |
 
@@ -30,10 +30,10 @@ loads it itself passes `useTokens={false}` to avoid injecting it twice.
 
 - A mode switch is an attribute: `data-color-mode="light"` or `"dark"` on any
   element, nested as deep as you like. Each mode block also sets
-  `color-scheme`, `color: var(--colors-text-default)` and a default
-  `--colors-background-current`.
+  `color-scheme`, `color: var(--color-text-default)` and a default
+  `--color-background-current`.
 - Outside Emotion, paint a surface by resolving the role to its palette color
-  in the outer mode (`roles[mode][role].ref`), using `var(--colors-<palette>)`,
+  in the outer mode (`roles[mode][role].ref`), using `var(--color-<palette>)`,
   and set `data-color-mode` to `contentModes[palette]`. The palette color is
   the same in both modes, so switching modes can't change the background under
   it.
@@ -44,16 +44,16 @@ Storybook has a live example under **Foundations / Color system / CSS contract**
 
 ### Naming
 
-- Palette primitives: `--colors-palette-<slot>-<grade>`, for example
-  `--colors-palette-primary-800`. The slots are `neutral-light`,
+- Palette primitives: `--color-palette-<slot>-<grade>`, for example
+  `--color-palette-primary-800`. The slots are `neutral-light`,
   `neutral-dark`, `primary`, `accent`, `accent-alt`, `danger`, `warning`, and
   `success`. Use roles in components, not primitives.
-- Translucent primitives add an alpha suffix: `--colors-palette-primary-600-a6`
-  (6% alpha) and `--colors-black-a60`.
-- Roles: `--colors-<role>`, for example `--colors-action-primary`.
+- Translucent primitives add an alpha suffix: `--color-palette-primary-600-a6`
+  (6% alpha) and `--color-black-a60`.
+- Roles: `--color-<role>`, for example `--color-action-primary`.
 - `white` and `black` keep their bare names as boundary tokens.
 
-The `--colors-` prefix is the color scale's prefix in variance, so the Emotion and
+The `--color-` prefix is the color scale's prefix in variance, so the Emotion and
 CSS routes use one naming scheme.
 
 ### Known limits

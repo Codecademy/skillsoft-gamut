@@ -32,7 +32,7 @@ describe('Alert', () => {
 
       /* A forced mode writes that mode's role variables into the button's class. */
       expect(cta).not.toHaveStyleRule(
-        '--colors-action-neutral',
+        '--color-action-neutral',
         expect.any(String)
       );
     });
@@ -42,7 +42,7 @@ describe('Alert', () => {
 
       expect(view.getByRole('status')).toHaveStyleRule(
         'color',
-        'var(--colors-text-error)'
+        'var(--color-text-error)'
       );
     });
 
@@ -51,7 +51,7 @@ describe('Alert', () => {
 
       expect(view.getByRole('status')).toHaveStyleRule(
         'color',
-        'var(--colors-text-default)'
+        'var(--color-text-default)'
       );
     });
 
@@ -60,7 +60,7 @@ describe('Alert', () => {
 
       expect(view.getByRole('status')).toHaveStyleRule(
         'border-color',
-        'var(--colors-text-success)'
+        'var(--color-text-success)'
       );
     });
 
@@ -69,7 +69,7 @@ describe('Alert', () => {
 
       expect(view.getByRole('status')).not.toHaveStyleRule(
         'border-color',
-        'var(--colors-text-success)'
+        'var(--color-text-success)'
       );
     });
   });
