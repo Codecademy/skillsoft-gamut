@@ -18,7 +18,7 @@ const renderIn = (ui: React.ReactElement) =>
     </GamutProvider>
   ).container;
 
-const role = (name: string) => `var(--colors-${name})`;
+const role = (name: string) => `var(--color-${name})`;
 
 /* Design's field map, and design's "inputs use surface-raised". */
 describe('field colors', () => {
