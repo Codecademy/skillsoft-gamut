@@ -52,7 +52,7 @@ names at render.
 
 ## Rules for a recipe that compiles
 
-- **Colors are roles.** They compile to `var(--colors-<role>)`, the same for
+- **Colors are roles.** They compile to `var(--color-<role>)`, the same for
   every brand and mode.
 - **No per-brand values.** Fonts, font weights and elevation are still literal
   values per theme, so `fontFamily: 'accent'` fails `checkRecipe`. Those move

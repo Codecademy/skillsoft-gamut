@@ -94,7 +94,7 @@ describe('color system', () => {
     expect(ocd.roles.dark['shadow-ambient'].key).toBe('black-a0');
     /* A bare ref keeps the role's alpha; only shadow-ambient changes. */
     expect(ocd.roles.light['shadow-key'].alpha).toBe(0.16);
-    expect(tokensCss).toContain('--colors-palette-neutral-dark-1100-a0:');
+    expect(tokensCss).toContain('--color-palette-neutral-dark-1100-a0:');
     expect(system.roles.light['shadow-ambient'].alpha).toBe(0.12);
   });
 
@@ -119,7 +119,7 @@ describe('color system', () => {
       .split('[data-brand="originalCodecademy"][data-color-mode="light"] {')[1]
       .split('}')[0];
     expect(ocdLight).toContain(
-      '--gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-alt-300)'
+      '--gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--color-palette-accent-alt-300)'
     );
   });
 

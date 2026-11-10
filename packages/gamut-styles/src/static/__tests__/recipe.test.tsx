@@ -62,7 +62,7 @@ describe('defineRecipe', () => {
     const el = container.firstChild;
     expect(el).toHaveStyleRule(
       'background-color',
-      'var(--colors-action-danger)'
+      'var(--color-action-danger)'
     );
     expect(el).toHaveStyleRule('height', '1.5rem');
     expect(el).toHaveStyleRule('text-decoration', 'underline');
@@ -75,7 +75,7 @@ describe('compileRecipe', () => {
   it('writes every rule into @layer recipes', () => {
     expect(output.startsWith('@layer recipes{')).toBe(true);
     expect(output).toContain(
-      '.gamut-chip{display:inline-flex;border-radius:4px;background-color:var(--colors-surface-default);}'
+      '.gamut-chip{display:inline-flex;border-radius:4px;background-color:var(--color-surface-default);}'
     );
     expect(output).not.toContain('label');
   });
@@ -97,7 +97,7 @@ describe('compileRecipe', () => {
 
   it('points colors at the role variables, not values', () => {
     expect(output).toContain(
-      '.gamut-chip--intent_danger{color:var(--colors-text-inverse);background-color:var(--colors-action-danger);}'
+      '.gamut-chip--intent_danger{color:var(--color-text-inverse);background-color:var(--color-action-danger);}'
     );
   });
 
