@@ -23,12 +23,6 @@ export type GridFormSubmitProps = {
   type?: SubmitButtonType;
 };
 
-export type GridFormCancelButtonProps = {
-  children: React.ReactNode;
-  href?: 'string';
-  onClick?: () => void;
-};
-
 type CancelButtonProps = {
   cancel?: ButtonProps;
 };

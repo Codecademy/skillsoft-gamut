@@ -67,45 +67,9 @@ export const lxStudioLightMode = {
   ],
 };
 
-export const lxStudioDarkMode = {
-  rows: Object.entries(lxStudioTheme.modes.dark).map(([id, value]) => ({
-    id,
-    hex: value,
-  })),
-  columns: [
-    { ...PROP_COLUMN, size: 'lg' },
-    {
-      ...PATH_COLUMN,
-      render: ({ id }: any) => (
-        <Code>theme.colors{applyCorrectNotation({ id })}</Code>
-      ),
-    },
-    {
-      key: 'swatch',
-      name: 'Swatch',
-      size: 'fill',
-      render: ({ hex }: any) => (
-        <ColorScale
-          colors={{
-            hex: lxStudioTheme.colors[
-              hex as keyof (typeof lxStudioTheme)['colors']
-            ],
-          }}
-        />
-      ),
-    },
-  ],
-};
-
 export const LXStudioLightModeTable = () => (
   <Background bg="white">
     <TokenTable bg={false} {...(lxStudioLightMode as any)} />
-  </Background>
-);
-
-export const LXStudioDarkModeTable = () => (
-  <Background bg="navy">
-    <TokenTable bg={false} {...(lxStudioDarkMode as any)} />
   </Background>
 );
 
