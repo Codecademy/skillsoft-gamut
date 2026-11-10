@@ -21,7 +21,7 @@ import { createBrandTheme } from './createBrandTheme';
  * system: no role covers them, and they aren't generated or checked. They
  * keep old platform's names and exact values, resolved from the same
  * palettes as before, and only this theme's GamutProvider declares them,
- * as `--colors-editor-*` in tokens.css's layer and mode selectors, the
+ * as `--color-editor-*` in tokens.css's layer and mode selectors, the
  * brand's initial mode on :root.
  */
 const OLD_PALETTE: Record<string, string> = {
@@ -104,7 +104,7 @@ const editorValues = (mode: 'light' | 'dark') =>
 
 const editorBlock = (selector: string, mode: 'light' | 'dark') =>
   `${selector}{${Object.entries(editorValues(mode))
-    .map(([alias, value]) => `--colors-${alias}:${value};`)
+    .map(([alias, value]) => `--color-${alias}:${value};`)
     .join('')}}`;
 
 export const platformTheme = {
@@ -113,7 +113,7 @@ export const platformTheme = {
     ...base.colors,
     ...(mapValues(
       editor.light,
-      (_, alias) => `var(--colors-${alias})`
+      (_, alias) => `var(--color-${alias})`
     ) as Record<EditorAlias, string>),
   },
   tokensCss: `${base.tokensCss}\n@layer tokens{${editorBlock(

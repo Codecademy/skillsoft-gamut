@@ -29,7 +29,7 @@ describe('Tag', () => {
 
     expect(fillOf(view.getByText('Python'))).toHaveStyleRule(
       'background-color',
-      'var(--colors-text-subtle)'
+      'var(--color-text-subtle)'
     );
   });
 
@@ -38,10 +38,10 @@ describe('Tag', () => {
 
     const fill = fillOf(view.getByText('Python'));
     expect(fill).toHaveStyleRule('background-color', 'transparent');
-    expect(fill).toHaveStyleRule('color', 'var(--colors-action-disabled)');
+    expect(fill).toHaveStyleRule('color', 'var(--color-action-disabled)');
     expect(
       view.getByRole('button', { name: 'Dismiss Python Tag' })
-    ).not.toHaveStyleRule('background-color', 'var(--colors-action-disabled)', {
+    ).not.toHaveStyleRule('background-color', 'var(--color-action-disabled)', {
       target: ':disabled',
     });
   });
@@ -55,7 +55,7 @@ describe('Tag', () => {
 
     expect(view.getByText('Python').closest('a, button')).not.toHaveStyleRule(
       'background-color',
-      'var(--colors-action-disabled)',
+      'var(--color-action-disabled)',
       { target: ':disabled' }
     );
   });

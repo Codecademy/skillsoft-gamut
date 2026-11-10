@@ -40,10 +40,10 @@ const FORMAT = 'css/gamut-variables';
  *
  * Mode blocks also get:
  * - `color-scheme`, so native controls and scrollbars follow the mode;
- * - `color: var(--colors-text-default)`, because `color` inherits as a computed
+ * - `color: var(--color-text-default)`, because `color` inherits as a computed
  *   value — without it, text under a nested `[data-color-mode]` keeps the
  *   parent mode's color (ColorMode sets it on its wrapper for the same reason);
- * - a default `--colors-background-current`, which ColorMode sets at runtime
+ * - a default `--color-background-current`, which ColorMode sets at runtime
  *   and a CSS-only subtree needs from somewhere.
  */
 StyleDictionary.registerFormat({
@@ -68,8 +68,8 @@ StyleDictionary.registerFormat({
     const modeLines = mode
       ? [
           `  color-scheme: ${mode};`,
-          '  color: var(--colors-text-default);',
-          '  --colors-background-current: var(--colors-surface-default);',
+          '  color: var(--color-text-default);',
+          '  --color-background-current: var(--color-surface-default);',
         ]
       : [];
     return `${header}${options.selector} {\n${[
@@ -96,7 +96,7 @@ const cssBlock = async (
     platforms: {
       css: {
         transforms: ['name/kebab', 'color/oklch'],
-        prefix: 'colors',
+        prefix: 'color',
         files: [
           {
             destination: 'unused.css',
