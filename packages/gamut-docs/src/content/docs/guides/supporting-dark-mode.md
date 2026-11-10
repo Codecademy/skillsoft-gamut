@@ -36,7 +36,7 @@ The choice is made at build time: for every opaque palette color, the color syst
 
 `<Background>` establishes a new color context for everything inside it, so you can safely nest one background inside another. A dark section can contain its own lighter card, and each still resolves its own roles correctly.
 
-The color a `<Background>` paints is exposed as the `background-current` theme variable (`--colors-background-current` in CSS). Reach for it when a descendant needs to reference its ancestor's background directly, for example to simulate transparency against it.
+The color a `<Background>` paints is exposed as the `background-current` theme variable (`--color-background-current` in CSS). Reach for it when a descendant needs to reference its ancestor's background directly, for example to simulate transparency against it.
 
 ## Reading the current mode in JS
 

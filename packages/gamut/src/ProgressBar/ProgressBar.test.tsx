@@ -62,7 +62,7 @@ describe('ProgressBar label', () => {
     expect(screen.getByTestId('progress-bar-bar')).toContainElement(labels[1]);
     expect(labels[0].parentElement).toHaveStyleRule(
       'color',
-      'var(--colors-text-default)'
+      'var(--color-text-default)'
     );
     expect(screen.getByTestId('progress-bar-bar')).toHaveStyleRule(
       'overflow',

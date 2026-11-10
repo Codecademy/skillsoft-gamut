@@ -81,7 +81,7 @@ This writes `src/theme/acme/`:
 | File                                                           | What it is                                                                        |
 | -------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `values.ts`                                                    | The palette, roles and the brand's CSS as typed constants, for `createBrandTheme` |
-| `tokens.css`                                                   | The brand's `--colors-*` and `--gradient-*` custom properties, and nothing else   |
+| `tokens.css`                                                   | The brand's `--color-*` and `--gradient-*` custom properties, and nothing else    |
 | `palette.tokens.json`, `light.tokens.json`, `dark.tokens.json` | DTCG JSON for Figma and other design tools                                        |
 
 Check the folder in, like any generated source.

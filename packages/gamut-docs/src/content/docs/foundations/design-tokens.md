@@ -12,7 +12,7 @@ Colors come from the [color system](/concepts/color-system/), in two layers:
 - **Roles**, such as `surface-raised`, `text-default` and `action-primary`. Each names a job and resolves to a different color in light and dark mode. Components and app code use roles.
 - **Palette colors**, named `palette-<slot>-<grade>`, such as `palette-primary-800`, plus `white` and `black`. A palette color is the same in every mode. Roles point at these; components shouldn't.
 
-Each color is also a CSS custom property with a `--colors-` prefix, such as `var(--colors-surface-raised)`, for stylesheets and pages without React.
+Each color is also a CSS custom property with a `--color-` prefix, such as `var(--color-surface-raised)`, for stylesheets and pages without React.
 
 See [Color modes](/concepts/color-modes/) for how roles follow the mode.
 

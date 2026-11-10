@@ -111,11 +111,11 @@ describe('DataGrid', () => {
       expect(rows).toContain(selectedRow);
       expect(selectedRow).toHaveStyleRule(
         'background-image',
-        expect.stringContaining('var(--colors-state-selected)')
+        expect.stringContaining('var(--color-state-selected)')
       );
       expect(otherRow).not.toHaveStyleRule(
         'background-image',
-        expect.stringContaining('var(--colors-state-selected)')
+        expect.stringContaining('var(--color-state-selected)')
       );
     });
 
