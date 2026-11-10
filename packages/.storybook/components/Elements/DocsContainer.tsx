@@ -1,6 +1,6 @@
 import {
   AssetProvider,
-  coreTheme,
+  skillsoftTheme,
   createEmotionCache,
   GamutProvider,
   platformPalette,
@@ -22,12 +22,11 @@ import { useMemo } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { createGamutDocsTheme } from '../../theming/GamutTheme';
 import { createTheme } from '@skillsoft/variance';
-export const storybookTheme = createTheme(coreTheme)
+export const storybookTheme = createTheme(skillsoftTheme)
   .addColors(platformPalette)
   .build();
 
 const themeMap = {
-  core: coreTheme,
   admin: adminTheme,
   lxStudio: lxStudioTheme,
   platform: platformTheme,
