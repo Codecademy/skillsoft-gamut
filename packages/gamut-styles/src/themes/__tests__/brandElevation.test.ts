@@ -23,8 +23,8 @@ describe('brand elevation', () => {
     for (const state of STATES) {
       const shadow = elevation[`${state}-shadow`];
       expect(shadow).not.toContain('undefined');
-      expect(shadow).toContain('var(--colors-shadow-key)');
-      expect(shadow).toContain('var(--colors-shadow-ambient)');
+      expect(shadow).toContain('var(--color-shadow-key)');
+      expect(shadow).toContain('var(--color-shadow-ambient)');
     }
   });
 
@@ -36,18 +36,18 @@ describe('brand elevation', () => {
   ])('gives %s the soft raised shadow', (_, theme) => {
     expect(theme.elevation).toMatchObject({
       'rest-shadow':
-        '0 1px 4px 0 var(--colors-shadow-key), 0 2px 7px 0 var(--colors-shadow-ambient)',
+        '0 1px 4px 0 var(--color-shadow-key), 0 2px 7px 0 var(--color-shadow-ambient)',
       'hover-shadow':
-        '0 2px 6px 0 var(--colors-shadow-key), 0 6px 16px 0 var(--colors-shadow-ambient)',
+        '0 2px 6px 0 var(--color-shadow-key), 0 6px 16px 0 var(--color-shadow-ambient)',
     });
   });
 
   it("gives Original Codecademy old core's hard offset", () => {
     expect(originalCodecademyTheme.elevation).toMatchObject({
       'rest-shadow':
-        '-4px 4px 0 0 var(--colors-shadow-key), 0 0 0 0 var(--colors-shadow-ambient)',
+        '-4px 4px 0 0 var(--color-shadow-key), 0 0 0 0 var(--color-shadow-ambient)',
       'hover-shadow':
-        '-8px 8px 0 0 var(--colors-shadow-key), 0 0 0 0 var(--colors-shadow-ambient)',
+        '-8px 8px 0 0 var(--color-shadow-key), 0 0 0 0 var(--color-shadow-ambient)',
       'hover-transform': 'translate(4px, -4px)',
     });
   });
@@ -62,7 +62,7 @@ describe('brand elevation', () => {
       lxStudio: lxStudioTheme,
     })
       .filter(([, theme]) =>
-        /--colors-shadow-ambient: var\(--colors-[\w-]+-a0\);/.test(
+        /--color-shadow-ambient: var\(--color-[\w-]+-a0\);/.test(
           theme.tokensCss
         )
       )

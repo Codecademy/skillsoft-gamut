@@ -69,7 +69,7 @@ export const modeColorProps = ({
   const { colors } = theme;
   return serializeTokens(
     mapValues(theme?.modes[mode], (color) => colors[color]),
-    'colors',
+    'color',
     theme
   ).variables;
 };
@@ -204,7 +204,7 @@ export const ColorMode = forwardRef<
         variables:
           bg === undefined
             ? {}
-            : { '--colors-background-current': colors[bg] as string },
+            : { '--color-background-current': colors[bg] as string },
       };
     }
     return serializeTokens(
@@ -214,7 +214,7 @@ export const ColorMode = forwardRef<
         }
         return colors[color];
       }),
-      'colors',
+      'color',
       theme
     );
   }, [colors, mode, modes, theme, bg, fromTokensCss]);
@@ -222,7 +222,7 @@ export const ColorMode = forwardRef<
   if (active === mode) {
     const vars = alwaysSetVariables
       ? variables
-      : pick(variables, ['--colors-background-current']);
+      : pick(variables, ['--color-background-current']);
 
     return (
       <BackgroundCurrentContext.Provider

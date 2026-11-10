@@ -70,7 +70,7 @@ const tokensCssVars = (mode: Mode, tokensCss: string): Vars => {
 };
 
 const hasStaticValues = (theme: Theme) =>
-  !Object.keys(theme._variables.root).some((k) => k.startsWith('--colors-'));
+  !Object.keys(theme._variables.root).some((k) => k.startsWith('--color-'));
 
 /* The variables in scope inside a `mode` subtree of `theme`. */
 const varsFor = (theme: Theme, mode: Mode): Vars =>
@@ -198,7 +198,7 @@ describe.each(CASES)('%s, %s', (_, mode, theme) => {
     const vars = { ...varsFor(t, other), ...out };
     const missing = namesOf(t).filter(
       (name) =>
-        !isColor(out[`--colors-${name}`] ?? vars[`--colors-${name}`], vars)
+        !isColor(out[`--color-${name}`] ?? vars[`--color-${name}`], vars)
     );
     expect(missing).toEqual([]);
   });
@@ -262,7 +262,7 @@ describe.each(CASES)('%s, %s', (_, mode, theme) => {
       const expected = t.colors[t.modes[mode][bg as never]];
       let ok = true;
       try {
-        expect(el).toHaveStyleRule('--colors-background-current', expected);
+        expect(el).toHaveStyleRule('--color-background-current', expected);
         expect(el).toHaveStyleRule('background-color', resolvesToColor(vars));
       } catch {
         ok = false;
@@ -286,17 +286,17 @@ describe.each(CASES)('%s, %s', (_, mode, theme) => {
     if (t.contentModes) {
       expect(el.getAttribute('data-color-mode')).toBe(other);
       expect(el.getAttribute('data-brand')).toBe(t.brand);
-      expect(el).not.toHaveStyleRule(`--colors-${someName}`, expect.anything());
+      expect(el).not.toHaveStyleRule(`--color-${someName}`, expect.anything());
     } else {
       expect(el.getAttribute('data-color-mode')).toBeNull();
-      expect(el).toHaveStyleRule(`--colors-${someName}`, expect.anything());
+      expect(el).toHaveStyleRule(`--color-${someName}`, expect.anything());
     }
   });
 });
 
 it('resolves each brand’s roles against its own palette', () => {
   const primary = (theme: Theme) =>
-    resolveVars('var(--colors-action-primary)', varsFor(theme, 'light'));
+    resolveVars('var(--color-action-primary)', varsFor(theme, 'light'));
   /* Same lightness and grade, hyper's hue (274.1°) in place of Sapphire's. */
   expect(primary(THEMES.originalCodecademy)).toBe(
     'oklch(0.4115 0.2344 274.10)'

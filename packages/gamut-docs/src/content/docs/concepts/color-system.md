@@ -65,7 +65,7 @@ Each slot becomes a ramp of 11 grades, from `100` (lightest) to `1100` (darkest)
 
 Every grade has a fixed lightness, and that lightness is the same in every slot and every brand. Chroma is a share of the most color a screen can show at that lightness and hue. Because lightness is fixed, the contrast between two grades barely changes from brand to brand: `primary-800` on `neutral-light-100` has close to the same contrast whatever the primary hue is. That is what lets every brand share one role mapping.
 
-Palette colors are [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) named `--colors-palette-<slot>-<grade>`, for example `--colors-palette-primary-800`. A few steps also come in translucent versions, such as `--colors-palette-primary-600-a6` at 6% opacity. `--colors-white` and `--colors-black` sit outside the ramps. Palette colors exist for the system to build roles from. Components don't use them.
+Palette colors are [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) named `--color-palette-<slot>-<grade>`, for example `--color-palette-primary-800`. A few steps also come in translucent versions, such as `--color-palette-primary-600-a6` at 6% opacity. `--color-white` and `--color-black` sit outside the ramps. Palette colors exist for the system to build roles from. Components don't use them.
 
 ### Roles
 
@@ -83,7 +83,7 @@ A role names a job and points at a palette color in each mode. There are 45 role
 
 Each role has one job. `surface-raised` is the lighter surface step: cards, menus, dialogs and form fields, and flat sections with a border. How high something sits comes from its shadow, not its fill. The mapping is the same for every brand: `text-subtle` is `neutral-dark-800` in light mode and `neutral-light-400` in dark mode on every brand. Only the palette under it changes.
 
-Roles are custom properties named `--colors-<role>`, for example `--colors-action-primary`. The two brand surfaces also have a gradient. `--colors-surface-brand` is the flat fallback color, and `--gradient-surface-brand` is the gradient to paint over it. The same goes for `surface-brand-subtle`.
+Roles are custom properties named `--color-<role>`, for example `--color-action-primary`. The two brand surfaces also have a gradient. `--color-surface-brand` is the flat fallback color, and `--gradient-surface-brand` is the gradient to paint over it. The same goes for `surface-brand-subtle`.
 
 The shadow roles hold only color. Every elevation shadow has two layers, `shadow-key` for the tight edge and `shadow-ambient` for the soft falloff, and the elevation supplies the offset and blur. Raised and hover differ in geometry, not color. `shadow-scrim` is the dimmed layer behind a modal. The shadow alphas are design's current values and may still be tuned.
 
@@ -127,16 +127,16 @@ A brand's `tokens.css` puts every value inside a [cascade layer](https://develop
 @layer tokens {
   :root,
   [data-brand='originalCodecademy'] {
-    --colors-palette-primary-800: oklch(0.4115 0.2344 274.1);
+    --color-palette-primary-800: oklch(0.4115 0.2344 274.1);
     /* ... */
   }
   :root,
   [data-color-mode='light'] {
-    --colors-text-default: var(--colors-palette-neutral-dark-1000);
+    --color-text-default: var(--color-palette-neutral-dark-1000);
     /* ... */
   }
   [data-color-mode='dark'] {
-    --colors-action-primary: var(--colors-palette-accent-300);
+    --color-action-primary: var(--color-palette-accent-300);
     /* ... */
   }
 }
@@ -150,7 +150,7 @@ Styles inside a layer lose to styles outside any layer, whatever the selector. E
 
 A theme built on the color system carries its brand's `tokens.css` as a string, and `GamutProvider` injects it as an Emotion global style, the same way it injects its reset and typography styles. A React app gets its brand's colors without loading a file, starts in the brand's initial mode with no attributes on `<html>`, and the colors are in the server-rendered HTML too.
 
-The theme's own colors are `var()` names like `var(--colors-surface-raised)`, so `css()`, `variant()`, `states()` and system props keep working as they did before.
+The theme's own colors are `var()` names like `var(--color-surface-raised)`, so `css()`, `variant()`, `states()` and system props keep working as they did before.
 
 If your app loads the brand's `tokens.css` itself, pass `useTokens={false}` to `GamutProvider` to skip the injected copy. Loading both does no harm, because the rules are identical. Pages without React or Emotion, such as plain HTML or email, can link the brand's `tokens.css` directly.
 

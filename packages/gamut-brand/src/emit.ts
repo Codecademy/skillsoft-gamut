@@ -115,7 +115,7 @@ export const gradientCssVars = (gradient: Gradient) =>
     .map(({ ref, radius, at }) => {
       const stops = FALLOFF.map(
         ([pos, alpha]) =>
-          `color-mix(in oklab, var(--colors-${paletteKey(ref)}) ${Number(
+          `color-mix(in oklab, var(--color-${paletteKey(ref)}) ${Number(
             (alpha * 100).toFixed(2)
           )}%, transparent) ${pos}%`
       ).join(', ');
