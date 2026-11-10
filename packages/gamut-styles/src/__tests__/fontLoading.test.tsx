@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 
 import { AssetProvider } from '../AssetProvider';
-import { skillsoftTheme, lxStudioTheme } from '../themes';
+import { lxStudioTheme, skillsoftTheme } from '../themes';
 import { getFontsMock } from './fontUtilsMock';
 
 const typedLxStudioTheme = lxStudioTheme as any;

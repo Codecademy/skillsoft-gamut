@@ -1,12 +1,4 @@
 import {
-  FlexBox,
-  Menu,
-  MenuItem,
-  MenuSeparator,
-  PopoverContainer,
-  Text,
-} from '@skillsoft/gamut';
-import {
   AiChatSparkIcon,
   BashShellIcon,
   FileIcon,
@@ -15,17 +7,24 @@ import {
   PeopleIcon,
   RatingStarCircleIcon,
 } from '@skillsoft/gamut-icons';
-import { ColorMode } from '@skillsoft/gamut-styles';
+import { Background } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
+import { expect, screen } from 'storybook/test';
+
+import { FlexBox } from '../Box';
+import { PopoverContainer } from '../PopoverContainer';
+import { Text } from '../Typography';
+import { Menu } from './Menu';
+import { MenuItem } from './MenuItem';
+import { MenuSeparator } from './MenuSeparator';
 
 const meta: Meta<typeof Menu> = {
+  title: 'Actions/Menu/Menu',
   component: Menu,
-  // This is a known issue with SB 8, see: https://github.com/storybookjs/storybook/issues/23170
-  // Will fix this casting when the issue is resolved
   subcomponents: {
-    MenuItem: MenuItem as React.ComponentType<unknown>,
-    MenuSeparator: MenuSeparator as React.ComponentType<unknown>,
+    MenuItem,
+    MenuSeparator,
   },
   args: {
     spacing: 'normal',
@@ -55,6 +54,11 @@ export const Default: Story = {
         <MenuItem>Menu item</MenuItem>
       </>
     ),
+  },
+  play: async ({ canvas }) => {
+    await expect(canvas.queryByRole('menu')).toBeNull();
+    await expect(canvas.queryByRole('menuitem')).toBeNull();
+    await expect(canvas.getAllByRole('listitem')).toHaveLength(4);
   },
 };
 
@@ -156,6 +160,14 @@ export const MenuRole: Story = {
       </>
     ),
   },
+  play: async ({ canvas }) => {
+    canvas.getByRole('menu');
+    await expect(canvas.getAllByRole('menuitem')).toHaveLength(4);
+    await expect(canvas.getAllByRole('none')).toHaveLength(3);
+    await expect(
+      canvas.getByRole('menuitem', { name: /Click action/ }).tagName
+    ).toBe('BUTTON');
+  },
 };
 
 export const NavMenu: Story = {
@@ -176,6 +188,10 @@ export const NavMenu: Story = {
       </Menu>
     </nav>
   ),
+  play: async ({ canvas }) => {
+    await expect(canvas.getAllByRole('link')).toHaveLength(4);
+    await expect(canvas.queryByRole('menuitem')).toBeNull();
+  },
 };
 
 export const NoRoleMenu: Story = {
@@ -235,6 +251,9 @@ export const PopoverMenuSeparator: Story = {
       </>
     ),
   },
+  play: ({ canvas }) => {
+    canvas.getByRole('separator');
+  },
 };
 
 export const FixedMenuSeparator: Story = {
@@ -250,9 +269,12 @@ export const FixedMenuSeparator: Story = {
       </>
     ),
   },
+  play: ({ canvas }) => {
+    canvas.getByRole('separator');
+  },
 };
 
-export const IconMenu: Story = {
+export const IconOnly: Story = {
   args: {
     border: 1,
     borderRadius: 'md',
@@ -287,7 +309,7 @@ export const IconMenu: Story = {
           icon={RatingStarCircleIcon}
           label={{
             alignment: 'right-center',
-            info: <Text color="action-primary">I am bold and different</Text>,
+            info: <Text color="hyper">I am bold and different</Text>,
             narrow: true,
           }}
         />
@@ -299,100 +321,196 @@ export const IconMenu: Story = {
       </>
     ),
   },
+  play: async ({ canvas, userEvent }) => {
+    const chat = canvas.getByRole('button', { name: 'Chat' });
+    await userEvent.hover(chat);
+    await screen.findByText('Chat');
+
+    canvas.getByRole('link', { name: 'I am bold and different' });
+  },
 };
 
-export const FloatingMenuExample: React.FC = () => {
-  const target = useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentTarget, setCurrentTarget] = useState(0);
-  const [alignment, setAlignment] = useState<'top-right' | 'bottom-right'>(
-    'top-right'
-  );
-  const [activeIndex, setActiveIndex] = useState(4);
+export const FloatingMenu: Story = {
+  render: function FloatingMenuExample() {
+    const target = useRef<HTMLDivElement>(null);
+    const [isOpen, setIsOpen] = useState(false);
+    const [currentTarget, setCurrentTarget] = useState(0);
+    const [alignment, setAlignment] = useState<'top-right' | 'bottom-right'>(
+      'top-right'
+    );
+    const [activeIndex, setActiveIndex] = useState(4);
 
-  const clickHandler = (targetNumber: number, currentIndex: number) => {
-    setCurrentTarget(targetNumber);
-    setAlignment(currentIndex === 3 ? 'bottom-right' : 'top-right');
+    const clickHandler = (targetNumber: number, currentIndex: number) => {
+      setCurrentTarget(targetNumber);
+      setAlignment(currentIndex === 3 ? 'bottom-right' : 'top-right');
 
-    if (isOpen && currentIndex === activeIndex) {
-      setIsOpen(false);
-    } else {
-      setIsOpen(true);
-    }
+      if (isOpen && currentIndex === activeIndex) {
+        setIsOpen(false);
+      } else {
+        setIsOpen(true);
+      }
 
-    if (currentIndex !== activeIndex) setActiveIndex(currentIndex);
-  };
+      if (currentIndex !== activeIndex) setActiveIndex(currentIndex);
+    };
 
-  return (
-    <FlexBox m={48} minHeight="30px" position="relative">
-      <FlexBox flex={1}>
-        <ColorMode
-          bg="surface-default"
-          borderRadius="lg"
-          height="100%"
-          mode="dark"
-          pl={48}
-        >
-          <FlexBox
-            alignItems="center"
-            bg="surface-raised"
-            dimensions="200px"
-            height="100%"
-            justifyContent="right"
-            ref={target}
-          >
-            <Menu role="menu" variant="fixed">
-              <MenuItem
-                active={activeIndex === 0}
-                onClick={() => clickHandler(-68, 0)}
-              >
-                I have a side menu
-              </MenuItem>
-              <MenuItem
-                active={activeIndex === 1}
-                onClick={() => clickHandler(-115, 1)}
-              >
-                Active item
-              </MenuItem>
-              <MenuItem
-                active={activeIndex === 2}
-                icon={MultipleUsersIcon}
-                onClick={() => clickHandler(-164, 2)}
-              >
-                Icon item
-              </MenuItem>
-              <MenuItem active={activeIndex === 3} onClick={() => null}>
-                A complex action
-              </MenuItem>
-            </Menu>
-          </FlexBox>
-          <PopoverContainer
-            alignment={alignment}
-            inline
-            isOpen={isOpen}
-            targetRef={target}
-            x={-21}
-            y={currentTarget}
-          >
-            <ColorMode bg="surface-raised" borderRadius="lg" mode="light">
-              <Menu role="menu" variant="popover">
-                {activeIndex % 2 === 0 ? (
-                  <>
-                    <MenuItem>I am a side menu!</MenuItem>
-                    <MenuItem href="cool">Cool link</MenuItem>
-                  </>
-                ) : (
-                  <>
-                    <MenuItem>I am a DIFFERENT menu!</MenuItem>
-                    <MenuItem href="cool-too">Another cool link</MenuItem>
-                    <MenuItem>An action</MenuItem>
-                  </>
-                )}
+    return (
+      <FlexBox m={48} minHeight="30px" position="relative">
+        <FlexBox flex={1}>
+          <Background bg="black" borderRadius="lg" height="100%" pl={48}>
+            <FlexBox
+              alignItems="center"
+              bg="navy"
+              dimensions="200px"
+              height="100%"
+              justifyContent="right"
+              ref={target}
+            >
+              <Menu role="menu" variant="fixed">
+                <MenuItem
+                  active={activeIndex === 0}
+                  onClick={() => clickHandler(-68, 0)}
+                >
+                  I have a side menu
+                </MenuItem>
+                <MenuItem
+                  active={activeIndex === 1}
+                  onClick={() => clickHandler(-115, 1)}
+                >
+                  Active item
+                </MenuItem>
+                <MenuItem
+                  active={activeIndex === 2}
+                  icon={MultipleUsersIcon}
+                  onClick={() => clickHandler(-164, 2)}
+                >
+                  Icon item
+                </MenuItem>
+                <MenuItem active={activeIndex === 3} onClick={() => null}>
+                  A complex action
+                </MenuItem>
               </Menu>
-            </ColorMode>
-          </PopoverContainer>
-        </ColorMode>
+            </FlexBox>
+            <PopoverContainer
+              alignment={alignment}
+              inline
+              isOpen={isOpen}
+              targetRef={target}
+              x={-21}
+              y={currentTarget}
+            >
+              <Background bg="white" borderRadius="lg">
+                <Menu role="menu" variant="popover">
+                  {activeIndex % 2 === 0 ? (
+                    <>
+                      <MenuItem>I am a side menu!</MenuItem>
+                      <MenuItem href="cool">Cool link</MenuItem>
+                    </>
+                  ) : (
+                    <>
+                      <MenuItem>I am a DIFFERENT menu!</MenuItem>
+                      <MenuItem href="cool-too">Another cool link</MenuItem>
+                      <MenuItem>An action</MenuItem>
+                    </>
+                  )}
+                </Menu>
+              </Background>
+            </PopoverContainer>
+          </Background>
+        </FlexBox>
       </FlexBox>
-    </FlexBox>
-  );
+    );
+  },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(
+      canvas.getByRole('menuitem', { name: 'I have a side menu' })
+    );
+    canvas.getByRole('menuitem', { name: 'I am a side menu!' });
+
+    await userEvent.click(
+      canvas.getByRole('menuitem', { name: /Active item/ })
+    );
+    canvas.getByRole('menuitem', { name: 'I am a DIFFERENT menu!' });
+  },
+};
+
+export const NestedMenuNoRole: Story = {
+  /*
+   * TODO: Re-enable once a nested Menu renders inside an <li>. It currently
+   * renders its <ul> directly inside the parent <ul>.
+   */
+  parameters: {
+    a11y: {
+      config: { rules: [{ id: 'list', enabled: false }] },
+    },
+  },
+  render: (args) => (
+    <Menu
+      {...args}
+      aria-label="Account"
+      border={1}
+      borderRadius="md"
+      width="200px"
+    >
+      <MenuItem href="#profile">Profile</MenuItem>
+      <MenuItem href="#settings">Settings</MenuItem>
+      <Menu>
+        <MenuItem href="#help">Help center</MenuItem>
+        <MenuSeparator />
+        <MenuItem onClick={() => null}>Sign out</MenuItem>
+      </Menu>
+    </Menu>
+  ),
+  play: async ({ canvas }) => {
+    await expect(
+      canvas.getByRole('list', { name: 'Account' })
+    ).not.toHaveAttribute('role');
+    await expect(canvas.queryByRole('menu')).toBeNull();
+    await expect(canvas.queryByRole('group')).toBeNull();
+    canvas.getByRole('separator');
+  },
+};
+
+export const NestedMenuGroup: Story = {
+  /*
+   * TODO: Re-enable these rules once nested menus render valid markup. A nested
+   * Menu renders its <ul> directly inside the parent <ul> instead of inside an
+   * <li>, and items inside a role="group" get no menuitem role because
+   * MenuItem only checks for role === 'menu'.
+   */
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          { id: 'list', enabled: false },
+          { id: 'listitem', enabled: false },
+          { id: 'aria-required-children', enabled: false },
+        ],
+      },
+    },
+  },
+  render: (args) => (
+    <Menu
+      {...args}
+      aria-label="Course actions"
+      border={1}
+      borderRadius="md"
+      role="menu"
+      width="200px"
+    >
+      <MenuItem href="#course">View course</MenuItem>
+      <Menu aria-label="Manage course">
+        <MenuItem onClick={() => null}>Duplicate</MenuItem>
+        <MenuItem onClick={() => null}>Archive</MenuItem>
+      </Menu>
+    </Menu>
+  ),
+  play: async ({ canvas }) => {
+    canvas.getByRole('menu', { name: 'Course actions' });
+    await expect(canvas.getAllByRole('menu')).toHaveLength(1);
+    canvas.getByRole('group', { name: 'Manage course' });
+
+    const outerLink = canvas.getByRole('menuitem', { name: 'View course' });
+    await expect(outerLink.tagName).toBe('A');
+    await expect(outerLink.closest('li')).toHaveAttribute('role', 'none');
+  },
 };

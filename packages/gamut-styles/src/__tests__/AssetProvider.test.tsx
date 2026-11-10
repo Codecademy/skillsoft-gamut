@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 
 import { AssetProvider, createFontLinks } from '../AssetProvider';
-import { skillsoftTheme, lxStudioTheme } from '../themes';
+import { lxStudioTheme, skillsoftTheme } from '../themes';
 import { getFontsMock } from './fontUtilsMock';
 import { setupRtl } from './testUtils';
 
