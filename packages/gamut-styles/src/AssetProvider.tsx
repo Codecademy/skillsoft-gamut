@@ -40,7 +40,7 @@ export const createFontLinks = (fonts?: readonly FontConfig[]) => {
 export const AssetProvider: React.FC<{ theme?: Theme }> = ({ theme }) => {
   try {
     const defaultTheme = theme ?? skillsoftTheme;
-    const themeName = defaultTheme?.name || 'core';
+    const themeName = defaultTheme?.name || 'skillsoft';
     const fonts = getFonts(themeName);
 
     return <>{createFontLinks(fonts)}</>;

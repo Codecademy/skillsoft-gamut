@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 
 import { AssetProvider, createFontLinks } from '../AssetProvider';
-import { coreTheme, percipioTheme } from '../themes';
+import { skillsoftTheme } from '../themes';
 import { getFontsMock } from './fontUtilsMock';
 import { setupRtl } from './testUtils';
 
@@ -209,7 +209,7 @@ describe('AssetProvider', () => {
         },
       ]);
 
-      const { view } = renderView({ theme: percipioTheme as any });
+      const { view } = renderView({ theme: skillsoftTheme as any });
       const links = getPreloadLinks(view.container);
 
       expect(links).toHaveLength(1);
@@ -217,19 +217,19 @@ describe('AssetProvider', () => {
         'href',
         'https://www.codecademy.com/gamut/roboto-regular.woff2'
       );
-      expect(mockGetFonts).toHaveBeenCalledWith('percipio');
+      expect(mockGetFonts).toHaveBeenCalledWith('skillsoft');
     });
 
     it('should handle theme without name property', () => {
-      const themeWithoutName = { ...coreTheme, name: undefined };
+      const themeWithoutName = { ...skillsoftTheme, name: undefined } as any;
       mockGetFonts.mockReturnValue([]);
 
       renderView({ theme: themeWithoutName });
-      expect(mockGetFonts).toHaveBeenCalledWith('core');
+      expect(mockGetFonts).toHaveBeenCalledWith('skillsoft');
     });
 
     it('should handle theme with invalid name', () => {
-      const themeWithInvalidName = { ...coreTheme, name: 'invalid-theme' };
+      const themeWithInvalidName = { ...skillsoftTheme, name: 'invalid-theme' };
       mockGetFonts.mockReturnValue([]);
 
       renderView({ theme: themeWithInvalidName });

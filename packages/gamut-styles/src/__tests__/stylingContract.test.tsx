@@ -13,15 +13,7 @@ import {
   useCurrentMode,
 } from '../ColorMode';
 import { GamutProvider } from '../GamutProvider';
-import {
-  adminTheme,
-  coreTheme,
-  lxStudioTheme,
-  originalCodecademyTheme,
-  percipioTheme,
-  platformTheme,
-  skillsoftTheme,
-} from '../themes';
+import { originalCodecademyTheme, skillsoftTheme } from '../themes';
 import { themed } from '../utilities';
 import { css, states, system, variant } from '../variance';
 
@@ -38,11 +30,6 @@ expect.extend(matchers);
  */
 
 const THEMES = {
-  core: coreTheme,
-  admin: adminTheme,
-  platform: platformTheme,
-  percipio: percipioTheme,
-  lxStudio: lxStudioTheme,
   skillsoft: skillsoftTheme,
   originalCodecademy: originalCodecademyTheme,
 } as unknown as Record<string, Theme>;

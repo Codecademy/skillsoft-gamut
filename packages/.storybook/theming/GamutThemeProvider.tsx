@@ -1,14 +1,8 @@
 import { useLayoutEffect, useRef } from 'react';
 import {
   Background,
-  corePalette,
   ColorModes,
   GamutProvider,
-  coreTheme,
-  adminTheme,
-  lxStudioTheme,
-  percipioTheme,
-  platformTheme,
   skillsoftTheme,
   originalCodecademyTheme,
 } from '@skillsoft/gamut-styles';
@@ -22,17 +16,7 @@ const STORYBOOK_CSP_NONCE = 'storybook-csp-nonce';
  * See: https://github.com/storybookjs/storybook/issues/12255
  */
 
-const themeBackground: Record<ColorModes, 'white' | 'navy'> = {
-  light: 'white',
-  dark: 'navy',
-};
-
 const themeMap = {
-  core: coreTheme,
-  admin: adminTheme,
-  lxStudio: lxStudioTheme,
-  percipio: percipioTheme,
-  platform: platformTheme,
   skillsoft: skillsoftTheme,
   originalCodecademy: originalCodecademyTheme,
 } as const;
@@ -61,14 +45,12 @@ export const withEmotion = (Story: any, context: GlobalsContext) => {
    */
   const generated = 'contentModes' in currentTheme ? currentTheme : undefined;
   const tokens = generated && <style>{tokensCss}</style>;
-  const bg = (
-    generated
-      ? generated.modes[colorMode]['surface-default']
-      : themeBackground[colorMode]
-  ) as 'white';
+  const bg = generated
+    ? generated.modes[colorMode]['surface-default']
+    : undefined;
   const background = generated
-    ? (generated._tokens.colors as Record<string, string>)[bg]
-    : corePalette[themeBackground[colorMode]];
+    ? (generated._tokens.colors as Record<string, string>)[bg as string]
+    : undefined;
   const storyRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {

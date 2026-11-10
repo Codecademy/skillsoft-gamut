@@ -5,7 +5,7 @@
 import { render } from '@testing-library/react';
 
 import { GamutProvider } from '../GamutProvider';
-import { coreTheme } from '../themes';
+import { skillsoftTheme } from '../themes';
 
 const TEST_NONCE = 'test-nonce';
 
@@ -16,7 +16,7 @@ describe('GamutProvider CSP nonce', () => {
 
   it('injects style tags with the nonce attribute when nonce is provided', () => {
     render(
-      <GamutProvider nonce={TEST_NONCE} theme={coreTheme}>
+      <GamutProvider nonce={TEST_NONCE} theme={skillsoftTheme}>
         <div>child</div>
       </GamutProvider>
     );
