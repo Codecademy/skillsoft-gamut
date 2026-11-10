@@ -203,9 +203,9 @@ const SearchToolbar = () => (
         aria-label={TOOLBAR_LABELS.search}
         placeholder={TOOLBAR_LABELS.search}
         style={{
-          border: '1px solid var(--colors-border-default)',
-          background: 'var(--colors-surface-raised)',
-          color: 'var(--colors-text-default)',
+          border: '1px solid var(--color-border-default)',
+          background: 'var(--color-surface-raised)',
+          color: 'var(--color-text-default)',
           padding: 8,
         }}
       />

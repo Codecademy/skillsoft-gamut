@@ -7,24 +7,24 @@
  */
 
 .lxTheme {
-  --home-topNav-background: var(--colors-surface-default);
-  --home-topNav-divider: var(--colors-border-subtle);
-  --home-topNav-text: var(--colors-text-default);
-  --home-topNav-accentText: var(--colors-action-primary);
-  --home-topNav-focusOutline: var(--colors-action-primary);
-  --home-topNav-hoverBg: var(--colors-state-hover);
-  --home-topNav-activeBg: var(--colors-state-selected);
-  --home-topNav-notification: var(--colors-action-danger, var(--dangerColor));
+  --home-topNav-background: var(--color-surface-default);
+  --home-topNav-divider: var(--color-border-subtle);
+  --home-topNav-text: var(--color-text-default);
+  --home-topNav-accentText: var(--color-action-primary);
+  --home-topNav-focusOutline: var(--color-action-primary);
+  --home-topNav-hoverBg: var(--color-state-hover);
+  --home-topNav-activeBg: var(--color-state-selected);
+  --home-topNav-notification: var(--color-action-danger, var(--dangerColor));
 
-  --home-leftNav-shellBg: var(--colors-surface-default);
-  --home-leftNav-surfaceBg: var(--colors-surface-default);
-  --home-leftNav-textStrong: var(--colors-text-default);
-  --home-leftNav-textMuted: var(--colors-text-subtle);
-  --home-leftNav-hoverBg: var(--colors-state-hover);
-  --home-leftNav-hoverText: var(--colors-text-default);
-  --home-leftNav-activeBg: var(--colors-state-selected);
-  --home-leftNav-activeText: var(--colors-action-primary);
-  --home-leftNav-divider: var(--colors-border-default);
+  --home-leftNav-shellBg: var(--color-surface-default);
+  --home-leftNav-surfaceBg: var(--color-surface-default);
+  --home-leftNav-textStrong: var(--color-text-default);
+  --home-leftNav-textMuted: var(--color-text-subtle);
+  --home-leftNav-hoverBg: var(--color-state-hover);
+  --home-leftNav-hoverText: var(--color-text-default);
+  --home-leftNav-activeBg: var(--color-state-selected);
+  --home-leftNav-activeText: var(--color-action-primary);
+  --home-leftNav-divider: var(--color-border-default);
 }
 
 /* ---- Top nav bar (NavBar.scss) ---- */
@@ -283,10 +283,10 @@
   height: 16px;
   padding: var(--space8) var(--space4);
   font-size: var(--font13);
-  color: var(--colors-text-inverse);
-  background-color: var(--colors-text-error);
+  color: var(--color-text-inverse);
+  background-color: var(--color-text-error);
   border-radius: var(--space8);
-  box-shadow: 0 1px 3px var(--colors-shadow-key);
+  box-shadow: 0 1px 3px var(--color-shadow-key);
 }
 
 .divider {
@@ -297,7 +297,7 @@
 .submenuTitle {
   flex: 1;
   margin: 0;
-  color: var(--colors-text-subtle);
+  color: var(--color-text-subtle);
 }
 
 .submenuItem {
