@@ -3267,3 +3267,908 @@ monospace",
 @layer tokens{:root,[data-color-mode="dark"]{--color-editor-attribute:#AEE938;--color-editor-annotation:#E85D7F;--color-editor-atom:#F966FF;--color-editor-basic:#ffffff;--color-editor-comment:#84868D;--color-editor-constant:#FF8C00;--color-editor-decoration:#E85D7F;--color-editor-invalid:#E85D7F;--color-editor-key:#66C4FF;--color-editor-keyword:#B3CCFF;--color-editor-number:#E85D7F;--color-editor-operator:#E85D7F;--color-editor-predefined:#ffffff;--color-editor-property:#E85D7F;--color-editor-regexp:#AEE938;--color-editor-string:#FFD300;--color-editor-tag:#E85D7F;--color-editor-text:#FF8C00;--color-editor-value:#FFD300;--color-editor-variable:#AEE938;--color-editor-ui-background:#0A0D1C;--color-editor-ui-text:#ffffff;--color-editor-ui-indent-active:#3B3D49;--color-editor-ui-indent-inactive:#5F616B;--color-editor-ui-line-number-active:#CECFD2;--color-editor-ui-line-number-inactive:#84868D;}[data-color-mode="light"]{--color-editor-attribute:#008A27;--color-editor-annotation:#E91C11;--color-editor-atom:#CA00D1;--color-editor-basic:#10162F;--color-editor-comment:#686C7B;--color-editor-constant:#D14900;--color-editor-decoration:#E91C11;--color-editor-invalid:#E91C11;--color-editor-key:#006D82;--color-editor-keyword:#1557FF;--color-editor-number:#E91C11;--color-editor-operator:#E91C11;--color-editor-predefined:#10162F;--color-editor-property:#E91C11;--color-editor-regexp:#008A27;--color-editor-string:#8A7300;--color-editor-tag:#E91C11;--color-editor-text:#D14900;--color-editor-value:#8A7300;--color-editor-variable:#008A27;--color-editor-ui-background:#ffffff;--color-editor-ui-text:#10162F;--color-editor-ui-indent-active:#BCBDC4;--color-editor-ui-indent-inactive:#8E919D;--color-editor-ui-line-number-active:#31374C;--color-editor-ui-line-number-inactive:#686C7B;}}",
 }
 `;
+
+exports[`themes skillsoft - theme shape 1`] = `
+{
+  "_getColorValue": [Function],
+  "_tokens": {
+    "colors": {
+      "black": "#000000",
+      "black-a24": "rgba(0, 0, 0, 0.24)",
+      "black-a32": "rgba(0, 0, 0, 0.32)",
+      "black-a60": "rgba(0, 0, 0, 0.6)",
+      "palette-accent-100": "#fff9fa",
+      "palette-accent-1000": "#3f0922",
+      "palette-accent-1100": "#290515",
+      "palette-accent-200": "#f2e6ea",
+      "palette-accent-300": "#eac1ce",
+      "palette-accent-400": "#ea94b2",
+      "palette-accent-500": "#f44b97",
+      "palette-accent-600": "#dd007c",
+      "palette-accent-700": "#af1363",
+      "palette-accent-800": "#85154b",
+      "palette-accent-900": "#620f37",
+      "palette-accent-alt-100": "#fafaff",
+      "palette-accent-alt-1000": "#220d57",
+      "palette-accent-alt-1100": "#150739",
+      "palette-accent-alt-200": "#e9e9f2",
+      "palette-accent-alt-300": "#cbcae9",
+      "palette-accent-alt-400": "#aeaae9",
+      "palette-accent-alt-500": "#9182f3",
+      "palette-accent-alt-600": "#7a52ff",
+      "palette-accent-alt-700": "#661af0",
+      "palette-accent-alt-800": "#4d1cb5",
+      "palette-accent-alt-900": "#381587",
+      "palette-danger-100": "#fff9f9",
+      "palette-danger-1000": "#410912",
+      "palette-danger-1100": "#2a050a",
+      "palette-danger-200": "#f2e7e7",
+      "palette-danger-300": "#eac2c3",
+      "palette-danger-400": "#ea989b",
+      "palette-danger-500": "#f45769",
+      "palette-danger-600": "#e40045",
+      "palette-danger-700": "#b51439",
+      "palette-danger-800": "#89162c",
+      "palette-danger-900": "#66101f",
+      "palette-neutral-dark-100": "#fafafb",
+      "palette-neutral-dark-1000": "#1d212f",
+      "palette-neutral-dark-1100": "#11141d",
+      "palette-neutral-dark-1100-a12": "rgba(17, 20, 29, 0.12)",
+      "palette-neutral-dark-1100-a16": "rgba(17, 20, 29, 0.16)",
+      "palette-neutral-dark-200": "#e9eaeb",
+      "palette-neutral-dark-300": "#cbcdd3",
+      "palette-neutral-dark-400": "#aeb2bd",
+      "palette-neutral-dark-500": "#8e95a9",
+      "palette-neutral-dark-600": "#717a97",
+      "palette-neutral-dark-700": "#576182",
+      "palette-neutral-dark-800": "#414a65",
+      "palette-neutral-dark-900": "#2f364b",
+      "palette-neutral-light-100": "#fbfaf7",
+      "palette-neutral-light-1000": "#23221d",
+      "palette-neutral-light-1100": "#151411",
+      "palette-neutral-light-200": "#ebeae4",
+      "palette-neutral-light-300": "#d2cec0",
+      "palette-neutral-light-400": "#b6b2a3",
+      "palette-neutral-light-500": "#9a9585",
+      "palette-neutral-light-600": "#807b6c",
+      "palette-neutral-light-700": "#666256",
+      "palette-neutral-light-800": "#4d4b42",
+      "palette-neutral-light-900": "#383730",
+      "palette-primary-100": "#f8fbff",
+      "palette-primary-1000": "#051c50",
+      "palette-primary-1100": "#031135",
+      "palette-primary-200": "#e6eaf2",
+      "palette-primary-300": "#c0cee9",
+      "palette-primary-400": "#95b2e8",
+      "palette-primary-500": "#6192f3",
+      "palette-primary-600": "#276eff",
+      "palette-primary-600-a6": "rgba(39, 110, 255, 0.06)",
+      "palette-primary-600-a8": "rgba(39, 110, 255, 0.08)",
+      "palette-primary-600-a9": "rgba(39, 110, 255, 0.09)",
+      "palette-primary-700": "#0a51df",
+      "palette-primary-800": "#0c3fa8",
+      "palette-primary-900": "#082e7d",
+      "palette-success-100": "#eefeff",
+      "palette-success-1000": "#082728",
+      "palette-success-1100": "#041819",
+      "palette-success-200": "#d2f1f2",
+      "palette-success-300": "#8ddee2",
+      "palette-success-400": "#64c4c9",
+      "palette-success-500": "#34a8ae",
+      "palette-success-600": "#018d92",
+      "palette-success-700": "#117074",
+      "palette-success-800": "#135558",
+      "palette-success-900": "#0e3e41",
+      "palette-warning-100": "#fffaef",
+      "palette-warning-1000": "#2a2006",
+      "palette-warning-1100": "#1a1304",
+      "palette-warning-200": "#f2e9d4",
+      "palette-warning-300": "#e8cb84",
+      "palette-warning-400": "#cfae5b",
+      "palette-warning-500": "#b4902d",
+      "palette-warning-600": "#997600",
+      "palette-warning-700": "#795e0e",
+      "palette-warning-800": "#5c4810",
+      "palette-warning-900": "#43340b",
+      "white": "#ffffff",
+    },
+    "elements": {
+      "headerHeight": {
+        "base": "4rem",
+        "md": "5rem",
+      },
+      "headerZ": 15,
+    },
+    "modes": {
+      "dark": {
+        "action-danger": "#ea989b",
+        "action-danger-hover": "#eac2c3",
+        "action-danger-pressed": "#f2e7e7",
+        "action-disabled": "#414a65",
+        "action-neutral": "#ebeae4",
+        "action-neutral-hover": "#fbfaf7",
+        "action-neutral-pressed": "#ffffff",
+        "action-primary": "#95b2e8",
+        "action-primary-hover": "#c0cee9",
+        "action-primary-pressed": "#e6eaf2",
+        "background-current": "#11141d",
+        "border-default": "#807b6c",
+        "border-strong": "#fbfaf7",
+        "border-subtle": "#383730",
+        "shadow-ambient": "rgba(0, 0, 0, 0.24)",
+        "shadow-key": "rgba(0, 0, 0, 0.32)",
+        "shadow-scrim": "rgba(0, 0, 0, 0.6)",
+        "state-hover": "rgba(39, 110, 255, 0.06)",
+        "state-pressed": "rgba(39, 110, 255, 0.09)",
+        "state-selected": "rgba(39, 110, 255, 0.08)",
+        "surface-brand": "#11141d",
+        "surface-brand-subtle": "#11141d",
+        "surface-default": "#11141d",
+        "surface-error": "#410912",
+        "surface-raised": "#1d212f",
+        "surface-success": "#082728",
+        "surface-sunken": "#000000",
+        "surface-warning": "#2a2006",
+        "text-default": "#ebeae4",
+        "text-error": "#eac2c3",
+        "text-inverse": "#1d212f",
+        "text-subtle": "#b6b2a3",
+        "text-success": "#8ddee2",
+        "text-warning": "#e8cb84",
+        "viz-1": "#6192f3",
+        "viz-2": "#f44b97",
+        "viz-3": "#cfae5b",
+        "viz-4": "#7a52ff",
+        "viz-5": "#8ddee2",
+        "viz-6": "#e40045",
+        "viz-7": "#8e95a9",
+        "viz-8": "#807b6c",
+        "viz-seq-1": "#276eff",
+        "viz-seq-2": "#6192f3",
+        "viz-seq-3": "#95b2e8",
+        "viz-seq-4": "#c0cee9",
+      },
+      "light": {
+        "action-danger": "#89162c",
+        "action-danger-hover": "#66101f",
+        "action-danger-pressed": "#410912",
+        "action-disabled": "#b6b2a3",
+        "action-neutral": "#1d212f",
+        "action-neutral-hover": "#11141d",
+        "action-neutral-pressed": "#000000",
+        "action-primary": "#0c3fa8",
+        "action-primary-hover": "#082e7d",
+        "action-primary-pressed": "#051c50",
+        "background-current": "#fbfaf7",
+        "border-default": "#717a97",
+        "border-strong": "#11141d",
+        "border-subtle": "#cbcdd3",
+        "shadow-ambient": "rgba(17, 20, 29, 0.12)",
+        "shadow-key": "rgba(17, 20, 29, 0.16)",
+        "shadow-scrim": "rgba(0, 0, 0, 0.6)",
+        "state-hover": "rgba(39, 110, 255, 0.06)",
+        "state-pressed": "rgba(39, 110, 255, 0.09)",
+        "state-selected": "rgba(39, 110, 255, 0.08)",
+        "surface-brand": "#fbfaf7",
+        "surface-brand-subtle": "#fbfaf7",
+        "surface-default": "#fbfaf7",
+        "surface-error": "#f2e7e7",
+        "surface-raised": "#ffffff",
+        "surface-success": "#d2f1f2",
+        "surface-sunken": "#ebeae4",
+        "surface-warning": "#f2e9d4",
+        "text-default": "#1d212f",
+        "text-error": "#66101f",
+        "text-inverse": "#ebeae4",
+        "text-subtle": "#414a65",
+        "text-success": "#0e3e41",
+        "text-warning": "#43340b",
+        "viz-1": "#0c3fa8",
+        "viz-2": "#af1363",
+        "viz-3": "#795e0e",
+        "viz-4": "#7a52ff",
+        "viz-5": "#018d92",
+        "viz-6": "#e40045",
+        "viz-7": "#1d212f",
+        "viz-8": "#807b6c",
+        "viz-seq-1": "#276eff",
+        "viz-seq-2": "#0a51df",
+        "viz-seq-3": "#0c3fa8",
+        "viz-seq-4": "#082e7d",
+      },
+    },
+  },
+  "_variables": {
+    "mode": {
+      "--color-action-danger": "var(--color-palette-danger-800)",
+      "--color-action-danger-hover": "var(--color-palette-danger-900)",
+      "--color-action-danger-pressed": "var(--color-palette-danger-1000)",
+      "--color-action-disabled": "var(--color-palette-neutral-light-400)",
+      "--color-action-neutral": "var(--color-palette-neutral-dark-1000)",
+      "--color-action-neutral-hover": "var(--color-palette-neutral-dark-1100)",
+      "--color-action-neutral-pressed": "var(--color-black)",
+      "--color-action-primary": "var(--color-palette-primary-800)",
+      "--color-action-primary-hover": "var(--color-palette-primary-900)",
+      "--color-action-primary-pressed": "var(--color-palette-primary-1000)",
+      "--color-background-current": "var(--color-palette-neutral-light-100)",
+      "--color-border-default": "var(--color-palette-neutral-dark-600)",
+      "--color-border-strong": "var(--color-palette-neutral-dark-1100)",
+      "--color-border-subtle": "var(--color-palette-neutral-dark-300)",
+      "--color-shadow-ambient": "var(--color-palette-neutral-dark-1100-a12)",
+      "--color-shadow-key": "var(--color-palette-neutral-dark-1100-a16)",
+      "--color-shadow-scrim": "var(--color-black-a60)",
+      "--color-state-hover": "var(--color-palette-primary-600-a6)",
+      "--color-state-pressed": "var(--color-palette-primary-600-a9)",
+      "--color-state-selected": "var(--color-palette-primary-600-a8)",
+      "--color-surface-brand": "var(--color-palette-neutral-light-100)",
+      "--color-surface-brand-subtle": "var(--color-palette-neutral-light-100)",
+      "--color-surface-default": "var(--color-palette-neutral-light-100)",
+      "--color-surface-error": "var(--color-palette-danger-200)",
+      "--color-surface-raised": "var(--color-white)",
+      "--color-surface-success": "var(--color-palette-success-200)",
+      "--color-surface-sunken": "var(--color-palette-neutral-light-200)",
+      "--color-surface-warning": "var(--color-palette-warning-200)",
+      "--color-text-default": "var(--color-palette-neutral-dark-1000)",
+      "--color-text-error": "var(--color-palette-danger-900)",
+      "--color-text-inverse": "var(--color-palette-neutral-light-200)",
+      "--color-text-subtle": "var(--color-palette-neutral-dark-800)",
+      "--color-text-success": "var(--color-palette-success-900)",
+      "--color-text-warning": "var(--color-palette-warning-900)",
+      "--color-viz-1": "var(--color-palette-primary-800)",
+      "--color-viz-2": "var(--color-palette-accent-700)",
+      "--color-viz-3": "var(--color-palette-warning-700)",
+      "--color-viz-4": "var(--color-palette-accent-alt-600)",
+      "--color-viz-5": "var(--color-palette-success-600)",
+      "--color-viz-6": "var(--color-palette-danger-600)",
+      "--color-viz-7": "var(--color-palette-neutral-dark-1000)",
+      "--color-viz-8": "var(--color-palette-neutral-light-600)",
+      "--color-viz-seq-1": "var(--color-palette-primary-600)",
+      "--color-viz-seq-2": "var(--color-palette-primary-700)",
+      "--color-viz-seq-3": "var(--color-palette-primary-800)",
+      "--color-viz-seq-4": "var(--color-palette-primary-900)",
+    },
+    "root": {
+      "--elements-headerHeight": "4rem",
+      "--elements-headerZ": 15,
+      "@media only screen and (min-width: 1024px)": {
+        "--elements-headerHeight": "5rem",
+      },
+    },
+  },
+  "borderRadii": {
+    "full": "999px",
+    "lg": "8px",
+    "md": "4px",
+    "none": "0px",
+    "sm": "2px",
+    "xl": "16px",
+  },
+  "borders": {
+    "1": "1px solid var(--color-border-strong)",
+    "2": "2px solid var(--color-border-strong)",
+  },
+  "brand": "skillsoft",
+  "breakpoints": {
+    "c_base": "@container (min-width: 1px)",
+    "c_lg": "@container (min-width: 1200px)",
+    "c_md": "@container (min-width: 1024px)",
+    "c_sm": "@container (min-width: 768px)",
+    "c_xl": "@container (min-width: 1440px)",
+    "c_xs": "@container (min-width: 480px)",
+    "lg": "@media only screen and (min-width: 1200px)",
+    "md": "@media only screen and (min-width: 1024px)",
+    "sm": "@media only screen and (min-width: 768px)",
+    "xl": "@media only screen and (min-width: 1440px)",
+    "xs": "@media only screen and (min-width: 480px)",
+  },
+  "colors": {
+    "action-danger": "var(--color-action-danger)",
+    "action-danger-hover": "var(--color-action-danger-hover)",
+    "action-danger-pressed": "var(--color-action-danger-pressed)",
+    "action-disabled": "var(--color-action-disabled)",
+    "action-neutral": "var(--color-action-neutral)",
+    "action-neutral-hover": "var(--color-action-neutral-hover)",
+    "action-neutral-pressed": "var(--color-action-neutral-pressed)",
+    "action-primary": "var(--color-action-primary)",
+    "action-primary-hover": "var(--color-action-primary-hover)",
+    "action-primary-pressed": "var(--color-action-primary-pressed)",
+    "background-current": "var(--color-background-current)",
+    "black": "var(--color-black)",
+    "black-a24": "var(--color-black-a24)",
+    "black-a32": "var(--color-black-a32)",
+    "black-a60": "var(--color-black-a60)",
+    "border-default": "var(--color-border-default)",
+    "border-strong": "var(--color-border-strong)",
+    "border-subtle": "var(--color-border-subtle)",
+    "palette-accent-100": "var(--color-palette-accent-100)",
+    "palette-accent-1000": "var(--color-palette-accent-1000)",
+    "palette-accent-1100": "var(--color-palette-accent-1100)",
+    "palette-accent-200": "var(--color-palette-accent-200)",
+    "palette-accent-300": "var(--color-palette-accent-300)",
+    "palette-accent-400": "var(--color-palette-accent-400)",
+    "palette-accent-500": "var(--color-palette-accent-500)",
+    "palette-accent-600": "var(--color-palette-accent-600)",
+    "palette-accent-700": "var(--color-palette-accent-700)",
+    "palette-accent-800": "var(--color-palette-accent-800)",
+    "palette-accent-900": "var(--color-palette-accent-900)",
+    "palette-accent-alt-100": "var(--color-palette-accent-alt-100)",
+    "palette-accent-alt-1000": "var(--color-palette-accent-alt-1000)",
+    "palette-accent-alt-1100": "var(--color-palette-accent-alt-1100)",
+    "palette-accent-alt-200": "var(--color-palette-accent-alt-200)",
+    "palette-accent-alt-300": "var(--color-palette-accent-alt-300)",
+    "palette-accent-alt-400": "var(--color-palette-accent-alt-400)",
+    "palette-accent-alt-500": "var(--color-palette-accent-alt-500)",
+    "palette-accent-alt-600": "var(--color-palette-accent-alt-600)",
+    "palette-accent-alt-700": "var(--color-palette-accent-alt-700)",
+    "palette-accent-alt-800": "var(--color-palette-accent-alt-800)",
+    "palette-accent-alt-900": "var(--color-palette-accent-alt-900)",
+    "palette-danger-100": "var(--color-palette-danger-100)",
+    "palette-danger-1000": "var(--color-palette-danger-1000)",
+    "palette-danger-1100": "var(--color-palette-danger-1100)",
+    "palette-danger-200": "var(--color-palette-danger-200)",
+    "palette-danger-300": "var(--color-palette-danger-300)",
+    "palette-danger-400": "var(--color-palette-danger-400)",
+    "palette-danger-500": "var(--color-palette-danger-500)",
+    "palette-danger-600": "var(--color-palette-danger-600)",
+    "palette-danger-700": "var(--color-palette-danger-700)",
+    "palette-danger-800": "var(--color-palette-danger-800)",
+    "palette-danger-900": "var(--color-palette-danger-900)",
+    "palette-neutral-dark-100": "var(--color-palette-neutral-dark-100)",
+    "palette-neutral-dark-1000": "var(--color-palette-neutral-dark-1000)",
+    "palette-neutral-dark-1100": "var(--color-palette-neutral-dark-1100)",
+    "palette-neutral-dark-1100-a12": "var(--color-palette-neutral-dark-1100-a12)",
+    "palette-neutral-dark-1100-a16": "var(--color-palette-neutral-dark-1100-a16)",
+    "palette-neutral-dark-200": "var(--color-palette-neutral-dark-200)",
+    "palette-neutral-dark-300": "var(--color-palette-neutral-dark-300)",
+    "palette-neutral-dark-400": "var(--color-palette-neutral-dark-400)",
+    "palette-neutral-dark-500": "var(--color-palette-neutral-dark-500)",
+    "palette-neutral-dark-600": "var(--color-palette-neutral-dark-600)",
+    "palette-neutral-dark-700": "var(--color-palette-neutral-dark-700)",
+    "palette-neutral-dark-800": "var(--color-palette-neutral-dark-800)",
+    "palette-neutral-dark-900": "var(--color-palette-neutral-dark-900)",
+    "palette-neutral-light-100": "var(--color-palette-neutral-light-100)",
+    "palette-neutral-light-1000": "var(--color-palette-neutral-light-1000)",
+    "palette-neutral-light-1100": "var(--color-palette-neutral-light-1100)",
+    "palette-neutral-light-200": "var(--color-palette-neutral-light-200)",
+    "palette-neutral-light-300": "var(--color-palette-neutral-light-300)",
+    "palette-neutral-light-400": "var(--color-palette-neutral-light-400)",
+    "palette-neutral-light-500": "var(--color-palette-neutral-light-500)",
+    "palette-neutral-light-600": "var(--color-palette-neutral-light-600)",
+    "palette-neutral-light-700": "var(--color-palette-neutral-light-700)",
+    "palette-neutral-light-800": "var(--color-palette-neutral-light-800)",
+    "palette-neutral-light-900": "var(--color-palette-neutral-light-900)",
+    "palette-primary-100": "var(--color-palette-primary-100)",
+    "palette-primary-1000": "var(--color-palette-primary-1000)",
+    "palette-primary-1100": "var(--color-palette-primary-1100)",
+    "palette-primary-200": "var(--color-palette-primary-200)",
+    "palette-primary-300": "var(--color-palette-primary-300)",
+    "palette-primary-400": "var(--color-palette-primary-400)",
+    "palette-primary-500": "var(--color-palette-primary-500)",
+    "palette-primary-600": "var(--color-palette-primary-600)",
+    "palette-primary-600-a6": "var(--color-palette-primary-600-a6)",
+    "palette-primary-600-a8": "var(--color-palette-primary-600-a8)",
+    "palette-primary-600-a9": "var(--color-palette-primary-600-a9)",
+    "palette-primary-700": "var(--color-palette-primary-700)",
+    "palette-primary-800": "var(--color-palette-primary-800)",
+    "palette-primary-900": "var(--color-palette-primary-900)",
+    "palette-success-100": "var(--color-palette-success-100)",
+    "palette-success-1000": "var(--color-palette-success-1000)",
+    "palette-success-1100": "var(--color-palette-success-1100)",
+    "palette-success-200": "var(--color-palette-success-200)",
+    "palette-success-300": "var(--color-palette-success-300)",
+    "palette-success-400": "var(--color-palette-success-400)",
+    "palette-success-500": "var(--color-palette-success-500)",
+    "palette-success-600": "var(--color-palette-success-600)",
+    "palette-success-700": "var(--color-palette-success-700)",
+    "palette-success-800": "var(--color-palette-success-800)",
+    "palette-success-900": "var(--color-palette-success-900)",
+    "palette-warning-100": "var(--color-palette-warning-100)",
+    "palette-warning-1000": "var(--color-palette-warning-1000)",
+    "palette-warning-1100": "var(--color-palette-warning-1100)",
+    "palette-warning-200": "var(--color-palette-warning-200)",
+    "palette-warning-300": "var(--color-palette-warning-300)",
+    "palette-warning-400": "var(--color-palette-warning-400)",
+    "palette-warning-500": "var(--color-palette-warning-500)",
+    "palette-warning-600": "var(--color-palette-warning-600)",
+    "palette-warning-700": "var(--color-palette-warning-700)",
+    "palette-warning-800": "var(--color-palette-warning-800)",
+    "palette-warning-900": "var(--color-palette-warning-900)",
+    "shadow-ambient": "var(--color-shadow-ambient)",
+    "shadow-key": "var(--color-shadow-key)",
+    "shadow-scrim": "var(--color-shadow-scrim)",
+    "state-hover": "var(--color-state-hover)",
+    "state-pressed": "var(--color-state-pressed)",
+    "state-selected": "var(--color-state-selected)",
+    "surface-brand": "var(--color-surface-brand)",
+    "surface-brand-subtle": "var(--color-surface-brand-subtle)",
+    "surface-default": "var(--color-surface-default)",
+    "surface-error": "var(--color-surface-error)",
+    "surface-raised": "var(--color-surface-raised)",
+    "surface-success": "var(--color-surface-success)",
+    "surface-sunken": "var(--color-surface-sunken)",
+    "surface-warning": "var(--color-surface-warning)",
+    "text-default": "var(--color-text-default)",
+    "text-error": "var(--color-text-error)",
+    "text-inverse": "var(--color-text-inverse)",
+    "text-subtle": "var(--color-text-subtle)",
+    "text-success": "var(--color-text-success)",
+    "text-warning": "var(--color-text-warning)",
+    "viz-1": "var(--color-viz-1)",
+    "viz-2": "var(--color-viz-2)",
+    "viz-3": "var(--color-viz-3)",
+    "viz-4": "var(--color-viz-4)",
+    "viz-5": "var(--color-viz-5)",
+    "viz-6": "var(--color-viz-6)",
+    "viz-7": "var(--color-viz-7)",
+    "viz-8": "var(--color-viz-8)",
+    "viz-seq-1": "var(--color-viz-seq-1)",
+    "viz-seq-2": "var(--color-viz-seq-2)",
+    "viz-seq-3": "var(--color-viz-seq-3)",
+    "viz-seq-4": "var(--color-viz-seq-4)",
+    "white": "var(--color-white)",
+  },
+  "contentModes": {
+    "black": "dark",
+    "palette-accent-100": "light",
+    "palette-accent-1000": "dark",
+    "palette-accent-1100": "dark",
+    "palette-accent-200": "light",
+    "palette-accent-300": "light",
+    "palette-accent-400": "light",
+    "palette-accent-500": "light",
+    "palette-accent-600": "dark",
+    "palette-accent-700": "dark",
+    "palette-accent-800": "dark",
+    "palette-accent-900": "dark",
+    "palette-accent-alt-100": "light",
+    "palette-accent-alt-1000": "dark",
+    "palette-accent-alt-1100": "dark",
+    "palette-accent-alt-200": "light",
+    "palette-accent-alt-300": "light",
+    "palette-accent-alt-400": "light",
+    "palette-accent-alt-500": "light",
+    "palette-accent-alt-600": "dark",
+    "palette-accent-alt-700": "dark",
+    "palette-accent-alt-800": "dark",
+    "palette-accent-alt-900": "dark",
+    "palette-danger-100": "light",
+    "palette-danger-1000": "dark",
+    "palette-danger-1100": "dark",
+    "palette-danger-200": "light",
+    "palette-danger-300": "light",
+    "palette-danger-400": "light",
+    "palette-danger-500": "light",
+    "palette-danger-600": "dark",
+    "palette-danger-700": "dark",
+    "palette-danger-800": "dark",
+    "palette-danger-900": "dark",
+    "palette-neutral-dark-100": "light",
+    "palette-neutral-dark-1000": "dark",
+    "palette-neutral-dark-1100": "dark",
+    "palette-neutral-dark-200": "light",
+    "palette-neutral-dark-300": "light",
+    "palette-neutral-dark-400": "light",
+    "palette-neutral-dark-500": "light",
+    "palette-neutral-dark-600": "light",
+    "palette-neutral-dark-700": "dark",
+    "palette-neutral-dark-800": "dark",
+    "palette-neutral-dark-900": "dark",
+    "palette-neutral-light-100": "light",
+    "palette-neutral-light-1000": "dark",
+    "palette-neutral-light-1100": "dark",
+    "palette-neutral-light-200": "light",
+    "palette-neutral-light-300": "light",
+    "palette-neutral-light-400": "light",
+    "palette-neutral-light-500": "light",
+    "palette-neutral-light-600": "light",
+    "palette-neutral-light-700": "dark",
+    "palette-neutral-light-800": "dark",
+    "palette-neutral-light-900": "dark",
+    "palette-primary-100": "light",
+    "palette-primary-1000": "dark",
+    "palette-primary-1100": "dark",
+    "palette-primary-200": "light",
+    "palette-primary-300": "light",
+    "palette-primary-400": "light",
+    "palette-primary-500": "light",
+    "palette-primary-600": "dark",
+    "palette-primary-700": "dark",
+    "palette-primary-800": "dark",
+    "palette-primary-900": "dark",
+    "palette-success-100": "light",
+    "palette-success-1000": "dark",
+    "palette-success-1100": "dark",
+    "palette-success-200": "light",
+    "palette-success-300": "light",
+    "palette-success-400": "light",
+    "palette-success-500": "light",
+    "palette-success-600": "light",
+    "palette-success-700": "dark",
+    "palette-success-800": "dark",
+    "palette-success-900": "dark",
+    "palette-warning-100": "light",
+    "palette-warning-1000": "dark",
+    "palette-warning-1100": "dark",
+    "palette-warning-200": "light",
+    "palette-warning-300": "light",
+    "palette-warning-400": "light",
+    "palette-warning-500": "light",
+    "palette-warning-600": "light",
+    "palette-warning-700": "dark",
+    "palette-warning-800": "dark",
+    "palette-warning-900": "dark",
+    "white": "light",
+  },
+  "elements": {
+    "headerHeight": "var(--elements-headerHeight)",
+    "headerZ": "var(--elements-headerZ)",
+  },
+  "elevation": {
+    "hover-shadow": "0 2px 6px 0 var(--color-shadow-key), 0 6px 16px 0 var(--color-shadow-ambient)",
+    "hover-transform": "none",
+    "hoverMirrored-shadow": "0 2px 6px 0 var(--color-shadow-key), 0 6px 16px 0 var(--color-shadow-ambient)",
+    "hoverMirrored-transform": "none",
+    "rest-shadow": "0 1px 4px 0 var(--color-shadow-key), 0 2px 7px 0 var(--color-shadow-ambient)",
+    "rest-transform": "none",
+  },
+  "fontFamily": {
+    "accent": ""Skillsoft Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+"Roboto", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+sans-serif",
+    "base": ""Skillsoft Text", -apple-system, BlinkMacSystemFont, "Segoe UI",
+"Roboto", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+sans-serif",
+    "monospace": ""Roboto Mono", monospace",
+    "system": ""Roboto", sans-serif",
+  },
+  "fontSize": {
+    "14": "0.875rem",
+    "16": "1rem",
+    "18": "1.125rem",
+    "20": "1.25rem",
+    "22": "1.375rem",
+    "26": "1.625rem",
+    "34": "2.125rem",
+    "44": "2.75rem",
+    "64": "4rem",
+  },
+  "fontWeight": {
+    "400": 400,
+    "500": 500,
+    "700": 700,
+    "base": 400,
+    "bold": 500,
+    "title": 500,
+  },
+  "lineHeight": {
+    "base": 1.5,
+    "spacedTitle": 1.3,
+    "title": 1.2,
+  },
+  "mode": "light",
+  "modes": {
+    "dark": {
+      "action-danger": "palette-danger-400",
+      "action-danger-hover": "palette-danger-300",
+      "action-danger-pressed": "palette-danger-200",
+      "action-disabled": "palette-neutral-dark-800",
+      "action-neutral": "palette-neutral-light-200",
+      "action-neutral-hover": "palette-neutral-light-100",
+      "action-neutral-pressed": "white",
+      "action-primary": "palette-primary-400",
+      "action-primary-hover": "palette-primary-300",
+      "action-primary-pressed": "palette-primary-200",
+      "background-current": "palette-neutral-dark-1100",
+      "border-default": "palette-neutral-light-600",
+      "border-strong": "palette-neutral-light-100",
+      "border-subtle": "palette-neutral-light-900",
+      "shadow-ambient": "black-a24",
+      "shadow-key": "black-a32",
+      "shadow-scrim": "black-a60",
+      "state-hover": "palette-primary-600-a6",
+      "state-pressed": "palette-primary-600-a9",
+      "state-selected": "palette-primary-600-a8",
+      "surface-brand": "palette-neutral-dark-1100",
+      "surface-brand-subtle": "palette-neutral-dark-1100",
+      "surface-default": "palette-neutral-dark-1100",
+      "surface-error": "palette-danger-1000",
+      "surface-raised": "palette-neutral-dark-1000",
+      "surface-success": "palette-success-1000",
+      "surface-sunken": "black",
+      "surface-warning": "palette-warning-1000",
+      "text-default": "palette-neutral-light-200",
+      "text-error": "palette-danger-300",
+      "text-inverse": "palette-neutral-dark-1000",
+      "text-subtle": "palette-neutral-light-400",
+      "text-success": "palette-success-300",
+      "text-warning": "palette-warning-300",
+      "viz-1": "palette-primary-500",
+      "viz-2": "palette-accent-500",
+      "viz-3": "palette-warning-400",
+      "viz-4": "palette-accent-alt-600",
+      "viz-5": "palette-success-300",
+      "viz-6": "palette-danger-600",
+      "viz-7": "palette-neutral-dark-500",
+      "viz-8": "palette-neutral-light-600",
+      "viz-seq-1": "palette-primary-600",
+      "viz-seq-2": "palette-primary-500",
+      "viz-seq-3": "palette-primary-400",
+      "viz-seq-4": "palette-primary-300",
+    },
+    "light": {
+      "action-danger": "palette-danger-800",
+      "action-danger-hover": "palette-danger-900",
+      "action-danger-pressed": "palette-danger-1000",
+      "action-disabled": "palette-neutral-light-400",
+      "action-neutral": "palette-neutral-dark-1000",
+      "action-neutral-hover": "palette-neutral-dark-1100",
+      "action-neutral-pressed": "black",
+      "action-primary": "palette-primary-800",
+      "action-primary-hover": "palette-primary-900",
+      "action-primary-pressed": "palette-primary-1000",
+      "background-current": "palette-neutral-light-100",
+      "border-default": "palette-neutral-dark-600",
+      "border-strong": "palette-neutral-dark-1100",
+      "border-subtle": "palette-neutral-dark-300",
+      "shadow-ambient": "palette-neutral-dark-1100-a12",
+      "shadow-key": "palette-neutral-dark-1100-a16",
+      "shadow-scrim": "black-a60",
+      "state-hover": "palette-primary-600-a6",
+      "state-pressed": "palette-primary-600-a9",
+      "state-selected": "palette-primary-600-a8",
+      "surface-brand": "palette-neutral-light-100",
+      "surface-brand-subtle": "palette-neutral-light-100",
+      "surface-default": "palette-neutral-light-100",
+      "surface-error": "palette-danger-200",
+      "surface-raised": "white",
+      "surface-success": "palette-success-200",
+      "surface-sunken": "palette-neutral-light-200",
+      "surface-warning": "palette-warning-200",
+      "text-default": "palette-neutral-dark-1000",
+      "text-error": "palette-danger-900",
+      "text-inverse": "palette-neutral-light-200",
+      "text-subtle": "palette-neutral-dark-800",
+      "text-success": "palette-success-900",
+      "text-warning": "palette-warning-900",
+      "viz-1": "palette-primary-800",
+      "viz-2": "palette-accent-700",
+      "viz-3": "palette-warning-700",
+      "viz-4": "palette-accent-alt-600",
+      "viz-5": "palette-success-600",
+      "viz-6": "palette-danger-600",
+      "viz-7": "palette-neutral-dark-1000",
+      "viz-8": "palette-neutral-light-600",
+      "viz-seq-1": "palette-primary-600",
+      "viz-seq-2": "palette-primary-700",
+      "viz-seq-3": "palette-primary-800",
+      "viz-seq-4": "palette-primary-900",
+    },
+  },
+  "name": "skillsoft",
+  "spacing": {
+    "0": 0,
+    "12": "0.75rem",
+    "16": "1rem",
+    "24": "1.5rem",
+    "32": "2rem",
+    "4": "0.25rem",
+    "40": "2.5rem",
+    "48": "3rem",
+    "64": "4rem",
+    "8": "0.5rem",
+    "96": "6rem",
+  },
+  "tokensCss": "/* Generated by @skillsoft/gamut-brand from the "skillsoft" brand. Do not edit. */
+@layer reset, base, tokens, recipes, utilities;
+
+@layer tokens {
+  :root, [data-brand="skillsoft"] {
+    --color-white: oklch(1.0000 0.0000 0.00);
+    --color-black: oklch(0.0000 0.0000 0.00);
+    --color-palette-neutral-light-100: oklch(0.9862 0.0041 93.70);
+    --color-palette-neutral-light-200: oklch(0.9364 0.0075 93.70);
+    --color-palette-neutral-light-300: oklch(0.8497 0.0191 93.70);
+    --color-palette-neutral-light-400: oklch(0.7628 0.0218 93.70);
+    --color-palette-neutral-light-500: oklch(0.6707 0.0241 93.70);
+    --color-palette-neutral-light-600: oklch(0.5835 0.0239 93.70);
+    --color-palette-neutral-light-700: oklch(0.4972 0.0193 93.70);
+    --color-palette-neutral-light-800: oklch(0.4115 0.0151 93.70);
+    --color-palette-neutral-light-900: oklch(0.3346 0.0120 93.70);
+    --color-palette-neutral-light-1000: oklch(0.2499 0.0086 93.70);
+    --color-palette-neutral-light-1100: oklch(0.1925 0.0063 93.70);
+    --color-palette-neutral-dark-100: oklch(0.9862 0.0012 270.70);
+    --color-palette-neutral-dark-200: oklch(0.9364 0.0024 270.70);
+    --color-palette-neutral-dark-300: oklch(0.8497 0.0081 270.70);
+    --color-palette-neutral-dark-400: oklch(0.7628 0.0168 270.70);
+    --color-palette-neutral-dark-500: oklch(0.6707 0.0305 270.70);
+    --color-palette-neutral-dark-600: oklch(0.5835 0.0454 270.70);
+    --color-palette-neutral-dark-700: oklch(0.4972 0.0538 270.70);
+    --color-palette-neutral-dark-800: oklch(0.4115 0.0482 270.70);
+    --color-palette-neutral-dark-900: oklch(0.3346 0.0383 270.70);
+    --color-palette-neutral-dark-1000: oklch(0.2499 0.0273 270.70);
+    --color-palette-neutral-dark-1100: oklch(0.1925 0.0200 270.70);
+    --color-palette-neutral-dark-1100-a16: oklch(0.1925 0.0200 270.70 / 0.16);
+    --color-palette-neutral-dark-1100-a12: oklch(0.1925 0.0200 270.70 / 0.12);
+    --color-palette-primary-100: oklch(0.9862 0.0064 262.40);
+    --color-palette-primary-200: oklch(0.9364 0.0121 262.40);
+    --color-palette-primary-300: oklch(0.8497 0.0407 262.40);
+    --color-palette-primary-400: oklch(0.7628 0.0846 262.40);
+    --color-palette-primary-500: oklch(0.6707 0.1531 262.40);
+    --color-palette-primary-600: oklch(0.5835 0.2274 262.40);
+    --color-palette-primary-700: oklch(0.4972 0.2254 262.40);
+    --color-palette-primary-800: oklch(0.4115 0.1767 262.40);
+    --color-palette-primary-900: oklch(0.3346 0.1405 262.40);
+    --color-palette-primary-1000: oklch(0.2499 0.1001 262.40);
+    --color-palette-primary-1100: oklch(0.1925 0.0734 262.40);
+    --color-palette-primary-600-a6: oklch(0.5835 0.2274 262.40 / 0.06);
+    --color-palette-primary-600-a9: oklch(0.5835 0.2274 262.40 / 0.09);
+    --color-palette-primary-600-a8: oklch(0.5835 0.2274 262.40 / 0.08);
+    --color-palette-accent-100: oklch(0.9862 0.0073 357.30);
+    --color-palette-accent-200: oklch(0.9364 0.0141 357.30);
+    --color-palette-accent-300: oklch(0.8497 0.0499 357.30);
+    --color-palette-accent-400: oklch(0.7628 0.1100 357.30);
+    --color-palette-accent-500: oklch(0.6707 0.2144 357.30);
+    --color-palette-accent-600: oklch(0.5835 0.2380 357.30);
+    --color-palette-accent-700: oklch(0.4972 0.1927 357.30);
+    --color-palette-accent-800: oklch(0.4115 0.1511 357.30);
+    --color-palette-accent-900: oklch(0.3346 0.1201 357.30);
+    --color-palette-accent-1000: oklch(0.2499 0.0856 357.30);
+    --color-palette-accent-1100: oklch(0.1925 0.0628 357.30);
+    --color-palette-accent-alt-100: oklch(0.9862 0.0067 287.10);
+    --color-palette-accent-alt-200: oklch(0.9364 0.0127 287.10);
+    --color-palette-accent-alt-300: oklch(0.8497 0.0430 287.10);
+    --color-palette-accent-alt-400: oklch(0.7628 0.0896 287.10);
+    --color-palette-accent-alt-500: oklch(0.6707 0.1624 287.10);
+    --color-palette-accent-alt-600: oklch(0.5835 0.2416 287.10);
+    --color-palette-accent-alt-700: oklch(0.4972 0.2722 287.10);
+    --color-palette-accent-alt-800: oklch(0.4115 0.2134 287.10);
+    --color-palette-accent-alt-900: oklch(0.3346 0.1696 287.10);
+    --color-palette-accent-alt-1000: oklch(0.2499 0.1209 287.10);
+    --color-palette-accent-alt-1100: oklch(0.1925 0.0887 287.10);
+    --color-palette-danger-100: oklch(0.9862 0.0066 17.30);
+    --color-palette-danger-200: oklch(0.9364 0.0128 17.30);
+    --color-palette-danger-300: oklch(0.8497 0.0452 17.30);
+    --color-palette-danger-400: oklch(0.7628 0.0993 17.30);
+    --color-palette-danger-500: oklch(0.6707 0.1924 17.30);
+    --color-palette-danger-600: oklch(0.5835 0.2336 17.30);
+    --color-palette-danger-700: oklch(0.4972 0.1891 17.30);
+    --color-palette-danger-800: oklch(0.4115 0.1482 17.30);
+    --color-palette-danger-900: oklch(0.3346 0.1178 17.30);
+    --color-palette-danger-1000: oklch(0.2499 0.0840 17.30);
+    --color-palette-danger-1100: oklch(0.1925 0.0616 17.30);
+    --color-palette-warning-100: oklch(0.9862 0.0160 88.00);
+    --color-palette-warning-200: oklch(0.9364 0.0300 88.00);
+    --color-palette-warning-300: oklch(0.8497 0.0955 88.00);
+    --color-palette-warning-400: oklch(0.7628 0.1091 88.00);
+    --color-palette-warning-500: oklch(0.6707 0.1206 88.00);
+    --color-palette-warning-600: oklch(0.5835 0.1192 88.00);
+    --color-palette-warning-700: oklch(0.4972 0.0965 88.00);
+    --color-palette-warning-800: oklch(0.4115 0.0757 88.00);
+    --color-palette-warning-900: oklch(0.3346 0.0601 88.00);
+    --color-palette-warning-1000: oklch(0.2499 0.0429 88.00);
+    --color-palette-warning-1100: oklch(0.1925 0.0314 88.00);
+    --color-palette-success-100: oklch(0.9862 0.0170 200.00);
+    --color-palette-success-200: oklch(0.9364 0.0318 200.00);
+    --color-palette-success-300: oklch(0.8497 0.0794 200.00);
+    --color-palette-success-400: oklch(0.7628 0.0907 200.00);
+    --color-palette-success-500: oklch(0.6707 0.1003 200.00);
+    --color-palette-success-600: oklch(0.5835 0.0991 200.00);
+    --color-palette-success-700: oklch(0.4972 0.0803 200.00);
+    --color-palette-success-800: oklch(0.4115 0.0629 200.00);
+    --color-palette-success-900: oklch(0.3346 0.0500 200.00);
+    --color-palette-success-1000: oklch(0.2499 0.0356 200.00);
+    --color-palette-success-1100: oklch(0.1925 0.0261 200.00);
+    --color-black-a32: oklch(0.0000 0.0000 0.00 / 0.32);
+    --color-black-a24: oklch(0.0000 0.0000 0.00 / 0.24);
+    --color-black-a60: oklch(0.0000 0.0000 0.00 / 0.6);
+  }
+
+  :root, [data-color-mode="light"] {
+    color-scheme: light;
+    color: var(--color-text-default);
+    --color-background-current: var(--color-surface-default);
+    --color-surface-sunken: var(--color-palette-neutral-light-200); /** Wells, insets, code blocks — anything recessed into the page. */
+    --color-surface-default: var(--color-palette-neutral-light-100); /** The page background — the base every other surface elevates from. */
+    --color-surface-raised: var(--color-white); /** The lighter surface step, not a depth: cards, menus, dialogs, fields, and flat bordered sections. Shadow, not the fill, says how high something sits. */
+    --color-surface-success: var(--color-palette-success-200); /** The success tint behind an alert or inline confirmation. */
+    --color-surface-warning: var(--color-palette-warning-200); /** The warning tint behind an alert or inline caution. */
+    --color-surface-error: var(--color-palette-danger-200); /** The error tint behind an alert or inline validation message. */
+    --color-surface-brand: var(--color-palette-neutral-light-100); /** The two-color brand gradient. The color is the flat fallback; the gradient ships as --gradient-surface-brand. */
+    --color-surface-brand-subtle: var(--color-palette-neutral-light-100); /** The one-color brand gradient, for backgrounds behind real text. Ships as --gradient-surface-brand-subtle. */
+    --color-text-default: var(--color-palette-neutral-dark-1000); /** Body copy and headings. */
+    --color-text-subtle: var(--color-palette-neutral-dark-800); /** Secondary text — descriptions, metadata, helper copy. */
+    --color-text-inverse: var(--color-palette-neutral-light-200); /** Labels on a filled control — action-primary, -neutral, -danger. */
+    --color-text-success: var(--color-palette-success-900); /** Success text and icons. */
+    --color-text-warning: var(--color-palette-warning-900); /** Warning text and icons. Always with an icon. */
+    --color-text-error: var(--color-palette-danger-900); /** Error text and icons. */
+    --color-border-strong: var(--color-palette-neutral-dark-1100); /** Emphasis — an active field, a selected row. */
+    --color-border-default: var(--color-palette-neutral-dark-600); /** Any border that carries meaning — control outlines, field borders. */
+    --color-border-subtle: var(--color-palette-neutral-dark-300); /** Decorative hairlines — table rules, dividers. Contrast-exempt. */
+    --color-action-primary: var(--color-palette-primary-800); /** Primary interactive fills, strokes, links and focus rings. */
+    --color-action-primary-hover: var(--color-palette-primary-900); /** Hover for action-primary. */
+    --color-action-primary-pressed: var(--color-palette-primary-1000); /** Pressed for action-primary. */
+    --color-action-danger: var(--color-palette-danger-800); /** Destructive actions — delete, remove, revoke. */
+    --color-action-danger-hover: var(--color-palette-danger-900); /** Hover for action-danger. */
+    --color-action-danger-pressed: var(--color-palette-danger-1000); /** Pressed for action-danger. */
+    --color-action-neutral: var(--color-palette-neutral-dark-1000); /** The neutral action fill. Button variant="secondary" resolves here. */
+    --color-action-neutral-hover: var(--color-palette-neutral-dark-1100); /** Hover for action-neutral. */
+    --color-action-neutral-pressed: var(--color-black); /** Pressed for action-neutral. */
+    --color-action-disabled: var(--color-palette-neutral-light-400); /** The disabled fill for every action variant. Contrast-exempt (inactive control). */
+    --color-state-hover: var(--color-palette-primary-600-a6); /** Rest → hover on rows, tabs, chips, menu items. */
+    --color-state-pressed: var(--color-palette-primary-600-a9); /** Hover → pressed on the same elements. */
+    --color-state-selected: var(--color-palette-primary-600-a8); /** The persistent "this one is chosen" tint. */
+    --color-viz-1: var(--color-palette-primary-800); /** Categorical series 1. */
+    --color-viz-2: var(--color-palette-accent-700); /** Categorical series 2. */
+    --color-viz-3: var(--color-palette-warning-700); /** Categorical series 3. */
+    --color-viz-4: var(--color-palette-accent-alt-600); /** Categorical series 4. */
+    --color-viz-5: var(--color-palette-success-600); /** Categorical series 5. */
+    --color-viz-6: var(--color-palette-danger-600); /** Categorical series 6. */
+    --color-viz-7: var(--color-palette-neutral-dark-1000); /** Categorical series 7. */
+    --color-viz-8: var(--color-palette-neutral-light-600); /** Categorical series 8. */
+    --color-viz-seq-1: var(--color-palette-primary-600); /** Sequential step 1, low to high. */
+    --color-viz-seq-2: var(--color-palette-primary-700); /** Sequential step 2, low to high. */
+    --color-viz-seq-3: var(--color-palette-primary-800); /** Sequential step 3, low to high. */
+    --color-viz-seq-4: var(--color-palette-primary-900); /** Sequential step 4, low to high. */
+    --color-shadow-key: var(--color-palette-neutral-dark-1100-a16); /** The tight, darker layer of an elevation shadow. Box-shadow color only; the elevation supplies offset and blur. */
+    --color-shadow-ambient: var(--color-palette-neutral-dark-1100-a12); /** The wide, soft layer of an elevation shadow, always paired with shadow-key. Transparent where a brand has no soft falloff. */
+    --color-shadow-scrim: var(--color-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
+    --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--color-palette-accent-300) 45%, transparent) 0%, color-mix(in oklab, var(--color-palette-accent-300) 43%, transparent) 16%, color-mix(in oklab, var(--color-palette-accent-300) 24%, transparent) 36%, color-mix(in oklab, var(--color-palette-accent-300) 11%, transparent) 56%, color-mix(in oklab, var(--color-palette-accent-300) 4%, transparent) 76%, color-mix(in oklab, var(--color-palette-accent-300) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--color-palette-primary-300) 45%, transparent) 0%, color-mix(in oklab, var(--color-palette-primary-300) 43%, transparent) 16%, color-mix(in oklab, var(--color-palette-primary-300) 24%, transparent) 36%, color-mix(in oklab, var(--color-palette-primary-300) 11%, transparent) 56%, color-mix(in oklab, var(--color-palette-primary-300) 4%, transparent) 76%, color-mix(in oklab, var(--color-palette-primary-300) 0%, transparent) 100%);
+    --gradient-surface-brand-subtle: radial-gradient(circle calc(0.78 * 100cqw) at 50% -10%, color-mix(in oklab, var(--color-palette-primary-300) 45%, transparent) 0%, color-mix(in oklab, var(--color-palette-primary-300) 43%, transparent) 16%, color-mix(in oklab, var(--color-palette-primary-300) 24%, transparent) 36%, color-mix(in oklab, var(--color-palette-primary-300) 11%, transparent) 56%, color-mix(in oklab, var(--color-palette-primary-300) 4%, transparent) 76%, color-mix(in oklab, var(--color-palette-primary-300) 0%, transparent) 100%);
+  }
+
+  [data-color-mode="dark"] {
+    color-scheme: dark;
+    color: var(--color-text-default);
+    --color-background-current: var(--color-surface-default);
+    --color-surface-sunken: var(--color-black); /** Wells, insets, code blocks — anything recessed into the page. */
+    --color-surface-default: var(--color-palette-neutral-dark-1100); /** The page background — the base every other surface elevates from. */
+    --color-surface-raised: var(--color-palette-neutral-dark-1000); /** The lighter surface step, not a depth: cards, menus, dialogs, fields, and flat bordered sections. Shadow, not the fill, says how high something sits. */
+    --color-surface-success: var(--color-palette-success-1000); /** The success tint behind an alert or inline confirmation. */
+    --color-surface-warning: var(--color-palette-warning-1000); /** The warning tint behind an alert or inline caution. */
+    --color-surface-error: var(--color-palette-danger-1000); /** The error tint behind an alert or inline validation message. */
+    --color-surface-brand: var(--color-palette-neutral-dark-1100); /** The two-color brand gradient. The color is the flat fallback; the gradient ships as --gradient-surface-brand. */
+    --color-surface-brand-subtle: var(--color-palette-neutral-dark-1100); /** The one-color brand gradient, for backgrounds behind real text. Ships as --gradient-surface-brand-subtle. */
+    --color-text-default: var(--color-palette-neutral-light-200); /** Body copy and headings. */
+    --color-text-subtle: var(--color-palette-neutral-light-400); /** Secondary text — descriptions, metadata, helper copy. */
+    --color-text-inverse: var(--color-palette-neutral-dark-1000); /** Labels on a filled control — action-primary, -neutral, -danger. */
+    --color-text-success: var(--color-palette-success-300); /** Success text and icons. */
+    --color-text-warning: var(--color-palette-warning-300); /** Warning text and icons. Always with an icon. */
+    --color-text-error: var(--color-palette-danger-300); /** Error text and icons. */
+    --color-border-strong: var(--color-palette-neutral-light-100); /** Emphasis — an active field, a selected row. */
+    --color-border-default: var(--color-palette-neutral-light-600); /** Any border that carries meaning — control outlines, field borders. */
+    --color-border-subtle: var(--color-palette-neutral-light-900); /** Decorative hairlines — table rules, dividers. Contrast-exempt. */
+    --color-action-primary: var(--color-palette-primary-400); /** Primary interactive fills, strokes, links and focus rings. */
+    --color-action-primary-hover: var(--color-palette-primary-300); /** Hover for action-primary. */
+    --color-action-primary-pressed: var(--color-palette-primary-200); /** Pressed for action-primary. */
+    --color-action-danger: var(--color-palette-danger-400); /** Destructive actions — delete, remove, revoke. */
+    --color-action-danger-hover: var(--color-palette-danger-300); /** Hover for action-danger. */
+    --color-action-danger-pressed: var(--color-palette-danger-200); /** Pressed for action-danger. */
+    --color-action-neutral: var(--color-palette-neutral-light-200); /** The neutral action fill. Button variant="secondary" resolves here. */
+    --color-action-neutral-hover: var(--color-palette-neutral-light-100); /** Hover for action-neutral. */
+    --color-action-neutral-pressed: var(--color-white); /** Pressed for action-neutral. */
+    --color-action-disabled: var(--color-palette-neutral-dark-800); /** The disabled fill for every action variant. Contrast-exempt (inactive control). */
+    --color-state-hover: var(--color-palette-primary-600-a6); /** Rest → hover on rows, tabs, chips, menu items. */
+    --color-state-pressed: var(--color-palette-primary-600-a9); /** Hover → pressed on the same elements. */
+    --color-state-selected: var(--color-palette-primary-600-a8); /** The persistent "this one is chosen" tint. */
+    --color-viz-1: var(--color-palette-primary-500); /** Categorical series 1. */
+    --color-viz-2: var(--color-palette-accent-500); /** Categorical series 2. */
+    --color-viz-3: var(--color-palette-warning-400); /** Categorical series 3. */
+    --color-viz-4: var(--color-palette-accent-alt-600); /** Categorical series 4. */
+    --color-viz-5: var(--color-palette-success-300); /** Categorical series 5. */
+    --color-viz-6: var(--color-palette-danger-600); /** Categorical series 6. */
+    --color-viz-7: var(--color-palette-neutral-dark-500); /** Categorical series 7. */
+    --color-viz-8: var(--color-palette-neutral-light-600); /** Categorical series 8. */
+    --color-viz-seq-1: var(--color-palette-primary-600); /** Sequential step 1, low to high. */
+    --color-viz-seq-2: var(--color-palette-primary-500); /** Sequential step 2, low to high. */
+    --color-viz-seq-3: var(--color-palette-primary-400); /** Sequential step 3, low to high. */
+    --color-viz-seq-4: var(--color-palette-primary-300); /** Sequential step 4, low to high. */
+    --color-shadow-key: var(--color-black-a32); /** The tight, darker layer of an elevation shadow. Box-shadow color only; the elevation supplies offset and blur. */
+    --color-shadow-ambient: var(--color-black-a24); /** The wide, soft layer of an elevation shadow, always paired with shadow-key. Transparent where a brand has no soft falloff. */
+    --color-shadow-scrim: var(--color-black-a60); /** The scrim behind modals and dialogs. Mode-independent. */
+    --gradient-surface-brand: radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--color-palette-accent-900) 45%, transparent) 0%, color-mix(in oklab, var(--color-palette-accent-900) 43%, transparent) 16%, color-mix(in oklab, var(--color-palette-accent-900) 24%, transparent) 36%, color-mix(in oklab, var(--color-palette-accent-900) 11%, transparent) 56%, color-mix(in oklab, var(--color-palette-accent-900) 4%, transparent) 76%, color-mix(in oklab, var(--color-palette-accent-900) 0%, transparent) 100%), radial-gradient(circle calc(1.21 * 100cqw) at 5% 100%, color-mix(in oklab, var(--color-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--color-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--color-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--color-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--color-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--color-palette-primary-900) 0%, transparent) 100%);
+    --gradient-surface-brand-subtle: radial-gradient(circle calc(0.78 * 100cqw) at 50% -10%, color-mix(in oklab, var(--color-palette-primary-900) 45%, transparent) 0%, color-mix(in oklab, var(--color-palette-primary-900) 43%, transparent) 16%, color-mix(in oklab, var(--color-palette-primary-900) 24%, transparent) 36%, color-mix(in oklab, var(--color-palette-primary-900) 11%, transparent) 56%, color-mix(in oklab, var(--color-palette-primary-900) 4%, transparent) 76%, color-mix(in oklab, var(--color-palette-primary-900) 0%, transparent) 100%);
+  }
+}
+",
+}
+`;

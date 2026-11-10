@@ -13,7 +13,6 @@ import {
 import { GamutProvider } from '../GamutProvider';
 import {
   adminTheme,
-  coreTheme,
   lxStudioTheme,
   originalCodecademyTheme,
   platformTheme,
@@ -35,7 +34,7 @@ expect.extend(matchers);
  */
 
 const THEMES = {
-  core: coreTheme,
+  core: skillsoftTheme,
   admin: adminTheme,
   platform: platformTheme,
   lxStudio: lxStudioTheme,
