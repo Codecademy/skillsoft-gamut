@@ -122,7 +122,7 @@ describe('color system', () => {
       'primary',
     ]);
     expect(gradientCssVars(ocd.gradients.light['surface-brand'])).toContain(
-      'radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--colors-palette-accent-alt-300)'
+      'radial-gradient(circle calc(0.85 * 100cqw) at 100% -5%, color-mix(in oklab, var(--color-palette-accent-alt-300)'
     );
   });
 

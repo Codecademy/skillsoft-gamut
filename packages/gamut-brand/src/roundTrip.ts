@@ -46,7 +46,7 @@ export const parseTokensCss = (
       slot,
       Object.fromEntries(
         GRADES.map((grade) => {
-          const p = oklch(palette[`--colors-palette-${slot}-${grade}`]);
+          const p = oklch(palette[`--color-palette-${slot}-${grade}`]);
           return [grade, { grade, l: p.l, c: p.c, h: p.h, hex: '' }];
         })
       ),
@@ -61,12 +61,12 @@ export const parseTokensCss = (
         Object.fromEntries(
           ROLES.map((r) => {
             const ref =
-              decls[`--colors-${r.token}`]?.match(/^var\((--[\w-]+)\)$/);
+              decls[`--color-${r.token}`]?.match(/^var\((--[\w-]+)\)$/);
             if (!ref) throw new Error(`${r.token} (${mode}) is not a var()`);
             const value: ResolvedValue = {
               ...oklch(palette[ref[1]]),
               hex: '',
-              key: ref[1].replace(/^--colors-/, ''),
+              key: ref[1].replace(/^--color-/, ''),
             };
             return [r.token, value];
           })

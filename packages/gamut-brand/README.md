@@ -35,7 +35,7 @@ That writes `src/theme/acme/`:
 | File                                                           | What it is                                                                                                     |
 | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `values.ts`                                                    | The palette, roles, content modes and the brand's CSS as typed constants. `createBrandTheme` takes this module |
-| `tokens.css`                                                   | `--colors-*` and `--gradient-*` custom properties for this brand only, starting on `:root` in its initial mode |
+| `tokens.css`                                                   | `--color-*` and `--gradient-*` custom properties for this brand only, starting on `:root` in its initial mode  |
 | `palette.tokens.json`, `light.tokens.json`, `dark.tokens.json` | DTCG 2025.10 for Figma and other tools. Each color is OKLCH with its hex alongside                             |
 
 Check the files in, like any generated source. Then build the theme from them:
@@ -175,12 +175,12 @@ yarn workspace @skillsoft/gamut-styles validate:tokens   # full report for gamut
 
 ## Naming
 
-- Primitives: `--colors-palette-<slot>-<grade>`, for example `--colors-palette-primary-800`. Not for components; use roles.
-- Translucent primitives: `--colors-palette-primary-600-a6` (6% alpha), `--colors-black-a60`.
-- Roles: `--colors-<role>`, for example `--colors-action-primary`.
+- Primitives: `--color-palette-<slot>-<grade>`, for example `--color-palette-primary-800`. Not for components; use roles.
+- Translucent primitives: `--color-palette-primary-600-a6` (6% alpha), `--color-black-a60`.
+- Roles: `--color-<role>`, for example `--color-action-primary`.
 - `white` and `black` keep their bare names (boundary tokens).
 
-The `--colors-` prefix on primitives is there because variance's `addColors` always emits `--colors-<key>`. One name for both the Emotion and CSS routes beat the shorter `--palette-*`.
+The `--color-` prefix on primitives matches variance's `addColors`, which emits `--color-<key>`. One name for both the Emotion and CSS routes beat the shorter `--palette-*`.
 
 ## Known gaps
 
