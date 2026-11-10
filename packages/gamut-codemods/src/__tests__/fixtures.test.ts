@@ -85,6 +85,16 @@ describe.each(Object.values(presets))('preset $name', (preset) => {
           });
           expect((out ?? c.input).trim()).toBe(c.output.trim());
           expectWarnings(warnings, c.warnings);
+
+          /* Idempotent: a second run over the output changes nothing. */
+          const again = migration.run({
+            source: c.output,
+            manifest: preset.manifest,
+            warn: () => {},
+            note: () => {},
+            transformSource: (code) => runSource(preset.name, code).out,
+          });
+          expect((again ?? c.output).trim()).toBe(c.output.trim());
           return;
         }
 
