@@ -3,6 +3,7 @@ import { Background } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 import { expect, fn, screen, waitFor, within } from 'storybook/test';
+import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
 import { Box } from '../Box';
 import { IconButton } from '../Button';
@@ -123,9 +124,10 @@ const crewColumns: ColumnConfig<CrewRow>[] = [
 
 type CrewDataTable = typeof DataTable<CrewRow, 'name', ColumnConfig<CrewRow>[]>;
 
-const meta: Meta<CrewDataTable> = {
+const meta: TypeWithDeepControls<Meta<CrewDataTable>> = {
   title: 'Data display/DataTable',
   component: DataTable,
+  parameters: { deepControls: { enabled: true } },
   args: {
     id: 'crew',
     idKey: 'name',
@@ -134,6 +136,9 @@ const meta: Meta<CrewDataTable> = {
     columns: crewColumns,
     spacing: 'condensed',
     onQueryChange: fn(),
+  },
+  argTypes: {
+    spacing: { control: 'radio' },
   },
 };
 

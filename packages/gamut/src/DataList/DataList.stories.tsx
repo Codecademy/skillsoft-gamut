@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, waitFor, within } from 'storybook/test';
+import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
 import { FlexBox } from '../Box';
 import { DataList } from './DataList';
@@ -100,9 +101,10 @@ const crewColumns: ColumnConfig<CrewRow>[] = [
 type CrewDataList = typeof DataList<CrewRow, 'name', ColumnConfig<CrewRow>[]>;
 const onEmptyQueryChange = fn();
 
-const meta: Meta<CrewDataList> = {
+const meta: TypeWithDeepControls<Meta<CrewDataList>> = {
   title: 'Data display/DataList',
   component: DataList,
+  parameters: { deepControls: { enabled: true } },
   args: {
     id: 'crew',
     idKey: 'name',
@@ -131,6 +133,10 @@ const meta: Meta<CrewDataList> = {
         />
       </FlexBox>
     ),
+  },
+  argTypes: {
+    spacing: { control: 'radio' },
+    variant: { control: 'radio' },
   },
 };
 
