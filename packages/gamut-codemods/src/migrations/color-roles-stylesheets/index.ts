@@ -14,7 +14,7 @@ import {
   .less. The type check can't see these, so this is the only place they're
   caught.
 
-  - Renames and merges become `--colors-<role>`.
+  - Renames and merges become `--color-<role>`.
   - Splits, retirements and pending names stay, with a
     `/* color-roles: … *\/` comment carrying design's rule in front of them.
     The preset's leftovers report lists every one by file and line.
@@ -40,7 +40,7 @@ export const colorRolesStylesheets: FileMigration<ColorRolesManifest> = {
       out += source.slice(last, hit.at);
       last = hit.at;
       if (hit.role) {
-        out += `--colors-${hit.role}`;
+        out += `--color-${hit.role}`;
         last = hit.at + `--color-${hit.name}`.length;
       } else if (hit.alias) {
         /* In front of the `var(` the variable sits in, if there is one. */

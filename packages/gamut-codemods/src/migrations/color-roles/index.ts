@@ -20,7 +20,7 @@ import {
   - `theme.colors.text` / `theme.colors['text-disabled']`;
   - `themed('colors.primary')`;
   - `var(--color-text)` inside a string or template literal, which becomes
-    `var(--colors-text-default)` (stylesheets are the
+    `var(--color-text-default)` (stylesheets are the
     color-roles-stylesheets migration);
   - Card's `variant`, onto design's `default` and `brand`.
 
@@ -286,7 +286,7 @@ export const colorRoles: SpliceMigration<ColorRolesManifest> = {
           edits.push({
             start: at,
             end: at + `--color-${hit.name}`.length,
-            text: `--colors-${hit.role}`,
+            text: `--color-${hit.role}`,
           });
         } else if (hit.alias) {
           if (!marked(node.start) && !seen.has(node.start)) {

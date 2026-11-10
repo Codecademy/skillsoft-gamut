@@ -31,8 +31,8 @@ export const markedBefore = (text: string, at: number) => {
 };
 
 /*
-  An old color variable: `--color-<name>`. The new prefix is `--colors-`, so
-  a rewritten name never matches again.
+  An old color variable: `--color-<name>`. The rewritten name is `--color-<role>`,
+  and no role is also an old name, so a second run leaves it alone.
 */
 const OLD_VAR = /--color-([A-Za-z0-9][\w-]*)/g;
 
