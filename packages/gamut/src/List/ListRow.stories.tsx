@@ -238,10 +238,10 @@ const ExpandableTableRow: React.FC<ExpandableRowProps> = ({
 };
 
 export const PlainStyled: Story = {
-  render: () => {
+  render: (args) => {
     return (
       <List variant="plain">
-        <ListRow>
+        <ListRow {...args}>
           <ListCol size="xl">A List item</ListCol>
           <ListCol size="md">Some normal content</ListCol>
         </ListRow>
