@@ -5,6 +5,8 @@ sidebar:
   order: 2
 ---
 
+import SystemPropTable from '~/components/SystemPropTable.astro';
+
 Space props apply margin and padding consistently, referencing the theme's spacing scale — including responsive array syntax.
 
 ```tsx
@@ -15,4 +17,6 @@ const SpaceExample = styled.div(system.space);
 
 These props support both physical and logical CSS properties, resolved by `useLogicalProperties` on `GamutProvider` — see [Migrating to logical properties](/guides/migrating-to-logical-properties/).
 
-For every prop in this group — its CSS properties, scale, and transform — see the [Space prop table](https://gamut.codecademy.com/?path=/docs/foundations-system-props-space--docs) in Storybook.
+## Props
+
+<SystemPropTable group="space" />
