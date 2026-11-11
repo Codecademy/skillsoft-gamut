@@ -3,7 +3,9 @@ title: Prop groups
 description: Every system prop group and what it covers.
 ---
 
-Each group below is one example of what it covers, not an exhaustive prop list. For every individual prop in a group — its exact CSS properties, its scale, and its transform — open that group's own page in Storybook (for example, [Layout](https://gamut.codecademy.com/?path=/docs/foundations-system-props-layout--docs)) and see its prop table; that table is generated live from `variance/config.ts`, so it can't drift out of sync the way a static copy here would.
+import SystemPropTable from '~/components/SystemPropTable.astro';
+
+Each group below shows one example of what it covers. Groups with a prop table list every prop in the group — its CSS properties, its scale, and its transform — generated from `variance/config.ts`, so the table stays in sync with the props. For groups without a table yet, open that group's own page in Storybook (for example, [Layout](https://gamut.codecademy.com/?path=/docs/foundations-system-props-layout--docs)).
 
 ## Layout
 
@@ -49,6 +51,8 @@ const ColorExample = styled.div(system.color);
 
 <ColorExample bg="navy" textColor="gray-100" borderColor="blue" />;
 ```
+
+<SystemPropTable group="color" />
 
 ## Border
 

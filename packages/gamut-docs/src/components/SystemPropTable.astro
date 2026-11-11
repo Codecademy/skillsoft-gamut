@@ -1,0 +1,124 @@
+---
+/**
+ * The Starlight counterpart of Storybook's system prop `TokenTable` (see
+ * styleguide's `Foundations/shared/elements.tsx`): one row per prop in a
+ * system prop group, with its CSS properties, scale, and transform.
+ *
+ * Rows are read from `variance/config.ts` at build time — the same source
+ * Storybook uses — so the table can't drift from the props themselves. That
+ * file isn't part of `@skillsoft/gamut-styles`' public exports, so it's
+ * imported by path, as Storybook does.
+ *
+ * Storybook resolves a prop's properties for whichever logical-properties mode
+ * its toolbar is set to. A static page has no toggle, so a prop whose physical
+ * and logical properties differ lists both.
+ */
+import * as ALL_PROPS from '../../../gamut-styles/src/variance/config';
+
+type Group = keyof typeof ALL_PROPS;
+type Mode = 'physical' | 'logical';
+
+interface PropConfig {
+  property: string | Record<Mode, string>;
+  properties?: readonly string[] | Record<Mode, readonly string[]>;
+  scale?: string;
+  transform?: (...args: never[]) => unknown;
+  resolveProperty?: (useLogicalProperties: boolean) => Mode;
+}
+
+interface Props {
+  /** A system prop group exported from `variance/config.ts`, e.g. "color" */
+  group: Group;
+}
+
+const { group } = Astro.props;
+
+const toKebab = (value: string) =>
+  value.replace(/[A-Z]/g, (char) => `-${char.toLowerCase()}`);
+
+const resolveProperties = (
+  { property, properties }: PropConfig,
+  mode: Mode
+): string[] => {
+  const resolved = typeof property === 'string' ? property : property[mode];
+  if (!properties) return [resolved];
+  if (Array.isArray(properties)) return [...properties];
+  return [...(properties as Record<Mode, readonly string[]>)[mode]];
+};
+
+const rows = Object.entries(
+  ALL_PROPS[group] as Record<string, PropConfig>
+).map(([id, config]) => {
+  // Without `resolveProperty`, a prop always renders its physical properties.
+  const physical = resolveProperties(config, 'physical');
+  const logical = config.resolveProperty
+    ? resolveProperties(config, 'logical')
+    : physical;
+  const modesDiffer = physical.join() !== logical.join();
+
+  return {
+    id,
+    propertySets: modesDiffer
+      ? [
+          { label: 'Logical', properties: logical },
+          { label: 'Physical', properties: physical },
+        ]
+      : [{ label: undefined, properties: physical }],
+    scale: config.scale,
+    transforms: [config.transform?.name, config.resolveProperty?.name].filter(
+      Boolean
+    ),
+  };
+});
+
+// Hand-authored hrefs in components aren't rewritten by the markdown base-URL
+// plugin in astro.config.mjs, so the base has to be applied here.
+const scaleHref = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/foundations/design-tokens/`;
+---
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Properties</th>
+      <th>Scale</th>
+      <th>Transform</th>
+    </tr>
+  </thead>
+  <tbody>
+    {
+      rows.map(({ id, propertySets, scale, transforms }) => (
+        <tr>
+          <td>
+            <code>{id}</code>
+          </td>
+          <td>
+            {propertySets.map(({ label, properties }) => (
+              <div>
+                {label && <span>{label}: </span>}
+                {properties.map((prop, index) => (
+                  <>
+                    {index > 0 && ' '}
+                    <a
+                      href={`https://developer.mozilla.org/en-US/docs/Web/CSS/${toKebab(prop)}`}
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <code>{toKebab(prop)}</code>
+                    </a>
+                  </>
+                ))}
+              </div>
+            ))}
+          </td>
+          <td>{scale && <a href={scaleHref}>{scale}</a>}</td>
+          <td>
+            {transforms.map((name) => (
+              <code>{name}</code>
+            ))}
+          </td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
