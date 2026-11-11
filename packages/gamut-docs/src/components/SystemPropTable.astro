@@ -76,6 +76,7 @@ const rows = Object.entries(
 const scaleHref = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/foundations/design-tokens/`;
 ---
 
+<div class="system-prop-table">
 <table>
   <thead>
     <tr>
@@ -125,3 +126,20 @@ const scaleHref = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/foundations/de
     }
   </tbody>
 </table>
+</div>
+
+<style>
+  /* Starlight renders content tables as `display: block` so wide ones scroll,
+     which also shrinks them to their content. Scrolling moves to the wrapper
+     so the table itself can span the full content width. Starlight's rules
+     sit in a cascade layer, so these unlayered ones win without extra
+     specificity. */
+  .system-prop-table {
+    overflow-x: auto;
+  }
+
+  .system-prop-table table {
+    display: table;
+    width: 100%;
+  }
+</style>
