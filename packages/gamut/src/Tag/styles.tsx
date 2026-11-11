@@ -137,7 +137,7 @@ export const tagWrapperStates = states({
    */
   selectionDisabled: {
     bg: 'transparent',
-    color: 'action-disabled',
+    color: 'text-subtle',
     boxShadow: `inset 0 0 0 1px ${theme.colors['border-default']}`,
   },
 });
@@ -172,7 +172,7 @@ export const anchorVariants = variant({
     [InteractiveSelectors.DISABLED]: {
       borderColor: 'border-default',
       bg: 'transparent',
-      color: 'action-disabled',
+      color: 'text-subtle',
     },
   },
   variants: {
@@ -222,7 +222,7 @@ export const dismissButtonStyling = css({
   },
   [InteractiveSelectors.DISABLED]: {
     bg: 'transparent',
-    color: 'action-disabled',
+    color: 'text-subtle',
   },
   ...dismissSharedStyles,
   ...dismissButtonOverrides,

@@ -13,19 +13,13 @@ import { selectedIconSize } from './constants';
 const { SingleValue } = SelectDropdownElements;
 
 /*
- * A disabled option is `action-disabled`. The value inside a disabled
- * control is the one place `text-subtle` stays, like a disabled field.
+ * A disabled option is `text-subtle`, like the value inside a disabled
+ * control. Disabled text sits on the surface, not on the fill.
  */
 const OptionWrapper: React.FC<
-  Pick<ExtendedOption, 'disabled'> & {
-    inField?: boolean;
-  } & React.PropsWithChildren
-> = ({ children, disabled, inField }) => {
-  const textColor = disabled
-    ? inField
-      ? 'text-subtle'
-      : 'action-disabled'
-    : 'inherit';
+  Pick<ExtendedOption, 'disabled'> & React.PropsWithChildren
+> = ({ children, disabled }) => {
+  const textColor = disabled ? 'text-subtle' : 'inherit';
 
   return (
     <FlexBox color={textColor} justifyContent="space-between" width="100%">
@@ -92,7 +86,7 @@ export const AbbreviatedSingleValue = (
 
   return (
     <SingleValue {...props}>
-      <OptionWrapper disabled={isDisabled} inField>
+      <OptionWrapper disabled={isDisabled}>
         <IconOptionLabel icon={icon} label={displayText} size={size} />
       </OptionWrapper>
     </SingleValue>

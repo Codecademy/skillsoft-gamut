@@ -78,7 +78,7 @@ export const checkboxElementStates = system.states({
     borderColor: 'action-primary',
   },
   disabled: {
-    color: 'action-disabled',
+    color: 'text-subtle',
     [InputSelectors.HOVER]: {
       outline: 'none',
     },

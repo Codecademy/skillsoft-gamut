@@ -65,13 +65,13 @@ const datecellStates = states({
     },
   },
   isDisabled: {
-    color: 'action-disabled',
+    color: 'text-subtle',
     bg: 'transparent',
     cursor: 'not-allowed',
     userSelect: 'none',
     textDecoration: 'line-through',
     '&:hover, &:focus': {
-      color: 'action-disabled',
+      color: 'text-subtle',
       bg: 'transparent',
       textDecoration: 'line-through',
       cursor: 'not-allowed',

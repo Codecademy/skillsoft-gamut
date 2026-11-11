@@ -243,7 +243,7 @@ export const getMemoizedStyles = (
         ...getOptionBackground(state.isSelected, state.isFocused)({ theme }),
         alignItems: 'center',
         color: state.isDisabled
-          ? theme.colors['action-disabled']
+          ? theme.colors['text-subtle']
           : isNew
           ? theme.colors['action-primary']
           : theme.colors['text-default'],

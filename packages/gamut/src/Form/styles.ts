@@ -42,9 +42,9 @@ export const formFieldFocusStyles = {
   boxShadow: `inset 0 0 0 1px ${theme.colors['action-primary']}`,
 } as const;
 
-/* A disabled label is `action-disabled`, the same color as a disabled fill. */
+/* A disabled label is `text-subtle`; the disabled fill stays `action-disabled`. */
 export const formFieldTextDisabledStyles = {
-  color: 'action-disabled',
+  color: 'text-subtle',
   cursor: 'not-allowed',
 } as const;
 
