@@ -113,8 +113,11 @@ const scaleHref = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/foundations/de
           </td>
           <td>{scale && <a href={scaleHref}>{scale}</a>}</td>
           <td>
-            {transforms.map((name) => (
-              <code>{name}</code>
+            {transforms.map((name, index) => (
+              <>
+                {index > 0 && ' '}
+                <code>{name}</code>
+              </>
             ))}
           </td>
         </tr>
