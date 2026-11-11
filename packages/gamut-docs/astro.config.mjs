@@ -159,7 +159,19 @@ export default defineConfig({
                   // needs an explicit label instead of a bare autogenerate.
                   label: 'System props',
                   items: [
-                    { autogenerate: { directory: 'foundations/system-props' } },
+                    { slug: 'foundations/system-props' },
+                    {
+                      label: 'Prop groups',
+                      items: [
+                        {
+                          autogenerate: {
+                            directory: 'foundations/system-props/prop-groups',
+                          },
+                        },
+                      ],
+                    },
+                    { slug: 'foundations/system-props/compose-and-variants' },
+                    { slug: 'foundations/system-props/responsive-properties' },
                   ],
                 },
                 { slug: 'foundations/themes' },
