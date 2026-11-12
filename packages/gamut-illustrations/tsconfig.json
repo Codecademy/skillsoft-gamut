@@ -11,5 +11,5 @@
       "~storybook/blocks": ["../.storybook/components/"]
     }
   },
-  "exclude": ["**/*.stories.tsx"]
+  "exclude": ["**/*.stories.tsx", "**/*.test.ts", "**/*.test.tsx"]
 }
