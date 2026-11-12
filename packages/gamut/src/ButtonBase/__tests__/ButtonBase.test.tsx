@@ -1,6 +1,7 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
 import { render } from '@testing-library/react';
 import React from 'react';
+import { describe, expect, it } from 'vitest';
 
 import { ButtonBase } from '../ButtonBase';
 

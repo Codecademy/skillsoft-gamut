@@ -1,6 +1,7 @@
 import { theme } from '@skillsoft/gamut-styles';
 import { MockGamutProvider } from '@skillsoft/gamut-tests';
 import { renderHook } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
 import { useCardElevation } from './styles';
 

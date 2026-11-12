@@ -1,4 +1,5 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
+import { describe, it } from 'vitest';
 
 import { PatternBackdrop } from '../PatternBackdrop';
 
