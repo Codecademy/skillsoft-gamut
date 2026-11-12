@@ -1,11 +1,12 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
 import * as React from 'react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { Alert } from './Alert';
 
 const renderView = setupRtl(Alert, {
   children: 'Hello',
-  onClose: jest.fn(),
+  onClose: vi.fn(),
 });
 
 describe('Alert', () => {

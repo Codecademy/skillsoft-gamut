@@ -5,7 +5,6 @@
     "libsDir": "packages"
   },
   "namedInputs": {
-    "babelConfig": ["{workspaceRoot}/babel.defaults.js"],
     "default": ["{projectRoot}/**/*"],
     "production": [
       "default",
@@ -21,7 +20,7 @@
     "build": {
       "cache": true,
       "dependsOn": ["^build"],
-      "inputs": ["production", "^production", "babelConfig", { "env": "CI" }]
+      "inputs": ["production", "^production", { "env": "CI" }]
     },
     "lint": {
       "cache": true,
@@ -41,17 +40,6 @@
     "verify": {
       "cache": true,
       "dependsOn": ["^build"]
-    },
-    "@nx/jest:jest": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/jest.config.base.ts",
-        "{workspaceRoot}/jest.preset.js",
-        "babelConfig"
-      ]
     }
   },
   "generators": {

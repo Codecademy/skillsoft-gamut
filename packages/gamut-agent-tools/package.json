@@ -9,6 +9,7 @@
     "rules",
     "agents",
     "cli",
+    "!cli/**/*.test.mjs",
     ".claude-plugin",
     ".cursor-plugin",
     "DESIGN.md",
@@ -36,7 +37,6 @@
   "repository": "Codecademy/skillsoft-gamut.git",
   "scripts": {
     "build": "nx build gamut-agent-tools",
-    "test:bin": "node --test cli/__tests__/design.test.mjs",
     "verify": "tsc --noEmit"
   }
 }

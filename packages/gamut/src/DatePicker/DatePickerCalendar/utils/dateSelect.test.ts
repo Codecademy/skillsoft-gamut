@@ -1,3 +1,5 @@
+import { describe, expect, it, vi } from 'vitest';
+
 import { matchDisabledDates } from '../Calendar/utils/dateGrid';
 import {
   applyRangeOrNewStart,
@@ -9,8 +11,8 @@ import {
 const createDate = (y: number, month: number, day: number) =>
   new Date(y, month, day);
 
-const mockOnSelection = jest.fn();
-const mockOnRangeSelection = jest.fn();
+const mockOnSelection = vi.fn();
+const mockOnRangeSelection = vi.fn();
 describe('rangeContainsDisabled', () => {
   const startDate = createDate(2024, 0, 10);
   const endDate = createDate(2024, 0, 20);

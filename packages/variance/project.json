@@ -21,13 +21,6 @@
         "parallel": false
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/variance"],
-      "options": {
-        "jestConfig": "packages/variance/jest.config.ts"
-      }
-    },
     "verify": {
       "executor": "nx:run-commands",
       "options": {

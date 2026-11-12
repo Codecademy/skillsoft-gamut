@@ -22,15 +22,6 @@
         "parallel": false
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "dependsOn": ["^build"],
-      "outputs": ["{workspaceRoot}/coverage/packages/gamut-styles"],
-      "options": {
-        "jestConfig": "packages/gamut-styles/jest.config.ts",
-        "passWithNoTests": false
-      }
-    },
     "clean": {
       "executor": "nx:run-commands",
       "options": {
