@@ -39,7 +39,7 @@ The example above spans 6 columns at the smallest screen size, and 4 columns fro
 
 ## Spacing
 
-Layout spacing is a practical subset of the full `spacing` scale — see [Design tokens](/foundations/design-tokens/) for the complete scale.
+Layout spacing is a practical subset of the full `spacing` scale — see [Design tokens: Space](/foundations/design-tokens/space/) for the complete scale.
 
 | Use                   | Sizes (px)     |
 | --------------------- | -------------- |
