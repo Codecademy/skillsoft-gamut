@@ -16,9 +16,6 @@ expect.extend(
 // RTL only auto-registers cleanup when `afterEach` is a global; tests import it from vitest.
 afterEach(cleanup);
 
-// jsdom doesn't implement `scrollTo`.
-Object.defineProperty(window, 'scrollTo', { value: () => {}, writable: true });
-
 /*
  * jsdom doesn't implement `matchMedia`, but Vitest's jsdom environment still
  * defines the key (as `undefined`), which defeats `'matchMedia' in window`
