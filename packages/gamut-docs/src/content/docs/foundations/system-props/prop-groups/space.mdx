@@ -1,0 +1,22 @@
+---
+title: Space
+description: System props for margin and padding on the spacing scale.
+sidebar:
+  order: 2
+---
+
+import SystemPropTable from '~/components/SystemPropTable.astro';
+
+Space props apply margin and padding consistently, referencing the theme's spacing scale — including responsive array syntax.
+
+```tsx
+const SpaceExample = styled.div(system.space);
+
+<SpaceExample p={8} my={[16, 24, 32]} />;
+```
+
+These props support both physical and logical CSS properties, resolved by `useLogicalProperties` on `GamutProvider` — see [Migrating to logical properties](/guides/migrating-to-logical-properties/).
+
+## Props
+
+<SystemPropTable group="space" />

@@ -1,0 +1,23 @@
+---
+title: Grid
+description: System props for grid templates, placement, and gaps.
+sidebar:
+  order: 7
+---
+
+import SystemPropTable from '~/components/SystemPropTable.astro';
+
+Grid props control CSS Grid layouts — templates, auto-placement, and gaps between items.
+
+```tsx
+const GridExample = styled.div(system.grid);
+
+<GridExample
+  gridTemplateColumns="max-content 1fr max-content"
+  columnGap={32}
+/>;
+```
+
+## Props
+
+<SystemPropTable group="grid" />

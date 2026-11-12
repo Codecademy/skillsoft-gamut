@@ -149,7 +149,16 @@ export default defineConfig({
               link: '/foundations/',
               items: [
                 { slug: 'foundations' },
-                { slug: 'foundations/design-tokens' },
+                {
+                  // See the note above `Writing UX copy` for why this
+                  // needs an explicit label instead of a bare autogenerate.
+                  label: 'Design tokens',
+                  items: [
+                    {
+                      autogenerate: { directory: 'foundations/design-tokens' },
+                    },
+                  ],
+                },
                 { slug: 'foundations/eslint-rules' },
                 { slug: 'foundations/icon-and-asset-catalog' },
                 { slug: 'foundations/layout' },
@@ -159,7 +168,19 @@ export default defineConfig({
                   // needs an explicit label instead of a bare autogenerate.
                   label: 'System props',
                   items: [
-                    { autogenerate: { directory: 'foundations/system-props' } },
+                    { slug: 'foundations/system-props' },
+                    {
+                      label: 'Prop groups',
+                      items: [
+                        {
+                          autogenerate: {
+                            directory: 'foundations/system-props/prop-groups',
+                          },
+                        },
+                      ],
+                    },
+                    { slug: 'foundations/system-props/compose-and-variants' },
+                    { slug: 'foundations/system-props/responsive-properties' },
                   ],
                 },
                 { slug: 'foundations/themes' },

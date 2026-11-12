@@ -7,10 +7,9 @@ description: How to propose, build, and document changes to Gamut.
 
 We track planned work for Gamut components in the [Gamut Board](https://skillsoftdev.atlassian.net/jira/software/c/projects/GMT/boards/3655/backlog) on JIRA.
 
-- If there's a ticket there you want to take on, send a Slack message to `#gamut-team` or come to Gamut Office Hours to talk it through.
-- If the work you'd like to do isn't captured in a JIRA ticket, talk to us first and we'll help create one.
-- To request work be done, discuss it with us on Slack or during Gamut Office Hours.
-- To pitch a change to the design system, attend Gamut Crit, come to Gamut Office Hours, or message `#gamut-team`.
+- If there's a ticket there you want to take on, send a Slack message to `#gamut-team`
+- If the work you'd like to do isn't captured in a JIRA ticket, talk to us first and we'll help create one
+- To pitch a change to the design system, attend Gamut Crit, or message `#gamut-team`.
 
 ## Writing components
 
@@ -129,4 +128,4 @@ If your PR has breaking changes affecting at least one downstream repository —
 4. Once the new Gamut package publishes, update the downstream PRs to use it.
 5. Merge and deploy those PRs as soon as possible.
 
-If a breaking change might affect other users beyond those you've already coordinated with, mention it in `#frontend` too.
+If a breaking change might affect other users beyond those you've already coordinated with, mention it in `#gamut-team` too and tag any relevant teams.
