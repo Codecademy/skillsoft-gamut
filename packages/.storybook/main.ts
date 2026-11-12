@@ -23,11 +23,11 @@ const require = createRequire(import.meta.url);
 const config: StorybookConfig = {
   stories: [
     {
-      directory: '../styleguide/src/lib',
+      directory: '../gamut/src',
       files: '**/*.stories.@(js|jsx|ts|tsx)',
     },
     {
-      directory: '../gamut/src',
+      directory: '../gamut-styles/src',
       files: '**/*.stories.@(js|jsx|ts|tsx)',
     },
     {
