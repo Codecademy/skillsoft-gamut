@@ -1,6 +1,6 @@
 /*
  * Setup for the Vitest `jsdom` project, ported from the old Jest setup:
- * jest-dom and Emotion matchers, RTL cleanup, a pinned `Date.now`, and jsdom gaps.
+ * jest-dom and Emotion matchers, RTL cleanup, and jsdom gaps.
  */
 import '@testing-library/jest-dom/vitest';
 
@@ -15,13 +15,6 @@ expect.extend(
 
 // RTL only auto-registers cleanup when `afterEach` is a global; tests import it from vitest.
 afterEach(cleanup);
-
-/*
- * Pin `Date.now` (as the Jest suite did). Patching the real `Date` rather than
- * faking timers means a test's own `vi.useFakeTimers()`/`useRealTimers()` can't undo it.
- */
-const FIXED_NOW = new Date(2011, 6, 1).valueOf();
-Date.now = () => FIXED_NOW;
 
 // jsdom doesn't implement `scrollTo`.
 Object.defineProperty(window, 'scrollTo', { value: () => {}, writable: true });
