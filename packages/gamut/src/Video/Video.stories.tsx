@@ -59,7 +59,7 @@ export const Default: Story = {
     translations: {
       Play: 'Play Intro Video',
     },
-    onReady,
+    onReady: () => onReady(),
   },
   play: async ({ canvas, userEvent }) => {
     const player = await canvas.findByRole('region', {
@@ -68,7 +68,7 @@ export const Default: Story = {
     await waitFor(() => expect(player).toHaveAttribute('data-can-play'));
     await expect(onReady).toHaveBeenCalled();
 
-    canvas.getByRole('button', { name: 'Play Intro Video' });
+    await canvas.findByRole('button', { name: 'Play Intro Video' });
     await userEvent.hover(canvas.getByRole('button', { name: 'Fullscreen' }));
     await canvas.findByRole('tooltip', { name: 'Enter fullscreen' });
     await expect(
@@ -86,7 +86,7 @@ export const PlayAndPause: Story = {
     videoUrl: mp4Url,
     videoTitle: mp4Title,
     muted: true,
-    onPlay,
+    onPlay: () => onPlay(),
   },
   play: async ({ canvas, userEvent }) => {
     const player = await canvas.findByRole('region', {
@@ -94,7 +94,7 @@ export const PlayAndPause: Story = {
     });
     await waitFor(() => expect(player).toHaveAttribute('data-can-play'));
 
-    const playButton = canvas.getByRole('button', {
+    const playButton = await canvas.findByRole('button', {
       name: 'Play',
       pressed: false,
     });
@@ -123,7 +123,7 @@ export const SeekBackwards: Story = {
     video.currentTime = 30;
     await waitFor(() => expect(video.currentTime).toBe(30));
 
-    const seekBackward = canvas.getByRole('button', {
+    const seekBackward = await canvas.findByRole('button', {
       name: 'Seek backward -10 seconds',
     });
     await userEvent.hover(seekBackward);
@@ -188,9 +188,12 @@ export const CaptionsMenu: Story = {
     });
     await waitFor(() => expect(player).toHaveAttribute('data-can-play'));
 
-    await userEvent.click(canvas.getByRole('button', { name: 'Settings' }));
     await userEvent.click(
-      await canvas.findByRole('menuitem', { name: /Captions/ })
+      await canvas.findByRole('button', { name: 'Settings' })
+    );
+    await canvas.findByRole('menuitem', { name: /Captions/ });
+    await waitFor(() =>
+      userEvent.click(canvas.getByRole('menuitem', { name: /Captions/ }))
     );
     await waitFor(() =>
       expect(
