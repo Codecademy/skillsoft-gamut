@@ -1,0 +1,369 @@
+---
+/**
+ * The Starlight counterpart of the token tables on Storybook's Core Theme page
+ * (see styleguide's `Foundations/shared/elements.tsx`): one row per token in a
+ * theme scale, with its theme path, value, and a swatch or rendered example.
+ *
+ * Rows are read from the Core theme in `@skillsoft/gamut-styles` at build
+ * time — the same objects Storybook uses — so the tables can't drift from the
+ * tokens themselves.
+ *
+ * Storybook renders its examples with Gamut components inside a themed
+ * provider. This site has no Gamut theme provider or `--color-*` variables, so
+ * colors are resolved to raw values here, and example shapes use the page's
+ * text color so they stay visible in both of the site's color schemes.
+ */
+import { coreSwatches, theme, trueColors } from '@skillsoft/gamut-styles';
+
+type Token =
+  | 'colors'
+  | 'swatches'
+  | 'rgbaSwatches'
+  | 'lightMode'
+  | 'darkMode'
+  | 'fontFamily'
+  | 'fontSize'
+  | 'fontWeight'
+  | 'lineHeight'
+  | 'spacing'
+  | 'breakpoints'
+  | 'borderRadii'
+  | 'elevation';
+
+type Cell =
+  | { kind: 'code'; values: string[] }
+  | { kind: 'swatch'; scales: Record<string, string>[]; backdrop: string }
+  | { kind: 'text'; style: string; text: string }
+  | { kind: 'shape'; style: string };
+
+interface Table {
+  columns: string[];
+  rows: { id: string; cells: Cell[] }[];
+}
+
+interface Props {
+  /** The token scale to list, e.g. "spacing" */
+  token: Token;
+}
+
+const { token } = Astro.props;
+
+// `theme.colors` holds CSS variable references; this resolves a color name
+// (e.g. "navy-800") to the raw value behind it.
+const getColorValue = (
+  theme as unknown as { _getColorValue: (name: string) => string }
+)._getColorValue;
+
+const NAVY = getColorValue('navy-800');
+const WHITE = getColorValue('white');
+
+const code = (...values: string[]): Cell => ({ kind: 'code', values });
+
+// A valid accessor for a theme key: dot access for identifiers, brackets for
+// numeric keys like `fontSize[14]`, and quoted brackets for dash-case keys.
+const path = (scale: string, id: string) => {
+  if (/^\d+$/.test(id)) return `theme.${scale}[${id}]`;
+  if (/^[A-Za-z_$][\w$]*$/.test(id)) return `theme.${scale}.${id}`;
+  return `theme.${scale}['${id}']`;
+};
+
+const swatch = (
+  scales: Record<string, string>[],
+  backdrop = WHITE
+): Cell => ({ kind: 'swatch', scales, backdrop });
+
+const SAMPLE_TEXT = 'Example Text';
+const LONG_TEXT = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`;
+
+const { navy, white, ...solidSwatches } = coreSwatches;
+
+const colorModeTable = (
+  mode: Record<string, string>,
+  backdrop: string
+): Table => ({
+  columns: ['Token', 'Path', 'Swatch'],
+  rows: Object.entries(mode).map(([id, color]) => ({
+    id,
+    cells: [code(path('colors', id)), swatch([{ '': getColorValue(color) }], backdrop)],
+  })),
+});
+
+const tables: Record<Token, () => Table> = {
+  colors: () => ({
+    columns: ['Token', 'Path', 'Swatch'],
+    rows: Object.entries(trueColors).map(([id, hex]) => ({
+      id,
+      cells: [code(path('colors', id)), swatch([{ '': hex }])],
+    })),
+  }),
+  swatches: () => ({
+    columns: ['Token', 'Path', 'Swatch'],
+    rows: Object.entries(solidSwatches).map(([id, weights]) => ({
+      id,
+      cells: [
+        code(path('colors', `${id}-${Object.keys(weights)[0]}`)),
+        swatch([weights]),
+      ],
+    })),
+  }),
+  // The semi-transparent navy and white weights only read against a
+  // contrasting backdrop, and are split in two rows as in Storybook.
+  rgbaSwatches: () => ({
+    columns: ['Token', 'Path', 'Swatch'],
+    rows: Object.entries({ navy, white }).map(([id, weights]) => {
+      const entries = Object.entries(weights);
+      return {
+        id,
+        cells: [
+          code(path('colors', `${id}-${entries[0][0]}`)),
+          swatch(
+            [
+              Object.fromEntries(entries.slice(0, 4)),
+              Object.fromEntries(entries.slice(4)),
+            ],
+            id === 'white' ? NAVY : WHITE
+          ),
+        ],
+      };
+    }),
+  }),
+  lightMode: () => colorModeTable(theme.modes.light, WHITE),
+  darkMode: () => colorModeTable(theme.modes.dark, NAVY),
+  fontFamily: () => ({
+    columns: ['Token', 'Path', 'Value', 'Example'],
+    rows: Object.entries(theme.fontFamily).map(([id, value]) => ({
+      id,
+      cells: [
+        code(path('fontFamily', id)),
+        code(value.split(',')[0]),
+        { kind: 'text', style: `font-family: ${value}`, text: SAMPLE_TEXT },
+      ],
+    })),
+  }),
+  fontSize: () => ({
+    columns: ['Token', 'Path', 'Value', 'Example'],
+    rows: Object.entries(theme.fontSize).map(([id, value]) => ({
+      id,
+      cells: [
+        code(path('fontSize', id)),
+        code(value),
+        { kind: 'text', style: `font-size: ${value}`, text: SAMPLE_TEXT },
+      ],
+    })),
+  }),
+  fontWeight: () => ({
+    columns: ['Token', 'Path', 'Value', 'Example'],
+    rows: Object.entries(theme.fontWeight).map(([id, value]) => ({
+      id,
+      cells: [
+        code(path('fontWeight', id)),
+        code(String(value)),
+        { kind: 'text', style: `font-weight: ${value}`, text: SAMPLE_TEXT },
+      ],
+    })),
+  }),
+  lineHeight: () => ({
+    columns: ['Token', 'Path', 'Value', 'Example'],
+    rows: Object.entries(theme.lineHeight).map(([id, value]) => ({
+      id,
+      cells: [
+        code(path('lineHeight', id)),
+        code(String(value)),
+        { kind: 'text', style: `line-height: ${value}`, text: LONG_TEXT },
+      ],
+    })),
+  }),
+  spacing: () => ({
+    columns: ['Token', 'Path', 'Value', 'Example'],
+    rows: Object.entries(theme.spacing).map(([id, value]) => ({
+      id,
+      cells: [
+        code(path('spacing', id)),
+        code(String(value)),
+        { kind: 'shape', style: `width: ${value}; height: ${value}` },
+      ],
+    })),
+  }),
+  breakpoints: () => ({
+    columns: ['Token', 'Path', 'Value'],
+    rows: Object.entries(theme.breakpoints).map(([id, value]) => ({
+      id,
+      cells: [code(path('breakpoints', id)), code(value)],
+    })),
+  }),
+  borderRadii: () => ({
+    columns: ['Token', 'Path', 'Value', 'Example'],
+    rows: Object.entries(theme.borderRadii).map(([id, value]) => ({
+      id,
+      cells: [
+        code(path('borderRadii', id)),
+        code(value),
+        {
+          kind: 'shape',
+          style: `width: 6rem; height: 4rem; border-radius: ${value}`,
+        },
+      ],
+    })),
+  }),
+  // Elevation shadows reference `--color-shadow-primary`, which flips with
+  // color mode. Pointing it at the page's text color reproduces that flip.
+  elevation: () => ({
+    columns: ['Token', 'Path', 'Value', 'Example'],
+    rows: (['rest', 'hover', 'hoverMirrored'] as const).map((id) => {
+      const shadow = theme.elevation[`${id}-shadow`];
+      const transform = theme.elevation[`${id}-transform`];
+      return {
+        id,
+        cells: [
+          code(
+            path('elevation', `${id}-shadow`),
+            path('elevation', `${id}-transform`)
+          ),
+          code(shadow, transform),
+          {
+            kind: 'shape',
+            style: `--color-shadow-primary: currentColor; width: 5rem; height: 3rem; background: var(--sl-color-bg); border: 1px solid currentColor; box-shadow: ${shadow}; transform: ${transform}`,
+          },
+        ],
+      };
+    }),
+  }),
+};
+
+const { columns, rows } = tables[token]();
+---
+
+<div class="design-token-table">
+  <table>
+    <thead>
+      <tr>
+        {columns.map((column) => <th>{column}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map(({ id, cells }) => (
+          <tr>
+            <td>
+              <code>{id}</code>
+            </td>
+            {cells.map((cell) => (
+              <td>
+                {cell.kind === 'code' &&
+                  cell.values.map((value) => (
+                    <div>
+                      <code>{value}</code>
+                    </div>
+                  ))}
+                {cell.kind === 'swatch' &&
+                  cell.scales.map((scale) => {
+                    const weights = Object.entries(scale);
+                    return (
+                      <div class="swatch">
+                        <div
+                          class="swatch-bar"
+                          style={`background: ${cell.backdrop}`}
+                        >
+                          {weights.map(([, value]) => (
+                            <div style={`background: ${value}`} />
+                          ))}
+                        </div>
+                        <div class="swatch-labels">
+                          {weights.map(([weight, value]) => (
+                            <div>
+                              {weights.length > 1 && <span>{weight}</span>}
+                              <span>{value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                {cell.kind === 'text' && (
+                  <div class="example-text" style={cell.style}>
+                    {cell.text}
+                  </div>
+                )}
+                {cell.kind === 'shape' && (
+                  <div class="example-shape" style={cell.style} />
+                )}
+              </td>
+            ))}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<style>
+  /* Same full-width override as SystemPropTable: Starlight's layered table
+     styles render tables as `display: block`, so scrolling moves to the
+     wrapper and the table spans the content width. */
+  .design-token-table {
+    overflow-x: auto;
+  }
+
+  .design-token-table table {
+    display: table;
+    width: 100%;
+  }
+
+  /* Starlight spaces stacked content blocks 1rem apart, which pulls swatch
+     labels away from their bars and spreads out stacked paths and values. */
+  .design-token-table td > * + *,
+  .swatch > * + * {
+    margin-top: 0.25rem;
+  }
+
+  .design-token-table td > .swatch + .swatch {
+    margin-top: 0.5rem;
+  }
+
+  /* The same spacing would offset every color cell and label after the
+     first, so they're reset to line up. */
+  .swatch-bar > *,
+  .swatch-labels > * {
+    margin-top: 0 !important;
+  }
+
+  .swatch-bar {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    min-height: 3rem;
+    min-width: 8rem;
+    overflow: hidden;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 4px;
+  }
+
+  /* Columns share the width evenly and long `rgba(...)` labels wrap, so the
+     labels stay under their colors instead of overflowing the cell. */
+  .swatch-labels {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    align-items: start;
+    gap: 0.25rem;
+    padding: 0.25rem 0;
+    font-family: var(--sl-font-mono);
+    font-size: 0.75rem;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
+  .swatch-labels div {
+    display: grid;
+  }
+
+  .example-text {
+    font-size: 1.25rem;
+  }
+
+  .example-shape {
+    display: inline-block;
+    margin: 0.75rem;
+    background: currentColor;
+  }
+</style>
