@@ -16,7 +16,8 @@ const Shimmer = styled(BaseContainer)(
     filter: 'blur(25px)',
     left: '-100%',
     top: 0,
-    bg: 'white-400',
+    /* The sweep, like Loading's shimmer sweep. */
+    bg: 'surface-raised',
   })
 );
 
@@ -62,9 +63,9 @@ export const FeatureShimmer: React.FC<Omit<BoxProps, 'ref'>> = ({
         children
       ) : (
         <BaseContainer
-          bg="background-selected"
+          bg="state-selected"
           border={1}
-          borderColor="border-tertiary"
+          borderColor="border-subtle"
           borderRadius={rest?.borderRadius}
           height={1}
           overflow="hidden"

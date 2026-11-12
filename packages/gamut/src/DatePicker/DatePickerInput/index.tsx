@@ -349,6 +349,7 @@ export const DatePickerInput = forwardRef<HTMLDivElement, DatePickerInputProps>(
         width="fit-content"
       >
         <SegmentedShell
+          aria-disabled={disabled || undefined}
           aria-labelledby={inputId}
           inputSize={size}
           ref={shellRef}

@@ -41,7 +41,9 @@ export const checkboxElement = system.css({
   minWidth: 22,
   width: 22,
   height: 22,
-  borderColor: 'border-primary',
+  /* An unchecked box is a field: `surface-raised`, whatever it sits on. */
+  bg: 'surface-raised',
+  borderColor: 'border-default',
   borderRadius: '4px' as keyof typeof theme.borderRadii, // hardcoded so that it is not impacted by the theme's border-radius token
   borderStyle: 'solid',
   borderWidth: '2px',
@@ -51,13 +53,13 @@ export const checkboxElement = system.css({
     'ease-in-out'
   ),
   [InputSelectors.HOVER]: {
-    outline: `2px solid   ${theme.colors.primary}`,
+    outline: `2px solid   ${theme.colors['action-primary']}`,
     outlineOffset: '2px',
   },
 });
 
 export const polyline = system.css({
-  color: 'background',
+  color: 'text-inverse',
 });
 
 export const checkboxTextStates = system.states({
@@ -72,13 +74,17 @@ export const checkboxElementStates = system.states({
     mt: 4,
   },
   active: {
-    color: 'primary',
-    borderColor: 'primary',
+    color: 'action-primary',
+    borderColor: 'action-primary',
   },
   disabled: {
-    color: 'text-disabled',
+    color: 'text-subtle',
     [InputSelectors.HOVER]: {
       outline: 'none',
+    },
+    /* On the disabled fill the mark is a knockout, like a disabled button label. */
+    '& polyline, & line': {
+      color: 'surface-raised',
     },
   },
   hasBg: {
@@ -91,7 +97,7 @@ export const checkboxElementStates = system.states({
 
 export const checkboxInput = system.css({
   [InputSelectors.FOCUS_LABEL_DIV_CHILD]: {
-    outline: `2px solid ${theme.colors.primary}`,
+    outline: `2px solid ${theme.colors['action-primary']}`,
     outlineOffset: '2px',
   },
 });

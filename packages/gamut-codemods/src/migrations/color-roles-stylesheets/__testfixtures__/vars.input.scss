@@ -1,0 +1,16 @@
+.panel {
+  color: var(--color-text);
+  border-color: var(--color-border-secondary);
+  background: var(--color-background);
+  box-shadow: 0 1px 4px var(--color-shadow-primary);
+}
+
+.legacy {
+  fill: var(--color-navy-800);
+  outline-color: var(--color-primary, var(--color-text-secondary));
+}
+
+/* Already on the new names: untouched. */
+.done {
+  color: var(--color-text-default);
+}

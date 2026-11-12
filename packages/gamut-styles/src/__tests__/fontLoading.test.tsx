@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
 import { AssetProvider } from '../AssetProvider';
-import { coreTheme, percipioTheme } from '../themes';
+import { lxStudioTheme, skillsoftTheme } from '../themes';
 import { getFontsMock } from './fontUtilsMock';
 
-const typedPercipioTheme = percipioTheme as any;
+const typedLxStudioTheme = lxStudioTheme as any;
 
 jest.mock('../utilities/fontUtils', () => ({
   getFonts: require('./fontUtilsMock').getFontsMock,
@@ -93,7 +93,7 @@ describe('Font Loading and Error Handling', () => {
         },
       ]);
 
-      const { container } = render(<AssetProvider theme={coreTheme} />);
+      const { container } = render(<AssetProvider theme={skillsoftTheme} />);
 
       const links = getPreloadLinks(container);
       expect(links).toHaveLength(1);
@@ -119,7 +119,7 @@ describe('Font Loading and Error Handling', () => {
         },
       ]);
 
-      const { container } = render(<AssetProvider theme={coreTheme} />);
+      const { container } = render(<AssetProvider theme={skillsoftTheme} />);
 
       const links = getPreloadLinks(container);
       expect(links).toHaveLength(2);
@@ -140,7 +140,7 @@ describe('Font Loading and Error Handling', () => {
         throw new Error('Font loading failed');
       });
 
-      const { container } = render(<AssetProvider theme={coreTheme} />);
+      const { container } = render(<AssetProvider theme={skillsoftTheme} />);
 
       const links = getPreloadLinks(container);
       expect(links).toHaveLength(0);
@@ -166,7 +166,7 @@ describe('Font Loading and Error Handling', () => {
         },
       ]);
 
-      const { container } = render(<AssetProvider theme={coreTheme} />);
+      const { container } = render(<AssetProvider theme={skillsoftTheme} />);
 
       const links = getPreloadLinks(container);
       expect(links).toHaveLength(2);
@@ -188,7 +188,7 @@ describe('Font Loading and Error Handling', () => {
         },
       ]);
 
-      const { container } = render(<AssetProvider theme={coreTheme} />);
+      const { container } = render(<AssetProvider theme={skillsoftTheme} />);
 
       const links = getPreloadLinks(container);
       expect(links).toHaveLength(2);
@@ -219,7 +219,7 @@ describe('Font Loading and Error Handling', () => {
         },
       ]);
 
-      const { container } = render(<AssetProvider theme={coreTheme} />);
+      const { container } = render(<AssetProvider theme={skillsoftTheme} />);
 
       const links = getPreloadLinks(container);
       expect(links).toHaveLength(1);
@@ -242,7 +242,7 @@ describe('Font Loading and Error Handling', () => {
         },
       ]);
 
-      const { container } = render(<AssetProvider theme={coreTheme} />);
+      const { container } = render(<AssetProvider theme={skillsoftTheme} />);
 
       const links = getPreloadLinks(container);
       expect(links).toHaveLength(1);
@@ -262,12 +262,12 @@ describe('Font Loading and Error Handling', () => {
       ]);
 
       for (let i = 0; i < 10; i += 1) {
-        const { unmount } = render(<AssetProvider theme={coreTheme} />);
+        const { unmount } = render(<AssetProvider theme={skillsoftTheme} />);
         unmount();
       }
 
       expect(() => {
-        render(<AssetProvider theme={coreTheme} />);
+        render(<AssetProvider theme={skillsoftTheme} />);
       }).not.toThrow();
     });
 
@@ -280,15 +280,15 @@ describe('Font Loading and Error Handling', () => {
         },
       ]);
 
-      const { rerender } = render(<AssetProvider theme={coreTheme} />);
+      const { rerender } = render(<AssetProvider theme={skillsoftTheme} />);
 
       for (let i = 0; i < 5; i += 1) {
-        rerender(<AssetProvider theme={typedPercipioTheme} />);
-        rerender(<AssetProvider theme={coreTheme} />);
+        rerender(<AssetProvider theme={typedLxStudioTheme} />);
+        rerender(<AssetProvider theme={skillsoftTheme} />);
       }
 
       expect(() => {
-        rerender(<AssetProvider theme={typedPercipioTheme} />);
+        rerender(<AssetProvider theme={typedLxStudioTheme} />);
       }).not.toThrow();
     });
   });

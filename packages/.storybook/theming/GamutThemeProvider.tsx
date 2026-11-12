@@ -4,11 +4,12 @@ import {
   corePalette,
   ColorModes,
   GamutProvider,
-  coreTheme,
+  skillsoftTheme,
   adminTheme,
   lxStudioTheme,
-  percipioTheme,
   platformTheme,
+  skillsoftTheme,
+  originalCodecademyTheme,
 } from '@skillsoft/gamut-styles';
 import { Theme } from '@emotion/react';
 
@@ -25,11 +26,12 @@ const themeBackground: Record<ColorModes, 'white' | 'navy'> = {
 };
 
 const themeMap = {
-  core: coreTheme,
+  core: skillsoftTheme,
   admin: adminTheme,
   lxStudio: lxStudioTheme,
-  percipio: percipioTheme,
   platform: platformTheme,
+  skillsoft: skillsoftTheme,
+  originalCodecademy: originalCodecademyTheme,
 } as const;
 
 type GlobalsContext = {
@@ -46,9 +48,27 @@ export const withEmotion = (Story: any, context: GlobalsContext) => {
   const selectedTheme = context.globals.theme;
   const useLogicalProperties = context.globals.logicalProps === 'true';
   const direction = context.globals.direction ?? 'ltr';
-  const background = corePalette[themeBackground[colorMode]];
-  const storyRef = useRef<HTMLDivElement>(null);
   const currentTheme = themeMap[selectedTheme];
+  /*
+   * Generated themes (they carry contentModes) take their values from their
+   * brand's tokens.css, not Emotion. GamutProvider injects it; the test
+   * provider below runs without globals, so it injects the theme's own copy.
+   * Only for those: tokens.css also sets white, black and background-current
+   * on :root, which would leak into the other themes. They have none of
+   * core's primitives, so `navy` doesn't exist there; the story sits on their
+   * own surface-default.
+   */
+  const generated = 'contentModes' in currentTheme ? currentTheme : undefined;
+  const tokens = generated && <style>{generated.tokensCss}</style>;
+  const bg = (
+    generated
+      ? generated.modes[colorMode]['surface-default']
+      : themeBackground[colorMode]
+  ) as 'white';
+  const background = generated
+    ? (generated._tokens.colors as Record<string, string>)[bg]
+    : corePalette[themeBackground[colorMode]];
+  const storyRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const storyEl = storyRef.current?.closest(
@@ -72,11 +92,8 @@ export const withEmotion = (Story: any, context: GlobalsContext) => {
         useLogicalProperties={useLogicalProperties}
         theme={currentTheme as unknown as Theme}
       >
-        <Background
-          alwaysSetVariables
-          bg={themeBackground[colorMode]}
-          ref={storyRef}
-        >
+        {tokens}
+        <Background alwaysSetVariables bg={bg} ref={storyRef}>
           {Story()}
         </Background>
       </GamutProvider>
@@ -89,11 +106,7 @@ export const withEmotion = (Story: any, context: GlobalsContext) => {
       useLogicalProperties={useLogicalProperties}
       theme={currentTheme as unknown as Theme}
     >
-      <Background
-        alwaysSetVariables
-        bg={themeBackground[colorMode]}
-        ref={storyRef}
-      >
+      <Background alwaysSetVariables bg={bg} ref={storyRef}>
         {Story()}
       </Background>
     </GamutProvider>

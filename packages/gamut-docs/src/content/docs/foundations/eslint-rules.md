@@ -55,11 +55,11 @@ Suggests the `themed()` utility over reaching directly into `theme` inside a sty
 ```tsx
 // Instead of:
 const StyledDiv = styled.div`
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors['action-primary']};
 `;
 
 // Prefer:
-const StyledBox = styled(Box)(css({ color: themed('colors.primary') }));
+const StyledBox = styled(Box)(css({ color: themed('colors.action-primary') }));
 ```
 
 ## Configuration

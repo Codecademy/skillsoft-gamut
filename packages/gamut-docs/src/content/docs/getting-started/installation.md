@@ -48,10 +48,10 @@ render(
 
 `GamutProvider` does four things every Gamut app needs:
 
-1. Wraps your app in the theme context.
+1. Wraps your app in the theme context. Without a `theme` prop, it uses `skillsoftTheme`; see [Theming your app](/guides/theming-your-app/) to pick another.
 2. Creates an Emotion cache with Gamut's plugins.
-3. Injects global styles and CSS variables.
-4. Sets the current color mode context and variables.
+3. Injects global styles and the theme's brand colors as CSS variables.
+4. Starts the page in the brand's initial color mode.
 
 For Next.js, do this in `_app.tsx`. For Gatsby, do it in both `gatsby-ssr.js` and `gatsby-browser.js` via `wrapRootElement`.
 
@@ -70,11 +70,11 @@ Gamut components read their allowed props from your Emotion theme shape, so decl
 ```tsx title="theme.d.ts"
 import '@emotion/react';
 
-// Use whichever theme shape matches your app: `CoreTheme` or `PlatformTheme`.
-import { CoreTheme } from '@skillsoft/gamut-styles';
+// Every Gamut theme shares this type, whichever one your app uses.
+import type { SkillsoftTheme } from '@skillsoft/gamut-styles';
 
 declare module '@emotion/react' {
-  export interface Theme extends CoreTheme {}
+  export interface Theme extends SkillsoftTheme {}
 }
 ```
 
@@ -87,7 +87,7 @@ import { Background } from '@skillsoft/gamut-styles';
 import { Text } from '@skillsoft/gamut';
 
 export const App = () => (
-  <Background bg="beige">
+  <Background bg="surface-sunken">
     <Text as="h1">Hello World!</Text>
   </Background>
 );

@@ -5,14 +5,9 @@ import path from 'node:path';
 
 import jscodeshift from 'jscodeshift';
 
-import { findFlatEslintConfig } from './lib/eslint';
 import { dirtyTreeReason } from './lib/git';
-import { findLeftovers, walk } from './lib/leftovers';
-import {
-  activeSourceMigrations,
-  mentionsOldNames,
-  runSourceMigrations,
-} from './lib/run-source';
+import { walk } from './lib/leftovers';
+import { activeSourceMigrations, runSourceMigrations } from './lib/run-source';
 import type { FileMigration, Preset } from './lib/types';
 import { getPreset, presets } from './presets';
 
@@ -72,14 +67,14 @@ export const parseArgs = (argv: string[]): Options | 'help' | 'list' => {
 const heading = (text: string) => console.log(`\n— ${text} —`);
 
 const runFileMigrations = (
-  preset: Preset,
+  preset: Preset<any>,
   opts: Options,
   note: (key: string) => void
 ) => {
   const only = opts.only ? new Set(opts.only.split(',')) : null;
   const skip = new Set(opts.skip ? opts.skip.split(',') : []);
   const active = preset.migrations.filter(
-    (m): m is FileMigration =>
+    (m): m is FileMigration<any> =>
       m.kind === 'file' && (!only || only.has(m.name)) && !skip.has(m.name)
   );
   let changed = 0;
@@ -93,7 +88,7 @@ const runFileMigrations = (
         const warn = (msg: string) =>
           console.log(`[${migration.name}] ${file} ${msg}`);
         const transformSource = (code: string) =>
-          mentionsOldNames(preset.manifest, code)
+          preset.mentions(code)
             ? runSourceMigrations({
                 j: jscodeshift.withParser('tsx'),
                 source: code,
@@ -125,7 +120,7 @@ const runFileMigrations = (
   return changed;
 };
 
-const printChecklist = (preset: Preset, notes: Set<string>) => {
+const printChecklist = (preset: Preset<any>, notes: Set<string>) => {
   heading('next steps');
   const items = [
     ...Object.entries(preset.conditionalChecklist)
@@ -213,10 +208,8 @@ export const main = async (argv: string[]) => {
       heading(
         'leftovers skipped in --dry (nothing was written, so everything would show up)'
       );
-    } else if (opts.report) {
-      const hits = findLeftovers(opts.paths, preset.manifest, {
-        eslintRuleKeys: !findFlatEslintConfig(opts.paths),
-      });
+    } else if (opts.report && preset.leftovers) {
+      const hits = preset.leftovers(opts.paths);
       heading(`leftovers (${hits.length})`);
       hits.forEach((hit) =>
         console.log(

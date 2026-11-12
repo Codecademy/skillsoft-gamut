@@ -40,7 +40,7 @@ export const ColorScale: React.FC<{ colors: Record<string, string> }> = ({
             alignItems="center"
             justifyContent="center"
             textAlign="center"
-            textColor="text"
+            textColor="text-default"
           >
             {weights.length > 1 && <HexCode>{key}</HexCode>}
             <HexCode>{hex}</HexCode>

@@ -1,0 +1,6 @@
+[
+  "fixture.tsx:6 'background' splits into",
+  "'border-tertiary' splits into border-subtle | border-strong",
+  "'background-hover' splits into state-hover | surface-sunken",
+  "color name built at runtime (`${v}-hover`)"
+]

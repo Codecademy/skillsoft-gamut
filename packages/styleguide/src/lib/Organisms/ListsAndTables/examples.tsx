@@ -159,7 +159,7 @@ const CrewMgmtDropdown: React.FC<{
           {
             title: 'Error',
             children: (
-              <Text color="danger">
+              <Text color="text-error">
                 Something went wrong while arresting {name}.
               </Text>
             ),
@@ -185,7 +185,7 @@ export const CustomEmptyState: React.FC = () => (
   <Box as="tbody" height="100%" width="100%">
     <Box
       as="tr"
-      bg="paleBlue"
+      bg="surface-brand-subtle"
       height="inherit"
       position="absolute"
       width="inherit"
@@ -453,10 +453,10 @@ export const DisableContainerQueryExample: React.FC<
         <Text mb={8} variant="title-sm">
           Default (Container Queries Enabled)
         </Text>
-        <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
+        <Box border={1} borderColor="border-subtle" maxWidth="400px" p={16}>
           {defaultComponent}
         </Box>
-        <Text color="text-secondary" mt={8} variant="p-small">
+        <Text color="text-subtle" mt={8} variant="p-small">
           Container queries apply responsive behavior based on the{' '}
           {componentName} &apos;s container width
         </Text>
@@ -466,10 +466,10 @@ export const DisableContainerQueryExample: React.FC<
         <Text mb={8} variant="title-sm">
           With Container Queries Disabled
         </Text>
-        <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
+        <Box border={1} borderColor="border-subtle" maxWidth="400px" p={16}>
           {disabledComponent}
         </Box>
-        <Text color="text-secondary" mt={8} variant="p-small">
+        <Text color="text-subtle" mt={8} variant="p-small">
           Built in responsive behavior is disabled - custom responsive behavior
           is required
         </Text>

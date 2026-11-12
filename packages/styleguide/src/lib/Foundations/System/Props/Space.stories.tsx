@@ -12,8 +12,8 @@ type Story = StoryObj<typeof Box>;
 export const MarginExample: Story = {
   render: () => (
     <Box
-      bg="primary"
-      color="background-contrast"
+      bg="action-primary"
+      color="text-inverse"
       mb={64}
       ml={16}
       mr={32}
@@ -29,10 +29,10 @@ export const MarginExample: Story = {
 
 export const PaddingExample: Story = {
   render: () => (
-    <Box bg="background-selected">
+    <Box bg="surface-sunken">
       <Box
-        bg="primary"
-        color="background-contrast"
+        bg="action-primary"
+        color="text-inverse"
         pb={64}
         pl={16}
         pr={32}

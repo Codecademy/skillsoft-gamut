@@ -15,7 +15,7 @@ import { getErrorMessage, useField } from './utils';
 
 const ErrorAnchor = styled(Anchor)(
   css({
-    color: 'feedback-error',
+    color: 'text-error',
   })
 );
 

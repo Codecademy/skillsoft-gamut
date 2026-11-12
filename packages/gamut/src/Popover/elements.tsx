@@ -7,6 +7,7 @@ import { BodyPortal } from '../BodyPortal';
 import { Box, FlexBox } from '../Box';
 import { popoverToolTipBodyAlignments } from '../Tips/shared/styles/styles';
 import type { WithChildrenProp } from '../utils';
+import { raisedShadow } from '../utils/elevation';
 import type { popoverStates } from './styles/base';
 import { raisedDivVariants, transformValues } from './styles/base';
 import { patternContainerBaseStyles } from './styles/pattern';
@@ -27,7 +28,7 @@ export const RaisedDiv = styled.div<
   StyleProps<typeof raisedDivVariants> &
     StyleProps<typeof popoverToolTipBodyAlignments> &
     StyleProps<typeof widthStates>
->(popoverToolTipBodyAlignments, raisedDivVariants, widthStates);
+>(popoverToolTipBodyAlignments, raisedDivVariants, raisedShadow, widthStates);
 
 export const Beak = styled(Box)<
   StyleProps<typeof popoverStates> &
