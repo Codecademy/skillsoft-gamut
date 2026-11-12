@@ -157,7 +157,7 @@ export const Controlled: Story = {
 
     return (
       <>
-        <Background bg="yellow" mb={24} p={12}>
+        <Background bg="surface-sunken" mb={24} p={12}>
           <FormGroup htmlFor="active-tab" label="Active Tab">
             <Input
               htmlFor="active-tab"

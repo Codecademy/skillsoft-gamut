@@ -309,7 +309,7 @@ export const IconOnly: Story = {
           icon={RatingStarCircleIcon}
           label={{
             alignment: 'right-center',
-            info: <Text color="hyper">I am bold and different</Text>,
+            info: <Text color="action-primary">I am bold and different</Text>,
             narrow: true,
           }}
         />
@@ -359,7 +359,7 @@ export const FloatingMenu: Story = {
           <Background bg="black" borderRadius="lg" height="100%" pl={48}>
             <FlexBox
               alignItems="center"
-              bg="navy"
+              bg="surface-sunken"
               dimensions="200px"
               height="100%"
               justifyContent="right"
@@ -398,7 +398,7 @@ export const FloatingMenu: Story = {
               x={-21}
               y={currentTarget}
             >
-              <Background bg="white" borderRadius="lg">
+              <Background bg="surface-raised" borderRadius="lg">
                 <Menu role="menu" variant="popover">
                   {activeIndex % 2 === 0 ? (
                     <>
