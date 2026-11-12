@@ -72,17 +72,17 @@ const GridContentPlaceholder = ({
 }) => (
   <FlexBox flexDirection="column">
     <FlexBox height="2rem" justifyContent="space-between" mb={12} width="100%">
-      <Box bg="beige" height="inherit" width="85%" />
-      <Box bg="beige" height="inherit" width="10%" />
+      <Box bg="surface-sunken" height="inherit" width="85%" />
+      <Box bg="surface-sunken" height="inherit" width="10%" />
     </FlexBox>
-    <Box bg="beige" height={height} width={width} />
+    <Box bg="surface-sunken" height={height} width={width} />
   </FlexBox>
 );
 
 const ImageComponent = () => (
   <FlexBox
     aria-label="Code celebration"
-    bg="background-primary"
+    bg="surface-default"
     center
     height="100%"
     p={4}
@@ -336,7 +336,7 @@ export const FocusManagement: Story = {
                 Focus Modal Container
               </FillButton>
             </FlexBox>
-            <Text color="text-disabled" fontSize={14}>
+            <Text color="text-subtle" fontSize={14}>
               Try tabbing through the page - the modal container will maintain
               focus when you click the &quot;Focus Modal Container&quot; button.
             </Text>
@@ -631,7 +631,7 @@ export const ConfirmationOnClose: Story = {
               {hasUnsavedChanges ? 'Mark as Saved' : 'Mark as Unsaved'}
             </FillButton>
           </FlexBox>
-          <Text color="text-disabled" fontSize={14}>
+          <Text color="text-subtle" fontSize={14}>
             Toggle the unsaved state and try closing the modal to see the
             confirmation behavior. <br />
             Current state:{' '}
@@ -649,7 +649,7 @@ export const ConfirmationOnClose: Story = {
               This modal shows a confirmation dialog when you try to close it
               with unsaved changes.
             </Text>
-            <Text color="text-disabled" fontSize={14}>
+            <Text color="text-subtle" fontSize={14}>
               Current state:{' '}
               {hasUnsavedChanges ? 'Has unsaved changes' : 'All saved'}
             </Text>
