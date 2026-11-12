@@ -119,6 +119,25 @@ export default defineConfig({
           clearMocks: true,
         },
       },
+      {
+        root: __dirname,
+        test: {
+          name: 'node',
+          include: [
+            'packages/{eslint-plugin-gamut,gamut-codemods}/**/*.test.ts',
+            'packages/gamut-agent-tools/**/*.test.mjs',
+          ],
+          // Codemod fixtures are inputs, not tests, and may be deliberately odd code.
+          exclude: [
+            ...configDefaults.exclude,
+            '**/dist/**',
+            '**/__testfixtures__/**',
+          ],
+          environment: 'node',
+          setupFiles: [join(__dirname, 'script/vitest/node-setup.ts')],
+          clearMocks: true,
+        },
+      },
     ],
   },
 });

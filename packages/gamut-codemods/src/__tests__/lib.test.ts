@@ -3,6 +3,8 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
+import { describe, expect, it } from 'vitest';
+
 import { parseArgs } from '../cli';
 import { findFlatEslintConfig } from '../lib/eslint';
 import { dirtyTreeReason } from '../lib/git';

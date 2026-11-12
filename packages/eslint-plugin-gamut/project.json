@@ -17,10 +17,16 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/eslint-plugin-gamut"],
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/coverage/vitest"],
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/vitest.config.ts",
+        "{workspaceRoot}/script/vitest/node-setup.ts"
+      ],
       "options": {
-        "jestConfig": "packages/eslint-plugin-gamut/jest.config.ts"
+        "command": "vitest run --project=node --coverage.enabled=${CI:-false} packages/eslint-plugin-gamut"
       }
     },
     "publish-build": {

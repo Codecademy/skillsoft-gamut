@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { after, before, describe, it } from 'node:test';
+
+import { afterAll, beforeAll, describe, it } from 'vitest';
 
 import { installDesignMd } from '../lib/design.mjs';
 
@@ -49,11 +50,11 @@ describe('installDesignMd', () => {
   /** @type {string} */
   let tmp;
 
-  before(async () => {
+  beforeAll(async () => {
     tmp = await mkdtemp(join(tmpdir(), 'gamut-design-test-'));
   });
 
-  after(async () => {
+  afterAll(async () => {
     await rm(tmp, { recursive: true, force: true });
   });
 

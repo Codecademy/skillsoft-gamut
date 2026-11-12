@@ -14,9 +14,15 @@
     },
     "test": {
       "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/coverage/vitest"],
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/vitest.config.ts",
+        "{workspaceRoot}/script/vitest/node-setup.ts"
+      ],
       "options": {
-        "cwd": "packages/gamut-agent-tools",
-        "command": "node --test cli/__tests__/design.test.mjs"
+        "command": "vitest run --project=node --coverage.enabled=${CI:-false} packages/gamut-agent-tools"
       }
     },
     "verify": {

@@ -18,11 +18,17 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
       "dependsOn": ["^build"],
-      "outputs": ["{workspaceRoot}/coverage/packages/gamut-codemods"],
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/coverage/vitest"],
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/vitest.config.ts",
+        "{workspaceRoot}/script/vitest/node-setup.ts"
+      ],
       "options": {
-        "jestConfig": "packages/gamut-codemods/jest.config.ts"
+        "command": "vitest run --project=node --coverage.enabled=${CI:-false} packages/gamut-codemods"
       }
     },
     "verify-package": {
