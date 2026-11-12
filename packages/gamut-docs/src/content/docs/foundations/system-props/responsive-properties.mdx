@@ -3,7 +3,11 @@ title: Responsive properties
 description: The array/object syntax every system prop accepts for breakpoint- and container-query-driven values.
 ---
 
-import StoryEmbed from '~/components/StoryEmbed.astro';
+import {
+  CombinedQueries,
+  ContainerQueries,
+  MediaQueries,
+} from '~/components/examples/ResponsivePropertiesExamples';
 
 Every system prop accepts a responsive syntax, so breakpoint-driven behavior is visible at the point a prop is set, rather than hidden inside a separate media query elsewhere.
 
@@ -60,23 +64,55 @@ Set a fallback media-query value alongside any container-query value, for browse
 
 ## Examples
 
+Resize the browser window to see the media-query examples change. The container-query examples respond to the width of their `FlexBox`, which here is the page's content column.
+
 ### Media queries
 
-<StoryEmbed
-  id="foundations-system-responsive-properties--media-queries"
-  height="10rem"
-/>
+<MediaQueries />
+
+```tsx
+<FlexBox center height="500px" width={1}>
+  <Box bg={{ _: 'paleBlue', md: 'orange' }} border={1} borderRadius="sm" p={16}>
+    My background color will change at the medium media-query breakpoint.
+  </Box>
+</FlexBox>
+```
 
 ### Container queries
 
-<StoryEmbed
-  id="foundations-system-responsive-properties--container-queries"
-  height="10rem"
-/>
+<ContainerQueries />
+
+```tsx
+<FlexBox containerType="inline-size" center height="500px" width={1}>
+  <Box
+    bg={{ _: 'paleBlue', c_md: 'orange' }}
+    border={1}
+    borderRadius="sm"
+    p={16}
+  >
+    My background color will change at the medium container-query breakpoint.
+  </Box>
+</FlexBox>
+```
 
 ### Combined queries
 
-<StoryEmbed
-  id="foundations-system-responsive-properties--combined-queries"
-  height="10rem"
-/>
+<CombinedQueries />
+
+```tsx
+<FlexBox containerType="inline-size" center height="500px" width={1}>
+  <Box
+    bg={{
+      _: 'beige',
+      md: 'background-disabled',
+      c_lg: 'primary-inverse',
+    }}
+    border={1}
+    borderRadius="sm"
+    p={16}
+  >
+    My background color will change at the medium media-query breakpoint and at
+    the large container-query breakpoint.
+  </Box>
+</FlexBox>
+```
