@@ -12,6 +12,19 @@ import type { ColorSystem, ResolvedValue } from './system';
  * ships is what was checked, whatever Style Dictionary did to the values
  * (rounding, references) on the way out.
  */
+/* Removes `/* … *\/` comments by indexOf, not a regex (CodeQL js/polynomial-redos). */
+const stripComments = (s: string): string => {
+  let out = '';
+  let i = 0;
+  for (;;) {
+    const start = s.indexOf('/*', i);
+    const end = start === -1 ? -1 : s.indexOf('*/', start + 2);
+    if (start === -1 || end === -1) return out + s.slice(i);
+    out += s.slice(i, start);
+    i = end + 2;
+  }
+};
+
 export const parseTokensCss = (
   css: string,
   source: ColorSystem
@@ -21,7 +34,7 @@ export const parseTokensCss = (
   const blocks = css.split('}').flatMap((raw) => {
     // Style Dictionary puts `/** … */` notes after declarations; without
     // stripping them, a note swallows the next declaration's name.
-    const chunk = raw.replace(/\/\*[\s\S]*?\*\//g, '');
+    const chunk = stripComments(raw);
     // Last '{' in the chunk: inside an @media block the inner rule's
     // selector comes after the at-rule's own brace.
     const open = chunk.lastIndexOf('{');
