@@ -1,12 +1,31 @@
-import { Box, FlexBox } from '@skillsoft/gamut';
+import styled from '@emotion/styled';
+import { variance } from '@skillsoft/variance';
 import type { Meta, StoryObj } from '@storybook/react';
 
-const meta: Meta<typeof FlexBox> = {
-  title: 'Foundations/System/Responsive properties',
-  component: FlexBox,
+import { system } from '../variance';
+
+const Box = styled.div(
+  variance.compose(
+    system.layout,
+    system.flex,
+    system.space,
+    system.border,
+    system.color
+  )
+);
+
+const meta: Meta<typeof Box> = {
+  title: 'Foundations/Responsive properties',
+  component: Box,
+  parameters: {
+    controls: { disable: true },
+    docs: { propsTable: false },
+  },
   args: {
-    center: true,
+    alignItems: 'center',
+    display: 'flex',
     height: '500px',
+    justifyContent: 'center',
     width: 1,
   },
 };
@@ -16,7 +35,7 @@ type Story = StoryObj<typeof Box>;
 
 export const MediaQueries: Story = {
   render: (args) => (
-    <FlexBox {...args}>
+    <Box {...args}>
       <Box
         bg={{ _: 'paleBlue', md: 'orange' }}
         border={1}
@@ -25,13 +44,13 @@ export const MediaQueries: Story = {
       >
         My background color will change at the medium media-query breakpoint.
       </Box>
-    </FlexBox>
+    </Box>
   ),
 };
 
 export const ContainerQueries: Story = {
   render: (args) => (
-    <FlexBox containerType="inline-size" {...args}>
+    <Box containerType="inline-size" {...args}>
       <Box
         bg={{ _: 'paleBlue', c_md: 'orange' }}
         border={1}
@@ -41,13 +60,13 @@ export const ContainerQueries: Story = {
         My background color will change at the medium container-query
         breakpoint.
       </Box>
-    </FlexBox>
+    </Box>
   ),
 };
 
 export const CombinedQueries: Story = {
   render: (args) => (
-    <FlexBox containerType="inline-size" {...args}>
+    <Box containerType="inline-size" {...args}>
       <Box
         bg={{
           _: 'beige',
@@ -61,6 +80,6 @@ export const CombinedQueries: Story = {
         My background color will change at the medium media-query breakpoint and
         at the large container-query breakpoint.
       </Box>
-    </FlexBox>
+    </Box>
   ),
 };

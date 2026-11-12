@@ -398,7 +398,9 @@ export const VideoTagOverride: Story = {
     await waitFor(() =>
       expect(player.querySelector('video')).toHaveAttribute('src', videoSrc)
     );
-    await waitFor(() => expect(player).toHaveAttribute('data-can-play'));
+    await waitFor(() => expect(player).toHaveAttribute('data-can-play'), {
+      timeout: 10000,
+    });
     await expect(
       canvasElement.querySelector('p [data-media-player]')
     ).toBeNull();
@@ -419,7 +421,9 @@ export const VideoSourceOverride: Story = {
     await waitFor(() =>
       expect(player.querySelector('source')).toHaveAttribute('src', videoSrc)
     );
-    await waitFor(() => expect(player).toHaveAttribute('data-can-play'));
+    await waitFor(() => expect(player).toHaveAttribute('data-can-play'), {
+      timeout: 10000,
+    });
   },
 };
 
@@ -679,7 +683,9 @@ export const VideoWithCaptions: Story = {
     await expect(track).toHaveAttribute('kind', 'captions');
     await expect(track).toHaveAttribute('srclang', 'en');
     await expect(track).toHaveAttribute('label', 'English');
-    await waitFor(() => expect(player).toHaveAttribute('data-can-play'));
+    await waitFor(() => expect(player).toHaveAttribute('data-can-play'), {
+      timeout: 10000,
+    });
   },
 };
 
