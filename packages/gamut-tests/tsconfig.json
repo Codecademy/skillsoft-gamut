@@ -11,6 +11,5 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "types": []
-  },
-  "exclude": ["jest.config.ts"]
+  }
 }

@@ -103,4 +103,4 @@ Gamut ships modern JavaScript from `node_modules`, and Jest skips transpiling `n
 transformIgnorePatterns: ['node_modules/(?!(@vidstack/react|@formatjs)/)'],
 ```
 
-Add more scopes inside the non-capturing group if your dependency tree pulls in other untranspiled ESM packages. If tests only start failing after upgrading Gamut or a transitive dependency, compare your Jest/Babel config against Gamut's own and adjust `transformIgnorePatterns` and Babel plugins to match.
+Add more scopes inside the non-capturing group if your dependency tree pulls in other untranspiled ESM packages. If tests only start failing after upgrading Gamut or a transitive dependency, check `transformIgnorePatterns` and your Babel plugins first.

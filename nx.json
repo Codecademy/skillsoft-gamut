@@ -41,17 +41,6 @@
     "verify": {
       "cache": true,
       "dependsOn": ["^build"]
-    },
-    "@nx/jest:jest": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/jest.config.base.ts",
-        "{workspaceRoot}/jest.preset.js",
-        "babelConfig"
-      ]
     }
   },
   "generators": {
