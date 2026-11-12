@@ -1,0 +1,35 @@
+{
+  "name": "vitest",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": [],
+  "implicitDependencies": [
+    "eslint-plugin-gamut",
+    "gamut",
+    "gamut-agent-tools",
+    "gamut-codemods",
+    "gamut-icons",
+    "gamut-illustrations",
+    "gamut-patterns",
+    "gamut-styles",
+    "gamut-tests",
+    "macros",
+    "variance"
+  ],
+  "targets": {
+    "test": {
+      "dependsOn": ["^build"],
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/coverage/vitest"],
+      "inputs": [
+        "{workspaceRoot}/packages/**/*",
+        "{workspaceRoot}/vitest.config.ts",
+        "{projectRoot}/**/*",
+        { "env": "CI" }
+      ],
+      "options": {
+        "command": "vitest run --project=jsdom --project=node"
+      }
+    }
+  }
+}

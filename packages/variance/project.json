@@ -21,19 +21,6 @@
         "parallel": false
       }
     },
-    "test": {
-      "executor": "nx:run-commands",
-      "outputs": ["{workspaceRoot}/coverage/vitest"],
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/vitest.config.ts",
-        "{workspaceRoot}/script/vitest/jsdom-setup.ts"
-      ],
-      "options": {
-        "command": "vitest run --project=jsdom --coverage.enabled=${CI:-false} packages/variance"
-      }
-    },
     "verify": {
       "executor": "nx:run-commands",
       "options": {

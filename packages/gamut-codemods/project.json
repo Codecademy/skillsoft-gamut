@@ -17,20 +17,6 @@
         "parallel": false
       }
     },
-    "test": {
-      "dependsOn": ["^build"],
-      "executor": "nx:run-commands",
-      "outputs": ["{workspaceRoot}/coverage/vitest"],
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/vitest.config.ts",
-        "{workspaceRoot}/script/vitest/node-setup.ts"
-      ],
-      "options": {
-        "command": "vitest run --project=node --coverage.enabled=${CI:-false} packages/gamut-codemods"
-      }
-    },
     "verify-package": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
