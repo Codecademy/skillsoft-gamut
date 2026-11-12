@@ -149,7 +149,16 @@ export default defineConfig({
               link: '/foundations/',
               items: [
                 { slug: 'foundations' },
-                { slug: 'foundations/design-tokens' },
+                {
+                  // See the note above `Writing UX copy` for why this
+                  // needs an explicit label instead of a bare autogenerate.
+                  label: 'Design tokens',
+                  items: [
+                    {
+                      autogenerate: { directory: 'foundations/design-tokens' },
+                    },
+                  ],
+                },
                 { slug: 'foundations/eslint-rules' },
                 { slug: 'foundations/icon-and-asset-catalog' },
                 { slug: 'foundations/layout' },
