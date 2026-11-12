@@ -1,6 +1,6 @@
 /*
- * Setup for the Vitest `jsdom` project. Ports `script/jest/base-setup.js`
- * and `script/jest/rtl-setup.js` for the packages that have moved off Jest.
+ * Setup for the Vitest `jsdom` project, ported from the old Jest setup:
+ * jest-dom and Emotion matchers, RTL cleanup, a pinned `Date.now`, and jsdom gaps.
  */
 import '@testing-library/jest-dom/vitest';
 
