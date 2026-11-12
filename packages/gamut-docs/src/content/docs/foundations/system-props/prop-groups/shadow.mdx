@@ -5,6 +5,8 @@ sidebar:
   order: 10
 ---
 
+import SystemPropTable from '~/components/SystemPropTable.astro';
+
 Shadow props add box and text shadows, using standard CSS shadow syntax.
 
 ```tsx
@@ -16,4 +18,6 @@ const ShadowExample = styled.div(system.shadow);
 />;
 ```
 
-For every prop in this group — its CSS properties, scale, and transform — see the [Shadow prop table](https://gamut.codecademy.com/?path=/docs/foundations-system-props-shadow--docs) in Storybook.
+## Props
+
+<SystemPropTable group="shadows" />
