@@ -1,4 +1,5 @@
 import { transform } from '@babel/core';
+import { describe, expect, it } from 'vitest';
 
 import plugin from '../mask-plugin';
 

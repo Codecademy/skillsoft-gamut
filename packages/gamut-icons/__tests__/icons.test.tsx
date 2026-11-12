@@ -1,5 +1,6 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
 import { screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
 import { AddIcon } from '../src/index';
 

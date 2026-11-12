@@ -6,10 +6,10 @@
     "jsx": "react-jsx",
     "outDir": "./dist",
     "rootDir": "./src",
-    "types": ["jest"],
+    "types": [],
     "paths": {
       "~storybook/blocks": ["../.storybook/components/"]
     }
   },
-  "exclude": ["jest.config.ts", "**/*.stories.tsx"]
+  "exclude": ["**/*.stories.tsx"]
 }

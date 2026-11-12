@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { adminTheme } from '../admin';
 import { coreTheme } from '../core';
 import { lxStudioTheme } from '../lxStudio';

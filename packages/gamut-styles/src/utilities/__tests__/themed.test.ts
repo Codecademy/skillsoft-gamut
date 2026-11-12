@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { coreTheme } from '../../themes';
 import { spacing } from '../../variables';
 import { themed } from '../themed';

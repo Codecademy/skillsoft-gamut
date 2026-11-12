@@ -30,7 +30,7 @@
         "default",
         "^production",
         "{workspaceRoot}/vitest.config.ts",
-        "{workspaceRoot}/script/vitest/node-setup.ts"
+        "{workspaceRoot}/script/vitest/jsdom-setup.ts"
       ],
       "options": {
         "command": "vitest run --project=jsdom --coverage.enabled=${CI:-false} packages/gamut"

@@ -1,6 +1,7 @@
 import type { Theme } from '@emotion/react';
 import { ThemeProvider } from '@emotion/react';
 import type * as React from 'react';
+import { describe, it } from 'vitest';
 
 import { setupRtl } from '../../__tests__/testUtils';
 import { coreTheme as theme } from '../../themes';

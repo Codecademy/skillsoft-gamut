@@ -1,11 +1,17 @@
 /*
- * Setup for the Vitest `node` project (jsdom). Ports `script/jest/base-setup.js`
+ * Setup for the Vitest `jsdom` project. Ports `script/jest/base-setup.js`
  * and `script/jest/rtl-setup.js` for the packages that have moved off Jest.
  */
 import '@testing-library/jest-dom/vitest';
 
+import { matchers as emotionMatchers } from '@emotion/jest';
 import { cleanup } from '@testing-library/react';
-import { afterEach } from 'vitest';
+import { afterEach, expect } from 'vitest';
+
+// `toHaveStyleRule`. @emotion/jest types its matchers for Jest's `expect`, hence the cast.
+expect.extend(
+  emotionMatchers as unknown as Parameters<typeof expect.extend>[0]
+);
 
 // RTL only auto-registers cleanup when `afterEach` is a global; tests import it from vitest.
 afterEach(cleanup);

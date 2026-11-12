@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { testConfig } from '../__fixtures__/testConfig';
 import { orderPropNames } from '../propNames';
 

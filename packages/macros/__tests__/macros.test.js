@@ -1,4 +1,4 @@
-'use strict';
+import { describe, expect, test } from 'vitest';
 
 const babel = require('@babel/core');
 const path = require('path');

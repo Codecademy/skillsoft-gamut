@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { AssetProvider } from '../AssetProvider';
 import { coreTheme, percipioTheme } from '../themes';
@@ -6,11 +7,11 @@ import { getFontsMock } from './fontUtilsMock';
 
 const typedPercipioTheme = percipioTheme as any;
 
-jest.mock('../utilities/fontUtils', () => ({
-  getFonts: require('./fontUtilsMock').getFontsMock,
+vi.mock('../utilities/fontUtils', async () => ({
+  getFonts: (await import('./fontUtilsMock')).getFontsMock,
 }));
 
-jest.mock('../remoteAssets/fonts', () => {
+vi.mock('../remoteAssets/fonts', () => {
   const percipio = [
     {
       filePath: 'https://www.codecademy.com/gamut/SkillsoftText-Regular',
@@ -47,11 +48,11 @@ function getPreloadLinks(container: HTMLElement): NodeListOf<Element> {
 }
 
 const mockDocumentFonts = {
-  load: jest.fn(),
+  load: vi.fn(),
   ready: Promise.resolve(),
-  check: jest.fn(),
-  addEventListener: jest.fn(),
-  removeEventListener: jest.fn(),
+  check: vi.fn(),
+  addEventListener: vi.fn(),
+  removeEventListener: vi.fn(),
 };
 
 Object.defineProperty(document, 'fonts', {
@@ -59,7 +60,7 @@ Object.defineProperty(document, 'fonts', {
   writable: true,
 });
 
-const mockFetch = jest.fn();
+const mockFetch = vi.fn();
 global.fetch = mockFetch;
 
 const defaultFonts = [
@@ -72,7 +73,7 @@ const defaultFonts = [
 
 describe('Font Loading and Error Handling', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockGetFonts.mockReturnValue(defaultFonts);
     mockDocumentFonts.load.mockClear();
     mockDocumentFonts.check.mockClear();

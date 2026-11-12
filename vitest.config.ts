@@ -10,8 +10,9 @@ const storybookDir = join(__dirname, 'packages/.storybook');
 const outputDirectory = join(__dirname, 'coverage/vitest');
 
 /*
- * One Vitest workspace, two projects: `storybook` runs stories as browser tests,
- * and `node` runs the unit tests (hooks, pure logic, ref contracts) in jsdom.
+ * One Vitest workspace. `storybook` runs stories as browser tests; the
+ * node-side projects run every other test: `jsdom` for component, hook, and
+ * style packages, and `node` for Node tooling (ESLint rules, codemods, CLIs).
  * Select one with `--project=<name>`.
  */
 export default defineConfig({
@@ -23,7 +24,13 @@ export default defineConfig({
       reporter: process.env.CI
         ? ['clover', 'json', 'lcov', 'text']
         : ['html', 'text'],
-      include: ['packages/gamut/src/**'],
+      include: ['packages/**'],
+      exclude: [
+        ...configDefaults.coverage.exclude!,
+        '**/dist/**',
+        'packages/gamut-icons/src/icons/**',
+        'packages/gamut-patterns/src/patterns/**',
+      ],
       // Match Jest: only report files the tests load.
       all: false,
     },
@@ -103,10 +110,12 @@ export default defineConfig({
         ],
         test: {
           name: 'jsdom',
-          include: ['packages/gamut/**/*.test.{ts,tsx}'],
+          include: [
+            'packages/{gamut,gamut-styles,gamut-icons,gamut-illustrations,gamut-patterns,variance,macros}/**/*.test.{js,ts,tsx}',
+          ],
           exclude: [...configDefaults.exclude, '**/dist/**'],
           environment: 'jsdom',
-          setupFiles: [join(__dirname, 'script/vitest/node-setup.ts')],
+          setupFiles: [join(__dirname, 'script/vitest/jsdom-setup.ts')],
           clearMocks: true,
         },
       },

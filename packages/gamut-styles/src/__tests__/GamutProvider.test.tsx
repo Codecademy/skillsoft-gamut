@@ -2,27 +2,28 @@ import createCache from '@emotion/cache';
 import { ThemeContext } from '@emotion/react';
 import { screen } from '@testing-library/react';
 import { setNonce } from 'get-nonce';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { createEmotionCache } from '../cache';
 import { GamutProvider, useNonce } from '../GamutProvider';
 import { coreTheme as theme } from '../themes';
 import { setupRtl } from './testUtils';
 
-jest.mock('../cache', () => {
-  const cacheMock = jest.fn();
+vi.mock('../cache', () => {
+  const cacheMock = vi.fn();
   return { createEmotionCache: cacheMock };
 });
 
-jest.mock('get-nonce', () => ({
-  setNonce: jest.fn(),
+vi.mock('get-nonce', () => ({
+  setNonce: vi.fn(),
 }));
 
 const renderView = setupRtl(GamutProvider, { theme });
 
 describe(GamutProvider, () => {
   beforeEach(() => {
-    jest.resetAllMocks();
-    (setNonce as jest.Mock).mockClear();
+    vi.resetAllMocks();
+    vi.mocked(setNonce).mockClear();
   });
 
   it('renders with a cache by default', () => {

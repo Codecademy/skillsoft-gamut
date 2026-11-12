@@ -1,4 +1,5 @@
 import type { Theme } from '@emotion/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { variance } from '../../src/core';
 import { createScale } from '../../src/scales/createScale';
@@ -194,7 +195,7 @@ describe('style props', () => {
 });
 
 describe('css', () => {
-  const marginTransform = jest.fn();
+  const marginTransform = vi.fn();
 
   const css = variance.createCss({
     width: { property: 'width', transform: transformSize },
@@ -211,7 +212,7 @@ describe('css', () => {
   });
 
   beforeEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
     marginTransform.mockImplementation((val) => val);
   });
 
@@ -320,7 +321,7 @@ describe('css', () => {
 });
 
 describe('variants', () => {
-  const marginTransform = jest.fn();
+  const marginTransform = vi.fn();
 
   const variant = variance.createVariant({
     width: { property: 'width', transform: transformSize },
@@ -334,7 +335,7 @@ describe('variants', () => {
   });
 
   beforeEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
     marginTransform.mockImplementation((val) => val);
   });
 
@@ -546,7 +547,7 @@ describe('variants', () => {
 });
 
 describe('states', () => {
-  const marginTransform = jest.fn();
+  const marginTransform = vi.fn();
 
   const states = variance.createStates({
     width: { property: 'width', transform: transformSize },
@@ -560,7 +561,7 @@ describe('states', () => {
   });
 
   beforeEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
     marginTransform.mockImplementation((val) => val);
   });
 

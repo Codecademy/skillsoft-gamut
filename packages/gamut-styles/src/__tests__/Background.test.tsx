@@ -1,9 +1,9 @@
-import { matchers } from '@emotion/jest';
 import { ThemeProvider, useTheme } from '@emotion/react';
 import { render } from '@testing-library/react';
 import { setupRtl as setupRtlBase } from 'component-test-setup';
 import overArgs from 'lodash/overArgs';
 import type * as React from 'react';
+import { describe, expect, it } from 'vitest';
 
 import { Background } from '../Background';
 import {
@@ -13,8 +13,6 @@ import {
   percipioTheme,
   platformTheme,
 } from '../themes';
-
-expect.extend(matchers);
 
 function withThemeProvider<Props>(
   WrappedComponent: React.ComponentType<Props>

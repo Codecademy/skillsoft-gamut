@@ -11,7 +11,6 @@
     "../../node_modules/@nx/react/typings/image.d.ts"
   ],
   "exclude": [
-    "jest.config.ts",
     "**/__tests__/**",
     "**/*.spec.ts",
     "**/*.test.ts",

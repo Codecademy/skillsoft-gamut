@@ -1,1 +1,2 @@
-export const getFontsMock = jest.fn();
+import { vi } from 'vitest';
+export const getFontsMock = vi.fn();
