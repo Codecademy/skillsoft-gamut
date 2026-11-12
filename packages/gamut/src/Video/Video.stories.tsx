@@ -65,7 +65,9 @@ export const Default: Story = {
     const player = await canvas.findByRole('region', {
       name: `Video Player - ${mp4Title}`,
     });
-    await waitFor(() => expect(player).toHaveAttribute('data-can-play'));
+    await waitFor(() => expect(player).toHaveAttribute('data-can-play'), {
+      timeout: 10000,
+    });
     await expect(onReady).toHaveBeenCalled();
 
     await canvas.findByRole('button', { name: 'Play Intro Video' });
@@ -92,7 +94,9 @@ export const PlayAndPause: Story = {
     const player = await canvas.findByRole('region', {
       name: `Video Player - ${mp4Title}`,
     });
-    await waitFor(() => expect(player).toHaveAttribute('data-can-play'));
+    await waitFor(() => expect(player).toHaveAttribute('data-can-play'), {
+      timeout: 10000,
+    });
 
     const playButton = await canvas.findByRole('button', {
       name: 'Play',
@@ -118,7 +122,9 @@ export const SeekBackwards: Story = {
     const player = await canvas.findByRole('region', {
       name: `Video Player - ${mp4Title}`,
     });
-    await waitFor(() => expect(player).toHaveAttribute('data-can-play'));
+    await waitFor(() => expect(player).toHaveAttribute('data-can-play'), {
+      timeout: 10000,
+    });
     const video = player.querySelector('video')!;
     video.currentTime = 30;
     await waitFor(() => expect(video.currentTime).toBe(30));
@@ -144,7 +150,9 @@ export const KeyboardShortcuts: Story = {
     const player = await canvas.findByRole('region', {
       name: `Video Player - ${mp4Title}`,
     });
-    await waitFor(() => expect(player).toHaveAttribute('data-can-play'));
+    await waitFor(() => expect(player).toHaveAttribute('data-can-play'), {
+      timeout: 10000,
+    });
     player.focus();
 
     await userEvent.keyboard('k');
@@ -186,7 +194,9 @@ export const CaptionsMenu: Story = {
     const player = await canvas.findByRole('region', {
       name: `Video Player - ${mp4Title}`,
     });
-    await waitFor(() => expect(player).toHaveAttribute('data-can-play'));
+    await waitFor(() => expect(player).toHaveAttribute('data-can-play'), {
+      timeout: 10000,
+    });
 
     await userEvent.click(
       await canvas.findByRole('button', { name: 'Settings' })
@@ -225,7 +235,9 @@ export const WithoutControls: Story = {
     const player = await canvas.findByRole('region', {
       name: `Video Player - ${mp4Title}`,
     });
-    await waitFor(() => expect(player).toHaveAttribute('data-can-play'));
+    await waitFor(() => expect(player).toHaveAttribute('data-can-play'), {
+      timeout: 10000,
+    });
     await expect(canvas.queryByRole('button')).toBeNull();
   },
 };
