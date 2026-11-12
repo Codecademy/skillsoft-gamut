@@ -269,7 +269,16 @@ const { columns, rows } = tables[token]();
                 {cell.kind === 'code' &&
                   cell.values.map((value) => (
                     <div>
-                      <code>{value}</code>
+                      {/* Each word, and each `[...]` key in a path, is kept
+                          whole so values only wrap between them. */}
+                      <code>
+                        {value.split(/(?=\[)|(?<= )/).map((part, index) => (
+                          <>
+                            {index > 0 && <wbr />}
+                            <span class="segment">{part}</span>
+                          </>
+                        ))}
+                      </code>
                     </div>
                   ))}
                 {cell.kind === 'swatch' &&
@@ -314,16 +323,66 @@ const { columns, rows } = tables[token]();
 </div>
 
 <style>
-  /* Same full-width override as SystemPropTable: Starlight's layered table
-     styles render tables as `display: block`, so scrolling moves to the
-     wrapper and the table spans the content width. */
+  /* Starlight's layered table styles render tables as `display: block` with
+     their own scrolling, which shrinks them to their content. These tables
+     span the content width instead and wrap their values to fit, so they
+     don't scroll — a scroll container would also turn the elevation
+     examples' transform offsets into scrollbars. */
   .design-token-table {
-    overflow-x: auto;
+    container-type: inline-size;
   }
 
   .design-token-table table {
     display: table;
     width: 100%;
+    overflow: visible;
+  }
+
+  /* Starlight aligns cells to their text baseline. With stacked chips and
+     examples in a row, baseline alignment makes some browsers (Safari) size
+     the row shorter than its content, so cells are centered instead. */
+  .design-token-table :is(th, td) {
+    padding-inline: 0.5rem;
+    vertical-align: middle;
+  }
+
+  .design-token-table :is(th, td):first-child {
+    padding-inline-start: 0;
+  }
+
+  .design-token-table :is(th, td):last-child {
+    padding-inline-end: 0;
+  }
+
+  /* Starlight lets inline code break at any character, which splits values
+     like `var(--color-shadow-primary)` mid-token into ragged fragments. Each
+     value is a rectangular chip whose segments stay whole, so it only wraps
+     between words or before a `[` in a path. Chips are blocks sized to their
+     content rather than inline-blocks, so each one adds its full height to
+     the row instead of sitting on a line box. */
+  .design-token-table code {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    overflow-wrap: normal;
+    font-size: 0.8rem;
+  }
+
+  .segment {
+    white-space: nowrap;
+  }
+
+  /* When the table is too narrow for whole segments, fall back to breaking
+     anywhere so it still fits instead of overflowing the page. */
+  @container (max-width: 44rem) {
+    .segment {
+      white-space: normal;
+    }
+
+    .design-token-table code {
+      overflow-wrap: anywhere;
+    }
+
   }
 
   /* Starlight spaces stacked content blocks 1rem apart, which pulls swatch
@@ -379,8 +438,8 @@ const { columns, rows } = tables[token]();
   }
 
   .example-shape {
-    display: inline-block;
-    margin: 0.75rem;
+    display: block;
+    margin: 0.5rem;
     background: currentColor;
   }
 </style>
