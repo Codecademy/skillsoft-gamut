@@ -1,0 +1,16 @@
+---
+title: Elevation
+description: The shadow and transform tokens that give surfaces like Card their lift.
+sidebar:
+  order: 6
+---
+
+import DesignTokenTable from '~/components/DesignTokenTable.astro';
+
+**Key**: `elevation`
+
+Elevation describes how a surface like `Card` renders shadow and lift. The scale has three states — `rest`, `hover`, and `hoverMirrored` — each with a `shadow` and a `transform` token, accessed with a dash-case key, `elevation['<state>-<property>']`. `hoverMirrored` is for a surface that casts its shadow to the right instead of the left, such as `Card`'s `patternRight` shadow.
+
+Shadow colors reference the `shadow-primary` color mode alias, so they follow light and dark mode automatically. A theme can supply its own scale with `addScale('elevation', ...)` — Percipio, for example, replaces the hard offset shadow with a soft, blurred one and no lift.
+
+<DesignTokenTable token="elevation" />
