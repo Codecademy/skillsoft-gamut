@@ -111,7 +111,7 @@ export default defineConfig({
         test: {
           name: 'jsdom',
           include: [
-            'packages/{gamut,gamut-styles,gamut-icons,gamut-illustrations,gamut-patterns,variance,macros}/**/*.test.{js,ts,tsx}',
+            'packages/{gamut,gamut-styles,gamut-icons,gamut-illustrations,gamut-patterns,variance}/**/*.test.{js,ts,tsx}',
           ],
           exclude: [...configDefaults.exclude, '**/dist/**'],
           environment: 'jsdom',

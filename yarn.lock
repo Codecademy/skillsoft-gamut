@@ -7322,14 +7322,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@skillsoft/macros@workspace:packages/macros":
-  version: 0.0.0-use.local
-  resolution: "@skillsoft/macros@workspace:packages/macros"
-  dependencies:
-    babel-plugin-macros: "npm:^3.0.1"
-  languageName: unknown
-  linkType: soft
-
 "@skillsoft/styleguide@workspace:packages/styleguide":
   version: 0.0.0-use.local
   resolution: "@skillsoft/styleguide@workspace:packages/styleguide"
@@ -10125,7 +10117,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-macros@npm:^3.0.1, babel-plugin-macros@npm:^3.1.0":
+"babel-plugin-macros@npm:^3.1.0":
   version: 3.1.0
   resolution: "babel-plugin-macros@npm:3.1.0"
   dependencies:
@@ -21165,7 +21157,6 @@ __metadata:
     "@vitejs/plugin-react-swc": "npm:4.3.0"
     "@vitest/browser": "npm:^3.2.4"
     "@vitest/coverage-v8": "npm:3.2.7"
-    babel-plugin-macros: "npm:^3.0.1"
     commander: "npm:^14.0.3"
     component-test-setup: "npm:^0.3.1"
     core-js: "npm:3.7.0"

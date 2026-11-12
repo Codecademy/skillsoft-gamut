@@ -13,7 +13,6 @@
     "gamut-patterns",
     "gamut-styles",
     "gamut-tests",
-    "macros",
     "variance"
   ],
   "targets": {
