@@ -32,7 +32,13 @@ type Token =
 
 type Cell =
   | { kind: 'code'; values: string[] }
-  | { kind: 'swatch'; scales: Record<string, string>[]; backdrop: string }
+  | {
+      kind: 'swatch';
+      scales: Record<string, string>[];
+      backdrop: string;
+      // Shown in place of the fill value, for a single-color swatch.
+      label?: string;
+    }
   | { kind: 'text'; style: string; text: string }
   | { kind: 'shape'; style: string };
 
@@ -69,14 +75,18 @@ const path = (scale: string, id: string) => {
 
 const swatch = (
   scales: Record<string, string>[],
-  backdrop = WHITE
-): Cell => ({ kind: 'swatch', scales, backdrop });
+  backdrop = WHITE,
+  label?: string
+): Cell => ({ kind: 'swatch', scales, backdrop, label });
 
 const SAMPLE_TEXT = 'Example Text';
 const LONG_TEXT = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`;
 
 const { navy, white, ...solidSwatches } = coreSwatches;
 
+// As in Storybook, each alias is labeled with the `theme.colors` variable of
+// the color it points to (e.g. `text` → `var(--color-navy-800)`). The fill
+// still uses the raw value, since this site doesn't define those variables.
 const colorModeTable = (
   mode: Record<string, string>,
   backdrop: string
@@ -84,7 +94,14 @@ const colorModeTable = (
   columns: ['Token', 'Path', 'Swatch'],
   rows: Object.entries(mode).map(([id, color]) => ({
     id,
-    cells: [code(path('colors', id)), swatch([{ '': getColorValue(color) }], backdrop)],
+    cells: [
+      code(path('colors', id)),
+      swatch(
+        [{ '': getColorValue(color) }],
+        backdrop,
+        theme.colors[color as keyof typeof theme.colors]
+      ),
+    ],
   })),
 });
 
@@ -272,7 +289,7 @@ const { columns, rows } = tables[token]();
                           {weights.map(([weight, value]) => (
                             <div>
                               {weights.length > 1 && <span>{weight}</span>}
-                              <span>{value}</span>
+                              <span>{cell.label ?? value}</span>
                             </div>
                           ))}
                         </div>
