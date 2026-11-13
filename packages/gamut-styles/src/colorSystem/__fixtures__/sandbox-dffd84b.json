@@ -1,0 +1,969 @@
+{
+  "source": "gamut-sandbox PR #34 (stacey/color-tokens-v2) at dffd84b — dumped from src/colorSystem palette.ts / roles.ts",
+  "families": {
+    "neutral-light": {
+      "hue": 93.7,
+      "neutral": true,
+      "rungs": {
+        "100": {
+          "l": 0.9862,
+          "c": 0.0041,
+          "hex": "#fbfaf7"
+        },
+        "200": {
+          "l": 0.9364,
+          "c": 0.0075,
+          "hex": "#ebeae4"
+        },
+        "300": {
+          "l": 0.8497,
+          "c": 0.0191,
+          "hex": "#d2cec0"
+        },
+        "400": {
+          "l": 0.7628,
+          "c": 0.0218,
+          "hex": "#b6b2a3"
+        },
+        "500": {
+          "l": 0.6707,
+          "c": 0.0241,
+          "hex": "#9a9585"
+        },
+        "600": {
+          "l": 0.5835,
+          "c": 0.0239,
+          "hex": "#807b6c"
+        },
+        "700": {
+          "l": 0.4972,
+          "c": 0.0193,
+          "hex": "#666256"
+        },
+        "800": {
+          "l": 0.4115,
+          "c": 0.0151,
+          "hex": "#4d4b42"
+        },
+        "900": {
+          "l": 0.3346,
+          "c": 0.012,
+          "hex": "#383730"
+        },
+        "1000": {
+          "l": 0.2499,
+          "c": 0.0086,
+          "hex": "#23221d"
+        },
+        "1100": {
+          "l": 0.1925,
+          "c": 0.0063,
+          "hex": "#151411"
+        }
+      }
+    },
+    "neutral-dark": {
+      "hue": 270.7,
+      "neutral": true,
+      "rungs": {
+        "100": {
+          "l": 0.9862,
+          "c": 0.0012,
+          "hex": "#fafafb"
+        },
+        "200": {
+          "l": 0.9364,
+          "c": 0.0024,
+          "hex": "#e9eaeb"
+        },
+        "300": {
+          "l": 0.8497,
+          "c": 0.0081,
+          "hex": "#cbcdd3"
+        },
+        "400": {
+          "l": 0.7628,
+          "c": 0.0168,
+          "hex": "#aeb2bd"
+        },
+        "500": {
+          "l": 0.6707,
+          "c": 0.0305,
+          "hex": "#8e95a9"
+        },
+        "600": {
+          "l": 0.5835,
+          "c": 0.0454,
+          "hex": "#717a97"
+        },
+        "700": {
+          "l": 0.4972,
+          "c": 0.0538,
+          "hex": "#576182"
+        },
+        "800": {
+          "l": 0.4115,
+          "c": 0.0482,
+          "hex": "#414a65"
+        },
+        "900": {
+          "l": 0.3346,
+          "c": 0.0383,
+          "hex": "#2f364b"
+        },
+        "1000": {
+          "l": 0.2499,
+          "c": 0.0273,
+          "hex": "#1d212f"
+        },
+        "1100": {
+          "l": 0.1925,
+          "c": 0.02,
+          "hex": "#11141d"
+        }
+      }
+    },
+    "violet": {
+      "hue": 287.1,
+      "neutral": false,
+      "rungs": {
+        "100": {
+          "l": 0.9862,
+          "c": 0.0067,
+          "hex": "#fafaff"
+        },
+        "200": {
+          "l": 0.9364,
+          "c": 0.0127,
+          "hex": "#e9e9f2"
+        },
+        "300": {
+          "l": 0.8497,
+          "c": 0.043,
+          "hex": "#cbcae9"
+        },
+        "400": {
+          "l": 0.7628,
+          "c": 0.0896,
+          "hex": "#aeaae9"
+        },
+        "500": {
+          "l": 0.6707,
+          "c": 0.1624,
+          "hex": "#9182f3"
+        },
+        "600": {
+          "l": 0.5835,
+          "c": 0.2416,
+          "hex": "#7a52ff"
+        },
+        "700": {
+          "l": 0.4972,
+          "c": 0.2722,
+          "hex": "#661af0"
+        },
+        "800": {
+          "l": 0.4115,
+          "c": 0.2134,
+          "hex": "#4d1cb5"
+        },
+        "900": {
+          "l": 0.3346,
+          "c": 0.1696,
+          "hex": "#381587"
+        },
+        "1000": {
+          "l": 0.2499,
+          "c": 0.1209,
+          "hex": "#220d57"
+        },
+        "1100": {
+          "l": 0.1925,
+          "c": 0.0887,
+          "hex": "#150739"
+        }
+      }
+    },
+    "blue": {
+      "hue": 262.4,
+      "neutral": false,
+      "rungs": {
+        "100": {
+          "l": 0.9862,
+          "c": 0.0064,
+          "hex": "#f8fbff"
+        },
+        "200": {
+          "l": 0.9364,
+          "c": 0.0121,
+          "hex": "#e6eaf2"
+        },
+        "300": {
+          "l": 0.8497,
+          "c": 0.0407,
+          "hex": "#c0cee9"
+        },
+        "400": {
+          "l": 0.7628,
+          "c": 0.0846,
+          "hex": "#95b2e8"
+        },
+        "500": {
+          "l": 0.6707,
+          "c": 0.1531,
+          "hex": "#6192f3"
+        },
+        "600": {
+          "l": 0.5835,
+          "c": 0.2274,
+          "hex": "#276eff"
+        },
+        "700": {
+          "l": 0.4972,
+          "c": 0.2254,
+          "hex": "#0a51df"
+        },
+        "800": {
+          "l": 0.4115,
+          "c": 0.1767,
+          "hex": "#0c3fa8"
+        },
+        "900": {
+          "l": 0.3346,
+          "c": 0.1405,
+          "hex": "#082e7d"
+        },
+        "1000": {
+          "l": 0.2499,
+          "c": 0.1001,
+          "hex": "#051c50"
+        },
+        "1100": {
+          "l": 0.1925,
+          "c": 0.0734,
+          "hex": "#031135"
+        }
+      }
+    },
+    "magenta": {
+      "hue": 357.3,
+      "neutral": false,
+      "rungs": {
+        "100": {
+          "l": 0.9862,
+          "c": 0.0073,
+          "hex": "#fff9fa"
+        },
+        "200": {
+          "l": 0.9364,
+          "c": 0.0141,
+          "hex": "#f2e6ea"
+        },
+        "300": {
+          "l": 0.8497,
+          "c": 0.0499,
+          "hex": "#eac1ce"
+        },
+        "400": {
+          "l": 0.7628,
+          "c": 0.11,
+          "hex": "#ea94b2"
+        },
+        "500": {
+          "l": 0.6707,
+          "c": 0.2144,
+          "hex": "#f44b97"
+        },
+        "600": {
+          "l": 0.5835,
+          "c": 0.238,
+          "hex": "#dd007c"
+        },
+        "700": {
+          "l": 0.4972,
+          "c": 0.1927,
+          "hex": "#af1363"
+        },
+        "800": {
+          "l": 0.4115,
+          "c": 0.1511,
+          "hex": "#85154b"
+        },
+        "900": {
+          "l": 0.3346,
+          "c": 0.1201,
+          "hex": "#620f37"
+        },
+        "1000": {
+          "l": 0.2499,
+          "c": 0.0856,
+          "hex": "#3f0922"
+        },
+        "1100": {
+          "l": 0.1925,
+          "c": 0.0628,
+          "hex": "#290515"
+        }
+      }
+    },
+    "red": {
+      "hue": 17.3,
+      "neutral": false,
+      "rungs": {
+        "100": {
+          "l": 0.9862,
+          "c": 0.0066,
+          "hex": "#fff9f9"
+        },
+        "200": {
+          "l": 0.9364,
+          "c": 0.0128,
+          "hex": "#f2e7e7"
+        },
+        "300": {
+          "l": 0.8497,
+          "c": 0.0452,
+          "hex": "#eac2c3"
+        },
+        "400": {
+          "l": 0.7628,
+          "c": 0.0993,
+          "hex": "#ea989b"
+        },
+        "500": {
+          "l": 0.6707,
+          "c": 0.1924,
+          "hex": "#f45769"
+        },
+        "600": {
+          "l": 0.5835,
+          "c": 0.2336,
+          "hex": "#e40045"
+        },
+        "700": {
+          "l": 0.4972,
+          "c": 0.1891,
+          "hex": "#b51439"
+        },
+        "800": {
+          "l": 0.4115,
+          "c": 0.1482,
+          "hex": "#89162c"
+        },
+        "900": {
+          "l": 0.3346,
+          "c": 0.1178,
+          "hex": "#66101f"
+        },
+        "1000": {
+          "l": 0.2499,
+          "c": 0.084,
+          "hex": "#410912"
+        },
+        "1100": {
+          "l": 0.1925,
+          "c": 0.0616,
+          "hex": "#2a050a"
+        }
+      }
+    },
+    "amber": {
+      "hue": 88,
+      "neutral": false,
+      "rungs": {
+        "100": {
+          "l": 0.9862,
+          "c": 0.016,
+          "hex": "#fffaef"
+        },
+        "200": {
+          "l": 0.9364,
+          "c": 0.03,
+          "hex": "#f2e9d4"
+        },
+        "300": {
+          "l": 0.8497,
+          "c": 0.0955,
+          "hex": "#e8cb84"
+        },
+        "400": {
+          "l": 0.7628,
+          "c": 0.1091,
+          "hex": "#cfae5b"
+        },
+        "500": {
+          "l": 0.6707,
+          "c": 0.1206,
+          "hex": "#b4902d"
+        },
+        "600": {
+          "l": 0.5835,
+          "c": 0.1192,
+          "hex": "#997600"
+        },
+        "700": {
+          "l": 0.4972,
+          "c": 0.0965,
+          "hex": "#795e0e"
+        },
+        "800": {
+          "l": 0.4115,
+          "c": 0.0757,
+          "hex": "#5c4810"
+        },
+        "900": {
+          "l": 0.3346,
+          "c": 0.0601,
+          "hex": "#43340b"
+        },
+        "1000": {
+          "l": 0.2499,
+          "c": 0.0429,
+          "hex": "#2a2006"
+        },
+        "1100": {
+          "l": 0.1925,
+          "c": 0.0314,
+          "hex": "#1a1304"
+        }
+      }
+    },
+    "teal": {
+      "hue": 200,
+      "neutral": false,
+      "rungs": {
+        "100": {
+          "l": 0.9862,
+          "c": 0.017,
+          "hex": "#eefeff"
+        },
+        "200": {
+          "l": 0.9364,
+          "c": 0.0318,
+          "hex": "#d2f1f2"
+        },
+        "300": {
+          "l": 0.8497,
+          "c": 0.0794,
+          "hex": "#8ddee2"
+        },
+        "400": {
+          "l": 0.7628,
+          "c": 0.0907,
+          "hex": "#64c4c9"
+        },
+        "500": {
+          "l": 0.6707,
+          "c": 0.1003,
+          "hex": "#34a8ae"
+        },
+        "600": {
+          "l": 0.5835,
+          "c": 0.0991,
+          "hex": "#018d92"
+        },
+        "700": {
+          "l": 0.4972,
+          "c": 0.0803,
+          "hex": "#117074"
+        },
+        "800": {
+          "l": 0.4115,
+          "c": 0.0629,
+          "hex": "#135558"
+        },
+        "900": {
+          "l": 0.3346,
+          "c": 0.05,
+          "hex": "#0e3e41"
+        },
+        "1000": {
+          "l": 0.2499,
+          "c": 0.0356,
+          "hex": "#082728"
+        },
+        "1100": {
+          "l": 0.1925,
+          "c": 0.0261,
+          "hex": "#041819"
+        }
+      }
+    }
+  },
+  "roles": [
+    {
+      "token": "surface-sunken",
+      "light": {
+        "primitive": "neutral-light-200",
+        "hex": "#ebeae4"
+      },
+      "dark": {
+        "primitive": "black",
+        "hex": "#000000"
+      }
+    },
+    {
+      "token": "surface-default",
+      "light": {
+        "primitive": "neutral-light-100",
+        "hex": "#fbfaf7"
+      },
+      "dark": {
+        "primitive": "neutral-dark-1100",
+        "hex": "#11141d"
+      }
+    },
+    {
+      "token": "surface-raised",
+      "light": {
+        "primitive": "white",
+        "hex": "#ffffff"
+      },
+      "dark": {
+        "primitive": "neutral-dark-1000",
+        "hex": "#1d212f"
+      }
+    },
+    {
+      "token": "surface-success",
+      "light": {
+        "primitive": "teal-200",
+        "hex": "#d2f1f2"
+      },
+      "dark": {
+        "primitive": "teal-1000",
+        "hex": "#082728"
+      }
+    },
+    {
+      "token": "surface-warning",
+      "light": {
+        "primitive": "amber-200",
+        "hex": "#f2e9d4"
+      },
+      "dark": {
+        "primitive": "amber-1000",
+        "hex": "#2a2006"
+      }
+    },
+    {
+      "token": "surface-error",
+      "light": {
+        "primitive": "red-200",
+        "hex": "#f2e7e7"
+      },
+      "dark": {
+        "primitive": "red-1000",
+        "hex": "#410912"
+      }
+    },
+    {
+      "token": "surface-brand",
+      "light": {
+        "primitive": "magenta-300 + blue-300 on neutral-light-100",
+        "hex": "#fbfaf7"
+      },
+      "dark": {
+        "primitive": "magenta-900 + blue-900 on neutral-dark-1100",
+        "hex": "#11141d"
+      }
+    },
+    {
+      "token": "surface-brand-subtle",
+      "light": {
+        "primitive": "blue-300 on neutral-light-100",
+        "hex": "#fbfaf7"
+      },
+      "dark": {
+        "primitive": "blue-900 on neutral-dark-1100",
+        "hex": "#11141d"
+      }
+    },
+    {
+      "token": "text-default",
+      "light": {
+        "primitive": "neutral-dark-1000",
+        "hex": "#1d212f"
+      },
+      "dark": {
+        "primitive": "neutral-light-200",
+        "hex": "#ebeae4"
+      }
+    },
+    {
+      "token": "text-subtle",
+      "light": {
+        "primitive": "neutral-dark-800",
+        "hex": "#414a65"
+      },
+      "dark": {
+        "primitive": "neutral-light-400",
+        "hex": "#b6b2a3"
+      }
+    },
+    {
+      "token": "text-inverse",
+      "light": {
+        "primitive": "neutral-light-200",
+        "hex": "#ebeae4"
+      },
+      "dark": {
+        "primitive": "neutral-dark-1000",
+        "hex": "#1d212f"
+      }
+    },
+    {
+      "token": "text-success",
+      "light": {
+        "primitive": "teal-900",
+        "hex": "#0e3e41"
+      },
+      "dark": {
+        "primitive": "teal-300",
+        "hex": "#8ddee2"
+      }
+    },
+    {
+      "token": "text-warning",
+      "light": {
+        "primitive": "amber-900",
+        "hex": "#43340b"
+      },
+      "dark": {
+        "primitive": "amber-300",
+        "hex": "#e8cb84"
+      }
+    },
+    {
+      "token": "text-error",
+      "light": {
+        "primitive": "red-900",
+        "hex": "#66101f"
+      },
+      "dark": {
+        "primitive": "red-300",
+        "hex": "#eac2c3"
+      }
+    },
+    {
+      "token": "border-strong",
+      "light": {
+        "primitive": "neutral-dark-1100",
+        "hex": "#11141d"
+      },
+      "dark": {
+        "primitive": "neutral-light-100",
+        "hex": "#fbfaf7"
+      }
+    },
+    {
+      "token": "border-default",
+      "light": {
+        "primitive": "neutral-dark-600",
+        "hex": "#717a97"
+      },
+      "dark": {
+        "primitive": "neutral-light-600",
+        "hex": "#807b6c"
+      }
+    },
+    {
+      "token": "border-subtle",
+      "light": {
+        "primitive": "neutral-dark-300",
+        "hex": "#cbcdd3"
+      },
+      "dark": {
+        "primitive": "neutral-light-900",
+        "hex": "#383730"
+      }
+    },
+    {
+      "token": "action-primary",
+      "light": {
+        "primitive": "blue-800",
+        "hex": "#0c3fa8"
+      },
+      "dark": {
+        "primitive": "blue-400",
+        "hex": "#95b2e8"
+      }
+    },
+    {
+      "token": "action-primary-hover",
+      "light": {
+        "primitive": "blue-900",
+        "hex": "#082e7d"
+      },
+      "dark": {
+        "primitive": "blue-300",
+        "hex": "#c0cee9"
+      }
+    },
+    {
+      "token": "action-primary-pressed",
+      "light": {
+        "primitive": "blue-1000",
+        "hex": "#051c50"
+      },
+      "dark": {
+        "primitive": "blue-200",
+        "hex": "#e6eaf2"
+      }
+    },
+    {
+      "token": "action-neutral",
+      "light": {
+        "primitive": "neutral-dark-1000",
+        "hex": "#1d212f"
+      },
+      "dark": {
+        "primitive": "neutral-light-200",
+        "hex": "#ebeae4"
+      }
+    },
+    {
+      "token": "action-neutral-hover",
+      "light": {
+        "primitive": "neutral-dark-1100",
+        "hex": "#11141d"
+      },
+      "dark": {
+        "primitive": "neutral-light-100",
+        "hex": "#fbfaf7"
+      }
+    },
+    {
+      "token": "action-neutral-pressed",
+      "light": {
+        "primitive": "black",
+        "hex": "#000000"
+      },
+      "dark": {
+        "primitive": "white",
+        "hex": "#ffffff"
+      }
+    },
+    {
+      "token": "action-danger",
+      "light": {
+        "primitive": "red-800",
+        "hex": "#89162c"
+      },
+      "dark": {
+        "primitive": "red-400",
+        "hex": "#ea989b"
+      }
+    },
+    {
+      "token": "action-danger-hover",
+      "light": {
+        "primitive": "red-900",
+        "hex": "#66101f"
+      },
+      "dark": {
+        "primitive": "red-300",
+        "hex": "#eac2c3"
+      }
+    },
+    {
+      "token": "action-danger-pressed",
+      "light": {
+        "primitive": "red-1000",
+        "hex": "#410912"
+      },
+      "dark": {
+        "primitive": "red-200",
+        "hex": "#f2e7e7"
+      }
+    },
+    {
+      "token": "action-disabled",
+      "light": {
+        "primitive": "neutral-light-400",
+        "hex": "#b6b2a3"
+      },
+      "dark": {
+        "primitive": "neutral-dark-800",
+        "hex": "#414a65"
+      }
+    },
+    {
+      "token": "state-hover",
+      "light": {
+        "primitive": "blue-600 @ .06",
+        "hex": "#276eff"
+      },
+      "dark": {
+        "primitive": "blue-600 @ .06",
+        "hex": "#276eff"
+      }
+    },
+    {
+      "token": "state-pressed",
+      "light": {
+        "primitive": "blue-600 @ .09",
+        "hex": "#276eff"
+      },
+      "dark": {
+        "primitive": "blue-600 @ .09",
+        "hex": "#276eff"
+      }
+    },
+    {
+      "token": "state-selected",
+      "light": {
+        "primitive": "blue-600 @ .08",
+        "hex": "#276eff"
+      },
+      "dark": {
+        "primitive": "blue-600 @ .08",
+        "hex": "#276eff"
+      }
+    },
+    {
+      "token": "viz-1",
+      "light": {
+        "primitive": "blue-800",
+        "hex": "#0c3fa8"
+      },
+      "dark": {
+        "primitive": "blue-500",
+        "hex": "#6192f3"
+      }
+    },
+    {
+      "token": "viz-2",
+      "light": {
+        "primitive": "magenta-700",
+        "hex": "#af1363"
+      },
+      "dark": {
+        "primitive": "magenta-500",
+        "hex": "#f44b97"
+      }
+    },
+    {
+      "token": "viz-3",
+      "light": {
+        "primitive": "amber-700",
+        "hex": "#795e0e"
+      },
+      "dark": {
+        "primitive": "amber-400",
+        "hex": "#cfae5b"
+      }
+    },
+    {
+      "token": "viz-4",
+      "light": {
+        "primitive": "violet-600",
+        "hex": "#7a52ff"
+      },
+      "dark": {
+        "primitive": "violet-600",
+        "hex": "#7a52ff"
+      }
+    },
+    {
+      "token": "viz-5",
+      "light": {
+        "primitive": "teal-600",
+        "hex": "#018d92"
+      },
+      "dark": {
+        "primitive": "teal-300",
+        "hex": "#8ddee2"
+      }
+    },
+    {
+      "token": "viz-6",
+      "light": {
+        "primitive": "red-600",
+        "hex": "#e40045"
+      },
+      "dark": {
+        "primitive": "red-600",
+        "hex": "#e40045"
+      }
+    },
+    {
+      "token": "viz-7",
+      "light": {
+        "primitive": "neutral-dark-1000",
+        "hex": "#1d212f"
+      },
+      "dark": {
+        "primitive": "neutral-dark-500",
+        "hex": "#8e95a9"
+      }
+    },
+    {
+      "token": "viz-8",
+      "light": {
+        "primitive": "neutral-light-600",
+        "hex": "#807b6c"
+      },
+      "dark": {
+        "primitive": "neutral-light-600",
+        "hex": "#807b6c"
+      }
+    },
+    {
+      "token": "viz-seq-1",
+      "light": {
+        "primitive": "blue-600",
+        "hex": "#276eff"
+      },
+      "dark": {
+        "primitive": "blue-600",
+        "hex": "#276eff"
+      }
+    },
+    {
+      "token": "viz-seq-2",
+      "light": {
+        "primitive": "blue-700",
+        "hex": "#0a51df"
+      },
+      "dark": {
+        "primitive": "blue-500",
+        "hex": "#6192f3"
+      }
+    },
+    {
+      "token": "viz-seq-3",
+      "light": {
+        "primitive": "blue-800",
+        "hex": "#0c3fa8"
+      },
+      "dark": {
+        "primitive": "blue-400",
+        "hex": "#95b2e8"
+      }
+    },
+    {
+      "token": "viz-seq-4",
+      "light": {
+        "primitive": "blue-900",
+        "hex": "#082e7d"
+      },
+      "dark": {
+        "primitive": "blue-300",
+        "hex": "#c0cee9"
+      }
+    },
+    {
+      "token": "backdrop",
+      "light": {
+        "primitive": "black @ .6",
+        "hex": "#000000"
+      },
+      "dark": {
+        "primitive": "black @ .6",
+        "hex": "#000000"
+      }
+    }
+  ],
+  "statusSeparation": 1.867409891063702
+}

@@ -2,8 +2,11 @@ import type { Theme } from '@emotion/react';
 import { css, Global } from '@emotion/react';
 import type * as React from 'react';
 
+import { roleOr } from '../ColorMode';
+
 export const Reboot: React.FC<{ theme: Theme }> = ({ theme }) => {
   const { useLogicalProperties } = theme;
+  const colors = theme.colors as Record<string, string>;
 
   const rebootStyles = css`
     /**
@@ -65,9 +68,9 @@ export const Reboot: React.FC<{ theme: Theme }> = ({ theme }) => {
       font-family: ${theme.fontFamily.base};
       font-weight: ${theme.fontWeight.base};
       line-height: ${theme.lineHeight.base};
-      color: ${theme.colors.text};
+      color: ${roleOr(colors, 'text-default', 'text')};
       text-align: ${useLogicalProperties ? 'start' : 'left'};
-      background-color: ${theme.colors.background};
+      background-color: ${roleOr(colors, 'surface-default', 'background')};
     }
 
     /* Suppress the focus outline on elements that cannot be accessed via keyboard.
@@ -215,7 +218,7 @@ export const Reboot: React.FC<{ theme: Theme }> = ({ theme }) => {
 */
 
     a {
-      color: ${theme.colors.primary};
+      color: ${roleOr(colors, 'action-primary', 'primary')};
       text-decoration: none;
 
       background-color: transparent;

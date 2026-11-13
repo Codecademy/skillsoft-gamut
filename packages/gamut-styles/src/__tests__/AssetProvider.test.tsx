@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 
 import { AssetProvider, createFontLinks } from '../AssetProvider';
-import { coreTheme, percipioTheme } from '../themes';
+import { skillsoftTheme } from '../themes';
 import { getFontsMock } from './fontUtilsMock';
 import { setupRtl } from './testUtils';
 
@@ -113,6 +113,32 @@ describe('AssetProvider', () => {
       expect(links[0]).toHaveAttribute('crossOrigin', 'anonymous');
     });
 
+    it('should preload a file shared by several font faces once', () => {
+      const fonts = [
+        {
+          filePath: 'https://www.codecademy.com/gamut/roboto-bold',
+          extensions: ['woff2', 'woff'],
+          name: 'Roboto',
+          weight: 'bold',
+        },
+        {
+          filePath: 'https://www.codecademy.com/gamut/roboto-bold',
+          extensions: ['woff2', 'woff'],
+          name: 'Roboto',
+          weight: 500,
+        },
+      ];
+
+      const { container } = render(<>{createFontLinks(fonts)}</>);
+      const links = getPreloadLinks(container);
+
+      expect(links).toHaveLength(1);
+      expect(links[0]).toHaveAttribute(
+        'href',
+        'https://www.codecademy.com/gamut/roboto-bold.woff2'
+      );
+    });
+
     it('should handle empty fonts array', () => {
       const { container } = render(<>{createFontLinks([])}</>);
       const links = getPreloadLinks(container);
@@ -180,7 +206,7 @@ describe('AssetProvider', () => {
   });
 
   describe('AssetProvider component', () => {
-    it('should render font links for core theme by default', () => {
+    it('should render font links for skillsoft theme by default', () => {
       mockGetFonts.mockReturnValue([
         {
           filePath: 'https://www.codecademy.com/gamut/apercu-regular-pro',
@@ -192,7 +218,7 @@ describe('AssetProvider', () => {
       const { view } = renderView();
       const links = getPreloadLinks(view.container);
 
-      expect(mockGetFonts).toHaveBeenCalledWith('core');
+      expect(mockGetFonts).toHaveBeenCalledWith('skillsoft');
       expect(links).toHaveLength(1);
       expect(links[0]).toHaveAttribute(
         'href',
@@ -209,7 +235,7 @@ describe('AssetProvider', () => {
         },
       ]);
 
-      const { view } = renderView({ theme: percipioTheme as any });
+      const { view } = renderView({ theme: skillsoftTheme as any });
       const links = getPreloadLinks(view.container);
 
       expect(links).toHaveLength(1);
@@ -217,19 +243,19 @@ describe('AssetProvider', () => {
         'href',
         'https://www.codecademy.com/gamut/roboto-regular.woff2'
       );
-      expect(mockGetFonts).toHaveBeenCalledWith('percipio');
+      expect(mockGetFonts).toHaveBeenCalledWith('skillsoft');
     });
 
     it('should handle theme without name property', () => {
-      const themeWithoutName = { ...coreTheme, name: undefined };
+      const themeWithoutName = { ...skillsoftTheme, name: undefined } as any;
       mockGetFonts.mockReturnValue([]);
 
       renderView({ theme: themeWithoutName });
-      expect(mockGetFonts).toHaveBeenCalledWith('core');
+      expect(mockGetFonts).toHaveBeenCalledWith('skillsoft');
     });
 
     it('should handle theme with invalid name', () => {
-      const themeWithInvalidName = { ...coreTheme, name: 'invalid-theme' };
+      const themeWithInvalidName = { ...skillsoftTheme, name: 'invalid-theme' };
       mockGetFonts.mockReturnValue([]);
 
       renderView({ theme: themeWithInvalidName });

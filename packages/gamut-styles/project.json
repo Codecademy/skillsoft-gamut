@@ -17,7 +17,8 @@
           "rm -rf ./dist",
           "tsdown",
           "tsc --emitDeclarationOnly --project tsconfig.lib.json",
-          "cpy './src/**/*.{d.ts,svg,png}' ./dist"
+          "cpy './src/**/*.{d.ts,svg,png}' ./dist",
+          "cpy './src/tokens/generated/*.{css,json}' ./dist/tokens/generated"
         ],
         "parallel": false
       }
@@ -43,7 +44,7 @@
       "dependsOn": ["build"],
       "options": {
         "cwd": "{projectRoot}",
-        "commands": ["publint .", "attw --pack . --ignore-rules false-cjs"],
+        "commands": ["publint .", "attw --pack . --ignore-rules false-cjs no-resolution"],
         "parallel": false
       }
     },
