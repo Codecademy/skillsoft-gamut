@@ -6,11 +6,11 @@ description: Design tokens, themes, system props, asset catalogs, and tooling â€
 Facts you look up rather than read start to finish.
 
 - [Design tokens](/foundations/design-tokens/)
-- [Themes](/foundations/themes/)
-- [Layout](/foundations/layout/)
-- [Typography](/foundations/typography/)
-- [System props](/foundations/system-props/)
-- [Style helpers](/foundations/style-helpers/)
-- [Icon & asset catalog](/foundations/icon-and-asset-catalog/)
 - [ESLint rules](/foundations/eslint-rules/)
+- [Icon & asset catalog](/foundations/icon-and-asset-catalog/)
+- [Layout](/foundations/layout/)
+- [Style helpers](/foundations/style-helpers/)
+- [System props](/foundations/system-props/)
+- [Themes](/foundations/themes/)
 - [Tooling](/foundations/tooling/)
+- [Typography](/foundations/typography/)

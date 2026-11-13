@@ -7,14 +7,14 @@ Components are grouped by what a reader needs to do, not by Gamut's internal Ato
 
 - [Actions](/components/actions/) — trigger, choose, or remove
 - [Containers](/components/containers/) — group, wrap, or lay out content
-- [Inputs & forms](/components/inputs-and-forms/) — collect input
-- [Navigation](/components/navigation/) — move between pages or views
-- [Feedback](/components/feedback/) — the system explaining something
-- [Status](/components/status/) — communicate state at a glance
-- [Overlays](/components/overlays/) — opened and dismissed, floating above the page
 - [Data display](/components/data-display/) — structured or bulk data
-- [Typography](/components/typography/) — text rendering
+- [Feedback](/components/feedback/) — the system explaining something
+- [Inputs & forms](/components/inputs-and-forms/) — collect input
 - [Media & assets](/components/media-and-assets/) — icons, illustrations, patterns, animation, video
+- [Navigation](/components/navigation/) — move between pages or views
+- [Overlays](/components/overlays/) — opened and dismissed, floating above the page
+- [Status](/components/status/) — communicate state at a glance
+- [Typography](/components/typography/) — text rendering
 - [Utilities](/components/utilities/) — non-visual helpers
 
 If you already know a component's name, search finds it regardless of category.
