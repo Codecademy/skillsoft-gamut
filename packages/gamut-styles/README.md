@@ -13,12 +13,12 @@ Colors come from a generated system: a palette of 8 slots × 11 grades, and 43
 semantic roles in light and dark mode. The values are checked in and shipped
 as static CSS, so the colors don't depend on Emotion.
 
-| Import                                                            | What                                                                                                                                             |
-| ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `@skillsoft/gamut-styles/tokens`                                  | TS constants: `palette`, `roles`, `gradients`, `contentModes`, `brand` (OKLCH + sRGB per token)                                                  |
+| Import                                                            | What                                                                                                                                              |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@skillsoft/gamut-styles/tokens`                                  | TS constants: `palette`, `roles`, `gradients`, `contentModes`, `brand` (OKLCH + sRGB per token)                                                   |
 | `@skillsoft/gamut-styles/tokens.css`                              | `--color-*` and `--gradient-*` custom properties. Palette on `:root`; roles on `:root, [data-color-mode="light"]` and `[data-color-mode="dark"]` |
-| `@skillsoft/gamut-styles/tokens/{palette,light,dark}.tokens.json` | Color tokens in the DTCG shape: `{ colorSpace: "oklch", components, alpha, hex }`                                                                |
-| `skillsoftTheme` (main entry)                                     | The default Emotion theme, built on the roles. Gamut components are typed against it                                                             |
+| `@skillsoft/gamut-styles/tokens/{palette,light,dark}.tokens.json` | Color tokens in the DTCG shape: `{ colorSpace: "oklch", components, alpha, hex }`                                                                 |
+| `skillsoftTheme` (main entry)                                     | The default Emotion theme, built on the roles. Gamut components are typed against it                                                              |
 
 ### Tokens in the browser
 
@@ -53,8 +53,8 @@ Storybook has a live example under **Foundations / Color system / CSS contract**
 - Roles: `--color-<role>`, for example `--color-action-primary`.
 - `white` and `black` keep their bare names as boundary tokens.
 
-The `--color-` prefix on primitives matches what variance emits for every
-color key, so the Emotion and CSS routes use one naming scheme.
+The `--color-` prefix is the color scale's prefix in variance, so the Emotion and
+CSS routes use one naming scheme.
 
 ### Known limits
 

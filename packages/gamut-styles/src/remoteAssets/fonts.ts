@@ -190,4 +190,5 @@ export const webFonts = {
   percipio,
   lxStudio: percipio,
   skillsoft: percipio,
+  originalCodecademy: core,
 } as const;

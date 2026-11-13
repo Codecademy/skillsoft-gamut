@@ -4,6 +4,7 @@ import {
   GamutProvider,
   platformPalette,
   skillsoftTheme,
+  originalCodecademyTheme,
   ColorMode,
 } from '@skillsoft/gamut-styles';
 import {
@@ -22,6 +23,7 @@ export const storybookTheme = createTheme(skillsoftTheme)
 
 const themeMap = {
   skillsoft: skillsoftTheme,
+  originalCodecademy: originalCodecademyTheme,
 } as const;
 
 const themeSpecificStories = {};

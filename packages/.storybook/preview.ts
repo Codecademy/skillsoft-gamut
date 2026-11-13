@@ -97,7 +97,10 @@ export const globalTypes = {
     defaultValue: 'skillsoft',
     toolbar: {
       icon: 'paintbrush',
-      items: [{ value: 'skillsoft', title: 'Skillsoft' }],
+      items: [
+        { value: 'skillsoft', title: 'Skillsoft' },
+        { value: 'originalCodecademy', title: 'Original Codecademy' },
+      ],
       showName: true,
     },
   },
