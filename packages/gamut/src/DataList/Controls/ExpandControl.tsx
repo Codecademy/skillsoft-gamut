@@ -40,7 +40,7 @@ export const ExpandControl: React.FC<ExpandColProps> = ({
       }}
     >
       <Rotation rotated={expanded}>
-        <MiniChevronDownIcon color="secondary" />
+        <MiniChevronDownIcon color="action-neutral" />
       </Rotation>
     </TextButton>
   </FlexBox>

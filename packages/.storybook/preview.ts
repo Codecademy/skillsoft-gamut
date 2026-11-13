@@ -100,6 +100,9 @@ export const globalTypes = {
       items: [
         { value: 'skillsoft', title: 'Skillsoft' },
         { value: 'originalCodecademy', title: 'Original Codecademy' },
+        { value: 'admin', title: 'Admin' },
+        { value: 'lxStudio', title: 'LX Studio' },
+        { value: 'platform', title: 'Learning Platform' },
       ],
       showName: true,
     },

@@ -12,7 +12,7 @@ type Story = StoryObj<typeof Box>;
 export const OverflowXExample: Story = {
   render: () => (
     <Box
-      bg="background-selected"
+      bg="surface-sunken"
       overflowX="scroll"
       p={16}
       tabIndex={0}
@@ -20,8 +20,8 @@ export const OverflowXExample: Story = {
       width="200px"
     >
       <Box
-        bg="primary"
-        color="background-contrast"
+        bg="action-primary"
+        color="text-inverse"
         display="inline-block"
         p={8}
       >
@@ -36,13 +36,13 @@ export const OverflowXExample: Story = {
 export const OverflowYExample: Story = {
   render: () => (
     <Box
-      bg="background-selected"
+      bg="surface-sunken"
       height="100px"
       overflowY="scroll"
       p={16}
       tabIndex={0}
     >
-      <Box bg="primary" color="background-contrast" p={8}>
+      <Box bg="action-primary" color="text-inverse" p={8}>
         This content is taller than its container and has{' '}
         <Markdown text="`overflowY='scroll'`." /> Inspect the example to see
         what CSS properties are rendered.
@@ -57,10 +57,10 @@ export const OverflowYExample: Story = {
 
 export const WidthExample: Story = {
   render: () => (
-    <Box bg="background-selected" p={16}>
+    <Box bg="surface-sunken" p={16}>
       <Box
-        bg="primary"
-        color="background-contrast"
+        bg="action-primary"
+        color="text-inverse"
         height="300px"
         p={16}
         width="50%"
@@ -75,14 +75,14 @@ export const WidthExample: Story = {
 export const DirectionExample: Story = {
   render: () => (
     <Box display="flex" flexDirection="row" gap={16}>
-      <Box bg="background-selected" p={16} width="50%">
-        <Box bg="primary" color="background-contrast" direction="ltr" p={16}>
+      <Box bg="surface-sunken" p={16} width="50%">
+        <Box bg="action-primary" color="text-inverse" direction="ltr" p={16}>
           <Markdown text="`direction='ltr'`." /> Left-to-right text direction
           (default for English).
         </Box>
       </Box>
-      <Box bg="background-selected" p={16} width="50%">
-        <Box bg="primary" color="background-contrast" direction="rtl" p={16}>
+      <Box bg="surface-sunken" p={16} width="50%">
+        <Box bg="action-primary" color="text-inverse" direction="rtl" p={16}>
           <Markdown text="`direction='rtl'`." /> Right-to-left text direction
           (used for Arabic, Hebrew, etc.).
         </Box>

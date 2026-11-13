@@ -17,7 +17,7 @@ import {
 } from '../shared/styles/styles';
 import type { TipPlacementComponentProps } from '../shared/types';
 
-const textColor = 'secondary';
+const textColor = 'action-neutral';
 
 export const infoButtonStyles = css({
   borderColor: 'transparent',
@@ -26,19 +26,19 @@ export const infoButtonStyles = css({
   width: 24,
   [InteractiveSelectors.HOVER]: {
     color: textColor,
-    bg: 'background-hover',
+    bg: 'state-hover',
   },
   [InteractiveSelectors.FOCUS_VISIBLE]: {
     color: textColor,
   },
   [InteractiveSelectors.OUTLINE]: {
-    borderColor: textColor,
+    borderColor: 'action-primary',
   },
   [InteractiveSelectors.ACTIVE]: {
-    color: 'text',
+    bg: 'state-pressed',
   },
   [InteractiveSelectors.DISABLED]: {
-    color: 'text-disabled',
+    color: 'action-disabled',
     bg: 'transparent',
   },
 });
@@ -68,7 +68,7 @@ export const infoTipAlignmentVariants = variant({
 });
 
 export const infoButtonStates = states({
-  active: { bg: 'background-selected' },
+  active: { bg: 'state-selected' },
 });
 
 export const infoVisibilityStates = states({

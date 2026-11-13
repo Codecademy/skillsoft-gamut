@@ -7,7 +7,7 @@ Every Emotion component in Gamut has typed access to the current theme's tokens,
 
 ## 1. Choose a theme
 
-See [Themes](/foundations/themes/) for the available palettes (Core, Admin, LX Studio, Percipio, Platform) and what each one is for. Use Storybook's Theme Switcher (paintbrush icon in the toolbar) to preview your components across every theme before committing to one, paired with the Color Mode selector to check both light and dark variants.
+See [Themes](/foundations/themes/) for the available palettes (Core, Admin, LX Studio, Platform) and what each one is for. Use Storybook's Theme Switcher (paintbrush icon in the toolbar) to preview your components across every theme before committing to one, paired with the Color Mode selector to check both light and dark variants.
 
 ## 2. Wire up the theme
 

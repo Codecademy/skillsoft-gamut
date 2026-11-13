@@ -5,7 +5,7 @@ description: Build a custom theme with gamut-styles' createTheme builder.
 
 ## When to reach for this
 
-Most apps should [choose an existing theme](/guides/theming-your-app/) rather than build a new one — reach for a custom theme only for a genuinely new product surface that doesn't fit Core, Admin, LX Studio, Percipio, or Platform.
+Most apps should [choose an existing theme](/guides/theming-your-app/) rather than build a new one — reach for a custom theme only for a genuinely new product surface that doesn't fit Core, Admin, LX Studio or Platform.
 
 ## The `createTheme` builder
 
@@ -134,7 +134,6 @@ const themeMap = {
   core: coreTheme,
   admin: adminTheme,
   lxStudio: lxStudioTheme,
-  percipio: percipioTheme,
   'your-theme-here': yourCustomTheme,
 } as const;
 ```
@@ -143,7 +142,7 @@ const themeMap = {
 // .storybook/preview.ts
 theme: {
   name: 'Theme',
-  defaultValue: 'percipio',
+  defaultValue: 'core',
   toolbar: {
     icon: 'paintbrush',
     items: [

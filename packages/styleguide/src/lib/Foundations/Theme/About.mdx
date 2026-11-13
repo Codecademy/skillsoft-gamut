@@ -10,7 +10,6 @@ import { parameters as adminThemeParameters } from './AdminTheme.mdx';
 import { parameters as coreThemeParameters } from './CoreTheme.mdx';
 import { parameters as creatingThemesParameters } from './CreatingThemes.mdx';
 import { parameters as lxStudioThemeParameters } from './LXStudioTheme.mdx';
-import { parameters as percipioThemeParameters } from './PercipioTheme.mdx';
 import { parameters as platformThemeParameters } from './PlatformTheme.mdx';
 
 export const parameters = {
@@ -36,7 +35,7 @@ You can preview how components look across different themes using the **Theme Sw
 - Test component compatibility with various themes
 - Ensure consistent behavior across all supported themes
 
-The theme switcher works in combination with the Color Mode selector, so you can test both light and dark variants of each theme. Available themes include Core, Admin, LX Studio, and Percipio.
+The theme switcher works in combination with the Color Mode selector, so you can test both light and dark variants of each theme. Available themes include Core, Admin, LX Studio, Platform, Skillsoft and Original Codecademy.
 
 ```tsx
 import { css } from '@skillsoft/gamut-styles';
@@ -46,7 +45,7 @@ import styled from '@emotion/styled';
 const Box = styled.div(css({ bg: 'navy-400', p: 4 }));
 
 // Multiple values using ColorMode semantic color
-const OtherCoolThing = styled.div(css({ color: 'primary', p: 4 }));
+const OtherCoolThing = styled.div(css({ color: 'action-primary', p: 4 }));
 ```
 
 They can also be accessed directly as the `theme` prop on every styled component.
@@ -77,7 +76,6 @@ const myStyles = css`
     coreThemeParameters,
     adminThemeParameters,
     lxStudioThemeParameters,
-    percipioThemeParameters,
     platformThemeParameters,
   ])}
 />

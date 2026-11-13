@@ -4,7 +4,7 @@ import type { HTMLAttributes } from 'react';
 import type * as React from 'react';
 
 const TableWrapper = styled.div`
-  border: 1px solid ${({ theme }) => theme.colors['gray-300']};
+  border: 1px solid ${({ theme }) => theme.colors['border-subtle']};
   max-height: 500px;
   overflow: auto;
   margin-bottom: 1rem;
@@ -13,7 +13,7 @@ const TableWrapper = styled.div`
     font-family: ${({ theme }) => theme.fontFamily.monospace};
     padding: ${pxRem(10)};
     width: 100%;
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors['text-default']};
     position: relative;
 
     thead {
@@ -26,7 +26,7 @@ const TableWrapper = styled.div`
     }
 
     tr:nth-of-type(odd) {
-      background-color: ${({ theme }) => theme.colors['gray-100']};
+      background-color: ${({ theme }) => theme.colors['surface-sunken']};
     }
 
     td,

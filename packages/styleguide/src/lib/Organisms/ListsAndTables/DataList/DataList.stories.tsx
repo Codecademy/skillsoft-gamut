@@ -104,7 +104,7 @@ const meta: Meta<typeof DataList> = {
     onRowSelect: () => {},
     onRowExpand: () => {},
     expandedContent: ({ row }) => (
-      <FlexBox borderColor="background-hover" borderTop={1} p={16} pl={[0, 64]}>
+      <FlexBox borderColor="border-subtle" borderTop={1} p={16} pl={[0, 64]}>
         <DataTable
           columns={[
             { key: 'name', size: 'md' },
