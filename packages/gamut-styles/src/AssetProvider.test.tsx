@@ -1,19 +1,19 @@
-import '@testing-library/jest-dom';
-
 import { render } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { AssetProvider, createFontLinks } from './AssetProvider';
-import { getFontsMock } from './fontUtilsMock';
 import { setupRtl } from './testUtils';
 import { coreTheme, percipioTheme } from './themes';
 
 const renderView = setupRtl(AssetProvider, {});
 
-jest.mock('./utilities/fontUtils', () => ({
-  getFonts: require('./fontUtilsMock').getFontsMock,
+const { getFontsMock } = vi.hoisted(() => ({ getFontsMock: vi.fn() }));
+
+vi.mock('./utilities/fontUtils', () => ({
+  getFonts: getFontsMock,
 }));
 
-jest.mock('./remoteAssets/fonts', () => {
+vi.mock('./remoteAssets/fonts', () => {
   const percipio = [
     {
       filePath: 'https://www.codecademy.com/gamut/SkillsoftText-Regular',
@@ -77,7 +77,7 @@ const defaultFonts = [
 
 describe('AssetProvider', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockGetFonts.mockReturnValue(defaultFonts);
   });
 

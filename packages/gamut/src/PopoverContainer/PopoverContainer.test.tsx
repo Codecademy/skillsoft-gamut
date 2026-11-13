@@ -1,6 +1,15 @@
 import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  type MockInstance,
+  vi,
+} from 'vitest';
 
 import { PopoverContainer } from '.';
 import {
@@ -78,7 +87,7 @@ const renderView = setupRtl(RenderPopover, defaultProps);
 
 /** Portal `getContainers` uses `document.body.offsetWidth` for `parent.right`; pin it to the mock offset parent width so horizontal insets match the inline fixture. */
 const mockBodyOffsetWidthForPortal = () =>
-  jest.spyOn(document.body, 'offsetWidth', 'get').mockReturnValue(500);
+  vi.spyOn(document.body, 'offsetWidth', 'get').mockReturnValue(500);
 
 const popoverIsRendered = () => {
   return Boolean(screen.queryByTestId('popover-content'));
@@ -114,7 +123,7 @@ describe('Popover', () => {
   });
 
   it('triggers onRequestClose callback when clicking outside', () => {
-    const onRequestClose = jest.fn();
+    const onRequestClose = vi.fn();
     renderView({
       inline: false,
       onRequestClose,
@@ -124,7 +133,7 @@ describe('Popover', () => {
   });
 
   it('does not trigger onRequestClose callback when clicking inside', () => {
-    const onRequestClose = jest.fn();
+    const onRequestClose = vi.fn();
     renderView({
       inline: false,
       onRequestClose,
@@ -134,7 +143,7 @@ describe('Popover', () => {
   });
 
   it('triggers onRequestClose callback when escape key is triggered', () => {
-    const onRequestClose = jest.fn();
+    const onRequestClose = vi.fn();
     const {
       view: { baseElement },
     } = renderView({
@@ -151,7 +160,7 @@ describe('Popover', () => {
       { top: -201, bottom: -1, left: 150, right: 350, x: 150, y: -201 }
     );
 
-    const onRequestClose = jest.fn();
+    const onRequestClose = vi.fn();
     renderView({
       targetRef: targetRefObj,
       onRequestClose,
@@ -163,7 +172,7 @@ describe('Popover', () => {
   it('does not trigger onRequestClose callback when popover is in viewport', () => {
     const targetRefObj = mockTargetRef({}, { top: 1, x: 41, y: 1 });
 
-    const onRequestClose = jest.fn();
+    const onRequestClose = vi.fn();
     renderView({
       targetRef: targetRefObj,
       onRequestClose,
@@ -177,7 +186,7 @@ describe('Popover', () => {
       { top: -201, bottom: -1, left: 150, right: 350, x: 150, y: -201 }
     );
 
-    const onRequestClose = jest.fn();
+    const onRequestClose = vi.fn();
     renderView({
       targetRef: targetRefObj,
       onRequestClose,
@@ -191,7 +200,7 @@ describe('Popover', () => {
       { top: -201, bottom: -1, left: 150, right: 350, x: 150, y: -201 }
     );
 
-    const onRequestClose = jest.fn();
+    const onRequestClose = vi.fn();
     renderView({
       targetRef: targetRefObj,
       onRequestClose,
@@ -203,7 +212,7 @@ describe('Popover', () => {
   describe('alignments', () => {
     describe('render context', () => {
       describe('portal - viewport', () => {
-        let bodyOffsetWidthSpy: jest.SpyInstance;
+        let bodyOffsetWidthSpy: MockInstance;
 
         beforeEach(() => {
           bodyOffsetWidthSpy = mockBodyOffsetWidthForPortal();
@@ -464,7 +473,7 @@ describe('Popover', () => {
     });
 
     describe('offsets', () => {
-      let bodyOffsetWidthSpy: jest.SpyInstance;
+      let bodyOffsetWidthSpy: MockInstance;
 
       beforeEach(() => {
         bodyOffsetWidthSpy = mockBodyOffsetWidthForPortal();
@@ -514,7 +523,7 @@ describe('Popover', () => {
 
     afterEach(() => {
       document.body.innerHTML = '';
-      jest.restoreAllMocks();
+      vi.restoreAllMocks();
     });
 
     it('findAllAdditionalScrollingParents finds scrollable parent elements', () => {
@@ -529,13 +538,13 @@ describe('Popover', () => {
       const { parent, target } = createScrollableParent();
 
       // Target is at y=50, but parent's visible viewport starts at y=200
-      jest
-        .spyOn(target, 'getBoundingClientRect')
-        .mockReturnValue(createMockDOMRect(50, 100, 100, 50));
+      vi.spyOn(target, 'getBoundingClientRect').mockReturnValue(
+        createMockDOMRect(50, 100, 100, 50)
+      );
 
-      jest
-        .spyOn(parent, 'getBoundingClientRect')
-        .mockReturnValue(createMockDOMRect(200, 0, 500, 200));
+      vi.spyOn(parent, 'getBoundingClientRect').mockReturnValue(
+        createMockDOMRect(200, 0, 500, 200)
+      );
 
       const targetRect = target.getBoundingClientRect();
       const result = utils.isOutOfView(targetRect, target);
@@ -547,13 +556,13 @@ describe('Popover', () => {
       const { parent, target } = createScrollableParent();
 
       // Target is within parent's visible viewport (y=250 is between parent's y=200 and y=400)
-      jest
-        .spyOn(target, 'getBoundingClientRect')
-        .mockReturnValue(createMockDOMRect(250, 100, 100, 50));
+      vi.spyOn(target, 'getBoundingClientRect').mockReturnValue(
+        createMockDOMRect(250, 100, 100, 50)
+      );
 
-      jest
-        .spyOn(parent, 'getBoundingClientRect')
-        .mockReturnValue(createMockDOMRect(200, 0, 500, 200));
+      vi.spyOn(parent, 'getBoundingClientRect').mockReturnValue(
+        createMockDOMRect(200, 0, 500, 200)
+      );
 
       const targetRect = target.getBoundingClientRect();
       const result = utils.isOutOfView(targetRect, target);
@@ -567,17 +576,17 @@ describe('Popover', () => {
 
       // Target is out of view in inner parent (y=500 is below inner parent's visible viewport at y=250-450)
       // but might be visible in outer parent
-      jest
-        .spyOn(target, 'getBoundingClientRect')
-        .mockReturnValue(createMockDOMRect(500, 100, 100, 50));
+      vi.spyOn(target, 'getBoundingClientRect').mockReturnValue(
+        createMockDOMRect(500, 100, 100, 50)
+      );
 
-      jest
-        .spyOn(innerParent, 'getBoundingClientRect')
-        .mockReturnValue(createMockDOMRect(250, 50, 500, 200));
+      vi.spyOn(innerParent, 'getBoundingClientRect').mockReturnValue(
+        createMockDOMRect(250, 50, 500, 200)
+      );
 
-      jest
-        .spyOn(outerParent, 'getBoundingClientRect')
-        .mockReturnValue(createMockDOMRect(100, 0, 600, 400));
+      vi.spyOn(outerParent, 'getBoundingClientRect').mockReturnValue(
+        createMockDOMRect(100, 0, 600, 400)
+      );
 
       const targetRect = target.getBoundingClientRect();
       const result = utils.isOutOfView(targetRect, target);
@@ -591,17 +600,17 @@ describe('Popover', () => {
         createNestedScrollableParents();
 
       // Target is visible in both inner and outer parents
-      jest
-        .spyOn(target, 'getBoundingClientRect')
-        .mockReturnValue(createMockDOMRect(300, 100, 100, 50));
+      vi.spyOn(target, 'getBoundingClientRect').mockReturnValue(
+        createMockDOMRect(300, 100, 100, 50)
+      );
 
-      jest
-        .spyOn(innerParent, 'getBoundingClientRect')
-        .mockReturnValue(createMockDOMRect(250, 50, 500, 200));
+      vi.spyOn(innerParent, 'getBoundingClientRect').mockReturnValue(
+        createMockDOMRect(250, 50, 500, 200)
+      );
 
-      jest
-        .spyOn(outerParent, 'getBoundingClientRect')
-        .mockReturnValue(createMockDOMRect(100, 0, 600, 400));
+      vi.spyOn(outerParent, 'getBoundingClientRect').mockReturnValue(
+        createMockDOMRect(100, 0, 600, 400)
+      );
 
       const targetRect = target.getBoundingClientRect();
       const result = utils.isOutOfView(targetRect, target);

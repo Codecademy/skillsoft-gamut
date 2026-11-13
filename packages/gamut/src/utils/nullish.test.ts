@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { isDefined, isNullish } from './nullish';
 
 describe('isNullish', () => {

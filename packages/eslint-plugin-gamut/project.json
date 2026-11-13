@@ -16,13 +16,6 @@
         "parallel": false
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/eslint-plugin-gamut"],
-      "options": {
-        "jestConfig": "packages/eslint-plugin-gamut/jest.config.ts"
-      }
-    },
     "publish-build": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],

@@ -1,5 +1,6 @@
 import { act, render, renderHook } from '@testing-library/react';
 import type { ReactNode } from 'react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { useNoOptionsAnnouncement } from './useNoOptionsAnnouncement';
 
@@ -18,7 +19,7 @@ const stubStyleProps = {
 
 describe('useNoOptionsAnnouncement', () => {
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   it('starts with an empty announcement', () => {
@@ -28,7 +29,7 @@ describe('useNoOptionsAnnouncement', () => {
   });
 
   it('announces NoOptionsMessage text after the debounce', () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const { result } = renderHook(() => useNoOptionsAnnouncement());
     const NoOptionsMessage = result.current.noOptionsMessageComponent;
 
@@ -41,14 +42,14 @@ describe('useNoOptionsAnnouncement', () => {
     expect(result.current.announcement).toBe('');
 
     act(() => {
-      jest.advanceTimersByTime(500);
+      vi.advanceTimersByTime(500);
     });
 
     expect(result.current.announcement).toBe('Enter at least 3 characters.');
   });
 
   it('clears the announcement when NoOptionsMessage unmounts', () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const { result } = renderHook(() => useNoOptionsAnnouncement());
     const NoOptionsMessage = result.current.noOptionsMessageComponent;
 
@@ -58,7 +59,7 @@ describe('useNoOptionsAnnouncement', () => {
       </NoOptionsMessage>
     );
     act(() => {
-      jest.advanceTimersByTime(500);
+      vi.advanceTimersByTime(500);
     });
     expect(result.current.announcement).toBe('No fruits available');
 
@@ -70,7 +71,7 @@ describe('useNoOptionsAnnouncement', () => {
   });
 
   it('clears the announcement immediately via clearAnnouncement, without waiting for the debounce', () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const { result } = renderHook(() => useNoOptionsAnnouncement());
     const NoOptionsMessage = result.current.noOptionsMessageComponent;
 
@@ -80,7 +81,7 @@ describe('useNoOptionsAnnouncement', () => {
       </NoOptionsMessage>
     );
     act(() => {
-      jest.advanceTimersByTime(500);
+      vi.advanceTimersByTime(500);
     });
     expect(result.current.announcement).toBe('No fruits available');
 
@@ -94,7 +95,7 @@ describe('useNoOptionsAnnouncement', () => {
   });
 
   it('re-announces the same text after being cleared', () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const { result, rerender } = renderHook(() => useNoOptionsAnnouncement());
     const renderMessage = (children: ReactNode) =>
       render(
@@ -105,7 +106,7 @@ describe('useNoOptionsAnnouncement', () => {
 
     const first = renderMessage('Enter at least 3 characters.');
     act(() => {
-      jest.advanceTimersByTime(500);
+      vi.advanceTimersByTime(500);
     });
     expect(result.current.announcement).toBe('Enter at least 3 characters.');
 
@@ -117,7 +118,7 @@ describe('useNoOptionsAnnouncement', () => {
     rerender();
     renderMessage('Enter at least 3 characters.');
     act(() => {
-      jest.advanceTimersByTime(500);
+      vi.advanceTimersByTime(500);
     });
 
     expect(result.current.announcement).toBe('Enter at least 3 characters.');

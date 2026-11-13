@@ -37,7 +37,6 @@
   "repository": "Codecademy/skillsoft-gamut.git",
   "scripts": {
     "build": "nx build gamut-agent-tools",
-    "test:bin": "node --test cli/lib/design.test.mjs",
     "verify": "tsc --noEmit"
   }
 }

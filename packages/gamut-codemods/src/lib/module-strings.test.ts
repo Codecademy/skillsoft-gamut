@@ -1,4 +1,5 @@
 import jscodeshift from 'jscodeshift';
+import { describe, expect, it } from 'vitest';
 
 import { findModuleStrings } from './module-strings';
 

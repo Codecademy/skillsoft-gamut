@@ -17,13 +17,6 @@
         "parallel": false
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/gamut-illustrations"],
-      "options": {
-        "jestConfig": "packages/gamut-illustrations/jest.config.ts"
-      }
-    },
     "clean": {
       "executor": "nx:run-commands",
       "options": {

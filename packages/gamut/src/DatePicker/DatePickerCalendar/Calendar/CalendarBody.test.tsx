@@ -1,5 +1,6 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
 import { waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { CalendarBody } from './CalendarBody';
 
@@ -9,10 +10,10 @@ const renderView = setupRtl(CalendarBody, {
   focusedDate: new Date(2024, 2, 15),
   labelledById: 'cal-heading',
   locale: 'en-US',
-  onDateSelect: jest.fn(),
-  onFocusedDateChange: jest.fn(),
-  onDisplayDateChange: jest.fn(),
-  onEscapeKeyPress: jest.fn(),
+  onDateSelect: vi.fn(),
+  onFocusedDateChange: vi.fn(),
+  onDisplayDateChange: vi.fn(),
+  onEscapeKeyPress: vi.fn(),
 });
 
 describe('CalendarBody', () => {
