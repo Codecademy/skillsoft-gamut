@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
 import { AssetProvider } from '../AssetProvider';
-import { skillsoftTheme } from '../themes';
+import { skillsoftTheme, lxStudioTheme } from '../themes';
 import { getFontsMock } from './fontUtilsMock';
 
-const typedPercipioTheme = skillsoftTheme as any;
+const typedLxStudioTheme = lxStudioTheme as any;
 
 jest.mock('../utilities/fontUtils', () => ({
   getFonts: require('./fontUtilsMock').getFontsMock,
@@ -283,12 +283,12 @@ describe('Font Loading and Error Handling', () => {
       const { rerender } = render(<AssetProvider theme={skillsoftTheme} />);
 
       for (let i = 0; i < 5; i += 1) {
-        rerender(<AssetProvider theme={typedPercipioTheme} />);
+        rerender(<AssetProvider theme={typedLxStudioTheme} />);
         rerender(<AssetProvider theme={skillsoftTheme} />);
       }
 
       expect(() => {
-        rerender(<AssetProvider theme={typedPercipioTheme} />);
+        rerender(<AssetProvider theme={typedLxStudioTheme} />);
       }).not.toThrow();
     });
   });

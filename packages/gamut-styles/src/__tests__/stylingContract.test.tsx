@@ -13,7 +13,13 @@ import {
   useCurrentMode,
 } from '../ColorMode';
 import { GamutProvider } from '../GamutProvider';
-import { originalCodecademyTheme, skillsoftTheme } from '../themes';
+import {
+  adminTheme,
+  lxStudioTheme,
+  originalCodecademyTheme,
+  platformTheme,
+  skillsoftTheme,
+} from '../themes';
 import { themed } from '../utilities';
 import { css, states, system, variant } from '../variance';
 
@@ -30,6 +36,9 @@ expect.extend(matchers);
  */
 
 const THEMES = {
+  admin: adminTheme,
+  platform: platformTheme,
+  lxStudio: lxStudioTheme,
   skillsoft: skillsoftTheme,
   originalCodecademy: originalCodecademyTheme,
 } as unknown as Record<string, Theme>;

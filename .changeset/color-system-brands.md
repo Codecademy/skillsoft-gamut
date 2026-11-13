@@ -4,8 +4,9 @@
 '@skillsoft/gamut': minor
 ---
 
-Brands on the generated color system.
+Brands on the generated color system, and `--color-*` variable names.
 
+- **Breaking:** color CSS variables are renamed from `--color-*` to `--color-*`, in `@skillsoft/variance`'s `createTheme` and in `tokens.css`. Raw CSS that reads `var(--color-…)` has to be updated.
 - **Breaking:** `tokens.css` puts its rules in `@layer tokens`, with `reset, base, tokens, recipes, utilities` declared first.
 - Adds `originalCodecademyTheme`, today's core colors, fonts and hard-offset elevation rebuilt on the generated system. `tokens.css` carries a palette block per brand under `[data-brand]`.
 - A brand can override a palette step with an exact hex, or point a role at a different step (and, optionally, a different alpha) in one mode. Overrides go through the same contrast checks as generated values.
