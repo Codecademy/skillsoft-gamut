@@ -1,0 +1,58 @@
+{
+  "name": "gamut-brand",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/gamut-brand/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "build": {
+      "outputs": ["{projectRoot}/dist"],
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "packages/gamut-brand",
+        "commands": [
+          "rm -rf ./dist",
+          "tsdown",
+          "tsc --emitDeclarationOnly --project tsconfig.lib.json",
+          "chmod +x ./dist/cli.mjs"
+        ],
+        "parallel": false
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/packages/gamut-brand"],
+      "options": {
+        "jestConfig": "packages/gamut-brand/jest.config.ts",
+        "passWithNoTests": false
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "{projectRoot}",
+        "command": "rm -rf ./dist"
+      }
+    },
+    "verify-package": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "cwd": "{projectRoot}",
+        "commands": ["publint ."],
+        "parallel": false
+      }
+    },
+    "publish-build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "commands": [],
+        "parallel": false
+      }
+    }
+  }
+}
