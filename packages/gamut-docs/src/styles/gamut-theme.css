@@ -1,0 +1,82 @@
+/*
+ * Starlight's colors, taken from the Skillsoft brand of Gamut's color system.
+ *
+ * `@skillsoft/gamut-styles/tokens.css`, loaded before this file, puts the
+ * brand's palette on `:root`. Starlight switches modes with `data-theme`, not
+ * Gamut's `data-color-mode`, so the roles' mode blocks don't apply here.
+ * Instead each Starlight variable points at the palette color its Gamut role
+ * uses in that mode, named in the comment beside it. If a role's mapping
+ * changes, update the line here.
+ *
+ * Starlight themes are overrides of its CSS custom properties
+ * (https://starlight.astro.build/guides/css-and-tailwind/#theming). Only
+ * colors are wired up; Skillsoft's fonts aren't loaded on this site, so
+ * Starlight's font stack stays.
+ */
+
+:root[data-theme="light"] {
+  /* gray-1..7, most to least intense */
+  /* border-strong */
+  --sl-color-gray-1: var(--color-palette-neutral-dark-1100);
+  /* text-default */
+  --sl-color-gray-2: var(--color-palette-neutral-dark-1000);
+  /* text-subtle */
+  --sl-color-gray-3: var(--color-palette-neutral-dark-800);
+  /* border-default */
+  --sl-color-gray-4: var(--color-palette-neutral-dark-600);
+  /* border-subtle */
+  --sl-color-gray-5: var(--color-palette-neutral-dark-300);
+  /* surface-sunken */
+  --sl-color-gray-6: var(--color-palette-neutral-light-200);
+  /* surface-default */
+  --sl-color-gray-7: var(--color-palette-neutral-light-100);
+
+  /* Starlight's text and background endpoints */
+  /* text-default */
+  --sl-color-white: var(--color-palette-neutral-dark-1000);
+  /* surface-default */
+  --sl-color-black: var(--color-palette-neutral-light-100);
+
+  --sl-color-accent-low: var(--color-palette-primary-100);
+  /* action-primary */
+  --sl-color-accent: var(--color-palette-primary-800);
+  /* action-primary-pressed */
+  --sl-color-accent-high: var(--color-palette-primary-1000);
+
+  /* surface-raised */
+
+  --sl-color-bg-nav: var(--color-white);
+}
+
+:root[data-theme="dark"] {
+  /* border-strong */
+  --sl-color-gray-1: var(--color-palette-neutral-light-100);
+  /* text-default */
+  --sl-color-gray-2: var(--color-palette-neutral-light-200);
+  /* text-subtle */
+  --sl-color-gray-3: var(--color-palette-neutral-light-400);
+  /* border-default */
+  --sl-color-gray-4: var(--color-palette-neutral-light-600);
+  /* border-subtle */
+  --sl-color-gray-5: var(--color-palette-neutral-light-900);
+  /* surface-raised */
+  --sl-color-gray-6: var(--color-palette-neutral-dark-1000);
+  /* surface-default */
+  --sl-color-gray-7: var(--color-palette-neutral-dark-1100);
+
+  /* border-strong */
+
+  --sl-color-white: var(--color-palette-neutral-light-100);
+  /* surface-default */
+  --sl-color-black: var(--color-palette-neutral-dark-1100);
+
+  --sl-color-accent-low: var(--color-palette-primary-1100);
+  /* action-primary */
+  --sl-color-accent: var(--color-palette-primary-400);
+  /* action-primary-pressed */
+  --sl-color-accent-high: var(--color-palette-primary-200);
+
+  /* surface-sunken */
+
+  --sl-color-bg-nav: var(--color-black);
+}

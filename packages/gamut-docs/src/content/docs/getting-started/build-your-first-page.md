@@ -11,19 +11,19 @@ It assumes you've completed [Installation](/getting-started/installation/) and h
 
 ## 1. Lay down a colored surface
 
-`Background` paints a semantic color behind its children and keeps text inside it readable in both color modes. Start your page component with one:
+`Background` paints a color role behind its children and keeps text inside it readable in both color modes. Start your page component with one:
 
 ```tsx title="WelcomePage.tsx"
 import { Background } from '@skillsoft/gamut-styles';
 
 export const WelcomePage = () => (
-  <Background bg="beige" p={32}>
+  <Background bg="surface-sunken" p={32}>
     {/* content goes here */}
   </Background>
 );
 ```
 
-Run your app. You should see a full-width beige panel with 32px of padding and nothing in it yet.
+Run your app. You should see a full-width panel, a step darker than the page, with 32px of padding and nothing in it yet.
 
 ## 2. Add a heading
 
@@ -34,7 +34,7 @@ import { Background } from '@skillsoft/gamut-styles';
 import { Text } from '@skillsoft/gamut';
 
 export const WelcomePage = () => (
-  <Background bg="beige" p={24}>
+  <Background bg="surface-sunken" p={24}>
     <Text as="h1" fontSize={34} fontWeight="title">
       Welcome to Gamut
     </Text>
@@ -42,7 +42,7 @@ export const WelcomePage = () => (
 );
 ```
 
-Refresh — you now have a styled heading sitting in the beige panel.
+Refresh — you now have a styled heading sitting in the panel.
 
 ## 3. Arrange content in a grid
 
@@ -54,7 +54,7 @@ import { Text } from '@skillsoft/gamut';
 import { GridBox } from '@skillsoft/gamut';
 
 export const WelcomePage = () => (
-  <Background bg="beige" p={32}>
+  <Background bg="surface-sunken" p={32}>
     <Text as="h1" fontSize={32} fontWeight="title">
       Welcome to Gamut
     </Text>
@@ -87,7 +87,7 @@ import { GridBox } from '@skillsoft/gamut';
 import { Text } from '@skillsoft/gamut';
 
 export const WelcomePage = () => (
-  <Background bg="beige" p={32}>
+  <Background bg="surface-sunken" p={32}>
     <Text as="h1" fontSize={32} fontWeight="title">
       Welcome to Gamut
     </Text>
@@ -120,7 +120,7 @@ export const WelcomePage = () => (
 
 You should now have a page with:
 
-- A beige background panel with consistent padding.
+- A `surface-sunken` panel with consistent padding.
 - A page heading and supporting copy.
 - A responsive two-column layout that collapses to one column on narrow screens.
 - A card containing a secondary heading, copy, and a primary button that links to the component reference.

@@ -3,15 +3,18 @@ title: Design tokens
 description: Color, spacing, radius, and other token values, and the keys used to access them.
 ---
 
-Every theme exposes the same token categories, each accessible on the Emotion theme object via its own key. Exact values differ per theme — see [Themes](/foundations/themes/) for the available theme palettes, or open Storybook's Theme Switcher (paintbrush icon in the toolbar) to browse live values for any theme/color-mode combination. For the full, exhaustive listing of every value in a category — every color swatch, every spacing step, every border radius — see that theme's own page under Foundations → Theme in Storybook (for example, [Core Theme](https://gamut.codecademy.com/?path=/docs/foundations-theme-core-theme--docs)) rather than a static copy here.
+Every theme exposes the same token categories, each on the Emotion theme object under its own key. Exact values differ per theme; see [Themes](/foundations/themes/) for the themes Gamut ships, or open Storybook's Theme Switcher (paintbrush icon in the toolbar) to browse live values for any theme and color mode.
 
 ## Color — `colors`
 
-- Standard colors — the color atoms Codecademy designs should draw from.
-- Solid swatches — accessed as `colors['<color>-<weight>']`.
-- Navy/white swatches — semi-transparent except for a few fixed weights (`100`, `navy-800`, `navy-900`); the white weights only show in dark mode, and the navy weights only in light mode.
+Colors come from the [color system](/concepts/color-system/), in two layers:
 
-See [Color modes](/concepts/color-modes/) for the semantic aliases (`text`, `background`, `primary`, `secondary`) built on top of these raw values.
+- **Roles**, such as `surface-raised`, `text-default` and `action-primary`. Each names a job and resolves to a different color in light and dark mode. Components and app code use roles.
+- **Palette colors**, named `palette-<slot>-<grade>`, such as `palette-primary-800`, plus `white` and `black`. A palette color is the same in every mode. Roles point at these; components shouldn't.
+
+Each color is also a CSS custom property with a `--color-` prefix, such as `var(--color-surface-raised)`, for stylesheets and pages without React.
+
+See [Color modes](/concepts/color-modes/) for how roles follow the mode.
 
 ## Typography
 
@@ -34,16 +37,16 @@ See [Color modes](/concepts/color-modes/) for the semantic aliases (`text`, `bac
 
 ## Elevation
 
-- `elevation` — how a surface like Card renders shadow and lift. Three states — `rest`, `hover`, `hoverMirrored` — each with a `shadow` and a `transform` token, accessed as `elevation['<state>-<property>']`. `hoverMirrored` is for a surface that casts its shadow to the right instead of the left. Shadow colors reference the `shadow-primary` alias, so they follow color mode automatically; a theme can supply its own elevation scale — Skillsoft, for example, swaps the hard offset shadow for a soft, blurred one with no lift.
+- `elevation` — how a surface like Card renders shadow and lift. Three states, `rest`, `hover` and `hoverMirrored`, each with a `shadow` and a `transform` token, accessed as `elevation['<state>-<property>']`. `hoverMirrored` is for a surface that casts its shadow to the right instead of the left. Every shadow is drawn in two roles, `shadow-key` (the tight contact layer) and `shadow-ambient` (the soft falloff), so shadows follow color mode automatically. Each theme supplies its own geometry: Original Codecademy keeps a hard offset, and the other themes use a soft shadow with no lift.
 
 ## Accessing tokens directly
 
-Reach for a token directly only when a [system prop](/foundations/system-props/) can't express what you need — most components should consume tokens through system props instead.
+Reach for a token directly only when a [system prop](/foundations/system-props/) can't express what you need. Most components should consume tokens through system props instead.
 
 ```tsx
 // on the theme prop of any styled component
 const styles = styled.div`
-  color: ${({ theme }) => theme.colors.blue};
+  color: ${({ theme }) => theme.colors['text-subtle']};
 `;
 
 // or imported directly
