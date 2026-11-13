@@ -113,6 +113,32 @@ describe('AssetProvider', () => {
       expect(links[0]).toHaveAttribute('crossOrigin', 'anonymous');
     });
 
+    it('should preload a file shared by several font faces once', () => {
+      const fonts = [
+        {
+          filePath: 'https://www.codecademy.com/gamut/roboto-bold',
+          extensions: ['woff2', 'woff'],
+          name: 'Roboto',
+          weight: 'bold',
+        },
+        {
+          filePath: 'https://www.codecademy.com/gamut/roboto-bold',
+          extensions: ['woff2', 'woff'],
+          name: 'Roboto',
+          weight: 500,
+        },
+      ];
+
+      const { container } = render(<>{createFontLinks(fonts)}</>);
+      const links = getPreloadLinks(container);
+
+      expect(links).toHaveLength(1);
+      expect(links[0]).toHaveAttribute(
+        'href',
+        'https://www.codecademy.com/gamut/roboto-bold.woff2'
+      );
+    });
+
     it('should handle empty fonts array', () => {
       const { container } = render(<>{createFontLinks([])}</>);
       const links = getPreloadLinks(container);
