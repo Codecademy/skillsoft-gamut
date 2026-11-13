@@ -17,14 +17,6 @@
         "parallel": false
       }
     },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "dependsOn": ["^build"],
-      "outputs": ["{workspaceRoot}/coverage/packages/gamut-codemods"],
-      "options": {
-        "jestConfig": "packages/gamut-codemods/jest.config.ts"
-      }
-    },
     "verify-package": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],

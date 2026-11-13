@@ -111,7 +111,7 @@ Two rules hold it together:
 1. Add the row to `src/presets/<preset>/manifest.ts`.
 2. Add a fixture pair under the migration that handles it, e.g. `src/migrations/moved-exports/__testfixtures__/my-case.input.tsx` and `.output.tsx`.
 3. If it should warn, add `my-case.warnings.json`: a list of substrings that must appear in the warnings.
-4. `yarn nx test gamut-codemods`.
+4. `yarn test`, or `yarn vitest run --project=node packages/gamut-codemods` once the packages are built.
 
 `manifest.test.ts` type-checks every export a manifest points at against the built packages, so a row can't promise an export that doesn't exist.
 

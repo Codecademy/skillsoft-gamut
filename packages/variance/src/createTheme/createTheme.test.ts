@@ -1,4 +1,5 @@
 import mapValues from 'lodash/mapValues';
+import { describe, expect, it } from 'vitest';
 
 import { createTheme } from './createTheme';
 

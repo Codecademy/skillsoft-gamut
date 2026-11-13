@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import ts from 'typescript';
+import { describe, expect, it } from 'vitest';
 
 import { type DeepImport, renameSpecifier } from '../lib/manifest';
 import { presets } from '.';

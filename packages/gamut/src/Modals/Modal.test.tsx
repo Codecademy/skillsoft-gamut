@@ -1,5 +1,6 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
 import * as React from 'react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { Modal } from './Modal';
 
@@ -7,7 +8,7 @@ const renderView = setupRtl(Modal, {
   title: 'Title',
   children: 'Hello world',
   isOpen: true,
-  onRequestClose: jest.fn(),
+  onRequestClose: vi.fn(),
 });
 
 describe('Modal', () => {

@@ -5,6 +5,7 @@ import path from 'node:path';
 
 import type { API, FileInfo } from 'jscodeshift';
 import jscodeshift from 'jscodeshift';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { main, parseArgs } from './cli';
 import transform, { type TransformOptions } from './transform';
@@ -13,13 +14,13 @@ import transform, { type TransformOptions } from './transform';
   Drives the real CLI. jscodeshift's Runner normally spawns workers that
   load a built transform.js; here it's replaced with an in-process loop
   over the same transform, so these tests run against source and count
-  toward coverage. The factory only builds a wrapper, so the mock reference
-  is resolved at call time.
+  toward coverage. cli.ts loads the Runner with require(), which vi.mock
+  can't intercept, so spy on the shared CommonJS module object instead.
 */
-const mockRun = jest.fn();
-jest.mock('jscodeshift/src/Runner', () => ({
-  run: (...args: unknown[]) => mockRun(...args),
-}));
+const Runner = require('jscodeshift/src/Runner') as {
+  run: (...args: unknown[]) => unknown;
+};
+const mockRun = vi.fn();
 
 const SOURCE_EXT = /\.(m?[jt]sx?|c[jt]s)$/;
 
@@ -84,18 +85,19 @@ let errors: string[];
 beforeEach(() => {
   logs = [];
   errors = [];
-  jest.spyOn(console, 'log').mockImplementation((...args) => {
+  vi.spyOn(console, 'log').mockImplementation((...args) => {
     logs.push(args.join(' '));
   });
-  jest.spyOn(console, 'error').mockImplementation((...args) => {
+  vi.spyOn(console, 'error').mockImplementation((...args) => {
     errors.push(args.join(' '));
   });
   mockRun.mockReset();
   mockRun.mockImplementation(simulateRunner);
+  vi.spyOn(Runner, 'run').mockImplementation((...args) => mockRun(...args));
 });
 
 afterEach(() => {
-  jest.restoreAllMocks();
+  vi.restoreAllMocks();
 });
 
 const output = () => logs.join('\n');

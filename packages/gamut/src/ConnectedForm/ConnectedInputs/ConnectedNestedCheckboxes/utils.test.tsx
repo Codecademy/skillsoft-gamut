@@ -1,5 +1,6 @@
 import { MockGamutProvider } from '@skillsoft/gamut-tests';
 import { render } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 
 import {
   calculateStates,
@@ -346,8 +347,8 @@ describe('ConnectedNestedCheckboxes utils', () => {
     ];
 
     it('should add all descendants when parent is checked', () => {
-      const onChange = jest.fn();
-      const onUpdate = jest.fn();
+      const onChange = vi.fn();
+      const onUpdate = vi.fn();
       const parentOption = flatOptions[0];
 
       handleCheckboxChange({
@@ -364,8 +365,8 @@ describe('ConnectedNestedCheckboxes utils', () => {
     });
 
     it('should remove all descendants when parent is unchecked', () => {
-      const onChange = jest.fn();
-      const onUpdate = jest.fn();
+      const onChange = vi.fn();
+      const onUpdate = vi.fn();
       const parentOption = flatOptions[0];
       const initialValues = ['parent', 'child1', 'child2', 'standalone'];
 
@@ -383,7 +384,7 @@ describe('ConnectedNestedCheckboxes utils', () => {
     });
 
     it('should add individual child when checked', () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const childOption = flatOptions[1];
 
       handleCheckboxChange({
@@ -398,7 +399,7 @@ describe('ConnectedNestedCheckboxes utils', () => {
     });
 
     it('should remove individual child when unchecked', () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const childOption = flatOptions[1];
       const initialValues = ['child1', 'child2'];
 
@@ -414,7 +415,7 @@ describe('ConnectedNestedCheckboxes utils', () => {
     });
 
     it('should not duplicate values when adding already selected items', () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const parentOption = flatOptions[0];
       const initialValues = ['child1'];
 
@@ -430,7 +431,7 @@ describe('ConnectedNestedCheckboxes utils', () => {
     });
 
     it('should handle onUpdate being undefined', () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const childOption = flatOptions[1];
 
       expect(() => {
@@ -447,7 +448,7 @@ describe('ConnectedNestedCheckboxes utils', () => {
     });
 
     it('should handle leaf node selection without affecting other nodes', () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const standaloneOption = flatOptions[3];
 
       handleCheckboxChange({
@@ -471,9 +472,9 @@ describe('ConnectedNestedCheckboxes utils', () => {
       options: [],
     };
 
-    const mockRef = jest.fn();
-    const mockOnChange = jest.fn();
-    const mockOnBlur = jest.fn();
+    const mockRef = vi.fn();
+    const mockOnChange = vi.fn();
+    const mockOnBlur = vi.fn();
 
     it('should render a checked checkbox with correct props', () => {
       const state = { checked: true, indeterminate: false };

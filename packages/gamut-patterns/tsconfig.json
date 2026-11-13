@@ -17,10 +17,5 @@
       "~storybook/blocks": ["../.storybook/components/"]
     }
   },
-  "exclude": [
-    "jest.config.ts",
-    "**/*.stories.tsx",
-    "**/*.test.ts",
-    "**/*.test.tsx"
-  ]
+  "exclude": ["**/*.stories.tsx", "**/*.test.ts", "**/*.test.tsx"]
 }
