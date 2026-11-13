@@ -18,5 +18,10 @@
     "./src/**/*.tsx",
     "../../packages/gamut-styles/dist/typings/theme.d.ts"
   ],
-  "exclude": ["jest.config.ts", "**/*.stories.tsx"]
+  "exclude": [
+    "jest.config.ts",
+    "**/*.stories.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ]
 }

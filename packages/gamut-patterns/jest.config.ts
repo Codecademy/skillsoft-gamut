@@ -14,7 +14,7 @@ export default base('gamut-patterns', {
     'src/**/*.{ts,tsx}',
     '!src/patterns/**',
     '!src/**/*.d.ts',
-    '!src/**/__tests__/**',
+    '!src/**/*.test.{ts,tsx}',
     '!tests/**',
   ],
 });

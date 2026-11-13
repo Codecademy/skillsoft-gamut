@@ -12,7 +12,8 @@
   ],
   "exclude": [
     "jest.config.ts",
-    "**/__tests__/**",
+    "**/testUtils.tsx",
+    "**/fontUtilsMock.ts",
     "**/*.spec.ts",
     "**/*.test.ts",
     "**/*.spec.tsx",
