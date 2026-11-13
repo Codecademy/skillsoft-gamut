@@ -3,3 +3,4 @@ export * from './admin';
 export * from './lxStudio';
 export * from './skillsoft';
 export * from './originalCodecademy';
+export * from './createBrandTheme';
