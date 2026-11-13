@@ -14,7 +14,7 @@ export default base('gamut-icons', {
     'src/**/*.{ts,tsx}',
     '!src/icons/**',
     '!src/**/*.d.ts',
-    '!src/**/__tests__/**',
+    '!src/**/*.test.{ts,tsx}',
     '!tests/**',
   ],
 });
