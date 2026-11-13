@@ -24,6 +24,6 @@ const ExampleContainer = styled.div(
 <ExampleContainer position="absolute" width="50px" height="50px" />;
 ```
 
-- [Prop groups](/foundations/system-props/prop-groups/) — what each group (`layout`, `space`, `typography`, and the rest) covers.
 - [Compose and variants](/foundations/system-props/compose-and-variants/) — combining system props into one function, and building variant- or state-driven styles.
+- [Prop groups](/foundations/system-props/prop-groups/) — what each group (`layout`, `space`, `typography`, and the rest) covers.
 - [Responsive properties](/foundations/system-props/responsive-properties/) — the array/object syntax for breakpoint- and container-query-driven values.
