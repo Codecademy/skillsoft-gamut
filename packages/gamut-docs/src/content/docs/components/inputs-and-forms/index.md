@@ -7,9 +7,9 @@ sidebar:
 
 Form fields, the scaffolding around them, and the wiring that connects them to form state.
 
+- [ConnectedForm](/components/inputs-and-forms/connectedform/) — ConnectedForm, ConnectedFormGroup, ConnectedFormInputs, SubmitButton
 - Fields: [Input](/components/inputs-and-forms/input/), [TextArea](/components/inputs-and-forms/text-area/), [Checkbox](/components/inputs-and-forms/checkbox/), [Radio](/components/inputs-and-forms/radio/), [Select](/components/inputs-and-forms/select/), [SelectDropdown](/components/inputs-and-forms/select-dropdown/), [DatePicker](/components/inputs-and-forms/date-picker/)
 - [Form scaffolding](/components/inputs-and-forms/form/) — Form, FormGroup, FormGroupLabel, FormGroupDescription, FormRequiredText
-- [ConnectedForm](/components/inputs-and-forms/connectedform/) — ConnectedForm, ConnectedFormGroup, ConnectedFormInputs, SubmitButton
 - [GridForm](/components/inputs-and-forms/gridform/)
 
 See [Building forms](/guides/building-forms/) for a task-oriented walkthrough instead of the per-component reference.

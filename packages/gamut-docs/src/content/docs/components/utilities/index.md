@@ -7,5 +7,5 @@ sidebar:
 
 Non-visual helper components.
 
-- [FocusTrap](/components/utilities/focus-trap/)
 - [DelayedRenderWrapper](/components/utilities/delayed-render-wrapper/)
+- [FocusTrap](/components/utilities/focus-trap/)

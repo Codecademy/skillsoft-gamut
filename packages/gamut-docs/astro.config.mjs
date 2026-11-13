@@ -207,38 +207,6 @@ export default defineConfig({
                   ],
                 },
                 {
-                  label: 'Inputs & forms',
-                  items: [
-                    {
-                      autogenerate: {
-                        directory: 'components/inputs-and-forms',
-                      },
-                    },
-                  ],
-                },
-                {
-                  label: 'Navigation',
-                  items: [
-                    { autogenerate: { directory: 'components/navigation' } },
-                  ],
-                },
-                {
-                  label: 'Feedback',
-                  items: [
-                    { autogenerate: { directory: 'components/feedback' } },
-                  ],
-                },
-                {
-                  label: 'Status',
-                  items: [{ autogenerate: { directory: 'components/status' } }],
-                },
-                {
-                  label: 'Overlays',
-                  items: [
-                    { autogenerate: { directory: 'components/overlays' } },
-                  ],
-                },
-                {
                   label: 'Data display',
                   items: [
                     { slug: 'components/data-display' },
@@ -260,9 +228,19 @@ export default defineConfig({
                   ],
                 },
                 {
-                  label: 'Typography',
+                  label: 'Feedback',
                   items: [
-                    { autogenerate: { directory: 'components/typography' } },
+                    { autogenerate: { directory: 'components/feedback' } },
+                  ],
+                },
+                {
+                  label: 'Inputs & forms',
+                  items: [
+                    {
+                      autogenerate: {
+                        directory: 'components/inputs-and-forms',
+                      },
+                    },
                   ],
                 },
                 {
@@ -273,6 +251,28 @@ export default defineConfig({
                         directory: 'components/media-and-assets',
                       },
                     },
+                  ],
+                },
+                {
+                  label: 'Navigation',
+                  items: [
+                    { autogenerate: { directory: 'components/navigation' } },
+                  ],
+                },
+                {
+                  label: 'Overlays',
+                  items: [
+                    { autogenerate: { directory: 'components/overlays' } },
+                  ],
+                },
+                {
+                  label: 'Status',
+                  items: [{ autogenerate: { directory: 'components/status' } }],
+                },
+                {
+                  label: 'Typography',
+                  items: [
+                    { autogenerate: { directory: 'components/typography' } },
                   ],
                 },
                 {
