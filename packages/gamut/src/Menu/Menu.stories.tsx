@@ -362,7 +362,7 @@ export const FloatingMenu: Story = {
               bg="navy"
               dimensions="200px"
               height="100%"
-              justifyContent="right"
+              justifyContent="end"
               ref={target}
             >
               <Menu role="menu" variant="fixed">

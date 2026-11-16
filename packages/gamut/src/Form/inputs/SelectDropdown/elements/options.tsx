@@ -122,7 +122,7 @@ export const formatOptionLabel = ({
           fontSize={14}
           justifyContent="flex-end"
           pr={16}
-          textAlign="right"
+          textAlign="end"
         >
           {rightLabel}
         </FlexBox>

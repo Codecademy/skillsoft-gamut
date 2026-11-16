@@ -67,7 +67,7 @@ export const TopicCard: React.FC<PageLink> = ({
           p={24}
           position={'relative'}
           rowGap={8}
-          textAlign={'left'}
+          textAlign="start"
         >
           <Box position="relative">
             <Text as="h2" fontSize={22}>

@@ -11,7 +11,7 @@ import type { OnSort, SortDirection, SortOrder } from '../types';
 const SortAnchor = styled(Anchor)(
   css({
     color: 'text',
-    textAlign: 'left',
+    textAlign: 'start',
     width: '100%',
     alignItems: 'flex-end',
     '&:hover': {
