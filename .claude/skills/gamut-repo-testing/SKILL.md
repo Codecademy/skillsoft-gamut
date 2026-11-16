@@ -54,7 +54,7 @@ packages/gamut/src/Modals/
   Dialog.test.tsx
 ```
 
-- Name tests `<Component>.test.tsx` and stories `<Component>.stories.tsx`, beside the source. When you touch a test in a `__tests__/` folder, move it up next to the source and delete the folder once it's empty.
+- Name tests `<Component>.test.tsx` and stories `<Component>.stories.tsx`, beside the source, never in a `__tests__/` folder.
 - Import with relative paths (`./Dialog`, `../Box`). A self-import of `@skillsoft/gamut` from inside the package fails the `import-paths` lint rule. Import argTypes and blocks from `~storybook/*`.
 - Put example components and data the stories need inside the `.stories.tsx` file. A separate helper file gets swept into the library build.
 - A package that gains its first co-located story needs `**/*.stories.{ts,tsx,js,jsx}` in its `tsconfig.lib.json` `exclude`, and a `directory` entry in `packages/.storybook/main.ts`.
