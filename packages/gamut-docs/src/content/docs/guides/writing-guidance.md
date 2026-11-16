@@ -7,6 +7,8 @@ description: Naming, comment, formatting, and linking conventions for Gamut code
 
 We’ve established these conventions to help provide guidance on one of the most difficult exercises in programming — naming. These guidelines are not hard and fast rules, they won’t cover every single case, but generally, they will provide a frame of mind to write helpful names for anyone reading this code, including agents.
 
+The [Naming conventions rationale](/concepts/naming-conventions-rationale/) page explains the reasoning behind the conventions that aren't self-evident.
+
 ### Principles
 
 1. Be readable - ensure that the name can be understood by other people, not just your current self.
@@ -39,8 +41,9 @@ We’ve established these conventions to help provide guidance on one of the mos
 - Name the state for which the component is usually in, and default to that state
   - `visible` (defaulting to `true`) beats `hidden` (defaulting to `false`) when a component is visible most of the time.
 - Name what the prop controls, not how it's built. `size="sm"`, not `smallVariant` or `useSmallStyles`.
-- Opt for logical property names instead of physical or visual names to allow for RTL conversions
-  — `leading`/`trailing` over `left`/`right`, `start`/`end` over `top`/`bottom`
+- Opt for logical names instead of physical or visual names so props stay correct in right-to-left (RTL) layouts. This applies to prop values as well as prop names.
+  - e.g. `start`/`end` over `left`/`right`: `iconPosition="start"`, `alignment="top-end"`, `labelSide="end"`
+  - See the [reading-direction rationale](/concepts/naming-conventions-rationale/#staying-correct-in-both-reading-directions) for why values use `start`/`end` rather than `leading`/`trailing`.
 
 **Variables and constants**
 

@@ -31,6 +31,12 @@ Let's explore using an example: `hideLabel` on `ConnectedFormGroup` has no defau
 
 A property named `left` means something different once a page mirrors for a right-to-left locale — the padding or margin a developer set for one side silently lands on the other. `leading`/`trailing` and `start`/`end` name a position relative to the reading direction instead of the screen, so the same prop value is correct in both directions with no conditional logic to flip it.
 
+The same reasoning applies to prop values, so props like `iconPosition`, `align`, `alignment`, and `justify` take `start` and `end` rather than `left` and `right`. `iconPosition="start"` places the icon before the label, and it stays accurate on a mirrored page. `iconPosition="left"` would put the icon in the same place but describe it wrongly, since in a right-to-left layout the icon renders on the right. Compound placements change only their inline half: `top-left` becomes `top-start`, and `right-center` becomes `end-center`.
+
+For values, we use `start`/`end` instead of `leading`/`trailing` because many of them pass straight through to CSS, where `text-align: start` and `justify-content: end` are valid and `leading` isn't. A DataList column's `justify` value, for example, goes directly to the cell's `textAlign` with no lookup table in between.
+
+Physical sides still exist inside the implementation. `Popover` and `PopoverContainer` measure the target in physical screen coordinates, so they resolve `start` to `left` or `right` from the target's reading direction before positioning. Callers only ever pass the logical value.
+
 ## Names you can act on
 
 `Container` and `Wrapper` describe the shape of the code, not what it's for. Both just mean something wraps something else. Six months later, nobody can tell from the name alone whether it's safe to delete, safe to reuse, or load-bearing for three other components. `SkipToContent` or `RadialProgress` answers that question on sight. Matching the folder, file, and export to the same name keeps that answer one lookup away, whether someone arrives at the file through an import statement, a fuzzy search, or jump-to-definition.
