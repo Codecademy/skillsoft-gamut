@@ -184,10 +184,10 @@ export const Justification: ListCompositionStory = {
       <List {...args}>
         <ListRow>
           <ListCol fill size="md">
-            Left
+            Start
           </ListCol>
           <ListCol fill justify="end" size="md">
-            Right
+            End
           </ListCol>
         </ListRow>
       </List>
