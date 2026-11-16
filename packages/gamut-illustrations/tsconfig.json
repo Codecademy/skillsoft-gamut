@@ -11,5 +11,10 @@
       "~storybook/blocks": ["../.storybook/components/"]
     }
   },
-  "exclude": ["jest.config.ts", "**/*.stories.tsx"]
+  "exclude": [
+    "jest.config.ts",
+    "**/*.stories.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ]
 }

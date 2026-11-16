@@ -61,7 +61,7 @@ export type ButtonProps = {
 
 ### Unit tests
 
-Add unit tests in a `__tests__/MyComponent-test.tsx` file within the component's directory, using `setupRtl` from `gamut-tests`. Unit test all component logic, with the exception of class names on components that already contain other tested logic.
+Add unit tests next to the code they test, in a `MyComponent.test.tsx` file in the component's directory, using `setupRtl` from `gamut-tests`. Unit test all component logic, with the exception of class names on components that already contain other tested logic.
 
 ## Writing stories and documentation
 
