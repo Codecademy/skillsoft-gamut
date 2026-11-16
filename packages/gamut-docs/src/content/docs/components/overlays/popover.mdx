@@ -15,7 +15,7 @@ Use `Popover` for interactive floating content anchored to a target element — 
 
 - `Popover` is controlled: pass `isOpen` and a `targetRef` pointing at the element it's anchored to.
 - It closes itself automatically if its target scrolls fully out of the viewport — that's always on, not configurable, unlike [PopoverContainer](/components/overlays/popover-container/)'s opt-in `closeOnViewportExit`.
-- `align`, `position`, and `beak` are RTL-aware — under `GamutProvider`'s logical properties, `left`/`right` follow reading direction rather than fixed physical sides.
+- `align`, `position`, and `beak` are RTL-aware — under `GamutProvider`'s logical properties, `start`/`end` follow reading direction rather than fixed physical sides.
 
 **When NOT to use:**
 
@@ -24,7 +24,7 @@ Use `Popover` for interactive floating content anchored to a target element — 
 
 ### Anatomy
 
-1. **Beak** (optional, `beak`) — a pointed triangle connecting the popover to its target; pass `left`/`right` to pin a corner, or `center` for a centered triangle.
+1. **Beak** (optional, `beak`) — a pointed triangle connecting the popover to its target; pass `start`/`end` to pin a corner, or `center` for a centered triangle.
 2. **Pattern background** (optional, `pattern`) — a decorative pattern layer; unavailable when `position="center"`.
 3. **Content** — `children`.
 
@@ -46,7 +46,7 @@ When a popover's content has nothing to focus, the popover itself becomes the fa
 
 ### Position
 
-`position` (`'above'`, `'below'`, or `'center'`) and `align` (`'left'`, `'right'`, or `'center'`) together place the popover relative to `targetRef`.
+`position` (`'above'`, `'below'`, or `'center'`) and `align` (`'start'`, `'end'`, or `'center'`) together place the popover relative to `targetRef`.
 
 #### Above
 
@@ -56,11 +56,11 @@ When a popover's content has nothing to focus, the popover itself becomes the fa
 
 <StoryEmbed id="molecules-popover--below" height="10rem" />
 
-#### Center, aligned left
+#### Center, aligned start
 
 <StoryEmbed id="molecules-popover--center-left" height="10rem" />
 
-#### Center, aligned right
+#### Center, aligned end
 
 <StoryEmbed id="molecules-popover--center-right" height="10rem" />
 

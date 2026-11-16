@@ -24,8 +24,8 @@ type Story = StoryObj<typeof ToolTip>;
 const alignments = [
   'top-center',
   'bottom-center',
-  'left-center',
-  'right-center',
+  'start-center',
+  'end-center',
 ] as const;
 
 const onTipTargetClick = fn();
@@ -99,7 +99,7 @@ export const WithIconButton: Story = {
       <IconButton
         icon={SparkleIcon}
         tip="Wonder at the majesty of the universe"
-        tipProps={{ alignment: 'left-center' }}
+        tipProps={{ alignment: 'start-center' }}
       />
       <IconButton
         icon={ArrowRightIcon}
@@ -135,12 +135,12 @@ export const Floating: Story = {
       <IconButton
         icon={SmileyStarEyesIcon}
         tip="Wonder at the majesty of the universe"
-        tipProps={{ alignment: 'right-center', placement: 'floating' }}
+        tipProps={{ alignment: 'end-center', placement: 'floating' }}
       />
       <IconButton
         icon={SmileyStarEyesIcon}
         tip="Wonder at the majesty of the universe"
-        tipProps={{ alignment: 'left-center', placement: 'floating' }}
+        tipProps={{ alignment: 'start-center', placement: 'floating' }}
       />
     </FlexBox>
   ),
@@ -174,7 +174,7 @@ export const InteractiveElement: Story = {
         </StrokeButton>
       </ToolTip>
       <ToolTip
-        alignment="left-center"
+        alignment="start-center"
         id="floating-ex-lc"
         info="Tooltip for a FillButton"
         placement="floating"
@@ -184,7 +184,7 @@ export const InteractiveElement: Story = {
         </FillButton>
       </ToolTip>
       <ToolTip
-        alignment="right-center"
+        alignment="end-center"
         id="floating-ex-rc"
         info="Tooltip for a FillButton"
         placement="floating"
@@ -306,22 +306,22 @@ export const HorizontalAlignments: Story = {
       <IconButton
         icon={SparkleIcon}
         tip="Inline (Leading)"
-        tipProps={{ alignment: 'left-center' }}
+        tipProps={{ alignment: 'start-center' }}
       />
       <IconButton
         icon={SparkleIcon}
         tip="Inline (Trailing)"
-        tipProps={{ alignment: 'right-center' }}
+        tipProps={{ alignment: 'end-center' }}
       />
       <IconButton
         icon={SparkleIcon}
         tip="Floating (Leading)"
-        tipProps={{ alignment: 'left-center', placement: 'floating' }}
+        tipProps={{ alignment: 'start-center', placement: 'floating' }}
       />
       <IconButton
         icon={DeleteIcon}
         tip="Floating (Trailing)"
-        tipProps={{ alignment: 'right-center', placement: 'floating' }}
+        tipProps={{ alignment: 'end-center', placement: 'floating' }}
       />
     </FlexBox>
   ),

@@ -109,7 +109,7 @@ export const ToolTipLabels: Story = {
         </MenuItem>
         <MenuItem
           href="#link"
-          label={{ info: 'Object label', alignment: 'right-center' }}
+          label={{ info: 'Object label', alignment: 'end-center' }}
         >
           Link with object label
         </MenuItem>

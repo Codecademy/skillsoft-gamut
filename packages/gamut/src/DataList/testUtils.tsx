@@ -139,14 +139,14 @@ const CrewMgmtDropdown = ({ row }: { row: CrewMember }) => {
         icon={MiniKebabMenuIcon}
         tip="Show options"
         tipProps={{
-          alignment: 'left-center',
+          alignment: 'start-center',
           placement: 'floating',
         }}
         variant="secondary"
         onClick={() => setIsOpen(!isOpen)}
       />
       <PopoverContainer
-        alignment="bottom-left"
+        alignment="bottom-start"
         allowPageInteraction
         closeOnViewportExit
         isOpen={isOpen}
@@ -386,12 +386,12 @@ export const simpleColumns: ColumnConfig<(typeof simpleRows)[number]>[] = [
         <IconButton
           icon={SparkleOutlineIcon}
           tip="Warp back home"
-          tipProps={{ alignment: 'left-center', placement: 'floating' }}
+          tipProps={{ alignment: 'start-center', placement: 'floating' }}
         />{' '}
         <IconButton
           icon={RocketIcon}
           tip="Send on a mission"
-          tipProps={{ alignment: 'right-center', placement: 'floating' }}
+          tipProps={{ alignment: 'end-center', placement: 'floating' }}
         />
       </>
     ),

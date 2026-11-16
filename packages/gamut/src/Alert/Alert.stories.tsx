@@ -291,7 +291,7 @@ export const CloseButtonCustomization: Story = {
             closeButtonProps={{
               tip: 'Wow, a left-aligned tooltip!',
               ref: closeButtonRef,
-              tipAlignment: 'left-center',
+              tipAlignment: 'start-center',
             }}
             type="feature"
             onClose={() => setIsVisible(false)}

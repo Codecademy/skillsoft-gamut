@@ -5,39 +5,39 @@ describe('getBeakVariant', () => {
     expect(
       getBeakVariant({
         position: 'below',
-        align: 'right',
-        beak: 'left',
+        align: 'end',
+        beak: 'start',
         variant: 'primary',
       })
-    ).toBe('below-left');
+    ).toBe('below-start');
   });
 
   it("uses `beak` when `position` is not `center` (i.e. `above`) to set the location of the beak relative to the popover' container", () => {
     expect(
       getBeakVariant({
         position: 'above',
-        align: 'left',
-        beak: 'right',
+        align: 'start',
+        beak: 'end',
         variant: 'primary',
       })
-    ).toBe('above-right');
+    ).toBe('above-end');
   });
 
   it('uses `align` for the beak position when `position` is `above`/`below` when beak is explicitly omitted', () => {
     expect(
       getBeakVariant({
         position: 'above',
-        align: 'right',
+        align: 'end',
         variant: 'secondary',
       })
-    ).toBe('above-right-sml');
+    ).toBe('above-end-sml');
   });
 
   it('uses center beak when beak is center regardless of align', () => {
     expect(
       getBeakVariant({
         position: 'below',
-        align: 'right',
+        align: 'end',
         beak: 'center',
         variant: 'primary',
       })
@@ -48,21 +48,21 @@ describe('getBeakVariant', () => {
     expect(
       getBeakVariant({
         position: 'center',
-        align: 'left',
+        align: 'start',
         beak: 'center',
         variant: 'secondary',
       })
-    ).toBe('center-left-sml');
+    ).toBe('center-start-sml');
   });
 
   it('appends -sml for secondary variant', () => {
     expect(
       getBeakVariant({
         position: 'below',
-        align: 'right',
-        beak: 'left',
+        align: 'end',
+        beak: 'start',
         variant: 'secondary',
       })
-    ).toBe('below-left-sml');
+    ).toBe('below-start-sml');
   });
 });

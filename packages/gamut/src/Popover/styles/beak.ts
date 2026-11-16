@@ -108,22 +108,22 @@ export const beakBoxY = {
 };
 
 export const beakVariantsArray = [
-  'below-left',
-  'below-right',
+  'below-start',
+  'below-end',
   'below-center',
-  'above-left',
-  'above-right',
+  'above-start',
+  'above-end',
   'above-center',
-  'below-left-sml',
-  'below-right-sml',
+  'below-start-sml',
+  'below-end-sml',
   'below-center-sml',
-  'above-left-sml',
-  'above-right-sml',
+  'above-start-sml',
+  'above-end-sml',
   'above-center-sml',
-  'center-right',
-  'center-left',
-  'center-left-sml',
-  'center-right-sml',
+  'center-end',
+  'center-start',
+  'center-start-sml',
+  'center-end-sml',
 ];
 
 export const getBeakVariant = ({
@@ -133,16 +133,16 @@ export const getBeakVariant = ({
   variant,
 }: Pick<PopoverProps, 'align' | 'position' | 'beak' | 'variant'>) => {
   const suffix = variant === 'secondary' ? '-sml' : '';
-  let beakAlignment: 'left' | 'right' | 'center';
+  let beakAlignment: 'start' | 'end' | 'center';
 
   if (position === 'center') {
-    beakAlignment = align ?? 'left';
+    beakAlignment = align ?? 'start';
   } else if (beak === 'center') {
     beakAlignment = 'center';
-  } else if (beak === 'left' || beak === 'right') {
+  } else if (beak === 'start' || beak === 'end') {
     beakAlignment = beak;
   } else {
-    beakAlignment = align === 'left' ? 'left' : 'right';
+    beakAlignment = align === 'start' ? 'start' : 'end';
   }
 
   return `${position}-${beakAlignment}${suffix}`;
@@ -153,7 +153,7 @@ export const createBeakVariantFromAlignment = (alignment: string) => {
   const isSml = alignment.includes('sml');
   const isAbove = alignment.includes('above');
   const isBelow = alignment.includes('below');
-  const isRight = alignment.includes('right');
+  const isEnd = alignment.includes('-end');
   const isXCentered = alignment.includes('-center');
   const isYCentered = alignment.startsWith('center-');
 
@@ -161,14 +161,14 @@ export const createBeakVariantFromAlignment = (alignment: string) => {
     if (isYCentered) {
       // center-x-sml
       styleObject = { ...beakYCenterSml };
-      if (isRight) {
-        // center-right-sml
+      if (isEnd) {
+        // center-end-sml
         styleObject = {
           ...styleObject,
           ...beakRightCenterStylesSml,
         };
       } else {
-        // center-left-sml
+        // center-start-sml
         styleObject = {
           ...styleObject,
           ...beakLeftCenterStylesSml,
@@ -182,8 +182,8 @@ export const createBeakVariantFromAlignment = (alignment: string) => {
         // below-x-sml
         styleObject = { ...positionBelowSml };
       }
-      if (isRight) {
-        // above-right-sml + below-right-sml
+      if (isEnd) {
+        // above-end-sml + below-end-sml
         styleObject = { ...styleObject, ...beakRightSml };
       } else if (isXCentered) {
         // above-center-sml + below-center-sml
@@ -196,18 +196,18 @@ export const createBeakVariantFromAlignment = (alignment: string) => {
           styleObject = { ...styleObject, ...beakBottomStyles };
         }
       } else {
-        // above-left-sml + below-left-sml
+        // above-start-sml + below-start-sml
         styleObject = { ...styleObject, ...beakLeftSml };
       }
     }
   } else if (isYCentered) {
     // center-x
     styleObject = { ...beakYCenter };
-    if (isRight) {
-      // center-right
+    if (isEnd) {
+      // center-end
       styleObject = { ...styleObject, ...beakRightCenterStylesLrg };
     } else {
-      // center-left
+      // center-start
       styleObject = { ...styleObject, ...beakLeftCenterStylesLrg };
     }
   } else {
@@ -218,14 +218,14 @@ export const createBeakVariantFromAlignment = (alignment: string) => {
       // below-x
       styleObject = { ...positionBelow };
     }
-    if (isRight) {
-      // above-right + below-right
+    if (isEnd) {
+      // above-end + below-end
       styleObject = { ...styleObject, ...beakRight };
     } else if (isXCentered) {
       // above-center + below-center
       styleObject = { ...styleObject, ...beakXCenter };
     } else {
-      // above-left + below-left
+      // above-start + below-start
       styleObject = { ...styleObject, ...beakLeft };
     }
   }

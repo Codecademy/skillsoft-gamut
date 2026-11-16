@@ -1,8 +1,8 @@
 const tipAlignmentOptions = [
   'top-center',
   'bottom-center',
-  'left-center',
-  'right-center',
+  'start-center',
+  'end-center',
 ] as const;
 
 export const closeButtonPropsArgTypes = ({

@@ -44,7 +44,7 @@ const meta: TypeWithDeepControls<Meta<typeof IconButton>> = {
     },
     'tipProps.alignment': {
       control: 'radio',
-      options: ['top-center', 'bottom-center', 'left-center', 'right-center'],
+      options: ['top-center', 'bottom-center', 'start-center', 'end-center'],
     },
   },
 };

@@ -27,7 +27,7 @@ const meta: TypeWithDeepControls<Meta<typeof Coachmark>> = {
     },
     'popoverProps.beak': {
       control: 'radio',
-      options: ['left', 'right', 'center'],
+      options: ['start', 'end', 'center'],
       table: {
         type: {
           summary: 'left | right | center',
@@ -62,7 +62,7 @@ const meta: TypeWithDeepControls<Meta<typeof Coachmark>> = {
     },
     'popoverProps.align': {
       control: 'radio',
-      options: ['left', 'right', 'center'],
+      options: ['start', 'end', 'center'],
       table: {
         type: {
           summary: 'left | right | center',
@@ -158,7 +158,7 @@ export const Delay: Story = {
 export const Customized: Story = {
   args: {
     popoverProps: {
-      beak: 'left',
+      beak: 'start',
       outline: true,
       pattern: patterns.CheckerDense,
       position: 'above',

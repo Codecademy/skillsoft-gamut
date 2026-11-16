@@ -178,7 +178,7 @@ const RowActions = ({ rowId }) => {
         onClick={() => setIsOpen(!isOpen)}
       />
       <PopoverContainer
-        alignment="bottom-left"
+        alignment="bottom-start"
         allowPageInteraction
         closeOnViewportExit
         isOpen={isOpen}

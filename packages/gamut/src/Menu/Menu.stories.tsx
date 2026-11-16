@@ -79,7 +79,7 @@ export const Popover: Story = {
           icon={MultipleUsersIcon}
           label={{
             info: 'More info here...',
-            alignment: 'right-center',
+            alignment: 'end-center',
           }}
           onClick={() => null}
         >
@@ -92,7 +92,7 @@ export const Popover: Story = {
           disabled
           label={{
             info: 'This is disabled because...',
-            alignment: 'right-center',
+            alignment: 'end-center',
           }}
           onClick={() => null}
         >
@@ -121,7 +121,7 @@ export const Fixed: Story = {
             icon={MultipleUsersIcon}
             label={{
               info: 'More info here...',
-              alignment: 'right-center',
+              alignment: 'end-center',
             }}
             onClick={() => null}
           >
@@ -134,7 +134,7 @@ export const Fixed: Story = {
             disabled
             label={{
               info: 'This is disabled because...',
-              alignment: 'right-center',
+              alignment: 'end-center',
             }}
             onClick={() => null}
           >
@@ -285,14 +285,14 @@ export const IconOnly: Story = {
         <MenuItem icon={AiChatSparkIcon} label="Chat" onClick={() => {}} />
         <MenuItem
           icon={BashShellIcon}
-          label={{ alignment: 'right-center', info: 'Prompt' }}
+          label={{ alignment: 'end-center', info: 'Prompt' }}
           onClick={() => {}}
         />
         <MenuItem
           closeOnClick={false}
           icon={PeopleIcon}
           label={{
-            alignment: 'right-center',
+            alignment: 'end-center',
             info: "People (won't close tooltip on click)",
           }}
           onClick={() => {}}
@@ -301,14 +301,14 @@ export const IconOnly: Story = {
           active
           href="#whatsup-1"
           icon={FileIcon}
-          label={{ alignment: 'right-center', info: 'Learn' }}
+          label={{ alignment: 'end-center', info: 'Learn' }}
         />
         <MenuItem
           aria-label="I am bold and different"
           href="#whats-2"
           icon={RatingStarCircleIcon}
           label={{
-            alignment: 'right-center',
+            alignment: 'end-center',
             info: <Text color="hyper">I am bold and different</Text>,
             narrow: true,
           }}
@@ -316,7 +316,7 @@ export const IconOnly: Story = {
         <MenuItem
           href="#who-is-3"
           icon={InformationalIcon}
-          label={{ alignment: 'right-center', info: 'Content' }}
+          label={{ alignment: 'end-center', info: 'Content' }}
         />
       </>
     ),
@@ -335,14 +335,14 @@ export const FloatingMenu: Story = {
     const target = useRef<HTMLDivElement>(null);
     const [isOpen, setIsOpen] = useState(false);
     const [currentTarget, setCurrentTarget] = useState(0);
-    const [alignment, setAlignment] = useState<'top-right' | 'bottom-right'>(
-      'top-right'
+    const [alignment, setAlignment] = useState<'top-end' | 'bottom-end'>(
+      'top-end'
     );
     const [activeIndex, setActiveIndex] = useState(4);
 
     const clickHandler = (targetNumber: number, currentIndex: number) => {
       setCurrentTarget(targetNumber);
-      setAlignment(currentIndex === 3 ? 'bottom-right' : 'top-right');
+      setAlignment(currentIndex === 3 ? 'bottom-end' : 'top-end');
 
       if (isOpen && currentIndex === activeIndex) {
         setIsOpen(false);

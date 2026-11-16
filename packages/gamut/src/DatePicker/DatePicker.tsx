@@ -179,7 +179,7 @@ export const DatePicker: React.FC<DatePickerProps> = (props) => {
           )}
         </FlexBox>
         <PopoverContainer
-          alignment="bottom-left"
+          alignment="bottom-start"
           allowPageInteraction
           focusOnProps={{ autoFocus: false, focusLock: false }}
           inline={placement === 'inline'}

@@ -63,7 +63,7 @@ export const FilterControl: React.FC<FilterProps> = ({
     <FlexBox column position="relative">
       {menuOpen && (
         <PopoverContainer
-          alignment={justify === 'start' ? 'bottom-right' : 'bottom-left'}
+          alignment={justify === 'start' ? 'bottom-end' : 'bottom-start'}
           isOpen
           offset={0}
           targetRef={target}

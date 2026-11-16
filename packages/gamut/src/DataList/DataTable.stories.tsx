@@ -168,14 +168,14 @@ const RowMenu = ({ rowName }: { rowName: string }) => {
         icon={MiniKebabMenuIcon}
         tip="Show options"
         tipProps={{
-          alignment: 'left-center',
+          alignment: 'start-center',
           placement: 'floating',
         }}
         variant="secondary"
         onClick={() => setIsOpen(!isOpen)}
       />
       <PopoverContainer
-        alignment="bottom-left"
+        alignment="bottom-start"
         allowPageInteraction
         closeOnViewportExit
         isOpen={isOpen}

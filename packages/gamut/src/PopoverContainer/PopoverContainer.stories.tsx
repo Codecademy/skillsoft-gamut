@@ -10,7 +10,7 @@ const meta: Meta<typeof PopoverContainer> = {
   title: 'Overlays/PopoverContainer',
   component: PopoverContainer,
   args: {
-    alignment: 'top-left',
+    alignment: 'top-start',
     allowPageInteraction: true,
     isOpen: true,
     inline: true,
@@ -66,13 +66,13 @@ const meta: Meta<typeof PopoverContainer> = {
 export default meta;
 type Story = StoryObj<typeof PopoverContainer>;
 
-const SINGLE_DIRECTIONS = ['top', 'bottom', 'left', 'right'] as const;
+const SINGLE_DIRECTIONS = ['top', 'bottom', 'start', 'end'] as const;
 
 const MULTI_DIRECTIONS = [
-  'top-left',
-  'top-right',
-  'bottom-right',
-  'bottom-left',
+  'top-start',
+  'top-end',
+  'bottom-end',
+  'bottom-start',
 ] as const;
 
 export const Default: Story = {

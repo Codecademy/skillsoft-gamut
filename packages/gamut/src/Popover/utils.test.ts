@@ -3,49 +3,49 @@ import { resolveHorizontalSideForRtl } from './utils';
 describe('resolveHorizontalSideForRtl', () => {
   it.each([
     {
-      side: 'left' as const,
+      side: 'start' as const,
       isRtl: false,
       useLogicalProperties: false,
       expected: 'left',
     },
     {
-      side: 'right' as const,
+      side: 'end' as const,
       isRtl: false,
       useLogicalProperties: false,
       expected: 'right',
     },
     {
-      side: 'left' as const,
+      side: 'start' as const,
       isRtl: true,
       useLogicalProperties: false,
       expected: 'left',
     },
     {
-      side: 'right' as const,
+      side: 'end' as const,
       isRtl: true,
       useLogicalProperties: false,
       expected: 'right',
     },
     {
-      side: 'left' as const,
+      side: 'start' as const,
       isRtl: false,
       useLogicalProperties: true,
       expected: 'left',
     },
     {
-      side: 'right' as const,
+      side: 'end' as const,
       isRtl: false,
       useLogicalProperties: true,
       expected: 'right',
     },
     {
-      side: 'left' as const,
+      side: 'start' as const,
       isRtl: true,
       useLogicalProperties: true,
       expected: 'right',
     },
     {
-      side: 'right' as const,
+      side: 'end' as const,
       isRtl: true,
       useLogicalProperties: true,
       expected: 'left',
@@ -62,7 +62,7 @@ describe('resolveHorizontalSideForRtl', () => {
   it('treats undefined useLogicalProperties like false', () => {
     expect(
       resolveHorizontalSideForRtl({
-        side: 'left',
+        side: 'start',
         isRtl: true,
         useLogicalProperties: undefined,
       })

@@ -1,28 +1,28 @@
 import { getPopoverAlignmentAndPattern } from './popoverAlignmentUtils';
 
 describe('getPopoverAlignmentAndPattern', () => {
-  it('maps left-center to Popover center + align left', () => {
+  it('maps start-center to Popover center + align start', () => {
     expect(
       getPopoverAlignmentAndPattern({
-        alignment: 'left-center',
+        alignment: 'start-center',
         type: 'tool',
       })
     ).toMatchObject({
       position: 'center',
-      align: 'left',
+      align: 'start',
       beak: 'center',
     });
   });
 
-  it('maps right-center to Popover center + align right', () => {
+  it('maps end-center to Popover center + align end', () => {
     expect(
       getPopoverAlignmentAndPattern({
-        alignment: 'right-center',
+        alignment: 'end-center',
         type: 'tool',
       })
     ).toMatchObject({
       position: 'center',
-      align: 'right',
+      align: 'end',
       beak: 'center',
     });
   });

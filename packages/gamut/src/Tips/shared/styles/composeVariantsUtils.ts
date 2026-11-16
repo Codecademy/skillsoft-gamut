@@ -30,33 +30,33 @@ export const createToolTipVariantFromAlignment = (alignment: string) => {
   let styleObjectAfter = {};
   let styleObjectBefore = {};
 
-  const isRight = alignment.includes('right');
+  const isEnd = alignment.startsWith('end') || alignment.endsWith('-end');
   const isTop = alignment.includes('top');
   const isCenter = alignment.includes('center');
   const isBottom = alignment.includes('bottom');
   const isLRAligned =
-    alignment.startsWith('right') || alignment.startsWith('left');
+    alignment.startsWith('end') || alignment.startsWith('start');
 
-  // top-center, top-right, + top-left styles
+  // top-center, top-end, + top-start styles
   if (isTop) {
     styleObject = { ...topStyles };
     styleObjectAfter = { ...topStylesAfter };
     styleObjectBefore = { ...topStylesBefore };
-    // bottom-center, bottom-right, + bottom-left styles
+    // bottom-center, bottom-end, + bottom-start styles
   } else if (isBottom) {
     styleObject = { ...bottomStyles };
     styleObjectAfter = { ...bottomStylesAfter };
     styleObjectBefore = { ...bottomStylesBefore };
   } else if (isLRAligned) {
-    // right-center & left-center styles
+    // end-center & start-center styles
     styleObject = { ...horizontalCenterStyles };
     styleObjectAfter = { ...centerHorizontal };
     styleObjectBefore = { ...beforeStylesHorizontal };
-    // right-center styles
-    if (isRight) {
+    // end-center styles
+    if (isEnd) {
       styleObject = { ...styleObject, ...rightAlignStyles };
       styleObjectAfter = { ...styleObjectAfter, ...rightAlignStylesAfter };
-      // left-center styles
+      // start-center styles
     } else {
       styleObject = { ...styleObject, ...leftAlignStyles };
       styleObjectAfter = { ...styleObjectAfter, ...leftAlignStylesAfter };
@@ -68,12 +68,12 @@ export const createToolTipVariantFromAlignment = (alignment: string) => {
     styleObject = { ...styleObject, ...verticalCenterStyles };
     styleObjectAfter = { ...styleObjectAfter, ...verticalCenterStylesAfter };
   } else if (!isCenter && !isLRAligned) {
-    // top-right, bottom-right
-    if (isRight) {
+    // top-end, bottom-end
+    if (isEnd) {
       styleObject = { ...styleObject, ...rightVertStyles };
       styleObjectAfter = { ...styleObjectAfter, ...rightVertStylesAfter };
     } else {
-      // top-left, bottom-left
+      // top-start, bottom-start
       styleObject = { ...styleObject, ...leftVertStyles };
       styleObjectAfter = { ...styleObjectAfter, ...leftVertStylesAfter };
     }

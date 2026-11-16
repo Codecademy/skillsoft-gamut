@@ -221,17 +221,17 @@ describe('Popover', () => {
               PopoverContainerProps['alignment'],
               Record<string, string>
             ][] = [
-              ['top-right', { left: '370px', bottom: '-130px' }],
-              ['top-left', { right: '370px', bottom: '-130px' }],
-              ['bottom-right', { left: '370px', top: '370px' }],
-              ['bottom-left', { right: '370px', top: '370px' }],
+              ['top-end', { left: '370px', bottom: '-130px' }],
+              ['top-start', { right: '370px', bottom: '-130px' }],
+              ['bottom-end', { left: '370px', top: '370px' }],
+              ['bottom-start', { right: '370px', top: '370px' }],
               // 'top'/'bottom' center horizontally using a physical screen coordinate,
               // so the horizontal position is always physical `left` regardless of
               // useLogicalProperties — placement stays inline style, not variance props.
               ['top', { left: '250px', bottom: '-130px' }],
-              ['left', { right: '370px', top: '250px' }],
+              ['start', { right: '370px', top: '250px' }],
               ['bottom', { left: '250px', top: '370px' }],
-              ['right', { left: '370px', top: '250px' }],
+              ['end', { left: '370px', top: '250px' }],
             ];
 
             alignmentTests.forEach(([alignment, expected]) => {
@@ -261,15 +261,15 @@ describe('Popover', () => {
               PopoverContainerProps['alignment'],
               Record<string, string>
             ][] = [
-              ['top-right', { left: '370px', bottom: '370px' }],
-              ['top-left', { right: '370px', bottom: '370px' }],
-              ['bottom-right', { left: '370px', top: '370px' }],
-              ['bottom-left', { right: '370px', top: '370px' }],
+              ['top-end', { left: '370px', bottom: '370px' }],
+              ['top-start', { right: '370px', bottom: '370px' }],
+              ['bottom-end', { left: '370px', top: '370px' }],
+              ['bottom-start', { right: '370px', top: '370px' }],
               // See comment above re: physical 'left' for centered alignments.
               ['top', { left: '250px', bottom: '370px' }],
-              ['left', { right: '370px', top: '250px' }],
+              ['start', { right: '370px', top: '250px' }],
               ['bottom', { left: '250px', top: '370px' }],
-              ['right', { left: '370px', top: '250px' }],
+              ['end', { left: '370px', top: '250px' }],
             ];
 
             alignmentTests.forEach(([alignment, expected]) => {
@@ -295,14 +295,14 @@ describe('Popover', () => {
     describe('edges', () => {
       describe('outside', () => {
         it.each([
-          ['top-right', 'translate(0, 0)'],
-          ['top-left', 'translate(0, 0)'],
-          ['bottom-right', 'translate(0, 0)'],
-          ['bottom-left', 'translate(0, 0)'],
+          ['top-end', 'translate(0, 0)'],
+          ['top-start', 'translate(0, 0)'],
+          ['bottom-end', 'translate(0, 0)'],
+          ['bottom-start', 'translate(0, 0)'],
           ['top', 'translate(-50%, 0)'],
-          ['left', 'translate(0, -50%)'],
+          ['start', 'translate(0, -50%)'],
           ['bottom', 'translate(-50%, 0)'],
-          ['right', 'translate(0, -50%)'],
+          ['end', 'translate(0, -50%)'],
         ] as const)(
           '%s',
           (alignment: PopoverContainerProps['alignment'], expected: string) => {
@@ -315,14 +315,14 @@ describe('Popover', () => {
       });
       describe('inside', () => {
         it.each([
-          ['top-right', 'translate(-100%, 0)'],
-          ['top-left', 'translate(100%, 0)'],
-          ['bottom-right', 'translate(-100%, 0)'],
-          ['bottom-left', 'translate(100%, 0)'],
+          ['top-end', 'translate(-100%, 0)'],
+          ['top-start', 'translate(100%, 0)'],
+          ['bottom-end', 'translate(-100%, 0)'],
+          ['bottom-start', 'translate(100%, 0)'],
           ['top', 'translate(-50%, 0)'],
-          ['left', 'translate(0, -50%)'],
+          ['start', 'translate(0, -50%)'],
           ['bottom', 'translate(-50%, 0)'],
-          ['right', 'translate(0, -50%)'],
+          ['end', 'translate(0, -50%)'],
         ] as const)(
           '%s',
           (alignment: PopoverContainerProps['alignment'], expected: string) => {
@@ -348,12 +348,12 @@ describe('Popover', () => {
       const base = { container, offset: 20, x: 0, y: 0 };
 
       it.each([
-        ['bottom-left', 'bottom-right'],
-        ['bottom-right', 'bottom-left'],
-        ['top-left', 'top-right'],
-        ['top-right', 'top-left'],
-        ['left', 'right'],
-        ['right', 'left'],
+        ['bottom-start', 'bottom-end'],
+        ['bottom-end', 'bottom-start'],
+        ['top-start', 'top-end'],
+        ['top-end', 'top-start'],
+        ['start', 'end'],
+        ['end', 'start'],
       ] as const)('RTL %s matches LTR %s', (rtlPlacement, ltrMirror) => {
         expect(
           utils.getPosition({
@@ -416,14 +416,14 @@ describe('Popover', () => {
         };
 
         it.each([
-          ['top-right', false, 'translate(-100%, 0)'],
-          ['top-right', true, 'translate(100%, 0)'],
-          ['top-left', false, 'translate(100%, 0)'],
-          ['top-left', true, 'translate(-100%, 0)'],
-          ['bottom-right', false, 'translate(-100%, 0)'],
-          ['bottom-right', true, 'translate(100%, 0)'],
-          ['bottom-left', false, 'translate(100%, 0)'],
-          ['bottom-left', true, 'translate(-100%, 0)'],
+          ['top-end', false, 'translate(-100%, 0)'],
+          ['top-end', true, 'translate(100%, 0)'],
+          ['top-start', false, 'translate(100%, 0)'],
+          ['top-start', true, 'translate(-100%, 0)'],
+          ['bottom-end', false, 'translate(-100%, 0)'],
+          ['bottom-end', true, 'translate(100%, 0)'],
+          ['bottom-start', false, 'translate(100%, 0)'],
+          ['bottom-start', true, 'translate(-100%, 0)'],
         ] as const)(
           '%s invertAxis="x" isRtl=%s → %s',
           (alignment, isRtl, expected) => {
@@ -440,12 +440,12 @@ describe('Popover', () => {
 
       describe('transform is always applied as a physical inline style', () => {
         it.each([
-          [true, 'top-right', 'translate(0, 0)'],
-          [false, 'top-right', 'translate(0, 0)'],
+          [true, 'top-end', 'translate(0, 0)'],
+          [false, 'top-end', 'translate(0, 0)'],
           [true, 'top', 'translate(-50%, 0)'],
           [false, 'top', 'translate(-50%, 0)'],
-          [true, 'left', 'translate(0, -50%)'],
-          [false, 'left', 'translate(0, -50%)'],
+          [true, 'start', 'translate(0, -50%)'],
+          [false, 'start', 'translate(0, -50%)'],
         ] as const)(
           'useLogicalProperties=%s, alignment=%s → transform: %s',
           (useLogicalProperties, alignment, expected) => {
@@ -490,7 +490,7 @@ describe('Popover', () => {
               <MockGamutProvider useLogicalProperties={useLogicalProperties}>
                 <RenderPopover
                   {...defaultProps}
-                  alignment="top-right"
+                  alignment="top-end"
                   inline={false}
                   x={x}
                   y={y}

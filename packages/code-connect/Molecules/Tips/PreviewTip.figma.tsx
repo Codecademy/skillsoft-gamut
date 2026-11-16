@@ -15,6 +15,7 @@ figma.connect(
   {
     props: {
       previewTipProps: figma.nestedProps('.previewtip-alignment-anchor', {
+        // TODO: Update these alignment values to their 'start' / 'end' equivalents after the Figma changes take effect.
         alignment: figma.enum('alignment', {
           'bottom-left': 'bottom-left',
           'bottom-right': 'bottom-right',

@@ -111,7 +111,7 @@ export const LowEmphasisInfoTip: Story = {
     label: 'Low emphasis',
     htmlFor: 'low-emphasis-input',
     infotip: {
-      alignment: 'bottom-left',
+      alignment: 'bottom-start',
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     },
     children: <Input id="low-emphasis-input" />,
@@ -124,7 +124,7 @@ export const HighEmphasisInfoTip: Story = {
     htmlFor: 'high-emphasis-input',
     infotip: {
       emphasis: 'high',
-      alignment: 'bottom-left',
+      alignment: 'bottom-start',
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     },
     children: <Input id="high-emphasis-input" />,

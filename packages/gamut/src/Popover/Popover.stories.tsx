@@ -121,7 +121,7 @@ export const Default: Story = {
 };
 
 export const Beak: Story = {
-  render: (args) => <PopoverExample {...args} beak="left" position="below" />,
+  render: (args) => <PopoverExample {...args} beak="start" position="below" />,
   play: async (context) => {
     await openPopover(context);
     screen.getByTestId('popover-beak');
@@ -144,7 +144,7 @@ export const CenterLeft: Story = {
   render: (args) => (
     <PopoverExample
       {...args}
-      align="left"
+      align="start"
       beak="center"
       pattern={undefined}
       position="center"
@@ -156,7 +156,7 @@ export const CenterRight: Story = {
   render: (args) => (
     <PopoverExample
       {...args}
-      align="right"
+      align="end"
       beak="center"
       pattern={undefined}
       position="center"
@@ -274,7 +274,7 @@ export const Variant: Story = {
     <PopoverExample
       {...args}
       align="center"
-      beak="left"
+      beak="start"
       position="above"
       variant="secondary"
     />
@@ -299,7 +299,7 @@ export const PositionBelowLeft: Story = {
 };
 
 export const PositionAboveRight: Story = {
-  args: { position: 'above', align: 'right' },
+  args: { position: 'above', align: 'end' },
   render: renderCentered,
   play: async (context) => {
     await openPopover(context);
@@ -355,7 +355,7 @@ export const ScrolledOutOfView: Story = {
 export const RtlAlignLeft: Story = {
   tags: ['!autodocs'],
   globals: { direction: 'rtl' },
-  args: { align: 'left' },
+  args: { align: 'start' },
   render: renderCentered,
   play: async (context) => {
     await expect(document.documentElement).toHaveAttribute('dir', 'rtl');
@@ -370,7 +370,7 @@ export const RtlAlignLeft: Story = {
 export const RtlAlignRight: Story = {
   tags: ['!autodocs'],
   globals: { direction: 'rtl' },
-  args: { align: 'right' },
+  args: { align: 'end' },
   render: renderCentered,
   play: async (context) => {
     await openPopover(context);
@@ -385,7 +385,7 @@ export const RtlCenterAlignLeft: Story = {
   tags: ['!autodocs'],
   globals: { direction: 'rtl' },
   args: {
-    align: 'left',
+    align: 'start',
     beak: 'center',
     position: 'center',
     variant: 'secondary',
@@ -406,7 +406,7 @@ export const RtlCenterAlignRight: Story = {
   tags: ['!autodocs'],
   globals: { direction: 'rtl' },
   args: {
-    align: 'right',
+    align: 'end',
     beak: 'center',
     position: 'center',
     variant: 'secondary',
