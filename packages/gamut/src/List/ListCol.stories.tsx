@@ -194,10 +194,10 @@ export const Justification: ListCompositionStory = {
     );
   },
   play: async ({ canvas }) => {
-    await expect(canvas.getByText('Left')).toHaveStyle({
+    await expect(canvas.getByText('Start')).toHaveStyle({
       justifyContent: 'flex-start',
     });
-    await expect(canvas.getByText('Right')).toHaveStyle({
+    await expect(canvas.getByText('End')).toHaveStyle({
       justifyContent: 'flex-end',
     });
   },
