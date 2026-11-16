@@ -217,4 +217,4 @@ Run these from the repo root on Node 22.22.2. Vitest's story globs and eslint's 
 | Every test, building the tested packages first | `yarn test`                                                 |
 | Lint the files you touched                     | `node_modules/.bin/eslint <files>`                          |
 
-Unit tests in `gamut` import sibling packages from their built `dist`. When a filtered run fails on a sibling change, run `yarn test` (or build that package) first.
+Unit tests load other packages in this repo from their built `dist`, not their source: a test in `packages/gamut` that imports `@skillsoft/gamut-styles` gets `packages/gamut-styles/dist`. `yarn test` builds every tested package first; a filtered `yarn vitest run` does not. After editing a package that another package imports, build it (`yarn nx build <package>`) or run `yarn test` before trusting a filtered run.
