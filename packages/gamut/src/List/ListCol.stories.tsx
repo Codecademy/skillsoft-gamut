@@ -186,7 +186,7 @@ export const Justification: ListCompositionStory = {
           <ListCol fill size="md">
             Left
           </ListCol>
-          <ListCol fill justify="right" size="md">
+          <ListCol fill justify="end" size="md">
             Right
           </ListCol>
         </ListRow>

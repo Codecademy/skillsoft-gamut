@@ -14,9 +14,9 @@ export interface AppendedIconProps
    */
   iconOffset?: number;
   /**
-   * Can set the positioning of the icon relative to children, default is `left`
+   * Can set the positioning of the icon relative to children, default is `start`
    */
-  iconPosition?: 'left' | 'right';
+  iconPosition?: 'start' | 'end';
   /**
    * This value determines the size of the icon
    */
@@ -38,8 +38,8 @@ export const appendIconToContent = ({
 }: AppendedIconProps) => {
   if (!Icon) return <>{children}</>;
 
-  const iconSpacing = iconPosition === 'left' ? 'mr' : 'ml';
-  const iconPositioning = iconPosition === 'left' ? 0 : 1;
+  const iconSpacing = iconPosition === 'start' ? 'mr' : 'ml';
+  const iconPositioning = iconPosition === 'start' ? 0 : 1;
 
   if (typeof iconOffset !== 'number') {
     iconOffset = isInlineIcon ? 2 : 4;
@@ -66,7 +66,7 @@ export const appendIconToContent = ({
   );
 
   const content =
-    iconPosition === 'left' ? (
+    iconPosition === 'start' ? (
       <>
         {InlineCenteredIcon}
         {children}

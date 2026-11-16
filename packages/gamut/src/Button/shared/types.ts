@@ -29,7 +29,7 @@ export type InlineIconButtonProps<
     | React.JSXElementConstructor<any>
 > = ComponentProps<BaseButtonType> &
   Partial<IconComponentType> & {
-    iconPosition?: 'right' | 'left';
+    iconPosition?: 'start' | 'end';
   };
 
 /* eslint-disable @typescript-eslint/no-duplicate-type-constituents -- createButtonComponent yields structurally identical typeofs; union documents distinct components */

@@ -81,7 +81,7 @@ export const SelectDropdown: React.FC<SelectDropdownProps> = ({
   isCreatable = false,
   isSearchable: isSearchableProp = false,
   isValidNewOption,
-  menuAlignment = 'left',
+  menuAlignment = 'start',
   multiple,
   name,
   onChange,

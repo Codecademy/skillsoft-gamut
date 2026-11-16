@@ -57,7 +57,7 @@ const meta: Meta<typeof FocusTrap> = {
               ]}
               submit={{
                 contents: 'Disable Focus Trap',
-                position: 'right',
+                position: 'end',
                 size: 12,
               }}
               onSubmit={() => {

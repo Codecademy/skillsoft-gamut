@@ -16,7 +16,7 @@ export interface FilterProps {
   columnKey: string;
   options?: FilterOption[];
   onFilter?: OnFilter<any>;
-  justify?: 'left' | 'right';
+  justify?: 'start' | 'end';
 }
 
 const getNextFilters = (option: string, filters: string[]) => {
@@ -51,7 +51,7 @@ export const FilterControl: React.FC<FilterProps> = ({
   columnKey,
   onFilter,
   options = [],
-  justify = 'left',
+  justify = 'start',
 }) => {
   const target = useRef<HTMLAnchorElement>(null);
   const { prefixId } = useControlContext();
@@ -63,7 +63,7 @@ export const FilterControl: React.FC<FilterProps> = ({
     <FlexBox column position="relative">
       {menuOpen && (
         <PopoverContainer
-          alignment={justify === 'left' ? 'bottom-right' : 'bottom-left'}
+          alignment={justify === 'start' ? 'bottom-right' : 'bottom-left'}
           isOpen
           offset={0}
           targetRef={target}

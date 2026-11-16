@@ -154,10 +154,10 @@ export const getMemoizedStyles = (
               width: dropdownWidth,
             }
           : {}),
-        ...(menuAlignment === 'right'
+        ...(menuAlignment === 'end'
           ? {
-              left: 'auto',
-              right: 0,
+              insetInlineStart: 'auto',
+              insetInlineEnd: 0,
             }
           : {}),
       };

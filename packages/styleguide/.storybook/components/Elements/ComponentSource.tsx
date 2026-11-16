@@ -9,7 +9,7 @@ export const SourceAnchor = styled(Anchor)(
 
 export const sourceAnchorProps = {
   icon: OpenIcon,
-  iconPosition: 'right',
+  iconPosition: 'end',
   target: '_blank',
 } as const;
 

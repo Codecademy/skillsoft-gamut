@@ -24,7 +24,7 @@ const meta: Meta<typeof Anchor> = {
     children: 'Click me',
     href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     icon: icons.MiniInfoOutlineIcon,
-    iconPosition: 'left',
+    iconPosition: 'start',
     target: '_blank',
     variant: 'inline',
   },
@@ -95,7 +95,7 @@ export const IconAnchor: Story = {
         {...args}
         href="/"
         icon={icons.MiniInfoOutlineIcon}
-        iconPosition="left"
+        iconPosition="start"
         variant="inline"
       >
         Anybody can do what I do.
@@ -106,7 +106,7 @@ export const IconAnchor: Story = {
         {...args}
         href="/"
         icon={icons.MiniArrowRightIcon}
-        iconPosition="right"
+        iconPosition="end"
         variant="inline"
       >
         Learn more

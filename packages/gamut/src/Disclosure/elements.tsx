@@ -72,13 +72,13 @@ export const DisclosureButtonWrapper = styled(Anchor)(
 );
 
 const sharedVariants = {
-  left: {
+  start: {
     alignSelf: 'flex-start',
-    justifyContent: 'left',
+    justifyContent: 'start',
   },
-  right: {
+  end: {
     alignSelf: 'flex-end',
-    justifyContent: 'right',
+    justifyContent: 'end',
   },
 };
 

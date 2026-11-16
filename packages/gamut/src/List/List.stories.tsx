@@ -753,7 +753,7 @@ export const DisableContainerQuery: Story = {
               {name}
             </ListCol>
             <ListCol fill>{ship}</ListCol>
-            <ListCol justify="right" type="control">
+            <ListCol justify="end" type="control">
               {ship}
             </ListCol>
           </ListRow>
@@ -769,7 +769,7 @@ export const DisableContainerQuery: Story = {
               {name}
             </ListCol>
             <ListCol fill>{ship}</ListCol>
-            <ListCol justify="right" type="control">
+            <ListCol justify="end" type="control">
               {ship}
             </ListCol>
           </ListRow>

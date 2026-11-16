@@ -15,7 +15,7 @@ const meta: Meta<typeof GridForm> = {
     submit: {
       contents: 'Submit',
       size: 4,
-      position: 'left',
+      position: 'start',
     },
   },
 };
@@ -220,7 +220,7 @@ export const Sections: Story = {
     fields: [
       {
         title: 'first section',
-        layout: 'left',
+        layout: 'start',
         variant: 'title-xs',
         titleWrapperProps: {
           color: 'danger',

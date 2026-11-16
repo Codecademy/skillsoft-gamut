@@ -157,7 +157,7 @@ export const TableRow: DataRow = ({
               render(row)
             ) : typeof row[key] === 'string' || typeof row[key] === 'number' ? (
               <Text
-                textAlign={justify ?? 'left'}
+                textAlign={justify ?? 'start'}
                 truncate="ellipsis"
                 truncateLines={1}
               >

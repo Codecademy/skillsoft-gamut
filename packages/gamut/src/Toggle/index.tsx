@@ -8,7 +8,7 @@ export const Toggle = <Props extends ToggleProps>({
   checked,
   disabled,
   label,
-  labelSide = 'right',
+  labelSide = 'end',
   onChange,
   onClick,
   size = 'medium',
@@ -30,14 +30,14 @@ export const Toggle = <Props extends ToggleProps>({
     <ToggleLabel
       disabled={disabled}
       htmlFor={toggleProps.id}
-      labelRight={labelSide === 'right'}
+      labelEnd={labelSide === 'end'}
       {...rest}
     >
       {label && <>{label}</>}
       <ToggleTrack
         bg={checkedColor}
-        ml={label && labelSide === 'right' ? 0 : 16}
-        mr={label && labelSide === 'left' ? 0 : 16}
+        ml={label && labelSide === 'end' ? 0 : 16}
+        mr={label && labelSide === 'start' ? 0 : 16}
         size={size}
         {...(isButton && toggleProps)}
       >

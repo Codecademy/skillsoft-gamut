@@ -1491,7 +1491,7 @@ export const MenuAlignmentRight: Story = {
     ],
     inputWidth: '150px',
     dropdownWidth: '300px',
-    menuAlignment: 'right',
+    menuAlignment: 'end',
     translations: { placeholder: 'Select a role' },
   },
   render: (args) => (
