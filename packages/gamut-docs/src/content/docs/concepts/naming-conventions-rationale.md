@@ -29,11 +29,13 @@ Let's explore using an example: `hideLabel` on `ConnectedFormGroup` has no defau
 
 ## Staying correct in both reading directions
 
-A property named `left` means something different once a page mirrors for a right-to-left locale — the padding or margin a developer set for one side silently lands on the other. `leading`/`trailing` and `start`/`end` name a position relative to the reading direction instead of the screen, so the same prop value is correct in both directions with no conditional logic to flip it.
+Gamut prop values name inline positions with `start` and `end`: `iconPosition="start"`, `labelSide="end"`, `menuAlignment="end"`. Compound placements make only their inline half logical, so `PopoverContainer` takes `alignment="top-start"` and `ToolTip` takes `alignment="end-center"`. `start` is the side where reading begins, which is the left in a left-to-right (LTR) layout and the right in a right-to-left (RTL) layout. Because the value names a position relative to the reading direction instead of the screen, the same value is correct in both directions with no conditional logic in the calling code.
 
-The same reasoning applies to prop values, so props like `iconPosition`, `align`, `alignment`, and `justify` take `start` and `end` rather than `left` and `right`. `iconPosition="start"` places the icon before the label, and it stays accurate on a mirrored page. `iconPosition="left"` would put the icon in the same place but describe it wrongly, since in a right-to-left layout the icon renders on the right. Compound placements change only their inline half: `top-left` becomes `top-start`, and `right-center` becomes `end-center`.
+We use `start`/`end` instead of `leading`/`trailing` because many of these values pass straight through to CSS, where `text-align: start` and `justify-content: end` are valid and `leading` isn't. A DataList column's `justify` value, for example, goes directly to the cell's `textAlign` with no lookup table in between.
 
-For values, we use `start`/`end` instead of `leading`/`trailing` because many of them pass straight through to CSS, where `text-align: start` and `justify-content: end` are valid and `leading` isn't. A DataList column's `justify` value, for example, goes directly to the cell's `textAlign` with no lookup table in between.
+These values used to be `left` and `right`: `iconPosition="left"`, `buttonPlacement="right"`, `alignment="top-left"`. They named a side of the screen, which held up as long as every page read left to right.
+
+Gamut now supports RTL layouts through `GamutProvider`'s `useLogicalProperties`, and physical names break there. On a mirrored page, an icon set with `iconPosition="left"` renders on the right, so the value describes the wrong side. Components that mirror their placement had to document `left` as meaning the start side, and the `Popover` component's `align` docs did exactly that, leaving the name and the behavior in disagreement. With `start` and `end`, the name matches what renders in either direction.
 
 Physical sides still exist inside the implementation. `Popover` and `PopoverContainer` measure the target in physical screen coordinates, so they resolve `start` to `left` or `right` from the target's reading direction before positioning. Callers only ever pass the logical value.
 
