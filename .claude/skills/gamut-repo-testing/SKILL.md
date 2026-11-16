@@ -63,7 +63,7 @@ packages/gamut/src/Modals/
 
 ## Writing test and story files
 
-- Let names and code carry intent: no file headers, no JSDoc on stories, no inline notes in `it` or `play` bodies.
+- Add no comments of your own to test or story files (no file headers, no JSDoc on stories, no inline notes in `it` or `play` bodies); let names and code carry intent. Leave comments people have written in place.
 - Assert presence with a bare query, and absence with `toBeNull()`. This applies to `view`, `canvas`, and `screen`, and to every `getBy*`/`queryBy*` variant:
 
 ```tsx
