@@ -5,7 +5,7 @@ description: Use this skill when writing, fixing, or migrating tests inside this
 
 # Gamut Repo Testing
 
-How tests are written inside skillsoft-gamut. Stories run as tests in a real browser through Storybook's `addon-vitest`, with an axe a11y check after each story. Unit tests run under Jest.
+How tests are written inside skillsoft-gamut. Stories run as tests in a real browser through Storybook's `addon-vitest`, with an axe a11y check after each story. Unit tests run in the same root `vitest.config.ts` workspace: the `jsdom` project for component, hook, and style packages, and the `node` project for Node tooling (ESLint rules, codemods, CLIs).
 
 For `setupRtl`, harnesses, and `MockGamutProvider`, read the shipped [`gamut-testing`](../../../packages/gamut-agent-tools/skills/gamut-testing/SKILL.md) skill. That one is written for apps that consume Gamut. This one covers the conventions for Gamut's own tests.
 
@@ -175,11 +175,12 @@ Imports, then `meta`, `export default meta`, and `type Story`, then helpers (pla
 
 ## Unit tests
 
-Use `setupRtl` from `@skillsoft/gamut-tests`, defined once per file. Keep the file to the contracts a `play` can't reach:
+Use `setupRtl` from `@skillsoft/gamut-tests`, defined once per file. Keep the file to the contracts a `play` can't reach. Vitest globals are off, so import `describe`, `it`, `expect`, and `vi` from `vitest`:
 
 ```tsx
 import { setupRtl } from '@skillsoft/gamut-tests';
 import * as React from 'react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { Dialog } from './Dialog';
 
@@ -188,7 +189,7 @@ const renderView = setupRtl(Dialog, {
   title: 'Hello world',
   children: 'Close me please',
   confirmCta: { children: 'Confirm' },
-  onRequestClose: jest.fn(),
+  onRequestClose: vi.fn(),
 });
 
 describe('Dialog', () => {
@@ -207,9 +208,13 @@ describe('Dialog', () => {
 
 Run these from the repo root on Node 22.22.2. Vitest's story globs and eslint's `tsconfig.json` lookup both break from another directory.
 
-| What                       | Command                                                                                            |
-| -------------------------- | -------------------------------------------------------------------------------------------------- |
-| Stories, filtered by path  | `yarn test:stories <path filter>`                                                                  |
-| Stories, watch mode        | `yarn test:stories:watch <path filter>`                                                            |
-| One package's unit tests   | `node_modules/.bin/jest --config packages/<pkg>/jest.config.ts --rootDir packages/<pkg> <pattern>` |
-| Lint the files you touched | `node_modules/.bin/eslint <files>`                                                                 |
+| What                                           | Command                                                     |
+| ---------------------------------------------- | ----------------------------------------------------------- |
+| Stories, filtered by path                      | `yarn test:stories <path filter>`                           |
+| Stories, watch mode                            | `yarn test:stories:watch <path filter>`                     |
+| Unit tests, filtered by path                   | `yarn vitest run --project=jsdom <path filter>` (or `node`) |
+| Unit tests, watch mode                         | `yarn test:watch <path filter>`                             |
+| Every test, building the tested packages first | `yarn test`                                                 |
+| Lint the files you touched                     | `node_modules/.bin/eslint <files>`                          |
+
+Unit tests in `gamut` import sibling packages from their built `dist`. When a filtered run fails on a sibling change, run `yarn test` (or build that package) first.
