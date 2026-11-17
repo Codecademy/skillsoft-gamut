@@ -3,6 +3,7 @@ export * from './colors';
 export * from './elements';
 export * from './elevation';
 export * from './responsive';
+export * from './sizes';
 export * from './spacing';
 export * from './timing';
 export * from './typography';
