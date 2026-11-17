@@ -63,7 +63,7 @@ export const Small: Story = {
   args: {
     options: ['Small', 'Quite little'],
     defaultValue: 'Small',
-    sizeVariant: 'small',
+    size: 'sm',
     id: 'small-variant',
   },
 };
@@ -107,7 +107,7 @@ export const FormGroupSmall: Story = {
   args: {
     options: ['Small', 'Quite little'],
     value: 'Small',
-    sizeVariant: 'small',
+    size: 'sm',
     id: 'form-group-small',
   },
   render: (args) => (

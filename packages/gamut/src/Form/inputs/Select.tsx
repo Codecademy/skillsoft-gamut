@@ -4,7 +4,7 @@ import {
   ArrowChevronDownIcon,
   MiniChevronDownIcon,
 } from '@skillsoft/gamut-icons';
-import { variant } from '@skillsoft/gamut-styles';
+import { styledOptions, variant } from '@skillsoft/gamut-styles';
 import type { StyleProps } from '@skillsoft/variance';
 import type { ChangeEvent, SelectHTMLAttributes } from 'react';
 import { forwardRef, useMemo, useState } from 'react';
@@ -29,8 +29,8 @@ export type SelectComponentProps = Pick<
   };
 
 export type SelectWrapperProps = SelectComponentProps &
-  SelectHTMLAttributes<HTMLSelectElement> & {
-    sizeVariant?: 'small' | 'base';
+  Omit<SelectHTMLAttributes<HTMLSelectElement>, 'size'> & {
+    size?: 'sm' | 'md';
   };
 
 export interface SelectProps
@@ -38,23 +38,23 @@ export interface SelectProps
     StyleProps<typeof conditionalStyles> {}
 
 const selectSizeVariants = variant({
-  defaultVariant: 'base',
-  prop: 'sizeVariant',
+  defaultVariant: 'md',
+  prop: 'size',
   variants: {
-    small: {
+    sm: {
       height: '2rem',
       pl: 8,
       pr: 16,
       py: 0,
     },
-    base: {
+    md: {
       height: 'auto',
       pr: 48,
     },
   },
 });
 
-const SelectBase = styled.select<SelectProps>`
+const SelectBase = styled('select', styledOptions(['size']))<SelectProps>`
   ${formFieldStyles}
   ${conditionalStyles}
   ${selectSizeVariants}
@@ -72,16 +72,7 @@ const StyledFlexbox = styled(FlexBox)(allowClickStyle);
 
 export const Select = forwardRef<HTMLSelectElement, SelectWrapperProps>(
   (
-    {
-      className,
-      defaultValue,
-      options,
-      error,
-      id,
-      sizeVariant,
-      disabled,
-      ...rest
-    },
+    { className, defaultValue, options, error, id, size, disabled, ...rest },
     ref
   ) => {
     const [activatedStyle, setActivatedStyle] = useState(false);
@@ -109,10 +100,10 @@ export const Select = forwardRef<HTMLSelectElement, SelectWrapperProps>(
           color={error ? 'feedback-error' : disabled ? 'text-disabled' : 'text'}
           position="absolute"
           pr={12}
-          right={sizeVariant === 'small' ? 4 : 0}
+          right={size === 'sm' ? 4 : 0}
           top="0"
         >
-          {sizeVariant === 'small' ? (
+          {size === 'sm' ? (
             <MiniChevronDownIcon size={12} />
           ) : (
             <ArrowChevronDownIcon size={16} />
@@ -125,7 +116,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectWrapperProps>(
           error={error}
           id={id || rest.htmlFor}
           ref={ref}
-          sizeVariant={sizeVariant}
+          size={size}
           variant={conditionalStyleState(Boolean(error), activatedStyle)}
           onChange={(event) => changeHandler(event)}
         >

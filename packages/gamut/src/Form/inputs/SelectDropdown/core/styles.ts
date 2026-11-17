@@ -45,11 +45,11 @@ export const conditionalBorderStates = states({
 
 const sizeVariants = variant({
   prop: 'size',
-  defaultVariant: 'medium',
+  defaultVariant: 'md',
   variants: {
-    medium: formFieldPaddingStyles,
-    mediumIsMultiSelected: { px: 8, py: 8 },
-    small: { minHeight: '2rem', px: 8, py: 0 },
+    md: formFieldPaddingStyles,
+    mdIsMultiSelected: { px: 8, py: 8 },
+    sm: { minHeight: '2rem', px: 8, py: 0 },
   },
 });
 
@@ -105,10 +105,10 @@ export const getMemoizedStyles = (
     },
     control: (provided, state: ControlState) => {
       const { isMulti, size } = state.selectProps;
-      const getSize = size ?? 'medium';
+      const getSize = size ?? 'md';
       const getPadding =
-        isMulti && state.hasValue && size !== 'small'
-          ? `mediumIsMultiSelected`
+        isMulti && state.hasValue && size !== 'sm'
+          ? `mdIsMultiSelected`
           : getSize;
 
       return {
@@ -163,7 +163,7 @@ export const getMemoizedStyles = (
       };
     },
     menuList: (provided, state: BaseSelectComponentProps) => {
-      const sizeInteger = state.selectProps.size === 'small' ? 2 : 3;
+      const sizeInteger = state.selectProps.size === 'sm' ? 2 : 3;
       const maxHeight = `${
         (state.selectProps.shownOptionsLimit ?? 6) * sizeInteger
       }rem`;
@@ -215,7 +215,7 @@ export const getMemoizedStyles = (
     }),
     option: (provided, state: OptionState) => {
       const isNew = state.data?.__isNew__;
-      const isSmall = state.selectProps.size === 'small';
+      const isSmall = state.selectProps.size === 'sm';
       return {
         ...getOptionBackground(state.isSelected, state.isFocused)({ theme }),
         alignItems: 'center',
