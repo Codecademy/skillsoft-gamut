@@ -54,7 +54,7 @@ export interface InputWrapperProps extends InputProps {
    * A custom icon svg from gamut-icons.
    */
   icon?: React.ComponentType<GamutIconProps>;
-  size?: 'base' | 'small';
+  size?: 'sm' | 'md';
 }
 
 /**  We greatly prefer NOT to do this but ReactRecurly has some specific needs around focus-styles + padding that force us to export them seperately. If we ever stop using React-Recurly, this code will be 🔪.
@@ -134,7 +134,9 @@ export const Input = forwardRef<HTMLInputElement, InputWrapperProps>(
     const AsComponent = As || InputElement;
     const ShownIcon = IconSvg || icon;
 
-    const trueSize = type === 'file' && size === 'small' ? 'smallFile' : size;
+    const inputSize = size;
+    const trueSize =
+      type === 'file' && inputSize === 'sm' ? 'smFile' : inputSize;
 
     return (
       <Box
