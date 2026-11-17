@@ -340,7 +340,7 @@ export const createDemoTable =
           <FlexBox borderTop={1} opacity={0.5} />
           <FlexBox center column gap={16} p={32}>
             <Text variant="title-md">Nothing to see here</Text>
-            <FillButton size="small" onClick={onCollapse}>
+            <FillButton size="sm" onClick={onCollapse}>
               Get me out of here!
             </FillButton>
           </FlexBox>

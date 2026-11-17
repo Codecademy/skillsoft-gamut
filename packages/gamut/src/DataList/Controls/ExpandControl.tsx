@@ -32,7 +32,7 @@ export const ExpandControl: React.FC<ExpandColProps> = ({
       aria-expanded={expanded}
       aria-label={`Expand ${id} Row`}
       disabled={disabled}
-      size="small"
+      size="sm"
       variant="secondary"
       width={{ _: 32, c_base: 1, c_sm: 32 }}
       onClick={() => {

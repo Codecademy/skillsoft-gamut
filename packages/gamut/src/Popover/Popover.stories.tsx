@@ -49,7 +49,7 @@ const PopoverExample = ({ p = 16, ...rest }: PopoverExampleProps) => {
         >
           <FlexBox alignItems="flex-start" flexDirection="column" p={p}>
             <Box mb={8}>Hooray!</Box>
-            <FillButton size="small" onClick={() => setOpen(false)}>
+            <FillButton size="sm" onClick={() => setOpen(false)}>
               Close Popover
             </FillButton>
           </FlexBox>

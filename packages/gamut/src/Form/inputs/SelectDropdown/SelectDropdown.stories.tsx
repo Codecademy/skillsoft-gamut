@@ -365,10 +365,7 @@ export const NoOptionsAnnouncement: Story = {
       return (
         <FlexBox column gap={16} height="15rem">
           <Box>
-            <StrokeButton
-              size="small"
-              onClick={() => setHasCustomMessage(false)}
-            >
+            <StrokeButton size="sm" onClick={() => setHasCustomMessage(false)}>
               Use default message
             </StrokeButton>
           </Box>

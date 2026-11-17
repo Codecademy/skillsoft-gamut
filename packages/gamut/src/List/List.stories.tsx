@@ -449,18 +449,18 @@ export const CondensedSpacingGuide: Story = {
               </Text>
             </ListCol>
             <ListCol>
-              <FillButton size="small">Engage</FillButton>
+              <FillButton size="sm">Engage</FillButton>
             </ListCol>
             <ListCol type="control">
               <IconButton
                 icon={MiniKebabMenuIcon}
-                size="small"
+                size="sm"
                 tip="Options"
                 tipProps={{ alignment: 'bottom-center', placement: 'floating' }}
               />
               <IconButton
                 icon={MiniDeleteIcon}
-                size="small"
+                size="sm"
                 tip="Delete"
                 tipProps={{ alignment: 'bottom-center', placement: 'floating' }}
               />
@@ -523,18 +523,18 @@ export const CondensedTableGuide: Story = {
               </Text>
             </ListCol>
             <ListCol>
-              <FillButton size="small">Engage</FillButton>
+              <FillButton size="sm">Engage</FillButton>
             </ListCol>
             <ListCol type="control">
               <IconButton
                 icon={MiniKebabMenuIcon}
-                size="small"
+                size="sm"
                 tip="Options"
                 tipProps={{ alignment: 'bottom-center', placement: 'floating' }}
               />
               <IconButton
                 icon={MiniDeleteIcon}
-                size="small"
+                size="sm"
                 tip="Delete"
                 tipProps={{ alignment: 'bottom-center', placement: 'floating' }}
               />

@@ -115,24 +115,24 @@ export const ctaButtonVariants = templateVariants(['primary'], (variant) => ({
 
 export const sizeVariants = variant({
   prop: 'size',
-  defaultVariant: 'normal',
+  defaultVariant: 'md',
   base: { fontWeight: 'title' },
   variants: {
-    normal: {
+    md: {
       fontSize: 16,
       height: 40,
       minWidth: 40,
       py: 4,
       px: 16,
     },
-    small: {
+    sm: {
       fontSize: 14,
       height: 32,
       minWidth: 32,
       py: 4,
       px: 8,
     },
-    large: {
+    lg: {
       fontSize: 18,
       height: 56,
       minWidth: 40,
@@ -144,17 +144,17 @@ export const sizeVariants = variant({
 
 export const iconSizeVariants = variant({
   prop: 'size',
-  defaultVariant: 'normal',
+  defaultVariant: 'md',
   variants: {
-    normal: {
+    md: {
       height: 40,
       width: 40,
     },
-    small: {
+    sm: {
       height: 32,
       width: 32,
     },
-    large: {
+    lg: {
       width: 56,
       height: 56,
     },

@@ -10,6 +10,9 @@ import figma from '@figma/code-connect';
  * code example you'd like to see in Figma
  */
 
+// TODO: After the Figma Button files are updated, map their size values to
+// 'sm' | 'md' | 'lg' (small -> sm, normal -> md, large -> lg) and update any size props in this file.
+
 figma.connect(
   StrokeButton,
   'https://www.figma.com/design/ReGfRNillGABAj5SlITalN/%F0%9F%93%90-Gamut?node-id=1106%3A48',

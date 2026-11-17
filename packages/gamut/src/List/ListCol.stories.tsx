@@ -90,18 +90,18 @@ const ScrollingRows = () => (
           </Text>
         </ListCol>
         <ListCol>
-          <FillButton size="small">Engage</FillButton>
+          <FillButton size="sm">Engage</FillButton>
         </ListCol>
         <ListCol type="control">
           <IconButton
             icon={MiniKebabMenuIcon}
-            size="small"
+            size="sm"
             tip="Options"
             tipProps={{ alignment: 'bottom-center', placement: 'floating' }}
           />
           <IconButton
             icon={MiniDeleteIcon}
-            size="small"
+            size="sm"
             tip="Delete"
             tipProps={{ alignment: 'bottom-center', placement: 'floating' }}
           />
@@ -329,13 +329,13 @@ export const Responsive: ListCompositionStory = {
           <ListCol type="control">
             <IconButton
               icon={MiniKebabMenuIcon}
-              size="small"
+              size="sm"
               tip="Options"
               tipProps={{ placement: 'floating' }}
             />
             <IconButton
               icon={MiniDeleteIcon}
-              size="small"
+              size="sm"
               tip="Delete"
               tipProps={{ placement: 'floating' }}
             />

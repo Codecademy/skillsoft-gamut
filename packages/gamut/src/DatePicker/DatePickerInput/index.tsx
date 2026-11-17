@@ -409,7 +409,7 @@ export const DatePickerInput = forwardRef<HTMLDivElement, DatePickerInputProps>(
             icon={MiniCalendarIcon}
             mx={4}
             ref={buttonRef}
-            size="small"
+            size="sm"
             tip={translations.openCalendarLabel}
             onClick={() => buttonRef.current?.blur()}
           />

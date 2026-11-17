@@ -50,7 +50,7 @@ export const CalendarNavLastMonth: React.FC<CalendarNavProps> = ({
       data-calendar-month-nav
       icon={isRtl ? MiniChevronRightIcon : MiniChevronLeftIcon}
       ref={buttonRef}
-      size="small"
+      size="sm"
       tip={lastMonth}
       onClick={handleClick}
       onKeyDown={handleKeyDown}

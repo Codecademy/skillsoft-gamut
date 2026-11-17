@@ -11,7 +11,7 @@ const meta: Meta<typeof TextButton> = {
   args: {
     children: 'Click Me',
     disabled: false,
-    size: 'normal',
+    size: 'md',
     variant: 'primary',
     onClick: fn(),
   },
