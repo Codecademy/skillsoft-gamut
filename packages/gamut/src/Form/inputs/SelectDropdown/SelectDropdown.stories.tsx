@@ -542,7 +542,7 @@ export const FormGroupSelectDropdown: Story = {
         htmlFor="big-label"
         isSoloField
         label="i am big label"
-        labelSize="large"
+        labelSize="lg"
       >
         <SelectDropdown {...args} />
       </FormGroup>

@@ -12,7 +12,7 @@ const meta: Meta<typeof Input> = {
     id: 'example-input',
     placeholder: 'Placeholder',
     type: 'text',
-    size: 'base',
+    size: 'md',
   },
   argTypes: {
     icon: {
@@ -180,7 +180,7 @@ export const FormGroupLarge: Story = {
       htmlFor="example-123"
       isSoloField
       label="i am a large disabled label"
-      labelSize="large"
+      labelSize="lg"
     >
       <Input {...args} />
     </FormGroup>
@@ -199,7 +199,7 @@ export const FormGroupErrorLarge: Story = {
       htmlFor="example-123"
       isSoloField
       label="i am also large label, but something is wrong."
-      labelSize="large"
+      labelSize="lg"
     >
       <Input {...args} />
     </FormGroup>
@@ -212,7 +212,7 @@ export const TextSmall: Story = {
     defaultValue: 'This input has less padding!',
     type: 'text',
     required: true,
-    size: 'small',
+    size: 'sm',
   },
 };
 
@@ -222,7 +222,7 @@ export const TextSmallError: Story = {
     defaultValue: 'Still works like a charm!',
     type: 'text',
     required: true,
-    size: 'small',
+    size: 'sm',
     error: true,
   },
 };
@@ -232,7 +232,7 @@ export const NumberSmall: Story = {
     id: 'example-number',
     type: 'number',
     defaultValue: 1,
-    size: 'small',
+    size: 'sm',
     icon: icons.ViewIcon,
   },
 };
@@ -243,7 +243,7 @@ export const FileSmall: Story = {
     type: 'file',
     value: '',
     onChange: () => {},
-    size: 'small',
+    size: 'sm',
     valid: true,
   },
 };
@@ -254,6 +254,6 @@ export const DisabledSmall: Story = {
     placeholder: 'Disabled',
     disabled: true,
     defaultValue: undefined,
-    size: 'small',
+    size: 'sm',
   },
 };

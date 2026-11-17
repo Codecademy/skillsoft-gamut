@@ -60,7 +60,7 @@ export type DatePickerInputProps = Omit<
 };
 
 export const DatePickerInput = forwardRef<HTMLDivElement, DatePickerInputProps>(
-  ({ disabled, form, label, name, rangePart, size = 'base', ...rest }, ref) => {
+  ({ disabled, form, label, name, rangePart, size = 'md', ...rest }, ref) => {
     const context = useDatePicker();
 
     if (context === null) {

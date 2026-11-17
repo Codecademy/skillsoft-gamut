@@ -96,7 +96,7 @@ export const FormGroupBase: Story = {
       htmlFor="form-group-base"
       isSoloField
       label="i am a large label"
-      labelSize="large"
+      labelSize="lg"
     >
       <Select error {...args} />
     </FormGroup>

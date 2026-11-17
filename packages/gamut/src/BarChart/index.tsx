@@ -115,7 +115,7 @@ export const BarChart = <
               <StyledFormGroupLabel
                 htmlFor={sortSelectId}
                 isSoloField
-                size="small"
+                size="sm"
               >
                 {mergedTranslations.sortLabel}
               </StyledFormGroupLabel>

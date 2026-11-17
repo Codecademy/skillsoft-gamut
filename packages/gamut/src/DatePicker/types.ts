@@ -26,7 +26,7 @@ interface DatePickerBaseProps<Mode extends 'single' | 'range'>
    */
   translations?: DatePickerTranslations;
   /** Size of the input.
-   * @default "base"
+   * @default "md"
    * @see `size` on {@link Input}
    */
   inputSize?: ComponentProps<typeof Input>['size'];

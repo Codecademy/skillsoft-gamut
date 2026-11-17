@@ -359,7 +359,7 @@ export const FloatingPlacement: Story = {
 };
 
 export const RangeSmall: Story = {
-  args: { mode: 'range', inputSize: 'small', placement: 'floating' },
+  args: { mode: 'range', inputSize: 'sm', placement: 'floating' },
   argTypes: fixedMode,
 };
 
