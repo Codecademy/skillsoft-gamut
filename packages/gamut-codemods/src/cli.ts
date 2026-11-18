@@ -5,8 +5,9 @@ import path from 'node:path';
 
 import jscodeshift from 'jscodeshift';
 
+import { gamutUsage } from './lib/gamut-imports';
 import { dirtyTreeReason } from './lib/git';
-import { walk } from './lib/leftovers';
+import { SKIP_DIRS, walk } from './lib/leftovers';
 import { activeSourceMigrations, runSourceMigrations } from './lib/run-source';
 import type { FileMigration, Preset } from './lib/types';
 import { getPreset, presets } from './presets';
@@ -78,6 +79,7 @@ const runFileMigrations = (
       m.kind === 'file' && (!only || only.has(m.name)) && !skip.has(m.name)
   );
   let changed = 0;
+  const usesGamut = gamutUsage();
 
   for (const root of opts.paths) {
     const files = fs.statSync(root).isDirectory() ? walk(root) : [root];
@@ -108,6 +110,7 @@ const runFileMigrations = (
           manifest: preset.manifest,
           warn,
           note,
+          usesGamut: () => usesGamut(file),
           transformSource,
         });
         if (next === null) continue;
@@ -189,7 +192,9 @@ export const main = async (argv: string[]) => {
         dry: opts.dry,
         extensions: 'ts,tsx,js,jsx,mjs,cjs,mts,cts',
         /* .d.ts stays in: Emotion theme augmentations import gamut-styles. */
-        ignorePattern: ['**/node_modules/**', '**/dist/**', '**/build/**'],
+        /* Same list as the leftovers walk: build output and caches, which hold
+           minified bundles that aren't source and won't parse. */
+        ignorePattern: [...SKIP_DIRS].map((dir) => `**/${dir}/**`),
         parser: 'tsx',
         babel: false,
         verbose: 0,

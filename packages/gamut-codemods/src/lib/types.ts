@@ -82,6 +82,11 @@ export interface FileMigration<M = Manifest> extends MigrationBase<M> {
     warn: (message: string) => void;
     note: Note;
     /*
+      Whether the source under this file's directory imports gamut. For
+      warnings that only matter where gamut is used, like a worker's tsconfig.
+    */
+    usesGamut: () => boolean;
+    /*
       Runs the preset's source migrations (respecting --only) over a
       snippet of JS/TS, for files that embed code, like MDX's ESM blocks.
     */
