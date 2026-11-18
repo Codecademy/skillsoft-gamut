@@ -6,6 +6,7 @@ import {
   findOldVars,
   markedBefore,
   mentionsOldVar,
+  paletteComment,
   paletteMessage,
 } from '../color-roles/cssVars';
 
@@ -42,24 +43,30 @@ export const colorRolesStylesheets: FileMigration<ColorRolesManifest> = {
       if (hit.role) {
         out += `--color-${hit.role}`;
         last = hit.at + `--color-${hit.name}`.length;
-      } else if (hit.alias) {
+      } else if (hit.alias || hit.palette) {
         /* In front of the `var(` the variable sits in, if there is one. */
         const varAt = source.lastIndexOf('var(', hit.at);
         const at =
           varAt !== -1 && source.slice(varAt + 4, hit.at).trim() === ''
             ? varAt
             : hit.at;
+        const cssName = `--color-${hit.name}`;
+        const comment = hit.alias
+          ? commentText(hit.name, hit.alias)
+          : paletteComment(hit.name, 'a CSS variable');
         if (!markedBefore(source, at)) {
           out =
             out.slice(0, out.length - (hit.at - at)) +
-            commentText(hit.name, hit.alias) +
+            comment +
             source.slice(at, hit.at);
         }
-        warn(describe(hit.name, hit.alias));
-        note('color-roles:manual');
-      } else if (hit.palette) {
-        warn(paletteMessage(hit.name));
-        note('color-roles:palette');
+        if (hit.alias) {
+          warn(describe(hit.name, hit.alias));
+          note('color-roles:manual');
+        } else {
+          warn(paletteMessage(cssName, 'a CSS variable'));
+          note('color-roles:palette');
+        }
       }
     }
     out += source.slice(last);

@@ -8,6 +8,7 @@ import {
   MARK,
   markedBefore,
   mentionsOldVar,
+  paletteComment,
   paletteMessage,
 } from './cssVars';
 
@@ -107,13 +108,15 @@ export const colorRoles: SpliceMigration<ColorRolesManifest> = {
 
     /*
       One color name. `replace` swaps it for a role; `markAt` is where a
-      comment can go (in front of a JSX attribute, not inside it).
+      comment can go (in front of a JSX attribute, not inside it); `where`
+      says what the name is used as, for the palette message.
     */
     const visit = (
       node: Node,
       name: string,
       replace: (role: string) => Edit,
-      markAt: number
+      markAt: number,
+      where: string
     ) => {
       if (seen.has(node.start)) return;
       seen.add(node.start);
@@ -127,54 +130,63 @@ export const colorRoles: SpliceMigration<ColorRolesManifest> = {
           note('color-roles:manual');
         }
       } else if (palette.has(name)) {
-        warn(
-          node,
-          `'${name}' is an old palette color with no role of its own. Pick the role from design's component map (@skillsoft/gamut-brand src/migration.ts, COMPONENTS).`
-        );
+        if (!marked(markAt)) {
+          edits.push({
+            start: markAt,
+            end: markAt,
+            text: paletteComment(name, where),
+          });
+        }
+        warn(node, paletteMessage(name, where));
         note('color-roles:palette');
       }
     };
 
-    const visitString = (lit: Node, markAt: number) =>
+    const visitString = (lit: Node, markAt: number, where: string) =>
       visit(
         lit,
         lit.value,
         (role) => ({ start: lit.start + 1, end: lit.end - 1, text: role }),
-        markAt
+        markAt,
+        where
       );
 
     /* Every string a color-valued expression can produce. */
-    const collect = (expr: Node | null | undefined, markAt?: number) => {
+    const collect = (
+      expr: Node | null | undefined,
+      where: string,
+      markAt?: number
+    ) => {
       if (!expr) return;
       switch (expr.type) {
         case 'StringLiteral':
         case 'Literal':
-          if (isString(expr)) visitString(expr, markAt ?? expr.start);
+          if (isString(expr)) visitString(expr, markAt ?? expr.start, where);
           return;
         case 'ConditionalExpression':
-          collect(expr.consequent);
-          collect(expr.alternate);
+          collect(expr.consequent, where);
+          collect(expr.alternate, where);
           return;
         case 'LogicalExpression':
-          collect(expr.left);
-          collect(expr.right);
+          collect(expr.left, where);
+          collect(expr.right, where);
           return;
         case 'ObjectExpression':
           for (const p of expr.properties) {
             if (p.type === 'ObjectProperty' || p.type === 'Property') {
-              collect(p.value);
+              collect(p.value, where);
             }
           }
           return;
         case 'ArrayExpression':
-          expr.elements.forEach((el: Node) => collect(el));
+          expr.elements.forEach((el: Node) => collect(el, where));
           return;
         case 'TSAsExpression':
         case 'TSSatisfiesExpression':
         case 'TSNonNullExpression':
         case 'ParenthesizedExpression':
         case 'TypeCastExpression':
-          collect(expr.expression, markAt);
+          collect(expr.expression, where, markAt);
           return;
         case 'TemplateLiteral':
           if (expr.expressions.length > 0) {
@@ -198,9 +210,10 @@ export const colorRoles: SpliceMigration<ColorRolesManifest> = {
         return;
       }
       const { value } = attr;
-      if (isString(value)) collect(value, attr.start);
+      const where = `the \`${attr.name.name}\` prop`;
+      if (isString(value)) collect(value, where, attr.start);
       else if (value?.type === 'JSXExpressionContainer') {
-        collect(value.expression);
+        collect(value.expression, where);
       }
     });
 
@@ -209,7 +222,11 @@ export const colorRoles: SpliceMigration<ColorRolesManifest> = {
       if (node.type === 'ObjectProperty' || node.type === 'Property') {
         const key = keyName(node);
         if (key && props.has(key)) {
-          collect(node.value, isString(node.value) ? node.start : undefined);
+          collect(
+            node.value,
+            `the \`${key}\` value`,
+            isString(node.value) ? node.start : undefined
+          );
         }
         return;
       }
@@ -242,7 +259,8 @@ export const colorRoles: SpliceMigration<ColorRolesManifest> = {
                       : ''
                   }['${role}']`,
                 },
-          node.start
+          node.start,
+          'a theme.colors lookup'
         );
         return;
       }
@@ -264,7 +282,8 @@ export const colorRoles: SpliceMigration<ColorRolesManifest> = {
             end: arg.end - 1,
             text: `colors.${role}`,
           }),
-          node.start
+          node.start,
+          "a themed('colors.…') lookup"
         );
       }
     });
@@ -300,7 +319,16 @@ export const colorRoles: SpliceMigration<ColorRolesManifest> = {
           warn(node, describe(hit.name, hit.alias));
           note('color-roles:manual');
         } else if (hit.palette) {
-          warn(node, paletteMessage(hit.name));
+          const cssName = `--color-${hit.name}`;
+          if (!marked(node.start) && !seen.has(node.start)) {
+            seen.add(node.start);
+            edits.push({
+              start: node.start,
+              end: node.start,
+              text: paletteComment(hit.name, 'a CSS variable'),
+            });
+          }
+          warn(node, paletteMessage(cssName, 'a CSS variable'));
           note('color-roles:palette');
         }
       }

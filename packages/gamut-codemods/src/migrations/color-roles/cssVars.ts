@@ -74,5 +74,14 @@ export const findOldVars = (
   return hits;
 };
 
-export const paletteMessage = (name: string) =>
-  `'--color-${name}' is an old palette color with no role of its own. Pick the role from design's component map (@skillsoft/gamut-brand src/migration.ts, COMPONENTS).`;
+/*
+  `name` is as the person wrote it (`navy`, or `--color-navy` in a stylesheet);
+  `where` says what the name was used as (`the \`bg\` prop`), since the same
+  palette name can be a fill in one place and text in another.
+*/
+export const paletteMessage = (name: string, where: string) =>
+  `'${name}' is an old palette color with no role of its own, used as ${where}. Pick the role from design's component map (@skillsoft/gamut-brand src/migration.ts, COMPONENTS).`;
+
+/* The same, as a comment for a person. Safe inside a block comment. */
+export const paletteComment = (name: string, where: string) =>
+  `/* ${MARK} ${paletteMessage(name, where).replace(/\*\//g, '* /')} */ `;
