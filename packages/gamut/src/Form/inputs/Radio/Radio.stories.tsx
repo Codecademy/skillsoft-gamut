@@ -37,37 +37,33 @@ export const RadioGroupComponent: Story = {
   args: {
     onChange: fn(),
   },
-  render: (args) => {
-    const RadioGroupExample = () => {
-      const [selected, setSelected] = useState('option-1');
+  render: function ControlledRadioGroup(args) {
+    const [selected, setSelected] = useState('option-1');
 
-      const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setSelected(event.target.value);
-        args.onChange?.(event);
-      };
-
-      return (
-        <RadioGroup
-          data-testid="radio-group"
-          htmlForPrefix="example-radio"
-          name="example-radio"
-          onChange={changeHandler}
-        >
-          <Radio
-            checked={selected === 'option-1'}
-            label="Option 1"
-            value="option-1"
-          />
-          <Radio
-            checked={selected === 'option-2'}
-            label="Option 2"
-            value="option-2"
-          />
-        </RadioGroup>
-      );
+    const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+      setSelected(event.target.value);
+      args.onChange?.(event);
     };
 
-    return <RadioGroupExample />;
+    return (
+      <RadioGroup
+        data-testid="radio-group"
+        htmlForPrefix="example-radio"
+        name="example-radio"
+        onChange={changeHandler}
+      >
+        <Radio
+          checked={selected === 'option-1'}
+          label="Option 1"
+          value="option-1"
+        />
+        <Radio
+          checked={selected === 'option-2'}
+          label="Option 2"
+          value="option-2"
+        />
+      </RadioGroup>
+    );
   },
   play: async ({ args, canvas, userEvent }) => {
     canvas.getByTestId('radio-group');
