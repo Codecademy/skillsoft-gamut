@@ -1,6 +1,6 @@
 ---
 name: gamut-scope-swap
-description: Use this skill when moving an app from @codecademy/gamut* packages to @skillsoft/gamut* — running or re-running the scope-swap codemod (@skillsoft/gamut-codemods), triaging its warnings and leftovers, and fixing what it can't rewrite, such as deep imports, Video, renamed Menu exports, tsconfig dom, jest mocks, ESLint plugin keys, Module Federation shared config, the removed gamut-kit, and preview builds. Not for day-to-day Gamut usage after the move (see gamut-review) or for building new UI.
+description: Use this skill when moving an app from @codecademy/gamut* packages to @skillsoft/gamut* — running or re-running the scope-swap codemod (@skillsoft/gamut-codemods), triaging its warnings and leftovers, moving color names onto color roles (the color-roles preset), and fixing what it can't rewrite, such as deep imports, Video, renamed Menu exports, tsconfig dom, jest mocks, ESLint plugin keys, Module Federation shared config, the removed gamut-kit, and preview builds. Not for day-to-day Gamut usage after the move (see gamut-review) or for building new UI.
 ---
 
 # Gamut Scope Swap
@@ -106,6 +106,42 @@ After the migrations finish:
 | `Cannot find module '@codecademy/gamut/dist/...'` after the run                              | The file was skipped by the parser, or the path is in a code sample                                                                 | Rewrite the import by hand, following the rules above.                                                                                                                                                                                                                 |
 | ESLint: `Definition for rule '…' was not found`, or a disable comment does nothing           | The plugin key doesn't match the rewritten directives                                                                               | Make the plugin key match the directive prefix (see Leftovers).                                                                                                                                                                                                        |
 | Remotes load a second copy of Gamut at runtime                                               | Module Federation `shared` still lists old names on a remote                                                                        | Update that remote's `shared` config and deploy it with the host.                                                                                                                                                                                                      |
+
+## Color roles (`color-roles`)
+
+`color-roles` is its own preset, separate from the scope swap. It moves Gamut color names onto the roles of the generated color system. Run it after the scope swap, with the same steps as the Workflow: a `--dry` preview first, then a real run once the user confirms, on a clean tree.
+
+```sh
+npx @skillsoft/gamut-codemods color-roles . --dry
+```
+
+What it rewrites: renamed and merged color names in the color props (JSX and style objects), `theme.colors.x`, `themed('colors.x')`, and old `--color-*` variables in stylesheets and JS strings. Renames and merges are applied. Anything else is left for a person, marked with a `color-roles:` comment or listed as a warning.
+
+It skips build output (`node_modules`, `dist`, `build`, `coverage`, `.next`, `.nx`, `tmp`) and generated files (`worker-configuration.d.ts`, `next-env.d.ts`), so don't hand-edit those to make the run pass.
+
+Warnings start with `[color-roles]`, `[color-roles-themes]` or `[color-roles-stylesheets]`. Work through them with these rules:
+
+- **`'name' splits into …`, `is retired`, or `is pending`.** The name stays, so it fails the type check. The `color-roles:` comment gives design's rule. Pick the role that rule names for where the color is used, replace the name, then delete the comment. Don't pick by name alone.
+- **`is an old palette color with no role of its own`.** No role replaces a palette name. Pick one from design's component map: `COMPONENTS` in `@skillsoft/gamut-brand`'s `src/migration.ts`.
+- **`color name built at runtime`.** The codemod can't see the value. Check every name the template can produce, like `${variant}-hover`.
+- **Card `variant="navy"` (`color-roles:card-navy`).** `navy` becomes `default`, which renders light. Wrap the card in `<ColorMode mode="dark">` if it should stay dark, then delete the comment.
+- **`percipioTheme`, `coreTheme`, `PercipioTheme`, `CoreTheme`.** Theme names move to their replacements: `skillsoftTheme`, `originalCodecademyTheme`, and `SkillsoftTheme`. A leftover `CoreTheme` type gets a comment. Brand themes share one shape, typed by `SkillsoftTheme`.
+- **`--color-*` in `.css`, `.scss` or `.less`.** The type check can't see stylesheets, so the leftovers report is the only list of what's left. Indented-syntax `.sass` isn't rewritten. Search those by hand for `--color-`.
+
+Checks before you call it done:
+
+1. Run the formatter. The `color-roles:` comments make lines long.
+2. Type-check. Any old name the codemod left still fails until someone picks its role.
+3. The leftovers report lists no `color-roles:` comment.
+4. A second `--dry` run over the result reports nothing new to change.
+
+Don't:
+
+- Replace a split or palette name with a role you chose by look. Use the rule in the comment, or design's component map.
+- Delete a `color-roles:` comment without resolving the name it marks.
+- Pass `--force` to get past the clean-tree check.
+
+The codemod's README (`@skillsoft/gamut-codemods`, "Running color-roles") lists the positions it covers and its limits.
 
 ## What not to do
 
