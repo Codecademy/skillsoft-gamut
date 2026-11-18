@@ -15,6 +15,7 @@ describe('Alert', () => {
     const { view } = renderView({ closeButtonProps: { ref: closeButtonRef } });
 
     const closeButton = view.getByRole('button', { name: 'Close alert' });
+
     expect(closeButtonRef.current).toBe(closeButton);
   });
 });
