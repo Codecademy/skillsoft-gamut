@@ -34,7 +34,7 @@
       "dependsOn": ["build", "^build"],
       "outputs": ["{workspaceRoot}/coverage/vitest/gamut-patterns"],
       "options": {
-        "command": "vitest run packages/gamut-patterns/"
+        "command": "vitest run --project=jsdom --project=node packages/gamut-patterns/"
       }
     },
     "clean": {

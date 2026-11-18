@@ -42,8 +42,7 @@
         "default",
         "^production",
         "{workspaceRoot}/vitest.config.ts",
-        "{workspaceRoot}/script/vitest/*",
-        "{workspaceRoot}/packages/.storybook/**/*",
+        "{workspaceRoot}/script/vitest/*-setup.ts",
         { "env": "CI" }
       ]
     },

@@ -26,7 +26,7 @@
       "executor": "nx:run-commands",
       "outputs": ["{workspaceRoot}/coverage/vitest/gamut"],
       "options": {
-        "command": "vitest run packages/gamut/"
+        "command": "vitest run --project=jsdom --project=node packages/gamut/"
       }
     },
     "clean": {

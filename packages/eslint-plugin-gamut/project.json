@@ -20,7 +20,7 @@
       "executor": "nx:run-commands",
       "outputs": ["{workspaceRoot}/coverage/vitest/eslint-plugin-gamut"],
       "options": {
-        "command": "vitest run packages/eslint-plugin-gamut/"
+        "command": "vitest run --project=jsdom --project=node packages/eslint-plugin-gamut/"
       }
     },
     "publish-build": {

@@ -21,7 +21,7 @@
       "executor": "nx:run-commands",
       "outputs": ["{workspaceRoot}/coverage/vitest/gamut-codemods"],
       "options": {
-        "command": "vitest run packages/gamut-codemods/"
+        "command": "vitest run --project=jsdom --project=node packages/gamut-codemods/"
       }
     },
     "verify-package": {

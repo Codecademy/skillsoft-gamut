@@ -25,7 +25,7 @@
       "executor": "nx:run-commands",
       "outputs": ["{workspaceRoot}/coverage/vitest/variance"],
       "options": {
-        "command": "vitest run packages/variance/"
+        "command": "vitest run --project=jsdom --project=node packages/variance/"
       }
     },
     "verify": {

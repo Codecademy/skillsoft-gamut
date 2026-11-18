@@ -35,7 +35,7 @@
       "dependsOn": ["build", "^build"],
       "outputs": ["{workspaceRoot}/coverage/vitest/gamut-icons"],
       "options": {
-        "command": "vitest run packages/gamut-icons/"
+        "command": "vitest run --project=jsdom --project=node packages/gamut-icons/"
       }
     },
     "clean": {
