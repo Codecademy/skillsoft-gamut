@@ -29,6 +29,14 @@
         "parallel": false
       }
     },
+    "test": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build", "^build"],
+      "outputs": ["{workspaceRoot}/coverage/vitest/gamut-patterns"],
+      "options": {
+        "command": "vitest run --project=jsdom --project=node packages/gamut-patterns/"
+      }
+    },
     "clean": {
       "executor": "nx:run-commands",
       "options": {
