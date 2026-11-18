@@ -31,11 +31,11 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "dependsOn": ["build"],
-      "outputs": ["{workspaceRoot}/coverage/packages/gamut-icons"],
+      "executor": "nx:run-commands",
+      "dependsOn": ["build", "^build"],
+      "outputs": ["{workspaceRoot}/coverage/vitest/gamut-icons"],
       "options": {
-        "jestConfig": "packages/gamut-icons/jest.config.ts"
+        "command": "vitest run --project=jsdom --project=node packages/gamut-icons/"
       }
     },
     "clean": {

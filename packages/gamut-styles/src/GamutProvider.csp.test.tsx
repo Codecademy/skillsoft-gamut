@@ -3,6 +3,7 @@
  * Uses the real createEmotionCache (no mocks) so we assert the full contract.
  */
 import { render } from '@testing-library/react';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { GamutProvider } from './GamutProvider';
 import { coreTheme } from './themes';

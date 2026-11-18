@@ -1,20 +1,21 @@
 import type * as React from 'react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { MarkdownVideo } from '.';
 
-jest.mock('react-player', () => ({
+vi.mock('react-player', () => ({
   __esModule: true,
   default: () => null,
 }));
 
-jest.mock('@vidstack/react', () => ({
+vi.mock('@vidstack/react', () => ({
   __esModule: true,
   MediaPlayer: () => null,
   MediaProvider: () => null,
-  Poster: jest.fn(),
-  Track: jest.fn(),
-  useMediaState: jest.fn(),
-  useMediaRemote: jest.fn(),
+  Poster: vi.fn(),
+  Track: vi.fn(),
+  useMediaState: vi.fn(),
+  useMediaRemote: vi.fn(),
 }));
 
 describe('MarkdownVideo', () => {

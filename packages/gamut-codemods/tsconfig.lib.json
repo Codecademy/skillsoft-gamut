@@ -8,6 +8,6 @@
     "lib": ["es2022"],
     "types": ["node"]
   },
-  "exclude": ["jest.config.ts", "**/*.test.ts", "**/__testfixtures__/**"],
+  "exclude": ["**/*.test.ts", "**/__testfixtures__/**"],
   "include": ["./src/**/*.ts"]
 }
