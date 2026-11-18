@@ -12,6 +12,8 @@ Each preset is one upgrade. Run them in order if you're more than one behind.
 
 `npx @skillsoft/gamut-codemods list` shows every preset and the migrations inside it.
 
+The `gamut-migration` agent skill in [`@skillsoft/gamut-agent-tools`](../gamut-agent-tools/README.md) covers every preset: what each one reports, what it leaves for a person, and how to check the result. Read it alongside the preset's section here.
+
 ## Running scope-swap
 
 Start from a clean working tree. The codemod won't write into uncommitted changes (pass `--force` to override), so `git checkout .` always undoes a run.
@@ -126,6 +128,8 @@ Two rules hold it together:
 ### Adding a preset
 
 Create `src/presets/<name>/` with a manifest and an `index.ts`, register it in `src/presets/index.ts`, and reuse migrations from `src/migrations`.
+
+Then document it in the `gamut-migration` skill (`packages/gamut-agent-tools/skills/gamut-migration/SKILL.md`): a row in its Presets table and a `## Preset: <name>` section. Add the same preset to the table at the top of this README. The skill's "Adding a preset" section lists what to cover.
 
 ### recast gotchas already hit
 
