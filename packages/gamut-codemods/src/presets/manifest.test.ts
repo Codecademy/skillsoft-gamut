@@ -110,7 +110,7 @@ const exportsOf = (specifiers: string[]) => {
   });
 };
 
-describe('manifests', () => {
+describe('manifests', { timeout: 30_000 }, () => {
   /*
     A deep-import row sends every name imported from `from` to `to`, so
     everything `from` exports has to be available there: directly, via
@@ -168,7 +168,7 @@ describe('manifests', () => {
       .map((d) => ts.flattenDiagnosticMessageText(d.messageText, '\n'));
 
     expect(errors).toEqual([]);
-  }, 30_000);
+  });
 
   it('rename every package to one that exists in this repo', () => {
     const published = new Set(
