@@ -1,38 +1,49 @@
 ---
-name: gamut-scope-swap
-description: Use this skill when moving an app from @codecademy/gamut* packages to @skillsoft/gamut* — running or re-running the scope-swap codemod (@skillsoft/gamut-codemods), triaging its warnings and leftovers, moving color names onto color roles (the color-roles preset), and fixing what it can't rewrite, such as deep imports, Video, renamed Menu exports, tsconfig dom, jest mocks, ESLint plugin keys, Module Federation shared config, the removed gamut-kit, and preview builds. Not for day-to-day Gamut usage after the move (see gamut-review) or for building new UI.
+name: gamut-migration
+description: Use this skill when running a @skillsoft/gamut-codemods preset to migrate code, or triaging what it reports. Covers scope-swap (moving an app from @codecademy/gamut* packages to @skillsoft/gamut*, including deep imports, Video, renamed Menu exports, tsconfig dom, jest mocks, ESLint plugin keys, Module Federation shared config, the removed gamut-kit, and preview builds), color-roles (moving color names onto color roles), and any later preset. Not for day-to-day Gamut usage after a migration (see gamut-review) or for building new UI.
 ---
 
-# Gamut Scope Swap
+# Gamut Migration
 
-Help an app move from `@codecademy/gamut*` to `@skillsoft/gamut*`. The codemod does the mechanical rewrite. This skill covers what the codemod reports, what it leaves for a person, and how to check the result.
+Help an app move with a `@skillsoft/gamut-codemods` preset. The codemod does the mechanical rewrite. This skill covers what each preset reports, what it leaves for a person, and how to check the result. Read the section for the preset you're running. The Workflow and What not to do apply to all of them.
 
-For a short overview of every breaking change, read [BREAKING_CHANGES.md](BREAKING_CHANGES.md). Load it only when you need the full list. The sections below cover triage.
+## Presets
+
+| Preset        | Use it for                                                  | Run order          |
+| ------------- | ----------------------------------------------------------- | ------------------ |
+| `scope-swap`  | Moving from `@codecademy/gamut*` to `@skillsoft/gamut*`     | First              |
+| `color-roles` | Moving Gamut color names onto the roles of the color system | After `scope-swap` |
+
+For a short overview of every breaking change in the scope move, read [BREAKING_CHANGES.md](BREAKING_CHANGES.md). Load it only when you need the full list.
 
 Sources of truth, in order:
 
-1. The codemod's README in `@skillsoft/gamut-codemods`, and `npx @skillsoft/gamut-codemods list` for the migrations in each preset.
+1. The codemod's README in `@skillsoft/gamut-codemods`, and `npx @skillsoft/gamut-codemods list` for the presets and the migrations in each.
 2. The installed `@skillsoft/gamut` type declarations in `node_modules`. Before you suggest an import, confirm the symbol is actually exported there. Don't invent replacements.
 3. The rest of the Gamut skills in this plugin, for choosing a replacement component or style API.
 
-## Workflow
+## Workflow (every preset)
 
 1. **Check the starting state.** Run `git status`. The codemod refuses to write into uncommitted changes unless it gets `--force`. If the tree is dirty, ask the user to commit or stash first. Don't add `--force` on your own.
-2. **Preview.** Run `npx @skillsoft/gamut-codemods scope-swap . --dry`. It prints every file it would change and its warnings, and writes nothing. Run this before a real run.
-3. **Run it,** once the user confirms: `npx @skillsoft/gamut-codemods scope-swap .`. Options:
-   - `--only=deep-imports,scope-rename` runs a subset of migrations.
+2. **Preview.** Run `npx @skillsoft/gamut-codemods <preset> . --dry`. It prints every file it would change and its warnings, and writes nothing. Run this before a real run.
+3. **Run it,** once the user confirms: `npx @skillsoft/gamut-codemods <preset> .`. Run `scope-swap` before `color-roles`. Options:
+   - `--only=a,b` runs a subset of a preset's migrations, by name.
    - `--no-report` skips the leftovers report.
    - To undo a run, `git checkout .`. That only restores the original state if the tree was clean before the run.
-4. **Triage the output in this order.** Warnings first, because some change runtime behavior. Then leftovers. Then next steps.
+4. **Triage the output in this order.** Warnings first, because some change runtime behavior. Then leftovers and comments. Then next steps.
 5. **Verify.** Reinstall with `yarn`, run the formatter, then type-check, lint, test, and build. If the app uses Module Federation, test the host and its remotes together.
 
-If the codemod has already run, ask the user to paste the warnings and the leftovers list. If they can't, find the old names yourself. Exclude lockfiles and build output:
+If the codemod has already run, ask the user to paste the warnings and the leftovers list. If they can't, find the old names yourself (for `scope-swap`). Exclude lockfiles and build output:
 
 ```sh
 grep -rn "@codecademy/gamut" --exclude-dir=node_modules --exclude-dir=dist --exclude=yarn.lock .
 ```
 
-## Warnings
+## Preset: scope-swap
+
+Moves `@codecademy/gamut*` to `@skillsoft/gamut*`. Its migrations: `deep-imports`, `moved-exports`, `markdown-video-overrides`, `mf-shared`, `eslint-comments`, `scope-rename`, `package-json`, `eslint-config`, `mdx-imports`, `yarnrc`, `tsconfig-dom`, `next-config`. Run `--only=deep-imports,scope-rename` to run a subset.
+
+### Warnings
 
 Each warning starts with `[migration-name] file:line`. The migration name tells you what to check. A skipped migration prints `[migration-name] skipped: <reason>` before the run. `eslint-comments` skips itself when the repo has a flat ESLint config (see Leftovers).
 
@@ -56,7 +67,7 @@ Each warning starts with `[migration-name] file:line`. The migration name tells 
 | `next-config`              | `` `experimental.esmExternals: false` makes Next require() … ``                 | A runtime change. Builds can fail when Next collects page data. See [NEXT_EMOTION_INTEROP.md](NEXT_EMOTION_INTEROP.md), then rebuild every Next app the warning names.                                                                                            |
 | `tsconfig-dom`             | `"lib" has no "dom"`                                                            | The root import used to bring in DOM types through `Video`. Add `"dom"` to that tsconfig's `lib` only if type-checking now fails on `document`, `HTMLElement`, `ResizeObserver`, and similar.                                                                     |
 
-## Leftovers
+### Leftovers
 
 The leftovers list shows every line that still names an old package. The codemod doesn't rewrite these, and the regex can produce false positives. Go through them one by one:
 
@@ -72,7 +83,7 @@ The leftovers list shows every line that still names an old package. The codemod
 
 Don't edit `yarn.lock` by hand. Reinstalling updates it.
 
-## Runs from an older codemod build
+### Runs from an older codemod build
 
 Migrations match the old `@codecademy` names, so running a newer build over a repo that's already been swapped does nothing for code that has already been renamed. If the first run used an older build (a pkg.pr.new preview, say), check by hand what newer builds handle:
 
@@ -81,7 +92,7 @@ Migrations match the old `@codecademy` names, so running a newer build over a re
 - **`<Markdown>` iframes and videos.** Current builds skip `markdown-video-overrides` when the repo is already on upstream 74.0.0 or newer, because those apps already pass the overrides where they want them. On an older upstream release, add them as described under `markdown-video-overrides` above.
 - **`esmExternals: false` and newer-than-source versions.** Run `npx @skillsoft/gamut-codemods scope-swap . --dry` with the current build. Report-only migrations like `next-config`, `tsconfig-dom`, and `package-json` still warn.
 
-## Next steps
+### Next steps
 
 After the migrations finish:
 
@@ -91,7 +102,7 @@ After the migrations finish:
 4. If the app uses Module Federation, run the host and every remote together.
 5. If the app depends on preview builds, point every `@skillsoft/*` package at the same preview (including `@skillsoft/eslint-plugin-gamut`) and pin them all with `resolutions`. The codemod README has the exact JSON. Published releases don't need it.
 
-## Common failures
+### Common failures
 
 | Symptom                                                                                      | Likely cause                                                                                                                        | Fix                                                                                                                                                                                                                                                                    |
 | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -107,9 +118,9 @@ After the migrations finish:
 | ESLint: `Definition for rule '…' was not found`, or a disable comment does nothing           | The plugin key doesn't match the rewritten directives                                                                               | Make the plugin key match the directive prefix (see Leftovers).                                                                                                                                                                                                        |
 | Remotes load a second copy of Gamut at runtime                                               | Module Federation `shared` still lists old names on a remote                                                                        | Update that remote's `shared` config and deploy it with the host.                                                                                                                                                                                                      |
 
-## Color roles (`color-roles`)
+## Preset: color-roles
 
-`color-roles` is its own preset, separate from the scope swap. It moves Gamut color names onto the roles of the generated color system. Run it after the scope swap, with the same steps as the Workflow: a `--dry` preview first, then a real run once the user confirms, on a clean tree.
+`color-roles` moves Gamut color names onto the roles of the generated color system. Run it after `scope-swap`, with the same steps as the Workflow: a `--dry` preview first, then a real run once the user confirms, on a clean tree.
 
 ```sh
 npx @skillsoft/gamut-codemods color-roles . --dry
@@ -143,6 +154,15 @@ Don't:
 
 The codemod's README (`@skillsoft/gamut-codemods`, "Running color-roles") lists the positions it covers and its limits.
 
+## Adding a preset
+
+When a preset ships in `@skillsoft/gamut-codemods`, document it here in the same change:
+
+1. Add a row to the Presets table, with the name `list` prints.
+2. Add a `## Preset: <name>` section with the command, what it rewrites and skips, the warning prefixes (`[migration-name]`) and what to do about each, and the checks before calling it done.
+3. If the preset leaves comments or leftovers for a person, document the marker and how to resolve it, the way `color-roles:` does.
+4. Keep the codemod README in step: its preset table and a "Running <name>" section. This skill points there for limits.
+
 ## What not to do
 
 - Don't re-add `@codecademy/gamut-kit`, and don't create `@skillsoft/gamut-kit`.`@codecademy/gamut-kit` is deprecated and `@skillsoft/gamut-kit` never existed. Depend on the individual packages it bundled.
@@ -150,6 +170,7 @@ The codemod's README (`@skillsoft/gamut-codemods`, "Running color-roles") lists 
 - Don't silence a warning or leftover by removing the `@skillsoft` entry it points at.
 - Don't bump any `@skillsoft/*` package outside the group's shared version. The packages move together.
 - Don't run the codemod on a dirty tree, and don't pass `--force` to get past the check.
+- Don't hand-edit build output or generated files to get a run to pass. The codemod skips them on purpose.
 
 ## Reporting back
 
