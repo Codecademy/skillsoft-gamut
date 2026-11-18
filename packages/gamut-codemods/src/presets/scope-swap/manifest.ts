@@ -89,6 +89,12 @@ export const manifest: Manifest = {
     'eslint-plugin-gamut': '3.1.0',
   },
 
+  requiredPeers: {
+    '@vidstack/react': { range: '~1.12.12', when: ['@codecademy/gamut'] },
+    'react-player': { range: '^3.4.0', when: ['@codecademy/gamut'] },
+    stylis: { range: '^4.0.7', when: ['@codecademy/gamut-styles'] },
+  },
+
   movedExports: [
     {
       from: '@codecademy/gamut',

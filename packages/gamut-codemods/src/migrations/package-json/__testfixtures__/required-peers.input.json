@@ -1,0 +1,7 @@
+{
+  "name": "app",
+  "dependencies": {
+    "@codecademy/gamut": "^73.0.0",
+    "react": "^18.3.0"
+  }
+}

@@ -40,6 +40,8 @@ export const scopeSwap: Preset = {
   conditionalChecklist: {
     'removed:@codecademy/gamut-kit':
       "gamut-kit is gone. Delete anything that reads it for versions, such as a sync-gamut-deps script. @skillsoft/gamut-styles has @emotion/cache and stylis peer dependencies, so add them if yarn warns that they aren't provided.",
+    'required-peers':
+      'package.json gained peer dependencies that the @skillsoft packages need at runtime and no longer install for you (the package-json warnings list them). Run `yarn install`. If yarn still reports a peer as missing, the app is pinned to another version of it: move it to the range the migration wrote.',
     'video-peers':
       'Video needs two peer dependencies that Gamut no longer installs for you: `@vidstack/react` and `react-player`. Gamut supports @vidstack/react 1.12.x only (its npm `latest` tag is 0.6.x). Install them: `yarn add @vidstack/react@~1.12.12 react-player@^3.4.0`.',
     'tsconfig-no-dom':
