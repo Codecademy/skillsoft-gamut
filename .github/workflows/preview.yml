@@ -16,7 +16,6 @@ name: Preview
 
 on:
   pull_request:
-    branches: [main]
 
 env:
   NODE_OPTIONS: '--max_old_space_size=8196'

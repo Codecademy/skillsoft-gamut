@@ -5,7 +5,6 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
 
 env:
   NODE_OPTIONS: '--max_old_space_size=8196'
@@ -163,7 +162,10 @@ jobs:
       - name: 🔍 Storybook stories and accessibility tests
         run: yarn test:stories
 
+  # Code scanning diffs a PR against the base branch's analysis, and only main
+  # has one. Stacked PRs get scanned when their parent targets main.
   codeql:
+    if: github.base_ref == 'main' || github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
