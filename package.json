@@ -128,7 +128,7 @@
     "start:all": "nx run-many --target=dev --projects=gamut-docs,storybook --parallel=2",
     "start:docs": "nx run gamut-docs:dev",
     "start:storybook": "nx run storybook:dev",
-    "test": "nx run vitest:test",
+    "test": "nx run-many --target=test --all",
     "test:stories": "vitest run --project=storybook",
     "test:stories:watch": "vitest --project=storybook",
     "test:watch": "nx watch --all -- nx run \\$NX_PROJECT_NAME:test",
