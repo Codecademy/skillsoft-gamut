@@ -284,6 +284,20 @@ describe('main: full run', () => {
     );
   });
 
+  it('skips generated files, which the runner never reads', async () => {
+    const dir = project({
+      'src/Post.tsx': POST,
+      /* wrangler types: Babel rejects this block, and it matches the pre-filter on 'text'. */
+      'worker-configuration.d.ts':
+        "declare module 'x' {\n  let _E: number;\n  export { _E as E };\n}\nget(type: 'text'): void;\n",
+    });
+    expect(await main(['color-roles', dir, '--force'])).toBe(0);
+    expect(output()).not.toMatch(/worker-configuration/);
+    expect(mockRun.mock.calls[0][2].ignorePattern).toContain(
+      '**/worker-configuration.d.ts'
+    );
+  });
+
   it('warns about tsconfig lib only where gamut is imported', async () => {
     const dir = project({
       'src/Post.tsx': POST,
