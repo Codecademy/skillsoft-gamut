@@ -11,7 +11,7 @@ import { manifest } from './scope-swap/manifest';
 /*
   Guards against a manifest that promises something the packages don't
   deliver. Runs against the built dist, so the packages have to be built
-  first (the `vitest:test` Nx target wires that up).
+  first (the `test` target's `^build` wires that up).
 */
 
 const REPO = path.join(__dirname, '../../../..');
@@ -168,7 +168,7 @@ describe('manifests', () => {
       .map((d) => ts.flattenDiagnosticMessageText(d.messageText, '\n'));
 
     expect(errors).toEqual([]);
-  });
+  }, 30_000);
 
   it('rename every package to one that exists in this repo', () => {
     const published = new Set(

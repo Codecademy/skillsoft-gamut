@@ -7,7 +7,12 @@ import { configDefaults, defineConfig } from 'vitest/config';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const storybookDir = join(__dirname, 'packages/.storybook');
-const outputDirectory = join(__dirname, 'coverage/vitest');
+// Nx runs each package's `test` target in parallel, so give each its own coverage dir.
+const outputDirectory = join(
+  __dirname,
+  'coverage/vitest',
+  process.env.NX_TASK_TARGET_PROJECT ?? ''
+);
 
 /*
  * One Vitest workspace. `storybook` runs stories as browser tests; the

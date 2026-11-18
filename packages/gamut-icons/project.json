@@ -30,6 +30,14 @@
         "parallel": false
       }
     },
+    "test": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build", "^build"],
+      "outputs": ["{workspaceRoot}/coverage/vitest/gamut-icons"],
+      "options": {
+        "command": "vitest run packages/gamut-icons/"
+      }
+    },
     "clean": {
       "executor": "nx:run-commands",
       "options": {

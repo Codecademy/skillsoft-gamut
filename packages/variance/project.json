@@ -21,6 +21,13 @@
         "parallel": false
       }
     },
+    "test": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/coverage/vitest/variance"],
+      "options": {
+        "command": "vitest run packages/variance/"
+      }
+    },
     "verify": {
       "executor": "nx:run-commands",
       "options": {
