@@ -40,7 +40,7 @@ The `gamut-migration` skill helps with each [`@skillsoft/gamut-codemods`](../gam
 
 It doesn't run the codemod unless you ask it to. When a preset ships, the skill gets a section for it.
 
-If your app still depends on `@codecademy/gamut*`, run `scope-swap` first. Then install the plugin.
+If your app still depends on `@codecademy/gamut*`, run `scope-swap` first.
 
 Install the plugin after the swap. The `gamut` CLI comes from `@skillsoft/gamut`, so that package has to be in the app first.
 
