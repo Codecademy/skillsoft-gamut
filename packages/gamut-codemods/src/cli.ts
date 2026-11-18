@@ -7,7 +7,7 @@ import jscodeshift from 'jscodeshift';
 
 import { gamutUsage } from './lib/gamut-imports';
 import { dirtyTreeReason } from './lib/git';
-import { SKIP_DIRS, walk } from './lib/leftovers';
+import { GENERATED_FILES, SKIP_DIRS, walk } from './lib/leftovers';
 import { activeSourceMigrations, runSourceMigrations } from './lib/run-source';
 import type { FileMigration, Preset } from './lib/types';
 import { getPreset, presets } from './presets';
@@ -194,7 +194,10 @@ export const main = async (argv: string[]) => {
         /* .d.ts stays in: Emotion theme augmentations import gamut-styles. */
         /* Same list as the leftovers walk: build output and caches, which hold
            minified bundles that aren't source and won't parse. */
-        ignorePattern: [...SKIP_DIRS].map((dir) => `**/${dir}/**`),
+        ignorePattern: [
+          ...[...SKIP_DIRS].map((dir) => `**/${dir}/**`),
+          ...[...GENERATED_FILES].map((file) => `**/${file}`),
+        ],
         parser: 'tsx',
         babel: false,
         verbose: 0,
