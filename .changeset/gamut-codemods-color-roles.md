@@ -11,3 +11,4 @@ Add a `color-roles` preset that moves Gamut color names onto the generated color
 - Old theme names move to the brand themes that replace them: `percipioTheme` → `skillsoftTheme`, `coreTheme` → `originalCodecademyTheme`, and the `PercipioTheme` type → `SkillsoftTheme`. An aliased import (`percipioTheme as theme`) only changes the imported name. A `CoreTheme` type gets a comment pointing at `SkillsoftTheme`, which types every brand.
 - Follows design's map: `shadow-primary` and `shadow-secondary` split onto `shadow-key` and `shadow-ambient`.
 - Presets can bring their own manifest type, pre-filter and leftovers report. `scope-swap` is unchanged.
+- The source run skips build output and caches (`.next`, `.nx`, `coverage`, `tmp`, plus the dirs it already skipped), so a dry run over an app no longer reads its bundles. `tsconfig-dom` warns only where gamut is imported.

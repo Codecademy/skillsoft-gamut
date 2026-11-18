@@ -74,7 +74,8 @@ Every skillsoft-gamut pull request publishes installable previews through pkg.pr
 
 - The codemod doesn't change how Gamut loads at runtime. Next.js apps with `experimental.esmExternals: false` can fail at build or prerender on `@emotion/*` or `react-select` default imports, with errors like `Element type is invalid ... got: object` or `c(...) is not a function`. `next-config` warns about the flag; remove it, along with any `@emotion/*` aliases that were working around it.
 - Flat ESLint configs (`eslint.config.*`) and `.eslintrc.js` aren't rewritten. In a flat config the rule prefix is whatever key you register the plugin under, so renaming rule keys blindly would break it. They show up in the leftovers.
-- Every file is parsed with the `tsx` parser, so Flow-typed JS won't parse.
+- Every file is parsed with the `tsx` parser, so Flow-typed JS won't parse. A file the parser rejects is reported as an error and left as is, and the run exits 1. Generated `.d.ts` files can hit this: Babel rejects `export { x as y }` of a `let` inside `declare module`.
+- Build output and caches (`node_modules`, `dist`, `build`, `coverage`, `.next`, `.nx`, `tmp`) are never read, so minified bundles don't reach the parser.
 - The leftovers report uses regex, not an AST, so expect some false positives.
 
 ## Running color-roles
