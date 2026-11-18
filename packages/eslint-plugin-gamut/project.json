@@ -16,6 +16,13 @@
         "parallel": false
       }
     },
+    "test": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/coverage/vitest/eslint-plugin-gamut"],
+      "options": {
+        "command": "vitest run --project=jsdom --project=node packages/eslint-plugin-gamut/"
+      }
+    },
     "publish-build": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],

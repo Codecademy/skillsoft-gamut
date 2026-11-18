@@ -35,7 +35,15 @@
       }
     },
     "test": {
-      "cache": true
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/vitest.config.ts",
+        "{workspaceRoot}/script/vitest/*-setup.ts",
+        { "env": "CI" }
+      ]
     },
     "verify": {
       "cache": true,

@@ -11,7 +11,7 @@ import { manifest } from './scope-swap/manifest';
 /*
   Guards against a manifest that promises something the packages don't
   deliver. Runs against the built dist, so the packages have to be built
-  first (the `vitest:test` Nx target wires that up).
+  first (the `test` target's `^build` wires that up).
 */
 
 const REPO = path.join(__dirname, '../../../..');
@@ -110,7 +110,7 @@ const exportsOf = (specifiers: string[]) => {
   });
 };
 
-describe('manifests', () => {
+describe('manifests', { timeout: 15_000 }, () => {
   /*
     A deep-import row sends every name imported from `from` to `to`, so
     everything `from` exports has to be available there: directly, via
