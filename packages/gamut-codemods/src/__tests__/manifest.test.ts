@@ -209,6 +209,35 @@ describe('manifests', () => {
     }
   });
 
+  it('require peers at the ranges the packages declare', () => {
+    /*
+      Each required peer must match what every package in `when` declares
+      in its own peerDependencies, or the migration would add a range that
+      doesn't install alongside the package that needs it.
+    */
+    const packages = fs
+      .readdirSync(path.join(REPO, 'packages'))
+      .filter((dir) =>
+        fs.existsSync(path.join(REPO, 'packages', dir, 'package.json'))
+      )
+      .map(
+        (dir) =>
+          readJson(`packages/${dir}/package.json`) as {
+            name: string;
+            peerDependencies?: Record<string, string>;
+          }
+      );
+    for (const [peer, { range, when }] of Object.entries(
+      manifest.requiredPeers
+    )) {
+      for (const old of when) {
+        const name = manifest.packages[old]?.to ?? old;
+        const pkg = packages.find((p) => p.name === name);
+        expect(pkg?.peerDependencies?.[peer]).toBe(range);
+      }
+    }
+  });
+
   it('keep source versions in step with each package changelog', () => {
     /*
       The top CHANGELOG heading is the upstream release the fork was synced

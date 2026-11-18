@@ -1,0 +1,9 @@
+{
+  "name": "app",
+  "dependencies": {
+    "@skillsoft/gamut": "^{{version}}",
+    "@vidstack/react": "~1.12.12",
+    "react": "^18.3.0",
+    "react-player": "^3.4.0"
+  }
+}

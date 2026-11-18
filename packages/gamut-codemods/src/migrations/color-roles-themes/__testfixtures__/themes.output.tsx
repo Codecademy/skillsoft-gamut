@@ -1,4 +1,4 @@
-import type { /* color-roles: 'CoreTheme' types the old core theme, which has no color roles. Brand themes share one shape: use 'SkillsoftTheme', which types every brand (originalCodecademyTheme included). */ CoreTheme, SkillsoftTheme } from '@skillsoft/gamut-styles';
+import type { /* color-roles: 'CoreTheme' typed the old core theme, which has no color roles. Brand themes share one shape, typed by 'SkillsoftTheme': use that type, and keep the theme the app already uses. The brand is a per-app choice, and changing it changes the spacing scale. */ CoreTheme, SkillsoftTheme } from '@skillsoft/gamut-styles';
 import {
   originalCodecademyTheme,
   GamutProvider,

@@ -8,7 +8,10 @@
     "@skillsoft/gamut-styles": "^{{version}}",
     "@skillsoft/gamut-tests": "^{{version}}",
     "@skillsoft/variance": "^{{version}}",
-    "react": "^19.0.0"
+    "@vidstack/react": "~1.12.12",
+    "react": "^19.0.0",
+    "react-player": "^3.4.0",
+    "stylis": "^4.0.7"
   },
   "devDependencies": {
     "@skillsoft/eslint-plugin-gamut": "^0.0.1"

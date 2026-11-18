@@ -27,7 +27,7 @@ const RENAMES: Record<string, string> = {
 };
 
 const MANUAL: Record<string, string> = {
-  CoreTheme: `/* ${MARK} 'CoreTheme' types the old core theme, which has no color roles. Brand themes share one shape: use 'SkillsoftTheme', which types every brand (originalCodecademyTheme included). */ `,
+  CoreTheme: `/* ${MARK} 'CoreTheme' typed the old core theme, which has no color roles. Brand themes share one shape, typed by 'SkillsoftTheme': use that type, and keep the theme the app already uses. The brand is a per-app choice, and changing it changes the spacing scale. */ `,
 };
 
 const GAMUT_STYLES = /(^|\/)gamut-styles$/;
@@ -76,7 +76,7 @@ export const colorRolesThemes: SpliceMigration<ColorRolesManifest> = {
           }
           warn(
             spec,
-            `'${name}' types the old core theme, which has no color roles. Use 'SkillsoftTheme', which types every brand.`
+            `'${name}' typed the old core theme, which has no color roles. Type brand themes with 'SkillsoftTheme', and keep the theme the app already uses: the brand is a per-app choice.`
           );
           note('color-roles:themes');
         }
