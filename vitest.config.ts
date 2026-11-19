@@ -5,6 +5,7 @@ import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import react from '@vitejs/plugin-react-swc';
 import { configDefaults, defineConfig } from 'vitest/config';
 
+// TEMP: bust the Nx test cache for CI timing (rerun 2); revert.
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const storybookDir = join(__dirname, 'packages/.storybook');
 // Nx runs each package's `test` target in parallel, so give each its own coverage dir.
