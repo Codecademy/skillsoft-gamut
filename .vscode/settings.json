@@ -36,6 +36,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "storyExplorer.storiesGlobs": "packages/styleguide/stories/**/*.stories.mdx",
   "nxConsole.generateAiAgentRules": true
 }

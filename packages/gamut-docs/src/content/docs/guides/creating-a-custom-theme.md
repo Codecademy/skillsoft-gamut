@@ -129,7 +129,7 @@ Follow [Installation](/getting-started/installation/) to wire up `GamutProvider`
 To preview it against real components in Storybook before shipping, register it in the theme switcher:
 
 ```tsx
-// packages/styleguide/.storybook/theming/GamutThemeProvider.tsx
+// packages/.storybook/theming/GamutThemeProvider.tsx
 const themeMap = {
   core: coreTheme,
   admin: adminTheme,
@@ -140,7 +140,7 @@ const themeMap = {
 ```
 
 ```tsx
-// .storybook/preview.ts
+// packages/.storybook/preview.ts
 theme: {
   name: 'Theme',
   defaultValue: 'percipio',
