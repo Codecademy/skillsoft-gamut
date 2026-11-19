@@ -36,7 +36,8 @@ export interface ColorRolesManifest {
 export const manifest: ColorRolesManifest = {
   aliases,
   roles,
-  oldPalette,
+  /* Bare `white` is a Gamut color name, but design's list only has the steps. */
+  oldPalette: [...oldPalette, 'white'],
   colorProps: [
     'color',
     'textColor',
