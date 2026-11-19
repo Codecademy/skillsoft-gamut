@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { isAtLeast, isNewerThan, minVersion } from './manifest';
 
 describe('isNewerThan', () => {
