@@ -65,6 +65,15 @@ const HYPER: Record<UseKind, string> = {
   border: 'action-primary',
 };
 
+/*
+  blue-500 is admin's light-mode primary. Its text is interactive (links,
+  focus), so it takes action-primary. Its fills and borders mix interactive
+  uses (selection buttons) with decoration (the Skillsoft family block), and
+  the codemod can't tell them apart, so they stay warnings. Bare `blue` is
+  the same color.
+*/
+const BLUE_TEXT = 'action-primary';
+
 const NAVY: Record<UseKind, Record<string, string>> = {
   fill: {
     '100': 'surface-default',
@@ -106,6 +115,10 @@ export const paletteDefault = (name: string, where: string): string | null => {
       return SUCCESS[kind];
     case 'white':
       return WHITE[kind];
+    case 'blue':
+      return (shade === undefined || shade === '500') && kind === 'text'
+        ? BLUE_TEXT
+        : null;
     case 'hyper':
       return shade === undefined || shade === '500' ? HYPER[kind] : null;
     case 'navy':

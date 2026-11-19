@@ -25,6 +25,18 @@ describe('palette defaults', () => {
     expect(paletteDefault('yellow', 'the `bg` prop')).toBeNull();
   });
 
+  it('map blue-500 text to action-primary, and leave blue fills to a person', () => {
+    expect(paletteDefault('blue-500', 'the `color` prop')).toBe(
+      'action-primary'
+    );
+    expect(paletteDefault('blue', 'the `textColor` prop')).toBe(
+      'action-primary'
+    );
+    expect(paletteDefault('blue-500', 'the `bg` prop')).toBeNull();
+    expect(paletteDefault('blue-500', 'the `borderColor` prop')).toBeNull();
+    expect(paletteDefault('blue-300', 'the `color` prop')).toBeNull();
+  });
+
   it('keep dark navy fills for design', () => {
     expect(paletteDefault('navy-600', 'the `bg` prop')).toBeNull();
   });
