@@ -37,6 +37,19 @@ describe('palette defaults', () => {
     expect(paletteDefault('blue-300', 'the `color` prop')).toBeNull();
   });
 
+  it('follow the use for greys, and keep light grey text for a person', () => {
+    expect(paletteDefault('gray-100', 'the `bg` prop')).toBe('surface-default');
+    expect(paletteDefault('gray-300', 'the `bg` prop')).toBe('surface-sunken');
+    expect(paletteDefault('gray-800', 'the `color` prop')).toBe('text-subtle');
+    expect(paletteDefault('gray-300', 'the `borderColor` prop')).toBe(
+      'border-subtle'
+    );
+    expect(paletteDefault('gray-900', 'the `borderColor` prop')).toBe(
+      'border-default'
+    );
+    expect(paletteDefault('gray-100', 'the `color` prop')).toBeNull();
+  });
+
   it('keep dark navy fills for design', () => {
     expect(paletteDefault('navy-600', 'the `bg` prop')).toBeNull();
   });

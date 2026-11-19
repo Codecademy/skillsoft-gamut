@@ -74,6 +74,30 @@ const HYPER: Record<UseKind, string> = {
 */
 const BLUE_TEXT = 'action-primary';
 
+/*
+  The greys are neutral (no hue), and a brightness match would make the
+  mid greys text-inverse, which is light ink on a light page. So they follow
+  what the use is: fills by lightness, every grey text as text-subtle, and
+  borders by weight. Gray-100 to 300 text stays a warning, since it would be
+  close to invisible on a light page.
+*/
+const GRAY_FILL: Record<string, string> = {
+  '100': 'surface-default',
+  '200': 'surface-sunken',
+  '300': 'surface-sunken',
+};
+const GRAY_TEXT: Record<string, string> = {
+  '600': 'text-subtle',
+  '800': 'text-subtle',
+  '900': 'text-subtle',
+};
+const GRAY_BORDER: Record<string, string> = {
+  '300': 'border-subtle',
+  '600': 'border-default',
+  '800': 'border-default',
+  '900': 'border-default',
+};
+
 const NAVY: Record<UseKind, Record<string, string>> = {
   fill: {
     '100': 'surface-default',
@@ -115,6 +139,12 @@ export const paletteDefault = (name: string, where: string): string | null => {
       return SUCCESS[kind];
     case 'white':
       return WHITE[kind];
+    case 'gray': {
+      const table = { fill: GRAY_FILL, text: GRAY_TEXT, border: GRAY_BORDER }[
+        kind
+      ];
+      return table[shade ?? ''] ?? null;
+    }
     case 'blue':
       return (shade === undefined || shade === '500') && kind === 'text'
         ? BLUE_TEXT
