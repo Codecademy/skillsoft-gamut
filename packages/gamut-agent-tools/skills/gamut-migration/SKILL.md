@@ -165,6 +165,18 @@ Don't:
 
 The codemod's README (`@skillsoft/gamut-codemods`, "Running color-roles") lists the positions it covers and its limits.
 
+## Working through open color decisions
+
+Some palette names have no default, because the right role depends on the brand or the screen. When the user asks you to work through them, do it with them, one decision at a time. Don't pick a role for them.
+
+1. List the open names from the codemod's warnings (`is an old palette color`), grouped by name, with the kind of use (fill, text, border) and a count.
+2. For each name, show the uses the way a person can see them: the file, the component, and the prop. Name the candidate roles from the rules in this section, and say which one you'd pick and why.
+3. Ask one question per name with the candidate roles as options, and leave room for another role or "keep the warning". Use AskUserQuestion when it's available.
+4. Write the answer into `presets/color-roles/decisions.ts` in the codemod, with a comment naming the use it covers. Add a test for it, then run the suite, the type-check and the lint.
+5. Record a decision the user made about a brand (which color is the accent, which blue is the primary) in the brand's own file, not in this skill.
+
+Start with the names that have the most sites. Open today: `yellow` (its role depends on the brand), dark navy fills (400 and darker, since the closest surface is light), the `blue-500` and `blue` fills and borders, and the palette names the rules above don't cover.
+
 ## Adding a preset
 
 When a preset ships in `@skillsoft/gamut-codemods`, document it here in the same change:
