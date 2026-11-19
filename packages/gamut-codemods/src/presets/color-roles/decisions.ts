@@ -55,6 +55,16 @@ const WHITE: Record<UseKind, string> = {
   border: 'border-subtle',
 };
 
+/*
+  hyper is the old primary: primary fills, links and focus. Only hyper and
+  hyper-500 map, since the other steps are hover and pressed tints.
+*/
+const HYPER: Record<UseKind, string> = {
+  fill: 'action-primary',
+  text: 'action-primary',
+  border: 'action-primary',
+};
+
 const NAVY: Record<UseKind, Record<string, string>> = {
   fill: {
     '100': 'surface-default',
@@ -96,6 +106,8 @@ export const paletteDefault = (name: string, where: string): string | null => {
       return SUCCESS[kind];
     case 'white':
       return WHITE[kind];
+    case 'hyper':
+      return shade === undefined || shade === '500' ? HYPER[kind] : null;
     case 'navy':
       return NAVY[kind][shade ?? '800'] ?? null;
     default:
