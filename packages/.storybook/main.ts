@@ -23,11 +23,11 @@ const require = createRequire(import.meta.url);
 const config: StorybookConfig = {
   stories: [
     {
-      directory: '../styleguide/src/lib',
+      directory: '../gamut/src',
       files: '**/*.stories.@(js|jsx|ts|tsx)',
     },
     {
-      directory: '../gamut/src',
+      directory: '../gamut-styles/src',
       files: '**/*.stories.@(js|jsx|ts|tsx)',
     },
     {
@@ -43,7 +43,6 @@ const config: StorybookConfig = {
       files: '**/*.stories.@(js|jsx|ts|tsx)',
     },
   ],
-  staticDirs: ['../styleguide/src/static'],
   addons: [
     getAbsolutePath('@storybook/addon-docs'),
     getAbsolutePath('@storybook/addon-a11y'),
@@ -141,14 +140,6 @@ const config: StorybookConfig = {
     config.resolve = {
       ...config.resolve,
       alias: [
-        {
-          find: '~styleguide/blocks',
-          replacement: resolve(__dirname, './components'),
-        },
-        {
-          find: '~styleguide/argTypes',
-          replacement: resolve(__dirname, './argTypes'),
-        },
         {
           find: '~storybook/blocks',
           replacement: resolve(__dirname, './components'),

@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { parseOptions, parseSelectOptions } from './utils';
 
 describe(parseSelectOptions, () => {

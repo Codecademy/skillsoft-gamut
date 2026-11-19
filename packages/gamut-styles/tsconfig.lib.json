@@ -11,8 +11,7 @@
     "../../node_modules/@nx/react/typings/image.d.ts"
   ],
   "exclude": [
-    "jest.config.ts",
-    "**/__tests__/**",
+    "**/testUtils.tsx",
     "**/*.spec.ts",
     "**/*.test.ts",
     "**/*.spec.tsx",
@@ -21,6 +20,10 @@
     "**/*.test.js",
     "**/*.spec.jsx",
     "**/*.test.jsx",
+    "**/*.stories.ts",
+    "**/*.stories.tsx",
+    "**/*.stories.js",
+    "**/*.stories.jsx",
     "integration/**/*"
   ],
   "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]

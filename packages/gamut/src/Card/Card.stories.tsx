@@ -1,5 +1,6 @@
 import { Background } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect, waitFor } from 'storybook/test';
 
 import { Anchor } from '../Anchor';
 import { Box, FlexBox } from '../Box';
@@ -300,9 +301,23 @@ export const IsInteractive: Story = {
       </Background>
     </FlexBox>
   ),
-  play: ({ canvas }) => {
-    canvas.getByText('Default, patternRight, and isInteractive');
-    canvas.getByText('Beige, outline, and isInteractive');
+  play: async ({ canvas, userEvent }) => {
+    const patternRight = canvas.getByText(
+      'Default, patternRight, and isInteractive'
+    );
+    const outline = canvas.getByText('Beige, outline, and isInteractive');
+
+    for (const card of [patternRight, outline]) {
+      const { boxShadow, transform } = getComputedStyle(card);
+
+      await userEvent.hover(card);
+      await waitFor(async () => {
+        const hovered = getComputedStyle(card);
+        await expect(hovered.boxShadow).not.toBe(boxShadow);
+        await expect(hovered.transform).not.toBe(transform);
+      });
+      await userEvent.unhover(card);
+    }
   },
 };
 

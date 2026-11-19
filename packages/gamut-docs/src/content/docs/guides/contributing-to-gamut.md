@@ -60,17 +60,15 @@ export type ButtonProps = {
 
 ### Unit tests
 
-Add unit tests in a `__tests__/MyComponent-test.tsx` file within the component's directory, using `setupRtl` from `gamut-tests`. Unit test all component logic, with the exception of class names on components that already contain other tested logic.
+Add unit tests next to the code they test, in a `MyComponent.test.tsx` file in the component's directory, using `setupRtl` from `gamut-tests`. Unit test all component logic, with the exception of class names on components that already contain other tested logic.
 
 ## Writing stories and documentation
 
 A component needs two things: Storybook stories for interactive reference, and a doc page on this site for a reader deciding whether and how to use it. They live in different packages, so a component change usually touches both.
 
-<!-- TODO: Update once files move to be colocated with components  -->
-
 ### Writing the `.stories.tsx` file
 
-Add stories in `packages/styleguide/src/lib/<Tier>/<ComponentName>/ComponentName.stories.tsx`. Storybook builds that story group's docs page automatically from the component's props and JSDoc (`tags: ['autodocs']` in `packages/.storybook/preview.ts`), so a new component needs no Storybook `.mdx` file — accurate [props documentation](#props-documentation) is what drives that page instead.
+Add stories next to the component, in `packages/<package>/src/<ComponentName>/<ComponentName>.stories.tsx`. Set the meta's `title` to the component's category on this site, such as `'Status/Badge'` or `'Inputs & forms/Radio'`, so the Storybook sidebar matches the [component categories](/components/). Storybook builds that story group's docs page automatically from the component's props and JSDoc (`tags: ['autodocs']` in `packages/.storybook/preview.ts`), so a new component needs no Storybook `.mdx` file — accurate [props documentation](#props-documentation) is what drives that page instead.
 
 Use concrete, realistic example values instead of placeholders like `foo`/`bar` — a boolean controlling a modal should be named `isModalOpen`, not `isBar`, so the example reads like something a consumer would actually write.
 
@@ -104,7 +102,7 @@ A few things specific to writing one of these pages:
 - Pull in a live Storybook example with `<StoryEmbed id="storybook-story-id" height="..." />` instead of retyping a prop table or re-describing a variation — Storybook stays the source of truth for that content. Run `yarn nx run storybook:dev` and copy a story's id from the address bar rather than guessing it.
 - Embed a Figma frame for the anatomy diagram with `<FigmaEmbed url="figma-url-with-a-node-id" />`.
 
-A page added under a `components/` category folder appears in the sidebar automatically. A page added under `guides/` doesn't — add its slug by hand to the `Guides` section of `packages/gamut-docs/astro.config.ts`.
+A page added under a `components/` category folder appears in the sidebar automatically. A page added under `guides/` doesn't — add its slug by hand to the `Guides` section of `packages/gamut-docs/astro.config.mjs`.
 
 ### Group overview pages
 
