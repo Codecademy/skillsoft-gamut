@@ -185,17 +185,19 @@ export const JsxLabel: Story = {
     <Radio
       data-testid="radio-passthrough"
       htmlFor="example-jsx"
-      label={<img alt="Badge anatomy" src="./atoms/badge.png" />}
+      label={
+        <Text as="span">
+          Option with <Text as="strong">bold</Text> text
+        </Text>
+      }
       name="example-jsx"
       value="jsx"
     />
   ),
   play: async ({ canvas }) => {
-    canvas.getByAltText('Badge anatomy');
-    await expect(canvas.getByRole('radio')).toHaveAttribute(
-      'data-testid',
-      'radio-passthrough'
-    );
+    await expect(
+      canvas.getByRole('radio', { name: 'Option with bold text' })
+    ).toHaveAttribute('data-testid', 'radio-passthrough');
   },
 };
 
