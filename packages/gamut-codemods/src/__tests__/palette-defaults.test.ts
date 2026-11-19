@@ -16,6 +16,15 @@ describe('palette defaults', () => {
     expect(paletteDefault('red-500', 'a CSS variable')).toBeNull();
   });
 
+  it('map hyper, the old primary, to action-primary', () => {
+    expect(paletteDefault('hyper', 'the `bg` prop')).toBe('action-primary');
+    expect(paletteDefault('hyper-500', 'the `color` prop')).toBe(
+      'action-primary'
+    );
+    expect(paletteDefault('hyper-400', 'the `bg` prop')).toBeNull();
+    expect(paletteDefault('yellow', 'the `bg` prop')).toBeNull();
+  });
+
   it('keep dark navy fills for design', () => {
     expect(paletteDefault('navy-600', 'the `bg` prop')).toBeNull();
   });
