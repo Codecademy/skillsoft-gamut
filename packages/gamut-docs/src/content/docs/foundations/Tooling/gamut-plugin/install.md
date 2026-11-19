@@ -3,7 +3,7 @@ title: Install
 description: Install and update the Gamut plugin for Cursor or Claude Code from the gamut CLI.
 ---
 
-The plugin installs agent context — skills and rules. It doesn't add Gamut packages to your app; see the styleguide's own Installation docs for `package.json` setup, and the `gamut-theming` skill for `GamutProvider` setup.
+The plugin installs agent context — skills and rules. It doesn't add Gamut packages to your app; see [Installation](/getting-started/installation/) for `package.json` setup, and the `gamut-theming` skill for `GamutProvider` setup.
 
 Run commands from your app repository root (or wherever you want `DESIGN.md` copied).
 
