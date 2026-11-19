@@ -1,4 +1,5 @@
 import type { Edit, SpliceMigration } from '../../lib/types';
+import { paletteDefault } from '../../presets/color-roles/decisions';
 import type { ColorRolesManifest } from '../../presets/color-roles/manifest';
 import { isAutomatic } from '../../presets/color-roles/manifest';
 import {
@@ -130,6 +131,12 @@ export const colorRoles: SpliceMigration<ColorRolesManifest> = {
           note('color-roles:manual');
         }
       } else if (palette.has(name)) {
+        const role = paletteDefault(name, where);
+        if (role) {
+          edits.push(replace(role));
+          note('color-roles:palette-default');
+          return;
+        }
         if (!marked(markAt)) {
           edits.push({
             start: markAt,

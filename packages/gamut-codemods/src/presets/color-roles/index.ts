@@ -65,6 +65,8 @@ export const colorRolesPreset: Preset<ColorRolesManifest> = {
       'Old theme names moved: `percipioTheme` → `skillsoftTheme` (its replacement) and `coreTheme` → `originalCodecademyTheme` (its rebuild). A `CoreTheme` type, usually in a Theme augmentation, is left with a comment: brand themes share one shape, typed by `SkillsoftTheme`.',
     'color-roles:card-navy':
       'Some Cards used the `navy` variant. It becomes `default`, which renders light; wrap a card in `<ColorMode mode="dark">` where it should stay dark, then delete the comment.',
+    'color-roles:palette-default':
+      'Some old palette colors were replaced by the defaults in presets/color-roles/decisions.ts: red becomes an error role, green a success role, white a surface or ink, and navy the nearest one by brightness. Check each one in context. A red button fill should be `action-danger`, not `surface-error`.',
     'color-roles:palette':
       'Some code uses old palette colors (navy, hyper-500, …) directly. No role replaces them by name. Pick each one from design’s component map, in @skillsoft/gamut-brand src/migration.ts (COMPONENTS).',
     'color-roles:runtime':

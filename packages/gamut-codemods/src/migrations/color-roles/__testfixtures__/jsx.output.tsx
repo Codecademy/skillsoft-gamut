@@ -9,6 +9,6 @@ export const Card = ({ active }: { active: boolean }) => (
     <Box bg={{ _: 'state-selected', md: 'surface-success' }} />
     <Box textColor={active && 'text-error'} />
     <Box /* color-roles: 'navy' is an old palette color with no role of its own, used as the `bg` prop. Pick the role from design's component map (@skillsoft/gamut-brand src/migration.ts, COMPONENTS). */ bg="navy" />
-    <Box bg="white" color="currentColor" />
+    <Box bg="surface-raised" color="currentColor" />
   </Box>
 );
