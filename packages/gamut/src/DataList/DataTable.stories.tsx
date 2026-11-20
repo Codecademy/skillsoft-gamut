@@ -191,7 +191,7 @@ const RowMenu = ({ rowName }: { rowName: string }) => {
           alignment: 'left-center',
           placement: 'floating',
         }}
-        variant="secondary"
+        variant="action-neutral"
         onClick={() => setIsOpen(!isOpen)}
       />
       <PopoverContainer
@@ -435,7 +435,7 @@ export const DisableContainerQuery: Story = {
         <Text mb={8} variant="title-sm">
           Default (Container Queries Enabled)
         </Text>
-        <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
+        <Box border={1} borderColor="border-subtle" maxWidth="400px" p={16}>
           <DataTable
             columns={simpleColumns}
             id="default-table-query"
@@ -444,7 +444,7 @@ export const DisableContainerQuery: Story = {
             spacing="condensed"
           />
         </Box>
-        <Text color="text-secondary" mt={8} variant="p-small">
+        <Text color="text-subtle" mt={8} variant="p-small">
           Container queries apply responsive behavior based on the
           DataTable&apos;s container width
         </Text>
@@ -453,7 +453,7 @@ export const DisableContainerQuery: Story = {
         <Text mb={8} variant="title-sm">
           With Container Queries Disabled
         </Text>
-        <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
+        <Box border={1} borderColor="border-subtle" maxWidth="400px" p={16}>
           <DataTable
             columns={simpleColumns}
             disableContainerQuery
@@ -463,7 +463,7 @@ export const DisableContainerQuery: Story = {
             spacing="condensed"
           />
         </Box>
-        <Text color="text-secondary" mt={8} variant="p-small">
+        <Text color="text-subtle" mt={8} variant="p-small">
           Built in responsive behavior is disabled - custom responsive behavior
           is required
         </Text>
