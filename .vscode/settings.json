@@ -36,6 +36,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "jest.jestCommandLine": "node_modules/.bin/jest",
   "nxConsole.generateAiAgentRules": true
 }
