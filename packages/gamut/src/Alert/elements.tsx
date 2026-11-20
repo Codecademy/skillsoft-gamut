@@ -14,7 +14,7 @@ import { placementVariants } from './variants';
  * A brand gradient's circles are sized in `cqw` against the alert's width.
  * An element can't be its own query container, so the alert becomes one and
  * the gradient goes on a layer behind its content, over the flat `bg`
- * fallback (the sandbox's GradientLayer). Without it `cqw` falls back to the
+ * fallback. Without it `cqw` falls back to the
  * viewport and the circles render page-sized.
  */
 const gradientLayer = ({ gradient }: { gradient?: string }) =>
@@ -41,8 +41,8 @@ type InkProps = Pick<AlertProps, 'placement'> & {
 
 /*
  * The variant's ink on the message, and on the edge of a floating Alert
- * (design's preview at sandbox 15c2195; its shared "Floating border" slot
- * still says border-default and is out of date).
+ * (design's preview; the component map's "Floating border" slot still says
+ * border-default and is out of date).
  */
 const alertInk = ({ ink, placement, theme }: InkProps) => {
   const color = ink && (theme.colors as Record<string, string>)[ink];

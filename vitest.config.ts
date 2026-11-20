@@ -129,7 +129,7 @@ export default defineConfig({
         test: {
           name: 'node',
           include: [
-            'packages/{eslint-plugin-gamut,gamut-codemods}/**/*.test.ts',
+            'packages/{eslint-plugin-gamut,gamut-brand,gamut-codemods}/**/*.test.ts',
             'packages/gamut-agent-tools/**/*.test.mjs',
           ],
           // Codemod fixtures are inputs, not tests, and may be deliberately odd code.
