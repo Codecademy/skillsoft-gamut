@@ -491,7 +491,7 @@ export const WithExternalTitle: Story = {
         borderRadius="lg"
         id="external-chart-title"
         p={16}
-        textAlign="right"
+        textAlign="end"
       >
         Programming Skills Overview
       </Box>

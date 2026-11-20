@@ -55,7 +55,7 @@ Shared by `FillButton`, `StrokeButton`, `TextButton`, and `IconButton`. `CTAButt
 | `variant`      | `"primary" \| "secondary" \| "danger" \| "interface"` | Color emphasis (see table above)                 |
 | `size`         | `"small" \| "normal" \| "large"`                      | Padding and font size                            |
 | `icon`         | Icon component                                        | Leading or trailing icon (Fill, Stroke, Text)    |
-| `iconPosition` | `"left" \| "right"`                                   | Defaults to left                                 |
+| `iconPosition` | `"start" \| "end"`                                    | Defaults to start                                |
 | `disabled`     | boolean                                               | Disabled state styling                           |
 | `href`         | string                                                | Renders as `<a>` tag                             |
 | `tip`          | string                                                | Required on `IconButton` (tooltip + hover label) |

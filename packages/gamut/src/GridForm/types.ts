@@ -194,7 +194,7 @@ export type GridFormRequiredTextProps = {
 export type GridFormSectionTitleBaseProps = RestrictedTitleVariant & {
   title: string;
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  layout?: 'center' | 'left';
+  layout?: 'center' | 'start';
   titleWrapperProps?: BoxProps;
 };
 

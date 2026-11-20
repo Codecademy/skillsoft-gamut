@@ -20,7 +20,7 @@ export interface ToggleBaseProps extends ToggleStyleProps {
   /** A visible label for your Toggle - we reccommend this */
   label?: React.ReactNode;
   /** Which side of the toggle the label should render */
-  labelSide?: 'left' | 'right';
+  labelSide?: 'start' | 'end';
   /** Changes the dimensions of the element for using the component outside of a form context */
   size?: ToggleSizes;
 }

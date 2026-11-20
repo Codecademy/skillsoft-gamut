@@ -14,10 +14,10 @@ export const infotipNestedArgTypes = {
   },
   'infotip.alignment': {
     control: 'radio',
-    options: ['bottom-left', 'bottom-right', 'top-left', 'top-right'],
+    options: ['bottom-start', 'bottom-end', 'top-start', 'top-end'],
     table: {
-      defaultValue: { summary: 'top-right' },
-      type: { summary: 'bottom-left | bottom-right | top-left | top-right' },
+      defaultValue: { summary: 'top-end' },
+      type: { summary: 'bottom-start | bottom-end | top-start | top-end' },
     },
   },
   'infotip.placement': {

@@ -32,7 +32,7 @@ export const SubmitButtonRight: Story = {
   args: {
     submit: {
       contents: 'Right Submit!?',
-      position: 'right',
+      position: 'end',
       size: 12,
     },
   },
@@ -51,7 +51,7 @@ export const SubmitButtonLeft: Story = {
   args: {
     submit: {
       contents: 'Left Submit!?',
-      position: 'left',
+      position: 'start',
       size: 12,
     },
   },
@@ -115,7 +115,7 @@ export const SubmitButtonInline: Story = {
     submit: {
       contents: 'Inline Submit!?',
       size: 4,
-      position: 'right',
+      position: 'end',
     },
   },
 };
@@ -128,7 +128,7 @@ export const CancelButton: Story = {
     },
     submit: {
       contents: 'Submit!?',
-      position: 'right',
+      position: 'end',
       size: 12,
     },
   },
@@ -185,7 +185,7 @@ export const CancelLink: Story = {
     },
     submit: {
       contents: 'Save',
-      position: 'right',
+      position: 'end',
       size: 12,
     },
   },

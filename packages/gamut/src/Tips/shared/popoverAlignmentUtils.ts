@@ -14,20 +14,20 @@ export const getAlignmentStyles = ({
 }: Pick<TipWrapperProps, 'alignment' | 'avatar' | 'type'>) => {
   if (avatar) return 'avatarAligned';
   if (type === 'preview') return 'previewAligned';
-  if (alignment.startsWith('left') || alignment.startsWith('right'))
+  if (alignment.startsWith('start') || alignment.startsWith('end'))
     return 'horizontalCenter';
   return alignment.includes('center') ? 'vertCenter' : 'aligned';
 };
 
 export const getPopoverAlignmentAndPattern = ({
-  alignment = 'top-left',
+  alignment = 'top-start',
   type,
 }: Partial<Pick<TipPlacementComponentProps, 'alignment' | 'type'>>):
   | (PopoverXPositionType & Pick<PopoverProps, 'align'>)
   | (PopoverYPositionType & Pick<PopoverProps, 'align'>) => {
   const popoverAlignment: PopoverYPositionType & Pick<PopoverProps, 'align'> = {
-    align: 'right',
-    beak: 'right',
+    align: 'end',
+    beak: 'end',
     position: 'above',
     pattern: undefined,
   };
@@ -44,11 +44,11 @@ export const getPopoverAlignmentAndPattern = ({
     popoverAlignment.beak = 'center';
   }
 
-  if (alignment.includes('right-') || alignment.includes('left-')) {
-    if (alignment.includes('left-')) {
-      popoverAlignment.align = 'left';
+  if (alignment.startsWith('start-') || alignment.startsWith('end-')) {
+    if (alignment.startsWith('start-')) {
+      popoverAlignment.align = 'start';
     } else {
-      popoverAlignment.align = 'right';
+      popoverAlignment.align = 'end';
     }
     return {
       beak: 'center',
@@ -59,9 +59,9 @@ export const getPopoverAlignmentAndPattern = ({
 
   if (alignment.includes('bottom')) popoverAlignment.position = 'below';
 
-  if (alignment.includes('-right')) {
-    popoverAlignment.align = 'left';
-    popoverAlignment.beak = 'left';
+  if (alignment.endsWith('-end')) {
+    popoverAlignment.align = 'start';
+    popoverAlignment.beak = 'start';
   }
 
   return popoverAlignment;

@@ -64,6 +64,7 @@ figma.connect(
         Sections: [
           {
             title: 'Section Header',
+            // TODO: Update this 'left' value to 'start' after the Figma changes take effect.
             layout: 'left',
             variant: 'title-md',
             fields: [
@@ -85,6 +86,7 @@ figma.connect(
           },
           {
             title: 'Section Header',
+            // TODO: Update this 'left' value to 'start' after the Figma changes take effect.
             layout: 'left',
             variant: 'title-md',
             fields: [
@@ -108,6 +110,7 @@ figma.connect(
           },
         ],
       }),
+      // TODO: Update these 'left' / 'right' position values to 'start' / 'end' after the Figma changes take effect.
       submit: figma.enum('Template', {
         Starter: {
           contents: 'Submit form',

@@ -34,7 +34,7 @@ The table below shows the keys and value types for an option object:
 | `disabled`     | `boolean`                         | no       | Option cannot be selected                                            |
 | `subtitle`     | `string`                          | no       | Secondary text below the label                                       |
 | `rightLabel`   | `string`                          | no       | Text on the right side of the option                                 |
-| `icon`         | icon component from `gamut-icons` | no       | A `@skillsoft/gamut-icons` component                                |
+| `icon`         | icon component from `gamut-icons` | no       | A `@skillsoft/gamut-icons` component                                 |
 | `abbreviation` | `string`                          | no       | Short text shown in the input while the full label shows in the menu |
 
 Grouped options: `{ label, options: [...], divider? }` (extends react-select `GroupBase`; `divider` draws a rule above the group).
@@ -172,7 +172,7 @@ const lastInput = useRef('');
 | `shownOptionsLimit` | `1`–`6`                  | `6`      | Visible options before the menu scrolls                   |
 | `inputWidth`        | `string \| number`       | —        | Width of the input independent of the menu                |
 | `dropdownWidth`     | `string \| number`       | —        | Width of the menu independent of the input                |
-| `menuAlignment`     | `'left' \| 'right'`      | `left`   | Menu edge alignment                                       |
+| `menuAlignment`     | `'start' \| 'end'`       | `start`  | Menu edge alignment                                       |
 | `zIndex`            | `number`                 | `2`      | Menu z-index (control container defaults to `3`)          |
 | `inputProps`        | `{ hidden?, combobox? }` | —        | `data-*` / `aria-*` only, forwarded to the input elements |
 

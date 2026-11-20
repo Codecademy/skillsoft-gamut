@@ -3,16 +3,16 @@ import type { ComponentProps, ReactNode } from 'react';
 import type { Text } from '../../Typography';
 
 export const tipBaseAlignmentArray = [
-  'bottom-left',
-  'bottom-right',
-  'top-left',
-  'top-right',
+  'bottom-start',
+  'bottom-end',
+  'top-start',
+  'top-end',
 ] as const;
 
 const tipCenterAlignmentArray = [
   'bottom-center',
-  'left-center',
-  'right-center',
+  'start-center',
+  'end-center',
   'top-center',
 ] as const;
 

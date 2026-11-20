@@ -25,7 +25,7 @@ export const InlineIconButton = forwardRef<
       children,
       button: Button,
       icon,
-      iconPosition = 'left',
+      iconPosition = 'start',
       variant,
       ...props
     },

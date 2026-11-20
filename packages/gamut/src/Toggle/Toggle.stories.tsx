@@ -61,17 +61,17 @@ export const DisabledChecked: Story = {
   },
 };
 
-export const LabelLeft: Story = {
+export const LabelStart: Story = {
   args: {
-    label: 'My label is to the left',
-    labelSide: 'left',
+    label: 'My label placed on `start`',
+    labelSide: 'start',
   },
 };
 
-export const LabelRight: Story = {
+export const LabelEnd: Story = {
   args: {
-    label: 'My label is to the right',
-    labelSide: 'right',
+    label: 'My label placed on `end`',
+    labelSide: 'end',
   },
 };
 

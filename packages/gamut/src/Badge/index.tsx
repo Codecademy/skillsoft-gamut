@@ -122,7 +122,7 @@ export const Badge: React.FC<BadgeProps> = ({ icon, children, ...rest }) => {
     children,
     icon,
     iconAndTextGap: spacing,
-    iconPosition: 'left',
+    iconPosition: 'start',
     iconSize,
   });
   return <BadgeBase {...rest}>{content}</BadgeBase>;

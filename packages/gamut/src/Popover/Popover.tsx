@@ -22,7 +22,7 @@ import { getDefaultOffset, resolveHorizontalSideForRtl } from './utils';
 
 export const Popover: React.FC<PopoverProps> = ({
   animation,
-  align = 'left',
+  align = 'start',
   beak,
   children,
   className,
@@ -57,7 +57,7 @@ export const Popover: React.FC<PopoverProps> = ({
 
   // This only needs to resolve the positioning - the beak uses logical properties so will automatically mirror in RTL.
   const resolvedSideAlign = useMemo(() => {
-    if (align !== 'left' && align !== 'right') return align;
+    if (align === 'center') return align;
     return resolveHorizontalSideForRtl({
       side: align,
       isRtl,

@@ -39,11 +39,11 @@ export type PopoverYPositionType = {
   position?: 'above' | 'below';
   /**
    * Renders the beak. For `above` / `below`, use `center` for a centered triangle; pass
-   * `left` or `right` to pin the corner beak (or omit to derive the corner from `align`).
-   * With `GamutProvider`’s `useLogicalProperties` and an RTL target, `left` / `right` are
-   * mirrored the same way as `align` (logical start / end).
+   * `start` or `end` to pin the corner beak (or omit to derive the corner from `align`).
+   * With `GamutProvider`’s `useLogicalProperties` and an RTL target, `start` / `end` are
+   * mirrored the same way as `align`.
    */
-  beak?: 'left' | 'right' | 'center';
+  beak?: 'start' | 'end' | 'center';
   /**
    * Pattern component to use as a background.
    */
@@ -80,12 +80,12 @@ export type PopoverProps = PopoverBaseProps &
     className?: string;
     /**
      * Horizontal alignment of the popover relative to the target. When
-     * `GamutProvider`'s `useLogicalProperties` is enabled, `left` and `right` follow the
-     * inline axis (leading/trailing): under RTL they resolve to the physical side that
-     * matches inline-start and inline-end, consistent with `useElementDir` on `targetRef`.
+     * `GamutProvider`'s `useLogicalProperties` is enabled, `start` and `end` follow the
+     * inline axis: under RTL they resolve to the physical side that matches
+     * inline-start and inline-end, consistent with `useElementDir` on `targetRef`.
      * Applies for all `position` values (`above`, `below`, `center`).
      */
-    align?: 'left' | 'right' | 'center';
+    align?: 'start' | 'end' | 'center';
     /**
      * Number of pixels to offset the popover vertically from the source component.
      */

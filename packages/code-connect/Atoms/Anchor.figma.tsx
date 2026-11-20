@@ -23,6 +23,7 @@ figma.connect(
           false: undefined,
         }),
       }),
+      // TODO: Update these 'left' / 'right' values to 'start' / 'end' after the Figma changes take effect.
       iconPosition: figma.boolean('👁 leading icon', {
         true: 'left',
         false: figma.boolean('👁 trailing icon', {

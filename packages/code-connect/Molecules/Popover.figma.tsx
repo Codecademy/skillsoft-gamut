@@ -24,6 +24,7 @@ figma.connect(
           'center-left': 'center',
         }),
       }),
+      // TODO: Update these 'left' / 'right' values to 'start' / 'end' after the Figma changes take effect.
       align: figma.boolean('beak', {
         true: figma.enum('beakPosition', {
           left: 'left',

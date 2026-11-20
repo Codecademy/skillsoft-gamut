@@ -12,7 +12,7 @@ const meta: Meta<typeof PreviewTip> = {
   title: 'Feedback/Tips/PreviewTip',
   component: PreviewTip,
   args: {
-    alignment: 'bottom-right',
+    alignment: 'bottom-end',
     children: 'PreviewTip Anchor',
     linkDescription,
     href: 'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExamp6NDVlZzNpam01NnlhaGRreWMwZGlzZ3Z6bWd2dmtneTJrN3pnZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/X5Lta1bjuULTubmGzR/giphy.webp',
@@ -86,7 +86,7 @@ export const AvatarTip: Story = {
 export const FloatingPreviewTip: Story = {
   args: {
     placement: 'floating',
-    alignment: 'top-right',
+    alignment: 'top-end',
   },
   play: async ({ args, canvas, userEvent }) => {
     const link = canvas.getByRole('link', { name: 'PreviewTip Anchor' });
@@ -123,7 +123,7 @@ export const LoadingTip: Story = {
             I am a perpetually loading preview.
           </PreviewTip>
           <PreviewTip
-            alignment="bottom-left"
+            alignment="bottom-start"
             height={32}
             href="/test"
             linkDescription={load ? 'loading...' : 'test'}
@@ -148,10 +148,10 @@ export const LoadingTip: Story = {
 export const Truncation: Story = {
   render: (args) => (
     <FlexBox justifyContent="space-around" py={96} width="100%">
-      <PreviewTip {...args} alignment="top-right" truncateLines={2} />
+      <PreviewTip {...args} alignment="top-end" truncateLines={2} />
       <PreviewTip
         {...args}
-        alignment="bottom-left"
+        alignment="bottom-start"
         linkDescription="This is a long link description. There is nothing fun or funny in this PreviewTip, and this definitely is way too long to be a 'summary' of anything at all. No one wants to read a preview that's as long as the article, its like a trailer that gives away the whole movie. Be better than that. Be a serious person."
         truncateLines={5}
       />

@@ -14,6 +14,7 @@ figma.connect(
   'https://www.figma.com/design/ReGfRNillGABAj5SlITalN/%F0%9F%93%90-Gamut?node-id=115820-91241',
   {
     props: {
+      // TODO: Update these 'left' / 'right' values to 'start' / 'end' after the Figma changes take effect.
       alignContentContainer: figma.enum('alignContentContainer', {
         left: 'left',
         right: 'right',

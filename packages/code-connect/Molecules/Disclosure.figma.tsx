@@ -46,6 +46,7 @@ figma.connect(
         }),
       }),
       buttonInfo: figma.nestedProps('.cta', {
+        // TODO: Update these 'left' / 'right' values to 'start' / 'end' after the Figma changes take effect.
         buttonPlacement: figma.enum('buttonPlacement', {
           left: 'left',
           right: 'right',

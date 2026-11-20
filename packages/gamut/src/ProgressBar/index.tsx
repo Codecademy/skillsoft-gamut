@@ -157,7 +157,7 @@ const Bar = styled(Box)(progressBarForegroundVariants);
 const DisplayedPercent = styled.span`
   font-weight: bold;
   padding: 0.5rem;
-  text-align: right;
+  text-align: end;
   width: 100%;
 `;
 

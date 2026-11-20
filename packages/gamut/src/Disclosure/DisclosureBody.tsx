@@ -8,7 +8,7 @@ import type { DisclosureBodyProps } from './types';
 export const DisclosureBody: React.FC<DisclosureBodyProps> = ({
   body,
   buttonType = 'TextButton',
-  buttonPlacement = 'right',
+  buttonPlacement = 'end',
   ctaCallback,
   ctaText,
   hasPanelBg = false,

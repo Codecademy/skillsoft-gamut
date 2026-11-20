@@ -14,6 +14,7 @@ figma.connect(
   'https://www.figma.com/design/ReGfRNillGABAj5SlITalN/%F0%9F%93%90-Gamut?node-id=41215%3A28041',
   {
     props: {
+      // TODO: Update these alignment values to their 'start' / 'end' equivalents after the Figma changes take effect.
       alignment: figma.enum('alignment', {
         'bottom-center': 'bottom-center',
         'left-center': 'left-center',

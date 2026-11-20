@@ -137,14 +137,14 @@ const CrewMgmtDropdown = ({ row }: { row: CrewMember }) => {
         icon={MiniKebabMenuIcon}
         tip="Show options"
         tipProps={{
-          alignment: 'left-center',
+          alignment: 'start-center',
           placement: 'floating',
         }}
         variant="secondary"
         onClick={() => setIsOpen(!isOpen)}
       />
       <PopoverContainer
-        alignment="bottom-left"
+        alignment="bottom-start"
         allowPageInteraction
         closeOnViewportExit
         isOpen={isOpen}
@@ -272,7 +272,7 @@ export const cols: ColumnConfig<CrewMember>[] = [
     header: 'Species',
     key: 'species',
     size: 'lg',
-    justify: 'right',
+    justify: 'end',
     sortable: true,
     filters: ['Human'],
   },
@@ -280,7 +280,7 @@ export const cols: ColumnConfig<CrewMember>[] = [
     header: 'Controls',
     key: 'name',
     size: 'md',
-    justify: 'right',
+    justify: 'end',
     type: 'control',
     render: (row) => <CrewMgmtDropdown row={row} />,
   },
@@ -293,7 +293,7 @@ export const simpleRows = [
 
 export const simpleColumns: ColumnConfig<(typeof simpleRows)[number]>[] = [
   { key: 'name', header: 'Name', type: 'header', size: 'md' },
-  { key: 'role', header: 'Role', fill: true, justify: 'right' },
+  { key: 'role', header: 'Role', fill: true, justify: 'end' },
   {
     header: 'Controls',
     key: 'name',
@@ -304,12 +304,12 @@ export const simpleColumns: ColumnConfig<(typeof simpleRows)[number]>[] = [
         <IconButton
           icon={SparkleOutlineIcon}
           tip="Warp back home"
-          tipProps={{ alignment: 'left-center', placement: 'floating' }}
+          tipProps={{ alignment: 'start-center', placement: 'floating' }}
         />{' '}
         <IconButton
           icon={RocketIcon}
           tip="Send on a mission"
-          tipProps={{ alignment: 'right-center', placement: 'floating' }}
+          tipProps={{ alignment: 'end-center', placement: 'floating' }}
         />
       </>
     ),

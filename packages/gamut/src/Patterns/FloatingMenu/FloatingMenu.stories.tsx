@@ -47,7 +47,7 @@ export const Default: Story = {
           />
 
           <PopoverContainer
-            alignment="bottom-left"
+            alignment="bottom-start"
             allowPageInteraction
             closeOnViewportExit
             isOpen={isOpen}

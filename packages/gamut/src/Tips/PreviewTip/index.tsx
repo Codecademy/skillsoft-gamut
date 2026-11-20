@@ -21,7 +21,7 @@ export type PreviewTipProps = ComponentProps<typeof Anchor> &
     linkDescription: string;
   };
 export const PreviewTip: React.FC<PreviewTipProps> = ({
-  alignment = 'top-right',
+  alignment = 'top-end',
   avatar,
   children,
   linkDescription,

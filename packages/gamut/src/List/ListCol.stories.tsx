@@ -115,20 +115,20 @@ export const Justification: ListCompositionStory = {
       <List {...args}>
         <ListRow>
           <ListCol fill size="md">
-            Left
+            Start
           </ListCol>
-          <ListCol fill justify="right" size="md">
-            Right
+          <ListCol fill justify="end" size="md">
+            End
           </ListCol>
         </ListRow>
       </List>
     );
   },
   play: async ({ canvas }) => {
-    await expect(canvas.getByText('Left')).toHaveStyle({
+    await expect(canvas.getByText('Start')).toHaveStyle({
       justifyContent: 'flex-start',
     });
-    await expect(canvas.getByText('Right')).toHaveStyle({
+    await expect(canvas.getByText('End')).toHaveStyle({
       justifyContent: 'flex-end',
     });
   },

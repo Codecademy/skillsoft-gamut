@@ -82,7 +82,7 @@ export interface ColumnConfig<T> {
    * Working with the `size` prop, will indicate that this field should expand to fill extra space.
    */
   fill?: boolean;
-  justify?: 'left' | 'right';
+  justify?: 'start' | 'end';
 }
 
 interface RowChangePayload<Id> {

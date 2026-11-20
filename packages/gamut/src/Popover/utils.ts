@@ -1,13 +1,14 @@
 import type { PopoverProps } from './types';
 
 /**
- * Mirrors horizontal `left` / `right` in RTL when `useLogicalProperties` is enabled
- * (Popover `align` / `beak` resolution). `Popover` passes `isRtl` from
+ * Resolves a logical `start` / `end` side to a physical `left` / `right` side
+ * (Popover `align` resolution). `start` is `left` unless `useLogicalProperties` is
+ * enabled and the element is RTL. `Popover` passes `isRtl` from
  * `useElementDir(targetRef)` and document `dir` (see `Popover` implementation).
- * @param side - The horizontal side to resolve.
+ * @param side - The logical horizontal side to resolve.
  * @param isRtl - Whether the element is in an RTL context.
  * @param useLogicalProperties - Whether logical properties are enabled.
- * @returns The resolved horizontal side.
+ * @returns The resolved physical horizontal side.
  * WARNING : Do not use this function to swap elements that use css logical properties. They will get double-mirrored.
  */
 export const resolveHorizontalSideForRtl = ({
@@ -15,12 +16,13 @@ export const resolveHorizontalSideForRtl = ({
   isRtl,
   useLogicalProperties,
 }: {
-  side: 'left' | 'right';
+  side: 'start' | 'end';
   isRtl: boolean;
   useLogicalProperties: boolean | undefined;
 }): 'left' | 'right' => {
-  if (!useLogicalProperties) return side;
-  return isRtl ? (side === 'left' ? 'right' : 'left') : side;
+  const mirrored = Boolean(useLogicalProperties) && isRtl;
+  if (side === 'start') return mirrored ? 'right' : 'left';
+  return mirrored ? 'left' : 'right';
 };
 
 const offsets = {

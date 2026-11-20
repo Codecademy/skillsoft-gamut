@@ -298,16 +298,16 @@ const columnType = variant({
 
 const columnJustify = variant({
   prop: 'justify',
-  defaultVariant: 'left',
+  defaultVariant: 'start',
   variants: {
-    left: {
+    start: {
       justifyContent: {
         _: 'flex-start',
         c_base: 'initial',
         c_sm: 'flex-start',
       },
     },
-    right: {
+    end: {
       justifyContent: { _: 'flex-end', c_base: 'initial', c_sm: 'flex-end' },
       '& div': {
         width: { sm: 'fit-content' },

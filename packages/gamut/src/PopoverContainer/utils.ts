@@ -1,40 +1,46 @@
 import type { CSSObject } from '@skillsoft/variance';
 import { percentageOrAbsolute as percent } from '@skillsoft/variance';
 
-import type { PopoverContainerAlignment, PopoverPositionConfig } from './types';
+import type {
+  PopoverContainerAlignment,
+  PopoverContainerPhysicalAlignment,
+  PopoverPositionConfig,
+} from './types';
 
 export interface PopoverPositionResult {
   /** Edge insets pinning the popover to the container (`left` / `right` / `top` / `bottom`). */
   styles: CSSObject;
   /**
    * Direction-neutral transforms/coords—semantic mirroring happens first via
-   * {@link mirrorAlignment}; merged after `styles`.
+   * {@link resolvePhysicalAlignment}; merged after `styles`.
    */
   dirNeutralStyles?: CSSObject;
 }
 
 /**
- * Mirrors placement on the inline axis when the target is RTL so e.g. `bottom-left`
- * uses the same geometry as `bottom-right` in LTR.
+ * Resolves a logical placement to its physical placement on the inline axis:
+ * `start` is `left` in LTR and `right` in RTL, e.g. `bottom-start` uses the same
+ * geometry as `bottom-right` in LTR when the target is RTL.
  */
-export const mirrorAlignment = (
+export const resolvePhysicalAlignment = (
   alignment: PopoverContainerAlignment,
   isRtl: boolean
-): PopoverContainerAlignment => {
-  if (!isRtl) return alignment;
+): PopoverContainerPhysicalAlignment => {
+  const start = isRtl ? 'right' : 'left';
+  const end = isRtl ? 'left' : 'right';
   switch (alignment) {
-    case 'top-left':
-      return 'top-right';
-    case 'top-right':
-      return 'top-left';
-    case 'bottom-left':
-      return 'bottom-right';
-    case 'bottom-right':
-      return 'bottom-left';
-    case 'left':
-      return 'right';
-    case 'right':
-      return 'left';
+    case 'top-start':
+      return `top-${start}`;
+    case 'top-end':
+      return `top-${end}`;
+    case 'bottom-start':
+      return `bottom-${start}`;
+    case 'bottom-end':
+      return `bottom-${end}`;
+    case 'start':
+      return start;
+    case 'end':
+      return end;
     default:
       return alignment;
   }
@@ -200,16 +206,16 @@ const AXIS = {
 /**
  * Computes the absolute position styles for a popover relative to a target element.
  *
- * When `isRtl` is true, {@link mirrorAlignment} maps the requested placement to the
- * mirrored corner/edge on the inline axis before computing offsets (same viewport math
- * as LTR).
+ * {@link resolvePhysicalAlignment} maps the requested logical placement to a physical
+ * corner/edge on the inline axis (mirrored when `isRtl` is true) before computing
+ * offsets (same viewport math as LTR).
  *
  * Returns two fragments that callers merge into inline `style` (they are not Gamut variance
  * props on the host, so nothing here is swapped to logical properties via `system.positioning`).
  *
  * - `styles`: corner/edge inset lengths (`left` / `right` / `top` / `bottom`).
  * - `dirNeutralStyles`: transforms/coords not further remapped for RTL/logical placement
- *   after {@link mirrorAlignment}; merged after `styles`.
+ *   after {@link resolvePhysicalAlignment}; merged after `styles`.
  */
 export const getPosition = ({
   alignment,
@@ -220,7 +226,7 @@ export const getPosition = ({
   invertAxis,
   isRtl = false,
 }: PopoverPositionConfig & { isRtl?: boolean }): PopoverPositionResult => {
-  const layoutAlignment = mirrorAlignment(alignment, isRtl);
+  const layoutAlignment = resolvePhysicalAlignment(alignment, isRtl);
   const { top, left, bottom, right, height, width } = container;
   const xOffset = width + offset + x;
   const yOffset = height + offset + y;
@@ -237,7 +243,7 @@ export const getPosition = ({
     const isVertical = direction === 'top' || direction === 'bottom';
 
     if (isVertical) {
-      // Center x uses viewport/layout coords — stays literal after mirrorAlignment under RTL.
+      // Center x uses viewport/layout coords — stays literal after resolvePhysicalAlignment under RTL.
       dirNeutralStyles.left = left + width / 2;
       dirNeutralStyles.transform = 'translate(-50%, 0)';
     } else {

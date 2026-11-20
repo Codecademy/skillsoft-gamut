@@ -15,6 +15,7 @@ figma.connect(
   'https://www.figma.com/design/ReGfRNillGABAj5SlITalN/%F0%9F%93%90-Gamut?node-id=19366-27764',
   {
     props: {
+      // TODO: Update these 'left' / 'right' values to 'start' / 'end' after the Figma changes take effect.
       beak: figma.enum('beak', {
         right: 'right',
         left: 'left',

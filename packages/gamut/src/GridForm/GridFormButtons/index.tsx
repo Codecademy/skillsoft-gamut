@@ -34,9 +34,9 @@ type CancelButtonProps = {
 };
 
 const positions = {
-  left: 'flex-start',
+  start: 'flex-start',
   center: 'center',
-  right: 'flex-end',
+  end: 'flex-end',
   stretch: 'stretch',
 };
 
@@ -53,7 +53,7 @@ export const GridFormButtons: React.FC<
       <GridBox
         alignSelf="center"
         gridTemplateColumns={props.cancel ? 'auto auto' : undefined}
-        justifySelf={positions[props.position || 'left']}
+        justifySelf={positions[props.position || 'start']}
         mb={8}
       >
         {props.cancel && (
