@@ -1,10 +1,11 @@
-import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
 import { matchers } from '@emotion/jest';
 import type { Theme } from '@emotion/react';
 import { render } from '@testing-library/react';
 import { parse } from 'culori';
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { describe, expect, it } from 'vitest';
 
 import { Background } from './Background';
 import {

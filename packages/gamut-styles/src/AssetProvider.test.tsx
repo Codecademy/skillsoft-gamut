@@ -1,10 +1,9 @@
+import { render } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { render } from '@testing-library/react';
-
 import { AssetProvider, createFontLinks } from './AssetProvider';
-import { skillsoftTheme, lxStudioTheme } from './themes';
 import { setupRtl } from './testUtils';
+import { lxStudioTheme, skillsoftTheme } from './themes';
 
 const renderView = setupRtl(AssetProvider, {});
 

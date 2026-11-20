@@ -1,8 +1,8 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { AssetProvider } from './AssetProvider';
-import { skillsoftTheme, lxStudioTheme } from './themes';
+import { lxStudioTheme, skillsoftTheme } from './themes';
 
 const typedLxStudioTheme = lxStudioTheme as any;
 

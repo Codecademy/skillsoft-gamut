@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { tokensCss } from '../tokens/generated/tokensCss';
 import { adminTheme } from './admin';
 import { lxStudioTheme } from './lxStudio';
