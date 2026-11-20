@@ -237,13 +237,17 @@ describe('AssetProvider', () => {
     });
 
     it('should handle getFonts throwing an error', () => {
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+      const error = new Error('Font loading failed');
       mockGetFonts.mockImplementation(() => {
-        throw new Error('Font loading failed');
+        throw error;
       });
 
       const { view } = renderView();
       const links = getPreloadLinks(view.container);
       expect(links).toHaveLength(0);
+      expect(warn).toHaveBeenCalledWith('Font loading failed:', error);
+      warn.mockRestore();
     });
 
     it('should fallback to core fonts when getFonts returns undefined', () => {
