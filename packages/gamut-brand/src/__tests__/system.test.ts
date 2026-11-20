@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { originalCodecademyBrand } from '../brands/originalCodecademy';
 import { skillsoftBrand } from '../brands/skillsoft';
 import { gradientCssVars, toDtcgMode, toDtcgPalette } from '../emit';
