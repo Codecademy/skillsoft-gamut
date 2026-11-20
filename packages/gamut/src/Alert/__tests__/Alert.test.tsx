@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from 'vitest';
 import { matchers } from '@emotion/jest';
 import { setupRtl } from '@skillsoft/gamut-tests';
 import { fireEvent } from '@testing-library/dom';
@@ -9,12 +10,12 @@ import { Alert } from '../Alert';
 expect.extend(matchers);
 
 const children = 'Hello';
-const onClose = jest.fn();
-const onClick = jest.fn();
+const onClose = vi.fn();
+const onClick = vi.fn();
 
-const mockUseMeasure = jest.fn(() => [jest.fn(), { width: 1600 }]);
+const mockUseMeasure = vi.fn(() => [vi.fn(), { width: 1600 }]);
 
-jest.mock('react-use', () => ({
+vi.mock('react-use', () => ({
   ...jest.requireActual<{}>('react-use'),
   get useMeasure() {
     return mockUseMeasure;
@@ -83,7 +84,7 @@ describe('Alert', () => {
   });
 
   it('does not render a clickable button and renders untruncated text when on the xs screen size', () => {
-    mockUseMeasure.mockReturnValueOnce([jest.fn(), { width: 400 }]);
+    mockUseMeasure.mockReturnValueOnce([vi.fn(), { width: 400 }]);
 
     const { view } = renderView({});
 

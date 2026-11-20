@@ -8,7 +8,6 @@ import {
   lxStudioTheme,
   CoreTheme,
   platformTheme,
-  skillsoftTheme,
   originalCodecademyTheme,
   ColorMode,
 } from '@skillsoft/gamut-styles';

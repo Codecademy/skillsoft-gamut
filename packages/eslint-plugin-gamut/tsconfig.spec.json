@@ -4,10 +4,9 @@
     "allowJs": true,
     "module": "commonjs",
     "outDir": "./dist",
-    "types": ["jest", "node"]
+    "types": ["node"]
   },
   "include": [
-    "jest.config.ts",
     "**/*.test.ts",
     "**/*.spec.ts",
     "**/*.test.tsx",
