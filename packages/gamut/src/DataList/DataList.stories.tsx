@@ -1,19 +1,27 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useCallback, useMemo, useState } from 'react';
 import { expect, fn, waitFor, within } from 'storybook/test';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
-import { FlexBox } from '../Box';
+import { Box, FlexBox } from '../Box';
+import { FillButton } from '../Button';
+import { Text } from '../Typography';
 import { DataList } from './DataList';
 import { DataTable } from './DataTable';
+import { useLocalQuery } from './hooks/useLocalQuery';
 import {
   cols,
-  createDemoTable,
+  crew,
   CustomEmptyState,
-  DisableContainerQueryExample,
   simpleColumns,
   simpleRows,
 } from './testUtils';
-import type { ColumnConfig } from './types';
+import type {
+  ColumnConfig,
+  ExpandEvents,
+  RowStateChange,
+  SelectEvents,
+} from './types';
 
 const crewRows = [
   {
@@ -143,12 +151,6 @@ const meta: TypeWithDeepControls<Meta<CrewDataList>> = {
 export default meta;
 type Story = StoryObj<CrewDataList>;
 
-const DataListTemplate = createDemoTable(DataList, {
-  scrollable: false,
-  height: 'auto',
-  showOverflow: true,
-});
-
 export const Default: Story = {
   args: {},
   play: async ({ args, canvas, userEvent }) => {
@@ -181,7 +183,72 @@ export const Default: Story = {
 };
 
 export const FullDataList: Story = {
-  render: () => <DataListTemplate />,
+  render: function FullCrewDataList() {
+    const [selectedRows, setSelectedRows] = useState<string[]>([]);
+    const [expandedRows, setExpandedRows] = useState<string[]>([]);
+
+    const { idKey, query, rows, onQueryChange } = useLocalQuery({
+      idKey: 'name',
+      rows: crew,
+      columns: cols,
+    });
+
+    const allIds = useMemo(() => crew.map(({ [idKey]: id }) => id), [idKey]);
+
+    const onRowSelect = useCallback<RowStateChange<SelectEvents, string>>(
+      ({ type, payload: { toggle, rowId } }) => {
+        if (type === 'select-all') {
+          return setSelectedRows(toggle ? [] : allIds);
+        }
+        if (rowId) {
+          setSelectedRows((prev) =>
+            toggle ? prev.filter((id) => id !== rowId) : [...prev, rowId]
+          );
+        }
+      },
+      [allIds]
+    );
+
+    const onRowExpand = useCallback<RowStateChange<ExpandEvents, string>>(
+      ({ payload: { toggle, rowId } }) => {
+        if (rowId) {
+          setExpandedRows((prev) =>
+            toggle ? prev.filter((id) => id !== rowId) : [...prev, rowId]
+          );
+        }
+      },
+      []
+    );
+
+    return (
+      <DataList
+        columns={cols}
+        expanded={expandedRows}
+        expandedContent={({ onCollapse }) => (
+          <FlexBox column flex={1}>
+            <FlexBox borderTop={1} opacity={0.5} />
+            <FlexBox center column gap={16} p={32}>
+              <Text variant="title-md">Nothing to see here</Text>
+              <FillButton size="small" onClick={onCollapse}>
+                Get me out of here!
+              </FillButton>
+            </FlexBox>
+          </FlexBox>
+        )}
+        height="auto"
+        id="example"
+        idKey={idKey}
+        query={query}
+        rows={rows}
+        scrollable={false}
+        selected={selectedRows}
+        showOverflow
+        onQueryChange={onQueryChange}
+        onRowExpand={onRowExpand}
+        onRowSelect={onRowSelect}
+      />
+    );
+  },
   play: async ({ canvas, userEvent }) => {
     const selectAll = canvas.getByRole('checkbox', { name: 'Select All' });
     const picard = canvas.getByRole('checkbox', {
@@ -361,29 +428,46 @@ export const NonSelectable: Story = {
 export const DisableContainerQuery: Story = {
   args: {},
   render: () => (
-    <DisableContainerQueryExample
-      componentName="DataList"
-      defaultComponent={
-        <DataList
-          columns={simpleColumns}
-          header
-          id="default-container-query"
-          idKey="name"
-          rows={simpleRows}
-          spacing="condensed"
-        />
-      }
-      disabledComponent={
-        <DataList
-          columns={simpleColumns}
-          disableContainerQuery
-          id="disabled-container-query"
-          idKey="name"
-          rows={simpleRows}
-          spacing="condensed"
-        />
-      }
-    />
+    <FlexBox flexDirection="column" gap={24}>
+      <Box>
+        <Text mb={8} variant="title-sm">
+          Default (Container Queries Enabled)
+        </Text>
+        <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
+          <DataList
+            columns={simpleColumns}
+            header
+            id="default-container-query"
+            idKey="name"
+            rows={simpleRows}
+            spacing="condensed"
+          />
+        </Box>
+        <Text color="text-secondary" mt={8} variant="p-small">
+          Container queries apply responsive behavior based on the
+          DataList&apos;s container width
+        </Text>
+      </Box>
+      <Box>
+        <Text mb={8} variant="title-sm">
+          With Container Queries Disabled
+        </Text>
+        <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
+          <DataList
+            columns={simpleColumns}
+            disableContainerQuery
+            id="disabled-container-query"
+            idKey="name"
+            rows={simpleRows}
+            spacing="condensed"
+          />
+        </Box>
+        <Text color="text-secondary" mt={8} variant="p-small">
+          Built in responsive behavior is disabled - custom responsive behavior
+          is required
+        </Text>
+      </Box>
+    </FlexBox>
   ),
   play: async ({ canvasElement }) => {
     await expect(

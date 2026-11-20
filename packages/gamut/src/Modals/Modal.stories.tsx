@@ -63,13 +63,7 @@ const openModal: NonNullable<Story['play']> = async ({ canvas, userEvent }) => {
 const expectModalClosed = () =>
   waitFor(() => expect(screen.queryByRole('dialog')).toBeNull());
 
-const GridContentPlaceholder = ({
-  height = 'auto',
-  width = 'auto',
-}: {
-  height: string | number;
-  width: string | number;
-}) => (
+const gridContentPlaceholder = (height: string, width = 'auto') => (
   <FlexBox flexDirection="column">
     <FlexBox height="2rem" justifyContent="space-between" mb={12} width="100%">
       <Box bg="beige" height="inherit" width="85%" />
@@ -79,7 +73,7 @@ const GridContentPlaceholder = ({
   </FlexBox>
 );
 
-const ImageComponent = () => (
+const codeCelebrationImage = (
   <FlexBox
     aria-label="Code celebration"
     bg="background-primary"
@@ -139,28 +133,28 @@ export const Dismissal: Story = {
 export const Fluid: Story = {
   args: {
     size: 'fluid',
-    children: <GridContentPlaceholder height="350px" width="540px" />,
+    children: gridContentPlaceholder('350px', '540px'),
   },
 };
 
 export const Large: Story = {
   args: {
     size: 'large',
-    children: <GridContentPlaceholder height="300px" width="auto" />,
+    children: gridContentPlaceholder('300px'),
   },
 };
 
 export const Medium: Story = {
   args: {
     size: 'medium',
-    children: <GridContentPlaceholder height="240px" width="auto" />,
+    children: gridContentPlaceholder('240px'),
   },
 };
 
 export const Small: Story = {
   args: {
     size: 'small',
-    children: <GridContentPlaceholder height="240px" width="auto" />,
+    children: gridContentPlaceholder('240px'),
   },
 };
 
@@ -356,7 +350,7 @@ export const FocusManagement: Story = {
 
 export const WithImage: Story = {
   args: {
-    image: <ImageComponent />,
+    image: codeCelebrationImage,
     children: (
       <Text fontSize={14} my={12} smooth>
         Optional 1-2 lines of explanation that provides relevant details. Lorem
@@ -444,7 +438,7 @@ export const SingleViewNavigation: Story = {
     views: [
       {
         title: 'Hidden view title',
-        image: <ImageComponent />,
+        image: codeCelebrationImage,
         primaryCta: { actionType: 'next', children: 'Next' },
         secondaryCta: { actionType: 'back', children: 'Back' },
         children: <>Only one view</>,

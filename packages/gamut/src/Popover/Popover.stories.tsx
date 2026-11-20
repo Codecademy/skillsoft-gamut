@@ -1,12 +1,10 @@
 import * as patterns from '@skillsoft/gamut-patterns';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Decorator, Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 import { expect, screen, waitFor } from 'storybook/test';
 
-import type { FlexBoxProps } from '../Box';
 import { Box, FlexBox } from '../Box';
 import { FillButton } from '../Button';
-import type { PopoverProps } from '.';
 import { Popover } from '.';
 
 const meta: Meta<typeof Popover> = {
@@ -24,40 +22,37 @@ const meta: Meta<typeof Popover> = {
       table: { disable: true },
     },
   },
+  render: function PopoverWithTrigger(args) {
+    const [open, setOpen] = useState(false);
+    const activeElRef = useRef<HTMLDivElement>(null);
+
+    return (
+      <>
+        <Box ref={activeElRef} width="fit-content">
+          <FillButton onClick={() => setOpen(!open)}>Open Popover</FillButton>
+        </Box>
+        <FlexBox>
+          <Popover
+            {...(args as any)}
+            isOpen={open}
+            targetRef={activeElRef}
+            onRequestClose={() => setOpen(false)}
+          >
+            <FlexBox alignItems="flex-start" flexDirection="column" p={16}>
+              <Box mb={8}>Hooray!</Box>
+              <FillButton size="small" onClick={() => setOpen(false)}>
+                Close Popover
+              </FillButton>
+            </FlexBox>
+          </Popover>
+        </FlexBox>
+      </>
+    );
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Popover>;
-
-type PopoverExampleProps = PopoverProps & Pick<FlexBoxProps, 'p'>;
-
-const PopoverExample = ({ p = 16, ...rest }: PopoverExampleProps) => {
-  const [open, setOpen] = useState(false);
-  const activeElRef = useRef<HTMLDivElement>(null);
-  const toggleOpen = () => setOpen(!open);
-  return (
-    <>
-      <Box ref={activeElRef} width="fit-content">
-        <FillButton onClick={toggleOpen}>Open Popover</FillButton>
-      </Box>
-      <FlexBox>
-        <Popover
-          {...(rest as any)}
-          isOpen={open}
-          targetRef={activeElRef}
-          onRequestClose={() => setOpen(false)}
-        >
-          <FlexBox alignItems="flex-start" flexDirection="column" p={p}>
-            <Box mb={8}>Hooray!</Box>
-            <FillButton size="small" onClick={() => setOpen(false)}>
-              Close Popover
-            </FillButton>
-          </FlexBox>
-        </Popover>
-      </FlexBox>
-    </>
-  );
-};
 
 const openPopover: NonNullable<Story['play']> = async ({
   canvas,
@@ -85,14 +80,13 @@ const getPopoverRect = () =>
 const toBeWithin1px = (actual: number, expected: number) =>
   expect(Math.abs(actual - expected)).toBeLessThanOrEqual(1);
 
-const renderCentered: Story['render'] = (args) => (
+const centered: Decorator = (StoryComponent) => (
   <FlexBox center height="24rem">
-    <PopoverExample {...args} />
+    <StoryComponent />
   </FlexBox>
 );
 
 export const Default: Story = {
-  render: (args) => <PopoverExample {...args} />,
   play: async (context) => {
     const { canvasElement, userEvent } = context;
     await expect(screen.queryByText('Hooray!')).toBeNull();
@@ -121,7 +115,7 @@ export const Default: Story = {
 };
 
 export const Beak: Story = {
-  render: (args) => <PopoverExample {...args} beak="left" position="below" />,
+  args: { beak: 'left', position: 'below' },
   play: async (context) => {
     await openPopover(context);
     screen.getByTestId('popover-beak');
@@ -129,49 +123,27 @@ export const Beak: Story = {
 };
 
 export const BeakCentered: Story = {
-  render: (args) => <PopoverExample {...args} beak="center" p={0} />,
+  args: { beak: 'center' },
 };
 
 export const Above: Story = {
-  render: (args) => <PopoverExample {...args} beak="center" position="above" />,
+  args: { beak: 'center', position: 'above' },
 };
 
 export const Below: Story = {
-  render: (args) => <PopoverExample {...args} beak="center" position="below" />,
+  args: { beak: 'center', position: 'below' },
 };
 
 export const CenterLeft: Story = {
-  render: (args) => (
-    <PopoverExample
-      {...args}
-      align="left"
-      beak="center"
-      pattern={undefined}
-      position="center"
-    />
-  ),
+  args: { align: 'left', beak: 'center', position: 'center' },
 };
 
 export const CenterRight: Story = {
-  render: (args) => (
-    <PopoverExample
-      {...args}
-      align="right"
-      beak="center"
-      pattern={undefined}
-      position="center"
-    />
-  ),
+  args: { align: 'right', beak: 'center', position: 'center' },
 };
 
 export const PopoverCheckerDense: Story = {
-  render: (args) => (
-    <PopoverExample
-      {...args}
-      pattern={patterns.CheckerDense}
-      position="below"
-    />
-  ),
+  args: { pattern: patterns.CheckerDense, position: 'below' },
   play: async (context) => {
     await openPopover(context);
     screen.getByTestId('popover-pattern');
@@ -179,84 +151,50 @@ export const PopoverCheckerDense: Story = {
 };
 
 export const PopoverCheckerLoose: Story = {
-  render: (args) => (
-    <PopoverExample
-      {...args}
-      pattern={patterns.CheckerLoose}
-      position="below"
-    />
-  ),
+  args: { pattern: patterns.CheckerLoose, position: 'below' },
 };
 
 export const PopoverCheckerRegular: Story = {
-  render: (args) => (
-    <PopoverExample
-      {...args}
-      pattern={patterns.CheckerRegular}
-      position="below"
-    />
-  ),
+  args: { pattern: patterns.CheckerRegular, position: 'below' },
 };
 
 export const PopoverDiagonalADense: Story = {
-  render: (args) => (
-    <PopoverExample
-      {...args}
-      pattern={patterns.DiagonalADense}
-      position="below"
-    />
-  ),
+  args: { pattern: patterns.DiagonalADense, position: 'below' },
 };
 
 export const PopoverDiagonalALoose: Story = {
-  render: (args) => (
-    <PopoverExample
-      {...args}
-      pattern={patterns.DiagonalALoose}
-      position="below"
-    />
-  ),
+  args: { pattern: patterns.DiagonalALoose, position: 'below' },
 };
 
 export const PopoverDiagonalARegular: Story = {
-  render: (args) => (
-    <PopoverExample
-      {...args}
-      pattern={patterns.DiagonalARegular}
-      position="below"
-    />
-  ),
-};
-
-const PopoverWithoutFocus = (args: PopoverProps) => {
-  const [open, setOpen] = useState(false);
-  const activeElRef = useRef<HTMLDivElement>(null);
-
-  const toggleOpen = () => setOpen(!open);
-
-  return (
-    <>
-      <Box ref={activeElRef}>
-        <FillButton onClick={toggleOpen}>Open Popover</FillButton>
-      </Box>
-      <FlexBox>
-        <Popover
-          {...(args as any)}
-          isOpen={open}
-          targetRef={activeElRef}
-          onRequestClose={() => setOpen(false)}
-        >
-          <FlexBox alignItems="flex-start" flexDirection="column" p={16}>
-            Nothing clickable here but the container has fallback focus
-          </FlexBox>
-        </Popover>
-      </FlexBox>
-    </>
-  );
+  args: { pattern: patterns.DiagonalARegular, position: 'below' },
 };
 
 export const WithoutFocus: Story = {
-  render: (args) => <PopoverWithoutFocus {...args} />,
+  render: function PopoverWithoutFocus(args) {
+    const [open, setOpen] = useState(false);
+    const activeElRef = useRef<HTMLDivElement>(null);
+
+    return (
+      <>
+        <Box ref={activeElRef}>
+          <FillButton onClick={() => setOpen(!open)}>Open Popover</FillButton>
+        </Box>
+        <FlexBox>
+          <Popover
+            {...(args as any)}
+            isOpen={open}
+            targetRef={activeElRef}
+            onRequestClose={() => setOpen(false)}
+          >
+            <FlexBox alignItems="flex-start" flexDirection="column" p={16}>
+              Nothing clickable here but the container has fallback focus
+            </FlexBox>
+          </Popover>
+        </FlexBox>
+      </>
+    );
+  },
   play: async (context) => {
     await openPopover(context);
     await waitFor(() =>
@@ -266,23 +204,21 @@ export const WithoutFocus: Story = {
 };
 
 export const Animation: Story = {
-  render: (args) => <PopoverWithoutFocus animation="fade" {...args} />,
+  args: { animation: 'fade' },
+  render: WithoutFocus.render,
 };
 
 export const Variant: Story = {
-  render: (args) => (
-    <PopoverExample
-      {...args}
-      align="center"
-      beak="left"
-      position="above"
-      variant="secondary"
-    />
-  ),
+  args: {
+    align: 'center',
+    beak: 'left',
+    position: 'above',
+    variant: 'secondary',
+  },
 };
 
 export const PositionBelowLeft: Story = {
-  render: renderCentered,
+  decorators: [centered],
   play: async (context) => {
     await openPopover(context);
     await waitFor(async () => {
@@ -300,7 +236,7 @@ export const PositionBelowLeft: Story = {
 
 export const PositionAboveRight: Story = {
   args: { position: 'above', align: 'right' },
-  render: renderCentered,
+  decorators: [centered],
   play: async (context) => {
     await openPopover(context);
     await waitFor(async () => {
@@ -314,7 +250,7 @@ export const PositionAboveRight: Story = {
 
 export const VerticalOffset: Story = {
   args: { verticalOffset: 29 },
-  render: renderCentered,
+  decorators: [centered],
   play: async (context) => {
     await openPopover(context);
     await waitFor(async () => {
@@ -326,7 +262,7 @@ export const VerticalOffset: Story = {
 
 export const HorizontalOffset: Story = {
   args: { horizontalOffset: 30 },
-  render: renderCentered,
+  decorators: [centered],
   play: async (context) => {
     await openPopover(context);
     await waitFor(async () => {
@@ -337,12 +273,14 @@ export const HorizontalOffset: Story = {
 };
 
 export const ScrolledOutOfView: Story = {
-  render: (args) => (
-    <Box data-testid="scroll-container" height="12rem" overflow="auto">
-      <PopoverExample {...args} />
-      <Box height="60rem" />
-    </Box>
-  ),
+  decorators: [
+    (StoryComponent) => (
+      <Box data-testid="scroll-container" height="12rem" overflow="auto">
+        <StoryComponent />
+        <Box height="60rem" />
+      </Box>
+    ),
+  ],
   play: async (context) => {
     await openPopover(context);
     screen.getByText('Hooray!');
@@ -356,7 +294,7 @@ export const RtlAlignLeft: Story = {
   tags: ['!autodocs'],
   globals: { direction: 'rtl' },
   args: { align: 'left' },
-  render: renderCentered,
+  decorators: [centered],
   play: async (context) => {
     await expect(document.documentElement).toHaveAttribute('dir', 'rtl');
     await openPopover(context);
@@ -371,7 +309,7 @@ export const RtlAlignRight: Story = {
   tags: ['!autodocs'],
   globals: { direction: 'rtl' },
   args: { align: 'right' },
-  render: renderCentered,
+  decorators: [centered],
   play: async (context) => {
     await openPopover(context);
     await waitFor(async () => {
@@ -390,7 +328,7 @@ export const RtlCenterAlignLeft: Story = {
     position: 'center',
     variant: 'secondary',
   },
-  render: renderCentered,
+  decorators: [centered],
   play: async (context) => {
     await openPopover(context);
     await waitFor(async () => {
@@ -411,7 +349,7 @@ export const RtlCenterAlignRight: Story = {
     position: 'center',
     variant: 'secondary',
   },
-  render: renderCentered,
+  decorators: [centered],
   play: async (context) => {
     await openPopover(context);
     await waitFor(async () => {
