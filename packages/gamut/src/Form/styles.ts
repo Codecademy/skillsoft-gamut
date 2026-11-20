@@ -44,7 +44,7 @@ export const formFieldFocusStyles = {
 
 /* A disabled label is `action-disabled`, the same color as a disabled fill. */
 export const formFieldTextDisabledStyles = {
-  color: 'action-disabled',
+  color: 'action-disabled', // pending design decision: action-disabled as disabled text
   cursor: 'not-allowed',
 } as const;
 

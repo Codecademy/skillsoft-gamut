@@ -168,9 +168,9 @@ const activeStates = system.states({
     bg: 'inherit',
     cursor: 'not-allowed',
     fontWeight: 400,
-    textColor: 'action-disabled',
+    textColor: 'action-disabled', // pending design decision: action-disabled as disabled text
     [Selectors.HOVER]: {
-      textColor: 'action-disabled',
+      textColor: 'action-disabled', // pending design decision: action-disabled as disabled text
       textDecoration: 'none',
     },
     [Selectors.BEFORE]: {
