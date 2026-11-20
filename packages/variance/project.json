@@ -22,10 +22,10 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/variance"],
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/coverage/vitest/variance"],
       "options": {
-        "jestConfig": "packages/variance/jest.config.ts"
+        "command": "vitest run --project=jsdom --project=node packages/variance/"
       }
     },
     "verify": {

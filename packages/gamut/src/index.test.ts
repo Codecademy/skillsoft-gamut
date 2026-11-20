@@ -1,3 +1,5 @@
+import { expect, test } from 'vitest';
+
 import * as gamut from './index';
 
 test('Gamut Exported Keys', () => {

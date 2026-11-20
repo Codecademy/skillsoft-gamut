@@ -28,18 +28,16 @@ This repository is a monorepo that we manage using [NX](https://nx.dev/). That m
 
 - [![npm: @skillsoft/variance](https://img.shields.io/npm/v/@skillsoft/variance.svg?label=npm:%20@skillsoft/variance)](https://www.npmjs.com/package/@skillsoft/variance)
 
-[`styleguide`: Styleguide Documentation & storybook development sandbox](/packages/styleguide/README.md)
-
 ## Local development
 
 1.  Run `yarn` in the root directory
 2.  Run `yarn build` to build all of the packages (certain packages like `gamut-icons` need to be built to function in storybook).
 
-### Running the storybook styleguide
+### Running Storybook
 
-1.  Run `yarn nx storybook styleguide` to start the storybook server
-2.  Add new stories to `packages/styleguide/src`
-3.  Stories are written using storybook's [Component Story Format](https://storybook.js.org/docs/formats/component-story-format/) and [MDX](https://storybook.js.org/docs/writing-docs/mdx#basic-example). Check out our comprehensive guide on writing stories [here](https://gamut.codecademy.com/?path=/docs/meta-stories--docs#quick-start).
+1.  Run `yarn start:storybook` to start the Storybook server
+2.  Add stories next to the component, as `packages/<package>/src/<Component>/<Component>.stories.tsx`
+3.  Stories are written using Storybook's [Component Story Format](https://storybook.js.org/docs/formats/component-story-format/). Docs pages are generated from the component's props and JSDoc.
 
 ### Publishing Modules
 

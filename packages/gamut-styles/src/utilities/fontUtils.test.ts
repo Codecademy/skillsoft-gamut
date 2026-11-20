@@ -1,7 +1,9 @@
+import { describe, expect, it, vi } from 'vitest';
+
 import { webFonts } from '../remoteAssets/fonts';
 import { getFonts } from './fontUtils';
 
-jest.mock('../remoteAssets/fonts', () => {
+vi.mock('../remoteAssets/fonts', () => {
   const percipio = [
     {
       filePath: 'https://www.codecademy.com/gamut/SkillsoftText-Regular',
@@ -82,28 +84,28 @@ describe('fontUtils', () => {
   });
 
   describe('error handling', () => {
-    it('should handle webFonts being undefined', () => {
-      const originalWebFonts = require('../remoteAssets/fonts').webFonts;
-      jest.doMock('../remoteAssets/fonts', () => ({
+    it('should handle webFonts being undefined', async () => {
+      const originalWebFonts = webFonts;
+      vi.doMock('../remoteAssets/fonts', () => ({
         webFonts: undefined,
       }));
 
       // Re-import to get the mocked version
-      jest.resetModules();
-      const { getFonts: getFontsWithUndefined } = require('./fontUtils');
+      vi.resetModules();
+      const { getFonts: getFontsWithUndefined } = await import('./fontUtils');
 
       expect(() => getFontsWithUndefined('core')).toThrow();
 
-      jest.doMock('../remoteAssets/fonts', () => ({
+      vi.doMock('../remoteAssets/fonts', () => ({
         webFonts: originalWebFonts,
       }));
 
       expect(getFonts('core')).toBe(webFonts.core);
     });
 
-    it('should handle webFonts.core being undefined', () => {
-      const originalWebFonts = require('../remoteAssets/fonts').webFonts;
-      jest.doMock('../remoteAssets/fonts', () => ({
+    it('should handle webFonts.core being undefined', async () => {
+      const originalWebFonts = webFonts;
+      vi.doMock('../remoteAssets/fonts', () => ({
         webFonts: {
           core: undefined,
           percipio: webFonts.percipio,
@@ -111,13 +113,15 @@ describe('fontUtils', () => {
         },
       }));
 
-      jest.resetModules();
-      const { getFonts: getFontsWithUndefinedCore } = require('./fontUtils');
+      vi.resetModules();
+      const { getFonts: getFontsWithUndefinedCore } = await import(
+        './fontUtils'
+      );
 
       const result = getFontsWithUndefinedCore('core');
       expect(result).toBeUndefined();
 
-      jest.doMock('../remoteAssets/fonts', () => ({
+      vi.doMock('../remoteAssets/fonts', () => ({
         webFonts: originalWebFonts,
       }));
 

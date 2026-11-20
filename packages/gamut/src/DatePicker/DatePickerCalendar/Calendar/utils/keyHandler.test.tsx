@@ -1,4 +1,5 @@
 import type { KeyboardEvent } from 'react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { getDatesWithRow, getMonthGrid, matchDisabledDates } from './dateGrid';
 import type { KeyHandlerParams } from './keyHandler';
@@ -10,14 +11,14 @@ const makeEvent = (
 ) =>
   ({
     key,
-    preventDefault: jest.fn(),
+    preventDefault: vi.fn(),
     shiftKey: opts.shiftKey ?? false,
   } as unknown as React.KeyboardEvent);
 
-const mockOnFocusedDateChange = jest.fn();
-const mockOnDateSelect = jest.fn();
-const mockOnEscapeKeyPress = jest.fn();
-const mockOnDisplayDateChange = jest.fn();
+const mockOnFocusedDateChange = vi.fn();
+const mockOnDateSelect = vi.fn();
+const mockOnEscapeKeyPress = vi.fn();
+const mockOnDisplayDateChange = vi.fn();
 
 const year = 2024;
 const month = 2;
