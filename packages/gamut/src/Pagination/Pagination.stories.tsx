@@ -4,7 +4,6 @@ import { expect, fn, waitFor } from 'storybook/test';
 
 import { FlexBox } from '../Box';
 import { FormGroup, Input } from '../Form';
-import type { PaginationProps } from '.';
 import { Pagination } from '.';
 
 const meta: Meta<typeof Pagination> = {
@@ -217,67 +216,65 @@ export const ControlledPageNumber: Story = {
   },
 };
 
-const PaginationControlledExample: React.FC<PaginationProps> = (props) => {
-  const [pageNumber, setPageNumber] = useState(1);
-  const [totalPages, setTotalPages] = useState(3);
-
-  const setChangedPage = useCallback(
-    (pg: number) => {
-      const page = Number(pg);
-      if (page > totalPages) return setPageNumber(1);
-      if (page <= 0) return setPageNumber(totalPages);
-      if (page !== pageNumber) setPageNumber(page);
-    },
-    [totalPages, pageNumber, setPageNumber]
-  );
-
-  const setChangedTotalPages = useCallback(
-    (page: string) => {
-      setTotalPages(Number(page));
-    },
-    [setTotalPages]
-  );
-
-  return (
-    <>
-      <FlexBox justifyContent="center" mb={24} p={12}>
-        <FormGroup htmlFor="current-page" label="Current Page">
-          <Input
-            htmlFor="current-page"
-            label="current page"
-            min={1}
-            type="number"
-            value={pageNumber}
-            onChange={(e) => setChangedPage(Number(e.target.value))}
-          />
-        </FormGroup>
-        <FormGroup htmlFor="total-pages" label="Total Pages">
-          <Input
-            htmlFor="total-pages"
-            label="total pages"
-            min={1}
-            type="number"
-            value={totalPages}
-            onChange={(e) => setChangedTotalPages(e.target.value)}
-          />
-        </FormGroup>
-      </FlexBox>
-      <Pagination
-        {...props}
-        pageNumber={pageNumber}
-        totalPages={totalPages}
-        onChange={setChangedPage}
-      />
-    </>
-  );
-};
-
 export const Controlled: Story = {
   args: {
     chapterSize: 5,
     totalPages: 27,
   },
-  render: (args) => <PaginationControlledExample {...args} />,
+  render: function ControlledPagination(args) {
+    const [pageNumber, setPageNumber] = useState(1);
+    const [totalPages, setTotalPages] = useState(3);
+
+    const setChangedPage = useCallback(
+      (pg: number) => {
+        const page = Number(pg);
+        if (page > totalPages) return setPageNumber(1);
+        if (page <= 0) return setPageNumber(totalPages);
+        if (page !== pageNumber) setPageNumber(page);
+      },
+      [totalPages, pageNumber, setPageNumber]
+    );
+
+    const setChangedTotalPages = useCallback(
+      (page: string) => {
+        setTotalPages(Number(page));
+      },
+      [setTotalPages]
+    );
+
+    return (
+      <>
+        <FlexBox justifyContent="center" mb={24} p={12}>
+          <FormGroup htmlFor="current-page" label="Current Page">
+            <Input
+              htmlFor="current-page"
+              label="current page"
+              min={1}
+              type="number"
+              value={pageNumber}
+              onChange={(e) => setChangedPage(Number(e.target.value))}
+            />
+          </FormGroup>
+          <FormGroup htmlFor="total-pages" label="Total Pages">
+            <Input
+              htmlFor="total-pages"
+              label="total pages"
+              min={1}
+              type="number"
+              value={totalPages}
+              onChange={(e) => setChangedTotalPages(e.target.value)}
+            />
+          </FormGroup>
+        </FlexBox>
+        <Pagination
+          {...args}
+          pageNumber={pageNumber}
+          totalPages={totalPages}
+          onChange={setChangedPage}
+        />
+      </>
+    );
+  },
   play: async ({ canvas, userEvent }) => {
     await userEvent.click(
       canvas.getByRole('button', { name: 'Last Page, Page 3' })
