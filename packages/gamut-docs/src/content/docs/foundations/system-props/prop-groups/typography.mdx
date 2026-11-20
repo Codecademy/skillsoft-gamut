@@ -1,0 +1,20 @@
+---
+title: Typography
+description: System props for font family, size, weight, and line height.
+sidebar:
+  order: 3
+---
+
+import SystemPropTable from '~/components/SystemPropTable.astro';
+
+Typography props connect to the theme's font family, size, weight, and line-height scales, alongside text transforms and decorations.
+
+```tsx
+const TextExample = styled.p(system.typography);
+
+<TextExample fontSize={16} fontFamily="accent" textTransform="uppercase" />;
+```
+
+## Props
+
+<SystemPropTable group="typography" />

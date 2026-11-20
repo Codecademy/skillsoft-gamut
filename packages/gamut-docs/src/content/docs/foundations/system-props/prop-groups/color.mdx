@@ -1,0 +1,22 @@
+---
+title: Color
+description: System props for foreground, background, and border colors.
+sidebar:
+  order: 4
+---
+
+import SystemPropTable from '~/components/SystemPropTable.astro';
+
+Color props control foreground, background, and border colors, restricted to the theme's color palette. `bg` is a shorthand for background color.
+
+```tsx
+const ColorExample = styled.div(system.color);
+
+<ColorExample bg="navy" textColor="gray-100" borderColor="blue" />;
+```
+
+These props support both physical and logical CSS properties, resolved by `useLogicalProperties` on `GamutProvider` — see [Migrating to logical properties](/guides/migrating-to-logical-properties/).
+
+## Props
+
+<SystemPropTable group="color" />

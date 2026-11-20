@@ -10,7 +10,7 @@ Every Emotion component in Gamut has typed access to the current theme's tokens,
 - **Core** — Codecademy's own public-facing theme.
 - **Admin** — the internal admin/back-office theme.
 - **LX Studio** — the theme for LX Studio.
-- **Percipio** — the theme for Percipio; replaces Core's hard offset shadows with a soft, blurred one and no lift (see [Design tokens: Elevation](/foundations/design-tokens/#elevation)).
+- **Percipio** — the theme for Percipio; replaces Core's hard offset shadows with a soft, blurred one and no lift (see [Design tokens: Elevation](/foundations/design-tokens/elevation/)).
 - **Platform** — the shared learning-platform theme.
 
 ## Comparing themes live

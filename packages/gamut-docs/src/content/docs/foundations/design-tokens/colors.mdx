@@ -1,0 +1,44 @@
+---
+title: Colors
+description: The standard colors, solid and semi-transparent swatches, and color mode aliases on the colors key.
+sidebar:
+  order: 1
+---
+
+import DesignTokenTable from '~/components/DesignTokenTable.astro';
+
+**Key**: `colors`
+
+Every visual identity color is available on the `colors` key of the theme object, including the named standard colors and their swatches.
+
+## Standard colors
+
+The color atoms Codecademy designs should draw from. Check accessibility contrast requirements when pairing them.
+
+<DesignTokenTable token="colors" />
+
+## Solid color swatches
+
+Swatch colors are accessed with a dash-case key, `colors['<color>-<weight>']`.
+
+<DesignTokenTable token="swatches" />
+
+## Navy and white color swatches
+
+Except for the `100`, `navy-800`, and `navy-900` weights, navy and white weights are semi-transparent, so take care when layering them. The semi-transparent white weights only show in dark mode, and the semi-transparent navy weights only in light mode. Each swatch below sits on a contrasting backdrop so the transparent weights stay visible.
+
+These are also accessed with a dash-case key, `colors['<color>-<weight>']`.
+
+<DesignTokenTable token="rgbaSwatches" />
+
+## Color modes
+
+Gamut supports two color modes, `light` and `dark`. Each mode maps a set of semantic aliases — like `text`, `background`, and `primary` — to colors, so components can use one alias that resolves differently per mode. See [Color modes](/concepts/color-modes/) for how they work.
+
+### Light mode
+
+<DesignTokenTable token="lightMode" />
+
+### Dark mode
+
+<DesignTokenTable token="darkMode" />
