@@ -1,7 +1,6 @@
-/**
- * @jest-environment node
- */
+// @vitest-environment node
 import { renderToString } from 'react-dom/server';
+import { describe, expect, it } from 'vitest';
 
 import { GamutProvider } from '../../GamutProvider';
 import { skillsoftTheme } from '../../themes';

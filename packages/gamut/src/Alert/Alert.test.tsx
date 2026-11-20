@@ -1,5 +1,5 @@
-import { setupRtl } from '@skillsoft/gamut-tests';
 import { matchers } from '@emotion/jest';
+import { setupRtl } from '@skillsoft/gamut-tests';
 import * as React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 

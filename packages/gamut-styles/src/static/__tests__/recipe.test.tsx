@@ -1,6 +1,7 @@
 import { matchers } from '@emotion/jest';
 import styled from '@emotion/styled';
 import { render } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
 import { createEmotionCache } from '../../cache';
 import { GamutProvider } from '../../GamutProvider';
