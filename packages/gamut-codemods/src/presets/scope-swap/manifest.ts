@@ -92,7 +92,11 @@ export const manifest: Manifest = {
   requiredPeers: {
     '@vidstack/react': { range: '~1.12.12', when: ['@codecademy/gamut'] },
     'react-player': { range: '^3.4.0', when: ['@codecademy/gamut'] },
-    stylis: { range: '^4.0.7', when: ['@codecademy/gamut-styles'] },
+    /*
+      stylis is not listed. @emotion/cache brings its own copy, and a root
+      copy at a different version from that one breaks emotion's inserts
+      (suspected: Cannot read properties of undefined (reading 'push')).
+    */
   },
 
   movedExports: [
