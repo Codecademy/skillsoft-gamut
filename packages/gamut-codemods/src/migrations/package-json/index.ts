@@ -15,6 +15,9 @@ import type { FileMigration } from '../../lib/types';
 
   A range newer than manifest.sourceVersions gets a warning: the code may
   already use APIs that only exist upstream, which no rename can fix.
+
+  An app that depends on a package in manifest.requiredPeers also gets that
+  peer, at the range the package declares, when it doesn't list one.
 */
 
 const FIELDS = [
@@ -37,7 +40,7 @@ export const packageJson: FileMigration = {
   kind: 'file',
   description: 'Rename dependencies in package.json.',
   appliesTo: (file) => /(^|\/)package\.json$/.test(file),
-  run({ source, manifest, warn, note }) {
+  run({ source, manifest, warn, note, usesVideo }) {
     const pkg = JSON.parse(source) as Record<string, unknown>;
     let changed = false;
 
@@ -85,6 +88,34 @@ export const packageJson: FileMigration = {
         pkg[field] = sortKeys(next);
         changed = true;
       }
+    }
+
+    /*
+      Peers the new packages need at runtime but no longer install. Each is
+      added once, to the first field that lists a package that needs it.
+    */
+    const listed = (name: string) =>
+      FIELDS.some((field) => name in ((pkg[field] ?? {}) as object));
+    const dependsOn = (deps: Record<string, string>, old: string) =>
+      old in deps || (manifest.packages[old]?.to ?? old) in deps;
+    for (const [name, { range, when, video }] of Object.entries(
+      manifest.requiredPeers
+    )) {
+      if (listed(name)) continue;
+      if (video && !usesVideo()) continue;
+      const owner = (
+        ['dependencies', 'peerDependencies', 'devDependencies'] as const
+      ).find((field) => {
+        const deps = pkg[field] as Record<string, string> | undefined;
+        return deps !== undefined && when.some((old) => dependsOn(deps, old));
+      });
+      if (!owner) continue;
+      pkg[owner] = sortKeys({
+        ...(pkg[owner] as Record<string, string>),
+        [name]: range,
+      });
+      note('required-peers');
+      changed = true;
     }
 
     if (!changed) return null;

@@ -5,6 +5,7 @@ import type {
   AstMigration,
   Edit,
   Locatable,
+  Migration,
   Note,
   SourceMigration,
   SpliceMigration,
@@ -24,11 +25,11 @@ import type {
   that embed code, like MDX's ESM blocks.
 */
 
-export interface RunSourceOptions {
+export interface RunSourceOptions<M = Manifest> {
   j: JSCodeshift;
   source: string;
-  migrations: SourceMigration[];
-  manifest: Manifest;
+  migrations: SourceMigration<M>[];
+  manifest: M;
   warnFor: (migration: string) => (node: Locatable, message: string) => void;
   note: Note;
 }
@@ -42,18 +43,18 @@ const applyEdits = (source: string, edits: Edit[]) =>
       source
     );
 
-export const runSourceMigrations = ({
+export const runSourceMigrations = <M = Manifest>({
   j,
   source: original,
   migrations,
   manifest,
   warnFor,
   note,
-}: RunSourceOptions) => {
+}: RunSourceOptions<M>) => {
   let source = original;
 
   const astMigrations = migrations.filter(
-    (m): m is AstMigration => m.kind === 'ast'
+    (m): m is AstMigration<M> => m.kind === 'ast'
   );
   if (astMigrations.length > 0) {
     const root = j(source);
@@ -72,7 +73,7 @@ export const runSourceMigrations = ({
   }
 
   for (const m of migrations.filter(
-    (x): x is SpliceMigration => x.kind === 'splice'
+    (x): x is SpliceMigration<M> => x.kind === 'splice'
   )) {
     const root = j(source);
     const edits = m.edits({
@@ -89,7 +90,7 @@ export const runSourceMigrations = ({
   return source;
 };
 
-/* The pre-filter every caller uses so big repos don't parse every file. */
+/* scope-swap's pre-filter (Preset.mentions): an old package name or rule prefix. */
 export const mentionsOldNames = (manifest: Manifest, source: string) =>
   [
     ...Object.keys(manifest.packages),
@@ -98,8 +99,8 @@ export const mentionsOldNames = (manifest: Manifest, source: string) =>
   ].some((name) => source.includes(name));
 
 /* `only` and `skip` are comma-separated migration names. */
-export const activeSourceMigrations = (
-  migrations: { kind: string; name: string }[],
+export const activeSourceMigrations = <M = Manifest>(
+  migrations: Migration<M>[],
   only?: string,
   skip?: string
 ) => {
@@ -108,5 +109,5 @@ export const activeSourceMigrations = (
   return migrations.filter(
     (m) =>
       m.kind !== 'file' && (!names || names.has(m.name)) && !skipped.has(m.name)
-  ) as SourceMigration[];
+  ) as SourceMigration<M>[];
 };

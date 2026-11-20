@@ -31,9 +31,16 @@ The first time you run `gamut plugin install` or `update`, it installs `@skillso
 
 Before large PRs, or when onboarding an existing codebase, run the `gamut-review` skill to audit for Gamut usage — dependencies, setup, import patterns, `styled()` wrapping that bypasses system props, hardcoded colors, bespoke component duplication, and test conventions.
 
-### Moving from `@codecademy/gamut`
+### Migrating with `@skillsoft/gamut-codemods`
 
-If your app still depends on `@codecademy/gamut*`, the `gamut-scope-swap` skill helps with the move to `@skillsoft/gamut*`. It works alongside the [`@skillsoft/gamut-codemods`](../gamut-codemods/README.md) `scope-swap` preset. The codemod does the mechanical rewrite. The skill reads what it reports, including warnings, leftovers, and next steps, and helps with the parts it can't rewrite: deep imports, `Video`, renamed Menu exports, tsconfig `dom`, jest mocks, ESLint plugin keys, Module Federation config, and preview builds. It doesn't run the codemod unless you ask it to.
+The `gamut-migration` skill helps with each [`@skillsoft/gamut-codemods`](../gamut-codemods/README.md) preset. The codemod does the mechanical rewrite. The skill reads what it reports (warnings, leftovers, and comments), and helps with the parts it can't rewrite.
+
+- `scope-swap` moves `@codecademy/gamut*` to `@skillsoft/gamut*`. The skill covers deep imports, `Video`, renamed Menu exports, tsconfig `dom`, jest mocks, ESLint plugin keys, Module Federation config, and preview builds.
+- `color-roles` moves Gamut color names onto the roles of the color system. The skill covers the splits, palette colors, and runtime names it marks for a person.
+
+It doesn't run the codemod unless you ask it to. When a preset ships, the skill gets a section for it.
+
+If your app still depends on `@codecademy/gamut*`, run `scope-swap` first.
 
 Install the plugin after the swap. The `gamut` CLI comes from `@skillsoft/gamut`, so that package has to be in the app first.
 
