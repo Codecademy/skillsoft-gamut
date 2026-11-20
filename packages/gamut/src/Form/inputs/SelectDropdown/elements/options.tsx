@@ -24,7 +24,7 @@ const OptionWrapper: React.FC<
   const textColor = disabled
     ? inField
       ? 'text-subtle'
-      : 'action-disabled'
+      : 'action-disabled' // pending design decision: action-disabled as disabled text
     : 'inherit';
 
   return (
