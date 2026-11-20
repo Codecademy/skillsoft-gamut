@@ -8,6 +8,6 @@ export const Sizes = () => (
     <Input size="md" />
     <Input size="sm" />
     <Badge size="md">Label</Badge>
-    <ProgressBar size="md" percent={40} />
+    <ProgressBar size="md" variant="blue" percent={40} />
   </>
 );

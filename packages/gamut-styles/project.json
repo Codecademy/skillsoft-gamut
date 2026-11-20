@@ -23,12 +23,10 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "dependsOn": ["^build"],
-      "outputs": ["{workspaceRoot}/coverage/packages/gamut-styles"],
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/coverage/vitest/gamut-styles"],
       "options": {
-        "jestConfig": "packages/gamut-styles/jest.config.ts",
-        "passWithNoTests": false
+        "command": "vitest run --project=jsdom --project=node packages/gamut-styles/"
       }
     },
     "clean": {

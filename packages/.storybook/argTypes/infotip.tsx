@@ -17,7 +17,7 @@ export const infotipNestedArgTypes = {
     options: ['bottom-start', 'bottom-end', 'top-start', 'top-end'],
     table: {
       defaultValue: { summary: 'top-end' },
-      type: { summary: 'bottom-left | bottom-right | top-left | top-right' },
+      type: { summary: 'bottom-start | bottom-end | top-start | top-end' },
     },
   },
   'infotip.placement': {

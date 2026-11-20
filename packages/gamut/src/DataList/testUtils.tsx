@@ -5,16 +5,14 @@ import {
 } from '@skillsoft/gamut-icons';
 import { BlueprintWhite } from '@skillsoft/gamut-illustrations';
 import uniq from 'lodash/uniq';
-import type { ComponentType, ReactNode } from 'react';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { Box, FlexBox } from '../Box';
-import { FillButton, IconButton } from '../Button';
+import { IconButton } from '../Button';
 import { Menu, MenuItem } from '../Menu';
 import { Modal } from '../Modals';
 import { PopoverContainer } from '../PopoverContainer';
 import { Text } from '../Typography';
-import { useLocalQuery } from './hooks/useLocalQuery';
 import type { ColumnConfig } from './types';
 
 export const crew = [
@@ -288,86 +286,6 @@ export const cols: ColumnConfig<CrewMember>[] = [
   },
 ];
 
-export const createDemoTable =
-  (Component: ComponentType<any>, overrides: Record<string, unknown> = {}) =>
-  () => {
-    const [selectedRows, setSelectedRows] = useState<string[]>([]);
-    const [expandedRows, setExpandedRows] = useState<string[]>([]);
-
-    const { idKey, query, rows, onQueryChange } = useLocalQuery({
-      idKey: 'name',
-      rows: crew,
-      columns: cols,
-    });
-
-    const allIds = useMemo(() => crew.map(({ [idKey]: id }) => id), [idKey]);
-
-    const onRowSelect = useCallback(
-      ({
-        type,
-        payload: { toggle, rowId },
-      }: {
-        type: string;
-        payload: { toggle: boolean; rowId: string };
-      }) => {
-        if (type === 'select') {
-          return setSelectedRows((prev) =>
-            toggle ? prev.filter((id) => id !== rowId) : [...prev, rowId]
-          );
-        }
-        if (type === 'select-all') {
-          return setSelectedRows(toggle ? [] : allIds);
-        }
-      },
-      [allIds]
-    );
-
-    const onRowExpand = useCallback(
-      ({
-        payload: { toggle, rowId },
-      }: {
-        payload: { toggle: boolean; rowId: string };
-      }) =>
-        setExpandedRows((prev) =>
-          toggle ? prev.filter((id) => id !== rowId) : [...prev, rowId]
-        ),
-      []
-    );
-
-    const expandedContent = useCallback(
-      ({ onCollapse }: { onCollapse: () => void }) => (
-        <FlexBox column flex={1}>
-          <FlexBox borderTop={1} opacity={0.5} />
-          <FlexBox center column gap={16} p={32}>
-            <Text variant="title-md">Nothing to see here</Text>
-            <FillButton size="sm" onClick={onCollapse}>
-              Get me out of here!
-            </FillButton>
-          </FlexBox>
-        </FlexBox>
-      ),
-      []
-    );
-
-    return (
-      <Component
-        columns={cols}
-        expanded={expandedRows}
-        expandedContent={expandedContent}
-        height={500}
-        id="example"
-        idKey={idKey}
-        query={query}
-        rows={rows}
-        selected={selectedRows}
-        onQueryChange={onQueryChange}
-        onRowExpand={onRowExpand}
-        onRowSelect={onRowSelect}
-        {...overrides}
-      />
-    );
-  };
-
 export const simpleRows = [
   { name: 'Jean Luc Picard', role: 'Captain', ship: 'USS Enterprise' },
   { name: 'Wesley Crusher', role: 'Deus Ex Machina', ship: 'USS Enterprise' },
@@ -397,40 +315,3 @@ export const simpleColumns: ColumnConfig<(typeof simpleRows)[number]>[] = [
     ),
   },
 ];
-
-export const DisableContainerQueryExample = ({
-  componentName,
-  defaultComponent,
-  disabledComponent,
-}: {
-  componentName: string;
-  defaultComponent: ReactNode;
-  disabledComponent: ReactNode;
-}) => (
-  <FlexBox flexDirection="column" gap={24}>
-    <Box>
-      <Text mb={8} variant="title-sm">
-        Default (Container Queries Enabled)
-      </Text>
-      <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
-        {defaultComponent}
-      </Box>
-      <Text color="text-secondary" mt={8} variant="p-small">
-        Container queries apply responsive behavior based on the {componentName}
-        &apos;s container width
-      </Text>
-    </Box>
-    <Box>
-      <Text mb={8} variant="title-sm">
-        With Container Queries Disabled
-      </Text>
-      <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
-        {disabledComponent}
-      </Box>
-      <Text color="text-secondary" mt={8} variant="p-small">
-        Built in responsive behavior is disabled - custom responsive behavior is
-        required
-      </Text>
-    </Box>
-  </FlexBox>
-);

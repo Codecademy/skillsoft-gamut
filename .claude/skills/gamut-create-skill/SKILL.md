@@ -1,6 +1,6 @@
 ---
 name: gamut-create-skill
-description: 'Blueprint — use this skill when authoring a new Gamut agent skill from scratch, from component source research through Storybook integration. Not for general Gamut development (see individual component skills).'
+description: 'Blueprint — use this skill when authoring a new Gamut agent skill from scratch, from component source research through docs site integration. Not for general Gamut development (see individual component skills).'
 ---
 
 # Gamut Create Skill
@@ -31,12 +31,12 @@ packages/gamut/src/{ComponentName}/
 
 Extract: exported symbols, prop interfaces, default values, generic constraints, any hooks exported alongside the component.
 
-**Storybook MDX**
+**Docs site page**
 
-Read the component's MDX documentation page:
+Read the component's page on the docs site:
 
 ```
-packages/styleguide/src/lib/{Category}/{ComponentName}/{ComponentName}.mdx
+packages/gamut-docs/src/content/docs/components/{category}/{component-name}.mdx
 ```
 
 Extract: design principles, "When to use" / "Do not use" guidance, usage notes. These belong in the skill verbatim or paraphrased — they encode the designer's intent.
@@ -50,7 +50,7 @@ Identify 2–3 existing skills that overlap. Check for:
 
 **Existing callout**
 
-Check whether the component's Storybook MDX already has a `<Callout>` for the skill. If so, you only need to update the text, not add a new import.
+Check whether the component's docs page already has an `<Aside type="tip">` for the skill. If so, you only need to update the text, not add a new import.
 
 ---
 
@@ -141,7 +141,7 @@ import { ComponentName } from '@skillsoft/gamut';
 
 ## Design principles
 
-{Lifted from Storybook MDX. 3–5 bullets. Imperative, design-voice.}
+{Lifted from the docs site page. 3–5 bullets. Imperative, design-voice.}
 
 ## Props
 
@@ -217,13 +217,13 @@ Run this against your draft before committing:
 
 ---
 
-## Storybook integration
+## Docs site integration
 
 Both steps are required after writing the skill.
 
 ### Step 1 — Add to Best practices list
 
-File: `packages/styleguide/src/lib/Meta/AI Tooling/Gamut plugin/Best practices.mdx`
+File: `packages/gamut-docs/src/content/docs/foundations/Tooling/gamut-plugin/best-practices.md`
 
 ```md
 - `gamut-{name}` — {one-line description, matching the skill's overview sentence}
@@ -231,24 +231,26 @@ File: `packages/styleguide/src/lib/Meta/AI Tooling/Gamut plugin/Best practices.m
 
 Group the entry near related skills (e.g. new list/table skills go after `gamut-datalist`; new form skills go after `gamut-forms`).
 
-### Step 2 — Add Callout to component Storybook page
+### Step 2 — Add a tip to the component's docs page
 
-File: the component's MDX (e.g. `packages/styleguide/src/lib/Organisms/.../ComponentName.mdx`)
+File: the component's page (e.g. `packages/gamut-docs/src/content/docs/components/actions/Buttons/fill-button.mdx`)
 
-If `Callout` is not yet imported, add it to the `~styleguide/blocks` import:
+If `Aside` is not yet imported, add it:
 
-```diff
-- import { ComponentHeader } from '~styleguide/blocks';
-+ import { Callout, ComponentHeader } from '~styleguide/blocks';
+```tsx
+import { Aside } from '@astrojs/starlight/components';
 ```
 
-Place the callout immediately after `<ComponentHeader {...parameters} />` or `<AboutHeader {...parameters} />`:
+Place the tip immediately after the `**Status:**` line:
 
 ```mdx
-<Callout text="Use the /gamut-{name} skill in Cursor or Claude Code for AI-assisted usage guidance, prop reference, and code patterns." />
+<Aside type="tip">
+  Use the `/gamut-{name}` skill in Cursor or Claude Code for AI-assisted usage
+  guidance, prop reference, and code patterns.
+</Aside>
 ```
 
-For skills covering a concept rather than a single component (e.g. `gamut-color-mode`, `gamut-layout`), add the callout to the primary concept page (`ColorMode.mdx`, `Layout.mdx`, etc.) — not every page that tangentially touches the concept.
+For skills covering a concept rather than a single component (e.g. `gamut-color-mode`, `gamut-layout`), add the tip to the primary concept page (`concepts/color-modes.md`, `foundations/layout.md`, etc.) — not every page that tangentially touches the concept. Those pages are `.md`, so use Starlight's `:::tip` block instead of `<Aside>`.
 
 ---
 
