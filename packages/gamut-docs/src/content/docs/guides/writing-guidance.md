@@ -92,10 +92,12 @@ Delete commented-out code instead of leaving it in place — git already tracks 
 
 ## File structure and naming
 
-The folder structure mirrors both Gamut's atomic-design tiers and the generated Storybook hierarchy. Find the right folder under `packages/styleguide/src/lib` (`Atoms`, `Molecules`, `Organisms`, and so on), then create a new folder containing `ComponentName.stories.tsx` and `ComponentName.mdx` — plus any example or utility files the stories need.
+A component's stories and its doc page live in different packages:
 
-- Non-component files with more than one word use a space and sentence case: `General principles.mdx`.
-- Component-related files use the component's own `PascalCase` name: `RadialProgress.mdx`.
+- **Stories** sit next to the component, in `packages/<package>/src/<ComponentName>/<ComponentName>.stories.tsx`, named with the component's `PascalCase` name.
+- **Doc pages** live on this site, in `packages/gamut-docs/src/content/docs/components/<category>/<component-name>.mdx`, named in kebab case: `radial-progress.mdx`.
+
+Guide and concept pages use kebab case too: `writing-guidance.md`.
 
 ## Formatting
 
@@ -129,12 +131,10 @@ The folder structure mirrors both Gamut's atomic-design tiers and the generated 
 
 **Internal links**
 
-In Storybook's own `.mdx` files, use the `LinkTo` component with an `id` matching the target story's id:
+Link to another page on this site with a root-relative Markdown link to its path:
 
-```tsx
-import { LinkTo } from '~styleguide/blocks';
-
-<LinkTo id="Atoms/Animations/About">Animation</LinkTo>;
+```markdown
+[Anchor](/components/navigation/anchor/)
 ```
 
 - Link text describes the destination, not the action — "See the Stories page," not "Click here."
