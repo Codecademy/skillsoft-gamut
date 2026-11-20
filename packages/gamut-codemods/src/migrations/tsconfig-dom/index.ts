@@ -7,6 +7,9 @@ import type { FileMigration } from '../../lib/types';
   anyway. Once Video moves to its subpath they're gone, and `document`,
   `HTMLInputElement`, `ResizeObserver` and friends stop type-checking.
   Adding "dom" is the owner's call, so this warns rather than rewriting.
+
+  Only tsconfigs whose directory imports gamut get the warning. A worker in
+  the same repo never got DOM types from it, so it has nothing to lose.
 */
 
 const LIB = /"lib"\s*:\s*\[([^\]]*)\]/;
@@ -17,9 +20,9 @@ export const tsconfigDom: FileMigration = {
   description:
     'Warn about tsconfig `lib` settings without "dom", which Video used to supply.',
   appliesTo: (file) => /(^|\/)tsconfig[\w.-]*\.json$/.test(file),
-  run({ source, warn, note }) {
+  run({ source, warn, note, usesGamut }) {
     const lib = LIB.exec(source);
-    if (lib && !/["']dom["']/i.test(lib[1])) {
+    if (lib && !/["']dom["']/i.test(lib[1]) && usesGamut()) {
       warn(
         `"lib" has no "dom". Gamut's root import used to bring DOM types in through Video; add "dom" if type-checking now fails on document, HTMLElement, and so on.`
       );

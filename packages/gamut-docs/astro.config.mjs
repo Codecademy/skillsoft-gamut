@@ -94,7 +94,10 @@ export default defineConfig({
         baseUrl:
           'https://github.com/Codecademy/skillsoft-gamut/edit/main/packages/gamut-docs/',
       },
-      customCss: ['./src/styles/gamut-core-theme.css'],
+      customCss: [
+        '@skillsoft/gamut-styles/tokens.css',
+        './src/styles/gamut-theme.css',
+      ],
       plugins: [
         starlightSidebarTopics(
           [
