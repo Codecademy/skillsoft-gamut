@@ -1,5 +1,3 @@
-import { describe, expect, it } from 'vitest';
-
 import type { BrandInput } from '../brand';
 import { BRANDS, DEFAULT_BRAND } from '../brands';
 import { validateMigration } from '../migration';
