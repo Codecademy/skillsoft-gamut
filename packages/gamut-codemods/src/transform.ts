@@ -23,14 +23,24 @@ import { getPreset } from './presets';
     notesDir: directory the CLI reads checklist notes back from. jscodeshift
               only aggregates api.stats in --dry runs, so workers leave an
               empty marker file per note key instead.
+    warningsDir: directory each file's warnings are appended to, as JSON
+              lines, so the CLI can print them grouped by file. Without it,
+              warnings go to api.report.
     onWarn:   (message) => void, for tests; otherwise warnings go to api.report
 */
+
+export interface RecordedWarning {
+  migration: string;
+  line?: number;
+  message: string;
+}
 
 export interface TransformOptions {
   preset?: string;
   only?: string;
   skip?: string;
   notesDir?: string;
+  warningsDir?: string;
   onWarn?: (message: string) => void;
 }
 
@@ -52,8 +62,16 @@ export default function transform(
     }
   };
   const warnFor = (name: string) => (node: Locatable, message: string) => {
-    const line = node?.loc ? `:${node.loc.start.line}` : '';
-    const text = `[${name}] ${file.path}${line} ${message}`;
+    const line = node?.loc ? node.loc.start.line : undefined;
+    if (options.warningsDir) {
+      const warning: RecordedWarning = { migration: name, line, message };
+      fs.appendFileSync(
+        path.join(options.warningsDir, encodeURIComponent(file.path)),
+        `${JSON.stringify(warning)}\n`
+      );
+      return;
+    }
+    const text = `[${name}] ${file.path}${line ? `:${line}` : ''} ${message}`;
     if (options.onWarn) options.onWarn(text);
     else api.report(text);
   };

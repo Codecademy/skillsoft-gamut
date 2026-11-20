@@ -7,7 +7,11 @@ import type {
 } from 'jscodeshift';
 
 import type { ComponentPropChanges, PropChange } from '../../lib/manifest';
-import { isStringLiteral, nameOf } from '../../lib/module-strings';
+import {
+  isStringLiteral,
+  nameOf,
+  type StringNode,
+} from '../../lib/module-strings';
 import type { Edit, SpliceMigration, Warn } from '../../lib/types';
 
 /*
@@ -20,9 +24,13 @@ import type { Edit, SpliceMigration, Warn } from '../../lib/types';
   table, so aliases work (`import { FillButton as Btn }`) and a local
   component with the same name is left alone.
 
-  Only string literals are rewritten, as `prop="old"` or `prop={'old'}`.
+  Only string literals are rewritten: as `prop="old"` or `prop={'old'}`, in
+  either branch of a ternary (`prop={cond ? 'old' : 'other'}`), and in the
+  type of a prop that a Gamut attribute passes through (`size?: 'small' |
+  'normal'`, with `size = 'normal'` as its default). The type rewrite only
+  applies when the file passes a prop of that name to a Gamut component.
   Any other expression for a prop that has values to convert is left alone
-  with a warning, since its value can't be known statically.
+  with a warning, which names where the expression's values are declared.
 
   Idempotent: the new values aren't keys in any table, and a renamed prop
   is no longer matched under its old name.
@@ -51,13 +59,75 @@ const componentLocals = (
   return locals;
 };
 
+/* Only the parts of an expression that can carry the prop's value. */
+interface ValueExpression {
+  type: string;
+  name?: string;
+  left?: ValueExpression;
+  right?: ValueExpression;
+  consequent?: ValueExpression;
+  alternate?: ValueExpression;
+}
+
+/* `a`, `a || b`, and `c ? a : b` give `a` and `b`. Anything else gives none. */
+const valueNames = (expression: ValueExpression): string[] => {
+  if (expression.type === 'Identifier' && expression.name) {
+    return [expression.name];
+  }
+  const parts =
+    expression.type === 'LogicalExpression'
+      ? [expression.left, expression.right]
+      : expression.type === 'ConditionalExpression'
+      ? [expression.consequent, expression.alternate]
+      : [];
+  return parts.flatMap((part) => (part ? valueNames(part) : []));
+};
+
+const attributeExpression = (attr: JSXAttribute) =>
+  attr.value?.type === 'JSXExpressionContainer'
+    ? (attr.value.expression as unknown as ValueExpression)
+    : undefined;
+
+/* Where a value's identifier was declared, so the warning says where to look. */
+const declarationNote = (path: ASTPath, name: string) => {
+  const binding = path.scope?.lookup(name)?.getBindings()[name]?.[0];
+  if (!binding) return `${name} is not declared in this file`;
+  if (binding.parent?.node.type.startsWith('Import')) {
+    return `${name} is imported`;
+  }
+  const loc = (binding.node as { loc?: { start: { line: number } } | null })
+    .loc;
+  return loc
+    ? `${name} is declared at line ${loc.start.line}`
+    : `${name} is declared in this file`;
+};
+
+interface Context {
+  source: string;
+  warn: Warn;
+  path: ASTPath<JSXOpeningElement>;
+}
+
+/* The new text for a literal, keeping the source's quote style. */
+const literalEdit = (
+  literal: StringNode,
+  values: Record<string, string>,
+  source: string
+): Edit | undefined => {
+  if (!hasOwn(values, literal.value)) return undefined;
+  const quote = source[literal.start];
+  return {
+    start: literal.start,
+    end: literal.end,
+    text: `${quote}${values[literal.value]}${quote}`,
+  };
+};
+
 const attributeEdits = (
   attr: JSXAttribute,
   change: PropChange,
   component: string,
-  source: string,
-  warn: Warn,
-  element: JSXOpeningElement
+  { source, warn, path }: Context
 ): Edit[] => {
   const edits: Edit[] = [];
   const name = attr.name as unknown as {
@@ -69,31 +139,85 @@ const attributeEdits = (
     edits.push({ start: name.start, end: name.end, text: change.rename });
   }
 
-  if (!change.values || !attr.value) return edits;
+  const values = change.values;
+  if (!values || !attr.value) return edits;
 
-  let literal: { value: string; start: number; end: number } | undefined;
   if (isStringLiteral(attr.value)) {
-    literal = attr.value;
-  } else if (attr.value.type === 'JSXExpressionContainer') {
-    if (isStringLiteral(attr.value.expression)) {
-      literal = attr.value.expression;
-    } else {
-      warn(
-        element,
-        `${component} ${name.name} is not a string literal, so it was not converted. Check its value by hand.`
-      );
-      return edits;
+    const edit = literalEdit(attr.value, values, source);
+    return edit ? [...edits, edit] : edits;
+  }
+  if (attr.value.type !== 'JSXExpressionContainer') return edits;
+
+  const expression = attributeExpression(attr);
+  if (!expression) return edits;
+  const isTernary = expression.type === 'ConditionalExpression';
+  const branches: unknown[] = isTernary
+    ? [expression.consequent, expression.alternate]
+    : [expression];
+
+  for (const branch of branches) {
+    if (isStringLiteral(branch)) {
+      const edit = literalEdit(branch, values, source);
+      if (edit) edits.push(edit);
     }
   }
-  if (!literal || !hasOwn(change.values, literal.value)) return edits;
 
-  /* Keep the source's quote style: `"small"` stays double-quoted. */
-  const quote = source[literal.start];
-  edits.push({
-    start: literal.start,
-    end: literal.end,
-    text: `${quote}${change.values[literal.value]}${quote}`,
+  if (branches.every(isStringLiteral)) return edits;
+
+  const notes = valueNames(expression).map((n) => declarationNote(path, n));
+  const sourceNote = notes.length > 0 ? ` Source: ${notes.join('; ')}.` : '';
+  const what = isTernary
+    ? `${component} ${name.name} has a branch that is not a string literal, so that branch was not converted.`
+    : `${component} ${name.name} is not a string literal, so it was not converted.`;
+  warn(path.node, `${what} Check its value by hand.${sourceNote}`);
+  return edits;
+};
+
+/*
+  Type and default rewrites for props that a Gamut attribute passes through.
+  `linked` maps each such prop name to the values of the Gamut prop it feeds.
+*/
+const linkedEdits = (
+  j: JSCodeshift,
+  root: Collection,
+  linked: Map<string, Record<string, string>>,
+  source: string
+): Edit[] => {
+  const edits: Edit[] = [];
+
+  root.find(j.TSPropertySignature).forEach((path) => {
+    const key = path.node.key as { type: string; name?: string };
+    const values =
+      key.type === 'Identifier' && key.name && linked.get(key.name);
+    if (!values) return;
+    j(path)
+      .find(j.TSLiteralType)
+      .forEach((literalType) => {
+        const literal = literalType.node.literal as unknown;
+        if (!isStringLiteral(literal)) return;
+        const edit = literalEdit(literal, values, source);
+        if (edit) edits.push(edit);
+      });
   });
+
+  root.find(j.AssignmentPattern).forEach((path) => {
+    const left = path.node.left as { type: string; name?: string };
+    const values =
+      left.type === 'Identifier' && left.name && linked.get(left.name);
+    if (!values || !isStringLiteral(path.node.right)) return;
+    /* Only a destructured prop's default (`{ size = 'normal' }`). */
+    const owner = path.parent?.node as
+      | { type: string; key?: { name?: string }; value?: unknown }
+      | undefined;
+    const isProp =
+      owner?.type === 'Property' || owner?.type === 'ObjectProperty';
+    if (!isProp || owner.value !== path.node || owner.key?.name !== left.name) {
+      return;
+    }
+    const edit = literalEdit(path.node.right, values, source);
+    if (edit) edits.push(edit);
+  });
+
   return edits;
 };
 
@@ -110,6 +234,7 @@ export const propValues: SpliceMigration = {
     if (locals.size === 0) return [];
 
     const edits: Edit[] = [];
+    const linked = new Map<string, Record<string, string>>();
     root
       .find(j.JSXOpeningElement)
       .forEach((path: ASTPath<JSXOpeningElement>) => {
@@ -126,19 +251,30 @@ export const propValues: SpliceMigration = {
           ) {
             continue;
           }
-          if (!hasOwn(props, attr.name.name)) continue;
+          const prop = attr.name.name;
+          if (!hasOwn(props, prop)) continue;
+          const change = props[prop];
           edits.push(
-            ...attributeEdits(
-              attr,
-              props[attr.name.name],
-              component,
+            ...attributeEdits(attr, change, component, {
               source,
               warn,
-              element
-            )
+              path,
+            })
           );
+
+          const expression = attributeExpression(attr);
+          if (
+            change.values &&
+            expression &&
+            valueNames(expression).includes(prop) &&
+            !linked.has(prop)
+          ) {
+            linked.set(prop, change.values);
+          }
         }
       });
+
+    edits.push(...linkedEdits(j, root, linked, source));
     return edits;
   },
 };
