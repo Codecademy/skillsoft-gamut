@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import sandbox from '../__fixtures__/sandbox.json';
 import type { Slot } from '../brand';
 import { DEFAULT_BRAND } from '../brands';

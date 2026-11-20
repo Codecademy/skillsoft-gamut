@@ -7,7 +7,7 @@ import { Alert } from './Alert';
 
 expect.extend(matchers);
 
-const onClick = jest.fn();
+const onClick = vi.fn();
 
 const renderView = setupRtl(Alert, {
   children: 'Hello',
