@@ -38,7 +38,7 @@ jobs:
   packages:
     # Nobody installs a preview of the version bump itself, and the real versions
     # publish minutes later.
-    # A `labeled` event only publishes when it is the `update-alpha` label.
+    # A `labeled` event only publishes for the `update-alpha` label. Other labels are ignored.
     if: >-
       github.event.pull_request.head.ref != 'changeset-release/main' &&
       (github.event.action != 'labeled' || github.event.label.name == 'update-alpha')
