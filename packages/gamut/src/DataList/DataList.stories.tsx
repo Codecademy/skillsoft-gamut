@@ -125,7 +125,7 @@ const meta: TypeWithDeepControls<Meta<CrewDataList>> = {
     onRowSelect: fn(),
     onRowExpand: fn(),
     expandedContent: ({ row }) => (
-      <FlexBox borderColor="background-hover" borderTop={1} p={16} pl={[0, 64]}>
+      <FlexBox borderColor="state-hover" borderTop={1} p={16} pl={[0, 64]}>
         <DataTable
           columns={[
             { key: 'name', size: 'md' },
@@ -433,7 +433,7 @@ export const DisableContainerQuery: Story = {
         <Text mb={8} variant="title-sm">
           Default (Container Queries Enabled)
         </Text>
-        <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
+        <Box border={1} borderColor="border-subtle" maxWidth="400px" p={16}>
           <DataList
             columns={simpleColumns}
             header
@@ -443,7 +443,7 @@ export const DisableContainerQuery: Story = {
             spacing="condensed"
           />
         </Box>
-        <Text color="text-secondary" mt={8} variant="p-small">
+        <Text color="text-subtle" mt={8} variant="p-small">
           Container queries apply responsive behavior based on the
           DataList&apos;s container width
         </Text>
@@ -452,7 +452,7 @@ export const DisableContainerQuery: Story = {
         <Text mb={8} variant="title-sm">
           With Container Queries Disabled
         </Text>
-        <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
+        <Box border={1} borderColor="border-subtle" maxWidth="400px" p={16}>
           <DataList
             columns={simpleColumns}
             disableContainerQuery
@@ -462,7 +462,7 @@ export const DisableContainerQuery: Story = {
             spacing="condensed"
           />
         </Box>
-        <Text color="text-secondary" mt={8} variant="p-small">
+        <Text color="text-subtle" mt={8} variant="p-small">
           Built in responsive behavior is disabled - custom responsive behavior
           is required
         </Text>

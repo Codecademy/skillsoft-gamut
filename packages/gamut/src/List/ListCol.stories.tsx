@@ -49,7 +49,7 @@ export const ColumnSizing: ListCompositionStory = {
         {sizes.map((size: 'content' | 'sm' | 'md' | 'lg' | 'xl') => (
           <ListRow key={size}>
             <ListCol size={size}>
-              <Box bg="background-selected" flex={1} height={1} p={8}>
+              <Box bg="state-selected" flex={1} height={1} p={8}>
                 {size}
               </Box>
             </ListCol>
@@ -73,27 +73,27 @@ export const FillingEmptySpace: ListCompositionStory = {
       <List {...args}>
         <ListRow>
           <ListCol size="md">
-            <Box bg="background-selected" flex={1} height={1} p={8}>
+            <Box bg="state-selected" flex={1} height={1} p={8}>
               Medium
             </Box>
           </ListCol>
           <ListCol fill size="md">
-            <Box bg="background-selected" flex={1} height={1} p={8}>
+            <Box bg="state-selected" flex={1} height={1} p={8}>
               Medium - Fill
             </Box>
           </ListCol>
           <ListCol size="md">
-            <Box bg="background-selected" flex={1} height={1} p={8}>
+            <Box bg="state-selected" flex={1} height={1} p={8}>
               Medium
             </Box>
           </ListCol>
           <ListCol fill size="md">
-            <Box bg="background-selected" flex={1} height={1} p={8}>
+            <Box bg="state-selected" flex={1} height={1} p={8}>
               Medium - Fill
             </Box>
           </ListCol>
           <ListCol size="md">
-            <Box bg="background-selected" flex={1} height={1} p={8}>
+            <Box bg="state-selected" flex={1} height={1} p={8}>
               Medium
             </Box>
           </ListCol>
@@ -148,7 +148,7 @@ export const HorizontalScrolling: ListCompositionStory = {
             </ListCol>
             <ListCol size="lg">
               <Text
-                color="text-disabled"
+                color="text-subtle"
                 truncate="ellipsis"
                 truncateLines={1}
                 variant="p-small"
@@ -158,7 +158,7 @@ export const HorizontalScrolling: ListCompositionStory = {
             </ListCol>
             <ListCol fill size="lg">
               <Text
-                color="text-disabled"
+                color="text-subtle"
                 truncate="ellipsis"
                 truncateLines={1}
                 variant="p-small"
@@ -167,19 +167,19 @@ export const HorizontalScrolling: ListCompositionStory = {
               </Text>
             </ListCol>
             <ListCol size="sm">
-              <Text color="text-disabled" lineHeight="title" variant="p-small">
+              <Text color="text-subtle" lineHeight="title" variant="p-small">
                 <StreakIcon mr={8} verticalAlign="bottom" />
                 87%
               </Text>
             </ListCol>
             <ListCol size="sm">
-              <Text color="text-disabled" lineHeight="title" variant="p-small">
+              <Text color="text-subtle" lineHeight="title" variant="p-small">
                 <TrophyIcon mr={8} verticalAlign="bottom" />
                 48%
               </Text>
             </ListCol>
             <ListCol size="sm">
-              <Text color="text-disabled" lineHeight="title" variant="p-small">
+              <Text color="text-subtle" lineHeight="title" variant="p-small">
                 <StarIcon mr={8} verticalAlign="bottom" />
                 66%
               </Text>
@@ -257,22 +257,22 @@ export const ResponsiveAnatomy: ListCompositionStory = {
       <List {...args}>
         <ListRow>
           <ListCol size="md" type="header">
-            <Box bg="background-selected" flex={1} height={1} p={8}>
+            <Box bg="state-selected" flex={1} height={1} p={8}>
               Header
             </Box>
           </ListCol>
           <ListCol size="md">
-            <Box bg="background-selected" flex={1} height={1} p={8}>
+            <Box bg="state-selected" flex={1} height={1} p={8}>
               Content
             </Box>
           </ListCol>
           <ListCol fill size="md">
-            <Box bg="background-selected" flex={1} height={1} p={8}>
+            <Box bg="state-selected" flex={1} height={1} p={8}>
               Content
             </Box>
           </ListCol>
           <ListCol size="md" type="control">
-            <Box bg="background-selected" flex={1} height={1} p={8}>
+            <Box bg="state-selected" flex={1} height={1} p={8}>
               Controls
             </Box>
           </ListCol>
@@ -301,7 +301,7 @@ export const Responsive: ListCompositionStory = {
           </ListCol>
           <ListCol size="lg">
             <Text
-              color="text-disabled"
+              color="text-subtle"
               truncate="ellipsis"
               truncateLines={1}
               variant="p-small"
@@ -311,7 +311,7 @@ export const Responsive: ListCompositionStory = {
           </ListCol>
           <ListCol fill size="lg">
             <Text
-              color="text-disabled"
+              color="text-subtle"
               truncate="ellipsis"
               truncateLines={1}
               variant="p-small"
@@ -346,17 +346,17 @@ export const ResponsiveInNarrowContainer: ListCompositionStory = {
         <List {...args}>
           <ListRow>
             <ListCol size="md" type="header">
-              <Box bg="background-selected" flex={1} height={1} p={8}>
+              <Box bg="state-selected" flex={1} height={1} p={8}>
                 Header
               </Box>
             </ListCol>
             <ListCol size="md">
-              <Box bg="background-selected" flex={1} height={1} p={8}>
+              <Box bg="state-selected" flex={1} height={1} p={8}>
                 Content
               </Box>
             </ListCol>
             <ListCol size="md" type="control">
-              <Box bg="background-selected" flex={1} height={1} p={8}>
+              <Box bg="state-selected" flex={1} height={1} p={8}>
                 Controls
               </Box>
             </ListCol>

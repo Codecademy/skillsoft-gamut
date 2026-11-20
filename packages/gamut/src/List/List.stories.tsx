@@ -712,7 +712,7 @@ export const DisableContainerQuery: Story = {
         <Text mb={8} variant="title-sm">
           Default (Container Queries Enabled)
         </Text>
-        <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
+        <Box border={1} borderColor="border-subtle" maxWidth="400px" p={16}>
           <List spacing="condensed" variant="table">
             {rows.slice(0, 2).map(({ name, ship }) => (
               <ListRow key={name}>
@@ -727,7 +727,7 @@ export const DisableContainerQuery: Story = {
             ))}
           </List>
         </Box>
-        <Text color="text-secondary" mt={8} variant="p-small">
+        <Text color="text-subtle" mt={8} variant="p-small">
           Container queries apply responsive behavior based on the List&apos;s
           container width
         </Text>
@@ -736,7 +736,7 @@ export const DisableContainerQuery: Story = {
         <Text mb={8} variant="title-sm">
           With Container Queries Disabled
         </Text>
-        <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
+        <Box border={1} borderColor="border-subtle" maxWidth="400px" p={16}>
           <List disableContainerQuery spacing="condensed" variant="table">
             {rows.slice(0, 2).map(({ name, ship }) => (
               <ListRow key={name}>
@@ -751,7 +751,7 @@ export const DisableContainerQuery: Story = {
             ))}
           </List>
         </Box>
-        <Text color="text-secondary" mt={8} variant="p-small">
+        <Text color="text-subtle" mt={8} variant="p-small">
           Built in responsive behavior is disabled - custom responsive behavior
           is required
         </Text>

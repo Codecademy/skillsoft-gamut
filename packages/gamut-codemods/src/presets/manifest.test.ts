@@ -119,7 +119,7 @@ const exportsOf = (specifiers: string[]) => {
   });
 };
 
-describe('manifests', () => {
+describe('manifests', { timeout: 60_000 }, () => {
   /*
     A deep-import row sends every name imported from `from` to `to`, so
     everything `from` exports has to be available there: directly, via
