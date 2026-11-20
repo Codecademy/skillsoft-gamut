@@ -83,6 +83,7 @@ describe.each(Object.values(presets))('preset $name', (preset) => {
             note: () => {},
             /* Fixtures test the text; the project check is the CLI's. */
             usesGamut: () => true,
+            usesVideo: () => true,
             transformSource: (code) => runSource(preset.name, code).out,
           });
           expect((out ?? c.input).trim()).toBe(c.output.trim());
@@ -95,6 +96,7 @@ describe.each(Object.values(presets))('preset $name', (preset) => {
             warn: () => {},
             note: () => {},
             usesGamut: () => true,
+            usesVideo: () => true,
             transformSource: (code) => runSource(preset.name, code).out,
           });
           expect((again ?? c.output).trim()).toBe(c.output.trim());

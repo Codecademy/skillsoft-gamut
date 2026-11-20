@@ -65,7 +65,7 @@ const readSkips = (
 ) => {
   const skips = new Map<string, boolean>();
   const unreadable = new Set<string>();
-  const value = skipAttr.value;
+  const {value} = skipAttr;
 
   if (
     value?.type !== 'JSXExpressionContainer' ||
@@ -188,7 +188,7 @@ export const markdownVideoOverrides: AstMigration = {
         ({ skips, unreadable } = read);
         if (read.removed) changed = true;
 
-        const value = skipAttr.value;
+        const {value} = skipAttr;
         if (
           value?.type === 'JSXExpressionContainer' &&
           value.expression.type === 'ObjectExpression' &&
@@ -219,7 +219,7 @@ export const markdownVideoOverrides: AstMigration = {
       const local = new Map<string, string>();
       const missing: string[] = [];
       for (const name of names) {
-        if (bound.has(name)) local.set(name, bound.get(name) as string);
+        if (bound.has(name)) local.set(name, bound.get(name)!);
         else {
           local.set(name, name);
           missing.push(name);
@@ -257,7 +257,7 @@ export const markdownVideoOverrides: AstMigration = {
                 j.property(
                   'init',
                   j.identifier('component'),
-                  j.identifier(local.get(component) as string)
+                  j.identifier(local.get(component)!)
                 ),
               ]);
           path.node.attributes = [

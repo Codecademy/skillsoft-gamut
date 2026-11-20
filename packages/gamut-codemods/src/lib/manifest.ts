@@ -67,7 +67,15 @@ export interface Manifest {
     depends on one of those packages. `when` uses OLD names, like the rest
     of the manifest; manifest.test.ts checks `range` against the source.
   */
-  requiredPeers: Record<string, { range: string; when: string[] }>;
+  requiredPeers: Record<
+    string,
+    {
+      range: string;
+      when: string[];
+      /* Only when the app imports Video, which is the one thing that loads these. */
+      video?: boolean;
+    }
+  >;
   movedExports: MovedExport[];
   deepImports: DeepImport[];
   /* ESLint plugin prefix, for rule keys, `plugin:` extends, and comments. */
