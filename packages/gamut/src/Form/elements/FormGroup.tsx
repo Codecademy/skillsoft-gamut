@@ -20,7 +20,7 @@ export interface FormGroupProps
    */
   error?: string;
   description?: string;
-  labelSize?: 'small' | 'large';
+  labelSize?: 'sm' | 'lg';
 }
 
 const formGroupSpacing = variant({

@@ -87,7 +87,7 @@ export const createButtonComponent = <P>(
   );
 
 export const iconSizeMapping = {
-  normal: 24,
-  small: 16,
-  large: 40,
+  md: 24,
+  sm: 16,
+  lg: 40,
 };

@@ -113,7 +113,7 @@ const meta: TypeWithDeepControls<Meta<typeof Coachmark>> = {
           renderPopover={() => (
             <FlexBox alignItems="flex-start" flexDirection="column" p={16}>
               <Text mb={8}>{popoverText}</Text>
-              <FillButton size="small" onClick={() => setShouldShow(false)}>
+              <FillButton size="sm" onClick={() => setShouldShow(false)}>
                 Got it
               </FillButton>
             </FlexBox>

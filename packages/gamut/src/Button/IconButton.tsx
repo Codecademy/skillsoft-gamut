@@ -37,7 +37,7 @@ export const IconButton = forwardRef<ButtonBaseElements, IconButtonProps>(
     },
     ref
   ) => {
-    const buttonSize = size || 'normal';
+    const buttonSize = size || 'md';
 
     const iconSize = iconSizeMapping[buttonSize];
 

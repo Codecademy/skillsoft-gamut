@@ -28,7 +28,7 @@ export const Default: Story = {
 export const LargeSize: Story = {
   args: {
     htmlFor: 'label-large',
-    size: 'large',
+    size: 'lg',
   },
 };
 

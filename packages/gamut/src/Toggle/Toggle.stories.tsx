@@ -25,7 +25,7 @@ export const Default: Story = {
 
 export const Medium: Story = {
   args: {
-    size: 'medium',
+    size: 'md',
     label: undefined,
     ariaLabel: 'Accessible toggle',
   },
@@ -36,7 +36,7 @@ export const Medium: Story = {
 
 export const Small: Story = {
   args: {
-    size: 'small',
+    size: 'sm',
   },
 };
 

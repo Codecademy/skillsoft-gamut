@@ -13,14 +13,14 @@ import { formBaseStyles, formFieldTextDisabledStyles } from '../styles';
 import type { BaseInputProps } from '../types';
 
 const labelSizeVariants = variant({
-  defaultVariant: 'small',
+  defaultVariant: 'sm',
   prop: 'size',
   base: { display: 'block', ...formBaseStyles },
   variants: {
-    small: {
+    sm: {
       lineHeight: 'base',
     },
-    large: {
+    lg: {
       fontSize: 22,
       lineHeight: 'base',
       fontWeight: 'title',
@@ -44,7 +44,7 @@ export type FormGroupLabelProps = HTMLAttributes<HTMLDivElement> &
      * [The for/id string of a label or labelable form-related element](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor). The outer FormGroup or FormLabel should have an identical string as the inner FormElement for accessibility purposes.
      */
     infotip?: InfoTipSubComponentProps;
-    size?: 'small' | 'large';
+    size?: 'sm' | 'lg';
     /**
      * Solo fields should always be required and have no optional/required text
      */

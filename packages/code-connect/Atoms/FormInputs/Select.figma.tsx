@@ -15,6 +15,8 @@ figma.connect(
   'https://www.figma.com/design/ReGfRNillGABAj5SlITalN/%F0%9F%93%90-Gamut?node-id=70050%3A14802',
   {
     props: {
+      // TODO: After the Figma Select file is updated, rename this prop to `size`
+      // and map `base` to 'md' and `small` to 'sm' (the code prop values changed in the size rename).
       sizeVariant: figma.enum('sizeVariant', {
         base: 'base',
         small: 'small',

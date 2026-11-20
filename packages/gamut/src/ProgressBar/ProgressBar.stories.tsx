@@ -50,14 +50,14 @@ export const Yellow: Story = {
 
 export const Small: Story = {
   args: {
-    size: 'small',
+    size: 'sm',
     percent: 25,
   },
 };
 
 export const Medium: Story = {
   args: {
-    size: 'medium',
+    size: 'md',
     percent: 50,
     variant: 'yellow',
   },
@@ -65,7 +65,7 @@ export const Medium: Story = {
 
 export const Large: Story = {
   args: {
-    size: 'large',
+    size: 'lg',
     percent: 75,
     variant: 'blue',
   },
@@ -95,7 +95,7 @@ export const MinimumPercent: Story = {
 
 export const PatternBackgroundStripesRegular: Story = {
   args: {
-    size: 'large',
+    size: 'lg',
     variant: 'yellow',
     pattern: patterns.DiagonalARegular,
     percent: 50,
@@ -104,7 +104,7 @@ export const PatternBackgroundStripesRegular: Story = {
 
 export const PatternBackgroundStripesDense: Story = {
   args: {
-    size: 'medium',
+    size: 'md',
     variant: 'blue',
     pattern: patterns.DiagonalADense,
     percent: 33,

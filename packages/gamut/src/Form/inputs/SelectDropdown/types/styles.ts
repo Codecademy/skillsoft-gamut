@@ -6,7 +6,7 @@ import type { InternalInputsProps } from './component-props';
 /**
  * Size variants for the SelectDropdown component.
  */
-export type SelectDropdownSizes = { size?: 'small' | 'medium' };
+export type SelectDropdownSizes = { size?: 'sm' | 'md' };
 
 /**
  * Shared properties available to all SelectDropdown variants.

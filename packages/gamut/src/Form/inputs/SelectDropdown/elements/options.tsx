@@ -31,7 +31,7 @@ const IconOptionLabel: React.FC<
     <FlexBox flexDirection="row">
       {Icon && (
         <FlexBox center>
-          <Icon color="text" ml={4} size={size === 'small' ? 16 : 24} />
+          <Icon color="text" ml={4} size={size === 'sm' ? 16 : 24} />
         </FlexBox>
       )}
       <Box as="span" color="currentColor" pl={Icon ? 16 : 0}>
@@ -61,7 +61,7 @@ export const IconOptionComponent = ({
     >
       {children}
       {!isNew && rest?.isSelected && (
-        <CheckIcon size={selectedIconSize[size ?? 'medium']} />
+        <CheckIcon size={selectedIconSize[size ?? 'md']} />
       )}
     </SelectDropdownElements.Option>
   );

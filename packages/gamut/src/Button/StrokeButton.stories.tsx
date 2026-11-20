@@ -9,7 +9,7 @@ const meta: Meta<typeof StrokeButton> = {
   args: {
     children: 'Click Me',
     disabled: false,
-    size: 'normal',
+    size: 'md',
     variant: 'primary',
   },
   argTypes: {

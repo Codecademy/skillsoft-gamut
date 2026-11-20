@@ -13,7 +13,7 @@ const meta: TypeWithDeepControls<Meta<typeof IconButton>> = {
   parameters: { deepControls: { enabled: true } },
   args: {
     disabled: false,
-    size: 'normal',
+    size: 'md',
     icon: icons.SearchIcon,
     tip: 'ToolTip',
     tipProps: { placement: 'floating', alignment: 'top-center' },

@@ -162,7 +162,7 @@ export const Alert: React.FC<AlertProps> = ({
           aria-describedby={ariaId}
           aria-expanded={expanded}
           aria-label={expanded ? 'Collapse' : 'Expand'}
-          size="small"
+          size="sm"
           tabIndex={tabIndex}
           variant="secondary"
           onClick={() => setExpanded(!expanded)}
@@ -186,7 +186,7 @@ export const Alert: React.FC<AlertProps> = ({
       <CleanFillButton
         {...cta}
         mode={buttonColorMode}
-        size="small"
+        size="sm"
         tabIndex={tabIndex}
         variant="secondary"
       >
@@ -228,7 +228,7 @@ export const Alert: React.FC<AlertProps> = ({
           disabled={disableCloseButton}
           icon={MiniDeleteIcon}
           ref={closeButtonRef}
-          size="small"
+          size="sm"
           tabIndex={tabIndex}
           tip={closeButtonTip}
           tipProps={{ alignment: tipAlignment, placement: 'floating' }}

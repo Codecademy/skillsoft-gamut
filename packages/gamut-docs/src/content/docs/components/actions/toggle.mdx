@@ -16,7 +16,7 @@ Use `Toggle` for a boolean value that's functionally similar to a checkbox, but 
 - `Toggle` is a controlled component — its `checked` value must be driven by external state and `onChange`/`onClick`.
 - Always give it a label: pass `label` as a string, or pass `ariaLabel` if the visible label is a `ReactNode` or absent.
 - Use `as="input"` when the toggle lives in a form and a separate action (like a submit button) does something with its value; use `as="button"` when the toggle should act immediately on its own — this also gives it `role="switch"` and `aria-checked`, since a native button has no built-in switch semantics.
-- `medium` (the default) is preferred inside forms; use `size="small"` for compact UI toggles outside a form context.
+- `md` (the default) is preferred inside forms; use `size="sm"` for compact UI toggles outside a form context.
 
 **When NOT to use:**
 

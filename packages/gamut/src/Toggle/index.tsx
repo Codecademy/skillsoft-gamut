@@ -11,7 +11,7 @@ export const Toggle = <Props extends ToggleProps>({
   labelSide = 'end',
   onChange,
   onClick,
-  size = 'medium',
+  size = 'md',
   ...rest
 }: Props) => {
   const checkedColor = checked ? 'primary' : 'text-disabled';

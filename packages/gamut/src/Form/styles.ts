@@ -126,18 +126,18 @@ export const conditionalStyleState = (error: boolean, activated: boolean) => {
 
 export const inputSizeStyles = variant({
   prop: 'inputSize',
-  defaultVariant: 'base',
+  defaultVariant: 'md',
   base: {
     px: 8,
   },
   variants: {
-    base: {
+    md: {
       ...formFieldPaddingStyles,
     },
-    small: {
+    sm: {
       py: 3 as any,
     },
-    smallFile: {
+    smFile: {
       py: 2 as any,
     },
   },

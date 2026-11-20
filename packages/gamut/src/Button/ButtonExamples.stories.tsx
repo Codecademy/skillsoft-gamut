@@ -55,7 +55,7 @@ const buttonScaleItems = [
   { name: 'TextButton', Component: TextButton },
 ] as const;
 
-const sizes = ['normal', 'small', 'large'] as const;
+const sizes = ['md', 'sm', 'lg'] as const;
 
 const ButtonScale = ({ mode }: { mode: 'dark' | 'light' }) => {
   const grid: React.ReactNode[] = [
@@ -81,7 +81,7 @@ const ButtonScale = ({ mode }: { mode: 'dark' | 'light' }) => {
         if (name === 'IconButton') {
           grid.push(
             <IconButton
-              icon={size === 'small' ? MiniDeleteIcon : SearchIcon}
+              icon={size === 'sm' ? MiniDeleteIcon : SearchIcon}
               key={key}
               mode={mode}
               size={size}

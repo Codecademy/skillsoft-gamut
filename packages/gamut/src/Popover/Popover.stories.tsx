@@ -40,7 +40,7 @@ const meta: Meta<typeof Popover> = {
           >
             <FlexBox alignItems="flex-start" flexDirection="column" p={16}>
               <Box mb={8}>Hooray!</Box>
-              <FillButton size="small" onClick={() => setOpen(false)}>
+              <FillButton size="sm" onClick={() => setOpen(false)}>
                 Close Popover
               </FillButton>
             </FlexBox>

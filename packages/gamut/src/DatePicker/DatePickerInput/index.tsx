@@ -60,7 +60,7 @@ export type DatePickerInputProps = Omit<
 };
 
 export const DatePickerInput = forwardRef<HTMLDivElement, DatePickerInputProps>(
-  ({ disabled, form, label, name, rangePart, size = 'base', ...rest }, ref) => {
+  ({ disabled, form, label, name, rangePart, size = 'md', ...rest }, ref) => {
     const context = useDatePicker();
 
     if (context === null) {
@@ -409,7 +409,7 @@ export const DatePickerInput = forwardRef<HTMLDivElement, DatePickerInputProps>(
             icon={MiniCalendarIcon}
             mx={4}
             ref={buttonRef}
-            size="small"
+            size="sm"
             tip={translations.openCalendarLabel}
             onClick={() => buttonRef.current?.blur()}
           />
