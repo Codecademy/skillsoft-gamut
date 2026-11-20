@@ -1,5 +1,6 @@
 import { MockGamutProvider } from '@skillsoft/gamut-tests';
 import { render } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { DatePickerCalendar } from '../DatePickerCalendar';
 import { DatePickerInput } from '../DatePickerInput';
@@ -16,18 +17,18 @@ const createMockSingleContext = (
   mode: 'single',
   locale: new Intl.Locale('en-US'),
   isCalendarOpen: false,
-  openCalendar: jest.fn(),
-  focusCalendar: jest.fn(),
+  openCalendar: vi.fn(),
+  focusCalendar: vi.fn(),
   focusGridSignal: false,
   gridFocusRequested: false,
-  clearGridFocusRequest: jest.fn(),
-  closeCalendar: jest.fn(),
+  clearGridFocusRequest: vi.fn(),
+  closeCalendar: vi.fn(),
   translations: { ...DEFAULT_DATE_PICKER_TRANSLATIONS },
   quickActions: [],
   hasError: false,
-  setHasError: jest.fn(),
+  setHasError: vi.fn(),
   selectedDate: new Date(2024, 2, 15),
-  onSelection: jest.fn(),
+  onSelection: vi.fn(),
   ...overrides,
 });
 
@@ -37,21 +38,21 @@ const createMockRangeContext = (
   mode: 'range',
   locale: new Intl.Locale('en-US'),
   isCalendarOpen: false,
-  openCalendar: jest.fn(),
-  focusCalendar: jest.fn(),
+  openCalendar: vi.fn(),
+  focusCalendar: vi.fn(),
   focusGridSignal: false,
   gridFocusRequested: false,
-  clearGridFocusRequest: jest.fn(),
-  closeCalendar: jest.fn(),
+  clearGridFocusRequest: vi.fn(),
+  closeCalendar: vi.fn(),
   translations: { ...DEFAULT_DATE_PICKER_TRANSLATIONS },
   quickActions: [],
   hasError: false,
-  setHasError: jest.fn(),
+  setHasError: vi.fn(),
   startDate: null,
   endDate: null,
-  onRangeSelection: jest.fn(),
+  onRangeSelection: vi.fn(),
   activeRangePart: null,
-  setActiveRangePart: jest.fn(),
+  setActiveRangePart: vi.fn(),
   ...overrides,
 });
 

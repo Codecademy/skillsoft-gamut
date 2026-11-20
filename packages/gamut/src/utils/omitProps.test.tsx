@@ -1,4 +1,5 @@
 import omit from 'lodash/omit';
+import { describe, expect, it } from 'vitest';
 
 import { omitProps } from './omitProps';
 

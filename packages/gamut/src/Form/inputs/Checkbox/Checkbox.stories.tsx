@@ -285,53 +285,26 @@ export const InfoTipLabelling: Story = {
   },
 };
 
-type CustomCheckboxProps = Omit<
-  CheckboxProps,
-  'checked' | 'indeterminate' | 'label'
-> & {
-  defaultChecked?: boolean;
-  label: string;
-};
-
-const ControllableCheckbox: React.FC<CustomCheckboxProps> = ({
-  htmlFor,
-  label,
-  defaultChecked = false,
-  disabled,
-  onChange,
-  ...rest
-}) => {
-  const [currentChecked, setCurrentChecked] = useState(defaultChecked);
-
-  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentChecked(!currentChecked);
-    onChange?.(event);
-  };
-
-  return (
-    <Checkbox
-      checked={currentChecked}
-      disabled={disabled}
-      htmlFor={htmlFor}
-      label={label}
-      onChange={changeHandler}
-      {...rest}
-    />
-  );
-};
-
 export const CustomCheckbox: Story = {
   args: {
     onChange: fn(),
   },
-  render: (args) => (
-    <ControllableCheckbox
-      htmlFor="a-custom-checkbox"
-      label="a custom controlled checkbox"
-      name="a-custom-checkbox"
-      onChange={args.onChange}
-    />
-  ),
+  render: function CustomControlledCheckbox(args) {
+    const [checked, setChecked] = useState(false);
+
+    return (
+      <Checkbox
+        checked={checked}
+        htmlFor="a-custom-checkbox"
+        label="a custom controlled checkbox"
+        name="a-custom-checkbox"
+        onChange={(event) => {
+          setChecked(!checked);
+          args.onChange?.(event);
+        }}
+      />
+    );
+  },
   play: async ({ args, canvas, userEvent }) => {
     const checkbox = canvas.getByRole('checkbox');
     await expect(checkbox).not.toBeChecked();
@@ -343,95 +316,102 @@ export const CustomCheckbox: Story = {
 };
 
 export const ControlledCheckbox: Story = {
-  render: () => (
-    <Box border={1} p={16}>
-      <LayoutGrid>
-        <Column size={4}>
-          <ControllableCheckbox
-            htmlFor="a-custom-checkbox"
-            label="a fancy custom checkbox made with the example below, isn't it so so nice?"
-            multiline
-          />
-        </Column>
-        <Column size={4}>
-          <ControllableCheckbox
-            defaultChecked
-            disabled
-            htmlFor="a-custom-checkbox-again"
-            label="disabled custom checkbox"
-          />
-        </Column>
-        <Column size={4}>
-          <Background bg="black" pl={8}>
-            <ControllableCheckbox
-              htmlFor="a-custom-checkbox-the-third"
-              label="a dark mode fancy checkbox"
+  render: function ControlledCheckboxes() {
+    const [fancyChecked, setFancyChecked] = useState(false);
+    const [disabledChecked, setDisabledChecked] = useState(true);
+    const [darkChecked, setDarkChecked] = useState(false);
+
+    return (
+      <Box border={1} p={16}>
+        <LayoutGrid>
+          <Column size={4}>
+            <Checkbox
+              checked={fancyChecked}
+              htmlFor="a-custom-checkbox"
+              label="a fancy custom checkbox made with the example below, isn't it so so nice?"
+              multiline
+              onChange={() => setFancyChecked(!fancyChecked)}
             />
-          </Background>
-        </Column>
-      </LayoutGrid>
-    </Box>
-  ),
+          </Column>
+          <Column size={4}>
+            <Checkbox
+              checked={disabledChecked}
+              disabled
+              htmlFor="a-custom-checkbox-again"
+              label="disabled custom checkbox"
+              onChange={() => setDisabledChecked(!disabledChecked)}
+            />
+          </Column>
+          <Column size={4}>
+            <Background bg="black" pl={8}>
+              <Checkbox
+                checked={darkChecked}
+                htmlFor="a-custom-checkbox-the-third"
+                label="a dark mode fancy checkbox"
+                onChange={() => setDarkChecked(!darkChecked)}
+              />
+            </Background>
+          </Column>
+        </LayoutGrid>
+      </Box>
+    );
+  },
 };
 
 export const NestedCheckboxes: Story = {
-  render: () => {
-    const NestedCheckboxesComponent = () => {
-      const [childrenChecked, setChildrenChecked] = useState<boolean[]>([
-        false,
-        false,
-        false,
-      ]);
+  render: function NestedCheckboxGroup() {
+    const [childrenChecked, setChildrenChecked] = useState<boolean[]>([
+      false,
+      false,
+      false,
+    ]);
 
-      const allChecked = childrenChecked.every(Boolean);
-      const someChecked = childrenChecked.some(Boolean);
+    const allChecked = childrenChecked.every(Boolean);
+    const someChecked = childrenChecked.some(Boolean);
 
-      const isIndeterminate = !allChecked && someChecked;
+    const isIndeterminate = !allChecked && someChecked;
 
-      const toggleAll = () => {
-        const next = !allChecked;
-        setChildrenChecked(childrenChecked.map(() => next));
-      };
-
-      const toggleChild = (index: number) => () => {
-        setChildrenChecked((prev) => {
-          const next = [...prev];
-          next[index] = !prev[index];
-          return next;
-        });
-      };
-
-      return (
-        <Box as="fieldset" border={1} borderRadius="sm" maxWidth="340px" p={16}>
-          <legend>My fave Gamut components</legend>
-          <Box ml={8}>
-            <Checkbox
-              htmlFor="nested-parent"
-              label="Select all components"
-              name="nested-parent"
-              onChange={toggleAll}
-              {...(isIndeterminate
-                ? { indeterminate: true as const, checked: false as const }
-                : { checked: allChecked })}
-            />
-          </Box>
-          <Box as="ul" listStyle="none" ml={32} p={0}>
-            {['Boxes', 'ToolTips', 'Pagination'].map((component, i) => (
-              <Box as="li" key={component}>
-                <Checkbox
-                  checked={childrenChecked[i]}
-                  htmlFor={`nested-child-${i}`}
-                  label={component}
-                  name={`nested-child-${i}`}
-                  onChange={toggleChild(i)}
-                />
-              </Box>
-            ))}
-          </Box>
-        </Box>
-      );
+    const toggleAll = () => {
+      const next = !allChecked;
+      setChildrenChecked(childrenChecked.map(() => next));
     };
 
-    return <NestedCheckboxesComponent />;
+    const toggleChild = (index: number) => () => {
+      setChildrenChecked((prev) => {
+        const next = [...prev];
+        next[index] = !prev[index];
+        return next;
+      });
+    };
+
+    return (
+      <Box as="fieldset" border={1} borderRadius="sm" maxWidth="340px" p={16}>
+        <legend>My fave Gamut components</legend>
+        <Box ml={8}>
+          <Checkbox
+            htmlFor="nested-parent"
+            label="Select all components"
+            name="nested-parent"
+            onChange={toggleAll}
+            {...(isIndeterminate
+              ? { indeterminate: true as const, checked: false as const }
+              : { checked: allChecked })}
+          />
+        </Box>
+        <Box as="ul" listStyle="none" ml={32} p={0}>
+          {['Boxes', 'ToolTips', 'Pagination'].map((component, i) => (
+            <Box as="li" key={component}>
+              <Checkbox
+                checked={childrenChecked[i]}
+                htmlFor={`nested-child-${i}`}
+                label={component}
+                name={`nested-child-${i}`}
+                onChange={toggleChild(i)}
+              />
+            </Box>
+          ))}
+        </Box>
+      </Box>
+    );
   },
 };

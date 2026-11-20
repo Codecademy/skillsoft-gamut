@@ -1,6 +1,6 @@
-import { matchers } from '@emotion/jest';
 import { ThemeProvider, useTheme } from '@emotion/react';
 import { render } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
 import { Background } from './Background';
 import { setupRtl } from './testUtils';
@@ -11,8 +11,6 @@ import {
   percipioTheme,
   platformTheme,
 } from './themes';
-
-expect.extend(matchers);
 
 const renderView = setupRtl(Background, {
   children: <div data-testid="content" />,

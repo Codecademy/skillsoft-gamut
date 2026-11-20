@@ -42,75 +42,6 @@ const sizes = ['content', 'sm', 'md', 'lg', 'xl'] as const;
 const columnWidth = (cellContent: HTMLElement) =>
   cellContent.parentElement!.getBoundingClientRect().width;
 
-const ScrollingRows = () => (
-  <>
-    {rows.map(({ name, role, ship }, i, _, key = `example-row-${i}`) => (
-      <ListRow key={key}>
-        <ListCol size="lg" type="header">
-          <Text fontWeight="title" truncate="ellipsis" truncateLines={1}>
-            {name}
-          </Text>
-        </ListCol>
-        <ListCol size="lg">
-          <Text
-            color="text-disabled"
-            truncate="ellipsis"
-            truncateLines={1}
-            variant="p-small"
-          >
-            {role}
-          </Text>
-        </ListCol>
-        <ListCol fill size="lg">
-          <Text
-            color="text-disabled"
-            truncate="ellipsis"
-            truncateLines={1}
-            variant="p-small"
-          >
-            {ship}
-          </Text>
-        </ListCol>
-        <ListCol size="sm">
-          <Text color="text-disabled" lineHeight="title" variant="p-small">
-            <StreakIcon mr={8} verticalAlign="bottom" />
-            87%
-          </Text>
-        </ListCol>
-        <ListCol size="sm">
-          <Text color="text-disabled" lineHeight="title" variant="p-small">
-            <TrophyIcon mr={8} verticalAlign="bottom" />
-            48%
-          </Text>
-        </ListCol>
-        <ListCol size="sm">
-          <Text color="text-disabled" lineHeight="title" variant="p-small">
-            <StarIcon mr={8} verticalAlign="bottom" />
-            66%
-          </Text>
-        </ListCol>
-        <ListCol>
-          <FillButton size="sm">Engage</FillButton>
-        </ListCol>
-        <ListCol type="control">
-          <IconButton
-            icon={MiniKebabMenuIcon}
-            size="sm"
-            tip="Options"
-            tipProps={{ alignment: 'bottom-center', placement: 'floating' }}
-          />
-          <IconButton
-            icon={MiniDeleteIcon}
-            size="sm"
-            tip="Delete"
-            tipProps={{ alignment: 'bottom-center', placement: 'floating' }}
-          />
-        </ListCol>
-      </ListRow>
-    ))}
-  </>
-);
-
 export const ColumnSizing: ListCompositionStory = {
   render: (args) => {
     return (
@@ -208,7 +139,70 @@ export const HorizontalScrolling: ListCompositionStory = {
   render: (args) => {
     return (
       <List {...args}>
-        <ScrollingRows />
+        {rows.map(({ name, role, ship }) => (
+          <ListRow key={name}>
+            <ListCol size="lg" type="header">
+              <Text fontWeight="title" truncate="ellipsis" truncateLines={1}>
+                {name}
+              </Text>
+            </ListCol>
+            <ListCol size="lg">
+              <Text
+                color="text-disabled"
+                truncate="ellipsis"
+                truncateLines={1}
+                variant="p-small"
+              >
+                {role}
+              </Text>
+            </ListCol>
+            <ListCol fill size="lg">
+              <Text
+                color="text-disabled"
+                truncate="ellipsis"
+                truncateLines={1}
+                variant="p-small"
+              >
+                {ship}
+              </Text>
+            </ListCol>
+            <ListCol size="sm">
+              <Text color="text-disabled" lineHeight="title" variant="p-small">
+                <StreakIcon mr={8} verticalAlign="bottom" />
+                87%
+              </Text>
+            </ListCol>
+            <ListCol size="sm">
+              <Text color="text-disabled" lineHeight="title" variant="p-small">
+                <TrophyIcon mr={8} verticalAlign="bottom" />
+                48%
+              </Text>
+            </ListCol>
+            <ListCol size="sm">
+              <Text color="text-disabled" lineHeight="title" variant="p-small">
+                <StarIcon mr={8} verticalAlign="bottom" />
+                66%
+              </Text>
+            </ListCol>
+            <ListCol>
+              <FillButton size="sm">Engage</FillButton>
+            </ListCol>
+            <ListCol type="control">
+              <IconButton
+                icon={MiniKebabMenuIcon}
+                size="sm"
+                tip="Options"
+                tipProps={{ alignment: 'bottom-center', placement: 'floating' }}
+              />
+              <IconButton
+                icon={MiniDeleteIcon}
+                size="sm"
+                tip="Delete"
+                tipProps={{ alignment: 'bottom-center', placement: 'floating' }}
+              />
+            </ListCol>
+          </ListRow>
+        ))}
       </List>
     );
   },
@@ -227,15 +221,14 @@ export const HorizontalScrolling: ListCompositionStory = {
 
 export const HorizontalScrollingInContainer: ListCompositionStory = {
   args: { id: 'scrolling-list', spacing: 'condensed', scrollable: true },
-  render: (args) => {
-    return (
+  decorators: [
+    (StoryComponent) => (
       <Box width="800px">
-        <List {...args}>
-          <ScrollingRows />
-        </List>
+        <StoryComponent />
       </Box>
-    );
-  },
+    ),
+  ],
+  render: HorizontalScrolling.render,
   play: async ({ canvas }) => {
     const wrapper = canvas.getByTestId('scrollable-scrolling-list');
     await expect(wrapper.scrollWidth).toBeGreaterThan(wrapper.clientWidth);

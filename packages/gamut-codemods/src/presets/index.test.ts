@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import type { Migration } from '../lib/types';
 import { validatePreset } from '.';
 import { scopeSwap } from './scope-swap';

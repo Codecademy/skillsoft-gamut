@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import { describe, it } from 'vitest';
 
 import * as patterns from './patterns';
 import type { CheckerDense as GenericPatternComponent } from './patterns/CheckerDense';
