@@ -31,4 +31,4 @@ Sections 2–4 are explanation and how-to material; section 5 is reference, and 
 
 ## This site is a work in progress
 
-Gamut's documentation is migrating here from a Storybook-based styleguide. Pages that haven't been migrated yet are marked as such and link back to their current location. If you spot a gap, the [Contributing guide](/guides/contributing-to-gamut/) covers how to add or fix a page.
+Gamut's documentation moved here from a Storybook-based styleguide, and some pages are still being filled in. If you spot a gap, the [Contributing guide](/guides/contributing-to-gamut/) covers how to add or fix a page.

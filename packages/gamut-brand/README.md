@@ -180,7 +180,7 @@ yarn workspace @skillsoft/gamut-styles validate:tokens   # full report for gamut
 - Roles: `--color-<role>`, for example `--color-action-primary`.
 - `white` and `black` keep their bare names (boundary tokens).
 
-The `--color-` prefix on primitives is there because variance's `addColors` always emits `--color-<key>`. One name for both the Emotion and CSS routes beat the shorter `--palette-*`.
+The `--color-` prefix on primitives matches variance's `addColors`, which emits `--color-<key>`. One name for both the Emotion and CSS routes beat the shorter `--palette-*`.
 
 ## Known gaps
 
