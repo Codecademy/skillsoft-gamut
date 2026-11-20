@@ -96,8 +96,10 @@ jobs:
       - name: 🔍 Check for duplicate dependencies
         run: yarn dedupe --check
 
+  # Unit tests and story tests share one job so they share one install and build.
   test:
-    runs-on: ubuntu-latest
+    # Pinned: Playwright 1.58 can't install deps on ubuntu-latest (26.04).
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
       - name: 📥 Checkout
@@ -110,7 +112,10 @@ jobs:
           path: .nx/cache
           key: nx-${{ runner.os }}-${{ github.sha }}
           restore-keys: nx-${{ runner.os }}-
-      - name: 🔍 Test
+      - name: 🏗 Build all packages
+        id: build
+        run: yarn build
+      - name: 🔍 Unit tests
         run: yarn test --coverage
       - name: 📤 Upload test results
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -139,27 +144,12 @@ jobs:
           fail_ci_if_error: false
           directory: ./coverage
           report_type: test_results
-
-  test-storybook:
-    # Pinned: Playwright 1.58 can't install deps on ubuntu-latest (26.04).
-    runs-on: ubuntu-24.04
-    timeout-minutes: 30
-    steps:
-      - name: 📥 Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: ⚙️ Setup and install
-        uses: ./.github/actions/setup-and-install
-      - name: 🗂️ Restore Nx cache
-        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: .nx/cache
-          key: nx-${{ runner.os }}-${{ github.sha }}
-          restore-keys: nx-${{ runner.os }}-
-      - name: 🏗 Build all packages
-        run: yarn build
+      # Run stories even when unit tests fail, so one run reports both.
       - name: ⚙️ Install Playwright
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: yarn playwright install chromium --with-deps
       - name: 🔍 Storybook stories and accessibility tests
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: yarn test:stories
 
   # Code scanning diffs a PR against the base branch's analysis, and only main
