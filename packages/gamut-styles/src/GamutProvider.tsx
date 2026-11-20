@@ -15,9 +15,12 @@ export interface GamutProviderProps {
   children?: React.ReactNode;
   useGlobals?: boolean;
   /*
-   * Whether to inject the theme's color tokens (themes on the generated color
-   * system carry tokens.css as `tokensCss`). Turn it off only if the page
-   * loads `@skillsoft/gamut-styles/tokens.css` itself.
+   * Whether to inject the theme's color tokens. A theme on the generated
+   * color system carries its brand's tokens.css as `tokensCss`: that brand's
+   * colors only, starting on :root in the brand's initial mode. Turn it off
+   * only if the page loads the brand's CSS file itself
+   * (`@skillsoft/gamut-styles/tokens/<brand>.css`, or the one a team's
+   * `gamut-brand build` wrote).
    */
   useTokens?: boolean;
   useCache?: boolean;
