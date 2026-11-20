@@ -168,9 +168,9 @@ const activeStates = system.states({
     bg: 'inherit',
     cursor: 'not-allowed',
     fontWeight: 400,
-    textColor: 'text-subtle',
+    textColor: 'action-disabled',
     [Selectors.HOVER]: {
-      textColor: 'text-subtle',
+      textColor: 'action-disabled',
       textDecoration: 'none',
     },
     [Selectors.BEFORE]: {

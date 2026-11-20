@@ -64,7 +64,7 @@ const anchorVariants = variant({
     [InteractiveSelectors.DISABLED]: {
       cursor: 'not-allowed',
       textDecoration: 'none',
-      color: 'text-subtle',
+      color: 'action-disabled',
     },
   },
   variants: {
@@ -78,7 +78,7 @@ const anchorVariants = variant({
         textDecoration: 'underline',
       },
       [InteractiveSelectors.DISABLED]: {
-        color: 'text-subtle',
+        color: 'action-disabled',
       },
       [InteractiveSelectors.FOCUS_VISIBLE]: {
         WebkitFontSmoothing: 'antialiased',
@@ -95,7 +95,7 @@ const anchorVariants = variant({
         color: 'action-primary-hover',
       },
       [InteractiveSelectors.DISABLED]: {
-        color: 'text-subtle',
+        color: 'action-disabled',
       },
       ...underlineFocusVisible,
     },

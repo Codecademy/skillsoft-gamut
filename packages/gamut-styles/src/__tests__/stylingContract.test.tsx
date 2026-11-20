@@ -4,23 +4,23 @@ import { render } from '@testing-library/react';
 import { parse } from 'culori';
 import { describe, expect, it } from 'vitest';
 
-import { Background } from './Background';
+import { Background } from '../Background';
 import {
   ColorMode,
   modeColorProps,
   useColorModes,
   useCurrentMode,
-} from './ColorMode';
-import { GamutProvider } from './GamutProvider';
+} from '../ColorMode';
+import { GamutProvider } from '../GamutProvider';
 import {
   adminTheme,
   lxStudioTheme,
   originalCodecademyTheme,
   platformTheme,
   skillsoftTheme,
-} from './themes';
-import { themed } from './utilities';
-import { css, states, system, variant } from './variance';
+} from '../themes';
+import { themed } from '../utilities';
+import { css, states, system, variant } from '../variance';
 
 expect.extend(matchers);
 
@@ -35,7 +35,6 @@ expect.extend(matchers);
  */
 
 const THEMES = {
-  core: skillsoftTheme,
   admin: adminTheme,
   platform: platformTheme,
   lxStudio: lxStudioTheme,

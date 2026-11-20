@@ -25,7 +25,6 @@ const themeBackground: Record<ColorModes, 'white' | 'navy'> = {
 };
 
 const themeMap = {
-  core: skillsoftTheme,
   admin: adminTheme,
   lxStudio: lxStudioTheme,
   platform: platformTheme,

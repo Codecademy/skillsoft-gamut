@@ -38,7 +38,7 @@ export const infoButtonStyles = css({
     bg: 'state-pressed',
   },
   [InteractiveSelectors.DISABLED]: {
-    color: 'text-subtle',
+    color: 'action-disabled',
     bg: 'transparent',
   },
 });

@@ -71,13 +71,10 @@ export const Large: Story = {
   },
   play: async ({ canvas }) => {
     canvas.getByText('Progress: 75%');
-    // Two copies of the label (track and bar), both decorative: the screen
-    // reader value comes from the visually hidden "Progress" label.
-    const copies = canvas.getAllByText('75%');
-    await expect(copies).toHaveLength(2);
-    for (const copy of copies) {
-      await expect(copy.closest('[aria-hidden="true"]')).not.toBeNull();
-    }
+    await expect(canvas.getByText('75%')).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
   },
 };
 

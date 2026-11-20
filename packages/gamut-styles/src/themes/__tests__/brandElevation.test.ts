@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
-import { adminTheme } from './admin';
-import { lxStudioTheme } from './lxStudio';
-import { originalCodecademyTheme } from './originalCodecademy';
-import { platformTheme } from './platform';
-import { skillsoftTheme } from './skillsoft';
+import { adminTheme } from '../admin';
+import { lxStudioTheme } from '../lxStudio';
+import { originalCodecademyTheme } from '../originalCodecademy';
+import { platformTheme } from '../platform';
+import { skillsoftTheme } from '../skillsoft';
 
 /*
  * Brand elevations draw every depth in the shadow roles, so

@@ -19,8 +19,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        method: 'alphabetical',
-        order: ['Foundations', '*', 'Patterns'],
+        order: ['Actions', ['Buttons', ['Button Examples', '*']], '*'],
       },
     },
     docs: {

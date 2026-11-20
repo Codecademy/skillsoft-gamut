@@ -85,7 +85,7 @@ export const textButtonVariants = templateVariants(
         bg: 'state-pressed',
       },
       [InteractiveSelectors.DISABLED]: {
-        color: 'text-subtle',
+        color: 'action-disabled',
         bg: 'transparent',
       },
     };
@@ -111,7 +111,7 @@ export const strokeButtonVariants = templateVariants(
     },
     [InteractiveSelectors.DISABLED]: {
       borderColor: 'action-disabled',
-      color: 'text-subtle',
+      color: 'action-disabled',
       bg: 'transparent',
     },
   })

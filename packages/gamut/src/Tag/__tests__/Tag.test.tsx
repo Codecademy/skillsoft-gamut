@@ -39,7 +39,7 @@ describe('Tag', () => {
 
     const fill = fillOf(view.getByText('Python'));
     expect(fill).toHaveStyleRule('background-color', 'transparent');
-    expect(fill).toHaveStyleRule('color', 'var(--color-text-subtle)');
+    expect(fill).toHaveStyleRule('color', 'var(--color-action-disabled)');
     expect(
       view.getByRole('button', { name: 'Dismiss Python Tag' })
     ).not.toHaveStyleRule('background-color', 'var(--color-action-disabled)', {

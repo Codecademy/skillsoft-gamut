@@ -1,8 +1,8 @@
+import { describe, expect, it } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
 
 import ts from 'typescript';
-import { describe, expect, it } from 'vitest';
 
 import {
   type DeepImport,
@@ -18,8 +18,8 @@ const movesExports = (m: unknown): m is Manifest =>
 
 /*
   Guards against a manifest that promises something the packages don't
-  deliver. Runs against the built dist, so the packages have to be built
-  first (the `test` target's `^build` wires that up).
+  deliver. Runs against the built dist, so `^build` has to run first
+  (project.json wires that up).
 */
 
 const REPO = path.join(__dirname, '../../../..');
@@ -119,7 +119,7 @@ const exportsOf = (specifiers: string[]) => {
   });
 };
 
-describe('manifests', { timeout: 60_000 }, () => {
+describe('manifests', () => {
   /*
     A deep-import row sends every name imported from `from` to `to`, so
     everything `from` exports has to be available there: directly, via

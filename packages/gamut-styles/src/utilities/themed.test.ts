@@ -8,7 +8,7 @@ const theme = skillsoftTheme;
 
 describe('themed', () => {
   it('returns a function', () => {
-    expect(typeof themed('colors.blue-300')).toBe('function');
+    expect(typeof themed('colors.palette-neutral-light-100')).toBe('function');
   });
   it('returned function looks up the value at the supplied path', () => {
     const getLineHeight = themed('lineHeight.title');

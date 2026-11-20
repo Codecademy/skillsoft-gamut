@@ -12,48 +12,16 @@ import type { ColorSystem, ResolvedValue } from './system';
  * ships is what was checked, whatever Style Dictionary did to the values
  * (rounding, references) on the way out.
  */
-/* Removes `/* … *\/` comments by indexOf, not a regex (CodeQL js/polynomial-redos). */
-const stripComments = (s: string): string => {
-  let out = '';
-  let i = 0;
-  for (;;) {
-    const start = s.indexOf('/*', i);
-    const end = start === -1 ? -1 : s.indexOf('*/', start + 2);
-    if (start === -1 || end === -1) return out + s.slice(i);
-    out += s.slice(i, start);
-    i = end + 2;
-  }
-};
-
 export const parseTokensCss = (
   css: string,
   source: ColorSystem
 ): ColorSystem => {
-  // Plain string splitting rather than a regex: nested quantifiers over
-  // untrusted CSS are a ReDoS risk (CodeQL js/polynomial-redos).
-  const blocks = css.split('}').flatMap((raw) => {
-    // Style Dictionary puts `/** … */` notes after declarations; without
-    // stripping them, a note swallows the next declaration's name.
-    const chunk = stripComments(raw);
-    // Last '{' in the chunk: inside an @media block the inner rule's
-    // selector comes after the at-rule's own brace.
-    const open = chunk.lastIndexOf('{');
-    if (open === -1) return [];
-    const head = chunk.slice(0, open).split(';').pop()!;
-    const decls: Record<string, string> = {};
-    for (const decl of chunk.slice(open + 1).split(';')) {
-      const colon = decl.indexOf(':');
-      const name = decl.slice(0, colon).trim();
-      if (colon === -1 || !/^--[\w-]+$/.test(name)) continue;
-      decls[name] = decl.slice(colon + 1).trim();
-    }
-    return [
-      {
-        selectors: head.trim().split('\n').pop()!.trim().split(/,\s*/),
-        decls,
-      },
-    ];
-  });
+  const blocks = [...css.matchAll(/([^{};]+)\{([^{}]*)\}/g)].map((m) => ({
+    selectors: m[1].trim().split('\n').pop()!.trim().split(/,\s*/),
+    decls: Object.fromEntries(
+      [...m[2].matchAll(/(--[\w-]+):\s*([^;]+);/g)].map((d) => [d[1], d[2]])
+    ),
+  }));
   const block = (selector: string) => {
     const found = blocks.find((b) => b.selectors.includes(selector));
     if (!found) throw new Error(`tokens.css has no ${selector} block`);

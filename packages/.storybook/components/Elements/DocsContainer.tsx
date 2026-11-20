@@ -26,7 +26,6 @@ export const storybookTheme = createTheme(skillsoftTheme)
   .build();
 
 const themeMap = {
-  core: skillsoftTheme,
   admin: adminTheme,
   lxStudio: lxStudioTheme,
   platform: platformTheme,
@@ -51,7 +50,7 @@ export const DocsContainer: React.FC<{
     ?.storyId;
 
   const globalTheme =
-    (context as any).store.userGlobals?.globals?.theme || 'skillsoft';
+    (context as any).store.userGlobals?.globals?.theme || 'core';
   const globalLogicalProps = (context as any).store.userGlobals?.globals
     ?.logicalProps;
   const useLogicalProperties = globalLogicalProps !== 'false';
