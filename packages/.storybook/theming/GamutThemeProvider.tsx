@@ -1,16 +1,12 @@
 import { useLayoutEffect, useRef } from 'react';
 import {
   Background,
-  corePalette,
   ColorModes,
   GamutProvider,
-  coreTheme,
-  adminTheme,
-  lxStudioTheme,
-  percipioTheme,
-  platformTheme,
+  skillsoftTheme,
 } from '@skillsoft/gamut-styles';
 import { Theme } from '@emotion/react';
+import tokensCss from '@skillsoft/gamut-styles/tokens.css?inline';
 
 const STORYBOOK_CSP_NONCE = 'storybook-csp-nonce';
 
@@ -19,17 +15,14 @@ const STORYBOOK_CSP_NONCE = 'storybook-csp-nonce';
  * See: https://github.com/storybookjs/storybook/issues/12255
  */
 
-const themeBackground: Record<ColorModes, 'white' | 'navy'> = {
-  light: 'white',
-  dark: 'navy',
+/* The skillsoft theme's surface-default values, as palette colors. */
+const skillsoftBackground: Record<ColorModes, string> = {
+  light: 'palette-neutral-light-100',
+  dark: 'palette-neutral-dark-1100',
 };
 
 const themeMap = {
-  core: coreTheme,
-  admin: adminTheme,
-  lxStudio: lxStudioTheme,
-  percipio: percipioTheme,
-  platform: platformTheme,
+  skillsoft: skillsoftTheme,
 } as const;
 
 type GlobalsContext = {
@@ -46,7 +39,12 @@ export const withEmotion = (Story: any, context: GlobalsContext) => {
   const selectedTheme = context.globals.theme;
   const useLogicalProperties = context.globals.logicalProps === 'true';
   const direction = context.globals.direction ?? 'ltr';
-  const background = corePalette[themeBackground[colorMode]];
+  /* The theme takes its values from tokens.css, not Emotion. */
+  const tokens = <style>{tokensCss}</style>;
+  const bg = skillsoftBackground[colorMode];
+  const background = (skillsoftTheme._tokens.colors as Record<string, string>)[
+    bg
+  ];
   const storyRef = useRef<HTMLDivElement>(null);
   const currentTheme = themeMap[selectedTheme];
 
@@ -72,11 +70,8 @@ export const withEmotion = (Story: any, context: GlobalsContext) => {
         useLogicalProperties={useLogicalProperties}
         theme={currentTheme as unknown as Theme}
       >
-        <Background
-          alwaysSetVariables
-          bg={themeBackground[colorMode]}
-          ref={storyRef}
-        >
+        {tokens}
+        <Background alwaysSetVariables bg={bg} ref={storyRef}>
           {Story()}
         </Background>
       </GamutProvider>
@@ -89,11 +84,7 @@ export const withEmotion = (Story: any, context: GlobalsContext) => {
       useLogicalProperties={useLogicalProperties}
       theme={currentTheme as unknown as Theme}
     >
-      <Background
-        alwaysSetVariables
-        bg={themeBackground[colorMode]}
-        ref={storyRef}
-      >
+      <Background alwaysSetVariables bg={bg} ref={storyRef}>
         {Story()}
       </Background>
     </GamutProvider>

@@ -79,7 +79,9 @@ export const Alert: React.FC<AlertProps> = ({
   }, [width]);
 
   const activeAlert = alertVariants?.[type] ?? alertVariants.general;
-  const { icon: Icon, bg } = activeAlert;
+  const { icon: Icon, bg, iconColor } = activeAlert;
+  const backgroundImage =
+    'backgroundImage' in activeAlert ? activeAlert.backgroundImage : undefined;
 
   const tipId = useId();
   const collapsibleContentId = useId();
@@ -198,6 +200,7 @@ export const Alert: React.FC<AlertProps> = ({
   const AlertWrapper = isSubtleVariant ? AlertBox : AlertBanner;
   return (
     <AlertWrapper
+      backgroundImage={backgroundImage}
       bg={bg}
       gridTemplateColumns={gridTemplateColumns}
       placement={placement}
@@ -205,7 +208,7 @@ export const Alert: React.FC<AlertProps> = ({
       ref={ref}
       {...props}
     >
-      <Icon aria-hidden p={8} size={32} />
+      <Icon aria-hidden color={iconColor} p={8} size={32} />
       <CollapsibleContent
         animate={toggleState}
         id={collapsibleContentId}

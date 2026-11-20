@@ -6,8 +6,11 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { createEmotionCache } from './cache';
 import { GamutProvider, useNonce } from './GamutProvider';
+import { skillsoftTheme, skillsoftTheme as theme } from './themes';
+
+const withoutTokens = ({ tokensCss, ...rest }: typeof theme) =>
+  rest as typeof theme;
 import { setupRtl } from './testUtils';
-import { coreTheme as theme } from './themes';
 
 vi.mock('./cache', () => {
   const cacheMock = vi.fn();
@@ -20,10 +23,22 @@ vi.mock('get-nonce', () => ({
 
 const renderView = setupRtl(GamutProvider, { theme });
 
+/* Emotion may insert with insertRule, which leaves textContent empty. */
+const emotionCss = () =>
+  Array.from(document.querySelectorAll<HTMLStyleElement>('style[data-emotion]'))
+    .map(
+      (el) =>
+        (el.textContent ?? '') +
+        Array.from(el.sheet?.cssRules ?? [])
+          .map((rule) => rule.cssText)
+          .join('')
+    )
+    .join('');
+
 describe(GamutProvider, () => {
   beforeEach(() => {
     vi.resetAllMocks();
-    vi.mocked(setNonce).mockClear();
+    (setNonce as jest.Mock).mockClear();
   });
 
   it('renders with a cache by default', () => {
@@ -55,15 +70,23 @@ describe(GamutProvider, () => {
   });
 
   it('wraps all elements in a ThemeProvider', () => {
+    // tokensCss is multi-line; check the context value directly instead of matching its text.
+    const themeWithoutTokens = withoutTokens(theme);
+    let seen: { name?: string; useLogicalProperties?: boolean } | undefined;
     renderView({
+      theme: themeWithoutTokens,
       children: (
         <ThemeContext.Consumer>
-          {(value) => <div>{JSON.stringify(value)}</div>}
+          {(value) => {
+            seen = value as typeof seen;
+            return null;
+          }}
         </ThemeContext.Consumer>
       ),
     });
 
-    screen.getByText(JSON.stringify({ ...theme, useLogicalProperties: false }));
+    expect(seen?.name).toBe(themeWithoutTokens.name);
+    expect(seen?.useLogicalProperties).toBe(false);
   });
   it('it can have another GamutProvider as a child with creating multiple caches or globals', () => {
     renderView({
@@ -134,5 +157,31 @@ describe(GamutProvider, () => {
     const blue = rootStyles.getPropertyValue('--cool');
 
     expect(blue).toBe('blue');
+  });
+
+  describe('color tokens', () => {
+    it('injects tokens.css for a theme on the generated color system', () => {
+      renderView({ theme: skillsoftTheme });
+
+      expect(emotionCss()).toContain('--color-palette-primary-800:');
+    });
+
+    it('does not inject tokens when configured not to', () => {
+      renderView({ theme: skillsoftTheme, useTokens: false });
+
+      expect(emotionCss()).not.toContain('--color-palette-primary-800:');
+    });
+
+    it('does not inject tokens without globals', () => {
+      renderView({ theme: skillsoftTheme, useGlobals: false });
+
+      expect(emotionCss()).not.toContain('--color-palette-primary-800:');
+    });
+
+    it('does not inject tokens for themes that do not carry them', () => {
+      renderView({ theme: withoutTokens(theme) });
+
+      expect(emotionCss()).not.toContain('--color-palette-primary-800:');
+    });
   });
 });
