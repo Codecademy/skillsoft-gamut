@@ -9,9 +9,9 @@ import StoryEmbed from '~/components/StoryEmbed.astro';
 
 Tips share one underlying mechanism — each chooses between the same inline and floating renderers — but differ in what triggers them and what they can show:
 
-- [ToolTip](/components/feedback/tips/tooltip/) — a short, plain-text tip triggered by hovering or focusing the element it describes.
 - [InfoTip](/components/feedback/tips/infotip/) — a tip triggered by clicking its own info icon, for content longer than a ToolTip is meant to hold.
 - [PreviewTip](/components/feedback/tips/previewtip/) — a richer tip on a link, previewing content — optionally with an avatar and username — from the link's destination.
+- [ToolTip](/components/feedback/tips/tooltip/) — a short, plain-text tip triggered by hovering or focusing the element it describes.
 
 All three share a `placement` prop (`'inline'` default, or `'floating'`), a `narrow` prop that forces the tip to its narrowest width for tight or edge-of-page spaces, and, inline only, an `inheritDims` prop and a `zIndex` override.
 
