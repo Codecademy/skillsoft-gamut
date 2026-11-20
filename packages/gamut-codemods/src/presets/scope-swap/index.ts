@@ -1,3 +1,6 @@
+import { findFlatEslintConfig } from '../../lib/eslint';
+import { findLeftovers } from '../../lib/leftovers';
+import { mentionsOldNames } from '../../lib/run-source';
 import type { Preset } from '../../lib/types';
 import { deepImports } from '../../migrations/deep-imports';
 import { eslintComments } from '../../migrations/eslint-comments';
@@ -17,6 +20,11 @@ export const scopeSwap: Preset = {
   name: 'scope-swap',
   description: 'Move from @codecademy/gamut* to @skillsoft/gamut*.',
   manifest,
+  mentions: (source) => mentionsOldNames(manifest, source),
+  leftovers: (roots) =>
+    findLeftovers(roots, manifest, {
+      eslintRuleKeys: !findFlatEslintConfig(roots),
+    }),
   migrations: [
     deepImports,
     movedExports,
@@ -39,7 +47,9 @@ export const scopeSwap: Preset = {
   ],
   conditionalChecklist: {
     'removed:@codecademy/gamut-kit':
-      "gamut-kit is gone. Delete anything that reads it for versions, such as a sync-gamut-deps script. @skillsoft/gamut-styles has @emotion/cache and stylis peer dependencies, so add them if yarn warns that they aren't provided.",
+      "gamut-kit is gone. Delete anything that reads it for versions, such as a sync-gamut-deps script. @skillsoft/gamut-styles needs @emotion/cache, so add it if yarn warns that it isn't provided. Don't add stylis by hand: @emotion/cache brings its own copy, and a second root copy can break style inserts.",
+    'required-peers':
+      'package.json gained peer dependencies that the @skillsoft packages need at runtime and no longer install for you (the package-json warnings list them). Run `yarn install`. If yarn still reports a peer as missing, the app is pinned to another version of it: move it to the range the migration wrote.',
     'video-peers':
       'Video needs two peer dependencies that Gamut no longer installs for you: `@vidstack/react` and `react-player`. Gamut supports @vidstack/react 1.12.x only (its npm `latest` tag is 0.6.x). Install them: `yarn add @vidstack/react@~1.12.12 react-player@^3.4.0`.',
     'tsconfig-no-dom':

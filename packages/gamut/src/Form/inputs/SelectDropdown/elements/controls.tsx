@@ -11,7 +11,8 @@ const { DropdownIndicator } = SelectDropdownElements;
  */
 export const DropdownButton = (props: SizedIndicatorProps) => {
   const { size } = props.selectProps;
-  const color = props.isDisabled ? 'text-disabled' : 'text';
+  /* The field's chevron is `text-subtle`, disabled or not. */
+  const color = 'text-subtle';
   const iconSize = size ?? 'medium';
   const { ...iconProps } = indicatorIcons[`${iconSize}Chevron`];
   const { icon: IndicatorIcon } = iconProps;

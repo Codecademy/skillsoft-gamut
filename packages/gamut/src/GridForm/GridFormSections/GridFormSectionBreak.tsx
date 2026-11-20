@@ -17,7 +17,7 @@ export const GridFormSectionBreak: React.FC = () => {
     <Column aria-hidden size={12}>
       <SectionBreak
         border={1}
-        borderColorBottom="border-primary"
+        borderColorBottom="border-subtle"
         borderTop="none"
         borderX="none"
         data-testid="form-section-break"

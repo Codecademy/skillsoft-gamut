@@ -1,17 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
-import { adminTheme } from './admin';
-import { coreTheme } from './core';
-import { lxStudioTheme } from './lxStudio';
-import { percipioTheme } from './percipio';
-import { platformTheme } from './platform';
+import { skillsoftTheme } from './skillsoft';
 
 describe('themes', () => {
-  it.each([
-    ['core', coreTheme],
-    ['platform', platformTheme],
-    ['admin', adminTheme],
-    ['lxStudio', lxStudioTheme],
-    ['percipio', percipioTheme],
-  ])(`%s - theme shape`, (_, theme) => expect(theme).toMatchSnapshot());
+  it('skillsoft - theme shape', () => {
+    expect(skillsoftTheme).toMatchSnapshot();
+  });
 });

@@ -1,9 +1,11 @@
+import type { BackgroundProps } from '@skillsoft/gamut-styles';
 import { Background } from '@skillsoft/gamut-styles';
-import type { Decorator, Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, waitFor } from 'storybook/test';
 
 import { FlexBox } from '../Box';
 import { Text } from '../Typography';
+import type { WithChildrenProp } from '../utils';
 import { Disclosure } from '.';
 
 const meta: Meta<typeof Disclosure> = {
@@ -15,13 +17,16 @@ const meta: Meta<typeof Disclosure> = {
 export default meta;
 type Story = StoryObj<typeof Disclosure>;
 
-const withPrimaryBackground: Decorator = (StoryComponent) => (
-  <Background bg="background-primary">
-    <FlexBox p={16}>
-      <StoryComponent />
-    </FlexBox>
-  </Background>
-);
+const BackgroundWithPadding = ({
+  bg,
+  children,
+}: Pick<BackgroundProps, 'bg'> & WithChildrenProp) => {
+  return (
+    <Background bg={bg}>
+      <FlexBox p={16}>{children}</FlexBox>
+    </Background>
+  );
+};
 
 const loremBody =
   'Lorem ipsum dolor sit amet consectetur. Ut consectetur adipiscing a donec sed volutpat. Tempor risus rhoncus quisque vel sit mattis. Accumsan vel posuere tortor sit mattis augue congue sit.';
@@ -60,38 +65,47 @@ export const Default: Story = {
 };
 
 export const DefaultBackground: Story = {
-  args: {
-    body: 'Uses `background`',
-    heading: 'default',
-  },
-  decorators: [withPrimaryBackground],
+  render: () => (
+    <BackgroundWithPadding bg="surface-default">
+      <Disclosure body="Uses `surface-raised`" heading="default" />
+    </BackgroundWithPadding>
+  ),
 };
 
 export const SubtleBgBordered: Story = {
-  args: {
-    body: 'Uses `background-selected`. For this example there is a `<Background>` set to `"background-primary"`.',
-    heading: 'subtle',
-    variant: 'subtle',
-  },
-  decorators: [withPrimaryBackground],
+  render: () => (
+    <BackgroundWithPadding bg="surface-default">
+      <Disclosure
+        body='Uses `surface-sunken`. For this example there is a `<Background>` set to `"surface-default"`.'
+        heading="subtle"
+        variant="subtle"
+      />
+    </BackgroundWithPadding>
+  ),
 };
 
 export const Transparent: Story = {
-  args: {
-    body: 'Notice the border and it uses `background-current` to inherit the existing background color.',
-    heading: 'transparent',
-    variant: 'transparent',
-  },
-  decorators: [withPrimaryBackground],
+  render: () => (
+    <BackgroundWithPadding bg="surface-default">
+      <Disclosure
+        body="Notice the border and it uses `background-current` to inherit the existing background color."
+        heading="transparent"
+        variant="transparent"
+      />
+    </BackgroundWithPadding>
+  ),
 };
 
 export const HasBorder: Story = {
-  args: {
-    body: 'This is a `default` variant without a border.',
-    hasBorder: false,
-    heading: 'hasBorder (set to false)',
-  },
-  decorators: [withPrimaryBackground],
+  render: () => (
+    <BackgroundWithPadding bg="surface-default">
+      <Disclosure
+        body="This is a `default` variant without a border."
+        hasBorder={false}
+        heading="hasBorder (set to false)"
+      />
+    </BackgroundWithPadding>
+  ),
 };
 
 export const Normal: Story = {

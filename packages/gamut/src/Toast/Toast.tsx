@@ -11,6 +11,7 @@ import { IconButton } from '../Button/IconButton';
 import { PatternBackdrop } from '../PatternBackdrop/PatternBackdrop';
 import { Text } from '../Typography';
 import type { WithChildrenProp } from '../utils';
+import { raisedShadow } from '../utils/elevation';
 
 const layoutVariants = system.variant({
   prop: 'layout',
@@ -43,6 +44,8 @@ const ToastContainer = styled(PatternBackdrop)<
     columnGap: 12,
     gridTemplateColumns: '4rem 1fr 2rem',
   }),
+  /* A toast floats over unknown content: a hairline plus the raised shadow. */
+  raisedShadow,
   layoutVariants
 );
 

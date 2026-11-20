@@ -39,7 +39,7 @@ const meta: Meta<typeof PopoverContainer> = {
           >
             <Background
               alignItems="center"
-              bg="navy"
+              bg="surface-raised"
               dimensions="100px"
               display="flex"
               flexDirection="column"
@@ -101,7 +101,7 @@ export const Alignment: Story = {
               >
                 <Background
                   alignItems="center"
-                  bg="navy"
+                  bg="surface-raised"
                   dimensions="100px"
                   display="flex"
                   flexDirection="column"
@@ -153,7 +153,7 @@ export const InvertAxis: Story = {
                 >
                   <Background
                     alignItems="center"
-                    bg="navy"
+                    bg="surface-raised"
                     dimensions="100px"
                     display="flex"
                     flexDirection="column"
@@ -205,7 +205,7 @@ export const Offset: Story = {
               >
                 <Background
                   alignItems="center"
-                  bg="navy"
+                  bg="surface-raised"
                   dimensions="100px"
                   display="flex"
                   flexDirection="column"
@@ -257,7 +257,7 @@ export const XAndY: Story = {
               >
                 <Background
                   alignItems="center"
-                  bg="navy"
+                  bg="surface-raised"
                   dimensions="100px"
                   display="flex"
                   flexDirection="column"

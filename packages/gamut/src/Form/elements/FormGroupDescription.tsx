@@ -3,4 +3,6 @@ import { css } from '@skillsoft/gamut-styles';
 
 import { formBaseStyles } from '../styles';
 
-export const FormGroupDescription = styled.div(css(formBaseStyles));
+export const FormGroupDescription = styled.div(
+  css({ ...formBaseStyles, color: 'text-subtle' })
+);

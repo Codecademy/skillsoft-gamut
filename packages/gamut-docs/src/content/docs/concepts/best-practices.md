@@ -7,7 +7,7 @@ For best practices specific to one component — like alerts, errors, or confirm
 
 ## Prefer semantic tokens over raw values
 
-Access colors through Gamut's semantic aliases (`text`, `background`, `primary`, `secondary`) rather than raw color values — see [Color modes](/concepts/color-modes/) for why. Aliases guarantee you get the right color for the right theme and color mode, with the right types and states.
+Access colors through Gamut's color roles (`text-default`, `surface-raised`, `action-primary` and the rest) rather than raw values or palette colors; see [Color modes](/concepts/color-modes/) for why. Roles give you the right color for the theme and color mode, with the right types and states. [Color system](/concepts/color-system/#pick-a-role-by-its-job) lists which role fits which job.
 
 ```tsx
 import { css } from '@skillsoft/gamut-styles';
@@ -17,7 +17,7 @@ import styled from '@emotion/styled';
 const Box = styled.div(css({ p: 4 }));
 
 // A semantic color, not a raw one
-const OtherCoolThing = styled.div(css({ color: 'primary', p: 4 }));
+const OtherCoolThing = styled.div(css({ color: 'action-primary', p: 4 }));
 ```
 
 `variant` and `states` extend the same idea to whole sets of styles — see [Compose and variants](/foundations/system-props/compose-and-variants/) for the full API.

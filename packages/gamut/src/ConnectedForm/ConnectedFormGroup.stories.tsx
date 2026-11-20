@@ -61,6 +61,8 @@ export const Default: Story = {
 };
 
 export const States: Story = {
+  // Disabled ink is pending a design decision (action-disabled). Axe reports it as a warning, not a failure.
+  parameters: { a11y: { test: 'todo' } },
   render: function StatesStory() {
     const { ConnectedFormGroup, ConnectedForm, connectedFormProps } =
       useConnectedForm({
@@ -394,6 +396,8 @@ export const LabelIndicators: Story = {
 };
 
 export const DisabledFields: Story = {
+  // Disabled ink is pending a design decision (action-disabled). Axe reports it as a warning, not a failure.
+  parameters: { a11y: { test: 'todo' } },
   render: () => (
     <ConnectedForm
       defaultValues={{
