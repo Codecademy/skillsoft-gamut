@@ -4,6 +4,7 @@ import {
   ColorModes,
   GamutProvider,
   skillsoftTheme,
+  originalCodecademyTheme,
 } from '@skillsoft/gamut-styles';
 import { Theme } from '@emotion/react';
 import tokensCss from '@skillsoft/gamut-styles/tokens.css?inline';
@@ -15,14 +16,9 @@ const STORYBOOK_CSP_NONCE = 'storybook-csp-nonce';
  * See: https://github.com/storybookjs/storybook/issues/12255
  */
 
-/* The skillsoft theme's surface-default values, as palette colors. */
-const skillsoftBackground: Record<ColorModes, string> = {
-  light: 'palette-neutral-light-100',
-  dark: 'palette-neutral-dark-1100',
-};
-
 const themeMap = {
   skillsoft: skillsoftTheme,
+  originalCodecademy: originalCodecademyTheme,
 } as const;
 
 type GlobalsContext = {
@@ -39,14 +35,23 @@ export const withEmotion = (Story: any, context: GlobalsContext) => {
   const selectedTheme = context.globals.theme;
   const useLogicalProperties = context.globals.logicalProps === 'true';
   const direction = context.globals.direction ?? 'ltr';
-  /* The theme takes its values from tokens.css, not Emotion. */
-  const tokens = <style>{tokensCss}</style>;
-  const bg = skillsoftBackground[colorMode];
-  const background = (skillsoftTheme._tokens.colors as Record<string, string>)[
-    bg
-  ];
-  const storyRef = useRef<HTMLDivElement>(null);
   const currentTheme = themeMap[selectedTheme];
+  /*
+   * Generated themes (color-system spike; they carry contentModes) take their
+   * values from tokens.css, not Emotion. Injected only for those: tokens.css
+   * also sets white, black and background-current on :root, which would leak
+   * into the other themes. They have none of core's primitives, so `navy`
+   * doesn't exist there; the story sits on their own surface-default.
+   */
+  const generated = 'contentModes' in currentTheme ? currentTheme : undefined;
+  const tokens = generated && <style>{tokensCss}</style>;
+  const bg = generated
+    ? generated.modes[colorMode]['surface-default']
+    : undefined;
+  const background = generated
+    ? (generated._tokens.colors as Record<string, string>)[bg as string]
+    : undefined;
+  const storyRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const storyEl = storyRef.current?.closest(

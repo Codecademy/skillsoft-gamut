@@ -2,8 +2,8 @@ import type { Slot } from './brand';
 import type { Grade } from './ramp';
 
 /*
- * The role layer, as data. Ported from gamut-sandbox `roles.ts` at dffd84b
- * with every hue family swapped for its slot (blue → primary, magenta →
+ * The role layer, as data. Ported from gamut-sandbox `roles.ts` at dffd84b,
+ * roles updated to df33b47 (the shadow-* group), with every hue family swapped for its slot (blue → primary, magenta →
  * accent, violet → accent-alt, red → danger, amber → warning, teal → success).
  *
  * The sandbox's prose ("why this grade") stays in the sandbox; this file
@@ -20,7 +20,7 @@ export type Ref = { slot: Slot; grade: Grade } | Boundary;
 
 export interface RoleValue {
   ref: Ref;
-  /* Set for the translucent roles: state veils and the backdrop. */
+  /* Set for the translucent roles: state veils and shadows. */
   alpha?: number;
 }
 
@@ -43,7 +43,7 @@ export type RoleGroup =
   | 'action'
   | 'state'
   | 'viz'
-  | 'other';
+  | 'shadow';
 
 export interface Role {
   token: string;
@@ -74,6 +74,18 @@ export const STATE_ALPHA = {
   'state-hover': 0.06,
   'state-pressed': 0.09,
   'state-selected': 0.08,
+} as const;
+
+/*
+ * Shadow strengths per mode (sandbox `SHADOW_ALPHA` at df33b47, still marked
+ * draft there). Light ambient matches Percipio's shipped resting shadow; key
+ * sits a step above it. Dark is twice light, as a dark surface has less light
+ * to remove. The scrim is mode-independent.
+ */
+export const SHADOW_ALPHA = {
+  'shadow-key': { light: 0.16, dark: 0.32 },
+  'shadow-ambient': { light: 0.12, dark: 0.24 },
+  'shadow-scrim': { light: 0.6, dark: 0.6 },
 } as const;
 
 /* The six-stop falloff every gradient circle uses: [position %, alpha]. */
@@ -118,7 +130,8 @@ export const ROLES: Role[] = [
     group: 'surface',
     light: boundary('white'),
     dark: at('neutral-dark', 1000),
-    usage: 'Cards, panels, dialogs, menus. Higher elevation is lighter.',
+    usage:
+      'The lighter surface step, not a depth: cards, menus, dialogs, fields, and flat bordered sections. Shadow, not the fill, says how high something sits.',
   },
   {
     token: 'surface-success',
@@ -408,12 +421,33 @@ export const ROLES: Role[] = [
     })
   ),
 
-  /* other */
+  /*
+   * Shadows: depth colors, all alpha and contrast-exempt. Key and ambient are
+   * the two box-shadow layers every elevation composes; depth comes from the
+   * elevation's geometry, so the color is the same at every level. The scrim
+   * is a fill for the element behind a modal, not a box-shadow color.
+   */
   {
-    token: 'backdrop',
-    group: 'other',
-    light: { ref: 'black', alpha: 0.6 },
-    dark: { ref: 'black', alpha: 0.6 },
+    token: 'shadow-key',
+    group: 'shadow',
+    light: veil('neutral-dark', 1100, SHADOW_ALPHA['shadow-key'].light),
+    dark: { ref: 'black', alpha: SHADOW_ALPHA['shadow-key'].dark },
+    usage:
+      'The tight, darker layer of an elevation shadow. Box-shadow color only; the elevation supplies offset and blur.',
+  },
+  {
+    token: 'shadow-ambient',
+    group: 'shadow',
+    light: veil('neutral-dark', 1100, SHADOW_ALPHA['shadow-ambient'].light),
+    dark: { ref: 'black', alpha: SHADOW_ALPHA['shadow-ambient'].dark },
+    usage:
+      'The wide, soft layer of an elevation shadow, always paired with shadow-key. Transparent where a brand has no soft falloff.',
+  },
+  {
+    token: 'shadow-scrim',
+    group: 'shadow',
+    light: { ref: 'black', alpha: SHADOW_ALPHA['shadow-scrim'].light },
+    dark: { ref: 'black', alpha: SHADOW_ALPHA['shadow-scrim'].dark },
     usage: 'The scrim behind modals and dialogs. Mode-independent.',
   },
 ];

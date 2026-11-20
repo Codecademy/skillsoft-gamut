@@ -92,13 +92,20 @@ const CssSurface: React.FC<{
   );
 };
 
-const SURFACES: (RoleName | PaletteKey)[] = [
+const SURFACE_ROLES: RoleName[] = [
   'surface-default',
   'surface-raised',
   'surface-sunken',
   'surface-success',
   'surface-warning',
   'surface-error',
+];
+
+/*
+ * Not roles: raw palette steps, the way `<Background bg="...">` can still be
+ * handed any color. These check that the flip works off the role layer too.
+ */
+const PALETTE_FILLS: PaletteKey[] = [
   'palette-primary-800',
   'palette-accent-700',
   'palette-neutral-dark-1000',
@@ -109,7 +116,14 @@ const SURFACES: (RoleName | PaletteKey)[] = [
 export const Surfaces: Story = {
   render: () => (
     <div style={{ display: 'grid', gap: 8 }}>
-      {SURFACES.map((color) => (
+      <Text as="h3">Surface roles</Text>
+      {SURFACE_ROLES.map((color) => (
+        <CssSurface color={color} key={color} outer="light" />
+      ))}
+      <Text as="h3" mt={16}>
+        Raw palette fills (not roles)
+      </Text>
+      {PALETTE_FILLS.map((color) => (
         <CssSurface color={color} key={color} outer="light" />
       ))}
     </div>

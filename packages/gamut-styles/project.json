@@ -18,7 +18,8 @@
           "tsdown",
           "tsc --emitDeclarationOnly --project tsconfig.lib.json",
           "cpy './src/**/*.{d.ts,svg,png}' ./dist",
-          "cpy './src/tokens/generated/*.{css,json}' ./dist/tokens/generated"
+          "cpy './src/tokens/generated/*.{css,json}' ./dist/tokens/generated",
+          "cpy './src/tokens/generated/brands/*.json' ./dist/tokens/generated/brands"
         ],
         "parallel": false
       }

@@ -53,8 +53,8 @@ Storybook has a live example under **Foundations / Color system / CSS contract**
 - Roles: `--color-<role>`, for example `--color-action-primary`.
 - `white` and `black` keep their bare names as boundary tokens.
 
-The `--color-` prefix on primitives matches what variance emits for every
-color key, so the Emotion and CSS routes use one naming scheme.
+The `--color-` prefix is the color scale's prefix in variance, so the Emotion and
+CSS routes use one naming scheme.
 
 ### Known limits
 
