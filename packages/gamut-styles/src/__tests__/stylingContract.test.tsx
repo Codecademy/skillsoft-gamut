@@ -2,6 +2,7 @@ import { matchers } from '@emotion/jest';
 import type { Theme } from '@emotion/react';
 import { render } from '@testing-library/react';
 import { parse } from 'culori';
+import { describe, expect, it } from 'vitest';
 
 import { Background } from '../Background';
 import {
