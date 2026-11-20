@@ -29,16 +29,16 @@ export const Bordered: Story = {
 export const Positioning: Story = {
   render: () => (
     <Box height="500px" position="relative">
-      <Box bg="gray-200" left="0" p={16} position="absolute" top="0">
+      <Box bg="surface-sunken" left="0" p={16} position="absolute" top="0">
         Top Left
       </Box>
-      <Box bg="gray-200" bottom="0" left="0" p={16} position="absolute">
+      <Box bg="surface-sunken" bottom="0" left="0" p={16} position="absolute">
         Bottom Left
       </Box>
-      <Box bg="gray-200" p={16} position="absolute" right="0" top="0">
+      <Box bg="surface-sunken" p={16} position="absolute" right="0" top="0">
         Top Right
       </Box>
-      <Box bg="gray-200" bottom="0" p={16} position="absolute" right="0">
+      <Box bg="surface-sunken" bottom="0" p={16} position="absolute" right="0">
         Bottom Right
       </Box>
     </Box>

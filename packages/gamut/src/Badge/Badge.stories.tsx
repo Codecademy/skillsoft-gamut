@@ -46,11 +46,11 @@ export const TertiaryFill: Story = {
   },
   decorators: [
     (Story) => (
-      <Box bg="background-primary" height="30px" pt={16}>
+      <Box bg="surface-default" height="30px" pt={16}>
         <Box left={12} position="absolute" top={12}>
           <Story />
         </Box>
-        <Box bg="text" height="100%" width="100%" />
+        <Box bg="text-default" height="100%" width="100%" />
       </Box>
     ),
   ],
@@ -70,10 +70,10 @@ export const Custom: Story = {
         variant="custom"
         {...args}
       />
-      <Badge bg="green-400" variant="custom" {...args} />
-      <Badge bg="orange-500" variant="custom" {...args} />
+      <Badge bg="palette-success-300" variant="custom" {...args} />
+      <Badge bg="palette-warning-300" variant="custom" {...args} />
       <Badge
-        bg="lightBlue"
+        bg="palette-primary-400"
         variant="custom"
         {...args}
         icon={icons.MiniStarIcon}

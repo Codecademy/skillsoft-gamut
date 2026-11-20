@@ -2,9 +2,9 @@ import { render } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { AssetProvider } from './AssetProvider';
-import { skillsoftTheme } from './themes';
+import { lxStudioTheme, skillsoftTheme } from './themes';
 
-const typedPercipioTheme = skillsoftTheme as any;
+const typedLxStudioTheme = lxStudioTheme as any;
 
 const { getFontsMock } = vi.hoisted(() => ({ getFontsMock: vi.fn() }));
 
@@ -285,12 +285,12 @@ describe('Font Loading and Error Handling', () => {
       const { rerender } = render(<AssetProvider theme={skillsoftTheme} />);
 
       for (let i = 0; i < 5; i += 1) {
-        rerender(<AssetProvider theme={typedPercipioTheme} />);
+        rerender(<AssetProvider theme={typedLxStudioTheme} />);
         rerender(<AssetProvider theme={skillsoftTheme} />);
       }
 
       expect(() => {
-        rerender(<AssetProvider theme={typedPercipioTheme} />);
+        rerender(<AssetProvider theme={typedLxStudioTheme} />);
       }).not.toThrow();
     });
   });

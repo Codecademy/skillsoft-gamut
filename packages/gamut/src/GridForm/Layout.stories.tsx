@@ -74,7 +74,7 @@ export const Formatted: Story = {
         },
       },
     ],
-    requiredTextProps: { color: 'danger', variant: 'title-xs' },
+    requiredTextProps: { color: 'text-error', variant: 'title-xs' },
   },
   play: ({ canvas }) => {
     canvas.getByText('* Required');
@@ -223,7 +223,7 @@ export const Sections: Story = {
         layout: 'left',
         variant: 'title-xs',
         titleWrapperProps: {
-          color: 'danger',
+          color: 'text-error',
         },
         fields: [
           {
@@ -298,7 +298,7 @@ export const Sections: Story = {
         ],
       },
     ],
-    requiredTextProps: { color: 'primary', fontStyle: 'italic' },
+    requiredTextProps: { color: 'action-primary', fontStyle: 'italic' },
   },
   play: async ({ canvas }) => {
     canvas.getByRole('heading', { level: 2, name: 'first section' });

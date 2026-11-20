@@ -23,31 +23,39 @@ const colorVariants = variant({
   },
   variants: {
     primary: {
-      bg: `text`,
-      textColor: 'background',
+      bg: 'text-default',
+      textColor: 'text-inverse',
     },
+    /*
+     * Design gives accent the two-color brand gradient. Its circles are sized
+     * in `cqw`, and a badge sizes to its content, so it can't be its own query
+     * container. Until the gradient has a fixed-size form, accent is the flat
+     * `surface-brand` fallback with the `border-default` edge design adds.
+     */
     accent: {
-      bg: 'yellow',
-      textColor: 'navy',
+      bg: 'surface-brand',
+      border: 1,
+      borderColor: 'border-default',
+      textColor: 'text-default',
     },
     secondary: {
-      bg: 'text-secondary',
-      textColor: 'background',
+      bg: 'text-subtle',
+      textColor: 'text-inverse',
     },
     tertiary: {
       bg: 'transparent',
       border: 1,
-      borderColor: 'border-secondary',
-      textColor: 'text-secondary',
+      borderColor: 'border-default',
+      textColor: 'text-subtle',
     },
     tertiaryFill: {
-      bg: 'background',
+      bg: 'surface-raised',
       border: 1,
-      borderColor: 'border-secondary',
-      textColor: 'text-secondary',
+      borderColor: 'border-default',
+      textColor: 'text-subtle',
     },
     custom: {
-      textColor: 'text',
+      textColor: 'text-default',
     },
   },
 });

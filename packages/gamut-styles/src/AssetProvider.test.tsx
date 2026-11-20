@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { AssetProvider, createFontLinks } from './AssetProvider';
 import { setupRtl } from './testUtils';
-import { skillsoftTheme } from './themes';
+import { lxStudioTheme, skillsoftTheme } from './themes';
 
 const renderView = setupRtl(AssetProvider, {});
 
@@ -235,7 +235,7 @@ describe('AssetProvider', () => {
         },
       ]);
 
-      const { view } = renderView({ theme: skillsoftTheme as any });
+      const { view } = renderView({ theme: lxStudioTheme as any });
       const links = getPreloadLinks(view.container);
 
       expect(links).toHaveLength(1);
@@ -243,11 +243,11 @@ describe('AssetProvider', () => {
         'href',
         'https://www.codecademy.com/gamut/roboto-regular.woff2'
       );
-      expect(mockGetFonts).toHaveBeenCalledWith('skillsoft');
+      expect(mockGetFonts).toHaveBeenCalledWith('lxStudio');
     });
 
     it('should handle theme without name property', () => {
-      const themeWithoutName = { ...skillsoftTheme, name: undefined } as any;
+      const themeWithoutName = { ...skillsoftTheme, name: undefined };
       mockGetFonts.mockReturnValue([]);
 
       renderView({ theme: themeWithoutName });

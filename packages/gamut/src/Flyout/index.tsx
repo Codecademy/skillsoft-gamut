@@ -1,6 +1,6 @@
 import { MiniDeleteIcon } from '@skillsoft/gamut-icons';
 import type { Colors } from '@skillsoft/gamut-styles';
-import { Background } from '@skillsoft/gamut-styles';
+import { Background, theme } from '@skillsoft/gamut-styles';
 import type * as React from 'react';
 
 import { FlexBox } from '../Box';
@@ -39,7 +39,7 @@ export interface FlyoutProps extends WithChildrenProp {
 }
 
 export const Flyout: React.FC<FlyoutProps> = ({
-  bg = 'background',
+  bg = 'surface-raised',
   children,
   closeLabel = 'Close',
   expanded,
@@ -65,6 +65,12 @@ export const Flyout: React.FC<FlyoutProps> = ({
           position="fixed"
           top={0}
           {...{ [openFrom]: 0 }}
+          /* Design's map: a `border-subtle` inner edge. */
+          {...{
+            [openFrom === 'left'
+              ? 'borderRight'
+              : 'borderLeft']: `1px solid ${theme.colors['border-subtle']}`,
+          }}
         >
           <FlexBox
             alignItems="center"
