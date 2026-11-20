@@ -40,7 +40,7 @@ export const packageJson: FileMigration = {
   kind: 'file',
   description: 'Rename dependencies in package.json.',
   appliesTo: (file) => /(^|\/)package\.json$/.test(file),
-  run({ source, manifest, warn, note }) {
+  run({ source, manifest, warn, note, usesVideo }) {
     const pkg = JSON.parse(source) as Record<string, unknown>;
     let changed = false;
 
@@ -98,10 +98,11 @@ export const packageJson: FileMigration = {
       FIELDS.some((field) => name in ((pkg[field] ?? {}) as object));
     const dependsOn = (deps: Record<string, string>, old: string) =>
       old in deps || (manifest.packages[old]?.to ?? old) in deps;
-    for (const [name, { range, when }] of Object.entries(
+    for (const [name, { range, when, video }] of Object.entries(
       manifest.requiredPeers
     )) {
       if (listed(name)) continue;
+      if (video && !usesVideo()) continue;
       const owner = (
         ['dependencies', 'peerDependencies', 'devDependencies'] as const
       ).find((field) => {

@@ -5,7 +5,7 @@ import path from 'node:path';
 
 import jscodeshift from 'jscodeshift';
 
-import { gamutUsage } from './lib/gamut-imports';
+import { gamutUsage, videoUsage } from './lib/gamut-imports';
 import { dirtyTreeReason } from './lib/git';
 import { GENERATED_FILES, SKIP_DIRS, walk } from './lib/leftovers';
 import { activeSourceMigrations, runSourceMigrations } from './lib/run-source';
@@ -80,6 +80,7 @@ const runFileMigrations = (
   );
   let changed = 0;
   const usesGamut = gamutUsage();
+  const usesVideo = videoUsage();
 
   for (const root of opts.paths) {
     const files = fs.statSync(root).isDirectory() ? walk(root) : [root];
@@ -111,6 +112,7 @@ const runFileMigrations = (
           warn,
           note,
           usesGamut: () => usesGamut(file),
+          usesVideo: () => usesVideo(file),
           transformSource,
         });
         if (next === null) continue;
