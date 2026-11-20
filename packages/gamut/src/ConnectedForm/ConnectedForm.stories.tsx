@@ -25,6 +25,43 @@ const meta: Meta<typeof ConnectedForm> = {
   title: 'Inputs & forms/ConnectedForm/ConnectedForm',
   component: ConnectedForm,
   args: { onSubmit },
+  render: (args) => (
+    <ConnectedForm {...args}>
+      <ConnectedFormGroup
+        field={{ component: ConnectedCheckbox, label: 'cool-checkbox' }}
+        label="cool-checkbox"
+        name="checkbox"
+      />
+      <SubmitButton m={32} variant="secondary">
+        submit this form.
+      </SubmitButton>
+      <ConnectedFormGroup
+        field={{
+          component: ConnectedSelect,
+          options: ['', 'one', 'two', 'zero'],
+        }}
+        label="cool-select"
+        name="select"
+      />
+      <ConnectedFormGroup
+        field={{ component: ConnectedInput }}
+        label="cool-input"
+        name="input"
+      />
+      <ConnectedFormGroup
+        field={{
+          component: ConnectedRadioGroupInput,
+          options: [
+            { label: 'one', value: 'one' },
+            { label: 'two', value: 'two' },
+            { label: 'three', value: 'three' },
+          ],
+        }}
+        label="cool-radiogroup"
+        name="radiogroup"
+      />
+    </ConnectedForm>
+  ),
 };
 
 export default meta;
@@ -32,50 +69,6 @@ type Story = StoryObj<typeof ConnectedForm>;
 const onError = fn();
 
 type Canvas = Parameters<NonNullable<Story['play']>>[0]['canvas'];
-
-const PlainConnectedFields: React.FC<{ onChangeValidation?: boolean }> = ({
-  onChangeValidation,
-}) => (
-  <>
-    <ConnectedFormGroup
-      field={{ component: ConnectedCheckbox, label: 'cool-checkbox' }}
-      label="cool-checkbox"
-      name="checkbox"
-    />
-    <SubmitButton
-      disabled={onChangeValidation ? ({ isValid }) => !isValid : undefined}
-      m={32}
-      variant="secondary"
-    >
-      submit this form.
-    </SubmitButton>
-    <ConnectedFormGroup
-      field={{
-        component: ConnectedSelect,
-        options: ['', 'one', 'two', 'zero'],
-      }}
-      label="cool-select"
-      name="select"
-    />
-    <ConnectedFormGroup
-      field={{ component: ConnectedInput }}
-      label="cool-input"
-      name="input"
-    />
-    <ConnectedFormGroup
-      field={{
-        component: ConnectedRadioGroupInput,
-        options: [
-          { label: 'one', value: 'one' },
-          { label: 'two', value: 'two' },
-          { label: 'three', value: 'three' },
-        ],
-      }}
-      label="cool-radiogroup"
-      name="radiogroup"
-    />
-  </>
-);
 
 const plainValidationRules = {
   checkbox: { required: 'you must check it' },
@@ -427,19 +420,14 @@ export const CustomFieldValidations: Story = {
 };
 
 export const SubmitsFieldValues: Story = {
-  render: () => (
-    <ConnectedForm
-      defaultValues={{
-        checkbox: false,
-        select: 'zero',
-        input: '',
-        radiogroup: 'three',
-      }}
-      onSubmit={onSubmit}
-    >
-      <PlainConnectedFields />
-    </ConnectedForm>
-  ),
+  args: {
+    defaultValues: {
+      checkbox: false,
+      select: 'zero',
+      input: '',
+      radiogroup: 'three',
+    },
+  },
   play: async (context) => {
     const { canvas, userEvent } = context;
     await fillPlainFields(context);
@@ -452,16 +440,11 @@ export const SubmitsFieldValues: Story = {
 };
 
 export const ValidationErrors: Story = {
-  render: () => (
-    <ConnectedForm
-      defaultValues={emptyValues}
-      validationRules={plainValidationRules}
-      onError={onError}
-      onSubmit={onSubmit}
-    >
-      <PlainConnectedFields />
-    </ConnectedForm>
-  ),
+  args: {
+    defaultValues: emptyValues,
+    validationRules: plainValidationRules,
+    onError,
+  },
   play: async ({ canvas, userEvent }) => {
     const { checkbox, select, input, radioGroup } = getPlainFields(canvas);
     await Promise.all(
@@ -488,7 +471,43 @@ export const OnChangeValidation: Story = {
       validationRules={plainValidationRules}
       onSubmit={onSubmit}
     >
-      <PlainConnectedFields onChangeValidation />
+      <ConnectedFormGroup
+        field={{ component: ConnectedCheckbox, label: 'cool-checkbox' }}
+        label="cool-checkbox"
+        name="checkbox"
+      />
+      <SubmitButton
+        disabled={({ isValid }) => !isValid}
+        m={32}
+        variant="secondary"
+      >
+        submit this form.
+      </SubmitButton>
+      <ConnectedFormGroup
+        field={{
+          component: ConnectedSelect,
+          options: ['', 'one', 'two', 'zero'],
+        }}
+        label="cool-select"
+        name="select"
+      />
+      <ConnectedFormGroup
+        field={{ component: ConnectedInput }}
+        label="cool-input"
+        name="input"
+      />
+      <ConnectedFormGroup
+        field={{
+          component: ConnectedRadioGroupInput,
+          options: [
+            { label: 'one', value: 'one' },
+            { label: 'two', value: 'two' },
+            { label: 'three', value: 'three' },
+          ],
+        }}
+        label="cool-radiogroup"
+        name="radiogroup"
+      />
     </ConnectedForm>
   ),
   play: async (context) => {
@@ -504,16 +523,11 @@ export const OnChangeValidation: Story = {
 };
 
 export const DisableFieldsOnSubmit: Story = {
-  render: () => (
-    <ConnectedForm
-      defaultValues={emptyValues}
-      disableFieldsOnSubmit
-      validationRules={{ input: plainValidationRules.input }}
-      onSubmit={onSubmit}
-    >
-      <PlainConnectedFields />
-    </ConnectedForm>
-  ),
+  args: {
+    defaultValues: emptyValues,
+    disableFieldsOnSubmit: true,
+    validationRules: { input: plainValidationRules.input },
+  },
   play: async ({ canvas, userEvent }) => {
     const { checkbox, select, input, radio } = getPlainFields(canvas);
 
@@ -536,16 +550,11 @@ export const DisableFieldsOnSubmit: Story = {
 };
 
 export const ResetOnSubmit: Story = {
-  render: () => (
-    <ConnectedForm
-      defaultValues={emptyValues}
-      resetOnSubmit
-      validationRules={{ input: plainValidationRules.input }}
-      onSubmit={onSubmit}
-    >
-      <PlainConnectedFields />
-    </ConnectedForm>
-  ),
+  args: {
+    defaultValues: emptyValues,
+    resetOnSubmit: true,
+    validationRules: { input: plainValidationRules.input },
+  },
   play: async (context) => {
     const { canvas, userEvent } = context;
     const { checkbox, select, input, radio } = getPlainFields(canvas);
@@ -691,40 +700,34 @@ export const FieldValidationsMergeWithFormRules: Story = {
   },
 };
 
-const DynamicValidationsFields: React.FC = () => {
-  const [strict, setStrict] = useState(false);
-
-  return (
-    <>
-      <ConnectedFormGroup
-        field={{
-          component: ConnectedInput,
-          customValidations: strict
-            ? {
-                minLength: {
-                  value: 10,
-                  message: 'Must be at least 10 characters',
-                },
-              }
-            : undefined,
-        }}
-        label="Username"
-        name="username"
-      />
-      <SubmitButton>Submit</SubmitButton>
-      <StrokeButton ml={8} onClick={() => setStrict(true)}>
-        Enable strict
-      </StrokeButton>
-    </>
-  );
-};
-
 export const DynamicFieldValidations: Story = {
-  render: () => (
-    <ConnectedForm defaultValues={{ username: '' }} onSubmit={onSubmit}>
-      <DynamicValidationsFields />
-    </ConnectedForm>
-  ),
+  render: function DynamicFieldValidationsForm() {
+    const [strict, setStrict] = useState(false);
+
+    return (
+      <ConnectedForm defaultValues={{ username: '' }} onSubmit={onSubmit}>
+        <ConnectedFormGroup
+          field={{
+            component: ConnectedInput,
+            customValidations: strict
+              ? {
+                  minLength: {
+                    value: 10,
+                    message: 'Must be at least 10 characters',
+                  },
+                }
+              : undefined,
+          }}
+          label="Username"
+          name="username"
+        />
+        <SubmitButton>Submit</SubmitButton>
+        <StrokeButton ml={8} onClick={() => setStrict(true)}>
+          Enable strict
+        </StrokeButton>
+      </ConnectedForm>
+    );
+  },
   play: async ({ canvas, userEvent }) => {
     await userEvent.type(
       canvas.getByRole('textbox', { name: /Username/ }),
@@ -747,17 +750,12 @@ export const DynamicFieldValidations: Story = {
 };
 
 export const WasSubmitSuccessfulOverride: Story = {
-  render: () => (
-    <ConnectedForm
-      defaultValues={emptyValues}
-      disableFieldsOnSubmit
-      resetOnSubmit
-      wasSubmitSuccessful={false}
-      onSubmit={onSubmit}
-    >
-      <PlainConnectedFields />
-    </ConnectedForm>
-  ),
+  args: {
+    defaultValues: emptyValues,
+    disableFieldsOnSubmit: true,
+    resetOnSubmit: true,
+    wasSubmitSuccessful: false,
+  },
   play: async (context) => {
     const { canvas, userEvent } = context;
     const { checkbox, select, input, radio } = getPlainFields(canvas);
