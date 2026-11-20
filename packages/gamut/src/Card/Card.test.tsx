@@ -2,6 +2,7 @@ import { matchers } from '@emotion/jest';
 import { theme } from '@skillsoft/gamut-styles';
 import { MockGamutProvider, setupRtl } from '@skillsoft/gamut-tests';
 import { renderHook } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
 import { Card } from '.';
 import { useCardElevation } from './styles';

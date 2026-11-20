@@ -8,7 +8,6 @@ import {
   adminTheme,
   lxStudioTheme,
   platformTheme,
-  skillsoftTheme,
   originalCodecademyTheme,
 } from '@skillsoft/gamut-styles';
 import { Theme } from '@emotion/react';

@@ -8,7 +8,6 @@ import {
   lxStudioTheme,
   CoreTheme,
   platformTheme,
-  skillsoftTheme,
   originalCodecademyTheme,
   ColorMode,
 } from '@skillsoft/gamut-styles';
@@ -51,7 +50,7 @@ export const DocsContainer: React.FC<{
     ?.storyId;
 
   const globalTheme =
-    (context as any).store.userGlobals?.globals?.theme || 'skillsoft';
+    (context as any).store.userGlobals?.globals?.theme || 'core';
   const globalLogicalProps = (context as any).store.userGlobals?.globals
     ?.logicalProps;
   const useLogicalProperties = globalLogicalProps !== 'false';

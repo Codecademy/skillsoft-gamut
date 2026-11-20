@@ -1,6 +1,7 @@
 import { matchers } from '@emotion/jest';
 import { MockGamutProvider } from '@skillsoft/gamut-tests';
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
 import { ProgressBar } from '.';
 import type { ProgressBarProps } from './types';

@@ -1,5 +1,6 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
 import * as React from 'react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { Dialog } from './Dialog';
 
@@ -7,7 +8,7 @@ const defaultProps = {
   isOpen: true,
   title: 'Hello world',
   children: 'Close me please',
-  onRequestClose: jest.fn(),
+  onRequestClose: vi.fn(),
   confirmCta: { children: 'Confirm' },
   cancelCta: { children: 'Cancel' },
 };
