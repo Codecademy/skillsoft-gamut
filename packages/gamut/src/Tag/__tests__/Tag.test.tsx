@@ -1,5 +1,6 @@
 import { matchers } from '@emotion/jest';
 import { setupRtl } from '@skillsoft/gamut-tests';
+import { describe, expect, it } from 'vitest';
 
 import { Tag } from '..';
 

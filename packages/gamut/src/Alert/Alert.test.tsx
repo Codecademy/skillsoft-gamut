@@ -1,16 +1,17 @@
 import { matchers } from '@emotion/jest';
 import { setupRtl } from '@skillsoft/gamut-tests';
 import * as React from 'react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { Alert } from './Alert';
 
 expect.extend(matchers);
 
-const onClick = jest.fn();
+const onClick = vi.fn();
 
 const renderView = setupRtl(Alert, {
   children: 'Hello',
-  onClose: jest.fn(),
+  onClose: vi.fn(),
 });
 
 describe('Alert', () => {

@@ -2,6 +2,7 @@ import { matchers } from '@emotion/jest';
 import { GamutProvider, skillsoftTheme } from '@skillsoft/gamut-styles';
 import { render } from '@testing-library/react';
 import type * as React from 'react';
+import { describe, expect, it } from 'vitest';
 
 import { FormGroupDescription } from '../elements/FormGroupDescription';
 import { Checkbox } from '../inputs/Checkbox';

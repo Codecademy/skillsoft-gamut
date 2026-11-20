@@ -65,7 +65,7 @@ const readSkips = (
 ) => {
   const skips = new Map<string, boolean>();
   const unreadable = new Set<string>();
-  const {value} = skipAttr;
+  const { value } = skipAttr;
 
   if (
     value?.type !== 'JSXExpressionContainer' ||
@@ -188,7 +188,7 @@ export const markdownVideoOverrides: AstMigration = {
         ({ skips, unreadable } = read);
         if (read.removed) changed = true;
 
-        const {value} = skipAttr;
+        const { value } = skipAttr;
         if (
           value?.type === 'JSXExpressionContainer' &&
           value.expression.type === 'ObjectExpression' &&

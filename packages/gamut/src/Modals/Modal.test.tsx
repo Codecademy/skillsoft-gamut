@@ -2,10 +2,11 @@ import { theme } from '@skillsoft/gamut-styles';
 import { setupRtl } from '@skillsoft/gamut-tests';
 import { fireEvent } from '@testing-library/react';
 import * as React from 'react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { Modal } from '..';
 
-const mockRequestClose = jest.fn();
+const mockRequestClose = vi.fn();
 const renderView = setupRtl(Modal, {
   title: 'Title',
   children: 'Hello world',
@@ -162,7 +163,7 @@ describe('Modal', () => {
     });
 
     it('moves to the next view when next is clicked', () => {
-      const mockOnClick = jest.fn();
+      const mockOnClick = vi.fn();
       const { view } = renderView({
         views: [
           {
@@ -195,7 +196,7 @@ describe('Modal', () => {
     });
 
     it('moves to the previous view when back is clicked', () => {
-      const mockOnClick = jest.fn();
+      const mockOnClick = vi.fn();
       const { view } = renderView({
         views: [
           {
@@ -417,7 +418,7 @@ describe('Modal', () => {
     });
 
     it('calls onRequestClose and onClick when cancel is clicked', () => {
-      const mockOnClick = jest.fn();
+      const mockOnClick = vi.fn();
       const { view } = renderView({
         views: [
           {
@@ -439,7 +440,7 @@ describe('Modal', () => {
     });
 
     it('calls onClick when confirm is clicked', () => {
-      const mockOnClick = jest.fn();
+      const mockOnClick = vi.fn();
       const { view } = renderView({
         views: [
           {
@@ -464,7 +465,7 @@ describe('Modal', () => {
     });
 
     it('renders an image if passed in', () => {
-      const mockOnClick = jest.fn();
+      const mockOnClick = vi.fn();
       const { view } = renderView({
         views: [
           {
