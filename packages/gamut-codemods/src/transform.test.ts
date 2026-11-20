@@ -105,7 +105,14 @@ describe.each(Object.values(presets))('preset $name', (preset) => {
     });
   }
 
-  const endToEnd = readCases(path.join(__dirname, '__testfixtures__'));
+  /*
+    The top-level fixtures walk the whole scope-swap upgrade. Other presets
+    have their own migrations, so they don't run these.
+  */
+  const endToEnd =
+    preset.name === 'scope-swap'
+      ? readCases(path.join(__dirname, '__testfixtures__'))
+      : [];
   if (endToEnd.length > 0) {
     it.each(endToEnd)('every migration: $name', (c) => {
       expect(runSource(preset.name, c.input).out.trim()).toBe(c.output.trim());

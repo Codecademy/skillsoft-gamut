@@ -1,5 +1,6 @@
 import type { Preset } from '../lib/types';
 import { scopeSwap } from './scope-swap';
+import { sizeAndAlignment } from './size-and-alignment';
 
 /*
   Every preset the CLI can run. A preset is one upgrade: its own manifest,
@@ -9,6 +10,7 @@ import { scopeSwap } from './scope-swap';
 */
 export const presets: Record<string, Preset> = {
   [scopeSwap.name]: scopeSwap,
+  [sizeAndAlignment.name]: sizeAndAlignment,
 };
 
 /*
