@@ -5,17 +5,18 @@ import { useRef, useState } from 'react';
 import { expect, fn, screen, waitFor, within } from 'storybook/test';
 import type { TypeWithDeepControls } from 'storybook-addon-deep-controls';
 
-import { Box } from '../Box';
+import { Box, FlexBox } from '../Box';
 import { IconButton } from '../Button';
 import { Menu, MenuItem } from '../Menu';
 import { Dialog } from '../Modals';
 import { PopoverContainer } from '../PopoverContainer';
 import { Text } from '../Typography';
 import { DataTable } from './DataTable';
+import { useLocalQuery } from './hooks/useLocalQuery';
 import {
-  createDemoTable,
+  cols,
+  crew,
   CustomEmptyState,
-  DisableContainerQueryExample,
   shipFilters,
   simpleColumns,
   simpleRows,
@@ -145,10 +146,29 @@ const meta: TypeWithDeepControls<Meta<CrewDataTable>> = {
 export default meta;
 type Story = StoryObj<CrewDataTable>;
 
-const DataTableTemplate = createDemoTable(DataTable, {
-  onRowSelect: undefined,
-  onRowExpand: undefined,
-});
+const renderLocalQueryTable: Story['render'] = function LocalQueryDataTable({
+  height = 500,
+  scrollToTopOnUpdate,
+}) {
+  const { idKey, query, rows, onQueryChange } = useLocalQuery({
+    idKey: 'name',
+    rows: crew,
+    columns: cols,
+  });
+
+  return (
+    <DataTable
+      columns={cols}
+      height={height}
+      id="example"
+      idKey={idKey}
+      query={query}
+      rows={rows}
+      scrollToTopOnUpdate={scrollToTopOnUpdate}
+      onQueryChange={onQueryChange}
+    />
+  );
+};
 
 const RowMenu = ({ rowName }: { rowName: string }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -315,7 +335,7 @@ export const Default: Story = {
 };
 
 export const FullDataTable: Story = {
-  render: () => <DataTableTemplate />,
+  render: renderLocalQueryTable,
   play: async ({ canvas, userEvent }) => {
     await expect(
       canvas.getByRole('columnheader', { name: 'Controls' })
@@ -410,28 +430,45 @@ export const BackgroundColors: Story = {
 export const DisableContainerQuery: Story = {
   args: {},
   render: () => (
-    <DisableContainerQueryExample
-      componentName="DataTable"
-      defaultComponent={
-        <DataTable
-          columns={simpleColumns}
-          id="default-table-query"
-          idKey="name"
-          rows={simpleRows}
-          spacing="condensed"
-        />
-      }
-      disabledComponent={
-        <DataTable
-          columns={simpleColumns}
-          disableContainerQuery
-          id="disabled-table-query"
-          idKey="name"
-          rows={simpleRows}
-          spacing="condensed"
-        />
-      }
-    />
+    <FlexBox flexDirection="column" gap={24}>
+      <Box>
+        <Text mb={8} variant="title-sm">
+          Default (Container Queries Enabled)
+        </Text>
+        <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
+          <DataTable
+            columns={simpleColumns}
+            id="default-table-query"
+            idKey="name"
+            rows={simpleRows}
+            spacing="condensed"
+          />
+        </Box>
+        <Text color="text-secondary" mt={8} variant="p-small">
+          Container queries apply responsive behavior based on the
+          DataTable&apos;s container width
+        </Text>
+      </Box>
+      <Box>
+        <Text mb={8} variant="title-sm">
+          With Container Queries Disabled
+        </Text>
+        <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
+          <DataTable
+            columns={simpleColumns}
+            disableContainerQuery
+            id="disabled-table-query"
+            idKey="name"
+            rows={simpleRows}
+            spacing="condensed"
+          />
+        </Box>
+        <Text color="text-secondary" mt={8} variant="p-small">
+          Built in responsive behavior is disabled - custom responsive behavior
+          is required
+        </Text>
+      </Box>
+    </FlexBox>
   ),
   play: async ({ canvasElement }) => {
     await expect(
@@ -508,7 +545,7 @@ export const WithFloatingMenu: Story = {
 };
 
 export const LocalSorting: Story = {
-  render: () => <DataTableTemplate />,
+  render: renderLocalQueryTable,
   play: async ({ canvas, canvasElement, userEvent }) => {
     /*
      * TODO: clearing a sort leaves rows in ascending order instead of the original order.
@@ -541,7 +578,7 @@ export const LocalSorting: Story = {
 };
 
 export const LocalFiltering: Story = {
-  render: () => <DataTableTemplate />,
+  render: renderLocalQueryTable,
   play: async ({ canvas, canvasElement, userEvent }) => {
     // TODO: filtering a second column clears the first column's filter
     const filterByShip = canvas.getByRole('button', { name: 'filter by ship' });
@@ -586,7 +623,7 @@ export const LocalFiltering: Story = {
 };
 
 export const ResetFilters: Story = {
-  render: () => <DataTableTemplate />,
+  render: renderLocalQueryTable,
   play: async ({ canvas, canvasElement, userEvent }) => {
     await userEvent.click(
       canvas.getByRole('button', { name: 'filter by ship' })
@@ -610,7 +647,7 @@ export const ResetFilters: Story = {
 };
 
 export const RowActions: Story = {
-  render: () => <DataTableTemplate />,
+  render: renderLocalQueryTable,
   play: async ({ canvas, userEvent }) => {
     await userEvent.click(
       canvas.getAllByRole('button', { name: 'Show options' })[0]
@@ -641,15 +678,9 @@ export const LoadingWithoutRows: Story = {
   },
 };
 
-const ScrollToTopTemplate = createDemoTable(DataTable, {
-  height: 200,
-  onRowExpand: undefined,
-  onRowSelect: undefined,
-  scrollToTopOnUpdate: true,
-});
-
 export const ScrollToTopOnUpdate: Story = {
-  render: () => <ScrollToTopTemplate />,
+  args: { height: 200, scrollToTopOnUpdate: true },
+  render: renderLocalQueryTable,
   play: async ({ canvas, canvasElement, userEvent }) => {
     // TODO: scrollToTopOnUpdate scrolls the table element, not the wrapper that actually scrolls
     const wrapper = canvas.getByTestId('scrollable-example').parentElement!;
