@@ -21,10 +21,6 @@ const meta: TypeWithDeepControls<Meta<typeof IconButton>> = {
     onClick: fn(),
   },
   argTypes: {
-    href: {
-      description: 'If defined, component will use an anchor tag',
-      type: 'string',
-    },
     variant: {
       control: 'radio',
     },

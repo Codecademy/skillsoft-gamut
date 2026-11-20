@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import type { SelectOptionBase } from '../../../utils';
 import type { ExtendedOption, SelectDropdownGroup } from '../types';
 import {

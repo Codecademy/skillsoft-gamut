@@ -17,6 +17,31 @@ const variants = [
   'standard-secondary',
 ] as const;
 
+const meta: Meta<typeof Anchor> = {
+  title: 'Navigation/Anchor',
+  component: Anchor,
+  args: {
+    children: 'Click me',
+    href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    icon: icons.MiniInfoOutlineIcon,
+    iconPosition: 'left',
+    target: '_blank',
+    variant: 'inline',
+  },
+  argTypes: {
+    icon: {
+      control: 'select',
+      options: Object.keys(icons),
+      mapping: icons,
+    },
+    target: {
+      table: { disable: true },
+    },
+  },
+};
+
+export default meta;
+
 const AnchorVariants = ({ useIcon }: { useIcon: boolean }) => (
   <LayoutGrid>
     {(['light', 'dark'] as const).map((mode) => (
@@ -48,31 +73,6 @@ const AnchorVariants = ({ useIcon }: { useIcon: boolean }) => (
     ))}
   </LayoutGrid>
 );
-
-const meta: Meta<typeof Anchor> = {
-  title: 'Navigation/Anchor',
-  component: Anchor,
-  args: {
-    children: 'Click me',
-    href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    icon: icons.MiniInfoOutlineIcon,
-    iconPosition: 'left',
-    target: '_blank',
-    variant: 'inline',
-  },
-  argTypes: {
-    icon: {
-      control: 'select',
-      options: Object.keys(icons),
-      mapping: icons,
-    },
-    target: {
-      table: { disable: true },
-    },
-  },
-};
-
-export default meta;
 
 type Story = StoryObj<typeof Anchor>;
 

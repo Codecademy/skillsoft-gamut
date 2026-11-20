@@ -16,10 +16,6 @@ const meta: Meta<typeof TextButton> = {
     onClick: fn(),
   },
   argTypes: {
-    href: {
-      description: 'If defined, component will use an anchor tag',
-      type: 'string',
-    },
     variant: {
       table: { defaultValue: { summary: 'primary' } },
     },

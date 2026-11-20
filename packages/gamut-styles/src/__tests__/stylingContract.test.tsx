@@ -2,6 +2,7 @@ import { matchers } from '@emotion/jest';
 import type { Theme } from '@emotion/react';
 import { render } from '@testing-library/react';
 import { parse } from 'culori';
+import { describe, expect, it } from 'vitest';
 
 import { Background } from '../Background';
 import {
@@ -13,7 +14,6 @@ import {
 import { GamutProvider } from '../GamutProvider';
 import {
   adminTheme,
-  coreTheme,
   lxStudioTheme,
   originalCodecademyTheme,
   platformTheme,
@@ -35,7 +35,6 @@ expect.extend(matchers);
  */
 
 const THEMES = {
-  core: coreTheme,
   admin: adminTheme,
   platform: platformTheme,
   lxStudio: lxStudioTheme,

@@ -14,9 +14,9 @@
     },
     "test": {
       "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/coverage/vitest/gamut-agent-tools"],
       "options": {
-        "cwd": "packages/gamut-agent-tools",
-        "command": "node --test cli/__tests__/design.test.mjs"
+        "command": "vitest run --project=jsdom --project=node packages/gamut-agent-tools/"
       }
     },
     "verify": {

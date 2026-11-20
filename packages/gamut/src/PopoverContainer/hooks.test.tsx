@@ -1,5 +1,6 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { useLayoutEffect, useRef, useState } from 'react';
+import { afterEach, describe, expect, it } from 'vitest';
 
 import { Box } from '../Box';
 import { useScrollingParents } from './hooks';
