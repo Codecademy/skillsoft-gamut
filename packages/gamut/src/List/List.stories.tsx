@@ -9,7 +9,6 @@ import {
 import { Keyhole } from '@skillsoft/gamut-illustrations';
 import { Background } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
-import type { ReactNode } from 'react';
 import { useState } from 'react';
 import { expect, waitFor } from 'storybook/test';
 
@@ -45,66 +44,6 @@ const rows = [
     ship: 'He is a ship',
   },
 ];
-
-const DisableContainerQueryExample = ({
-  defaultComponent,
-  disabledComponent,
-}: {
-  defaultComponent: ReactNode;
-  disabledComponent: ReactNode;
-}) => (
-  <FlexBox flexDirection="column" gap={24}>
-    <Box>
-      <Text mb={8} variant="title-sm">
-        Default (Container Queries Enabled)
-      </Text>
-      <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
-        {defaultComponent}
-      </Box>
-      <Text color="text-secondary" mt={8} variant="p-small">
-        Container queries apply responsive behavior based on the List&apos;s
-        container width
-      </Text>
-    </Box>
-    <Box>
-      <Text mb={8} variant="title-sm">
-        With Container Queries Disabled
-      </Text>
-      <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
-        {disabledComponent}
-      </Box>
-      <Text color="text-secondary" mt={8} variant="p-small">
-        Built in responsive behavior is disabled - custom responsive behavior is
-        required
-      </Text>
-    </Box>
-  </FlexBox>
-);
-
-const ScrollToTopExample = (args: Story['args']) => {
-  const [crew, setCrew] = useState(rows);
-  const repeatedCrew = [1, 2, 3].flatMap((copy) =>
-    crew.map((member) => ({ ...member, key: `${copy}-${member.name}` }))
-  );
-
-  return (
-    <>
-      <FillButton mb={16} onClick={() => setCrew([...crew].reverse())}>
-        Reverse crew
-      </FillButton>
-      <List {...args}>
-        {repeatedCrew.map(({ key, name, ship }) => (
-          <ListRow key={key}>
-            <ListCol size="md" type="header">
-              {name}
-            </ListCol>
-            <ListCol fill>{ship}</ListCol>
-          </ListRow>
-        ))}
-      </List>
-    </>
-  );
-};
 
 export const Default: Story = {
   args: {
@@ -695,7 +634,30 @@ export const ScrollToTopOnUpdate: Story = {
       },
     },
   },
-  render: (args) => <ScrollToTopExample {...args} />,
+  render: function ScrollToTopList(args) {
+    const [crew, setCrew] = useState(rows);
+    const repeatedCrew = [1, 2, 3].flatMap((copy) =>
+      crew.map((member) => ({ ...member, key: `${copy}-${member.name}` }))
+    );
+
+    return (
+      <>
+        <FillButton mb={16} onClick={() => setCrew([...crew].reverse())}>
+          Reverse crew
+        </FillButton>
+        <List {...args}>
+          {repeatedCrew.map(({ key, name, ship }) => (
+            <ListRow key={key}>
+              <ListCol size="md" type="header">
+                {name}
+              </ListCol>
+              <ListCol fill>{ship}</ListCol>
+            </ListRow>
+          ))}
+        </List>
+      </>
+    );
+  },
   play: async ({ canvas, userEvent }) => {
     /*
      * TODO: scrollToTopOnUpdate scrolls the inner box, not the wrapper that actually scrolls.
@@ -744,46 +706,58 @@ export const RowBreakpoint: Story = {
 
 export const DisableContainerQuery: Story = {
   args: {},
-  render: () => {
-    const defaultComponent = (
-      <List spacing="condensed" variant="table">
-        {rows.slice(0, 2).map(({ name, ship }) => (
-          <ListRow key={name}>
-            <ListCol size="md" type="header">
-              {name}
-            </ListCol>
-            <ListCol fill>{ship}</ListCol>
-            <ListCol justify="right" type="control">
-              {ship}
-            </ListCol>
-          </ListRow>
-        ))}
-      </List>
-    );
-
-    const disabledComponent = (
-      <List disableContainerQuery spacing="condensed" variant="table">
-        {rows.slice(0, 2).map(({ name, ship }) => (
-          <ListRow key={name}>
-            <ListCol size="md" type="header">
-              {name}
-            </ListCol>
-            <ListCol fill>{ship}</ListCol>
-            <ListCol justify="right" type="control">
-              {ship}
-            </ListCol>
-          </ListRow>
-        ))}
-      </List>
-    );
-
-    return (
-      <DisableContainerQueryExample
-        defaultComponent={defaultComponent}
-        disabledComponent={disabledComponent}
-      />
-    );
-  },
+  render: () => (
+    <FlexBox flexDirection="column" gap={24}>
+      <Box>
+        <Text mb={8} variant="title-sm">
+          Default (Container Queries Enabled)
+        </Text>
+        <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
+          <List spacing="condensed" variant="table">
+            {rows.slice(0, 2).map(({ name, ship }) => (
+              <ListRow key={name}>
+                <ListCol size="md" type="header">
+                  {name}
+                </ListCol>
+                <ListCol fill>{ship}</ListCol>
+                <ListCol justify="right" type="control">
+                  {ship}
+                </ListCol>
+              </ListRow>
+            ))}
+          </List>
+        </Box>
+        <Text color="text-secondary" mt={8} variant="p-small">
+          Container queries apply responsive behavior based on the List&apos;s
+          container width
+        </Text>
+      </Box>
+      <Box>
+        <Text mb={8} variant="title-sm">
+          With Container Queries Disabled
+        </Text>
+        <Box border={1} borderColor="border-tertiary" maxWidth="400px" p={16}>
+          <List disableContainerQuery spacing="condensed" variant="table">
+            {rows.slice(0, 2).map(({ name, ship }) => (
+              <ListRow key={name}>
+                <ListCol size="md" type="header">
+                  {name}
+                </ListCol>
+                <ListCol fill>{ship}</ListCol>
+                <ListCol justify="right" type="control">
+                  {ship}
+                </ListCol>
+              </ListRow>
+            ))}
+          </List>
+        </Box>
+        <Text color="text-secondary" mt={8} variant="p-small">
+          Built in responsive behavior is disabled - custom responsive behavior
+          is required
+        </Text>
+      </Box>
+    </FlexBox>
+  ),
   play: async ({ canvas }) => {
     const [defaultList, disabledList] = canvas.getAllByRole('list');
     await expect(
