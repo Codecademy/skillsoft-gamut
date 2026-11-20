@@ -80,6 +80,7 @@ export const ReactComponentLabel: Story = {
     checked: false,
     label: <Text>I am a Text component</Text>,
     ariaLabel: 'Hello there',
+    onChange: fn(),
   },
   play: ({ canvas }) => {
     canvas.getByText('I am a Text component');

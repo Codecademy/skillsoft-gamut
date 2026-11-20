@@ -63,7 +63,13 @@ const openModal: NonNullable<Story['play']> = async ({ canvas, userEvent }) => {
 const expectModalClosed = () =>
   waitFor(() => expect(screen.queryByRole('dialog')).toBeNull());
 
-const gridContentPlaceholder = (height: string, width = 'auto') => (
+const GridContentPlaceholder = ({
+  height,
+  width = 'auto',
+}: {
+  height: string;
+  width?: string;
+}) => (
   <FlexBox flexDirection="column">
     <FlexBox height="2rem" justifyContent="space-between" mb={12} width="100%">
       <Box bg="beige" height="inherit" width="85%" />
@@ -73,7 +79,7 @@ const gridContentPlaceholder = (height: string, width = 'auto') => (
   </FlexBox>
 );
 
-const codeCelebrationImage = (
+const CodeCelebrationImage = () => (
   <FlexBox
     aria-label="Code celebration"
     bg="background-primary"
@@ -133,28 +139,28 @@ export const Dismissal: Story = {
 export const Fluid: Story = {
   args: {
     size: 'fluid',
-    children: gridContentPlaceholder('350px', '540px'),
+    children: <GridContentPlaceholder height="350px" width="540px" />,
   },
 };
 
 export const Large: Story = {
   args: {
     size: 'large',
-    children: gridContentPlaceholder('300px'),
+    children: <GridContentPlaceholder height="300px" />,
   },
 };
 
 export const Medium: Story = {
   args: {
     size: 'medium',
-    children: gridContentPlaceholder('240px'),
+    children: <GridContentPlaceholder height="240px" />,
   },
 };
 
 export const Small: Story = {
   args: {
     size: 'small',
-    children: gridContentPlaceholder('240px'),
+    children: <GridContentPlaceholder height="240px" />,
   },
 };
 
@@ -267,11 +273,7 @@ export const CustomClose: Story = {
 export const ClickOutside: Story = {
   args: {
     closeButtonProps: { hidden: true },
-    children: (
-      <FlexBox center fit>
-        You can close this modal by clicking outside of it
-      </FlexBox>
-    ),
+    children: 'You can close this modal by clicking outside of it',
   },
   play: async (context) => {
     await openModal(context);
@@ -282,6 +284,16 @@ export const ClickOutside: Story = {
   },
 };
 
+const ScrollableContent = () => (
+  <FlexBox flexDirection="column">
+    <Box height="600px">
+      Hello, I&apos;m a very large box... Try zooming in and you&apos;ll be able
+      to scroll down to the button!
+    </Box>
+    <FillButton>Better remember to put me in!</FillButton>
+  </FlexBox>
+);
+
 export const Scrollable: Story = {
   args: {
     closeButtonProps: { hidden: true },
@@ -289,15 +301,7 @@ export const Scrollable: Story = {
     size: 'medium',
     title: undefined,
     'aria-label': 'Scrollable modal',
-    children: (
-      <FlexBox flexDirection="column">
-        <Box height="600px">
-          Hello, I&apos;m a very large box... Try zooming in and you&apos;ll be
-          able to scroll down to the button!
-        </Box>
-        <FillButton>Better remember to put me in!</FillButton>
-      </FlexBox>
-    ),
+    children: <ScrollableContent />,
   },
   play: async (context) => {
     await openModal(context);
@@ -350,7 +354,7 @@ export const FocusManagement: Story = {
 
 export const WithImage: Story = {
   args: {
-    image: codeCelebrationImage,
+    image: <CodeCelebrationImage />,
     children: (
       <Text fontSize={14} my={12} smooth>
         Optional 1-2 lines of explanation that provides relevant details. Lorem
@@ -438,7 +442,7 @@ export const SingleViewNavigation: Story = {
     views: [
       {
         title: 'Hidden view title',
-        image: codeCelebrationImage,
+        image: <CodeCelebrationImage />,
         primaryCta: { actionType: 'next', children: 'Next' },
         secondaryCta: { actionType: 'back', children: 'Back' },
         children: <>Only one view</>,

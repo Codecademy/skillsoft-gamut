@@ -94,9 +94,9 @@ export const HideRequiredText: Story = {
         size: 12,
       },
       {
-        label: 'A field',
-        placeholder: 'I am very optional',
-        name: 'very-optional',
+        label: 'Another field',
+        placeholder: 'I am also optional',
+        name: 'also-optional',
         type: 'text',
         size: 12,
       },

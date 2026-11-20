@@ -138,14 +138,18 @@ describe('Font Loading and Error Handling', () => {
 
   describe('Font Loading Failures', () => {
     it('should handle getFonts throwing an error', () => {
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+      const error = new Error('Font loading failed');
       mockGetFonts.mockImplementation(() => {
-        throw new Error('Font loading failed');
+        throw error;
       });
 
       const { container } = render(<AssetProvider theme={coreTheme} />);
 
       const links = getPreloadLinks(container);
       expect(links).toHaveLength(0);
+      expect(warn).toHaveBeenCalledWith('Font loading failed:', error);
+      warn.mockRestore();
     });
 
     it('should handle malformed font configurations', () => {
