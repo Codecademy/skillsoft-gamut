@@ -4,7 +4,6 @@
     "@skillsoft/gamut": "^{{version}}",
     "@skillsoft/gamut-styles": "^{{version}}",
     "@vidstack/react": "~1.12.12",
-    "react-player": "^3.4.0",
-    "stylis": "^4.0.7"
+    "react-player": "^3.4.0"
   }
 }

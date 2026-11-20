@@ -39,7 +39,7 @@ export const scopeSwap: Preset = {
   ],
   conditionalChecklist: {
     'removed:@codecademy/gamut-kit':
-      "gamut-kit is gone. Delete anything that reads it for versions, such as a sync-gamut-deps script. @skillsoft/gamut-styles has @emotion/cache and stylis peer dependencies, so add them if yarn warns that they aren't provided.",
+      "gamut-kit is gone. Delete anything that reads it for versions, such as a sync-gamut-deps script. @skillsoft/gamut-styles needs @emotion/cache, so add it if yarn warns that it isn't provided. Don't add stylis by hand: @emotion/cache brings its own copy, and a second root copy can break style inserts.",
     'required-peers':
       'package.json gained peer dependencies that the @skillsoft packages need at runtime and no longer install for you (the package-json warnings list them). Run `yarn install`. If yarn still reports a peer as missing, the app is pinned to another version of it: move it to the range the migration wrote.',
     'video-peers':
