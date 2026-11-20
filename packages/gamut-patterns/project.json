@@ -30,11 +30,11 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/gamut-patterns"],
-      "dependsOn": ["build"],
+      "executor": "nx:run-commands",
+      "dependsOn": ["build", "^build"],
+      "outputs": ["{workspaceRoot}/coverage/vitest/gamut-patterns"],
       "options": {
-        "jestConfig": "packages/gamut-patterns/jest.config.ts"
+        "command": "vitest run --project=jsdom --project=node packages/gamut-patterns/"
       }
     },
     "clean": {

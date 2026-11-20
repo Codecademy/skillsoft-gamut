@@ -1,3 +1,5 @@
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import type { DateFormatLayoutItem } from '../utils';
 import {
   appendSegmentDigit,
@@ -291,11 +293,11 @@ describe('spinSegment', () => {
   const empty = { month: '', day: '', year: '' };
 
   beforeEach(() => {
-    jest.spyOn(Date.prototype, 'getFullYear').mockReturnValue(2024);
+    vi.spyOn(Date.prototype, 'getFullYear').mockReturnValue(2024);
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   it('uses current calendar year when stepping up', () => {
