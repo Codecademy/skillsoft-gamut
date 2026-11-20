@@ -14,7 +14,7 @@ const paginationBaseStyles = {
     color: 'text-default',
   },
   [InteractiveSelectors.DISABLED]: {
-    color: 'action-disabled',
+    color: 'action-disabled', // pending design decision: action-disabled as disabled text
     bg: 'transparent',
   },
   [InteractiveSelectors.OUTLINE]: { borderColor: 'action-primary' },

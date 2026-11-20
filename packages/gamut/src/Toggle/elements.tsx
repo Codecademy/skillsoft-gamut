@@ -71,7 +71,7 @@ export const Circle = styled(Box)(
 export const ToggleInput = styled.input(screenReaderOnly);
 
 const ToggleLabelStates = states({
-  disabled: { cursor: 'not-allowed', color: 'action-disabled' },
+  disabled: { cursor: 'not-allowed', color: 'action-disabled' }, // pending design decision: action-disabled as disabled text
   labelRight: { flexDirection: 'row-reverse' },
 });
 
