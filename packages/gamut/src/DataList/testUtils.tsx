@@ -140,7 +140,7 @@ const CrewMgmtDropdown = ({ row }: { row: CrewMember }) => {
           alignment: 'left-center',
           placement: 'floating',
         }}
-        variant="secondary"
+        variant="action-neutral"
         onClick={() => setIsOpen(!isOpen)}
       />
       <PopoverContainer
@@ -197,7 +197,7 @@ const CrewMgmtDropdown = ({ row }: { row: CrewMember }) => {
           {
             title: 'Error',
             children: (
-              <Text color="danger">
+              <Text color="action-danger">
                 Something went wrong while arresting {name}.
               </Text>
             ),

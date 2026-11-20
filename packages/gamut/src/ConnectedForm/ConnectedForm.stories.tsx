@@ -32,7 +32,7 @@ const meta: Meta<typeof ConnectedForm> = {
         label="cool-checkbox"
         name="checkbox"
       />
-      <SubmitButton m={32} variant="secondary">
+      <SubmitButton m={32} variant="action-neutral">
         submit this form.
       </SubmitButton>
       <ConnectedFormGroup
@@ -479,7 +479,7 @@ export const OnChangeValidation: Story = {
       <SubmitButton
         disabled={({ isValid }) => !isValid}
         m={32}
-        variant="secondary"
+        variant="action-neutral"
       >
         submit this form.
       </SubmitButton>
