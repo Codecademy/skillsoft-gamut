@@ -9,9 +9,7 @@
       "executor": "@nx/eslint:lint"
     },
     "build": {
-      "outputs": [
-        "{projectRoot}/dist"
-      ],
+      "outputs": ["{projectRoot}/dist"],
       "executor": "nx:run-commands",
       "options": {
         "cwd": "packages/gamut-brand",
@@ -26,9 +24,7 @@
     },
     "test": {
       "executor": "nx:run-commands",
-      "outputs": [
-        "{workspaceRoot}/coverage/vitest/gamut-brand"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/vitest/gamut-brand"],
       "options": {
         "command": "vitest run --project=node packages/gamut-brand/"
       }
@@ -42,22 +38,16 @@
     },
     "verify-package": {
       "executor": "nx:run-commands",
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "options": {
         "cwd": "{projectRoot}",
-        "commands": [
-          "publint ."
-        ],
+        "commands": ["publint ."],
         "parallel": false
       }
     },
     "publish-build": {
       "executor": "nx:run-commands",
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "options": {
         "commands": [],
         "parallel": false
