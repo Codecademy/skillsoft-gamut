@@ -16,6 +16,12 @@ export const createFontLinks = (fonts?: readonly FontConfig[]) => {
     return [];
   }
 
+  /*
+   * One file can back several font faces (Roboto 500 and 700 share a bold file),
+   * so preload each URL once. The URL is also the React key.
+   */
+  const seen = new Set<string>();
+
   return currentFonts
     .filter(
       (f) =>
@@ -25,6 +31,11 @@ export const createFontLinks = (fonts?: readonly FontConfig[]) => {
         f.filePath &&
         f.filePath.trim() !== ''
     )
+    .filter(({ filePath }) => {
+      if (seen.has(filePath)) return false;
+      seen.add(filePath);
+      return true;
+    })
     .map(({ filePath }) => (
       <link
         as="font"

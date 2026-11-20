@@ -18,11 +18,10 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "dependsOn": ["^build"],
-      "outputs": ["{workspaceRoot}/coverage/packages/gamut-codemods"],
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/coverage/vitest/gamut-codemods"],
       "options": {
-        "jestConfig": "packages/gamut-codemods/jest.config.ts"
+        "command": "vitest run --project=jsdom --project=node packages/gamut-codemods/"
       }
     },
     "verify-package": {
