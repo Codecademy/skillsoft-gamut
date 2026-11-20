@@ -1,8 +1,13 @@
 # Installable previews of the packages on a pull request, published through
 # pkg.pr.new. Nothing reaches npm — pkg.pr.new serves npm-compatible tarballs
 # from its own URLs, so this needs no registry credentials and no version bump.
-# The pkg.pr.new GitHub App posts the install instructions as a PR comment,
-# which is why the job needs no permissions of its own.
+# The pkg.pr.new GitHub App posts the install instructions as a PR comment.
+# The job only needs `pull-requests: write` to clear the `update-alpha` label
+# once it has run.
+#
+# Previews publish on every push. Adding the `update-alpha` label to a pull
+# request republishes it without a new commit; the label is removed again
+# afterwards so it can be reused.
 #
 # Installs resolve as:
 #   yarn add https://pkg.pr.new/@skillsoft/gamut@<pr-number>
@@ -16,6 +21,7 @@ name: Preview
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, labeled]
 
 env:
   NODE_OPTIONS: '--max_old_space_size=8196'
@@ -32,12 +38,18 @@ jobs:
   packages:
     # Nobody installs a preview of the version bump itself, and the real versions
     # publish minutes later.
-    if: github.event.pull_request.head.ref != 'changeset-release/main'
+    # A `labeled` event only publishes when it is the `update-alpha` label.
+    if: >-
+      github.event.pull_request.head.ref != 'changeset-release/main' &&
+      (github.event.action != 'labeled' || github.event.label.name == 'update-alpha')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     # A preview is a convenience. pkg.pr.new outages are upstream and unannounced,
     # so a failure here shouldn't read as a broken pull request.
     continue-on-error: true
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -49,3 +61,11 @@ jobs:
       # a single PR comment. `--yarn` packs with `yarn pack` rather than npm.
       - name: 📦 Publish preview packages
         run: yarn pkg-pr-new publish --yarn --packageManager=npm,yarn './packages/*'
+      # Clear the trigger label even if the publish failed, so re-adding it retries.
+      - name: 🏷 Clear update-alpha label
+        if: always() && github.event.action == 'labeled' && github.event.label.name == 'update-alpha'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: gh pr edit "$PR_NUMBER" --remove-label update-alpha
