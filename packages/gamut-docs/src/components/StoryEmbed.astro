@@ -25,8 +25,8 @@ interface Props {
 
 const { id, height = '10rem' } = Astro.props;
 
-// Port must match the `storybook` target's `port` option in the styleguide
-// project's project.json.
+// Port must match the `dev` target's `port` option in
+// packages/.storybook/project.json.
 // TODO: update the origin after DNS skillsoft.gamut.com is live 
 const storybookOrigin = import.meta.env.DEV
   ? 'http://localhost:6006'

@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { getPopoverAlignmentAndPattern } from './popoverAlignmentUtils';
 
 describe('getPopoverAlignmentAndPattern', () => {

@@ -1,13 +1,10 @@
 import { CheckerDense } from '@skillsoft/gamut-patterns';
 import type { Colors } from '@skillsoft/gamut-styles';
-import { borderRadii } from '@skillsoft/gamut-styles';
 import type * as React from 'react';
 
 import { DynamicCardWrapper, MotionBox, StaticCardWrapper } from './elements';
 import { patternFadeInOut, useCardElevation } from './styles';
 import type { CardProps } from './types';
-
-type BorderRadiusToken = keyof typeof borderRadii;
 
 export const Card: React.FC<CardProps> = ({
   children,
@@ -20,10 +17,7 @@ export const Card: React.FC<CardProps> = ({
   height = '100%',
   ...rest
 }) => {
-  const defaultBorderRadius: BorderRadiusToken = isInteractive ? 'md' : 'none';
-  const trueBorderRadius = borderRadius ?? defaultBorderRadius;
-  const resolvedBorderRadius =
-    borderRadii[trueBorderRadius as BorderRadiusToken];
+  const trueBorderRadius = borderRadius ?? (isInteractive ? 'md' : 'none');
 
   const SelectedWrapper =
     variant === 'default' ? DynamicCardWrapper : StaticCardWrapper;
@@ -31,7 +25,7 @@ export const Card: React.FC<CardProps> = ({
   const hasPattern = shadow === 'patternLeft' || shadow === 'patternRight';
   const isOutline = shadow === 'outline';
 
-  const setHoverShadow = useCardElevation(shadow, resolvedBorderRadius);
+  const setHoverShadow = useCardElevation(shadow, trueBorderRadius);
 
   const initialVariant = isOutline ? 'initialOutline' : 'initial';
   const animateVariant = isOutline ? 'animateOutline' : 'animate';
