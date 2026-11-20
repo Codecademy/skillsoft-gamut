@@ -1,6 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
+import { describe, expect, it } from 'vitest';
+
 import { tokensCss } from '../../tokens/generated/tokensCss';
 import { originalCodecademyBrand } from '../brands/originalCodecademy';
 import { skillsoftBrand } from '../brands/skillsoft';

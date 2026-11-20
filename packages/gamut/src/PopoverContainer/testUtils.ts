@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 const defaultHeight = '200px';
 const defaultWidth = '500px';
 const defaultContentHeight = '1000px';
@@ -26,7 +27,7 @@ export const createMockDOMRect = (
   width,
   x: left,
   y: top,
-  toJSON: jest.fn(),
+  toJSON: vi.fn(),
 });
 
 export const createStyledElement = (

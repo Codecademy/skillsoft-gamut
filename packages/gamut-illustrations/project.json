@@ -18,10 +18,10 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/gamut-illustrations"],
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/coverage/vitest/gamut-illustrations"],
       "options": {
-        "jestConfig": "packages/gamut-illustrations/jest.config.ts"
+        "command": "vitest run --project=jsdom --project=node packages/gamut-illustrations/"
       }
     },
     "clean": {
