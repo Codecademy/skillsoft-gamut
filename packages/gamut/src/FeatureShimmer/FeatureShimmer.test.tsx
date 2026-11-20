@@ -1,11 +1,12 @@
 import { setupRtl } from '@skillsoft/gamut-tests';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { FeatureShimmer } from '.';
 
-const mockIntersectionObserver = jest.fn();
-const mockUseReducedMotion = jest.fn();
-jest.mock('framer-motion', () => ({
-  ...jest.requireActual('framer-motion'),
+const mockIntersectionObserver = vi.fn();
+const mockUseReducedMotion = vi.fn();
+vi.mock('framer-motion', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('framer-motion')>()),
   get useReducedMotion() {
     return mockUseReducedMotion;
   },
@@ -16,9 +17,9 @@ const renderView = setupRtl(FeatureShimmer, { children: 'Testing' });
 describe('FeatureShimmer', () => {
   beforeEach(() => {
     mockIntersectionObserver.mockReturnValue({
-      observe: jest.fn(),
-      unobserve: jest.fn(),
-      disconnect: jest.fn(),
+      observe: vi.fn(),
+      unobserve: vi.fn(),
+      disconnect: vi.fn(),
     });
     window.IntersectionObserver = mockIntersectionObserver;
   });

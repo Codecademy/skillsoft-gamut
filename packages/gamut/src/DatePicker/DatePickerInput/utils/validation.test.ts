@@ -1,3 +1,5 @@
+import { describe, expect, it, vi } from 'vitest';
+
 import { DEFAULT_DATE_PICKER_TRANSLATIONS } from '../../utils/translations';
 import type { SegmentValues } from '../Segment/utils';
 import {
@@ -63,7 +65,7 @@ describe('validateSegments', () => {
   });
 
   it('does not consult disableDate for a malformed date', () => {
-    const disableDate = jest.fn(() => true);
+    const disableDate = vi.fn(() => true);
 
     validateSegments(segments('13', '15', '2024'), translations, disableDate);
 
