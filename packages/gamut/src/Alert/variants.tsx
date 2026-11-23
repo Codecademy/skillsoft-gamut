@@ -8,7 +8,7 @@ import {
 import { breakpoints, variant } from '@skillsoft/gamut-styles';
 
 /*
- * Design's mapping (gamut-styles colorSystem/migration.ts, Alert): the fill
+ * Design's mapping (gamut-brand src/migration.ts, Alert): the fill
  * is a status tint or a surface. A status variant's ink carries the icon, the
  * message and a floating Alert's border; general, feature and subtle keep the
  * message in text-default. General and feature paint a brand gradient over
