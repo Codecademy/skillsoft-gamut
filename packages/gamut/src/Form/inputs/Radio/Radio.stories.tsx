@@ -123,6 +123,7 @@ export const Checked: Story = {
     name: 'example-checked',
     label: 'Checked',
     checked: true,
+    onChange: fn(),
   },
   play: ({ canvas }) => {
     canvas.getByRole('radio', { checked: true });
