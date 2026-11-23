@@ -14,7 +14,16 @@ export const Toggle = <Props extends ToggleProps>({
   size = 'medium',
   ...rest
 }: Props) => {
-  const checkedColor = checked ? 'primary' : 'text-disabled';
+  /*
+   * Design's toggle map: the unchecked track borrows `border-default`, the
+   * role guaranteed 3:1 on every surface. Disabled is `action-disabled`
+   * instead of a faded track.
+   */
+  const checkedColor = disabled
+    ? 'action-disabled'
+    : checked
+    ? 'action-primary'
+    : 'border-default';
   const isButton = as === 'button';
   const toggleProps = getToggleElementProps<Props>({
     ariaLabel,
@@ -43,8 +52,8 @@ export const Toggle = <Props extends ToggleProps>({
       >
         {!isButton && <ToggleInput {...toggleProps} />}
         <Circle
-          bg="white"
-          borderColor="background"
+          bg="surface-raised"
+          borderColor="surface-raised"
           borderRadius="full"
           borderStyle="solid"
           borderWidth="1px"

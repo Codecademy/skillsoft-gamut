@@ -8,6 +8,7 @@ Explanation: how and why the system is built the way it is, for when you want to
 - [Best practices](/concepts/best-practices/)
 - [Brand](/concepts/brand/)
 - [Color modes](/concepts/color-modes/)
+- [Color system](/concepts/color-system/)
 - [FAQs](/concepts/faqs/)
 - [Naming conventions rationale](/concepts/naming-conventions-rationale/)
 - [Voice & tone](/concepts/voice-and-tone/)

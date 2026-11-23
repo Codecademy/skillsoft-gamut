@@ -11,7 +11,7 @@ export const MenuSeparator: React.FC<MenuSeperatorProps> = (props) => {
   return (
     <FlexBox as="li" center fit height={8} {...props}>
       <Box
-        bg="text-disabled"
+        bg="border-subtle"
         borderRadius="sm"
         fit
         height="1px"

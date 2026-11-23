@@ -1,5 +1,5 @@
 import * as icons from '@skillsoft/gamut-icons';
-import { Background } from '@skillsoft/gamut-styles';
+import { ColorMode } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 import startCase from 'lodash/startCase';
 import { expect } from 'storybook/test';
@@ -41,6 +41,38 @@ const meta: Meta<typeof Anchor> = {
 };
 
 export default meta;
+
+const AnchorVariants = ({ useIcon }: { useIcon: boolean }) => (
+  <LayoutGrid>
+    {(['light', 'dark'] as const).map((mode) => (
+      <Column key={mode} size={6}>
+        <ColorMode
+          bg="surface-default"
+          display="grid"
+          gridTemplateColumns="repeat(4, 1fr)"
+          mode={mode}
+          p={32}
+        >
+          {variants.map((variant) => (
+            <Box key={`${variant}-${mode}`}>
+              <Text as="p" fontWeight="title">
+                {startCase(variant)}
+              </Text>
+              <Anchor
+                href={`#${variant}`}
+                icon={useIcon ? icons.MiniStarIcon : undefined}
+                mr={8}
+                variant={variant}
+              >
+                Click Me
+              </Anchor>
+            </Box>
+          ))}
+        </ColorMode>
+      </Column>
+    ))}
+  </LayoutGrid>
+);
 
 type Story = StoryObj<typeof Anchor>;
 
@@ -85,42 +117,11 @@ export const IconAnchor: Story = {
 };
 
 export const Modes: Story = {
-  args: { icon: undefined },
-  render: (args) => (
-    <LayoutGrid>
-      {(['white', 'navy'] as const).map((bg) => (
-        <Column key={bg} size={6}>
-          <Background
-            bg={bg}
-            display="grid"
-            gridTemplateColumns="repeat(4, 1fr)"
-            p={32}
-          >
-            {variants.map((variant) => (
-              <Box key={`${variant}-${bg}`}>
-                <Text as="p" fontWeight="title">
-                  {startCase(variant)}
-                </Text>
-                <Anchor
-                  href={`#${variant}`}
-                  icon={args.icon}
-                  mr={8}
-                  variant={variant}
-                >
-                  Click Me
-                </Anchor>
-              </Box>
-            ))}
-          </Background>
-        </Column>
-      ))}
-    </LayoutGrid>
-  ),
+  render: () => <AnchorVariants useIcon={false} />,
 };
 
 export const IconModes: Story = {
-  args: { icon: icons.MiniStarIcon },
-  render: Modes.render,
+  render: () => <AnchorVariants useIcon />,
 };
 
 export const PolymorphicAnchor: Story = {

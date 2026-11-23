@@ -1,4 +1,5 @@
 import type { Preset } from '../lib/types';
+import { colorRolesPreset } from './color-roles';
 import { scopeSwap } from './scope-swap';
 
 /*
@@ -7,8 +8,10 @@ import { scopeSwap } from './scope-swap';
   Later presets are named for the release they target and can reuse
   migrations from src/migrations with a different manifest.
 */
-export const presets: Record<string, Preset> = {
+/* Each preset has its own manifest type; callers only pass it through. */
+export const presets: Record<string, Preset<any>> = {
   [scopeSwap.name]: scopeSwap,
+  [colorRolesPreset.name]: colorRolesPreset,
 };
 
 /*
@@ -17,7 +20,7 @@ export const presets: Record<string, Preset> = {
   switch, so presets have to list every `ast` migration before any
   `splice` one.
 */
-export const validatePreset = (preset: Preset) => {
+export const validatePreset = <M>(preset: Preset<M>) => {
   const source = preset.migrations.filter((m) => m.kind !== 'file');
   const firstSplice = source.findIndex((m) => m.kind === 'splice');
   const lateAst =

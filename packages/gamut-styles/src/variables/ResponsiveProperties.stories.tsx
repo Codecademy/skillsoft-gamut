@@ -37,7 +37,7 @@ export const MediaQueries: Story = {
   render: (args) => (
     <Box {...args}>
       <Box
-        bg={{ _: 'paleBlue', md: 'orange' }}
+        bg={{ _: 'surface-brand-subtle', md: 'surface-warning' }}
         border={1}
         borderRadius="sm"
         p={16}
@@ -52,7 +52,7 @@ export const ContainerQueries: Story = {
   render: (args) => (
     <Box containerType="inline-size" {...args}>
       <Box
-        bg={{ _: 'paleBlue', c_md: 'orange' }}
+        bg={{ _: 'surface-brand-subtle', c_md: 'surface-warning' }}
         border={1}
         borderRadius="sm"
         p={16}
@@ -69,12 +69,13 @@ export const CombinedQueries: Story = {
     <Box containerType="inline-size" {...args}>
       <Box
         bg={{
-          _: 'beige',
-          md: 'background-disabled',
-          c_lg: 'primary-inverse',
+          _: 'surface-default',
+          md: 'action-disabled',
+          c_lg: 'action-primary',
         }}
         border={1}
         borderRadius="sm"
+        color={{ _: 'text-default', c_lg: 'text-inverse' }}
         p={16}
       >
         My background color will change at the medium media-query breakpoint and

@@ -5,6 +5,7 @@ import {
   MiniRibbonIcon,
   SearchIcon,
 } from '@skillsoft/gamut-icons';
+import { ColorMode } from '@skillsoft/gamut-styles';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Box, FlexBox, GridBox } from '../Box';
@@ -108,19 +109,21 @@ const ButtonScale = ({ mode }: { mode: 'dark' | 'light' }) => {
   });
 
   return (
-    <GridBox
-      alignItems="center"
-      bg={mode === 'dark' ? 'navy' : 'white'}
-      columnGap={32}
-      gridAutoRows="3rem"
-      gridTemplateColumns="max-content repeat(4, minmax(50px, max-content))"
-      justifyItems="start"
-      p={32}
-      rowGap={16}
-      textColor={mode === 'dark' ? 'white' : 'navy'}
-    >
-      {grid}
-    </GridBox>
+    <ColorMode mode={mode}>
+      <GridBox
+        alignItems="center"
+        bg="surface-default"
+        columnGap={32}
+        gridAutoRows="3rem"
+        gridTemplateColumns="max-content repeat(4, minmax(50px, max-content))"
+        justifyItems="start"
+        p={32}
+        rowGap={16}
+        textColor="text-default"
+      >
+        {grid}
+      </GridBox>
+    </ColorMode>
   );
 };
 

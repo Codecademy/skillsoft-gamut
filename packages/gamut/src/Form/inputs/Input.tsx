@@ -83,15 +83,15 @@ const InputElement = styled.input<StyledInputProps>(
 
 const inputStates = {
   error: {
-    color: 'feedback-error',
+    color: 'text-error',
     icon: AlertIcon,
   },
   valid: {
-    color: 'feedback-success',
+    color: 'text-success',
     icon: CheckCircledIcon,
   },
   clean: {
-    color: 'text',
+    color: 'text-default',
     icon: undefined,
   },
 } as const;

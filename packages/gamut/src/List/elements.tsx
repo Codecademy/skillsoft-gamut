@@ -59,6 +59,10 @@ export const ListEl = styled('ul', styledOptions<'ul'>())<ListProps>(
   space
 );
 
+/* A veil as a background layer, so it sits over the row's own fill. */
+const veil = (role: 'state-hover' | 'state-selected') =>
+  `linear-gradient(${theme.colors[role]}, ${theme.colors[role]})`;
+
 const rowStates = states({
   isOl: {
     '&::before': {
@@ -81,19 +85,29 @@ const rowStates = states({
   transparentBg: {
     bg: 'transparent',
   },
+  /*
+   * A selected row takes the `state-selected` veil over its own fill
+   * (design's list map). Hovering it stacks the hover veil on top.
+   */
+  isSelected: {
+    backgroundImage: veil('state-selected'),
+    '&:hover': {
+      backgroundImage: `${veil('state-hover')}, ${veil('state-selected')}`,
+    },
+  },
 });
 
 const interactiveState = states({
   interactive: {
     cursor: 'pointer',
 
+    /* Hover is a veil over the row's own fill; focus is the ring alone. */
     '&:hover': {
-      bg: 'background-hover',
+      backgroundImage: veil('state-hover'),
     },
     '&:focus-visible, &:focus-within': {
-      outline: `1px solid ${theme.colors.primary}`,
-      boxShadow: `0 0 0 1px ${theme.colors.primary} inset`,
-      bg: 'background-selected',
+      outline: `1px solid ${theme.colors['action-primary']}`,
+      boxShadow: `0 0 0 1px ${theme.colors['action-primary']} inset`,
     },
   },
 });
@@ -123,26 +137,30 @@ const rowVariants = variant({
   base: {},
   variants: {
     default: {
-      bg: 'background',
+      bg: 'surface-raised',
       border: 1,
+      borderColor: 'border-subtle',
       borderTop: 'none',
       '&:first-of-type': {
         borderTop: 1,
+        borderColorTop: 'border-subtle',
       },
     },
+    /* Rows are `surface-raised`; a stripe is sunken, so it never reads as a selection. */
     table: {
-      bg: 'transparent',
+      bg: 'surface-raised',
       '&:nth-of-type(2n)': {
-        bg: 'background-selected',
+        bg: 'surface-sunken',
       },
     },
     card: {
-      bg: 'background',
+      bg: 'surface-raised',
       border: 1,
+      borderColor: 'border-subtle',
       borderRadius: 'sm',
     },
     block: {
-      bg: 'background',
+      bg: 'surface-raised',
       border: 'none',
       borderRadius: 'sm',
     },
@@ -201,6 +219,7 @@ const headerVariants = variant({
     block: {},
     table: {
       borderBottom: 2,
+      borderColorBottom: 'border-default',
     },
     plain: {},
   },
@@ -464,7 +483,11 @@ export const StickyHeaderColWrapper = styled.th(
     '&:before': {
       content: '""',
       position: 'absolute',
-      bg: { _: 'background', c_base: 'transparent', c_sm: 'background' },
+      bg: {
+        _: 'surface-raised',
+        c_base: 'transparent',
+        c_sm: 'surface-raised',
+      },
       width: '100%',
       height: '100%',
       top: 0,
@@ -526,14 +549,14 @@ export const AnimatedListWrapper = styled(motion.create(Box))(
 );
 
 export const hiddenVariant = {
-  background: `linear-gradient(90deg, transparent 0%, transparent 40%, ${theme.colors['background-selected']} 50%, ${theme.colors['border-tertiary']} 100%)`,
+  background: `linear-gradient(90deg, transparent 0%, transparent 40%, ${theme.colors['border-subtle']} 100%)`,
   backgroundSize: '0px 100%',
   backgroundPosition: 'right',
   backgroundRepeat: 'no-repeat',
 } as const;
 
 export const shadowVariant = {
-  background: `linear-gradient(90deg, transparent 0%, transparent 40%, ${theme.colors['background-selected']} 50%, ${theme.colors['border-tertiary']} 100%)`,
+  background: `linear-gradient(90deg, transparent 0%, transparent 40%, ${theme.colors['border-subtle']} 100%)`,
   backgroundSize: '124px 100%',
   backgroundPosition: 'right',
   backgroundRepeat: 'no-repeat',

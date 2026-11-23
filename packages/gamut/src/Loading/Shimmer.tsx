@@ -1,6 +1,6 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
-import { css, useCurrentMode } from '@skillsoft/gamut-styles';
+import { css, theme } from '@skillsoft/gamut-styles';
 import type * as React from 'react';
 
 import type { BoxProps } from '../Box';
@@ -16,48 +16,26 @@ const fade = keyframes({
   to: { opacity: 1 },
 });
 
-const lightModeForegroundBg = `0, 0, 0`;
-
-const darkModeForegroundBg = `255, 255, 255`;
-
-type ShimmerForegroundProps = {
-  foregroundBg: typeof lightModeForegroundBg | typeof darkModeForegroundBg;
-};
-
-const ShimmerForeground = styled(Box)<ShimmerForegroundProps>((props) =>
+/*
+ * Design's shimmer: a `surface-sunken` base with a `surface-raised` sweep,
+ * so it follows the mode on its own.
+ */
+const ShimmerForeground = styled(Box)(
   css({
     animation: `${slide} 2s linear infinite, ${fade} 1s linear infinite alternate`,
     background: `linear-gradient(
-     to right,
-      rgba(${props.foregroundBg}, 0) 20%,
-      rgba(${props.foregroundBg}, 0.2) 50%,
-      rgba(${props.foregroundBg}, 0) 80%
+      to right,
+      transparent 20%,
+      ${theme.colors['surface-raised']} 50%,
+      transparent 80%
     )`,
   })
 );
 
-export const Shimmer: React.FC<BoxProps> = (props) => {
-  const currentMode = useCurrentMode();
-  return (
-    <Box {...props}>
-      <Box
-        bg="background-disabled"
-        fit
-        opacity={0.5}
-        overflow="hidden"
-        position="relative"
-      >
-        <ShimmerForeground
-          foregroundBg={
-            currentMode === 'light'
-              ? lightModeForegroundBg
-              : darkModeForegroundBg
-          }
-          height={1}
-          position="absolute"
-          width={500}
-        />
-      </Box>
+export const Shimmer: React.FC<BoxProps> = (props) => (
+  <Box {...props}>
+    <Box bg="surface-sunken" fit overflow="hidden" position="relative">
+      <ShimmerForeground height={1} position="absolute" width={500} />
     </Box>
-  );
-};
+  </Box>
+);

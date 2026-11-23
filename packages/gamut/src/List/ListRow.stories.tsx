@@ -130,24 +130,24 @@ const renderExpandableRows: ExpandableRowsStory['render'] =
                 expanded={expandedNames.includes(name)}
                 key={name}
                 renderExpanded={() => (
-                  <FlexBox bg="background-selected" column m={16} p={16}>
+                  <FlexBox bg="state-selected" column m={16} p={16}>
                     <Text fontStyle="italic" smooth>
                       Oh, were you expecting to find out more about{' '}
-                      <Text as="span" color="text-accent" fontWeight="bold">
+                      <Text as="span" color="text-default" fontWeight="bold">
                         {name}
                       </Text>
                       ,{' '}
-                      <Text as="span" color="text-accent" fontWeight="bold">
+                      <Text as="span" color="text-default" fontWeight="bold">
                         {role}
                       </Text>{' '}
                       of the{' '}
-                      <Text as="span" color="text-accent" fontWeight="bold">
+                      <Text as="span" color="text-default" fontWeight="bold">
                         {ship}
                       </Text>
                       ? I am very sorry but that is{' '}
                       <Text
                         as="span"
-                        color="danger"
+                        color="action-danger"
                         fontWeight="bold"
                         textDecoration="underline"
                       >
@@ -162,7 +162,7 @@ const renderExpandableRows: ExpandableRowsStory['render'] =
                 <ListCol size="lg" type="header">
                   <FlexBox column>
                     <Text
-                      color="text-disabled"
+                      color="text-subtle"
                       textTransform="uppercase"
                       variant="p-small"
                     >
@@ -174,7 +174,7 @@ const renderExpandableRows: ExpandableRowsStory['render'] =
                 <ListCol fill size="md">
                   <FlexBox column>
                     <Text
-                      color="text-disabled"
+                      color="text-subtle"
                       textTransform="uppercase"
                       variant="p-small"
                     >
@@ -185,7 +185,7 @@ const renderExpandableRows: ExpandableRowsStory['render'] =
                 </ListCol>
                 <ListCol fill size="sm">
                   <Text
-                    color="text-disabled"
+                    color="text-subtle"
                     lineHeight="title"
                     mt={4}
                     variant="p-small"
@@ -201,7 +201,7 @@ const renderExpandableRows: ExpandableRowsStory['render'] =
                 </ListCol>
                 <ListCol fill size="sm">
                   <Text
-                    color="text-disabled"
+                    color="text-subtle"
                     lineHeight="title"
                     mt={4}
                     variant="p-small"
@@ -217,7 +217,7 @@ const renderExpandableRows: ExpandableRowsStory['render'] =
                 </ListCol>
                 <ListCol fill size="sm">
                   <Text
-                    color="text-disabled"
+                    color="text-subtle"
                     lineHeight="title"
                     mt={4}
                     variant="p-small"
@@ -235,7 +235,7 @@ const renderExpandableRows: ExpandableRowsStory['render'] =
                       width={1}
                     >
                       <Rotation rotated={expandedNames.includes(name)}>
-                        <ArrowChevronDownIcon color="secondary" />
+                        <ArrowChevronDownIcon color="action-neutral" />
                       </Rotation>
                     </FlexBox>
                   </ListCol>
