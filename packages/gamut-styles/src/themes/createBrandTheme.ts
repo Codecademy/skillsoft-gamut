@@ -45,11 +45,22 @@ export interface BrandBase {
   fontFamily: Record<string, string>;
   fontWeight: Record<string | number, number | string>;
   elevation: ElevationScaleFactory;
+  /* Defaults to gamut's shared radii. */
+  borderRadii?: Record<keyof typeof borderRadii, string>;
+  /* The mode at the root. Defaults to light. */
+  initialMode?: 'light' | 'dark';
 }
 
 export const createBrandTheme = (
   values: BrandValues,
-  { name, fontFamily, fontWeight, elevation }: BrandBase
+  {
+    name,
+    fontFamily,
+    fontWeight,
+    elevation,
+    borderRadii: radii = borderRadii,
+    initialMode = 'light',
+  }: BrandBase
 ) => {
   const refs = (mode: 'light' | 'dark') => ({
     ...(mapValues(values.roles[mode], (v) => v.ref) as Record<
@@ -62,7 +73,7 @@ export const createBrandTheme = (
 
   const built = createTheme({
     breakpoints: { ...mediaQueries, ...containerQueries },
-    borderRadii,
+    borderRadii: radii,
     fontSize,
     fontFamily,
     lineHeight,
@@ -73,7 +84,7 @@ export const createBrandTheme = (
     .addColors(
       mapValues(values.palette, (v) => v.srgb) as Record<PaletteKey, string>
     )
-    .addColorModes('light', { light: refs('light'), dark: refs('dark') })
+    .addColorModes(initialMode, { light: refs('light'), dark: refs('dark') })
     .addScale('borders', ({ colors }: { colors: Record<string, string> }) => ({
       1: `1px solid ${colors['border-strong']}`,
       2: `2px solid ${colors['border-strong']}`,

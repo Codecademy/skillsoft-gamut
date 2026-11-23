@@ -1,9 +1,13 @@
 import {
   AssetProvider,
+  skillsoftTheme,
   createEmotionCache,
   GamutProvider,
   platformPalette,
-  skillsoftTheme,
+  adminTheme,
+  lxStudioTheme,
+  CoreTheme,
+  platformTheme,
   originalCodecademyTheme,
   ColorMode,
 } from '@skillsoft/gamut-styles';
@@ -22,11 +26,19 @@ export const storybookTheme = createTheme(skillsoftTheme)
   .build();
 
 const themeMap = {
+  admin: adminTheme,
+  lxStudio: lxStudioTheme,
+  platform: platformTheme,
   skillsoft: skillsoftTheme,
   originalCodecademy: originalCodecademyTheme,
 } as const;
 
-const themeSpecificStories = {};
+const themeSpecificStories = {
+  'foundations-theme-lx-studio-theme--docs': 'lxStudio',
+  'foundations-theme-platform-theme--docs': 'platform',
+  'foundations-theme-admin-theme--docs': 'admin',
+  'foundations-theme-core-theme--docs': 'core',
+};
 export const DocsContainer: React.FC<{
   context: DocsContextProps;
   children: React.ReactNode;
@@ -38,7 +50,7 @@ export const DocsContainer: React.FC<{
     ?.storyId;
 
   const globalTheme =
-    (context as any).store.userGlobals?.globals?.theme || 'skillsoft';
+    (context as any).store.userGlobals?.globals?.theme || 'core';
   const globalLogicalProps = (context as any).store.userGlobals?.globals
     ?.logicalProps;
   const useLogicalProperties = globalLogicalProps !== 'false';
