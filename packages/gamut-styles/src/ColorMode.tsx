@@ -172,6 +172,7 @@ export const ColorMode = forwardRef<
   const contextBg = bg ? 'background-current' : undefined;
   // This makes sure the background-current context is always set to the correct color + not the semantic color name.
   const currentParentBg = useContext(BackgroundCurrentContext);
+  const inheritedBg = currentParentBg['background-current'];
 
   const bgCurrent =
     bg === 'background-current'
@@ -200,11 +201,18 @@ export const ColorMode = forwardRef<
    */
   const { variables } = useMemo(() => {
     if (fromTokensCss) {
+      /*
+       * A nested `background-current` repeats the parent's palette color. It
+       * can't just inherit the variable: tokens.css resets it on every
+       * data-color-mode element, so the nested wrapper would fall back to the
+       * default surface. With no parent color, nothing is set.
+       */
+      const color = bg === 'background-current' ? inheritedBg : bg;
       return {
         variables:
-          bg === undefined
+          color === undefined
             ? {}
-            : { '--color-background-current': colors[bg] as string },
+            : { '--color-background-current': colors[color] as string },
       };
     }
     return serializeTokens(
@@ -217,7 +225,7 @@ export const ColorMode = forwardRef<
       'color',
       theme
     );
-  }, [colors, mode, modes, theme, bg, fromTokensCss]);
+  }, [colors, mode, modes, theme, bg, inheritedBg, fromTokensCss]);
 
   if (active === mode) {
     const vars = alwaysSetVariables
