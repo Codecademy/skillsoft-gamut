@@ -123,7 +123,7 @@ When `icon` is provided and `children` is omitted, `label` is required.
 // correct — custom tooltip alignment
 <MenuItem
   icon={PeopleIcon}
-  label={{ info: 'Manage team', alignment: 'right-center' }}
+  label={{ info: 'Manage team', alignment: 'end-center' }}
   href="/team"
 />
 
@@ -138,7 +138,7 @@ Pass `label` on a `disabled` `MenuItem` to explain why it is unavailable.
 ```tsx
 <MenuItem
   disabled
-  label={{ info: 'Requires admin access', alignment: 'right-center' }}
+  label={{ info: 'Requires admin access', alignment: 'end-center' }}
   onClick={handleAction}
 >
   Admin action
@@ -151,7 +151,7 @@ Offset the `PopoverContainer` y-axis by `48` (normal spacing) or `32` (condensed
 
 ```tsx
 <PopoverContainer
-  alignment="top-right"
+  alignment="top-end"
   inline
   isOpen={isOpen}
   targetRef={triggerRef}

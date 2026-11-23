@@ -16,7 +16,7 @@ const meta: Meta<typeof GridForm> = {
     submit: {
       contents: 'Submit',
       size: 4,
-      position: 'left',
+      position: 'start',
     },
   },
 };

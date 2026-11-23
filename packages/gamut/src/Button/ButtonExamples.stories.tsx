@@ -34,7 +34,7 @@ export const InlineIcons: Story = {
       </StrokeButton>
       <TextButton
         icon={MiniArrowRightIcon}
-        iconPosition="right"
+        iconPosition="end"
         maxWidth="fit-content"
       >
         TextButton

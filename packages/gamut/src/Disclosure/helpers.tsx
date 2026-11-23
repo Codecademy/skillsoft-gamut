@@ -40,7 +40,7 @@ export const getRotationSize = (
 };
 
 export const renderButton = (buttonProps: {
-  buttonPlacement: 'left' | 'right';
+  buttonPlacement: 'start' | 'end';
   buttonType: 'FillButton' | 'StrokeButton' | 'TextButton';
   ctaCallback: () => void;
   ctaText: string;

@@ -4,6 +4,17 @@ import type { FocusTrapProps } from '../FocusTrap';
 import type { WithChildrenProp } from '../utils';
 
 export type PopoverContainerAlignment =
+  | 'top-start'
+  | 'top-end'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'top'
+  | 'bottom'
+  | 'start'
+  | 'end';
+
+/** Physical placement {@link PopoverContainerAlignment} resolves to for position math. */
+export type PopoverContainerPhysicalAlignment =
   | 'top-left'
   | 'top-right'
   | 'bottom-left'

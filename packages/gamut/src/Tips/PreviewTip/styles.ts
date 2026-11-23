@@ -8,12 +8,12 @@ export const defaultGridTemplate = `1fr`;
 
 export const getShadowAlignment = (alignment: string) => {
   const topAligned = alignment.includes('top');
-  const leftAligned = alignment.includes('left');
+  const startAligned = alignment.includes('start');
 
   return {
     bottom: !topAligned ? shadowAlignment : undefined,
-    left: leftAligned ? shadowAlignment : undefined,
-    right: !leftAligned ? shadowAlignment : undefined,
+    left: startAligned ? shadowAlignment : undefined,
+    right: !startAligned ? shadowAlignment : undefined,
     top: topAligned ? shadowAlignment : undefined,
   };
 };

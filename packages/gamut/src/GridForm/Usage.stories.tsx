@@ -154,7 +154,7 @@ const meta: TypeWithDeepControls<Meta<typeof GridForm>> = {
     submit: {
       contents: 'Submit Me!?',
       size: 4,
-      position: 'left',
+      position: 'start',
       disabled: false,
       loading: false,
       type: 'fill',
@@ -176,10 +176,10 @@ const meta: TypeWithDeepControls<Meta<typeof GridForm>> = {
     },
     'submit.position': {
       control: 'radio',
-      options: ['left', 'center', 'right', 'stretch'],
+      options: ['start', 'center', 'end', 'stretch'],
       table: {
-        defaultValue: { summary: 'left' },
-        type: { summary: 'left | center | right | stretch' },
+        defaultValue: { summary: 'start' },
+        type: { summary: 'start | center | end | stretch' },
       },
       description: 'The position of the submit button.',
     },

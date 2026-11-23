@@ -188,14 +188,14 @@ const RowMenu = ({ rowName }: { rowName: string }) => {
         icon={MiniKebabMenuIcon}
         tip="Show options"
         tipProps={{
-          alignment: 'left-center',
+          alignment: 'start-center',
           placement: 'floating',
         }}
         variant="secondary"
         onClick={() => setIsOpen(!isOpen)}
       />
       <PopoverContainer
-        alignment="bottom-left"
+        alignment="bottom-start"
         allowPageInteraction
         closeOnViewportExit
         isOpen={isOpen}
@@ -492,7 +492,7 @@ export const WithFloatingMenu: Story = {
         header: 'Actions',
         key: 'name',
         size: 'sm',
-        justify: 'right',
+        justify: 'end',
         type: 'control',
         render: (row) => <RowMenu rowName={String(row.name)} />,
       },

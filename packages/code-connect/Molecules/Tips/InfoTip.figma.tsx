@@ -19,6 +19,7 @@ figma.connect(
         high: 'high',
       }),
       toolTipInfo: figma.nestedProps('.infotip-alignment', {
+        // TODO: Update these alignment values to their 'start' / 'end' equivalents after the Figma changes take effect.
         alignment: figma.enum('alignment', {
           'top-left': 'top-left',
           'top-right': 'top-right',

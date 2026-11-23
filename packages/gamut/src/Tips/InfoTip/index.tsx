@@ -69,7 +69,7 @@ const MODAL_SELECTOR =
   'dialog[open],[role="dialog"]:not([aria-hidden="true"]),[role="alertdialog"]:not([aria-hidden="true"])';
 
 export const InfoTip: React.FC<InfoTipProps> = ({
-  alignment = 'top-right',
+  alignment = 'top-end',
   ariaLabel,
   ariaLabelledby,
   ariaRoleDescription = 'More information button',

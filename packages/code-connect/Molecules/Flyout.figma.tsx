@@ -14,6 +14,7 @@ figma.connect(
   'https://www.figma.com/design/ReGfRNillGABAj5SlITalN/%F0%9F%93%90-Gamut?node-id=6329%3A5647',
   {
     props: {
+      // TODO: Update these 'left' / 'right' values to 'start' / 'end' after the Figma changes take effect.
       openFrom: figma.enum('openFrom', {
         left: 'left',
         right: 'right',

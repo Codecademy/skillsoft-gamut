@@ -15,7 +15,7 @@ const meta: Meta<typeof GridForm> = {
     submit: {
       contents: 'Submit',
       size: 4,
-      position: 'left',
+      position: 'start',
     },
   },
 };
@@ -135,7 +135,7 @@ export const InfoTip: Story = {
       {
         infotip: {
           info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          alignment: 'bottom-left',
+          alignment: 'bottom-start',
         },
         label: 'Tool input',
         name: 'input-field',
@@ -145,7 +145,7 @@ export const InfoTip: Story = {
       {
         infotip: {
           info: <Markdown text="My grandmother used to tell me stories..." />,
-          alignment: 'bottom-right',
+          alignment: 'bottom-end',
         },
         label: 'Select with infotip',
         options: ['', 'Water', 'Earth', 'Fire', 'Air', 'Boomerang'],
@@ -195,7 +195,7 @@ export const InfoTip: Story = {
       {
         infotip: {
           info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          alignment: 'bottom-right',
+          alignment: 'bottom-end',
         },
         label: 'End User License Agreement',
         description: 'I promise that I read it',
@@ -220,7 +220,7 @@ export const Sections: Story = {
     fields: [
       {
         title: 'first section',
-        layout: 'left',
+        layout: 'start',
         variant: 'title-xs',
         titleWrapperProps: {
           color: 'danger',

@@ -79,7 +79,7 @@ export const PlainStyled: Story = {
         <DangerousListRow onClick={onDangerousRowClick}>
           <ListCol size="xl">A dangerous styled item</ListCol>
           <ListCol size="md">More styled content</ListCol>
-          <ListCol fill justify="right" size="sm">
+          <ListCol fill justify="end" size="sm">
             <StopSignIcon size={24} />
           </ListCol>
         </DangerousListRow>

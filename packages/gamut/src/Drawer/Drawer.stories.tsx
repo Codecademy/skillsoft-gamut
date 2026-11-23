@@ -11,7 +11,7 @@ const meta: Meta<typeof Drawer> = {
   component: Drawer,
   args: {
     expanded: true,
-    alignContentContainer: 'left',
+    alignContentContainer: 'start',
   },
   render: function DrawerDemo(args) {
     const [expanded, setExpanded] = useState(args.expanded);

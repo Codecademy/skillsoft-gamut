@@ -33,7 +33,7 @@ const PopoverContent = styled.div(
 );
 
 export const PopoverContainer: React.FC<PopoverContainerProps> = ({
-  alignment = 'bottom-left',
+  alignment = 'bottom-start',
   offset = 20,
   y = 0,
   x = 0,

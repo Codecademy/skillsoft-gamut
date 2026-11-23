@@ -16,7 +16,7 @@ const meta: Meta<typeof InfoTip> = {
   title: 'Feedback/Tips/InfoTip',
   component: InfoTip,
   args: {
-    alignment: 'top-left',
+    alignment: 'top-start',
     ariaLabel: 'More information',
     info: `I am additional information about a nearby element or content.`,
     onClick: fn(),
@@ -192,7 +192,7 @@ export const Emphasis: Story = {
 export const Alignments: Story = {
   render: (args) => (
     <GridBox gap={24} gridTemplateColumns="1fr 1fr" ml={8} py={64}>
-      {(['top-right', 'top-left', 'bottom-right', 'bottom-left'] as const).map(
+      {(['top-end', 'top-start', 'bottom-end', 'bottom-start'] as const).map(
         (alignment) => {
           const labelId = `alignment-${alignment}`;
           return (
@@ -219,7 +219,7 @@ export const Alignments: Story = {
     await expectAllClosed(buttons);
 
     await openInfoTipsWithKeyboard(context, buttons);
-    await userEvent.click(canvas.getByText('top-right'));
+    await userEvent.click(canvas.getByText('top-end'));
     await expectAllClosed(buttons);
   },
 };
@@ -291,7 +291,7 @@ export const AriaLabel: Story = {
           I am some helpful yet concise text that needs more explanation
         </Text>
         <InfoTip
-          alignment="bottom-left"
+          alignment="bottom-start"
           ariaLabelledby="custom-info-id"
           info="I am clarifying information related to the concise text."
         />
@@ -319,7 +319,7 @@ export const FloatingAriaLabel: Story = {
 export const CustomRoleDescription: Story = {
   args: {
     ariaRoleDescription: 'Botón de más información',
-    alignment: 'top-right',
+    alignment: 'top-end',
     placement: 'floating',
   },
   play: async ({ canvas }) => {
@@ -413,7 +413,7 @@ export const KeyboardNavigation: Story = {
       {
         title: 'Inline Placement',
         placement: 'inline' as const,
-        alignment: 'bottom-right' as const,
+        alignment: 'bottom-end' as const,
         links: ['Link A', 'Link B'],
       },
     ];

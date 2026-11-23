@@ -72,7 +72,7 @@ export const ToggleInput = styled.input(screenReaderOnly);
 
 const ToggleLabelStates = states({
   disabled: { cursor: 'not-allowed', opacity: 0.5 },
-  labelRight: { flexDirection: 'row-reverse' },
+  labelEnd: { flexDirection: 'row-reverse' },
 });
 
 export type ToggleStyleProps = StyleProps<typeof system.space>;

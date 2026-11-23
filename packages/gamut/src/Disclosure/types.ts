@@ -40,9 +40,9 @@ export interface DisclosureBodyProps extends DisclosureBodyWrapperStyles {
    */
   buttonType?: 'FillButton' | 'StrokeButton' | 'TextButton';
   /**
-   * You can specify `"right"` (default) or `"left"` placement of the optional button at the bottom of the body.
+   * You can specify `"end"` (default) or `"start"` placement of the optional button at the bottom of the body.
    */
-  buttonPlacement?: 'left' | 'right';
+  buttonPlacement?: 'start' | 'end';
   /**
    * A callback function MUST be included when providing a `ctaButton` to render the optional button.
    */

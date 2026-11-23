@@ -19,11 +19,11 @@ export interface DrawerProps extends Omit<BoxProps, 'width'> {
   /**
    * Which edge of the drawer content container is aligned to during the animation.
    */
-  alignContentContainer?: 'left' | 'right';
+  alignContentContainer?: 'start' | 'end';
 }
 
 export const Drawer: React.FC<DrawerProps> = ({
-  alignContentContainer = 'right',
+  alignContentContainer = 'end',
   children,
   expanded,
   ...props
@@ -54,7 +54,7 @@ export const Drawer: React.FC<DrawerProps> = ({
           <Box
             borderRadius="sm"
             height="100%"
-            {...{ [alignContentContainer]: 0 }}
+            {...{ [alignContentContainer === 'start' ? 'left' : 'right']: 0 }}
             maxWidth="100%"
             minWidth={fullWidth}
             overflowX="hidden"

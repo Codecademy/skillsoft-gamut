@@ -29,7 +29,7 @@ export interface FlyoutProps extends WithChildrenProp {
   /**
    * Which direction of the screen this flies out from.
    */
-  openFrom?: 'left' | 'right';
+  openFrom?: 'start' | 'end';
 
   /**
    * Contents for a top-left h1.
@@ -43,7 +43,7 @@ export const Flyout: React.FC<FlyoutProps> = ({
   children,
   closeLabel = 'Close',
   expanded,
-  openFrom = 'left',
+  openFrom = 'start',
   onClose,
   title,
 }) => {
@@ -57,14 +57,14 @@ export const Flyout: React.FC<FlyoutProps> = ({
     >
       <Background bg={bg}>
         <Drawer
-          alignContentContainer={openFrom === 'left' ? 'right' : 'left'}
+          alignContentContainer={openFrom === 'start' ? 'end' : 'start'}
           bottom={0}
           display="flex"
           expanded={expanded}
-          flexDirection={openFrom === 'left' ? 'row' : 'row-reverse'}
+          flexDirection={openFrom === 'start' ? 'row' : 'row-reverse'}
           position="fixed"
           top={0}
-          {...{ [openFrom]: 0 }}
+          {...{ [openFrom === 'start' ? 'left' : 'right']: 0 }}
         >
           <FlexBox
             alignItems="center"

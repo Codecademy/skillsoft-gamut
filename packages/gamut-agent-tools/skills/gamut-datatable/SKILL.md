@@ -76,7 +76,7 @@ import { useLocalQuery } from '@skillsoft/gamut';
 | `type`     | `'content' \| 'header' \| 'control' \| 'select' \| 'expand' \| 'expandControl' \| 'orderedHeader' \| 'tableControl'` | `ListColProps['type']`; `'content'` is default — see [Column `type`](#column-type) |
 | `size`     | `'content' \| 'sm' \| 'md' \| 'lg' \| 'xl'`                                                                          | `'content'` (default) fits cell contents; use `sm`–`xl` for fixed column widths    |
 | `fill`     | `boolean`                                                                                                            | Expands the column to fill remaining width                                         |
-| `justify`  | `'left' \| 'right'`                                                                                                  | Cell alignment                                                                     |
+| `justify`  | `'start' \| 'end'`                                                                                                   | Cell alignment                                                                     |
 | `sortable` | `boolean`                                                                                                            | Adds a sort toggle to the column header                                            |
 | `filters`  | `string[]`                                                                                                           | Adds a filter dropdown with these string values                                    |
 | `options`  | `Array<string \| { text: string; value: string }>`                                                                   | Alternative to `filters` when display text differs from value                      |
@@ -115,7 +115,7 @@ const columns = [
     header: 'Score',
     size: 'sm',
     sortable: true,
-    justify: 'right',
+    justify: 'end',
   },
 ];
 
@@ -178,7 +178,7 @@ const RowActions = ({ rowId }) => {
         onClick={() => setIsOpen(!isOpen)}
       />
       <PopoverContainer
-        alignment="bottom-left"
+        alignment="bottom-start"
         allowPageInteraction
         closeOnViewportExit
         isOpen={isOpen}
@@ -217,7 +217,7 @@ const columns = [
     header: '',
     size: 'sm',
     type: 'control',
-    justify: 'right',
+    justify: 'end',
     render: (row) => <RowActions rowId={row.id} />,
   },
 ];

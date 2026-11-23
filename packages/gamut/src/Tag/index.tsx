@@ -34,7 +34,7 @@ export const Tag: React.FC<TagProps> = ({
     children,
     icon,
     iconAndTextGap: 8,
-    iconPosition: 'left',
+    iconPosition: 'start',
     iconSize: 16,
   });
 
