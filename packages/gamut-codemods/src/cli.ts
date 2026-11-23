@@ -5,14 +5,10 @@ import path from 'node:path';
 
 import jscodeshift from 'jscodeshift';
 
-import { findFlatEslintConfig } from './lib/eslint';
+import { gamutUsage, videoUsage } from './lib/gamut-imports';
 import { dirtyTreeReason } from './lib/git';
-import { findLeftovers, walk } from './lib/leftovers';
-import {
-  activeSourceMigrations,
-  mentionsOldNames,
-  runSourceMigrations,
-} from './lib/run-source';
+import { GENERATED_FILES, SKIP_DIRS, walk } from './lib/leftovers';
+import { activeSourceMigrations, runSourceMigrations } from './lib/run-source';
 import type { FileMigration, Preset } from './lib/types';
 import { getPreset, presets } from './presets';
 
@@ -72,17 +68,19 @@ export const parseArgs = (argv: string[]): Options | 'help' | 'list' => {
 const heading = (text: string) => console.log(`\n— ${text} —`);
 
 const runFileMigrations = (
-  preset: Preset,
+  preset: Preset<any>,
   opts: Options,
   note: (key: string) => void
 ) => {
   const only = opts.only ? new Set(opts.only.split(',')) : null;
   const skip = new Set(opts.skip ? opts.skip.split(',') : []);
   const active = preset.migrations.filter(
-    (m): m is FileMigration =>
+    (m): m is FileMigration<any> =>
       m.kind === 'file' && (!only || only.has(m.name)) && !skip.has(m.name)
   );
   let changed = 0;
+  const usesGamut = gamutUsage();
+  const usesVideo = videoUsage();
 
   for (const root of opts.paths) {
     const files = fs.statSync(root).isDirectory() ? walk(root) : [root];
@@ -93,7 +91,7 @@ const runFileMigrations = (
         const warn = (msg: string) =>
           console.log(`[${migration.name}] ${file} ${msg}`);
         const transformSource = (code: string) =>
-          mentionsOldNames(preset.manifest, code)
+          preset.mentions(code)
             ? runSourceMigrations({
                 j: jscodeshift.withParser('tsx'),
                 source: code,
@@ -113,6 +111,8 @@ const runFileMigrations = (
           manifest: preset.manifest,
           warn,
           note,
+          usesGamut: () => usesGamut(file),
+          usesVideo: () => usesVideo(file),
           transformSource,
         });
         if (next === null) continue;
@@ -125,7 +125,7 @@ const runFileMigrations = (
   return changed;
 };
 
-const printChecklist = (preset: Preset, notes: Set<string>) => {
+const printChecklist = (preset: Preset<any>, notes: Set<string>) => {
   heading('next steps');
   const items = [
     ...Object.entries(preset.conditionalChecklist)
@@ -194,7 +194,12 @@ export const main = async (argv: string[]) => {
         dry: opts.dry,
         extensions: 'ts,tsx,js,jsx,mjs,cjs,mts,cts',
         /* .d.ts stays in: Emotion theme augmentations import gamut-styles. */
-        ignorePattern: ['**/node_modules/**', '**/dist/**', '**/build/**'],
+        /* Same list as the leftovers walk: build output and caches, which hold
+           minified bundles that aren't source and won't parse. */
+        ignorePattern: [
+          ...[...SKIP_DIRS].map((dir) => `**/${dir}/**`),
+          ...[...GENERATED_FILES].map((file) => `**/${file}`),
+        ],
         parser: 'tsx',
         babel: false,
         verbose: 0,
@@ -213,10 +218,8 @@ export const main = async (argv: string[]) => {
       heading(
         'leftovers skipped in --dry (nothing was written, so everything would show up)'
       );
-    } else if (opts.report) {
-      const hits = findLeftovers(opts.paths, preset.manifest, {
-        eslintRuleKeys: !findFlatEslintConfig(opts.paths),
-      });
+    } else if (opts.report && preset.leftovers) {
+      const hits = preset.leftovers(opts.paths);
       heading(`leftovers (${hits.length})`);
       hits.forEach((hit) =>
         console.log(
