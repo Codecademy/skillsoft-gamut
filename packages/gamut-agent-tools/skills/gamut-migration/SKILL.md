@@ -145,7 +145,7 @@ Warnings start with `[color-roles]`, `[color-roles-themes]` or `[color-roles-sty
 - **`blue-500` and `blue` (partly defaulted).** `blue-500` is admin's light-mode primary (`#1557FF`), and bare `blue` is the same color. The codemod maps their text to `action-primary`, because link and focus text is interactive. Fills and borders stay warnings: they mix interactive uses (selection buttons) with decoration (the Skillsoft family block), and only a person can tell them apart. Map those to `action-primary` when they're interactive, and to `surface-brand` or a `viz-*` series when they're decoration.
   Don't map the brand's blue to the Skillsoft primary by hex. Skillsoft's primary is Sapphire, `#1C50BB`, which is close to LX Studio's and Percipio's primary but not the same as admin's blue.
 - **`color name built at runtime`.** The codemod can't see the value. Check every name the template can produce, like `${variant}-hover`.
-- **Card `variant="navy"` (`color-roles:card-navy`).** `navy` becomes `default`, which renders light. Wrap the card in `<ColorMode mode="dark">` if it should stay dark, then delete the comment.
+- **Card `variant="navy"` (`color-roles:card-navy`).** `navy` becomes `default`, which renders light. If the card should stay dark, wrap it in a `Background` with the surface color it paints, not a nested `ColorMode`, then delete the comment. Only use `ColorMode mode="dark"` if the whole page is meant to be dark. See "Background or ColorMode" below.
 - **`percipioTheme`, `coreTheme`, `PercipioTheme`, `CoreTheme`.** Theme names move to their replacements: `skillsoftTheme`, `originalCodecademyTheme`, and `SkillsoftTheme`. A leftover `CoreTheme` type gets a comment. Brand themes share one shape, typed by `SkillsoftTheme`. That is a type, not a theme to switch to: keep the theme the app already uses.
 - **`--color-*` in `.css`, `.scss` or `.less`.** The type check can't see stylesheets, so the leftovers report is the only list of what's left. Indented-syntax `.sass` isn't rewritten. Search those by hand for `--color-`.
 
@@ -165,6 +165,15 @@ Don't:
 - Pass `--force` to get past the clean-tree check.
 
 The codemod's README (`@skillsoft/gamut-codemods`, "Running color-roles") lists the positions it covers and its limits.
+
+### Background or ColorMode
+
+`ColorMode` sets the mode for everything inside it. Use it once, at the top of the app or page, where the mode is decided. Inside that, reach for `Background` for any surface that has its own color.
+
+- **`ColorMode`** sets the mode you pass: `mode="light"`, `"dark"` or `"system"`. It doesn't look at the color behind it. Put it at the highest level, the app or page root, and leave it there. Only add a nested `ColorMode` when a smaller area has to be a different mode from the page around it, and say why in a comment.
+- **`Background`** paints a `bg` color and picks the mode itself, choosing the one with the most contrast against that color. Its children stay readable whatever mode the page is in. Use it for any surface with a color of its own: a brand gradient, a featured panel, a dark block on a light page. It takes no `mode` prop; that's omitted from its props on purpose.
+
+So a nested `ColorMode` is the exception, not the default. When you find one that wraps a surface, change it to `Background` with the color the surface paints, and check that the mode it picks is right.
 
 ## Working through open color decisions
 
