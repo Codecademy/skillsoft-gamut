@@ -1,0 +1,23 @@
+---
+title: Shadow
+description: System props for box and text shadows.
+sidebar:
+  order: 10
+---
+
+import SystemPropTable from '~/components/SystemPropTable.astro';
+
+Shadow props add box and text shadows, using standard CSS shadow syntax.
+
+```tsx
+const ShadowExample = styled.div(system.shadow);
+
+<ShadowExample
+  boxShadow="0 0 4px rgba(0, 0, 0, .15)"
+  textShadow="0 0 4px rgba(0, 0, 0, .15)"
+/>;
+```
+
+## Props
+
+<SystemPropTable group="shadows" />
