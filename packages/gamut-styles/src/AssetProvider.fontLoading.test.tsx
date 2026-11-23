@@ -2,9 +2,9 @@ import { render } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { AssetProvider } from './AssetProvider';
-import { coreTheme, percipioTheme } from './themes';
+import { skillsoftTheme } from './themes';
 
-const typedPercipioTheme = percipioTheme as any;
+const typedPercipioTheme = skillsoftTheme as any;
 
 const { getFontsMock } = vi.hoisted(() => ({ getFontsMock: vi.fn() }));
 
@@ -95,7 +95,7 @@ describe('Font Loading and Error Handling', () => {
         },
       ]);
 
-      const { container } = render(<AssetProvider theme={coreTheme} />);
+      const { container } = render(<AssetProvider theme={skillsoftTheme} />);
 
       const links = getPreloadLinks(container);
       expect(links).toHaveLength(1);
@@ -121,7 +121,7 @@ describe('Font Loading and Error Handling', () => {
         },
       ]);
 
-      const { container } = render(<AssetProvider theme={coreTheme} />);
+      const { container } = render(<AssetProvider theme={skillsoftTheme} />);
 
       const links = getPreloadLinks(container);
       expect(links).toHaveLength(2);
@@ -142,7 +142,7 @@ describe('Font Loading and Error Handling', () => {
         throw new Error('Font loading failed');
       });
 
-      const { container } = render(<AssetProvider theme={coreTheme} />);
+      const { container } = render(<AssetProvider theme={skillsoftTheme} />);
 
       const links = getPreloadLinks(container);
       expect(links).toHaveLength(0);
@@ -168,7 +168,7 @@ describe('Font Loading and Error Handling', () => {
         },
       ]);
 
-      const { container } = render(<AssetProvider theme={coreTheme} />);
+      const { container } = render(<AssetProvider theme={skillsoftTheme} />);
 
       const links = getPreloadLinks(container);
       expect(links).toHaveLength(2);
@@ -190,7 +190,7 @@ describe('Font Loading and Error Handling', () => {
         },
       ]);
 
-      const { container } = render(<AssetProvider theme={coreTheme} />);
+      const { container } = render(<AssetProvider theme={skillsoftTheme} />);
 
       const links = getPreloadLinks(container);
       expect(links).toHaveLength(2);
@@ -221,7 +221,7 @@ describe('Font Loading and Error Handling', () => {
         },
       ]);
 
-      const { container } = render(<AssetProvider theme={coreTheme} />);
+      const { container } = render(<AssetProvider theme={skillsoftTheme} />);
 
       const links = getPreloadLinks(container);
       expect(links).toHaveLength(1);
@@ -244,7 +244,7 @@ describe('Font Loading and Error Handling', () => {
         },
       ]);
 
-      const { container } = render(<AssetProvider theme={coreTheme} />);
+      const { container } = render(<AssetProvider theme={skillsoftTheme} />);
 
       const links = getPreloadLinks(container);
       expect(links).toHaveLength(1);
@@ -264,12 +264,12 @@ describe('Font Loading and Error Handling', () => {
       ]);
 
       for (let i = 0; i < 10; i += 1) {
-        const { unmount } = render(<AssetProvider theme={coreTheme} />);
+        const { unmount } = render(<AssetProvider theme={skillsoftTheme} />);
         unmount();
       }
 
       expect(() => {
-        render(<AssetProvider theme={coreTheme} />);
+        render(<AssetProvider theme={skillsoftTheme} />);
       }).not.toThrow();
     });
 
@@ -282,11 +282,11 @@ describe('Font Loading and Error Handling', () => {
         },
       ]);
 
-      const { rerender } = render(<AssetProvider theme={coreTheme} />);
+      const { rerender } = render(<AssetProvider theme={skillsoftTheme} />);
 
       for (let i = 0; i < 5; i += 1) {
         rerender(<AssetProvider theme={typedPercipioTheme} />);
-        rerender(<AssetProvider theme={coreTheme} />);
+        rerender(<AssetProvider theme={skillsoftTheme} />);
       }
 
       expect(() => {

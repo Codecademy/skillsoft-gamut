@@ -185,4 +185,9 @@ export const percipio: readonly FontConfig[] = [
   ...percipioRobotoFonts,
 ];
 
-export const webFonts = { core, percipio, lxStudio: percipio } as const;
+export const webFonts = {
+  core,
+  percipio,
+  lxStudio: percipio,
+  skillsoft: percipio,
+} as const;

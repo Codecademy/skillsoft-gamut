@@ -4,7 +4,7 @@ import type * as React from 'react';
 import { describe, it } from 'vitest';
 
 import { setupRtl } from '../testUtils';
-import { coreTheme as theme } from '../themes';
+import { skillsoftTheme as theme } from '../themes';
 import { useLogicalProperties } from './useLogicalProperties';
 
 const ValueReadout: React.FC = () => <span>{`${useLogicalProperties()}`}</span>;
