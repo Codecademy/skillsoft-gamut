@@ -23,6 +23,17 @@ describe('palette defaults', () => {
     expect(paletteDefault('yellow', 'the `bg` prop')).toBeNull();
   });
 
+  it('map the warning family, yellow-0 fills and yellow ink, and leave the accent to a person', () => {
+    expect(paletteDefault('yellow-0', 'the `bg` prop')).toBe('surface-warning');
+    expect(paletteDefault('yellow', 'the `color` prop')).toBe('text-warning');
+    expect(paletteDefault('yellow-900', 'the `textColor` prop')).toBe(
+      'text-warning'
+    );
+    expect(paletteDefault('yellow', 'the `bg` prop')).toBeNull();
+    expect(paletteDefault('yellow-500', 'the `bg` prop')).toBeNull();
+    expect(paletteDefault('yellow-400', 'the `color` prop')).toBeNull();
+  });
+
   it('map blue-500 text to action-primary, and leave blue fills to a person', () => {
     expect(paletteDefault('blue-500', 'the `color` prop')).toBe(
       'action-primary'

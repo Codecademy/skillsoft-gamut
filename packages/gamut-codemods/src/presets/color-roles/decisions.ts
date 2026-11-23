@@ -56,6 +56,14 @@ const WHITE: Record<UseKind, string> = {
 };
 
 /*
+  The warning family. yellow-0 is the warning tint and bare yellow or
+  yellow-900 is the warning ink, as the old core theme uses them. yellow-400
+  and yellow-500 are the accent, so they stay warnings for a person.
+*/
+const YELLOW_FILL_WARNING = 'surface-warning';
+const YELLOW_TEXT_WARNING = 'text-warning';
+
+/*
   hyper is the old primary: primary fills, links and focus. Only hyper and
   hyper-500 map, since the other steps are hover and pressed tints.
 */
@@ -149,6 +157,11 @@ export const paletteDefault = (name: string, where: string): string | null => {
       return (shade === undefined || shade === '500') && kind === 'text'
         ? BLUE_TEXT
         : null;
+    case 'yellow':
+      if (kind === 'fill' && shade === '0') return YELLOW_FILL_WARNING;
+      if (kind === 'text' && (shade === undefined || shade === '900'))
+        return YELLOW_TEXT_WARNING;
+      return null;
     case 'hyper':
       return shade === undefined || shade === '500' ? HYPER[kind] : null;
     case 'navy':
@@ -163,5 +176,7 @@ export const DEFAULT_ROLES = [
   ...Object.values(ERROR),
   ...Object.values(SUCCESS),
   ...Object.values(WHITE),
+  YELLOW_FILL_WARNING,
+  YELLOW_TEXT_WARNING,
   ...Object.values(NAVY).flatMap((steps) => Object.values(steps)),
 ];
