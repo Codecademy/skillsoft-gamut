@@ -6,11 +6,34 @@ Codemods for moving a repo onto `@skillsoft/gamut` and between its releases.
 
 Each preset is one upgrade. Run them in order if you're more than one behind.
 
-| Preset       | What it's for                                           |
-| ------------ | ------------------------------------------------------- |
-| `scope-swap` | Moving from `@codecademy/gamut*` to `@skillsoft/gamut*` |
+| Preset               | What it's for                                                                                                                           |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `scope-swap`         | Moving from `@codecademy/gamut*` to `@skillsoft/gamut*`                                                                                 |
+| `size-and-alignment` | Size values move to `sm` / `md` / `lg`, Select's `sizeVariant` becomes `size`, and left / right alignment values become `start` / `end` |
 
 `npx @skillsoft/gamut-codemods list` shows every preset and the migrations inside it.
+
+## Running size-and-alignment
+
+Run it on code that already imports `@skillsoft/gamut`. Consumers still on `@codecademy/gamut` run `scope-swap` first.
+
+```sh
+# Preview without writing anything
+npx @skillsoft/gamut-codemods size-and-alignment . --dry
+
+# Run it
+npx @skillsoft/gamut-codemods size-and-alignment .
+```
+
+It rewrites JSX attributes on the components listed in `src/presets/size-and-alignment/manifest.ts`, and only when the component is imported from `@skillsoft/gamut`. A local component with the same name, or the same prop on a component that isn't listed (Modal's `size`, for example), is left alone. Aliased imports work.
+
+- **Sizes:** `size` on Button, Input, Toggle, SelectDropdown, ProgressBar, Badge, and DatePicker's `inputSize`, plus `labelSize` on FormGroup and ConnectedFormGroup, and `size` on FormGroupLabel. Old values map to the new scale.
+- **Select:** `sizeVariant` is renamed to `size`, with `small` → `sm` and `base` → `md`.
+- **Alignment:** `left` / `right` become `start` / `end` for `iconPosition`, `buttonPlacement`, `alignContentContainer`, `openFrom`, `menuAlignment`, Popover `align` and `beak`, Coachmark `beak`, and GridForm `layout`. Tip and PopoverContainer `alignment` values like `top-left` and `left-center` map to their `start` / `end` forms.
+
+Only string literals are converted, as `prop="old"` or `prop={'old'}`. Any other expression for a prop that has values to convert gets a warning, so check it by hand.
+
+Not covered, so check these by hand: values in object literals (such as DataList column `justify`), `textAlign` on `Text`, `position` on GridForm fields, and any prop read from a variable.
 
 ## Running scope-swap
 

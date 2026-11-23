@@ -95,6 +95,7 @@ export const mentionsOldNames = (manifest: Manifest, source: string) =>
     ...Object.keys(manifest.packages),
     ...Object.keys(manifest.removedPackages),
     `${manifest.eslintPlugin.from}/`,
+    ...(manifest.componentProps ? [manifest.componentProps.package] : []),
   ].some((name) => source.includes(name));
 
 /* `only` and `skip` are comma-separated migration names. */

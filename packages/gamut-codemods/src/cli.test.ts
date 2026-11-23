@@ -205,7 +205,7 @@ describe('main: full run', () => {
     expect(out).toMatch(/Video needs two peer dependencies/);
     expect(out).toMatch(/Some tsconfig files set "lib"/);
     expect(out).toMatch(
-      /\[moved-exports\] .*src\/index\.ts:1 .*no longer re-exports Video/
+      /src\/index\.ts\n\s+:1 \[moved-exports\] .*no longer re-exports Video/
     );
     expect(out).toMatch(
       /\[moved-exports\] .*reexport\.mdx .*no longer re-exports Video/

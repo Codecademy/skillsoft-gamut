@@ -25,7 +25,7 @@ export type ProgressBarProps = {
   /**
    * Base variant display themes.
    */
-  variant: 'blue' | 'yellow' | 'default';
+  variant?: 'blue' | 'yellow' | 'default';
 
   /**
    * Whether to flatten the bottom or top of the progress bar.
@@ -167,7 +167,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   percent,
   pattern: Pattern,
   size = 'sm',
-  variant,
+  variant = 'default',
 }) => {
   const showBarBorder = percent > 0 || minimumPercent > 0;
   const id = React.useId();

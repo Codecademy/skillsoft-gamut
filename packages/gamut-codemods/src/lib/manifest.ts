@@ -48,9 +48,28 @@ export interface DeepImport {
   note?: string;
 }
 
+export interface PropChange {
+  /* The prop's new name, when the prop itself was renamed. */
+  rename?: string;
+  /* Old string value -> new string value. Other values are left alone. */
+  values?: Record<string, string>;
+}
+
+export interface ComponentPropChanges {
+  /*
+    The package whose components are matched. This is the NEW name, since
+    these rules run on code that already imports @skillsoft/gamut.
+  */
+  package: string;
+  /* Component export name -> prop name -> change. */
+  components: Record<string, Record<string, PropChange>>;
+}
+
 export interface Manifest {
   /* Old package -> new package. */
   packages: Record<string, PackageRename>;
+  /* Prop renames and value changes on specific components, by name. */
+  componentProps?: ComponentPropChanges;
   /* Packages with no replacement under the new name. */
   removedPackages: Record<string, RemovedPackage>;
   /* Version range written to package.json, keyed by NEW package name. */

@@ -15,6 +15,7 @@ import {
 } from './lib/run-source';
 import type { FileMigration, Preset } from './lib/types';
 import { getPreset, presets } from './presets';
+import type { RecordedWarning } from './transform';
 
 /* No published types for the Runner; it's jscodeshift's programmatic API. */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -125,6 +126,32 @@ const runFileMigrations = (
   return changed;
 };
 
+/* Prints the warnings each worker recorded, grouped by file and sorted by line. */
+const printWarnings = (dir: string) => {
+  const files = fs.readdirSync(dir).map((key) => ({
+    file: decodeURIComponent(key),
+    warnings: fs
+      .readFileSync(path.join(dir, key), 'utf8')
+      .split('\n')
+      .filter(Boolean)
+      .map((line) => JSON.parse(line) as RecordedWarning),
+  }));
+  const total = files.reduce((sum, f) => sum + f.warnings.length, 0);
+  heading(`warnings (${total})`);
+  files
+    .sort((a, b) => a.file.localeCompare(b.file))
+    .forEach(({ file, warnings }) => {
+      console.log(file);
+      warnings
+        .sort((a, b) => (a.line ?? 0) - (b.line ?? 0))
+        .forEach((w) =>
+          console.log(
+            `  ${w.line ? `:${w.line} ` : ''}[${w.migration}] ${w.message}`
+          )
+        );
+    });
+};
+
 const printChecklist = (preset: Preset, notes: Set<string>) => {
   heading('next steps');
   const items = [
@@ -181,6 +208,9 @@ export const main = async (argv: string[]) => {
   opts.skip = skipped.join(',') || undefined;
 
   const notesDir = fs.mkdtempSync(path.join(os.tmpdir(), 'gamut-codemods-'));
+  const warningsDir = fs.mkdtempSync(
+    path.join(os.tmpdir(), 'gamut-codemods-warnings-')
+  );
   try {
     heading('source files');
     const result = await Runner.run(
@@ -191,6 +221,7 @@ export const main = async (argv: string[]) => {
         only: opts.only,
         skip: opts.skip,
         notesDir,
+        warningsDir,
         dry: opts.dry,
         extensions: 'ts,tsx,js,jsx,mjs,cjs,mts,cts',
         /* .d.ts stays in: Emotion theme augmentations import gamut-styles. */
@@ -204,6 +235,8 @@ export const main = async (argv: string[]) => {
     fs.readdirSync(notesDir).forEach((key) =>
       notes.add(decodeURIComponent(key))
     );
+
+    printWarnings(warningsDir);
 
     heading('package.json and .eslintrc');
     const changed = runFileMigrations(preset, opts, (key) => notes.add(key));
@@ -231,5 +264,6 @@ export const main = async (argv: string[]) => {
     return result.error > 0 ? 1 : 0;
   } finally {
     fs.rmSync(notesDir, { recursive: true, force: true });
+    fs.rmSync(warningsDir, { recursive: true, force: true });
   }
 };
