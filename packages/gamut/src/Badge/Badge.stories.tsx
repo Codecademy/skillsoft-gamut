@@ -66,7 +66,7 @@ export const Custom: Story = {
   render: (args) => (
     <FlexBox gap={8}>
       <Badge
-        background="linear-gradient(91deg, #FFE712 0.08%, #FF9641 100%)"
+        background="linear-gradient(91deg, var(--color-palette-warning-300) 0.08%, #FF9641 100%)"
         variant="custom"
         {...args}
       />
