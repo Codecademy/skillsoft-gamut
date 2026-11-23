@@ -108,7 +108,7 @@ export const Toast: React.FC<ToastProps> = ({
       <IconButton
         alignSelf="start"
         icon={MiniDeleteIcon}
-        size="small"
+        size="sm"
         tip="Dismiss Toast"
         tipProps={{ placement: 'floating' }}
         variant="secondary"

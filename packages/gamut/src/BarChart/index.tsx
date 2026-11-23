@@ -115,15 +115,11 @@ export const BarChart = <
               <StyledFormGroupLabel
                 htmlFor={sortSelectId}
                 isSoloField
-                size="small"
+                size="sm"
               >
                 {mergedTranslations.sortLabel}
               </StyledFormGroupLabel>
-              <WidthSelect
-                sizeVariant="small"
-                {...selectProps}
-                id={sortSelectId}
-              />
+              <WidthSelect size="sm" {...selectProps} id={sortSelectId} />
             </FlexBox>
           )}
         </FlexBox>

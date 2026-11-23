@@ -364,7 +364,7 @@ export const NoOptionsAnnouncement: Story = {
     return (
       <FlexBox column gap={16} height="15rem">
         <Box>
-          <StrokeButton size="small" onClick={() => setHasCustomMessage(false)}>
+          <StrokeButton size="sm" onClick={() => setHasCustomMessage(false)}>
             Use default message
           </StrokeButton>
         </Box>
@@ -474,7 +474,7 @@ export const Small: Story = {
   args: {
     options: ['i am smol', 'yes I am!', ':)', 'a', 'b', 'c'],
     name: 'size-no-search',
-    size: 'small',
+    size: 'sm',
     translations: { placeholder: 'click here!' },
   },
   render: (args) => (
@@ -512,7 +512,7 @@ export const SmallSearchable: Story = {
     ],
     name: 'size-search',
     isSearchable: true,
-    size: 'small',
+    size: 'sm',
     translations: { placeholder: 'no type here instead!' },
   },
   render: (args) => (
@@ -535,7 +535,7 @@ export const FormGroupSelectDropdown: Story = {
         htmlFor="big-label"
         isSoloField
         label="i am big label"
-        labelSize="large"
+        labelSize="lg"
       >
         <SelectDropdown {...args} />
       </FormGroup>
@@ -882,7 +882,7 @@ export const AbbreviatedSmallSize: Story = {
         value: 'java',
       },
     ],
-    size: 'small',
+    size: 'sm',
     inputWidth: '80px',
     dropdownWidth: '200px',
   },
@@ -1432,7 +1432,7 @@ export const SmallWithAbbreviations: Story = {
         value: 'cpp',
       },
     ],
-    size: 'small',
+    size: 'sm',
     inputWidth: '80px',
     dropdownWidth: '200px',
     translations: { placeholder: 'Select JScript' },

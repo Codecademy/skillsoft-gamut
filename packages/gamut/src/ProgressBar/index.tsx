@@ -10,7 +10,7 @@ export type ProgressBarProps = {
   /**
    * Whether to increase size and display the percentage as text.
    */
-  size?: 'small' | 'medium' | 'large' | 'xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
 
   /**
    * Minimum amount of the bar to fill in visually.
@@ -53,7 +53,7 @@ const progressBarFlatVariants = variant({
 });
 
 const progressBarSizeVariants = variant({
-  defaultVariant: 'small',
+  defaultVariant: 'sm',
   prop: 'size',
   base: {
     display: 'flex',
@@ -61,15 +61,15 @@ const progressBarSizeVariants = variant({
     position: 'relative',
   },
   variants: {
-    small: {
+    sm: {
       height: '6px',
       borderRadius: 'sm',
     },
-    medium: {
+    md: {
       height: '8px',
       borderRadius: 'md',
     },
-    large: {
+    lg: {
       height: '18px',
       borderRadius: 'lg',
       fontSize: 14,
@@ -166,7 +166,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   minimumPercent = 0,
   percent,
   pattern: Pattern,
-  size = 'small',
+  size = 'sm',
   variant,
 }) => {
   const showBarBorder = percent > 0 || minimumPercent > 0;
@@ -193,7 +193,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
         variant={variant}
         width={`${Math.max(minimumPercent, percent)}%`}
       >
-        {['large', 'xl'].includes(size) && (
+        {['lg', 'xl'].includes(size) && (
           <DisplayedPercent aria-hidden>{percent}%</DisplayedPercent>
         )}
       </Bar>

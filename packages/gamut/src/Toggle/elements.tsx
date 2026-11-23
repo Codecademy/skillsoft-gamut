@@ -13,11 +13,11 @@ import { variance } from '@skillsoft/variance';
 import { Box } from '../Box';
 
 export const sizes = {
-  medium: {
+  md: {
     height: '30px',
     width: '60px',
   },
-  small: {
+  sm: {
     height: '18px',
     width: '36px',
   },
@@ -51,7 +51,7 @@ const ToggleTrackVariants = variant({
     },
   },
   prop: 'size',
-  defaultVariant: 'medium',
+  defaultVariant: 'md',
   variants: sizes,
 });
 

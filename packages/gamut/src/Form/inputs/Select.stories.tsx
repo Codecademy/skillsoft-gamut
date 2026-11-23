@@ -63,7 +63,7 @@ export const Small: Story = {
   args: {
     options: ['Small', 'Quite little'],
     defaultValue: 'Small',
-    sizeVariant: 'small',
+    size: 'sm',
     id: 'small-variant',
   },
 };
@@ -96,7 +96,7 @@ export const FormGroupBase: Story = {
       htmlFor="form-group-base"
       isSoloField
       label="i am a large label"
-      labelSize="large"
+      labelSize="lg"
     >
       <Select error {...args} />
     </FormGroup>
@@ -107,7 +107,7 @@ export const FormGroupSmall: Story = {
   args: {
     options: ['Small', 'Quite little'],
     value: 'Small',
-    sizeVariant: 'small',
+    size: 'sm',
     id: 'form-group-small',
   },
   render: (args) => (

@@ -1,5 +1,5 @@
 const iconSizeMap = {
-  base: 16,
+  md: 16,
   sm: 8,
 } as const;
 
@@ -8,7 +8,7 @@ export const determineIconSize = (size: keyof typeof iconSizeMap) => {
 };
 
 const iconSpaceMap = {
-  base: 8,
+  md: 8,
   sm: 4,
 } as const;
 

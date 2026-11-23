@@ -5,24 +5,24 @@ import {
   MiniDeleteIcon,
 } from '@skillsoft/gamut-icons';
 
-export const iconSize = { small: 12, medium: 16 };
-export const selectedIconSize = { small: 16, medium: 24 };
+export const iconSize = { sm: 12, md: 16 };
+export const selectedIconSize = { sm: 16, md: 24 };
 
 export const indicatorIcons = {
-  smallChevron: {
-    size: iconSize.small,
+  smChevron: {
+    size: iconSize.sm,
     icon: MiniChevronDownIcon,
   },
-  mediumChevron: {
-    size: iconSize.medium,
+  mdChevron: {
+    size: iconSize.md,
     icon: ArrowChevronDownIcon,
   },
-  smallRemove: {
-    size: iconSize.small,
+  smRemove: {
+    size: iconSize.sm,
     icon: MiniDeleteIcon,
   },
-  mediumRemove: {
-    size: iconSize.medium,
+  mdRemove: {
+    size: iconSize.md,
     icon: CloseIcon,
   },
 };

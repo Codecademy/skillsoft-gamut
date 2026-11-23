@@ -55,7 +55,7 @@ const colorVariants = variant({
 const sizeVariants = variant({
   prop: 'size',
   variants: {
-    base: {
+    md: {
       height: '1.5rem',
       fontSize: 14,
       lineHeight: 0,
@@ -114,7 +114,7 @@ const BadgeBase = styled('div', styledOptions)<BadgeBaseProps>(
 export type BadgeProps = Partial<IconComponentType> & BadgeBaseProps;
 
 export const Badge: React.FC<BadgeProps> = ({ icon, children, ...rest }) => {
-  const size = rest.size === 'sm' ? 'sm' : 'base';
+  const size = rest.size === 'sm' ? 'sm' : 'md';
   const iconSize = determineIconSize(size);
   const spacing = determineIconSpacing(size);
 

@@ -154,7 +154,7 @@ export const DatePicker: React.FC<DatePickerProps> = (props) => {
     ) : (
       <>
         <FlexBox
-          gap={inputSize === 'small' ? 4 : 8}
+          gap={inputSize === 'sm' ? 4 : 8}
           ref={inputRef}
           width="fit-content"
         >

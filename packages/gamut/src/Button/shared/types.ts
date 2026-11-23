@@ -16,7 +16,7 @@ export interface ButtonBaseProps extends StyleProps<typeof buttonProps> {
   /** If defined, component will use an anchor tag */
   href?: HTMLProps<HTMLAnchorElement>['href'];
   variant?: (typeof buttonVariants)[number];
-  size?: 'normal' | 'small' | 'large';
+  size?: 'sm' | 'md' | 'lg';
   as?: never;
   mode?: ColorModes;
 }
