@@ -5,9 +5,9 @@ import type { HTMLAttributes } from 'react';
 import type * as React from 'react';
 
 import { FlexBox } from '../../Box';
-import { InfoTip } from '../../Tip/InfoTip';
-import type { InfoTipSubComponentProps } from '../../Tip/InfoTip/type-utils';
-import { useInfotipProps } from '../../Tip/InfoTip/type-utils';
+import { InfoTip } from '../../Tips/InfoTip';
+import type { InfoTipSubComponentProps } from '../../Tips/InfoTip/type-utils';
+import { useInfotipProps } from '../../Tips/InfoTip/type-utils';
 import { Text } from '../../Typography/Text';
 import { formBaseStyles, formFieldTextDisabledStyles } from '../styles';
 import type { BaseInputProps } from '../types';

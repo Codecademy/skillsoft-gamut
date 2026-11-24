@@ -3,6 +3,8 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+
 /*
   The CLI end to end, from source, the way a team building its own brand
   runs it. A subprocess because Style Dictionary is ESM-only and Jest can't

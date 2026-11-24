@@ -138,7 +138,7 @@ system.css({
 ## Accessibility & Best Practices
 
 - **IMPORTANT**: Follow WCAG requirements for accessibility
-- Always follow best practices from `/packages/styleguide/src/lib/Meta/Best Practices.mdx`
+- Always follow best practices from `/packages/gamut-docs/src/content/docs/concepts/best-practices.md`
 
 ## Implementation
 

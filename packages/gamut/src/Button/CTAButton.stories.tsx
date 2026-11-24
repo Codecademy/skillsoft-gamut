@@ -11,10 +11,6 @@ const meta: Meta<typeof CTAButton> = {
     disabled: false,
   },
   argTypes: {
-    href: {
-      description: 'If defined, component will use an anchor tag',
-      type: 'string',
-    },
     as: {
       table: {
         disable: true,

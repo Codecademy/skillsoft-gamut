@@ -1,6 +1,8 @@
 import { spawnSync } from 'node:child_process';
 import { dirname, join } from 'node:path';
 
+import { describe, expect, it } from 'vitest';
+
 import { brands, tokensCss } from '..';
 
 /*

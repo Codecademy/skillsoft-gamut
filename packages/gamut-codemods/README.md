@@ -12,6 +12,8 @@ Each preset is one upgrade. Run them in order if you're more than one behind.
 
 `npx @skillsoft/gamut-codemods list` shows every preset and the migrations inside it.
 
+The `gamut-migration` agent skill in [`@skillsoft/gamut-agent-tools`](../gamut-agent-tools/README.md) covers every preset: what each one reports, what it leaves for a person, and how to check the result. Read it alongside the preset's section here.
+
 ## Running scope-swap
 
 Start from a clean working tree. The codemod won't write into uncommitted changes (pass `--force` to override), so `git checkout .` always undoes a run.
@@ -62,7 +64,7 @@ Every skillsoft-gamut pull request publishes installable previews through pkg.pr
 | `mf-shared`                | Replaces `@codecademy/gamut-kit` in Module Federation `shared` config with the packages it bundled. Gamut becomes a real singleton, so test the host and remotes together.                                                                                                                                                                                                                                                                                                                                                                 |
 | `eslint-comments`          | `// eslint-disable-next-line gamut/x` → `@skillsoft/gamut/x`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `scope-rename`             | Every `@codecademy/gamut*` module string becomes `@skillsoft/gamut*`: imports, exports, `require`, `import()`, `jest.mock`/`vi.mock`, `declare module`, and `import('x').T`. Also exact package-name strings elsewhere, like `transpilePackages`, with one warning per file, and package names in comments (`/dist` paths and removed packages are left for the leftovers).                                                                                                                                                                |
-| `package-json`             | Renames dependencies and sets their versions. A new package that's already listed keeps its value (a preview URL, say), and a `*` peer range stays `*`. Replaces `@codecademy/gamut-kit` with the individual packages.                                                                                                                                                                                                                                                                                                                     |
+| `package-json`             | Renames dependencies and sets their versions. A new package that's already listed keeps its value (a preview URL, say), and a `*` peer range stays `*`. It also adds the peers the new packages need and don't install: `@vidstack/react` and `react-player`, only when the app imports `Video` from gamut and doesn't list the peer. Replaces `@codecademy/gamut-kit` with the individual packages.                                                                                                                                       |
 | `eslint-config`            | `.eslintrc` / `.eslintrc.json`: plugin name, `plugin:` extends, and rule keys.                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | `mdx-imports`              | Runs the migrations above over `import`/`export` statements in `.mdx` files. Fenced code blocks are left alone.                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `yarnrc`                   | `.yarnrc.yml` list items, like `npmPreapprovedPackages`: renames old package names, or drops them if a glob like `'@skillsoft/*'` already covers the new one.                                                                                                                                                                                                                                                                                                                                                                              |
@@ -111,7 +113,7 @@ Two rules hold it together:
 1. Add the row to `src/presets/<preset>/manifest.ts`.
 2. Add a fixture pair under the migration that handles it, e.g. `src/migrations/moved-exports/__testfixtures__/my-case.input.tsx` and `.output.tsx`.
 3. If it should warn, add `my-case.warnings.json`: a list of substrings that must appear in the warnings.
-4. `yarn nx test gamut-codemods`.
+4. `yarn test`, or `yarn vitest run --project=node packages/gamut-codemods` once the packages are built.
 
 `manifest.test.ts` type-checks every export a manifest points at against the built packages, so a row can't promise an export that doesn't exist.
 
@@ -126,6 +128,8 @@ Two rules hold it together:
 ### Adding a preset
 
 Create `src/presets/<name>/` with a manifest and an `index.ts`, register it in `src/presets/index.ts`, and reuse migrations from `src/migrations`.
+
+Then document it in the `gamut-migration` skill (`packages/gamut-agent-tools/skills/gamut-migration/SKILL.md`): a row in its Presets table and a `## Preset: <name>` section. Add the same preset to the table at the top of this README. The skill's "Adding a preset" section lists what to cover.
 
 ### recast gotchas already hit
 

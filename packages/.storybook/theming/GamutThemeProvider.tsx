@@ -4,11 +4,10 @@ import {
   corePalette,
   ColorModes,
   GamutProvider,
-  coreTheme,
+  skillsoftTheme,
   adminTheme,
   lxStudioTheme,
   platformTheme,
-  skillsoftTheme,
   originalCodecademyTheme,
 } from '@skillsoft/gamut-styles';
 import { Theme } from '@emotion/react';
@@ -26,7 +25,6 @@ const themeBackground: Record<ColorModes, 'white' | 'navy'> = {
 };
 
 const themeMap = {
-  core: coreTheme,
   admin: adminTheme,
   lxStudio: lxStudioTheme,
   platform: platformTheme,

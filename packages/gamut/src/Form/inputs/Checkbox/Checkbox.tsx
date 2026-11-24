@@ -10,9 +10,9 @@ import type { InputHTMLAttributes } from 'react';
 import { forwardRef, useEffect, useRef } from 'react';
 
 import { FlexBox } from '../../../Box';
-import { InfoTip } from '../../../Tip/InfoTip';
-import type { InfoTipSubComponentProps } from '../../../Tip/InfoTip/type-utils';
-import { useInfotipProps } from '../../../Tip/InfoTip/type-utils';
+import { InfoTip } from '../../../Tips/InfoTip';
+import type { InfoTipSubComponentProps } from '../../../Tips/InfoTip/type-utils';
+import { useInfotipProps } from '../../../Tips/InfoTip/type-utils';
 import { InputWrapper } from '../../styles';
 import type { BaseInputProps } from '../../types';
 import {

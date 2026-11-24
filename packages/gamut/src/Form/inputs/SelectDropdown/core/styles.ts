@@ -243,7 +243,7 @@ export const getMemoizedStyles = (
         ...getOptionBackground(state.isSelected, state.isFocused)({ theme }),
         alignItems: 'center',
         color: state.isDisabled
-          ? theme.colors['action-disabled']
+          ? theme.colors['action-disabled'] // pending design decision: action-disabled as disabled text
           : isNew
           ? theme.colors['action-primary']
           : theme.colors['text-default'],

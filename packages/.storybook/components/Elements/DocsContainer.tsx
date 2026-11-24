@@ -1,6 +1,6 @@
 import {
   AssetProvider,
-  coreTheme,
+  skillsoftTheme,
   createEmotionCache,
   GamutProvider,
   platformPalette,
@@ -8,7 +8,6 @@ import {
   lxStudioTheme,
   CoreTheme,
   platformTheme,
-  skillsoftTheme,
   originalCodecademyTheme,
   ColorMode,
 } from '@skillsoft/gamut-styles';
@@ -22,12 +21,11 @@ import { useMemo } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { createGamutDocsTheme } from '../../theming/GamutTheme';
 import { createTheme } from '@skillsoft/variance';
-export const storybookTheme = createTheme(coreTheme)
+export const storybookTheme = createTheme(skillsoftTheme)
   .addColors(platformPalette)
   .build();
 
 const themeMap = {
-  core: coreTheme,
   admin: adminTheme,
   lxStudio: lxStudioTheme,
   platform: platformTheme,
@@ -52,7 +50,7 @@ export const DocsContainer: React.FC<{
     ?.storyId;
 
   const globalTheme =
-    (context as any).store.userGlobals?.globals?.theme || 'skillsoft';
+    (context as any).store.userGlobals?.globals?.theme || 'core';
   const globalLogicalProps = (context as any).store.userGlobals?.globals
     ?.logicalProps;
   const useLogicalProperties = globalLogicalProps !== 'false';
