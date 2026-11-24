@@ -76,7 +76,7 @@ const gridContentPlaceholder = (height: string, width = 'auto') => (
 const codeCelebrationImage = (
   <FlexBox
     aria-label="Code celebration"
-    bg="background-primary"
+    bg="surface-default"
     center
     height="100%"
     p={4}
@@ -330,7 +330,7 @@ export const FocusManagement: Story = {
                 Focus Modal Container
               </FillButton>
             </FlexBox>
-            <Text color="text-disabled" fontSize={14}>
+            <Text color="text-subtle" fontSize={14}>
               Try tabbing through the page - the modal container will maintain
               focus when you click the &quot;Focus Modal Container&quot; button.
             </Text>
@@ -619,13 +619,13 @@ export const ConfirmationOnClose: Story = {
           <FlexBox gap={8}>
             <FillButton onClick={() => setIsOpen(true)}>Open modal</FillButton>
             <FillButton
-              variant="secondary"
+              variant="action-neutral"
               onClick={() => setHasUnsavedChanges(!hasUnsavedChanges)}
             >
               {hasUnsavedChanges ? 'Mark as Saved' : 'Mark as Unsaved'}
             </FillButton>
           </FlexBox>
-          <Text color="text-disabled" fontSize={14}>
+          <Text color="text-subtle" fontSize={14}>
             Toggle the unsaved state and try closing the modal to see the
             confirmation behavior. <br />
             Current state:{' '}
@@ -643,7 +643,7 @@ export const ConfirmationOnClose: Story = {
               This modal shows a confirmation dialog when you try to close it
               with unsaved changes.
             </Text>
-            <Text color="text-disabled" fontSize={14}>
+            <Text color="text-subtle" fontSize={14}>
               Current state:{' '}
               {hasUnsavedChanges ? 'Has unsaved changes' : 'All saved'}
             </Text>
@@ -661,7 +661,7 @@ export const ConfirmationOnClose: Story = {
             </Text>
             <FlexBox gap={8}>
               <FillButton onClick={handleConfirmClose}>Yes, Close</FillButton>
-              <FillButton variant="secondary" onClick={handleCancelClose}>
+              <FillButton variant="action-neutral" onClick={handleCancelClose}>
                 Cancel
               </FillButton>
             </FlexBox>

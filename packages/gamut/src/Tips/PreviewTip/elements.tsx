@@ -9,6 +9,7 @@ import { InteractiveSelectors } from '../../ButtonBase/ButtonBase';
 import { Shimmer } from '../../Loading/Shimmer';
 import { patternContainerBaseStyles } from '../../Popover/styles/pattern';
 import { Text } from '../../Typography';
+import { checkerPatternColor, useCheckerPattern } from '../../utils/elevation';
 import type {
   PreviewTipContent,
   TipPlacementComponentProps,
@@ -35,7 +36,7 @@ export const PreviewTipAnchor = styled(Anchor)(
       avatar: {
         borderRadius: 'sm',
         [InteractiveSelectors.HOVER]: {
-          bg: 'background-hover',
+          bg: 'state-hover',
         },
       },
     },
@@ -90,7 +91,7 @@ export const PreviewTipContents: React.FC<PreviewTipContentsProps> = ({
     ) : (
       <>
         {overline && (
-          <Text fontFamily="accent" fontSize={14} textColor="text-secondary">
+          <Text fontFamily="accent" fontSize={14} textColor="text-subtle">
             {overline}
           </Text>
         )}
@@ -146,10 +147,14 @@ export const PreviewTipShadow: React.FC<PreviewTipShadowProps> = ({
   zIndex,
 }) => {
   const shadowAlignment = getShadowAlignment(alignment);
+  const showPattern = useCheckerPattern();
+
+  if (!showPattern) return null;
 
   return (
     <PreviewTipPattern
       aria-hidden
+      color={checkerPatternColor}
       zIndex={zIndex ? zIndex - 2 : -1}
       {...shadowAlignment}
     >

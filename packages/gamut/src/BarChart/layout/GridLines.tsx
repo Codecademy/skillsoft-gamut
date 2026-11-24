@@ -19,7 +19,7 @@ const GridLineWrapper = styled(Box)(
 
 const GridLineContainer = styled(Box)(
   css({
-    borderColor: 'background-disabled',
+    borderColor: 'action-disabled',
     borderX: 1,
     display: { _: 'none', c_xs: 'block' },
     inset: 0,
@@ -30,7 +30,7 @@ const GridLineContainer = styled(Box)(
 const GridLine = styled(Box)<{ positionPercent: number }>(
   css({
     borderLeft: 1,
-    borderColorLeft: 'background-disabled',
+    borderColorLeft: 'action-disabled',
     height: '100%',
     position: 'absolute',
     top: 0,

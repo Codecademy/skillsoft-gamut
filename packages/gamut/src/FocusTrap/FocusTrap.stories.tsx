@@ -36,7 +36,7 @@ const meta: Meta<typeof FocusTrap> = {
         >
           <Box
             border={1}
-            borderColor={trapActive ? 'black' : 'gray-200'}
+            borderColor={trapActive ? 'black' : 'border-subtle'}
             my={24}
             p={24}
           >

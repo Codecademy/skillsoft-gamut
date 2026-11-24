@@ -649,11 +649,11 @@ export const CustomStyles: Story = {
   args: {
     barValues: stackedBarData,
     styleConfig: {
-      seriesTwoBarColor: 'text',
-      seriesOneBarColor: 'primary',
-      textColor: 'primary',
-      seriesOneLabel: 'feedback-error',
-      seriesTwoLabel: 'feedback-success',
+      seriesTwoBarColor: 'text-default',
+      seriesOneBarColor: 'action-primary',
+      textColor: 'action-primary',
+      seriesOneLabel: 'text-error',
+      seriesTwoLabel: 'text-success',
     },
     title: 'Custom styled skills chart',
     description: 'Custom color scheme applied to chart elements',
