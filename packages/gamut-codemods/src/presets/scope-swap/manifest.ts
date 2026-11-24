@@ -89,6 +89,24 @@ export const manifest: Manifest = {
     'eslint-plugin-gamut': '3.1.0',
   },
 
+  requiredPeers: {
+    '@vidstack/react': {
+      range: '~1.12.12',
+      when: ['@codecademy/gamut'],
+      video: true,
+    },
+    'react-player': {
+      range: '^3.4.0',
+      when: ['@codecademy/gamut'],
+      video: true,
+    },
+    /*
+      stylis is not listed. @emotion/cache brings its own copy, and a root
+      copy at a different version from that one breaks emotion's inserts
+      (suspected: Cannot read properties of undefined (reading 'push')).
+    */
+  },
+
   movedExports: [
     {
       from: '@codecademy/gamut',

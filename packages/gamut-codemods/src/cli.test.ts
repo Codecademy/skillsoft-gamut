@@ -24,12 +24,20 @@ const mockRun = vi.fn();
 
 const SOURCE_EXT = /\.(m?[jt]sx?|c[jt]s)$/;
 
-const listSources = (target: string): string[] =>
+/* The runner's ignorePattern is `**\/<dir>/**`; the fake honors those names. */
+const ignoredDirs = (options: Record<string, unknown>) =>
+  new Set(
+    ((options.ignorePattern as string[] | undefined) ?? []).map((pattern) =>
+      pattern.replace(/^\*\*\//, '').replace(/\/\*\*$/, '')
+    )
+  );
+
+const listSources = (target: string, ignored: Set<string>): string[] =>
   fs.statSync(target).isDirectory()
     ? fs
         .readdirSync(target)
-        .filter((name) => name !== 'node_modules')
-        .flatMap((name) => listSources(path.join(target, name)))
+        .filter((name) => !ignored.has(name))
+        .flatMap((name) => listSources(path.join(target, name), ignored))
     : SOURCE_EXT.test(target)
     ? [target]
     : [];
@@ -44,7 +52,8 @@ const simulateRunner = async (
     report: (message: string) => console.log(message),
     stats: () => {},
   };
-  for (const file of paths.flatMap(listSources)) {
+  const ignored = ignoredDirs(options);
+  for (const file of paths.flatMap((p) => listSources(p, ignored))) {
     const source = fs.readFileSync(file, 'utf8');
     const out = transform(
       { path: file, source } as FileInfo,
@@ -253,6 +262,56 @@ describe('main: full run', () => {
     });
     expect(await main(['scope-swap', dir, '--force'])).toBe(0);
     expect(output()).toMatch(/\[eslint-comments\] skipped: found flat ESLint/);
+  });
+
+  it('keeps build output and caches out of the source runner', async () => {
+    const dir = project({
+      'src/Post.tsx': POST,
+      /* Minified bundles don't parse, so the runner must never be given them. */
+      '.next/static/chunks/app.js': "const x = 'gray-900' {{ not js\n",
+      'dist/index.js': "const y = 'gray-900' {{ not js\n",
+      'coverage/lcov-report/x.js': "const z = 'gray-900' {{ not js\n",
+    });
+    expect(await main(['color-roles', dir, '--force'])).toBe(0);
+    expect(output()).not.toMatch(/\.next|\/dist\/|coverage/);
+
+    const options = mockRun.mock.calls[0][2];
+    expect(options.ignorePattern).toEqual(
+      expect.arrayContaining([
+        '**/.next/**',
+        '**/.nx/**',
+        '**/node_modules/**',
+        '**/dist/**',
+      ])
+    );
+  });
+
+  it('skips generated files, which the runner never reads', async () => {
+    const dir = project({
+      'src/Post.tsx': POST,
+      /* wrangler types: Babel rejects this block, and it matches the pre-filter on 'text'. */
+      'worker-configuration.d.ts':
+        "declare module 'x' {\n  let _E: number;\n  export { _E as E };\n}\nget(type: 'text'): void;\n",
+    });
+    expect(await main(['color-roles', dir, '--force'])).toBe(0);
+    expect(output()).not.toMatch(/worker-configuration/);
+    expect(mockRun.mock.calls[0][2].ignorePattern).toContain(
+      '**/worker-configuration.d.ts'
+    );
+  });
+
+  it('warns about tsconfig lib only where gamut is imported', async () => {
+    const dir = project({
+      'src/Post.tsx': POST,
+      'tsconfig.json': JSON.stringify({ compilerOptions: { lib: ['es2020'] } }),
+      'worker/src/index.ts': 'export const n = 1;\n',
+      'worker/tsconfig.json': JSON.stringify({
+        compilerOptions: { lib: ['esnext'] },
+      }),
+    });
+    expect(await main(['scope-swap', dir, '--force'])).toBe(0);
+    expect(output()).toMatch(/\[tsconfig-dom\] .*\/tsconfig\.json "lib"/);
+    expect(output()).not.toMatch(/\[tsconfig-dom\] .*worker\/tsconfig\.json/);
   });
 
   it('returns 1 when the source runner reports errors', async () => {

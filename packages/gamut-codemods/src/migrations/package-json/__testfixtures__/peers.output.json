@@ -2,6 +2,8 @@
   "name": "lib",
   "peerDependencies": {
     "@skillsoft/gamut": "*",
-    "@skillsoft/gamut-styles": "^{{version}}"
+    "@skillsoft/gamut-styles": "^{{version}}",
+    "@vidstack/react": "~1.12.12",
+    "react-player": "^3.4.0"
   }
 }

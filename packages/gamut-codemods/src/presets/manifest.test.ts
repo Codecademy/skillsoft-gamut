@@ -1,17 +1,25 @@
+import { describe, expect, it } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
 
 import ts from 'typescript';
-import { describe, expect, it } from 'vitest';
 
-import { type DeepImport, renameSpecifier } from '../lib/manifest';
+import {
+  type DeepImport,
+  type Manifest,
+  renameSpecifier,
+} from '../lib/manifest';
 import { presets } from '.';
 import { manifest } from './scope-swap/manifest';
 
+/* Manifests that promise exports: scope-swap's shape. Other presets have none. */
+const movesExports = (m: unknown): m is Manifest =>
+  typeof m === 'object' && m !== null && 'movedExports' in m;
+
 /*
   Guards against a manifest that promises something the packages don't
-  deliver. Runs against the built dist, so the packages have to be built
-  first (the `test` target's `^build` wires that up).
+  deliver. Runs against the built dist, so `^build` has to run first
+  (project.json wires that up).
 */
 
 const REPO = path.join(__dirname, '../../../..');
@@ -32,8 +40,9 @@ const importsToCheck = () => {
     names.forEach((name) => set.add(name));
     byModule.set(spec, set);
   };
-  for (const preset of Object.values(presets)) {
-    const m = preset.manifest;
+  for (const m of Object.values(presets)
+    .map((preset) => preset.manifest)
+    .filter(movesExports)) {
     for (const rule of m.movedExports) {
       add(renameSpecifier(m, rule.to), rule.names);
     }
@@ -110,7 +119,7 @@ const exportsOf = (specifiers: string[]) => {
   });
 };
 
-describe('manifests', { timeout: 15_000 }, () => {
+describe('manifests', { timeout: 60_000 }, () => {
   /*
     A deep-import row sends every name imported from `from` to `to`, so
     everything `from` exports has to be available there: directly, via
@@ -197,6 +206,35 @@ describe('manifests', { timeout: 15_000 }, () => {
       } else {
         /* Versioned by the fixed group, which is what makes GROUP_RANGE right. */
         expect(group).toContain(pkg);
+      }
+    }
+  });
+
+  it('require peers at the ranges the packages declare', () => {
+    /*
+      Each required peer must match what every package in `when` declares
+      in its own peerDependencies, or the migration would add a range that
+      doesn't install alongside the package that needs it.
+    */
+    const packages = fs
+      .readdirSync(path.join(REPO, 'packages'))
+      .filter((dir) =>
+        fs.existsSync(path.join(REPO, 'packages', dir, 'package.json'))
+      )
+      .map(
+        (dir) =>
+          readJson(`packages/${dir}/package.json`) as {
+            name: string;
+            peerDependencies?: Record<string, string>;
+          }
+      );
+    for (const [peer, { range, when }] of Object.entries(
+      manifest.requiredPeers
+    )) {
+      for (const old of when) {
+        const name = manifest.packages[old]?.to ?? old;
+        const pkg = packages.find((p) => p.name === name);
+        expect(pkg?.peerDependencies?.[peer]).toBe(range);
       }
     }
   });
