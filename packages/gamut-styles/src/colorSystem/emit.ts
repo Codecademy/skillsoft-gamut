@@ -72,14 +72,22 @@ const setPath = (group: DtcgGroup, path: string[], token: DtcgToken) => {
   node[path[path.length - 1]] = token;
 };
 
-/* Every translucent value a role uses gets its own palette entry. */
-const translucentValues = (): RoleValue[] => {
+/*
+ * Every translucent value a role uses gets its own palette entry, including
+ * the ones a brand's role overrides introduce (Original Codecademy's
+ * transparent `shadow-ambient`).
+ */
+const translucentValues = (system: ColorSystem): RoleValue[] => {
   const seen = new Map<string, RoleValue>();
+  const add = (value: RoleValue) => {
+    if (value.alpha !== undefined) seen.set(valueKey(value), value);
+  };
   for (const role of ROLES) {
-    for (const mode of MODES) {
-      if (role[mode].alpha !== undefined) {
-        seen.set(valueKey(role[mode]), role[mode]);
-      }
+    for (const mode of MODES) add(role[mode]);
+  }
+  for (const tokens of Object.values(system.brand.overrides?.roles ?? {})) {
+    for (const o of Object.values(tokens ?? {})) {
+      if (typeof o === 'object' && 'alpha' in o) add(o);
     }
   }
   return [...seen.values()];
@@ -91,6 +99,25 @@ export const gradientCss = (system: ColorSystem, gradient: Gradient) =>
       const color = system.palette[paletteKey(ref)];
       const stops = FALLOFF.map(
         ([pos, alpha]) => `${oklchCss(color, alpha)} ${pos}%`
+      ).join(', ');
+      return `radial-gradient(circle calc(${radius} * 100cqw) at ${at}, ${stops})`;
+    })
+    .join(', ');
+
+/*
+ * The same gradient against palette variables, for tokens.css. Each stop is
+ * the palette color at the stop's alpha (`color-mix` with transparent in
+ * oklab), so it follows whichever brand's palette is in scope and is emitted
+ * once for every brand.
+ */
+export const gradientCssVars = (gradient: Gradient) =>
+  gradient.circles
+    .map(({ ref, radius, at }) => {
+      const stops = FALLOFF.map(
+        ([pos, alpha]) =>
+          `color-mix(in oklab, var(--color-${paletteKey(ref)}) ${Number(
+            (alpha * 100).toFixed(2)
+          )}%, transparent) ${pos}%`
       ).join(', ');
       return `radial-gradient(circle calc(${radius} * 100cqw) at ${at}, ${stops})`;
     })
@@ -113,7 +140,7 @@ export const toDtcgPalette = (system: ColorSystem): DtcgGroup => {
       $extensions: { [EXTENSION]: { contentMode: modes[key] } },
     });
   }
-  for (const value of translucentValues()) {
+  for (const value of translucentValues(system)) {
     const color = system.palette[paletteKey(value.ref)];
     setPath(group, refPath(value.ref, value.alpha), {
       $type: 'color',
@@ -128,7 +155,7 @@ export const toDtcgMode = (system: ColorSystem, mode: Mode): DtcgGroup => {
     $description: `${mode} mode roles for "${system.brand.name}". Do not edit.`,
   };
   for (const role of ROLES) {
-    const gradient = role.gradient?.[mode];
+    const gradient = system.gradients[mode][role.token];
     group[role.token] = {
       $type: 'color',
       $value: refString(role[mode]),
@@ -144,6 +171,7 @@ export const toDtcgMode = (system: ColorSystem, mode: Mode): DtcgGroup => {
               })),
               falloff: FALLOFF,
               css: gradientCss(system, gradient),
+              cssVars: gradientCssVars(gradient),
             },
           },
         },
@@ -165,7 +193,7 @@ export const toTsModule = (system: ColorSystem): string => {
   for (const [key, color] of Object.entries(system.palette)) {
     palette[key] = entry(color);
   }
-  for (const value of translucentValues()) {
+  for (const value of translucentValues(system)) {
     palette[valueKey(value)] = entry(
       system.palette[paletteKey(value.ref)],
       value.alpha
@@ -189,9 +217,9 @@ export const toTsModule = (system: ColorSystem): string => {
     MODES.map((mode) => [
       mode,
       Object.fromEntries(
-        ROLES.filter((r) => r.gradient).map((r) => [
-          r.token,
-          gradientCss(system, r.gradient![mode]),
+        Object.entries(system.gradients[mode]).map(([token, gradient]) => [
+          token,
+          gradientCss(system, gradient),
         ])
       ),
     ])

@@ -6,3 +6,5 @@
  * (`@skillsoft/gamut-styles/tokens/*.tokens.json`).
  */
 export * from './generated/values';
+/* The other brands, by name: `brands.core.palette`, `brands.core.contentModes`, … */
+export * as brands from './generated/brands';

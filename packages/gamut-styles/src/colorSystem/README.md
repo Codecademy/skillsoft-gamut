@@ -29,10 +29,20 @@ brands/skillsoft.ts         one hue per slot (or just `primary`)
 - `probe.ts` (tenant probes) is report-only. `validate:tokens` prints the
   results and doesn't assert them.
 
+## Brands and parity
+
+Brand inputs live in `brands/`: `skillsoft.ts` and `originalCodecademy.ts`, indexed by
+`brands/index.ts`. Each one names the hue for each slot, and the generator fills the rest.
+
+`__fixtures__/sandbox.json` records the design sandbox commit the generator matches.
+`__tests__/sandboxParity.test.ts` holds the generator to that fixture. To take a sandbox
+update, run `dump:sandbox` against a sandbox checkout, then port until the tests pass.
+
 ## Commands
 
 ```sh
 yarn workspace @skillsoft/gamut-styles build:tokens     # regenerate src/tokens/generated
+yarn workspace @skillsoft/gamut-styles dump:sandbox <sandbox checkout>  # refresh the sandbox fixture
 yarn workspace @skillsoft/gamut-styles validate:tokens  # parity with design's reference fixture and CSS round-trip; prints tenant probes
 npx nx test gamut-styles                                # guarantees; values.ts and tokens.css are current
 ```
