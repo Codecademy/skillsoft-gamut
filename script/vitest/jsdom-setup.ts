@@ -21,6 +21,6 @@ afterEach(cleanup);
  * defines the key (as `undefined`), which defeats `'matchMedia' in window`
  * guards like `usePrefersDarkMode`'s. Drop it so they behave as under Jest.
  */
-if (typeof window.matchMedia !== 'function') {
+if (typeof window !== 'undefined' && typeof window.matchMedia !== 'function') {
   delete (window as Partial<Window>).matchMedia;
 }
